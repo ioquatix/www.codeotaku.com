@@ -1,0 +1,12 @@
+[submodule "materials/jquery-syntax"]
+	path = materials/jquery-syntax
+	url = git@github.com:ioquatix/jquery-syntax.git
+[submodule "materials/jquery-validation"]
+	path = materials/jquery-validation
+	url = https://github.com/jzaefferer/jquery-validation.git
+[submodule "materials/fancyBox"]
+	path = materials/fancyBox
+	url = https://github.com/fancyapps/fancyBox
+[submodule "materials/jquery-xframe"]
+	path = materials/jquery-xframe
+	url = git@github.com:ioquatix/jquery-xframe.git

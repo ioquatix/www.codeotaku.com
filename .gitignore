@@ -1,0 +1,6 @@
+.cache.*
+.DS_Store
+_cache
+/access_log/
+/cache/
+.sass-cache

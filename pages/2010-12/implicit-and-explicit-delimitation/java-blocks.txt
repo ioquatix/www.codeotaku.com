@@ -1,0 +1,6 @@
+class Alice {
+	
+	public void f() {}
+	public void g() {}
+	
+}

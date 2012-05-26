@@ -1,0 +1,20 @@
+<entry>
+	<p>I've been working on cross-compiling various different libraries for iPhone development. It has been fairly difficult to say the least.</p>
+
+	<p>One issue I ran into was linking a static archive with an app. The static archive had several .o files which did not export a public API, but were still important due to static initialization - i.e. it looked a bit like this:</p>
+	
+	<listing src="example_code.txt" brush="clang" />
+	
+	<p>Because this class is instantiated, it caused some functionality elsewhere in the app. The purpose of this is to de-couple implementations for specific behaviours from the actual interface - in this case, an image loader that supports several different formats. The benefit of this is that client code doesn't need to know the exact format of the data it is processing, only that it meets a specific abstract interface (in this case IPixelBuffer).</p>
+
+	<p>The issue with compiling this to an archive, is that during the link phase, code like this was not getting included in the end result. This is because there was no need for any symbols (obviously) within this .o file within the archive, so it was left out entirely.</p>
+
+	<p>There are a number of different solutions to this problem, but on Mac OS X, a quick easy option is the -all_load flag which is passed to ld. From the ld man page:</p>
+
+	<dl>
+		<dt>-all_load</dt>
+		<dd>Loads all members of static archive libraries.</dd>
+	</dl>
+	
+	<p>This can be added into an Xcode project from the build options as <em>Other Linker Flags</em>.</p>
+</entry>

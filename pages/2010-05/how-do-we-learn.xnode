@@ -1,0 +1,30 @@
+<entry>
+	<p>For thousands of years, humans have been learning new things. Each step we take is brought about by the teachers who have come before us. But, when it comes to teaching, what does a teacher need to learn and know in order to effectively help their students?</p>
+	
+	<h2>Pedagogy</h2>
+	
+	<p>Pedagogy is <em>the method and practice of teaching, esp. as an academic subject or theoretical concept</em>. It is an umbrella term used in the discussion of teaching methods and covers a wide range of different methods and ideas:</p>
+	
+	<dl>
+		<dt>Learning Models</dt>
+		<dd>Student Centered, Instructional Design, Higher-order Thinking</dd>
+		<dt>Learning Styles</dt>
+		<dd>Visual, Aural, Kinesthetic</dd>
+		<dt>Socio-cultural Theory</dt>
+		<dd>Constructivist approach, Socratic Method</dd>
+		<dt>Teaching and Learning Tools</dt>
+		<dd>Text Books, Computers, Distance Learning, Instructional Learning, Peer Learning</dd>
+	</dl>
+	
+	<h2>Pedagogical Theories</h2>
+	
+	<p>I will outline several of these different pedagogical theories and look at how they are useful in teaching.</p>
+	
+	<ul>
+	<?r links.each do |link|
+		next unless (link[:tags] || []).include? 'pedagogy'
+	?>
+		<li>#{link.to_href}</li>
+	<?r end ?>
+	</ul>
+</entry>

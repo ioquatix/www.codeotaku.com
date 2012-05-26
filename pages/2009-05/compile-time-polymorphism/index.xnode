@@ -1,0 +1,57 @@
+<entry>
+	<p>Polymorphism is important, but adding layers of abstraction slows down execution and reduces the effectiveness of optimization. There are other ways to achieve some forms of polymorphism which can be resolved at compile time, while still providing many of the benefits of an abstract interface.</p>
+	
+	<h2>Overloading functions</h2>
+	
+	<p>In many languages, we can have many functions with the same name but different type signatures. This is called overloading a function, and allows us to express a common idea for different types of data. For example:</p>
+	
+	<listing src="overloading.txt" brush="clang" />
+	
+	<p>The implementation which does the processing is selected at compile time based on whether the function parameter is of type <code>int</code> or <code>std::string</code>. Because of this, function dispatch is fast and inter-procedural optimization can be performed effectively.</p>
+	
+	<h2>The curiously reoccurring template pattern</h2>
+	
+	<p>Some forms of abstraction can be resolved at compile time. There is one common technique called "The Curiously Reoccurring Template Pattern". This allows us to get some of the benefits of inheritance (such as code reuse), without any associated dynamic dispatch.</p>
+
+	<p>Here is an example from some code I'm working on:</p>
+	
+	<listing src="timed_system.txt" brush="clang" />
+	
+	<p>A dispatch such as the following can still be resolved at compile time - i.e. there is no dynamic dispatch, but we still get the benefits of code reuse:</p>
+	
+	<listing src="timed_system_example.txt" brush="clang" />
+	
+	<p>For more information about this, <a href="http://en.wikipedia.org/wiki/Curiously_Recurring_Template_Pattern">Wikipedia</a> has a good article on the topic.</p>
+	
+	<h2>Using namespaces to provide implementation</h2>
+	
+	<p>A technique I've been using in my game engine involves namespaces. Currently, I'm working on a game that is required to support both OpenGL ES 1.1 and OpenGL 2.0.</p>
+
+	<p>In this situation, I have found the following technique very useful. Each implementation has its own namespace. You also have specific implementation files, some of which may or may not be compiled depending on the target.</p>
+	
+	<listing src="namespaces.txt" brush="clang" />
+	
+	<p>The implementation for these functions may or may not be different - but the key point is that the interface is consistent. At compile time, the implementation is selected by using a define such as <code>USE_OPENGL20</code>. This can be supplied to the compiler.</p>
+	
+	<listing src="namespaces_example.txt" brush="clang" />
+	
+	<p>Because of this, I can target OpenGL20 and OpenGLES11 with the same code base and a minimal number of specific code paths, because even though we are using a completely different set of APIs, as long as they expose an identical public interface there are no problems.</p>
+
+	<p>Using namespaces to provide this type of organization also allows for specific implementations to be compiled into the same library, and then selected in the client application. For example, it is possible to compile both the OpenGL20 implementation and the OpenGL31 implementation into the same shared library, and then in the client application select which implementation to use.</p>
+
+	<p>It is also possible to have a client application that supports different implementations. The application must have equivalent namespaces for each implementation, and then select one of its own implementations at run time (using a configuration file, etc).</p>
+	
+	<listing src="engine_selection.txt" brush="clang" />
+	
+	<p>However, at this point we may need to expose a very high level virtual interface - as soon as we have a choose of implementation at run time, we can't avoid having some kind of virtual interface and dynamic dispatch. But if the engine interface is very high-level - i.e.</p>
+	
+	<listing src="engine_interface.txt" brush="clang" />
+	
+	<p>- we will still have a good performance since the overhead will be very small. The majority of the implementation for renderScene can be completely resolved at compile time.</p>
+	
+	<h2>Conclusion</h2>
+	
+	<p>Compile time polymorphism will give the compiler the maximum chance to optimise code and will also pick up errors in structure that might be hidden by virtual interfaces. However, we must make provisions for compiling the correct set of interfaces and definitions as needed, which can make things a bit more cumbersome.</p>
+
+	<p>One thing I've noticed is the tendency to provide interfaces for things which can be determined at compile time anyway. For example, is it useful to provide a virtual interface for the window manager? Often it might be considered useful, but on the other hand, most platforms only have one window manager, so there will typically only be one implementation. If there is only one implementation available for a particular target in the majority of cases, should it be considered that compile time polymorphism is a better tool? There are many different considerations to take into account.</p>
+</entry>

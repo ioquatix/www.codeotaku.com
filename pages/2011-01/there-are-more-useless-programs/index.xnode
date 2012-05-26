@@ -1,0 +1,55 @@
+<entry>
+	<p>As a programmer, I sometimes write incorrect programs. The most common problems I experience:</p>
+	
+	<ul>
+		<li>I've made a typo and can't compile my program due to invalid syntax.</li>
+		<li>I've got a semantic error where I've assumed something which isn't actually the case.</li>
+		<li>I've misunderstood the original problem and the solution is either faulty or solves some other problem.</li>
+	</ul>
+	
+	<p>Writing useful and correct software is not easy. Through experience we can develop an "intuition toolbox" containing abstract principles that allow us to approach bigger and more complex problems. Yet, despite the existence of many expert programmers, programs (especially large ones) still have bugs and may not behave as expected.</p>
+	
+	<h2>Why is this?</h2>
+	
+	<p>We need to consider why we have programs that have bugs, and how they compare to programs that work correctly. As programmers, we are trying to create a program which solves a given problem. But, how does one approach a problem and formulate a correct solution? We know that it is formally impossible to prove the correct behavior of non-trivial programs, but as programmers, even in the face of such an insurmountable challenge, we need to solve non-trivial problems.</p>
+	
+	<p>With regards to correct solutions, how many programs exist that are logically equivalent, given all possible permutations? In what ways are they different (e.g. performance, accuracy, structure)? Then, how many variations of a program exist that look correct, but are actually logically incorrect?</p>
+	
+	<p>Many programming languages formally define a syntax model (what to type) and semantic model (how it is executed at a high level). These, together, allow programmers to create programs. For any sequence of characters, only a limited set will be syntactically valid. Forgot a semi-colon? Missing a bracket? That program is invalid.</p>
+	
+	<p>Even a syntactically valid program may have semantic errors. Did you assume an incorrect order of evaluation? Did the underlying data type overflow? That program is undefined.</p>
+	
+	<p>Once a program is working correctly, is it solving the correct problem? Does it solve the problem for all valid inputs? If not, the program is faulty.</p>
+	
+	<p>Even if a program is syntactically valid, semantically sound and solves the right problem, can we be sure that it is going to continue to work as expected into the future? If any of the underlying assumptions about semantics change, will the program continue to produce a useful result?</p>
+	
+	<p>Clearly, we can see that the odds are stacked against the programmer.</p>
+	
+	<h2>What is a useful program?</h2>
+	
+	<p>To really appreciate the nature of programming, we need to think about what defines a useful program, P.</p>
+	
+	<p>Firstly, we can state that a program, P, is a sequence of logical statements that can be executed systematically. We also consider P<sub>a</sub> is equivalent to P<sub>b</sub> if they are semantically identical.</p>
+	
+	<p>Then, we can define a useful program as any program that eventually halts and produces an answer (despite the fact we can't prove in general which program is useful and which is not, this definition is sufficient). However, I personally also like to think of a useful program as one that produces a <em>meaningful</em> result.</p>
+	
+	<h2>Why are there more useless programs?</h2>
+	
+	<p>For any given useful program P in the set of all useful programs P<sub>1</sub>, P<sub>2</sub>, ... P<sub>n</sub>, we can make a transform function T(P<sub>useful</sub>) &rarr; P<sub>useless</sub>. The transform function T must modify the original program to produce an invalid or undefined program, such as one which no longer halts.</p>
+	
+	<p>There are potentially a large number of transformations which cause useful programs to become useless, for example, simply adding a semantically invalid statement may also be sufficient as it would produce undefined behavior in any significantly complex program. Another transform could involve prepending a statement that causes the program to exit immediately and perform no useful task. Another possible transform would simply remove all assignment statements. Transform functions could be compounded together to create meta-transforms.</p>
+	
+	<p>At this point we can now take any useful program and create multiple useless program using a variety of transformation functions T<sub>1</sub>, T<sub>2</sub>, ... T<sub>k</sub>, thereby defining a 1-to-k mapping from useful programs to useless.</p>
+	
+	<p>Therefore, the set of useful programs is vastly outnumbered by the set of useless programs.</p>
+	
+	<h2>What does this all mean?</h2>
+	
+	<p>Software development tends towards failure. Even with careful analysis, changing an existing program is likely to bring about some form of syntax, semantic or logic failure. The number of useful programs one step from the existing program is vastly surpassed by the number by useless programs. In some cases, you might even need to make several useless programs to get to the next useful program.</p>
+	
+	<p>Ultimately, we are asking a question about intuition and knowledge - how does one approach a problem and formulate a useful solution? This is despite the fact that it is impossible to prove the correctness of non-trivial programs. I don't believe I've ever seen someone write a perfect program of any substantial length without debugging it or compiling it several times in order to resolve errors. Yet, there are clear differences between "good" and "bad" programmers with respect to how many program permutations that might be evaluated.</p>
+	
+	<p>Thus, as programmers, it is our job to be aware of these issues, and develop the intuition and skills required to develop programs that work correctly. There are many well-documented ways to deal with these problems: modular code reduces coupling, compilation verifies program syntax, static logic and type checking provides warnings and errors for many semantic and logical errors, etc. And, general problem solving skills, analytical thinking, mathematical ability, visualisation, etc, all help to improve our ability to write correct programs.</p>
+	
+	<p>Yet, despite our best intentions and abilities thus far, as programs become complex and enter the realm of non-determinism (e.g. network communication, algorithms based on probability, lock-free algorithms, parallel processing), we have yet another level of complexity to contend with. At this point, we are still lacking the right tools for solving many problems in this category. In this case, even very subtle changes in the execution environment may cause a useful program to become useless..</p>
+</entry>

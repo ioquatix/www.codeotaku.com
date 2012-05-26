@@ -1,0 +1,5 @@
+int a, b = 1, c = 2;
+float d, e = 1, f = 2;
+ 
+a = b + c;
+d = e + f;

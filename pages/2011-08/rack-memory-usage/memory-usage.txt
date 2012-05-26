@@ -1,0 +1,23 @@
+class MemoryUsage
+	def initialize(app)
+		print_memory_usage!
+		
+		@app = app
+	end
+	
+	def print_memory_usage!
+		$stderr.puts "Memory Usage: " + `ps -o rss= -p #{Process.pid}`
+	end
+	
+	def call(env)
+		result = @app.call(env)
+		
+		GC.start
+		
+		print_memory_usage!
+		
+		return result
+	end
+end
+
+use MemoryUsage

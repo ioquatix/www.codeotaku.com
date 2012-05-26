@@ -1,0 +1,22 @@
+# Direct descendants of Exception: 
+	NoMemoryError
+	ScriptError
+	StandardError
+	SignalException
+	fatal
+	SystemExit
+# Direct descendants of StandardError: 
+	SystemStackError
+	LocalJumpError
+	IOError
+	RegexpError
+	ZeroDivisionError
+	ThreadError
+	SystemCallError
+	SecurityError
+	RuntimeError
+	NameError
+	RangeError
+	IndexError
+	ArgumentError
+	TypeError

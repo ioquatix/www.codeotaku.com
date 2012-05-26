@@ -1,0 +1,12 @@
+
+int bob (Baz * baz) {
+	// We can see "->" and "," separation markers 
+	int result = baz->calculateFoo(x, y, z)->bar();
+	
+	if (result) {
+		return baz->apples();
+	}
+	
+	// Whitespace delimited expression (there is no previous statement terminator):
+	return baz->oranges(); // This statement terminator is extraneous but required for correctness.
+}

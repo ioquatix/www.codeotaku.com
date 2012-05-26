@@ -1,0 +1,17 @@
+LM38:
+	movl	$0, -32(%ebp)
+	jmp	L315
+L316:
+LM39:
+	movl	-52(%ebp), %eax
+	movl	(%eax), %eax
+	movl	(%eax), %edx
+	movl	-52(%ebp), %eax
+	movl	%eax, (%esp)
+	call	*%edx
+LM40:
+	leal	-32(%ebp), %eax
+	incl	(%eax)
+L315:
+	cmpl	$19999, -32(%ebp)
+	jbe	L316

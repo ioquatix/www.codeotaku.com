@@ -1,0 +1,11 @@
+<script type="text/javascript" src="@rel@/_static/sh/loader.js"></script>
+<script type="text/javascript">
+	$(function() {
+		var SyntaxHighlighterSettings = {
+			root: '@rel@/_static/sh/',
+			stylesheets: ['shThemeDefault.css'],
+		};
+		
+		setupSyntaxHighlighter(SyntaxHighlighterSettings);
+	});
+</script>

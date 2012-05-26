@@ -1,0 +1,14 @@
+$ sudo rake install_gem
+(in ./utopia/build)
+Building utopia-0.9.14.gemspec...
+Copying file to ../utopia.gemspec
+WARNING:  no description specified
+WARNING:  no rubyforge_project specified
+  Successfully built RubyGem
+  Name: utopia
+  Version: 0.9.14
+  File: utopia-0.9.14.gem
+Successfully installed utopia-0.9.14
+1 gem installed
+Installing ri documentation for utopia-0.9.14...
+Installing RDoc documentation for utopia-0.9.14...

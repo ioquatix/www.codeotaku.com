@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<annotations file="{source-code-file}">
+	<marker id="{unique-id}" start="{character-offset}" end="{character-offset}">
+		<tag name="function" />
+		<metric name="time" value="32" />
+	</marker>
+	<marker start="{character-offset}" end="{character-offset}">
+		<!-- Link a function call with its body -->
+		<link href="{unique-id}" />
+	</marker>
+</annotations>

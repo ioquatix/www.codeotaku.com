@@ -1,0 +1,11 @@
+# Using rack-cache is easy - simply install it and add it to your config.ru
+
+use Rack::Cache, {
+	:verbose => true
+}
+
+# Then in your content generation, write something like this
+
+response.headers['Cache-Control'] = 'max-age=3600'
+
+# And rack-cache will take care of the rest :)

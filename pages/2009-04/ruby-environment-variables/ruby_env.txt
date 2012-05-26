@@ -1,0 +1,10 @@
+def environment (new_env = nil, &block)
+  old_env = ENV.to_hash
+ 
+  ENV.update(new_env) if new_env
+ 
+  yield
+ 
+  ENV.clear
+  ENV.update(old_env)
+end

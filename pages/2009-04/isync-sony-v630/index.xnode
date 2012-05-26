@@ -1,0 +1,5 @@
+<entry>
+	<p>My old cellphone is a V630i. This isn't compatible with iSync out of the box because no one has bothered to create a plugin for it. So, I've made one. It is available for free, and all you need to do is put it into <code>~/Library/PhonePlugins/</code>.</p>
+	
+	<p> <a href="sonyericsson-v630.phoneplugin.zip">Download it</a>. It should work with Mac OS X 10.5/10.6.</p>
+</entry>

@@ -1,0 +1,17 @@
+// OpenGLES11.h ...
+namespace OpenGLES11
+{
+  class Renderer {
+  public:
+    void setPerspectiveView (RealT ratio, RealT fov, RealT near, RealT far);
+  };
+}
+ 
+// OpenGL20.h ...
+namespace OpenGL20
+{
+  class Renderer {
+  public:
+    void setPerspectiveView (RealT ratio, RealT fov, RealT near, RealT far);
+  };
+}

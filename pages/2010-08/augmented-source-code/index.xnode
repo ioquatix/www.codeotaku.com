@@ -1,0 +1,34 @@
+<entry>
+	<!-- http://web.archive.org/web/20080624034050/http://drinkbroken.typepad.com/drink_broken/2007/11/syntax-highligh.html -->
+	
+	<p>Source code can be augmented in many ways to provide useful feedback for a programmer. It would be great to see existing source code editors augmented to provide these features.</p>
+	
+	<dl>
+		<dt>Code Reviewing</dt>
+		<dd>Highlight lines not covered by unit tests.</dd>
+		<dd>Highlight code which has been changed since the last review.</dd>
+		<dd>Hyperlink function names to source code bodies.</dd>
+		<dd>Inline documentation (including images/eps and other kinds of markup).</dd>
+		
+		<dt>Bug Fixing</dt>
+		<dd>Highlight code based on its age.</dd>
+		<dd>Highlight and link code based on program flow/coverage.</dd>
+		<dd>Augment variable names with values (i.e. in a bubble).</dd>
+		
+		<dt>Optimisation</dt>
+		<dd>Highlight code based on execution time.</dd>
+		<dd>Augment function definitions with execution details (such as execution time, memory contention issues, threading issues).</dd>
+	</dl>
+	
+	<p>Some of these features could be integrated by using the history of the source code exposed by a source code management system, other features would require a well defined compiler framework.</p>
+	
+	<p>One option would be to expose a common format for marking up source code. This could be a separate file which annotates sequences of characters with meta-data which could then be used by the editor for highlighting source code. Various tools could produce this standard output and this could be used by the editor to augment the source code text.</p>
+	
+	<h2>Syntax Augmentation Format</h2>
+	
+	<p>This file format is very simple and is designed so that it can be generated and parsed very easily. It is designed to annotate specific parts of a text file with information such as </p>
+	
+	<listing src="format.txt" brush="xml" />
+	
+	<p>I hope to add this functionality to <a href="/software/jquery-syntax">jQuery.Syntax</a> as a concept demonstration.</p>
+</entry>

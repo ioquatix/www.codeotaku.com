@@ -1,0 +1,54 @@
+require 'digest'
+require 'base64'
+
+def secure_digest(key,salt="")
+	return Digest::SHA1.hexdigest(key+salt)+salt
+end
+
+def secure_digest_b64(key,salt="")
+	return Base64.encode64(secure_digest(key, salt)).chomp
+end
+
+class MailAccount
+	include DataMapper::Resource
+	
+	property :id, Serial
+	
+	property :name, String
+
+	property :pw_ssha, String
+	property :pw_sha1, String
+
+	def password=(pw)
+		salt = (0...12).collect{(rand 256).chr}.join
+		sha1 = Digest::SHA1.digest(pw)
+		ssha = Digest::SHA1.digest(pw+salt) + salt
+
+		attribute_set(:pw_ssha, "{SSHA}" + Base64.encode64(ssha).chomp)
+		attribute_set(:pw_sha1, "{SHA1}" + Base64.encode64(sha1).chomp)
+	end
+	
+	def digest_authenticate(login_digest, login_salt)
+		return false if sha1_hexdigest == nil
+
+		return login_digest == secure_digest(login_salt + sha1_hexdigest)
+	end
+	
+	def plaintext_authenticate(password)
+		return false if sha1_digest == nil
+		
+		return secure_digest(password) == sha1_hexdigest
+	end
+	
+	def sha1_hexdigest
+		if pw_sha1.kind_of? String
+			digest = pw_sha1.sub("{SHA1}", "")
+			
+			return nil if digest.empty?
+			
+			return Base64.decode64(digest).unpack("H*").first
+		else
+			return nil
+		end
+	end
+end

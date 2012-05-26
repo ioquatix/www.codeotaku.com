@@ -1,0 +1,5 @@
+FireParticles fireParticles;
+
+fireParticles->update(dt);
+// Firstly calls TimedSystem<FireParticles>::update(dt)
+// which then calls FireParticles::updateForDuration(...);

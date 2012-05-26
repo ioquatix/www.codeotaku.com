@@ -1,0 +1,27 @@
+<entry>
+	<p>I've been getting more and more frustrated with purchasing games recently - I've had several bad experiences with games that require online activation or other such nonsense. Thus, I've been looking more and more to free software and open source to satisfy my desire for computer gaming. Also, I primarily use a Mac as a laptop and Linux as a server, so this also limits the amount of commercially available software, since most companies don't bother to support a wide variety of platforms.</p>
+	
+	<p>The following is a list of enjoyable free software games that I have been playing recently.</p>
+	
+	<h2>Battle For Wesnoth</h2>
+	
+	<p><a href="http://www.wesnoth.org/">Battle For Wesnoth</a> is an excellent <em>turn based strategy</em> game. It has many single player campaigns and a large amount of user contributed content, along with a campaign editor for creating your own content.</p>
+	
+    <photos path="wesnoth" />
+	
+	<h2>Sauerbraten</h2>
+	
+	<p><a href="http://sauerbraten.org/">Sauerbraten</a> is a fantastic multiplayer <em>first person shooter</em>. It has many online game modes which all offer unique gameplay experience. The maps are well designed and the graphics are generally very nice.</p>
+	
+	<p>One of Sauerbraten's more interesting multiplayer modes is cooperative editing; this allows several people to create a map together online, and instantly try it out.</p>
+	
+    <photos path="sauerbraten" />
+	
+	<h2>Warzone 2100</h2>
+	
+	<p><a href="http://wz2100.net/">Warzone 2100</a> is a very enjoyable <em>real time strategy</em> game. Developed commercially in 1999, it has since been released almost entirely as free software. It features an excellent single player campaign along with cutscenes, music and imagery.</p>
+	
+	<p>It has several unique innovations including the ability to design the units from scratch, and the persistence of the bases that you build throughout the campaign; this makes it important to think about your long term strategy.</p>
+	
+    <photos path="warzone2100" />
+</entry>

@@ -1,0 +1,25 @@
+#include <stdio.h>
+#include <poll.h>
+ 
+int main (int argc, char ** argv)
+{
+	struct pollfd pfd;
+	pfd.fd = fileno(stdin);
+	pfd.events = POLLIN|POLLOUT;
+	pfd.revents = 0;
+ 
+	int result = poll(&pfd, 1, 0);
+ 
+	if (result < 0) {
+		printf("poll = %d\n", result);
+		perror("poll failed");
+	}
+ 
+	printf("pfd.revents = %d\n", pfd.revents);
+ 
+	if (pfd.revents & POLLNVAL) {
+		printf("invalid file descriptor\n");
+	}
+ 
+	return 0;
+}

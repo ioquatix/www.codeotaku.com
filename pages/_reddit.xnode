@@ -1,0 +1,1 @@
+<iframe src="http://www.reddit.com/static/button/button3.html?width=120&amp;url=#{attributes['url'].to_html}" height="52" width="69" scrolling="no" frameborder="0"></iframe>

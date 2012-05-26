@@ -1,0 +1,48 @@
+function ScriptLoader () {
+	this.count = 0;
+	this._finishCallback = null;
+	this.jobs = []
+}
+
+ScriptLoader.prototype._finishLoad = function () {
+	this.count -= 1;
+	
+	if (this.count == 0) {
+		if (this.jobs.length > 0) {
+			this.loadImmediately(this.jobs.shift());
+		} else if (this._finishCallback != null) {
+			this._finishCallback();
+		}
+	}
+}
+
+ScriptLoader.prototype.load = function(path) {
+	if (this.count == 0)
+		this.loadImmediately(path);
+	else
+		this.jobs.push(path);
+}
+
+ScriptLoader.prototype.loadImmediately = function(path) {
+	this.count += 1;
+	
+	var scriptLoader = this;
+	
+	$.ajax({
+			type: "GET",
+			url: path,
+			success: function (data) {
+				scriptLoader._finishLoad();
+			},
+			dataType: "script",
+			cache: true
+	});
+};
+
+ScriptLoader.prototype.onFinish = function(callback) {
+	if (this.count == 0) {
+		callback();
+	} else {
+		this._finishCallback = callback;
+	}
+};

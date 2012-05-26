@@ -1,0 +1,37 @@
+Row-Major Matrix (4,2) @ 0xbffff6a0
+Memory Offset: 0    1    2    3    4    5    6    7    
+       Values: 1001 1002 2001 2002 3001 3002 4001 4002 
+Standard Mathematical Notation:
+      Col 0 Col 1 
+Row 0 1001  1002  
+Row 1 2001  2002  
+Row 2 3001  3002  
+Row 3 4001  4002  
+
+Column-Major Matrix (4,2) @ 0xbffff680
+Memory Offset: 0    1    2    3    4    5    6    7    
+       Values: 1001 2001 3001 4001 1002 2002 3002 4002 
+Standard Mathematical Notation:
+      Col 0 Col 1 
+Row 0 1001  1002  
+Row 1 2001  2002  
+Row 2 3001  3002  
+Row 3 4001  4002  
+
+Row-Major Matrix (4,2) @ 0xbffff6a0
+Memory Offset: 0    1    2    3    4    5    6    7    
+       Values: 1001 1002 2001 2002 3001 3002 4001 4002 
+Standard Mathematical Notation:
+      Col 0 Col 1 
+Row 0 1001  1002  
+Row 1 2001  2002  
+Row 2 3001  3002  
+Row 3 4001  4002  
+
+Row-Major Matrix (2,4) @ 0xbffff660
+Memory Offset: 0    1    2    3    4    5    6    7    
+       Values: 1001 2001 3001 4001 1002 2002 3002 4002 
+Standard Mathematical Notation:
+      Col 0 Col 1 Col 2 Col 3 
+Row 0 1001  2001  3001  4001  
+Row 1 1002  2002  3002  4002

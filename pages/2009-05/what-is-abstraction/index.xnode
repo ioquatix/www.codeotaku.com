@@ -1,0 +1,49 @@
+<entry>
+	<p>This article discusses abstraction within the field of computer science.</p>
+
+	<p>A layer of abstraction is a point where indirection can occur. Behavior does not need to be specified up front in specific detail. If <code><code>A()</code></code> relies on the result of <code><code>B()</code></code>, and <code><code>B()</code></code> has no implementation, then <code><code>B()</code></code> is abstract.</p>
+
+	<p>In this case, the behavior of <code>A()</code> will depend on the behavior of <code>B()</code> which has not been specified yet, but in order for <code>A()</code> to provide any functionality at all, <code>B()</code> will need to be defined or provided in some way. Whether this indirection is resolved at compile time, link time or run time is irrelevant at this point.</p>
+	
+	<listing src="abstract_b.txt" brush="clang" />
+	
+	<h2>Why is abstraction important?</h2>
+	
+	<p>Abstraction is important because it allows functionality to be defined once, and used in conjunction with a variety of different data types. For example:</p>
+	
+	<listing src="operators.txt" brush="clang" />
+	
+	<p>In this case the <code>=</code> and <code>+</code> operators are used the same way, even though the data type is different. The result might be different, but it still performs the same useful function (assignment and addition respectively). In fact, the compiler and language provides this abstraction to us at compile time - the compiler keeps track of types and functions (i.e. operators). The compiler can then generate the appropriate integer instructions and floating point instructions for the operations specified.</p>
+
+	<p>This is in constrast to something which is less abstract, for example:</p>
+	
+	<listing src="concrete.txt" brush="clang" />
+	
+	<p>This is more like what compiled code might look like - since CPUs have instructions that explicitly deal with particular data types. The important concept is that we can provide similar functionality with a consistent interface across different data types. This is why abstraction is important, it makes things more convenient, and we don't need to understand every detail manipulate data structures.</p>
+	
+	<h2>Different kinds of abstraction</h2>
+	
+	<p>In the above examples, we considered abstractions that are resolved by the compiler. This is where we use a type system to figure out what actual operations need to be performed at compile time.</p>
+	
+	<listing src="functions.txt" brush="clang" />
+	
+	<p>The compiler can resolve this dependency because it knows that only one of the definitions (<code>int process(std::string)</code>) provides the interface required.</p>
+	
+	<listing src="virtual.txt" brush="clang" />
+	
+	<p>At run time, we may have an object instance which is derived from the class Animal. Even though we don't know what kind of object it is, because we know it is an Animal we can ask it what species it is. This is another form of abstraction, and is resolved at run time.</p>
+	
+	<h2>Abstraction is everywhere</h2>
+	
+	<p>At this point, it may be good to step back a moment and look at compilers. Generally, one could consider a compiler a layer of indirection, in that given a sequence of commands, it can produce an executable binary for different CPUs. So, given the <em>same</em> source code, we can produce an executable that runs on completely different underlying hardware, and still produces similar or (more typically) identical results. This is also facilitated by the operating system which provides abstract system calls for dealing with files, threads, networking, etc. The general theory is that as long as the operating system provides the required interfaces, your application should work with the same intent as it does on a other operating system.</p>
+	
+	<h2>Polymorphism</h2>
+	
+	<p>Polymorphism (poly = many, morph = form) is a name used in computer science to mean one thing can have multiple meanings depending on the context in which it is used. In other words, polymorphism is the idea that there can be one interface provided to control a general set of functionality. Polymorphism is a specific set of cases where abstract concepts are used to make programming more concise and expressive.</p>
+	
+	<p>Run Time Polymorphism, or object oriented polymorphism, is used at run time to provide dynamic functionality based on object type. This is done using dynamic dispatch (virtual functions) and inheritance. <a href="http://en.wikipedia.org/wiki/Polymorphism_in_object-oriented_programming">Wikipedia: Polymorphism in object-oriented programming</a>.</p>
+
+	<p>Parametric polymorphism or Compile Time Polymorphism is based on types and allows for functionality to be determined at compile time. This is done using function and operator overloading. <a href="http://en.wikipedia.org/wiki/Type_polymorphism">Wikipedia: Type Polymorphism</a>.</p>
+</entry>
+
+	

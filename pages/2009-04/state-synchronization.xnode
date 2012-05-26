@@ -1,0 +1,38 @@
+<entry>
+	<p>When dealing with state, synchronization between multiple simulations may become important. For example, with a client-server model network game, or when distributing the simulation processing.</p>
+
+	<p>There are two approaches to state synchronization within this model, which ultimately are two sides of the same coin.</p>
+
+	<h2>Event based state management</h2>
+
+	<p>We maintain state by sending the same events to every simulation. If events are dropped or lost, or not applied in time, the simulation may become incorrect, although this can be corrected by sending a "keyframe" of the simulation state to bring the simulation back on track.</p>
+
+	<ul>
+		<li>An event signals some sort of state change to the world</li>
+		<li>State change may need processing to apply</li>
+		<li>Event based system is generally easier to implement</li>
+		<li>Events can minimize traffic as much data can be evaluated on the client</li>
+		<li>Events from clients can be</li>
+		<li>Events sent to clients can be filtered programmatically based on proximity or relevance, thus reducing bandwidth even more.</li>
+		<li>An example of an event is an encapsulated transmission of the IWorldEvents object. This contains a discrete event that changes the state of the world.</li>
+	</ul>
+
+	<h2>Synchronization based state management</h2>
+
+	<p>We maintain state by keeping track of individual state values, and noting when they change. These changes are then serialised and set out across the wire. This is more heavy handed than event based state management, however it has the benefits of being simpler to implement - i.e. there are a limited set of messages to transmit, but it is verbose in that a single event may cause many objects to change.</p>
+
+	<ul>
+		<li>Synchronize state between client and server</li>
+		<li>Server maintains world state</li>
+		<li>Set of objects, relationships and state</li>
+		<li>Client needs to know a portion of the world state</li>
+		<li>Subset of objects, relationships and state</li>
+		<li>Client state needs to be updated</li>
+		<li>Change state (primitive type change)</li>
+		<li>Instantiate object</li>
+		<li>Destroy object</li>
+		<li>Update relationships</li>
+	</ul>
+
+	<p>An example of a synchronised system is the Cocoa bindings system (Mac OS X UI framework). This is done using key paths. Key paths are strings such as myAccount.owner.name. A key path represents an individual piece of state that can change and be updated. When a user interface element is bound to a key path, it (simply) will be informed if the value changes. Conversely, if the user interface element has its value changed, it will update the value at the key path.</p>
+</entry>

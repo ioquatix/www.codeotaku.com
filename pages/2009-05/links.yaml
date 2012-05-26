@@ -1,0 +1,22 @@
+compile-time-polymorphism:
+    author: "Samuel Williams"
+    created: 2009-05-10
+    summary: "Compile Time Polymorphism through meta-programming is a powerful way to express your ideas - learn about how to do this using C++"
+run-time-polymorphism:
+    author: "Samuel Williams"
+    created: 2009-05-09
+    summary: "Run Time Polymorphism is a useful construct which allows us to change the behaviour of code depending on its input - but what are the costs associated with this technique?"
+what-is-abstraction:
+    title: "What is abstraction?"
+    author: "Samuel Williams"
+    created: 2009-05-08
+    summary: "Abstraction allows us to ignore low level details and focus on a higher level structure - but how do we use it and what are the implications?"
+matrix-mathematics:
+    author: "Samuel Williams"
+    created: 2009-05-11
+    summary: "Matrix Mathematics often becomes complicated when the words row-major and column-major are thrown about. Here is a clear and simple implementation in C++."
+applescript-insanity:
+    title: "AppleScript Insanity"
+    author: "Samuel Williams"
+    created: 2009-05-27
+    summary: "It might have been a mistake, but I needed a simple desktop application to compress images..."

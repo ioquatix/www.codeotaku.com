@@ -1,0 +1,122 @@
+typedef double TimeT;
+#define abstract = 0
+
+// fixed timestamp to ensure determinism 
+// - if determinism is not important, this can be changed easily.
+const TimeT TIME_STEP = 1.0/120.0;
+
+struct Bullet
+{
+	TimeT startTime;
+	// ... velocity, direction, power, etc
+};
+
+class IWorldSimulation
+{
+public:
+	virtual ~IWorldSimulation (); // implementation skipped
+	virtual const std::vector<Bullet> & bullets () const abstract;
+};
+
+class IWorldEvents
+{
+public:
+	virtual ~IWorldEvents (); // implementation skipped
+	virtual bool willShoot () const abstract;
+}
+
+class IWorldRenderer
+{
+public:
+	virtual ~IWorldEvents (); // implementation skipped
+	virtual void render (const IWorldSimulation &) abstract;
+};
+
+struct WorldEvents : virtual public IWorldEvents
+{
+	bool m_willShoot;
+
+	virtual bool willShoot () const
+	{
+		return m_willShoot;
+	}
+};
+
+class WorldSimulation : virtual public IWorldSimulation
+{
+private:
+	TimeT m_currentTime;
+
+	std::vector<Bullet> m_bullets;
+
+public:
+	// .. appropriate constructures, destructors, etc left to the imagination
+
+	void update (const IWorldEvents & events)
+	{
+		TimeT oldTime = m_currentTime;
+		m_currentTime += TIME_STEP;
+
+		if (events.willShoot()) {
+			Bullet b;
+			b.startTime = m_currentTime;
+
+			m_bullets.push_back(b)
+		}
+
+		foreach(Bullet & bullet, m_bullets) {
+			// update bullet velocity / position
+		}
+	}
+
+	const std::vector<Bullet> & bullets () const
+	{
+		return m_bullets;
+	}
+};
+
+class WorldRenderer
+{
+protected:
+	// Implementation left up to the imagination
+	BulletParticleEffect m_particles;
+
+public:
+	virtual void render (const IWorldSimulation &) const = 0;
+	{
+		foreach(Bullet & bullet, worldSimulation.bullets()) {
+			// render bullet, etc
+
+			m_particles.addEffect(bullet);
+		}
+	}
+};
+
+class Application
+{
+	// Assume the constructor sets up everything
+	// Allocating all required objects, such as worldSimulation and worldRenderer.
+	// Setting up some sort of runloop for firing callbacks at appropriate times
+
+private:
+	IWorldSimulation * worldSimulation;
+
+	// We can drop in any type of renderer - opengl renderer, directx renderer, software renderer, etc.
+	IWorldRenderer * worldRenderer;
+
+	// called at 120 hz
+	void updateSimulation ()
+	{
+		IWorldEvents * events = processUserInput();
+		// or... 
+		// IWorldEvents * events = processNetworkInput();
+
+		worldState->update(worldEvents);
+	}
+
+	// called at 60 hz, 30 hz, etc or as required
+	void renderSimulation ()
+	{
+		worldRenderer->render(worldSimulation);
+	}
+};

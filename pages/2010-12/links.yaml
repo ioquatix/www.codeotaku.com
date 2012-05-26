@@ -1,0 +1,14 @@
+free-games:
+    title: "Free Software Games"
+    created: 2010-12-01
+    author: Samuel Williams
+    summary: "I'm so sick of games that require online activation, so I've started to look for free software games; it turns out there are quite a few!"
+implicit-and-explicit-delimitation:
+    created: 2010-12-12
+    author: Samuel Williams
+    summary: "I've been thinking about the differences in modern programming syntax, and how we separate expressions."
+pascals-triangle:
+    created: 2010-12-03
+    title: "Pascal's Triangle"
+    author: Samuel Williams
+    summary: "An interesting mathematical proof using Pascal's Triangle."

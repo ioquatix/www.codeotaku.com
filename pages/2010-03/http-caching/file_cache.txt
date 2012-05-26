@@ -1,0 +1,66 @@
+# The core parts of the File class that I use:
+class FileReader
+	def initialize(path)
+		@path = path
+		@etag = Digest::SHA1.hexdigest("#{File.size(@path)}#{mtime_date}")
+	end
+
+	attr :path
+	attr :etag
+
+	def to_path
+		@path
+	end
+
+	def mtime_date
+		File.mtime(@path).httpdate
+	end
+
+	def size
+		File.size(@path)
+	end
+
+	def each
+		File.open(@path, "rb") do |fp|
+			while part = fp.read(8192)
+				yield part
+			end
+		end
+	end
+
+	def modified?(env)
+		if modified_since = env['HTTP_IF_MODIFIED_SINCE']
+			return false if File.mtime(@path) <= Time.parse(modified_since)
+		end
+
+		if etags = env['HTTP_IF_NONE_MATCH']
+			etags = etags.split(/\s*,\s*/)
+			return false if etags.include?(etag) || etags.include?('*')
+		end
+
+		return true
+	end
+end
+
+# Here is basically how we serve the file to the client:
+class Static
+	# ... snip ...
+
+	def call(env)
+		file = File.new(...)
+	
+		response_headers = {
+			"Last-Modified" => file.mtime_date,
+			"Content-Type" => @extensions[ext],
+			"Cache-Control" => @cache_control,
+			"ETag" => file.etag
+		}
+
+		if file.modified?(env)
+			response_headers["Content-Length"] = file.size.to_s
+			return [200, response_headers, file]
+		else
+			return [304, response_headers, []]
+		end
+	end
+end

@@ -1,0 +1,29 @@
+<form class="basic" id="login" method="post" action="/account/login" onsubmit="javascript:updateLoginHash()">
+	<fieldset>
+		<legend>Login Form</legend>
+		<dl>
+			<dt><label for="username">Username:</label></dt>
+			<dd><input type="text" id="username" name="username" /></dd>
+			<dt><label for="password">Password:</label></dt>
+			<dd><input type="password" id="password" name="password" /></dd>
+			<dd class="footer"><input type="submit" name="Login" /></dd>
+		</dl>
+		<input id="password_hash" name="password_hash" type="hidden" />
+	</fieldset>
+</form>
+ 
+<script type="text/javascript">
+	function updateLoginHash() {
+	    $.ajax({
+	        url: "/account/login_salt", 
+	        type: 'GET',
+	        async: false,
+	        cache: false,
+	        success: function(login_salt) {
+	            password = $.sha1($('#password').val());
+	            $('#password').val("");
+	            $('#password_hash').val($.sha1(login_salt+password));
+	        }
+	    });
+	}
+</script>

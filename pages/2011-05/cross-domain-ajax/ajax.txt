@@ -1,0 +1,36 @@
+$(function() {
+	// The contact form element
+	var contact = $("#contact");
+
+	contact.validate({
+		rules: {
+			subject: "required",
+			from: {
+				email: true
+			},
+			message: "required"
+		},
+		submitHandler: function() {
+			$('#contact-popup .main').slideUp();
+			$('#contact-popup .sending').slideDown();
+			
+			$.ajax({
+				url: contact.attr('action'),
+				type: 'post',
+				data: contact.serialize(),
+				crossDomain: true,
+				headers: {
+					"X-Requested-With": "XMLHttpRequest"
+				},
+				success: function() {
+					$('#contact-popup .sending').slideUp();
+					$('#contact-popup .success').slideDown();
+				},
+				error: function(request, status, error) {
+					$('#contact-popup .sending').slideUp();
+					$('#contact-popup .error').slideDown();
+				}
+			});
+		}
+	});
+})

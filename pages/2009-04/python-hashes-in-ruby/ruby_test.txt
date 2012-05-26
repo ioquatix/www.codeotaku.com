@@ -1,0 +1,21 @@
+def check_hash(s)
+  puts " Hashing #{s.dump} ".center(64, "-")
+ 
+  py_val = `python -c 'print hash(#{s.dump})'`.strip.to_i
+  puts "Python hash value is: ".rjust(25) + " #{py_val}"
+ 
+  rb_val = s.python_hash
+  puts "Our hash value is: ".rjust(25) + " #{rb_val}"
+ 
+  if (py_val != rb_val)
+    puts " ERROR HASH VALUE MISMATCH ".center(64, "*")
+  end
+end
+ 
+dict = File.open("/usr/share/dict/words", "r").readlines
+ 
+(0...10).each do |i|
+  word = dict[rand * dict.size-1].strip
+ 
+  check_hash(word)
+end

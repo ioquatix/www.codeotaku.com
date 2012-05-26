@@ -1,0 +1,6 @@
+// This is what the programmer actually meant.
+function add(x, y) {
+	return (
+		x + y
+	);
+}

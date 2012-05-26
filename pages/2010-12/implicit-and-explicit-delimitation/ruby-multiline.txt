@@ -1,0 +1,7 @@
+# Prints 10 20 30 on separate lines
+puts 10, 20,
+30
+
+# Syntax Error, unexpected ','
+puts 10, 20
+, 30

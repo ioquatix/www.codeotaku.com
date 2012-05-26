@@ -1,0 +1,28 @@
+#!/usr/bin/env ruby
+ 
+def unsigned_to_signed(h, mask)
+  # h must be within the unsigned range we are dealing with, i.e. [0, mask] inclusive
+  h = h % (mask + 1)
+  # calculate the maximum positive signed value
+  max = (mask / 2) + 1
+  # if h is bigger than the maximum unsigned value, we need to wrap it around.
+  h > max ? (h % max) - max : h
+end
+ 
+def signed_32bit_multiply(a, b)
+  unsigned_to_signed((a * b), 0xFFFFFFFF)
+end
+ 
+class String
+  def python_hash
+    return 0 if size == 0
+ 
+    sum = self[0] << 7
+    (0...size).each do |i|
+      sum = signed_32bit_multiply(1000003, sum) ^ self[i]
+    end
+ 
+    sum = sum ^ size
+    return sum == -1 ? -2 : sum
+  end
+end

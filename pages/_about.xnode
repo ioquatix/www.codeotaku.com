@@ -1,0 +1,9 @@
+<div style="text-align: center; padding: 12pt; margin-bottom: 72pt" class="about-me">
+	<div style="display: inline-block; vertical-align: middle">
+		<g:plusone></g:plusone>
+	</div>
+
+	<div style="display: inline-block; vertical-align: middle">
+		<reddit url="http://www.oriontransfer.co.nz#{first.node.link.href.to_html}" />
+	</div>
+</div>

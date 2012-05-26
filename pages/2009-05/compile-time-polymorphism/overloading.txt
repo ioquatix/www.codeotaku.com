@@ -1,0 +1,5 @@
+void process(int);
+void process(std::string);
+
+process(5);
+process("five");

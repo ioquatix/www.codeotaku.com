@@ -1,0 +1,5 @@
+begin
+  exit
+rescue SystemExit
+  puts "Caught SystemExit"
+end

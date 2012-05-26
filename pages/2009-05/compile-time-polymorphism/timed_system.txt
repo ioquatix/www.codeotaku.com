@@ -1,0 +1,27 @@
+template <typename DerivedT>
+class TimedSystem
+{
+protected:
+	TimeT m_lastTime;
+ 
+public:
+	TimedSystem () : m_lastTime(-1)
+	{
+	}
+ 
+	void update (TimeT time)
+	{
+		if (m_lastTime == -1) m_lastTime = time;
+		TimeT dt = time - m_lastTime;
+ 
+		static_cast<DerivedT*>(this)->updateForDuration(m_lastTime, time, dt);
+ 
+		m_lastTime = time;
+	}
+};
+ 
+class FireParticles : public TimedSystem<FireParticles>
+{
+public:
+	void updateForDuration (TimeT lastTime, TimeT currentTime, TimeT dt);
+};

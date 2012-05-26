@@ -1,0 +1,5 @@
+cross-domain-ajax:
+    title: "Cross-domain AJAX using XMLHttpRequest"
+    summary: "Find out more about HTTP access controls and how to implement them."
+    author: "Samuel Williams"
+    created: 2011-05-06

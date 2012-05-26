@@ -1,0 +1,14 @@
+// Released under the GNU GPLv3. Copyright 2010 Samuel Williams.
+
+var commentsForm = $(...);
+
+var livePreview = new AggregateCallback(1000, true, function() {
+	$.post("comments/preview", {'body': $('textarea[name=body]', commentsForm).val()}, function(data) {
+		$('.preview', commentsForm).html(data);
+		$.syntax({context: $('.preview', commentsForm)});
+	});
+});
+
+$('textarea[name=body]', commentsForm).keyup(function() {
+	livePreview.update();
+});

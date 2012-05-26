@@ -1,0 +1,15 @@
+class Object
+  def self.subclasses(direct = false)
+		classes = []
+		
+		ObjectSpace.each_object(Class) do |c|
+			next unless c.superclass == self
+			classes << c
+		end
+		
+		return classes
+  end
+end
+
+puts "Direct descendants of Exception: \n\t" + Exception.subclasses.join("\n\t")
+puts "Direct descendants of StandardError: \n\t" + StandardError.subclasses.join("\n\t")

@@ -1,0 +1,6 @@
+if request.xhr?
+	# You also need to provide access control headers here.
+	return :status => :success, :headers => ACCESS_CONTROLS
+else
+	return redirect(params["from"] ? "success" : "success-no-reply")
+end

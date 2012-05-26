@@ -1,0 +1,6 @@
+bikini-white-overdraw.png:
+    order: 1
+    caption: "Non-subtractive brush"
+bikini-white-subtractive.png:
+    order: 1
+    caption: "Water color brush"

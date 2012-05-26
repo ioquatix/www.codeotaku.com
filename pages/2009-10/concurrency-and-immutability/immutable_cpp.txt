@@ -1,0 +1,22 @@
+class Person {
+    public:
+        std::string name;
+        int age;
+    
+        Person updateAge (int newAge) {
+            Person newPerson = *this;
+            newPerson.age = newAge;
+        
+            return newPerson;
+        }
+    
+        Person updateName (std::string newName) {
+            Person newPerson = *this;
+            newPerson.name = newName;
+            
+            return newPerson;
+        }
+};
+
+Person p;
+p = p.updateAge(10).updateName("John D");

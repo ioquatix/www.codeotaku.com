@@ -1,0 +1,25 @@
+<entry>
+	<p>I recently found this great talk by Rich Hickey (the developer of <a href="http://clojure.org/">Clojure</a>):</p>
+
+	<p>http://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey</p>
+
+	<p>I think his ideas about immutability are very interesting. One thing I thought about is the cost associated with this. For example, I was considering an image manipulation algorithm. Images can require a lot of storage/memory. I'm sure that a persistent data structure could be devised to allow for efficient manipulation. However, using a mutable data structure and some intelligent logic might still provide an edge in terms of performance, and it is possible this could be quite significant.</p>
+
+	<p>On the other hand, there are many other problems in computer science where his ideas would certainly make things easier. In some ways, it seems like mutability could be considered an optimization - maybe sufficient static analysis can produce faster code in this regard.</p>
+
+	<p>The concept that <a href="http://c2.com/cgi/wiki?ValueObjectsShouldBeImmutable">everything is an immutable value</a> also intrigues me. We can implement this approach in C++ for example:</p>
+
+	<listing src="immutable_cpp.txt" brush="clang" />
+
+	<p>We can achieve some of the same semantics proposed by Rich Hickey. The  important idea is that ''p'' is never in an inconsistent state, even if accessed from multiple threads.</p>
+
+	<p>One initial concern with this approach is the amount of data that is being copied for each state change. In many cases, as proposed by Rich, this can be minimized, however I still wonder weather this can be made as fast as the case where data is mutable. Another thing to keep in mind is that if immutable data makes it easier to create concurrent programs, maybe the end result will be still be reduced processing time.</p>
+
+	<p>This article by Ted Leung has a great summary of different kinds of concurrency constructs:</p>
+
+	<p>http://www.sauria.com/blog/2009/10/05/the-cambrian-period-of-concurrency/</p>
+
+	<p>One language which I find particularly interesting is <a href="http://www.iolanguage.com">IO</a>, which supports <a href="http://iolanguage.com/scm/git/checkout/Io/docs/IoGuide.html#Concurrency">actor-based concurrency and coroutines</a>. It has first-class support for ''futures'' and asynchronous message sending, which I think is a very interesting concept.</p>
+
+	<p><a href="http://wiki.reia-lang.org/wiki/Reia_Programming_Language">Reia</a> is another interesting language with a focus on immutability and concurrency. It compiles into <a href="http://www.erlang.org/">Erlang</a> abstract format. It has a syntax very similar to ruby, but in many ways more consistent and concise.</p>
+</entry>

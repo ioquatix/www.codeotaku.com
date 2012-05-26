@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<?r if title = (attributes["title"] || @title) ?>
+			<title>#{title}</title>
+		<?r else ?>
+			<title>Code Otaku</title>
+		<?r end ?>
+		
+		<!--[if IE 8]>
+		<meta http-equiv="X-UA-Compatible" content="IE=8" />
+		<![endif]-->
+		
+		<link rel="icon" type="image/png" href="@rel@/_static/icon.png" />
+		<link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/blog/atom" />
+
+		<script src="/_static/jquery-1.7.2.min.js" type="text/javascript"></script>
+		<script src="/_static/jquery.validate.js" type="text/javascript"></script>
+		
+		<script src="@rel@/_static/jquery.cookie.js" type="text/javascript"></script>
+		<script src="@rel@/_static/jquery-ui-1.7.2.custom.min.js" type="text/javascript"></script>
+		
+		<script src="/_static/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+		<link rel="stylesheet" href="/_static/fancybox/jquery.fancybox.css" type="text/css" media="screen"/>
+		
+		<script src="/_static/jquery-syntax/jquery.syntax.min.js" type="text/javascript"></script>
+		<script src="/_static/jquery-xframe/jquery.xframe.js" type="text/javascript"></script>
+		
+		<!-- Google +1 -->
+		<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+		
+		<?r (@scripts || []).each do |script| ?>
+		<script src="#{script.to_html}" type="text/javascript"></script>
+		<?r end ?>
+		
+		<script type="text/javascript">
+			jQuery(function($) {
+				$.syntax({blockLayout: "plain"});
+				
+				$('a.lightbox').fancybox();
+				
+				$.xframe();
+			});
+		</script>
+		
+		<link rel="stylesheet" href="@rel@/_static/jquery-ui-1.7.2.custom.css" type="text/css" media="screen" />
+		<link rel="stylesheet" href="@rel@/_static/page.css" type="text/css" media="screen" />
+	</head>
+
+	<?r response["Content-Type"] = "text/html; charset=utf-8" ?>
+	<?r response["Cache-Control"] ||= "max-age=3600" ?>
+
+	<body>
+		<div id="container">
+			<div id="header">
+			</div>
+		
+			<div id="content">
+				<content />
+			</div>
+
+			<div id="tree"></div>
+
+			<div id="footer">
+				Except where otherwise noted, content on this page is available under the following license <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">CC Attribution-Noncommercial-Share Alike 3.0</a>.
+				<br/>
+				<a href="/welcome/contact-us">Contact Me</a> &mdash;
+				<a href="/samuel-williams/index" rel="author">About Me</a> &mdash;
+				&copy; 2010 Orion Transfer Ltd. All Rights Reserved.
+			</div>
+		</div>
+		
+		<env only="production">
+			<google_analytics id="UA-2590906-1" />
+		</env>
+	</body>
+</html>

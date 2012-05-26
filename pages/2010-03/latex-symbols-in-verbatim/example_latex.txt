@@ -1,0 +1,12 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+
+\DeclareUnicodeCharacter{2205}{\O}
+
+\begin{document}
+
+\begin{verbatim}
+[S]: (∅ ∅ ∅ ∅)
+\end{verbatim}
+
+\end{document}

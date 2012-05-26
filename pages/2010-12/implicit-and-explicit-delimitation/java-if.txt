@@ -1,0 +1,5 @@
+// End of line delimited
+if (x) y(); // <- there is a ; here
+
+// Whitespace delimited
+if (x) { y(); } // <- there is no ; here

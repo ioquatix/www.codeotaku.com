@@ -1,0 +1,4 @@
+class IEngine {
+public:
+  virtual renderScene(Game::Scene * scene) = 0;
+};

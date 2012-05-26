@@ -1,0 +1,16 @@
+
+ACCESS_CONTROLS = {
+	"Access-Control-Allow-Origin" => "*",
+	"Access-Control-Allow-Headers" => "X-Requested-With",
+	"Access-Control-Max-Age" => "60"
+}
+
+def on_index(path, request)
+	# ...
+	if request.options?
+		# Allow AJAX requests from different domains.
+		return :status => 200, :headers => ACCESS_CONTROLS
+	end
+	
+	# ...
+end

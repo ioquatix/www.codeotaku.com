@@ -1,0 +1,40 @@
+computer-science-in-new-zealand:
+    author: Samuel Williams
+    created: 2010-05-23
+    title: "Computer Science in New Zealand High Schools"
+    summary: "How is Computer Science being taught and how is it changing?"
+how-do-we-learn:
+    author: Samuel Williams
+    created: 2010-05-24
+    title: "How do we learn?"
+    summary: "How do we teach and learn new things?"
+blooms-taxonomy:
+    tags: ['pedagogy']
+    author: Samuel Williams
+    created: 2010-05-25
+    title: "Bloom's Taxonomy"
+    summary: "Bloom's Taxonomy is a set of words which are useful for planning and understanding learning."
+socratic-method:
+    tags: ['pedagogy']
+    author: Samuel Williams
+    created: 2010-05-25
+    title: "The Socratic Method"
+    summary: "The Socratic Method is a form of teaching by only asking questions."
+zone-of-proximal-development:
+    tags: ['pedagogy']
+    author: Samuel Williams
+    created: 2010-05-25
+    title: "Vygotsky's Zone of Proximal Development"
+    summary: "Vygotsky's Zone of Proximal Development is a useful metaphor for describing how a teacher can assist a student."
+constructivism:
+    tags: ['pedagogy']
+    author: Samuel Williams
+    created: 2010-05-26
+    title: "The Theory of Constructivism"
+    summary: "Piaget's Stages of Cognitive Development is one of the most recognized theories for describing intellectual development."
+virtual-schooling:
+    tags: ['pedagogy']
+    author: Samuel Williams
+    created: 2010-05-26
+    title: "Virtual Schooling"
+    summary: "Teachers are a scarse resource. How can we ensure that students have equal opportunity?"

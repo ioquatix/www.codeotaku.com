@@ -1,0 +1,7 @@
+// For example, A and B could look like this:
+int B (int); // implementation not provided here
+ 
+int A (int n)
+{
+  return B(n) * B(n-1);
+}

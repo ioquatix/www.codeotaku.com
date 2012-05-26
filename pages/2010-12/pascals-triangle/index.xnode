@@ -1,0 +1,21 @@
+<entry>
+	<h2>Problem</h2>
+	
+	<p>Fibonacci numbers are given by:</p>
+	
+	<latex src="fibonacci.tex" />
+	
+	<p>Prove that if <latex>$f(n+1) = C(n, 0) + C(n-1, 1) + C(n-2, 2) + ... + C(n-k, k)$</latex> for <latex>$k = \\frac{n}{2}$</latex>, where <latex>$\\frac{n}{2}$</latex> is division with truncation and <latex>$C(n, k)$</latex> is the binomial number of combinations when <latex>$k$</latex> items are taken out of <latex>$n$</latex> items.</p>
+	
+	<h2>Solution</h2>
+	
+	<p>The binomial number of combinations can be drawn using Pascal's Triangle. If you take one step down, the value is the addition of the two values above to the left and right. So, in this case, <latex>$2 = 1 + 1$</latex> and <latex>$3 = 1 + 2$</latex>.</p>
+	
+	<latex src="triangle.tex" />
+	
+	<p>Thus, we know that <latex>$C(n, k) = C(n-1, k) + C(n-1, k-1)$</latex>, i.e. the sum of the previous row left and right, and that <latex>$C(n,k) = 0$</latex> when <latex>$n &lt; k$</latex>.</p>
+	
+	<p>We can rewrite the original problem as a summation. Because we know that </p>
+	
+	<latex src="proof.tex" />
+</entry>

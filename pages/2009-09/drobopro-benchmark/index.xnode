@@ -1,0 +1,9 @@
+<entry>
+	<p><a href="http://www.lucidsystems.co.nz/">Lucid Information Systems</a> is importing <a href="http://www.drobo.co.nz/">Drobo and DroboPro</a> into New Zealand. I've been interested in the technology and performance of such devices.</p>
+
+	<p>Here is a benchmark of the DroboPro using 2, 4 and 6 1TB Western Digital Black Drives, over all three interfaces: USB2.0, FW800, iSCSI. This was done using <a href="http://www.aja.com/products/software/">AJA System Test</a>. This benchmark was done with one completely empty partition. Performance may decrees as storage utilization increases.</p>
+	
+	<div class="gallery"><img src="benchmark.png" /></div>
+	
+	<p>The raw data is <a href="drobopro_wd1001fals.rtf">available</a>.</p>
+</entry>

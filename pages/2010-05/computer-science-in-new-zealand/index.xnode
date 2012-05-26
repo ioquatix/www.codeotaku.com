@@ -1,0 +1,47 @@
+<entry>
+	<p>I have recently been studying Computer Science in Education. Part of my project work was the creation of the <a href="http://programming.dojo.net.nz">Programming Dojo</a> (<a href="../2010-04/programming-dojo">meta release</a>). I'm going to summarise some of the issues surrounding Computer Science Education.</p>
+	
+	<h2>Computer Science in New Zealand High Schools</h2>
+	
+	<p>Computer Science is not an easy subject to teach, but this isn't due to the inherit nature of the subject area. I believe it is more to do with the perception and misunderstandings of "computing as a discipline", and the lack of planning by the most groups which support teachers and develop curriculum. In high schools, this is generally made worse by the fact that few if anyone has really <a href="http://blogs.worldbank.org/edutech/worst-practice">thought about the issues</a> where it actually matters.</p>
+	
+	<p>From 1974 to 1985 Computer Science was called "Applied Mathematics". People who were studying math (strong in logic/numbers/formulae) would use computers to solve problems. However, computer studies teachers believed computers were much more broad than this area.</p>
+	
+	<p>Early in 2000, the Digital Technology Guidelines (DTG) were developed and implemented as a strategy to address technological skill shortages by providing a coherent pathway from Secondary Schools into Tertiary institutions, and then to careers in ICT. The general sentiment from the government was "We've really got do do this stuff!!?"; The Ministry of Education got Microsoft Office into every school, and reported back "We've solved the ICT problem".</p>
+	
+	<p>In recent years, Computer Science has been part of the Technology curriculum, which also includes food and materials technology. It is assessed using Pass/Fail unit standards, and integrated with other topics, such as Economics where spreadsheets are taught, and English where documents and publications are produced. In general, it isn't considered an academic topic. School students, and even teachers, don't know what computer science is.</p>
+	
+	<p>In New Zealand, at this present time (mid 2010), <a href="http://www.techlink.org.nz/">new curriculum</a> is being developed, due to a huge amount of advice from industry and universities provided to the Ministry of Education. This process began in early 2008 with a very damning report from the <a href="http://www.nzcs.org.nz/">New Zealand Computer Society</a>:</p>
+	
+	<dl>
+		<dt><a href="http://www.nzcs.org.nz/news/uploads/PDFs/200805NCEAReport.pdf">Evaluation of Technology Achievement Standards for use in New Zealand Secondary School Computing Education</a></dt>
+		<dd><em>Gordon Grimsey, Margot Phillipps, April 2008</em></dd>
+		<dd>This highly critical report from the New Zealand Computer Society reviewed then existing high school curriculum extensively and states that "none of the standards reviewed are appropriate to assess either Computer Science" and "virtually no effort has been made to tailor the standards to the ICT disciplines". The Digital Technology Guidelines are "like painting over flaking paintwork adhering to rotten timber".</dd>
+	</dl>
+	
+	<p>Due to this, the New Zealand Ministry of Education solicited another report to review the curriculum:</p>
+	
+	<dl>
+		<dt><a href="http://www.tki.org.nz/m/community/ict/pdf/position_paper_sector_release.pdf">The future of Computer Science and Digital Technologies in New Zealand secondary schools</a></dt>
+		<dd><em>Tim Carrell, Vilna Gough-Jones, Karen Fahy, August 2008</em></dd>
+		<dd>This constructive report which has been put together with feedback from many teachers, discusses the need for "foundational Computing concepts and digital tools" in the curriculum, and "passionate specialist teachers" who will in bring creative and intelligent students to the topic. Of particular interest is the discussion about Computer Science as a subject, and how it fits in with other topics; the existing unit standards "were created on the understanding that Computer Science is equivalent to woodworking, food technology and textiles technology - a fundamentally flawed assumption!".</dd>
+	</dl>
+	
+	<p>After receiving so much feedback, the Ministry of Education decided to <a href="http://www.techlink.org.nz/curriculum-support/tks/index.htm">"explore the place of technological context knowedge and skills within the learning area of Technology"</a>. The outcome of this was a report by the "Digital Technologies Expert Panel":</p>
+	
+	<dl>
+		<dt><a href="http://www.techlink.org.nz/curriculum-support/tks/resources/Outcomes-from-DTEP.pdf">Outcomes from Digital Technologies Expert Panel</a></dt>
+		<dd><em>Dr Tim Bell, Wayne Norrie, Paul Matthews, Calum McGonigle, Paul Daly, Peter Cook, Karen Fahy, Stephen Corich, Ross Petersen, Ministry of Education, July 2009</em></dd>
+		<dd>This report acknowledges many of the issues presented, and proposes a number of steps to rectify the situation. The most fundamental changes are the creation of a new curriculum area called "Digital Technologies" and establishing a "Body of Knowledge" which will outline specific knowledge and skills within this area.</dd>
+	</dl>
+	
+	<p>In <a href="ACE-ComputerScienceInNewZealandHighSchools-2010.pdf">this excellent paper</a> by Tim Bell, Peter Andreae and Lynn Lambert, a much more detailed summary of the above historical events is reviewed.</p>
+	
+	<h2>Further Reading</h2>
+	
+	<ul>
+		<li><a href="http://nzcurriculum.tki.org.nz/">New Zealand Curriculum</a></li>
+		<li><a href="http://dtg.tki.org.nz/">New Zealand Curriculum: Digital Technologies Guidelines</a></li>
+		<li><a href="http://www.techlink.org.nz/curriculum-support/tks/index.htm">Techlink: Technological Context Knowledge and Skills</a> (Digital Technologies Expert Panel Review July 2009)</li>
+	</ul>
+</entry>

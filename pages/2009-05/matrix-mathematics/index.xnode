@@ -1,0 +1,147 @@
+<entry>
+	<p>Mathematics can sometimes be a bit daunting, and one thing I've always found a bit difficult is matrix mathematics. So, I am writing down some notes regarding this particular subject, and the implementation of said subject in C/C++.</p>
+	
+	<h2>Mathematical Notation</h2>
+	
+	<p>Matricies are very abstract in the sense that we can write them down in many different ways. For example a 4×4 identity matrix written in standard mathematical notation:</p>
+	
+	<latex src="identity.tex" />
+	
+	<p>When we consider standard mathematical notation, the origin is in the top left hand side, and we specify size in the format (rows, columns). Never confuse rows and columns with width and height, as things may get confusing.</p>
+
+	<p>Mathematically, here are the coordinates into the matrix, when we consider individual items, <latex>R</latex> designating the row count, and <latex>C</latex> designating the column count:</p>
+
+	<latex src="indices.tex" />
+	
+	<h2>Memory layout</h2>
+	
+	<p>In C when we can access data in whatever order we like.</p>
+	
+	<dl>
+		<dt>Row Major</dt>
+		<dd>Elements of a row are stored contiguously in memory.</dd>
+		<dt>Column Major</dt>
+		<dd>Elements of a column are stored contiguously in memory.</dd>
+	</dl>
+	
+	<p>In C we also have multi-dimensional arrays to assist with accessing data. These are per the C specification laid out in memory in sequential arrays the size of the last dimension. For example:</p>
+	
+	<listing src="multidimensional_arrays.txt" lang="clang" />
+	
+	<p>What this is saying is "2 arrays of 4 float values". And that is the way they are arranged in memory also:</p>
+	
+	<table class="data">
+		<tr>
+			<th>Memory Offset</th>
+			<td>0</td>
+			<td>1</td>
+			<td>2</td>
+			<td>3</td>
+			<td>4</td>
+			<td>5</td>
+			<td>6</td>
+			<td>7</td>
+		</tr>
+		<tr>
+			<th>Index[row][col]</th>
+			<td>v[0][0]</td>
+			<td>v[0][1]</td>
+			<td>v[0][2]</td>
+			<td>v[0][3]</td>
+			<td>v[1][0]</td>
+			<td>v[1][1]</td>
+			<td>v[1][2]</td>
+			<td>v[1][3]</td>
+		</tr>
+	</table>
+
+	<p>Here is an alternative view (values are memory offsets):</p>
+
+	<table class="data">
+		<tr>
+			<th></th><th> Col 0</th><th>Col 1</th><th>Col 2</th><th>Col 3</th>
+		</tr>
+		<tr>
+			<th>Row 0</th><td>0</td><td>1</td><td>2</td><td>3</td>
+		</tr>
+		<tr>
+			<th>Row 1</th><td>4</td><td>5</td><td>6</td><td>7</td>
+		</tr>
+	</table>
+	
+	<p>The function for row and column major order are not complex:</p>
+	
+	<listing src="major_order_functions.txt" lang="clang" />
+	
+	<p>It is important you understand the following are equivalent terms:</p>
+	
+	<table class="data">
+		<tr>
+			<td>number of elements per column</td><td>&hArr;</td><td>number of rows</td>
+		</tr>
+		<tr>
+			<td>number of elements per row</td><td>&hArr;</td><td>number of columns</td>
+		</tr>
+	</table>
+	
+	<p>Here we can use the rowMajorLookup function which is equivalent to the standard C array indexing:</p>
+	
+	<listing src="row_major_lookup.txt" lang="clang" />
+	
+	<p>So, we know the standard mathematical representation of a matrix, and we know how they can be represented in memory, but where does that leave us? Right, we need to make some concrete implementation so we can really see how it all comes together.</p>
+	
+	<p>Firstly, we have two options to consider, as mentioned earlier:</p>
+	
+	<dl>
+		<dt>Row major order</dt>
+		<dd>A single row should be sequential in memory: <code>float values[2][4]</code></dd>
+		<dd>
+			<table class="data">
+				<tr>
+					<th></th><th> Col 0</th><th>Col 1</th><th>Col 2</th><th>Col 3</th>
+				</tr>
+				<tr>
+					<th>Row 0</th><td>0</td><td>1</td><td>2</td><td>3</td>
+				</tr>
+				<tr>
+					<th>Row 1</th><td>4</td><td>5</td><td>6</td><td>7</td>
+				</tr>
+			</table>
+		</dd>
+		<dt>Column major order</dt>
+		<dd>A single column should be sequential in memory <code>float values[4][2]</code></dd>
+		<dd>
+			<table class="data">
+				<tr>
+					<th></th><th> Col 0</th><th>Col 1</th><th>Col 2</th><th>Col 3</th>
+				</tr>
+				<tr>
+					<th>Row 0</th><td>0</td><td>2</td><td>4</td><td>6</td>
+				</tr>
+				<tr>
+					<th>Row 1</th><td>1</td><td>3</td><td>5</td><td>7</td>
+				</tr>
+			</table>
+		</dd>
+	</dl>
+	
+	<p>As you can see, it is as simple as swapping (the technical term is transpose) around the dimensions for the array declaration. We can design a simple template class which will handle just about anything we can throw at it.</p>
+	
+	<listing src="matrix_implementation.txt" lang="clang" />
+	
+	<p>The code is available as an <a href="matrices.zip">Xcode project</a>.</p>
+	
+	<p>Here is the result after running this code</p>
+	
+	<listing src="results.txt" />
+	
+	<p>As you can see, it doesn't matter how we store the data in memory (depending on what you are doing, it may be more or less convenient to use either way), we can still retrieve the data in standard mathematical form.</p>
+	
+	<h2>Conclusion</h2>
+	
+	<p>Ultimately, depending on what other libraries you want to integrate your code with, you may need to choose a specific format. Other reasons, such as performance, may dictate the best layout for your data - i.e. vectors of data are best laid out sequentially for quick and easy access. SSE/3DNow/MMX may also have strict requirements on data layout and alignment for parallelization and optimization of specific operations.</p>
+
+	<p>It is also worthwhile to point out, that at least in my case, it was confusing to think of matrices having "width" and "height". In order to consider a matrix with width and height, we actually need to rotate the matrix to get a co-ordinate system that makes sense, i.e. x, y in the origin.</p>
+
+	<p>I personally find the transpose functions fascinating. For example, simply by reinterpreting the data from row major to column major we can transpose the data.</p>
+</entry>

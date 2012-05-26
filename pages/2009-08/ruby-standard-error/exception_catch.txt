@@ -1,0 +1,21 @@
+class TestException1 < StandardError
+end
+ 
+class TestException2 < Exception
+end
+ 
+begin
+  begin
+    raise TestException1
+  rescue
+    puts $!.class.name
+  end
+ 
+  begin
+    raise TestException2
+  rescue
+    puts $!.class.name
+  end
+rescue Exception
+  puts "Unhandled Exception #{$!.class.name}"
+end

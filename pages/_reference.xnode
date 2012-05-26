@@ -1,0 +1,1 @@
+<sup>[<?r content.split(/\s+/).each_with_index do |name, index| ?>#{index == 0 ? '' : " "}<a href="##{name}" onclick="javascript:$('a[name=#{name}]').parent('li').trigger('highlight');">#{name}</a><?r end ?>]</sup>

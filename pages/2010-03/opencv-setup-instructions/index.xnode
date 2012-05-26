@@ -1,0 +1,76 @@
+<entry>
+	<p>OpenCV 2.0 can be difficult to setup and install. Here are some setup instructions for Windows and Mac OS X, including how to create a new project in Visual C / Xcode.</p>
+	
+	<h2>Windows Setup</h2>
+	
+	<p>Firstly, we need to compile OpenCV for Windows. You can download OpenCV from the SorceForge <a href="http://sourceforge.net/projects/opencvlibrary/files/">downloads page</a>.. Get the latest version (as of writing, <code>OpenCV-2.0.0a-win32.exe</code>). You will also need a copy of <a href="http://www.cmake.org/cmake/resources/software.html">CMake</a>, so download and install that too.</p>
+	
+	<p>Run CMake GUI tool and configure OpenCV there:</p>
+	
+	<gallery path="_windows" tag="thumbnail" process="thumbnail" filter="stage1" />
+	
+	<p>Click the Configure button in the lower left hand corner, and in the window that opens, choose your IDE (e.g. Visual Studio 9):</p>
+	
+	<gallery path="_windows" tag="thumbnail" process="thumbnail" filter="stage2" />
+	
+	<p>Once you've done this, click configure again, and the generate button should become enabled:</p>
+	
+	<gallery path="_windows" tag="thumbnail" process="thumbnail" filter="stage3" />
+	
+	<p>Click the generate button:</p>
+	
+	<gallery path="_windows" tag="thumbnail" process="thumbnail" filter="stage4" />
+	
+	<p>Once all the files have been generated, you will need to open the project that has been created in the output directory you choose earlier:</p>
+	
+	<gallery path="_windows" tag="thumbnail" process="thumbnail" filter="stage5" />
+	
+	<p>Build this project in both debug and release mode (this could take a bit of time depending on your computer):</p>
+	
+	<gallery path="_windows" tag="thumbnail" process="thumbnail" filter="stage6" />
+	
+	<p>When creating a new project, you will need to ensure that the headers and libraries are available:</p>
+	
+	<gallery path="_windows" tag="thumbnail" process="thumbnail" filter="stage8" />
+	
+	<p>Add the following to your new project (Tools &rarr; Options &rarr; Projects and Solutions &rarr; VC++ Directories):</p>
+	
+	<dl>
+		<dt>Include Files</dt>
+		<dd>Add in the directory containing OpenCV header files (e.g. <code>C:\\OpenCV2.0</code>)</dd>
+		<dt>Library Files</dt>
+		<dd><code>C:\\[OpenCV2.0 Build Directory]\\lib\\debug</code></dd>
+		<dd><code>C:\\[OpenCV2.0 Build Directory]\\lib\\release</code></dd>
+		<dt>Source Files</dt>
+		<dd><code>C:\\[OpenCV2.0 Build Directory]\\src\\cv</code></dd>
+		<dd><code>C:\\[OpenCV2.0 Build Directory]\\src\\cvaux</code></dd>
+		<dd><code>C:\\[OpenCV2.0 Build Directory]\\src\\cxcore</code></dd>
+		<dd><code>C:\\[OpenCV2.0 Build Directory]\\src\\highgui</code></dd>
+	</dl>
+	
+	<p>Thanks to Yen-Sheng Pan for these instructions.</p>
+	
+	<h2>Mac OS X 10.6 / Xcode 3.0 Setup</h2>
+	
+	<p>Download and install the package here: <a href="http://giesler.biz/~bjoern/downloads/OpenCV-2.0.0-Darwin.dmg">OpenCV-2.0.0-Darwin.dmg</a>.</p>
+	
+	<p>Create a new Xcode "Command Line Tool" project:</p>
+	
+	<gallery path="_osx" tag="thumbnail" process="thumbnail" filter="stage1" />
+	
+	<p>From the menu, select Project &rarr; Edit Active Target "...". Under the "Configuration" drop down, select "All Configurations", and then edit the options under "Architectures" to match the following:</p>
+	
+	<gallery path="_osx" tag="thumbnail" process="thumbnail" filter="stage2" />
+	
+	<p>You should now be able to compile your project with OpenCV.</p>
+	
+	<h2>Simple Example</h2>
+	
+	<listing src="simple_example.txt" brush="clang" />
+	
+	<p>Thanks to <a href="http://giesler.biz/~bjoern/blog/?p=183">Björn Giesler</a> for putting together an installer.</p>
+	
+	<h2>OpenCV 2.0 Documentation</h2>
+	
+	<p>The best documentation I can find is <a href="http://opencv.willowgarage.com/documentation/">this wiki</a>. It has a good search function and I've generally found the documentation to be concise and easy to understand.</p>
+</entry>

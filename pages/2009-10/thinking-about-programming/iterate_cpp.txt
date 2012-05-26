@@ -1,0 +1,7 @@
+std::vector<int> process(const std::vector<int> & numbers) {
+  std::vector<int> results;
+
+  for (std::vector<int>::iterator i = numbers.begin(); i != numbers.end(); i++) {
+    results.push_back(doSomething(i + 5));
+  }
+}

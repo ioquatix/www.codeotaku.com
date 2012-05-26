@@ -1,0 +1,4 @@
+class Animal {
+public:
+  virtual std::string speciesName () = 0;
+};

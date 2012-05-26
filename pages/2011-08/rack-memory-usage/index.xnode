@@ -1,0 +1,9 @@
+<entry>
+	<p>I was recently converting some code from Ruby 1.8.7 to Ruby 1.9.2 and I wanted to check memory usage. I also wanted to check for memory leaks, which can be a problem in garbage collected languages.</p>
+	
+	<p>The following code can be used to check memory usage after each request. It is designed to be used in conjunction with other rack middleware:</p>
+	
+	<listing src="memory-usage.txt" brush="ruby" />
+	
+	<p>Once you've got this up and running, you can use <code class="syntax bash-script">ab</code> to stress test the website. If memory usage keeps on increasing over time for the same load level, you probably have a memory leak.</p>
+</entry>

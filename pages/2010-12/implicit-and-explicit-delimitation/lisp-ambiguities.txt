@@ -1,0 +1,8 @@
+; If the minus operator was defined to be both a prefix and infix operator,
+; what does the following mean?
+(fn x - y)
+
+; Do we read this as
+(fn x (- y)) // Two arguments
+; .. or ..
+(fn (- x y)) // One argument

@@ -1,0 +1,10 @@
+#ifdef USE_OPENGL20
+#include "OpenGL20.h"
+using namespace OpenGL20;
+#elif USE_OPENGL31
+#include "OpenGL31.h"
+using namespace OpenGL31;
+#elif USE_OPENGLES11
+#include "OpenGLES11.h"
+using namespace OpenGLES11;
+#endif

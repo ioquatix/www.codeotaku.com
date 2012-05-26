@@ -1,0 +1,5 @@
+rack-memory-usage:
+    title: "Rack (Per-Request) Memory Usage"
+    summary: "This simple middleware can provide memory usage after each request."
+    author: "Samuel Williams"
+    created: 2011-08-24

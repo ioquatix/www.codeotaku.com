@@ -1,0 +1,40 @@
+<entry>
+	<p>Source code visualisation can potentially help programmers understand a program more quickly, especially if they are not familiar with it. Traditional tools are being improved to allow for more accurate software engineering and better visibility of program structure.</p>
+	
+	<p>Find/Replace is being improved by project visualisation and language aware refactoring tools. Browsing classes and functions has become easier with high level visualisations. Changing the name of a variable, moving a function from one class to another, and many other structured tasks are becoming much simpler with language aware editors.</p>
+	
+	<p>Here are some projects which might find there way into the future programmers toolbox.</p>
+	
+	<h2>Project Visualisation</h2>
+	
+	<p><a href="http://code.google.com/p/gource/">Gource</a> is a software version control visualisation tool. It allows you to review the changes to source code over time at a very high level, including the person who makes the change. While the idea is fascinating and the implementation visually exciting, the actual technical information that is conveyed is minimal. In many ways, it might be more useful when used in real time; for example, it would allow you to find out who is working on a particular part of a large project. It could also be used as a navigational tool for understanding the structure of a project.</p>
+	
+	<youtube_video id="ntTpM8hfl_E" />
+	
+	<p><a href="http://www.win.tue.nl/~dholten/extravis/">Extravis</a> (Execution Trace Visualizer) is a visual tool for inspecting the execution of a program. In this sense, it allows the end user to accurately visualise the connections between components which would otherwise be separated by layers of indirection.</p>
+	
+	<youtube_video id="P11YDFtm-RM" />
+	
+	<p><a href="http://www.doxygen.org/">Doxygen</a> is a fantastic tool for generating documentation from source code. It can create high level diagrams and outputs documentation in multiple formats. It is a fantastic tool for understanding source code and quickly getting up to speed with a large project.</p>
+	
+	<p><a href="http://www.dwheeler.com/sloccount/">SLOCcount</a> (Source Lines Of Code Count) is an excellent tool for understanding the high level composition of a program in terms of what languages are used. It could easily be extended to show this information over time by integrating it with a SCM system.</p>
+	
+	<h2>Language Aware Editors</h2>
+	
+	<p><a href="http://www.cs.brown.edu/people/acb/codebubbles_site.htm">Code Bubbles</a> is a fantastic concept where source code is manipulated at a much finer granularity than is traditionally possible using a classic file based editor. Functions in the program are shown as bubbles of code, and these can be expanded as required to show dependant functionality. It allows for developers to rapidly drill into a function and to find out how things are working.</p>
+	
+	<youtube_video id="PsPX0nElJ0k" />
+	
+	<h2>Source Code Augmentation</h2>
+	
+	<p>Basic syntax highlighting is a well covered area. However, there are many other areas where <a href="augmented-source-code">source code augmentation</a> can be useful. Semantic meaning along with syntax is equally important when reading and understanding a program's source code.</p>
+	
+	<p>Inline documentation, unit test coverage, performance metrics, are a few of the ways source code could be annotated to provide better feedback about the source code.</p>
+	
+	<h2>Further Reading</h2>
+	
+	<ul>
+		<li><a href="http://www.modernperlbooks.com/mt/2010/02/chunks-and-syntax-highlighting.html">Different things should look different</a></li>
+		<li><a href="http://en.wikipedia.org/wiki/SuperCollider">SuperCollider</a> - Source code is stored as RTF.</li>
+	</ul>
+</entry>

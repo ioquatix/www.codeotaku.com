@@ -1,0 +1,8 @@
+begin
+  1 / 0
+rescue
+  puts "Rescue"
+  exit!
+ensure
+  puts "Ensure"
+end

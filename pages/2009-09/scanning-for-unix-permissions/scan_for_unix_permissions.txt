@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby
+ 
+require 'find'
+require 'etc'
+ 
+# http://permissions-calculator.org/
+MASK = 0002
+ 
+Find.find(ARGV[0] || "./") do |path|
+	if FileTest.directory?(path)
+		s = File::Stat.new(path)
+		if (s.mode & MASK) != 0
+			puts "#{s.mode.to_s(8)} #{Etc.getpwuid(s.uid).name} #{Etc.getgrgid(s.gid).name}: #{path}"
+		end
+	end
+end

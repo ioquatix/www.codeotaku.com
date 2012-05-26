@@ -1,0 +1,19 @@
+<entry>
+	<p>I've had quite a few issues with <code>poll</code> and <code>kqueue</code> on Mac OS X/Darwin. When trying to poll for events using <code>fileno(stdin)</code> or <code>STDIN_FILENO</code>, it gives errors such as <code>Operation not supported</code> (<code>kqueue</code>) or <code>POLLNVAL</code> (<code>poll</code>).</p>
+
+	<p>On Darwin (at least up until Mac OS X 10.5.5), <code>stdin</code>, <code>stdout</code> and <code>stderr</code> are actually devices! Not pipes like one might expect. Also, <code>poll</code> is implemented on top of <code>kqueue</code>, therefore problems with <code>kqueue</code> also affect <code>poll</code>.</p>
+
+	<p>Because of this, polling <code>stdin</code> won't work. Here is an example which fails on Mac OS X 10.5.5:</p>
+	
+	<listing src="poll_stdin.txt" brush="clang" />
+	
+	<h2>A hackity solution</h2>
+	
+	<p>This code uses boost threads. What it does is create three pipes, one for <code>stdin</code>, one for <code>stdout</code> and one for <code>stderr</code>. The originals are moved to different <code>fd</code>s and then we spawn three threads to process data between the original devices and the newly created pipes. The result of this is that <code>STDIN_FILENO</code>, as an example, now refers to the write end of a pipe. The other end of this pipe is being read by the thread, and any data is written out to the original <code>stdin</code> device.</p>
+	
+	<listing src="console_pipe_redirector.txt" brush="clang" />
+	
+	<p>In this case, I've fixed all three standard <code>fd</code>s. However, it is probably only useful in most cases to fix <code>stdin</code> - this is likely to be the only device you would want to <code>poll</code>. I've included support for all three as an example of how it would be done.</p>
+	
+	<p>Poll specifically is a bit different across different platforms. Therefore, you need to be aware of the <a href="http://www.greenend.org.uk/rjk/2001/06/poll.html">differences</a>.</p>
+</entry>

@@ -1,0 +1,8 @@
+void assignInt(int & result, int value);
+int addInts(int lhs, int rhs);
+ 
+int a, b, c;
+assignInt(b, 1);
+assignInt(c, 2);
+ 
+assignInt(a, addInts(b, c));

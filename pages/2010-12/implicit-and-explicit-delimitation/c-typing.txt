@@ -1,0 +1,13 @@
+// Original statement
+if (foo) bar();
+
+// Amend this statement with a second expression:
+// Cursor typed 7 additional characters, moved 1 space backwards
+// Typing required: move back 1, insert 7 characters
+if (foo) bar(), baz();
+
+// Amend this statment with a second expression in a block:
+// Typing required: move back 6, insert 2 characters, move forward 6, insert 9 characters
+if (foo) { bar(); baz(); }
+
+// This is similar in any language that delimits statements using blocks (i.e. implicit whitespace)

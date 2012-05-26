@@ -1,0 +1,27 @@
+<entry>
+	<p>I often end up writing authentication systems which have to work over an unencrypted protocol. This requires an additional layer of security, which can be done using client side javascript.</p>
+	
+	<p>It is specifically important to ensure that passwords don't travel in <a href="http://en.wikipedia.org/wiki/Digest_access_authentication">the clear</a>. Using jQuery SHA1 on the client-side to hash the password before it is sent to the server achieves this goal. A random login_hash is fetched from the server every time the password is entered. This is then digested and sent back the server, where it is checked.</p>
+	
+	<p>If the user doesn't have JavaScript, it simply supplies the password (as per what is typical).  We must also keep replay attacks in mind when designing this kind of system.</p>
+	
+	<div class="gallery"><img src="secure_login.png" /></div>
+	
+	<p>This diagram shows the basic of a secure hashing login system, which can be easily implemented.</p>
+	
+	<h2>Client Side</h2>
+	
+	<p>Here is a client using jQuery. The login hash is retrieved from the server using AJAX.</p>
+	
+	<listing src="client_form.txt" lang="html" />
+	
+	<h2>Server Side</h2>
+	
+	<p>The database I am using as an example is for email accounts. It is slightly more complicated than a typical example.</p>
+	
+	<listing src="server_datamapper.txt" lang="ruby" />
+	
+	<p>Here is a server using Ramaze.</p>
+	
+	<listing src="server_ramaze.txt" lang="ruby" />
+</entry>

@@ -1,0 +1,443 @@
+body {
+	background-image: url(white_stipple.jpg);
+	background-attachment: fixed;
+	color: #000;
+	
+	font-family: georgia, "times new roman";
+}
+
+blockquote {
+	line-height: 2em;
+	text-shadow: 2px 2px 8px #aaa;
+}
+
+#header {
+	text-align: center;
+}
+
+#header img {
+}
+
+#content {
+	padding-left: 50px;
+	padding-right: 50px;
+}
+
+dl.article-list dd {
+	padding: 0px;
+}
+
+#tree {
+	position: fixed;
+	right: 10px;
+	bottom: 10px;
+	
+	width: 265px;
+	height: 222px;
+	
+	background-image: url(tree.jpg);
+	background-repeat: no-repeat;
+	
+	z-index: -10;
+}
+
+#content h1 {
+	font-size: 14pt;
+}
+
+#content h2 {
+	margin-top: 50px;
+	font-size: 11pt;
+	
+	text-decoration: underline;
+}
+
+#content h3 {
+	margin-top: 40px;
+	font-size: 10pt;
+	
+	text-decoration: underline;
+	
+	padding-left: 32px;
+	background: url(bullet.png) center left no-repeat;
+}
+
+#sidebar {
+	float: right;
+	margin-bottom: 50px;
+	
+	padding: 0px;
+	
+	font-size: 10pt;
+	width: 20%;
+}
+
+#sidebar h1 {
+	font-size: 8pt;
+}
+
+#sidebar ul {
+	padding: 0px;
+	margin: 0px;
+}
+
+#sidebar li {
+	list-style: none;
+	padding: 0px;
+	margin: 4px;
+	font-size: 7pt;
+}
+
+#sidebar em {
+	font-style: normal;
+	font-weight: bold;
+}
+
+#sidebar .ui-accordion-content {
+	padding: 8px;
+}
+
+.navigation {
+	font-size: 9pt;
+	clear: both;
+}
+
+.navigation .prev_link {
+	float: left;
+}
+
+.navigation .next_link {
+	float: right;
+}
+
+.heading {
+	margin: 20px;
+	border: 1px solid black;
+	background-color: white;
+	
+	font-size: 10pt;
+	
+	text-align: center;
+}
+
+.grass {
+	padding: 5px;
+	padding-bottom: 30px;
+	
+	background: url(grass.png) bottom right repeat-x;
+}
+
+.heading small {
+	margin: 20px;
+}
+
+dl {
+	padding: 5px;
+}
+
+li {
+	margin: 4px;
+}
+
+dt {
+	text-decoration: underline;
+	padding-top: 4px;
+}
+
+dd {
+	padding: 4px;
+}
+
+p, dt {
+	padding-top: 15px;
+}
+
+p, li,  dt, dd {
+	font-size: 14px;
+	line-height: 1.8em;
+}
+
+#entry {
+	padding-bottom: 80px;
+	margin-right: 25%;
+}
+
+#footer {
+	padding: 10px 0 20px;
+	background:center no-repeat;
+	
+	color: #999;
+	font-size: 7pt;
+	text-align: center;
+}
+
+img {
+	border: none;
+}
+
+table.basic {
+	border-collapse: collapse;
+	margin: auto;
+	width: 90%;
+}
+
+table.basic thead th {
+	font-family: "Lucida Grande", Sans-Serif;
+	font-weight: normal;
+	font-size: 12pt;
+	text-align: left;
+	color: #003399;
+	border-bottom: 2px solid #6678b2;
+	padding: 10px 8px;
+}
+
+table.basic tbody th,
+table.basic tbody td {
+	border: none;
+	font-size: .9em;
+	padding: 9px 8px 0px 8px;
+	color: #666699
+}
+
+table.basic tbody th {
+	text-align: left;
+	text-decoration: underline;
+	padding-top: 12px;
+}
+
+table.basic tbody tr:hover td {
+	color: #000;
+	text-shadow: #aaa 1px 1px 2px;
+}
+
+table.data th {
+	background-color: #e0e0e0;
+	padding: 4px;
+}
+
+table.data {
+	background-color: #fff;
+	border: 1px solid black;
+	
+	margin: auto;
+	text-align: center;
+}
+
+table.data td {
+	padding: 4px;
+}
+
+code.basic {
+	display: block;
+}
+
+pre.code, code.basic {
+	/* border: 2px solid #ccc;
+	border-left: 2px solid #333; */
+	margin: 10px;
+	padding: 2px;
+	padding-left: 10px;
+	background-color: #404040;
+	color: #d0d0d0;
+	padding: 10px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+}
+
+.gallery {
+	text-align: center;
+	background: rgba(230, 230, 230, 0.25);
+	border: 1px solid #ccc;
+	padding: 5px;
+}
+
+.gallery .photo_thumbnail img {
+	-moz-box-shadow: 4px 4px 8px #888;
+	-webkit-box-shadow: 4px 4px 8px #888;
+	box-shadow: 4px 4px 8px #888;
+}
+
+.gallery .photo_thumbnail, .gallery .thumbnail {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.gallery img {
+	margin: 10px 10px 5px;
+}
+
+.gallery .photo_thumbnail {
+	width: 320px;
+}
+
+.gallery .photo_thumbnail, .gallery .thumbnail {
+	margin: 0.5em;
+}
+
+.gallery .caption {
+	font-size: 10pt;
+}
+
+#comments form {
+	background: white;
+	border: 1px solid black;
+	padding: 5px;
+	margin: 5px;
+}
+
+#comments .comment .byline {
+	color: #333;
+	font-size: 9pt;
+	padding: 4px;
+	
+	position: relative;
+}
+
+#comments .comment .moderation {
+	text-align: center;
+	padding: 5px;
+}
+
+#comments .comment .byline .posted_on {
+	color: #999;
+	float: right;
+}
+
+#comments .comment .text {
+	margin-top: 28px;
+}
+
+#comments .comment .icon {
+	margin: 0px 20px 5px 10px;
+	float: left;
+}
+
+#comments .comment .body {
+	margin: 2px;
+	border-top: 1px solid #ccc;
+}
+
+#comments .comment, .about-me {
+	margin: 5px;
+	padding: 5px;
+	background-color: #eee;
+	background-color: rgba(230, 230, 230, 0.25);
+	border: 1px solid #ccc;
+}
+
+form.basic dd.icons img {
+	margin: 3px;
+	width: 32px;
+	height: 32px;
+}
+
+form.basic dd.icons {
+	clear: both;
+	text-align: center;
+}
+
+form.basic dd.icons .selected {
+	border: 3px solid #FFCC00;
+	margin: 0;
+}
+
+form.basic fieldset {
+	margin: auto;
+	border: none;
+	font-size: 16pt;
+	padding: 10px;
+}
+
+form.basic dl {
+	margin: 0px;
+}
+
+form.basic dl dt,
+form.basic dl dd {
+	margin: 0px;
+	padding: 0px;
+	padding-top: 5px;
+	padding-bottom: 10px;
+	line-height: 1.0em;
+}
+
+form.basic dl dt {
+	clear: both;
+	font-size: 12pt;
+	display: block;
+	float: left;
+	text-align: right;
+	width: 28%;
+}
+
+form.basic dl dt {
+	text-decoration: none;
+}
+
+form.basic dl dt label {
+	-text-decoration: underline;
+}
+
+form.basic dl dt small {
+	text-decoration: none;
+	font-size: 7pt;
+	display: block;
+}
+
+form.basic dl dt small {
+	text-decoration: none;
+	font-size: 7pt;
+}
+
+form.basic dl dd {
+	float: right;
+	width: 70%;
+}
+
+form.basic dl dd.icons {
+	width: auto;
+	float: none;
+}
+
+form.basic dd input[type="text"],
+form.basic dd input[type="password"] {
+	width: 70%;
+}
+
+form.basic dd textarea {
+	width: 95%;
+}
+
+form.basic dd.footer {
+	text-align: right;
+}
+
+form.basic dd label.error {
+	display: block;
+	color: red;
+}
+
+audio {
+	width: 100%;
+}
+
+.latex.inline {
+	padding: 0px 5px 0px;
+	vertical-align: middle;
+}
+
+/* Entry Footnotes */
+
+sup a {
+	text-decoration: none;
+}
+
+/* Google Maps */
+
+.google-map {
+	width: 800px;
+	height: 600px;
+	margin-left: auto;
+	margin-right: auto;
+}

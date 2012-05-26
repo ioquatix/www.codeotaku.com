@@ -1,0 +1,6 @@
+fn(a, b, c);  // This is fine.
+fn(a, b, c;   // This argument list is not terminated, (1)
+
+// Suppose that we used the same terminator for separating arguments and statments
+fn(a; b; c);  // This is fine.
+fn(a; b; c;   // This argument list is not terminated (2)

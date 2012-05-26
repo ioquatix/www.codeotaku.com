@@ -1,0 +1,15 @@
+<entry>
+	<p>WebDAV is a very useful tool for sharing files. If you want to have both anonymous access and authenticated access, you require some specific configuration:</p>
+	
+	<listing src="apache_webdav_config.txt" lang="apache" />
+	
+	<p>The key here is understanding how <code>Limit</code> and <code>LimitExcept</code> can be used. <code>Limit</code> means that for the given set of requests, process the block. <code>LimitExcept</code> means that for any other type of request other than those given, process the block. The thing to identify is that <code>Satisfy any</code> can then be used within a <code>Limit</code> or <code>LimitExcept</code> block to control anonymous access. This can be used, along with typical <code>Allow from all</code> access controls to provide fine grained access to DAV repositories.</p>
+	
+	<h2>See also</h2>
+	
+	<ul>
+		<li><a href="http://httpd.apache.org/docs/2.0/mod/core.html">Apache Core Documentation</a> (<code>Satisfy any</code>, <code>Limit</code>, <code>LimitExcept</code>, <code>Require</code>)</li>
+		<li><a href="http://httpd.apache.org/docs/2.0/mod/mod_access.html">mod_access Documentation</a> (<code>Allow from any</code>)</li>
+		<li><a href="http://httpd.apache.org/docs/2.0/mod/mod_dav.html">mod_dav Documentation</a> (<code>DAV</code>)</li>
+	</ul>
+</entry>

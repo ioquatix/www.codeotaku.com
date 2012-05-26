@@ -1,0 +1,16 @@
+LM48:
+	movl	$0, -24(%ebp)
+	jmp	L321
+L322:
+LM49:
+	movl	-60(%ebp), %edx
+	movl	L_OBJC_SELECTOR_REFERENCES_2, %eax
+	movl	%eax, 4(%esp)
+	movl	%edx, (%esp)
+	call	L_objc_msgSend$stub
+LM50:
+	leal	-24(%ebp), %eax
+	incl	(%eax)
+L321:
+	cmpl	$19999, -24(%ebp)
+	jbe	L322

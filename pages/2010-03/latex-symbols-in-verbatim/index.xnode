@@ -1,0 +1,11 @@
+<entry>
+	<p>LaTeX is a great tool for putting together documents. However, sometimes it can be a little bit tricky to get exactly what you want.</p>
+	
+	<p>Recently, I wanted to use the <code>verbatim</code> mode for the output of a program run on the command line. However, this included <code>UTF8</code> symbols. These symbols didn't show up in the <code>verbatim</code> mode, and using the equivalent symbol <code>\O</code> didn't work either. I found a way around this, by using the <code>utf8</code> package:</p>
+	
+	<listing src="example_latex.txt" />
+	
+	<p>The <a href="example_latex.pdf">resulting document</a> is exactly what we expect &mdash; the correct symbols are substituted in verbatim mode.</p>
+	
+	<p>The main trick is <code>\\DeclareUnicodeCharacter</code> which takes a <code>Unicode</code> character code-point, in this case the code point for ∅ is 2205, and defines it to be one of the standard <code>LaTeX</code> symbols. You can do this for whatever symbols you require.</p>
+</entry>

@@ -1,0 +1,10 @@
+<entry>
+	<p>I have been producing some rack middleware which generates statistics and I am looking at options for visualization. I found two good lists of options:</p>
+
+	<ul>
+		<li><a href="http://speckyboy.com/2009/02/04/16-usable-css-graph-and-bar-chart-tutorials-and-techniques/">16 USable CSS Graph and Bar Chart Tutorials and Techniques</a></li>
+		<li><a href="http://www.liquidx.net/plotkit/">PlotKit</a> (Canvas based graphing)</li>
+	</ul>
+
+	<p>Also while not really related I found <a href="http://www.3point7designs.com/blog/2008/06/10-examples-of-beautiful-css-typography-and-how-they-did-it/">this great page</a> about CSS typography.</p>
+</entry>

@@ -1,0 +1,9 @@
+<entry>
+	<h1>Print Errors</h1>
+	
+	<p>Use <code class="syntax c">glGetError()</code> in your display loop to print errors.</p>
+	
+	<h1>opengl_error_break</h1>
+	
+	<p>Simply add a breakpoint for this and whenever there is an OpenGL error your program will break.</p>
+</entry>

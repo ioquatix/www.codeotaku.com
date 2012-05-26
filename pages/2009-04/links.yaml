@@ -1,0 +1,55 @@
+apache-webdav-configuration:
+    title: "Apache WebDAV Configuration"
+    created: 2009-04-01
+    summary: "Configuring WebDAV can be complicated - view an example configuration that I use."
+    author: "Samuel Williams"
+poll-and-kqueue-hack:
+    title: "Poll and Kqueue Hack"
+    created: 2009-04-02
+    summary: "Poll doesn't work well with STDIN on Mac OS X - here is a workaround."
+    author: "Samuel Williams"
+sitehost-new-zealand-vps:
+    title: "SiteHost New Zealand VPS"
+    created: 2009-04-15
+    summary: "I how have a VPS service with SiteHost - they are fantastic."
+    author: "Samuel Williams"
+ax200-service-menus:
+    title: "Panasonic AX200 Service Menus"
+    created: 2009-04-16
+    summary: "My projector has many hidden configuration menus - find out more."
+    author: "Samuel Williams"
+state-management:
+    title: "Game State Management"
+    created: 2009-04-17
+    summary: "Managing game state is a careful balance - learn more about separating concerns."
+    author: "Samuel Williams"
+state-synchronization:
+    title: "Game State Synchronization"
+    created: 2009-04-18
+    summary: "Game state can be synchronized across a network - find out about the various ways this can happen."
+    author: "Samuel Williams"
+python-hashes-in-ruby:
+    title: "Python Hashes in Ruby"
+    created: 2009-04-20
+    summary: "Python hashes are unique to the implementation of Python - here is an implementation in Ruby."
+    author: "Samuel Williams"
+ruby-environment-variables:
+    title: "Managing Ruby Environment Variables"
+    created: 2009-04-21
+    summary: "Compiling code via rake can require extensive modification of the shell environment - Ruby makes this easy!"
+    author: "Samuel Williams"
+why-do-we-play-games:
+    title: "Why do we play games?"
+    created: 2009-04-22
+    summary: "People of all ages play games - but what do they enjoy and why?"
+    author: "Samuel Williams"
+isync-sony-v630:
+    title: "iSync Plugin for V630/V630i"
+    created: 2009-04-24
+    summary: "I still have an old cellphone. Here is a free iSync plugin for it that I made."
+    author: "Samuel Williams"
+linker-flags-and-archives:
+    title: "Linker flags and archives"
+    created: 2009-04-27
+    summary: "Linking compiled code can sometimes have unexpected results - here is something to watch out for."
+    author: "Samuel Williams"

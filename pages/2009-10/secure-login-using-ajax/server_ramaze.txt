@@ -1,0 +1,43 @@
+class AccountController < Controller
+	set_layout_except :default => [:login_salt]
+
+	def login
+		@title = "Mail Administration Login"
+	
+		if request.post?
+			account = MailAccount.with_address(request[:username])
+			success = false
+		
+			if account
+				Ramaze::Log.info "Authenticating account #{account.name}..."
+
+				if request[:password_hash]
+					Ramaze::Log.info "\twith #{request[:password_hash]} and #{session[:login_salt]}"
+					success = account.digest_authenticate(request[:password_hash], session[:login_salt])
+				elsif request[:password]
+					Ramaze::Log.info "\twith #{request[:password]}"
+					success = account.plaintext_authenticate(request[:password])
+				end
+			end
+		
+			if success
+				Ramaze::Log.info "Authentication successful!"
+				session[:mail_account] = account.id
+				redirect MainController.r(:index)
+			end
+		
+			Ramaze::Log.warn "Authentication failed!"
+		end
+	end
+
+	# Generate salt for the login process
+	def login_salt
+		response["Content-Type"] = 'application/json'
+		session[:login_salt] = ::SecureRandom.hex(32)
+	end
+	
+	def logout
+		session.delete(:mail_account)
+		redirect "/"
+	end
+end

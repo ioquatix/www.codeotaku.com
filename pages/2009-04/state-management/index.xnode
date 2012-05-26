@@ -1,0 +1,36 @@
+<entry>
+	<p>Managing state in a game or simulation can be complex. For a simulation, there are several different kinds of state we might need to consider:</p>
+
+	<ul>
+		<li>State which is created from user input, and will affect the main simulation (m_willShoot = true)</li>
+		<li>State which represents the core of the simulation (std::vector&lt;Bullets&gt;)</li>
+		<li>State which is used to visualise the results of the simulation (std::vector&lt;BulletFragments&gt;)</li>
+	</ul>
+
+	<p>When considering the overall structure of a simulation, there are various points where real-time input can be supplied. This input must be “normalized” in some way, before it can affect the main game state. The goal of this step is to make sure that the main simulation is deterministic when given the same sets of input.</p>
+
+	<p>Finally, when rendering a simulation, there may be effects or additional state (such as particle systems) which are inconsequential to the main simulation state.</p>
+
+	<h2>Basic Example of State Management</h2>
+
+	<listing src="simulation.txt" brush="clang" />
+
+	<p>The benefits of this kind of structure should be apparent, however I'll spell them out:</p>
+
+	<ul>
+		<li>Strict interfaces (IWorldSimulation, IWorldEvents, IWorldRenderer) are very helpful:
+			<ul>
+				<li>Helps to maintain encapsulation of unrelated state. This is a problem because it can reduce the reliability and reproducibility of the simulation. Simulation can be repeated deterministically given the same set of input.</li>
+				<li>Allows for different types of renders (i.e. different platforms), state input (i.e. from a network). Not all simulations need visual output or visual output may only be desirable when testing. For a complex physical simulation, it might be run across many nodes, and therefore visual simulation needs to be done differently when the computation is distributed vs when it is run on a local machine.</li>
+				<li>Clear boundaries of functionality, and separation of different pieces of the code. Improved clarity of code, because separate functional units can be produced and maintained separately. Better support for SCM, and easier for people to work on individual portions of code/functionality. Easier to test code with unit tests, etc.</li>
+			</ul>
+		</li>
+		<li>Separation of updating the simulation and rendering the simulation.
+			<ul>
+				<li>Can run simulation and rendering at different speeds, depending on requirements.</li>
+				<li>Often useful for visual updates to be synced with screen refreshes, which might be 60hz, 30hz, PAL/NTSC, etc depending on platform.</li>
+				<li>Can have a clear separation between server and client state when dealing with networked simulations.</li>
+			</ul>
+		</li>
+	</ul>
+</entry>

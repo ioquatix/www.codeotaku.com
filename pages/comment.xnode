@@ -1,0 +1,72 @@
+<?r
+	unless parent
+		response["Content-Type"] = "text/html; charset=utf-8"
+		response.do_not_cache!
+	end
+	
+	comment = Comment.get((request['id'] || attributes['id']).to_i) 
+	admin_user = request.controller.user if request.controller.admin?
+	
+	if comment && (comment.visible || request.controller.user == comment.user || admin_user)
+?>
+<div class="xframe" src="#{current.node.uri_path.dirname + 'comment'}?id=#{comment.id}">
+	<div class="comment">
+		<div class="byline">
+			<?r if admin_user ?>
+			<div class="admin" style="float: right">
+				<button onclick="editComment(this, #{comment.id})">Edit</button>
+				<?r unless comment.visible ?>
+				<button onclick="moderateComment(this, #{comment.id})">Accept</button>
+				<?r else ?>
+				<button onclick="moderateComment(this, #{comment.id})">Moderate</button>
+				<?r end ?>
+				<button onclick="deleteComment(this, #{comment.id})">Delete</button>
+			</div>
+			<?r end ?>
+		
+			<?r if comment.user.icon and comment.user.icon != "gravatar" ?>
+			<img class="icon" src="@rel@/_static/icons/#{comment.user.icon.to_html}.png" />
+			<?r else ?>
+			<img class="icon" src="http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(comment.user.email)}.jpg" />
+			<?r end ?>
+		
+			<div class="text">
+				<span class="author">
+				<?r if comment.user.website ?>
+					<a rel="nofollow" href="#{comment.user.website.to_html}">#{comment.user.name.to_html}</a>
+				<?r else ?>
+					#{comment.user.name.to_html}
+				<?r end ?>
+		
+				<?r if admin_user ?>
+				[id #{comment.user.id}]
+				[email <a href="mailto:#{comment.user.email.to_html}">#{comment.user.email.to_html}</a>]
+				<?r elsif comment.user.admin? ?>
+				[admin]
+				<?r end ?>
+		
+				<?r if comment.user.from and comment.user.from.size > 0 ?>
+				(from #{comment.user.from.to_html})
+				<?r end ?>
+		
+				</span>
+				said:
+				<span class="posted_on">#{comment.posted_on.strftime("%a, %d %b %Y at %I:%M%p")}</span>
+			</div>
+		</div>
+	
+		<div class="body">
+			<?r unless comment.visible ?>
+			<div class="moderation">This comment is currently awaiting moderation.</div>
+			<?r end ?>
+		
+			#{comment.body_html}
+		</div>
+	</div>
+	<?r if first == current ?>
+	<script type="text/javascript">
+		jQuery.syntax();
+	</script>
+	<?r end ?>
+</div>
+<?r end ?>

@@ -1,0 +1,5 @@
+<entry>
+	<p>I was recently considering options for doing e-commerce. I found this great framework called <a href="http://www.activemerchant.org/">ActiveMerchant</a>, but I haven't tried it out yet.</p>
+
+	<p>It was developed for use with with Rails, however it seems to be web framework agnostic according to their documentation.</p>
+</entry>

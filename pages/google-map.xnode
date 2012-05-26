@@ -1,0 +1,40 @@
+<?r
+	map_id = attributes['id'] || 'map'
+	
+	latitude = attributes['latitude']
+	longitude = attributes['longitude']
+	zoom = attributes['zoom']
+	kml = attributes['kml']
+	
+	if kml
+		kml = parent.node.uri_path.dirname + kml
+		server = request.scheme + "://" + request.host_with_port
+		kml = server + kml.to_s
+	end
+	
+	@scripts ||= Set.new
+	@scripts << "http://maps.google.com/maps/api/js?sensor=false"
+?>
+<div class="google-map" id="#{map_id}"></div>
+<script type="text/javascript"><!--
+	jQuery(function(){
+		var kml, map, container = document.getElementById(#{map_id.to_quoted_string});
+		
+		options = {
+			<?r if zoom ?>
+			zoom: #{zoom},
+			<?r end ?>
+			<?r if latitude && longitude ?>
+			center: new google.maps.LatLng(#{latitude}, #{longitude}),
+			<?r end ?>
+			mapTypeId: google.maps.MapTypeId.ROADMAP
+		};
+		
+		map = new google.maps.Map(container, options);
+			
+		<?r if kml ?>
+		var kmlLayer = new google.maps.KmlLayer(#{kml.to_quoted_string});
+		kmlLayer.setMap(map);
+		<?r end ?>
+	});
+--></script>

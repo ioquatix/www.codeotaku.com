@@ -1,0 +1,13 @@
+source-code-visualisation:
+    created: 2010-08-05
+    author: Samuel Williams
+    summary: "I still prefer the command line and basic text editor, but there are many interesting ways to view source code."
+augmented-source-code:
+    created: 2010-08-06
+    author: Samuel Williams
+    summary: "There are many different ways to highlight source code - syntax, semantics, coverage, age."
+java-me-games:
+    title: "Java ME Games"
+    created: 2010-08-10
+    author: Samuel Williams
+    summary: "I recently had to make some Java ME games for an assignment. Here are the results."

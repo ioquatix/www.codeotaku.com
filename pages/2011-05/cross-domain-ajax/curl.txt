@@ -1,0 +1,11 @@
+$ curl -i -X OPTIONS http://www.lucidsystems.co.nz/company/contact-us/index 
+HTTP/1.1 200 OK
+Date: Fri, 06 May 2011 02:25:28 GMT
+Server: Apache/2.2.16 (Debian)
+X-Powered-By: Phusion Passenger (mod_rails/mod_rack) 3.0.5
+%%highlight{Access-Control-Allow-Headers: X-Requested-With}
+%%highlight{Access-Control-Allow-Origin: *}
+%%highlight{Access-Control-Max-Age: 60}
+Content-Length: 0
+Status: 200
+Content-Type: text/plain

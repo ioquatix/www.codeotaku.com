@@ -1,0 +1,15 @@
+<entry>
+	<p>At its core, Computer Science is the study of programming languages, algorithms and data structures. Learning a programming language allows one to grapple with these ideas and bring them to life. However, it can be a barrier too: a difficult language can be discouraging and hinder progress. Choosing a suitable language for students is important, and there are many factors to consider.</p>
+
+	<p>In addition to learning a single programming language, exposure to a variety of different programming languages increases awareness of not only what is available, but also the different approaches one can take to solve various kinds of problems.</p>
+
+	<p>To this end, I have produced an online resource called the <a href="http://programming.dojo.net.nz/">Programming Dojo</a> (http://programming.dojo.net.nz/). This website has been designed with both teachers and students in mind and includes informative summaries on a wide variety of popular programming languages. Each summary includes a brief description, example source code, and links to highly relevant external resources for learning about the language.</p>
+
+	<p>I have also included several resources primarily for teachers: a <a href="http://programming.dojo.net.nz/resources/programming-language-posters/index">set of posters</a> and a <a href="http://programming.dojo.net.nz/resources/programming-language-comparison/index">programming language comparison</a>. The programming language posters are designed to be used in the classroom and each feature a particular programming language. There are several suggested methods for using posters discussed on the site. The programming language comparison, while inevitably a little subjective, tries to provide a balanced assessment of programming languages in an educational context. The comparison has been reviewed and incorporates fairly extensive critical feedback.</p>
+
+	<p>The <a href="http://programming.dojo.net.nz/">Programming Dojo</a> is still under development and feedback from Teachers would be highly appreciated: Is this a useful resource? Are there areas which could be improved? Are there other other resources you would like to see included?</p>
+
+	<p>The word ‘Dojo’ is actually pronounced ‘Dou-Jyou’, and written in Japanese Kanji ‘道場’; it can most easily be translated into ‘Dou’ meaning pathway, and ‘Jyou’ meaning place. ‘Programming Dojo’ means the place where one can start on the pathway of programming.</p>
+
+	<p><em>Samuel Williams is a master's candidate in Computer Science at Canterbury University, New Zealand. The ‘Programming Dojo’ was developed as project work for a course on Computer Science Education run by Tim Bell and Lynn Lambert. Samuel Williams is an enthusiastic free software advocate and computer programmer, and enjoys hiking in the mountains.</em></p>
+</entry>

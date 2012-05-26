@@ -1,0 +1,5 @@
+<entry>
+	<p>I found an <a href="http://ooc-lang.org/">interesting new language called "ooc"</a>. It is still under heavy development, but looks very interesting.</p>
+	
+	<p>One of the reasons it appeals to me is that it builds on top of <code>C</code> in a very clean way: It doesn't add a huge amount of new "language magic", like <code>C++</code> seems to do. I'm looking forward to seeing what kind of meta-programming capabilities it has.</p>
+</entry>

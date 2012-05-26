@@ -1,0 +1,21 @@
+$ rd-resolve-test 10.0.0.80
+Starting test with 14 domains...
+Using nameservers: 10.0.0.80
+Only long running queries will be printed...
+Starting threads...
+		0.54s: www.youtube.com => 66.102.7.101
+		0.60s: www.facebook.com => 69.63.184.150
+		0.65s: www.youtube.com => 66.102.7.101
+		0.64s: www.twitter.com => 168.143.161.20
+		0.52s: www.rubygems.org => 207.114.85.50
+		0.83s: www.facebook.com => 69.63.184.150
+		0.86s: www.google.com => 66.102.7.99
+		0.89s: www.oriontransfer.co.nz => 120.138.18.82
+		0.82s: www.microsoft.com => 65.55.21.250
+		0.55s: www.twitter.com => 168.143.161.20
+		0.50s: www.lucidsystems.org => 123.255.41.127
+		0.59s: www.amazon.com => 72.21.207.65
+		0.57s: www.apple.com => 17.149.160.10
+		0.52s: www.oriontransfer.co.nz => 120.138.18.82
+ 
+Requests: 200 Average time: 0.32242531

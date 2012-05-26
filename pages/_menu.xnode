@@ -1,0 +1,19 @@
+<?r 
+	def latest_entries(count)
+		entries = []
+	
+		links("./", :sort => :title, :files => false, :virtuals => false).reverse.each do |link| 
+			links(link.path.to_absolute.dirname, :sort => :created).reverse.each do |entry|
+				entries << entry
+				return entries if entries.size > count
+			end
+		end
+		
+		return entries
+	end
+	
+?>
+	<a href="/blog/index" class="link title">Code Otaku [Blog]</a>
+	<?r latest_entries(10).each do |entry| ?>
+	#{entry.to_href(:class => "link child")}
+	<?r end ?>

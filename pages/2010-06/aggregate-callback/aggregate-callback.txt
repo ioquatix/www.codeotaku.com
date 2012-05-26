@@ -1,0 +1,34 @@
+// Released under the GNU GPLv3. Copyright 2010 Samuel Williams.
+
+function AggregateCallback (timeout, enforce, callback) {
+	this.timeout = timeout;
+	this.enforce = enforce;
+	
+	this.callback = callback;
+	
+	this.timer = null;
+	this.fired = null;
+}
+
+AggregateCallback.prototype.fire = function () {
+	this.fired = new Date();
+	this.callback();
+}
+
+AggregateCallback.prototype._expired = function () {
+	// Returns true if we have been fired further than maxTimeout in the past.
+	return !this.fired || ((new Date() - this.fired) > this.timeout);
+}
+
+AggregateCallback.prototype.update = function () {
+	if (this._expired() && this.enforce)
+		this.fire()
+	
+	if (this.timer) {
+		clearTimeout(this.timer);
+		this.timer = null;
+	}
+	
+	var target = this;
+	this.timer = setTimeout(function () { target.fire(); }, this.timeout);
+}

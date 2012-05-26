@@ -1,0 +1,16 @@
+source.jpg:
+    order: 1
+    caption: "The original image of a tea-pot I got in Japan."
+frame.png:
+    order: 2
+    caption: "The image after bilateral texture removal and 3-channel laplace filter."
+analysis.png:
+    order: 3
+    caption: "The intensity scanning algorithm and contour generation algorithm processing."
+coloured.png:
+    order: 4
+    caption: "A randomly coloured image which clearly shows the different brush strokes."
+paint.png:
+    order: 5
+    caption: "The final pseudo-paint image - perfect for a robot arm reproduction!"
+    

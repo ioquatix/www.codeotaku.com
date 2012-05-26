@@ -1,0 +1,108 @@
+<entry>
+	<p>Runtime polymorphism is typically the usage of function pointers to provide an implementation for functionality that is not known at compile time. It is also often used to simplify the structure of a program, by using common interfaces to expose specific functionality.</p>
+
+	<p>There are a number of purposes for runtime polymorphism:</p>
+
+	<ul>
+		<li>Providing access to a specific resource chosen at runtime using a generic interface (e.g. text mode or graphical mode user interface depending on whether graphical mode is available).</li>
+		<li>Simplifying the relationships between algorithm implementations and data structures (e.g. collision detection for a collection of <code>Shape*</code>, but each is actually an instance of <code>Triangle</code> or <code>Square</code> or <code>Circle</code>).</li>
+		<li>Formatting data for a particular output device, without knowledge of the specific details (e.g. printer driver).</li>
+	</ul>
+	
+	<p>The cost of run time polymorphism is great. It can be reduced, but the best way to reduce the cost of runtime polymorphism is to avoid it all together. However this is not always an option. It is often the right tool to use when approaching dynamic functionality, as it can simplify code structure, reduce coupling and improve code localization.</p>
+	
+	<h2>The cost of dynamic dispatch</h2>
+	
+	<p>Dynamic dispatch can cost quite a bit, depending on your perspective.</p>
+	
+	<p>I've prepared a sample application which can be compiled on Mac OS X using Xcode. The purpose of this tool is to benchmark a very contrived small function, and produce a baseline time. <a href="dispatch_benchmark.zip">dispatch_benchmark.zip</a>.</p>
+	
+	<p>The function body we are calling is identical in all cases, and looks like this:</p>
+	
+	<listing src="basic_benchmark.txt" brush="clang" />
+	
+	<p>Here is a table of the results. Non-dynamic C function dispatch was used as the baseline. The bigger the percentage, the slower it is.</p>
+	
+	<table class="basic">
+		<thead>
+			<tr><th>Method</th><th>-O0   %</th><th> -O1   %</th><th>-O2   %</th><th>-O3   %</th><th>-Os   %</th></tr>
+		</thead>
+		<tbody>
+			<tr><td>C Dispatch (Baseline)</td><td>100%</td><td>100%</td><td>100%</td><td>100%</td><td>100%</td></tr>
+			<tr><td>C Pointer Dispatch</td><td>95.56%</td><td>112.5%</td><td>104.6%</td><td>450%</td><td>442.1%</td></tr>
+			<tr><td>Base C++ Dispatch</td><td>125.7%</td><td>132%</td><td>116.9%</td><td>449.9%</td><td>590.6%</td></tr>
+			<tr><td>Derived C++ Dispatch</td><td>125.6%</td><td>132.1%</td><td>116.5%</td><td>544.2%</td><td>511.9%</td></tr>
+			<tr><td>Objective-C Dispatch</td><td>245.1%</td><td>272.3%</td><td>274.2%</td><td>1235%</td><td>1213%</td></tr>
+		</tbody>
+	</table>
+	
+	<p>From this, we can draw a number of conclusions.</p>
+	
+	<h2>C Dispatch</h2>
+	
+	<p>A standard function in C is a prime candidate for being inlined. In this case, at O3 and Os this occurs, and the benefits are amazing. The function takes almost 1/5th the time to execute in this case.</p>
+
+	<p>For larger functions, this won't be the case, but in terms of function dispatch, the key point I want to make is this is the only kind of function call that can be inlined with such a huge performance improvement. It is also the case that once a function is inlined, many other optimizations can be made, such as reducing the amount of data that may be copied during the function call.</p>
+
+	<p>Here is the code before it is inlined (<code>-O0</code> to <code>-O2</code>):</p>
+	
+	<listing src="c_before_inline.txt" lang="asm" />
+	
+	<p>Here is the code after it is inlined (<code>-O3</code> and <code>-Os</code>):</p>
+	
+	<listing src="c_after_inline.txt" lang="asm" />
+	
+	<p>I think the funny thing about this is that the compiler did inline the function, but failed to reduce the loop to a simple addition - e.g. rather than adding 1 several thousand times, why not just add several thousand one time. I've seen GCC do this optimization before, so I'm not sure why it isn't doing it here.</p>
+	
+	<h2>C Pointer Dispatch</h2>
+	
+	<p>This method can not be inlined since the pointer must be dereferenced in order to call the function, thus the function is not defined at compile time.</p>
+
+	<p>There is a anomaly for <code>-O0</code> which I cannot explain. Even thought the statistics are about +/- 10%, this result was consistently about 5% less than the baseline.</p>
+
+	<p>Here is the code generated for <code>-O0</code>:</p>
+	
+	<listing src="c_pointer_dispatch.txt" lang="asm" />
+	
+	<p>The interesting thing about this method of dispatch, is that it it is the most basic kind of dynamic dispatch, and it can't be optimized very much, the improvement between <code>-O0</code> and <code>-O3</code> is minimal. It also has a clear relationship to C++ dynamic dispatch in terms of performance cost and the ability for the compiler to provide optimizations.</p>
+	
+	<h2>C++ Virtual Dispatch</h2>
+	
+	<p>This is the most common kind of dynamic dispatch available to programmers who use C++. It is essentially the same as a function pointer, but occasionally it can become more complex depending on the class hierarchy. However, in this case, it is incredibly simple. There was no noticeable difference between a pointer to the base class and a pointer to the derived class, until we use <code>-O3</code> and <code>-Os</code>. I cannot explain this behavior without looking at the generated asm code, but suffice to say, that little optimization can be done by the compiler.</p>
+
+	<p>The performance of the virtual dispatch cannot be improved much, and the compiler is unable to inline the code. I find this at least a little bit fascinating, because in the entire program, there is only one implementation of the virtual function of the same name. In this case, should it not be possible for the compiler to assume that no other implementation exists?</p>
+
+	<p>Unfortunately, due to the way GCC compiles code, we cannot be sure until link time whether there are multiple implementations of the same base interface, and at this point, no further optimizations can be done. However, some compilers such as LLVM do provide this facility, and it may be possible to provide the context necessary for this kind of analysis.</p>
+
+	<p>The fascinating thing about virtual functions is that once a function is marked as virtual, it will then generally require a dynamic dispatch. Therefore, it is important to only make a function virtual when needed, and to try to keep the number of virtual functions to a minimum if performance is a concern.</p>
+
+	<p>Here is the code for virtual dispatch at <code>-O0</code>:</p>
+	
+	<listing src="virtual_dispatch.txt" lang="asm" />
+	
+	<h2>Objective-C Dispatch</h2>
+	
+	<p>Objective-C is fascinating. I won't go over the tiny details here, suffice to say that it requires (as far as I know) some sort of hash table search. Objective-C dispatch is built on top of standard C dispatch and functions, and so is in the worst case 12 times slower than standard C dispatch at <code>-O3</code>. This shouldn't come as much of a surprise since the standard C dispatch at <code>-O3</code> was inlined.</p>
+
+	<p>With Objective-C, it is neither possible nor desirable to inline function calls. The purpose of this is to provide a highly dynamic language which allows for a multitude of possibilities in terms of the API and generally what is possible in terms of dynamic dispatch. In this case, the basic Objective-C dynamic dispatch is about 2.5 times slower than dynamic C++ dispatch, but provides a number of interesting features which are generally not available when using C++ dynamic dispatch:</p>
+
+	<ul>
+		<li>Classes can add and remove methods at runtime.</li>
+		<li>Classes can handle the case when a specific method does not exist for a particular object, and forward this invocation to somewhere else.</li>
+		<li>Invocations can be saved for delivery across threads, processes or network transports.</li>
+		<li>Classes can be dynamically introspected, and functions called dynamically.</li>
+		<li>Classes don't need to adhere to a specific type (but they can guarantee specific interfaces are available, which in Objective-C is called a protocol).</li>
+	</ul>
+		
+	<p>Generally, Objective-C provides an incredible amount of flexibility at runtime, but you do pay for it performance wise, and with Objective-C, you can't back out of it - i.e. there is no non-virtual Objective-C dispatch available. However, as Objective-C is built on top of C, you can fall back to standard C functions as needed for implementation details.</p>
+
+	<p>Here is the code for Objective-C dispatch at <code>-O0</code>:</p>
+	
+	<listing src="objective_c_dispatch.txt" lang="asm" />
+	
+	<h2>Conclusion</h2>
+	
+	<p>There are many options available to programmers to design robust and efficient programs. It is important to learn where to use dynamic dispatch, especially in performance critical code paths. There is a lot of good advice out there in books and on the internet, and it is worthwhile taking the time to benchmark your program. Although from the benchmarks the performance cost may appear minimal, if you are dealing with thousands of objects, these small costs can really add up.</p>
+	
+	<p>The topic of dynamic dispatch and inter-procedural optimisation is a big one and ever increasing in scope. One interesting area of research is the Java HotSpot compiler, which from what I've read, can provide optimistic optimisation of dynamic dispatch. Even thought this option is available in terms of improving speed, it is fairly complex in terms of implementation, and is not going to give completely consistent results.</p>
+</entry>

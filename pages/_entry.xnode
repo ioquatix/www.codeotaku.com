@@ -1,0 +1,128 @@
+<?r
+
+sibling_links = parent.node.sibling_links(:sort => :created)
+prev_links, current_link, next_links = sibling_links.split_at{|link| link.path == parent.node.uri_path}
+
+author = current_link[:author]
+created = current_link[:created]
+title = current_link.title
+
+prev_link = prev_links.last if prev_links
+next_link = next_links.first if next_links
+
+top_dir = parent.node.siblings_path
+top_links = parent.node.links(top_dir.dirname, :sort => :title, :files => false, :virtuals => false)
+prev_top_links, current_top_link, next_top_links = top_links.split_at{ |link| link.path == top_dir }
+
+prev_top_link = next_top_link = nil
+
+if prev_top_links.last
+	prev_top_link = parent.node.links(prev_top_links.last.path, :sort => :created).last
+end
+
+if next_top_links.first
+	next_top_link = parent.node.links(next_top_links.first.path, :sort => :created).first
+end
+
+if prev_link == nil || next_link == nil
+	if prev_link == nil
+		prev_link = prev_top_link
+	end
+	
+	if next_link == nil
+		next_link = next_top_link
+	end
+end
+
+?>
+<page>
+	<div class="navigation noindex">
+	<?r if prev_link ?>
+		<div class="prev_link">Previously: #{prev_link.to_href}</div>
+	<?r end ?>
+			
+	<?r if next_link ?>
+		<div class="next_link">Afterwards: #{next_link.to_href}</div>
+	<?r end ?>
+		<br style="clear: both" />
+	</div>
+
+	<div class="heading">
+		<div class="grass" style="position: relative">
+			<div style="position: absolute; right: 0; padding-right: 5pt; padding-top: 15pt">
+				<g:plusone></g:plusone>
+			</div>
+			
+			<heading>#{title}</heading>
+
+			<small class="author">Author: <strong>#{author}</strong></small>
+			<small class="when">When: <strong>#{created.strftime("%A, %d %B %Y")}</strong></small>
+		</div>
+	</div>
+
+	<div id="sidebar" class="noindex">
+		<div class="accordion">
+			<?r prev_top_links.each do |link| ?>
+			<h1><a href="#">#{Date.parse(link.components[0] + "-1").strftime("%B %Y")}</a></h1>
+			<div>
+				<ul>
+					<?r parent.node.links(link.path, :sort => :created).each do |child| ?>
+					<li>#{child.to_href}</li>
+					<?r end ?>
+				</ul>
+			</div>
+			<?r end ?>
+			<h1 class="default"><a href="#">#{Date.parse(current_top_link.components[0] + "-1").strftime("%B %Y")}</a></h1>
+			<div>
+				<ul>
+					<?r prev_links.each do |link| ?>
+					<li>#{link.to_href}</li>
+					<?r end ?>
+					<li><em>#{current_link.to_href}</em></li>
+					<?r next_links.each do |link| ?>
+					<li>#{link.to_href}</li>
+					<?r end ?>
+				</ul>
+			</div>
+			<?r next_top_links.each do |link| ?>
+			<h1><a href="#">#{Date.parse(link.components[0] + "-1").strftime("%B %Y")}</a></h1>
+			<div>
+				<ul>
+					<?r parent.node.links(link.path, :sort => :created).each do |child| ?>
+					<li>#{child.to_href}</li>
+					<?r end ?>
+				</ul>
+			</div>
+			<?r end ?>
+		</div>
+	</div>
+	
+	<script type="text/javascript" charset="utf-8">
+		$(function() {
+			$("#sidebar .accordion").accordion({
+				active: $("#sidebar .default"),
+				autoHeight: false
+			});
+		});
+	</script>
+	
+	<div id="entry">
+		<content/>
+		<br/>
+		
+		<about />
+		
+		<comments node="#{parent.node.uri_path.to_s.to_html}" />
+	</div>
+	
+	<div class="navigation noindex">
+	<?r if prev_link ?>
+		<div class="prev_link">Previously: #{prev_link.to_href}</div>
+	<?r end ?>
+			
+	<?r if next_link ?>
+		<div class="next_link">Afterwards: #{next_link.to_href}</div>
+	<?r end ?>
+		<br style="clear: both" />
+	</div>
+</page>

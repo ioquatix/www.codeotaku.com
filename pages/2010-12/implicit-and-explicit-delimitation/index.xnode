@@ -1,0 +1,135 @@
+<entry>
+	<p>How do you delimit statements and expressions in modern programming languages? While this question specifically depends on the parser for a given language, at a more general level we can see some interesting patterns.</p>
+		
+	<p>Many popular languages (e.g. <em>Java</em>, <em>C/C++</em>, <em>Python</em>) use commas "," and semi-colons ";" to delimit argument lists and statements respectively. Other languages (e.g. <em>Smalltalk</em>, <em>Scheme</em>, <em><a href="http://www.iolanguage.com/">io</a></em>, <em><a href="http://ooc-lang.org/">OOC</a></em>) use various forms of whitespace as a natural separator of statements and arguments.</p>
+	
+	<h2>Language Design</h2>
+	
+	<p>Programming languages typically (<a href="http://en.wikipedia.org/wiki/Befunge">but not always</a>) consist of a list of expressions. Sometimes expressions can contain nested expressions, and often there are specific rules for the ways in which expressions can be nested (e.g. namespaces can contain classes which can contain functions which can contain procedural logic). Because expressions are written sequentially, they often need specific syntax (such as end of statement markers) to ensure that they are parsed separately.</p>
+	
+	<h3>Implicit Delimitation</h3>
+	
+	<p>Using whitespace to delimit statements reduces visual clutter. There are several different forms of whitespace delimitation, ranging from the very simple S-Expression, to the more complex Python indentation model.</p>
+	
+	<dl>
+		<dt>S-Expressions</dt>
+		<dd>
+			<p>The S-expression is a bracketed sequence of items. Because they have a unique start and end symbol, they can be parsed unambiguously when in a sequence and nested.</p>
+			
+			<listing brush="lisp">(fn x (- y 10) z)</listing>
+			
+			<p>For this to hold true, all terminal expressions must also be unambiguous. In many cases, this means that prefix, infix and postfix operators cannot be supported general, because they introduce ambiguities.</p>
+			
+			<listing brush="lisp" src="lisp-ambiguities.txt" />
+			
+			<p>Such ambiguities can only be resolved by explicit delimitation, or limitations on the syntax model (for example, only supporting infix operators).</p>
+		</dd>
+		
+		<dt>Block Markers</dt>
+		<dd>
+			<p>A more generalised form of the S-Expression can be seen in many modern languages, through the use of white-space separated blocks.</p>
+			
+			<listing brush="java" src="java-blocks.txt" />
+			
+			<p>In this case, the <em>Java</em> functions have no explicit separator between them - there is an implicit understanding about the structure of a class block and its direct children when they are also blocks. However, it should also be noted that when listing other non-block declarations inside a class body, these must be explicitly separated.</p>
+			
+			<p>Another interesting involves expressions that can either be followed by a single expression or a block of code, such as the <code class="syntax java">if</code> statement; when followed by a block, no delimitation is required, but when followed by a single statement, an end of statement marker is required.</p>
+			
+			<listing brush="java" src="java-if.txt" />
+			
+			<p>The primary reason for this is that like S-Expressions, blocks can be unambiguously parsed, but general expressions can't be. Because there is no ambiguity, explicit delimitation is not required.</p>
+		</dd>
+	</dl>
+	
+	<p>The io syntax model incorporates both implicit delimitation of chained expressions, as well as infix operators.</p>
+	
+	<listing brush="io" src="io-example.txt" />
+	
+	<h3>Explicit Delimitation</h3>
+
+	<p>Using explicit characters to delimit statements and expressions can improve the expressiveness of the language, at the cost of additional syntactic complexity. Typically, high level statements are divided using semi-colon ";", and argument lists using comma ",".</p>
+
+	<dl>
+		<dt>Separation Markers</dt>
+		<dd>
+			<p>This form is traditionally seen in function argument lists, or in chained method invocations. Each item has a mark between it and the next argument, but there is no mark at the end.</p>
+
+			<listing brush="c">fn(x, y, z)</listing>
+
+			<p>Arguments can easily be added into the list simply by adding additional commas and expressions. However, it can sometimes be difficult to copy arguments from one location to another; to counter this some languages accept the following equivalent syntax:</p>
+			
+			<listing brush="c">fn(x, y, z,)</listing>
+			
+			<p>The trailing comma means that each sub-argument is a complete element, and can be shifted around:</p>
+			
+			<listing brush="c">fn(z, x, y,)</listing>
+			
+			<p>This is primarily of use when specifying arrays of data that span multiple lines, e.g. in <em>Ruby</em>:</p>
+			
+			<listing brush="ruby" src="ruby-array.txt" />
+			
+			<p>Because each line includes a comma, they can (the lines as whole units) be shifted around without fear that there is a delimiter syntax error.</p>
+		</dd>
+		
+		<dt>Statement Markers (i.e. end of line)</dt>
+		<dd>
+			<p>This form is traditionally seen when separating statements.</p>
+
+			<listing brush="c">fn(x); fn(y); fn(z);</listing>
+
+			<p>This is again similar to the above case where statements can be moved around as whole units (i.e. each statement includes the termination marker).</p>
+		</dd>
+	</dl>
+	
+	<p>The C++ syntax model includes mostly explicitly delimited expressions.</p>
+	
+	<listing brush="cpp" src="cpp-example.txt" />
+	
+	<h2>Ease of Use</h2>
+	
+	<p>Humans are capable of dealing with complex patterns and as programmers we are generally happy when we have tools for expressing our ideas concisely. This has lead to many programming languages with complex syntax models, including the ability to use prefix, infix and postfix operators, since they allow humans to concisely express their ideas with a minimal overhead. However, because these operators introduce ambiguity, we require explicit delimitation.</p>
+	
+	<p>On top of this, we have languages which don't require explicit delimitation if it is not ambiguous (e.g. <em>JavaScript</em> statement markers). This creates very interesting situations where some expressions look okay, but actually mean something completely different:</p>
+	
+	<listing brush="javascript" src="javascript-ambiguity.txt" />
+	
+	<p>This function returns undefined, even if the intention of the programmer was to return <code class="syntax javascrip">x + y</code>. This is because a semi-colon was inserted automatically after the return keyword (a form of implicit delimitation), and this is not a syntax error.</p>
+
+	<listing brush="javascript" src="javascript-parsed.txt" />
+	
+	<p>In order to get the correct behaviour, the programmer can use a nested expression block such as the following:</p>
+
+	<listing brush="javascript" src="javascript-actually.txt" />
+	
+	<!--
+	We can ensure that the parser can't insert erroneous statement delimiters by specifically using syntax that makes it illegal, such as in the following case where we have a nested sub-expressions starting directly after the return keyword.
+	-->
+	
+	<p>Languages with different symbols for separation present better opportunities for error detection and correction. If every sub-expression uses the same set of delimiters, a erroneous delimiter could potentially belong to any previously <em>opened</em> expressions. As an example, if argument lists in <em>C</em> used a semi-colon rather than a comma, it would be much harder to detect errors relating to unbalanced brackets.</p>
+	
+	<listing brush="c" src="c-ambiguity.txt" />
+	
+	<p>In the case of (1), we can clearly identify the error on this line. However, in the case of (2) the specific location of the error cannot be detected easily - we might need to process the entire input before finding out that the argument list is not terminated. The same is also applicable to the use of curly braces blocks. If there is an invalid statement within a block, the error does not propagate beyond the end of that block: i.e. unless there is a problem with the nested structure of the blocks, any error can be isolated to a particular block.</p>
+	
+	<p>In contrast, languages with implicit delimitation do not have this expressive richness. LISP code uses the same characters for almost every possible syntactic structure. Because of this, some kinds of errors in a nested statement cannot be detected until the entire program is processed.</p>
+
+	<p>Another benefit of explicit delimitation is the reduction in typing required to amend or add to an expression.</p>
+
+	<listing brush="c" src="c-typing.txt" />
+
+	<p>When expressions require specific characters at the front and back (such as <em>LISP</em>), typing code can be a bit tedious because when embedding previously written expressions, the cursor needs to work both in before and after the embedded expression.</p>
+
+	<p>Despite the potential issues with implicit delimitation, there are several benefits too. Implicit delimitation reduces visual clutter. Despite the fact that operators may help people express their ideas, the ambiguity they introduce may not be worth the net benefit to expressibility.</p>
+	
+	<h3>Combinations</h3>
+	
+	<p>There is no reason why a syntax model can't contain elements of both implicit and explicit separation of expressions. <em>Ruby</em> provides several constructs which involve whitespace delimitation. As an example, if you have a implicitly delimited set of string tokens, you can write this using the following:</p>
+	
+	<listing brush="ruby">%w{foo bar baz}</listing>
+	
+	<p>This is equivalent to:</p>
+	
+	<listing brush="ruby">["foo", "bar", "baz"]</listing>	
+	
+	<p>Neat huh?</p>
+</entry>

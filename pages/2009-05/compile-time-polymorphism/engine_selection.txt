@@ -1,0 +1,6 @@
+IEngine * engine;
+ 
+if (useOpenGL20)
+  engine = new OpenGL20::Engine;
+else if (useOpenGL31)
+  engine = new OpenGL31::Engine;

@@ -1,0 +1,123 @@
+<?r
+	unless parent
+		response["Content-Type"] = "text/html; charset=utf-8"
+		response.do_not_cache!
+	end
+
+	node_name = (request['node'] || attributes['node'])
+	
+	if node_name
+?>
+<div class="xframe" src="#{current.node.uri_path.dirname + 'comments'}?node=#{node_name.to_html}">
+	<div id="comments">
+		<login />
+	
+		<h1>Comments</h1>
+	<?r
+		admin_user = request.controller.user if request.controller.admin?
+
+		if admin_user
+			comments = Comment.all(:node => node_name)
+		elsif request.controller.user
+			comments = Comment.all(:conditions => ['node = ? AND (user_id = ? OR visible = ?)', node_name, request.controller.user.id, true])
+		else
+			comments = Comment.all(:node => node_name, :visible => true)
+		end
+
+		comments.each do |comment|
+	?>
+		<comment id="#{comment.id}" />
+	<?r
+		end
+	
+		if comments.size == 0
+	?>
+		<div class="comment">
+			There are currently no comments.
+		</div>
+	<?r
+		end
+	?>
+		<form id="comments_form" class="basic">
+			<fieldset>
+				<input type="hidden" name="id" value="" />
+				<input type="hidden" name="node" value="#{node_name}" />
+				<dl>
+					<dt>Your Icon:</dt>
+					<dd class="icons">
+						<?r
+							relative_path = "_static/icons"
+							icon_path = current.node.local_path(relative_path)
+							icons = Dir["#{icon_path}/*.png"]
+						
+							icons.each do |path|
+								basename = File.basename(path)
+								icon_name = basename.split(".", 2)[0]
+								icon_id = "icon_#{icon_name}"
+						?>
+							<span>
+								<input type="radio" name="icon" value="#{icon_name}" id="#{icon_id}"/>
+								<label for="#{icon_id}">
+									<img src="@rel@/#{relative_path}/#{basename}" />
+								</label>
+							</span>
+						<?r 
+							end 
+						?>
+					</dd>
+				
+					<dt><label for="name">* Your Name:</label></dt>
+					<dd>
+						<?r if request.controller.user ?>
+						<input type="text" name="posted_by" value="#{request.controller.user.name.to_html}" />
+						<?r else ?>
+						<input type="text" name="posted_by" />
+						<?r end ?>
+					</dd>
+			
+					<dt><label for="from">Where are you from?</label>
+						<small>[City], [Country]</small>
+					</dt>
+					<dd><input type="text" name="from" value="" /></dd>
+				
+					<dt><label for="from">Your Website?</label>
+						<small>Publicly displayed.</small>
+					</dt>
+					<dd><input type="text" name="website" value="" /></dd>
+			
+					<dt><label for="from">* Your Email Address:</label>
+						<small>Your email won't be displayed.</small>
+					</dt>
+					<dd>
+						<?r if request.controller.user ?>
+						<input type="text" name="email" value="#{request.controller.user.email.to_html}" />
+						<?r else ?>
+						<input type="text" name="email" value="" />
+						<?r end ?>
+					</dd>
+				
+					<dt><label for="message">* Comment:</label>
+						<small>The following tags are preserved: &lt;pre&gt;, &lt;em&gt; and &lt;a&gt;. All comments are moderated.</small>
+					</dt>
+					<dd><textarea style="height: 100px;" name="body"></textarea></dd>
+				
+					<dd class="preview"></dd>
+			
+					<dd class="footer"><input type="submit" value="Post Comment" /></dd>
+				</dl>
+			</fieldset>
+		</form>
+	
+		<p>Please note, you can leave a comment that uses (<em>limited</em>) XHTML and <a href="http://redcloth.org/textile">Textile</a> syntax.</p>
+	
+		<script src="@rel@/_static/comments.js" type="text/javascript" charset="utf-8"></script>
+	</div>
+	<?r if first == current ?>
+	<script type="text/javascript">
+		jQuery.syntax();
+	</script>
+	<?r end ?>
+</div>
+<?r
+	end
+?>

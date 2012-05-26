@@ -1,0 +1,4 @@
+// C Dispatch
+void basicFunction () {
+	g_count += 1;
+};

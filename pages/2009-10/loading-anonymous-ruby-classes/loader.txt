@@ -1,0 +1,15 @@
+def load_file(path, superclass = Object)
+	if File.exist?(path)
+		klass = Class.new(superclass)
+		klass.class_eval(File.read(path), path)
+		return klass
+	else
+		return nil
+	end
+end
+ 
+if plugin_klass = load_file("plugin.rb")
+	plugin = plugin_klass.new([1, 2, 3])
+
+	puts plugin.process("Hello World")
+end

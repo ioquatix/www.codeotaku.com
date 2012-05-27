@@ -158,7 +158,7 @@ def on_login_salt(path, request)
 end
 
 def on_login(path, request)
-	return permission_denied unless request.post?
+	return :forbidden unless request.post?
 	
 	name = request[:username]
 	password = request[:password]

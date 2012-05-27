@@ -8,6 +8,9 @@ gem 'utopia', "0.9.58"
 require 'utopia/middleware/all'
 require 'utopia/tags/all'
 
+# Don't add drop shadows since we are using new CSS box-shadow.
+Utopia::Tags::Gallery::PROCESSES[:photo_thumbnail] = Utopia::Tags::Gallery::Processes::Thumbnail.new([300, 300])
+
 gem 'rack-contrib'
 require 'rack/contrib'
 

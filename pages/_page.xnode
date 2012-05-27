@@ -71,7 +71,7 @@
 		</div>
 		
 		<env only="production">
-			<google_analytics id="UA-2590906-1" />
+			<google_analytics id="UA-2590906-11" />
 		</env>
 	</body>
 </html>

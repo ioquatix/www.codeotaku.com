@@ -1,0 +1,10 @@
+<?r response.do_not_cache! ?>
+<page>
+	<heading>File Not Found!</heading>
+
+	<div class="gallery">
+		<img src="/_images/404.jpg" />
+	</div>
+
+	<p>The page you were looking for is no longer available. It has probably been moved or deleted. Oh well...</p>
+</page>

@@ -39,6 +39,13 @@ use Utopia::Middleware::Redirector, {
 
 use Utopia::Middleware::Requester
 use Utopia::Middleware::DirectoryIndex
+
+require 'utopia/session/encrypted_cookie'
+use Utopia::Session::EncryptedCookie, {
+	:expire_after => 2592000,
+	:secret => '6965ae9b95a55907648721638d70cf1a'
+}
+
 use Utopia::Middleware::Controller
 
 # To enable full Sendfile support, please refer to the Rack::Sendfile documentation for your webserver.

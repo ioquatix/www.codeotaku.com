@@ -1,0 +1,73 @@
+.tags {
+	text-align: center;
+	
+	background-image: url("/_static/gd2.png");
+	padding: 0.2em;
+	
+	border-radius: 0.2em;
+}
+
+.tags a {
+	text-decoration: none;
+	
+	display: inline-block;
+	
+	padding: 0.4em;
+	margin: 0.5em 0.2em 0.5em;
+	min-width: 100px;
+	
+	background-image: url("/_static/gd2-small.png");
+	
+	border: 1px solid #999;
+	
+	border-radius: 0.2em;
+}
+
+.tags a:hover {
+	background-image: url("/_static/gd2-small-hover.png");
+}
+
+.tags a.selected {
+	background-image: url("/_static/gd2-small-inset.png");
+	color: white;
+}
+
+.projects {
+}
+
+.projects li {
+	list-style: none;
+	vertical-align: middle;
+	
+	margin: 20pt 0 20pt 0;
+	padding: 2pt;
+}
+
+.projects .title a {
+	font-size: 14pt;
+	text-decoration: none;
+}
+
+.title .tag {
+	border: 2px solid #ccf;
+	border-radius: 0.5em;
+	
+	background-color: white;
+	padding: 2pt;
+	font-size: 10pt;
+}
+
+.title .tag.JavaScript, .title .tag.Ruby {
+	border-color: orange;
+	color: orange;
+}
+
+.title .tag.Internet {
+	border-color: blue;
+	color: blue;
+}
+
+.title .tag.Content-Management {
+	border-color: purple;
+	color: purple;
+}

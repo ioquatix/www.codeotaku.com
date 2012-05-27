@@ -1,5 +1,6 @@
 body {
-	background-image: url(white_stipple.jpg);
+	background-color: #fdfdfd;
+	
 	background-attachment: fixed;
 	color: #000;
 	
@@ -8,7 +9,6 @@ body {
 
 blockquote {
 	line-height: 2em;
-	text-shadow: 2px 2px 8px #aaa;
 }
 
 #header {
@@ -25,20 +25,6 @@ blockquote {
 
 dl.article-list dd {
 	padding: 0px;
-}
-
-#tree {
-	position: fixed;
-	right: 10px;
-	bottom: 10px;
-	
-	width: 265px;
-	height: 222px;
-	
-	background-image: url(tree.jpg);
-	background-repeat: no-repeat;
-	
-	z-index: -10;
 }
 
 #content h1 {
@@ -112,19 +98,6 @@ dl.article-list dd {
 
 .heading {
 	margin: 20px;
-	border: 1px solid black;
-	background-color: white;
-	
-	font-size: 10pt;
-	
-	text-align: center;
-}
-
-.grass {
-	padding: 5px;
-	padding-bottom: 30px;
-	
-	background: url(grass.png) bottom right repeat-x;
 }
 
 .heading small {
@@ -159,7 +132,6 @@ p, li,  dt, dd {
 
 #entry {
 	padding-bottom: 80px;
-	margin-right: 25%;
 }
 
 #footer {

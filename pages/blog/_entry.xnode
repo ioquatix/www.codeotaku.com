@@ -47,54 +47,15 @@ end
 		<br style="clear: both" />
 	</div>
 
-	<div class="heading">
-		<div class="grass" style="position: relative">
-			<div style="position: absolute; right: 0; padding-right: 5pt; padding-top: 15pt">
-				<g:plusone></g:plusone>
-			</div>
-			
-			<heading>#{title}</heading>
-
-			<small class="author">Author: <strong>#{author}</strong></small>
-			<small class="when">When: <strong>#{created.strftime("%A, %d %B %Y")}</strong></small>
+	<div class="heading" style="position: relative">
+		<div style="position: absolute; right: 0; padding-top: 5pt">
+			<g:plusone></g:plusone>
 		</div>
-	</div>
+		
+		<heading>#{title}</heading>
 
-	<div id="sidebar" class="noindex">
-		<div class="accordion">
-			<?r prev_top_links.each do |link| ?>
-			<h1><a href="#">#{Date.parse(link.components[0] + "-1").strftime("%B %Y")}</a></h1>
-			<div>
-				<ul>
-					<?r parent.node.links(link.path, :sort => :created).each do |child| ?>
-					<li>#{child.to_href}</li>
-					<?r end ?>
-				</ul>
-			</div>
-			<?r end ?>
-			<h1 class="default"><a href="#">#{Date.parse(current_top_link.components[0] + "-1").strftime("%B %Y")}</a></h1>
-			<div>
-				<ul>
-					<?r prev_links.each do |link| ?>
-					<li>#{link.to_href}</li>
-					<?r end ?>
-					<li><em>#{current_link.to_href}</em></li>
-					<?r next_links.each do |link| ?>
-					<li>#{link.to_href}</li>
-					<?r end ?>
-				</ul>
-			</div>
-			<?r next_top_links.each do |link| ?>
-			<h1><a href="#">#{Date.parse(link.components[0] + "-1").strftime("%B %Y")}</a></h1>
-			<div>
-				<ul>
-					<?r parent.node.links(link.path, :sort => :created).each do |child| ?>
-					<li>#{child.to_href}</li>
-					<?r end ?>
-				</ul>
-			</div>
-			<?r end ?>
-		</div>
+		<small class="author">Author: <strong>#{author}</strong></small>
+		<small class="when">When: <strong>#{created.strftime("%A, %d %B %Y")}</strong></small>
 	</div>
 	
 	<script type="text/javascript" charset="utf-8">
@@ -109,9 +70,7 @@ end
 	<div id="entry">
 		<content/>
 		<br/>
-		
-		<about />
-		
+				
 		<comments node="#{parent.node.uri_path.to_s.to_html}" />
 	</div>
 	

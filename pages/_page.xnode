@@ -35,7 +35,7 @@
 		
 		<script type="text/javascript">
 			jQuery(function($) {
-				$.syntax({blockLayout: "plain"});
+				$.syntax({blockLayout: "plain", theme: "modern"});
 				
 				$('a.lightbox').fancybox();
 				
@@ -59,13 +59,9 @@
 				<content />
 			</div>
 
-			<div id="tree"></div>
-
 			<div id="footer">
-				Except where otherwise noted, content on this page is available under the following license <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">CC Attribution-Noncommercial-Share Alike 3.0</a>.
-				<br/>
-				<a href="/welcome/contact-us">Contact Me</a> &mdash;
-				<a href="/samuel-williams/index" rel="author">About Me</a> &mdash;
+				<a href="http://www.oriontransfer.co.nz/welcome/contact-us">Contact Me</a> &mdash;
+				<a href="http://www.oriontransfer.co.nz/samuel-williams/index" rel="author">About Me</a> &mdash;
 				&copy; 2010 Orion Transfer Ltd. All Rights Reserved.
 			</div>
 		</div>

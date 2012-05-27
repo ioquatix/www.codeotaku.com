@@ -1,5 +1,5 @@
 <entry>
 	<p>Recently I had a go at a hacking contest. It was a lot of fun, and I wanted to share the 32-bit shellcode exploit I wrote using Ruby:</p>
 	
-	<listing src="level04.txt" language="ruby" />
+	<listing src="level04.txt" brush="ruby" />
 </entry>

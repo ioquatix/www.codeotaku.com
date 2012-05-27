@@ -43,29 +43,6 @@
 				<input type="hidden" name="id" value="" />
 				<input type="hidden" name="node" value="#{node_name}" />
 				<dl>
-					<dt>Your Icon:</dt>
-					<dd class="icons">
-						<?r
-							relative_path = "_static/icons"
-							icon_path = current.node.local_path(relative_path)
-							icons = Dir["#{icon_path}/*.png"]
-						
-							icons.each do |path|
-								basename = File.basename(path)
-								icon_name = basename.split(".", 2)[0]
-								icon_id = "icon_#{icon_name}"
-						?>
-							<span>
-								<input type="radio" name="icon" value="#{icon_name}" id="#{icon_id}"/>
-								<label for="#{icon_id}">
-									<img src="@rel@/#{relative_path}/#{basename}" />
-								</label>
-							</span>
-						<?r 
-							end 
-						?>
-					</dd>
-				
 					<dt><label for="name">* Your Name:</label></dt>
 					<dd>
 						<?r if request.controller.user ?>

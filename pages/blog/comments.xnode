@@ -21,7 +21,7 @@
 		elsif request.controller.user
 			comments = Comment.all(:conditions => ['node = ? AND (user_id = ? OR visible = ?)', node_name, request.controller.user.id, true])
 		else
-			comments = Comment.all(:node => "/blog" + node_name, :visible => true)
+			comments = Comment.all(:node => node_name, :visible => true)
 		end
 
 		comments.each do |comment|

@@ -32,6 +32,9 @@ use Rack::ContentLength
 use Utopia::Middleware::Logger
 
 use Utopia::Middleware::Redirector, {
+	:strings => {
+		"/" => "/blog/index"
+	},
 	:errors => {
 		404 => "/errors/file-not-found"
 	}

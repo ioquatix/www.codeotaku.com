@@ -1,0 +1,6 @@
+<span class="photo_thumbnail">
+	<a rel="photos" class="thumbnail lightbox" href="#{attributes["src"].large}" title="#{attributes["alt"]}">
+		<img src="#{attributes["src"].photo_thumbnail}" alt="#{attributes["alt"]}" />
+	</a>
+	<div class="caption">#{attributes["alt"]}</div>
+</span>

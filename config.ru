@@ -6,7 +6,7 @@ $LOAD_PATH << File.join(File.dirname(__FILE__), "lib")
 # It is recommended that you always explicity specify the version of the gem you are using.
 gem 'utopia', "0.9.58"
 require 'utopia/middleware/all'
-require 'utopia/tags/env'
+require 'utopia/tags/all'
 
 gem 'rack-contrib'
 require 'rack/contrib'

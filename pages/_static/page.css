@@ -5,22 +5,18 @@ body {
 	color: #000;
 	
 	font-family: georgia, "times new roman";
+	margin: 0;
 }
 
 blockquote {
 	line-height: 2em;
 }
 
-#header {
-	text-align: center;
-}
-
-#header img {
-}
-
 #content {
 	padding-left: 50px;
 	padding-right: 50px;
+	
+	padding-bottom: 20pt;
 }
 
 dl.article-list dd {
@@ -28,7 +24,7 @@ dl.article-list dd {
 }
 
 #content h1 {
-	font-size: 14pt;
+	font-size: 18pt;
 }
 
 #content h2 {
@@ -126,7 +122,6 @@ p, dt {
 }
 
 p, li,  dt, dd {
-	font-size: 14px;
 	line-height: 1.8em;
 }
 
@@ -135,12 +130,18 @@ p, li,  dt, dd {
 }
 
 #footer {
+	position: fixed;
+	left: 0; right: 0; bottom: 0;
+	
 	padding: 10px 0 20px;
 	background:center no-repeat;
 	
 	color: #999;
 	font-size: 7pt;
 	text-align: center;
+	
+	background-color: white;
+	border-top: 1px solid #ccc;
 }
 
 img {
@@ -412,4 +413,34 @@ sup a {
 	height: 600px;
 	margin-left: auto;
 	margin-right: auto;
+}
+
+/* Page Navigation Bar */
+.header {
+	border-bottom: 1px solid #ccc;
+	margin-bottom: 10pt;
+	
+	position: relative;
+	
+	background-color: black;
+	color: white;
+	
+	font-size: 9pt;
+}
+
+.header ul.trail {
+	padding: 1pt 12pt 1pt 12pt;
+	margin: 0;	
+}
+
+.header li {
+	display: inline-block;
+	list-style: none;
+	line-height: 10pt;
+	margin-right: 11px;
+}
+
+.header a {
+	color: white;
+	text-decoration: none;
 }

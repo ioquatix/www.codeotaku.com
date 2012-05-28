@@ -1,0 +1,29 @@
+<?r prev = nil ?>
+<div class="header">
+	<ul class="trail">
+	<?r Path.create(first.node.uri_path || attributes['path']).ascend.reverse.each do |path| 
+		if path.basename.size > 0
+			basename = path.basename
+			indices = false
+		else
+			basename = "index"
+			indicies = true
+		end
+		
+		link = parent.node.links(path.dirname, :name => basename, :locale => request.current_locale, :indices => indices).first
+		
+		Utopia::LOG.info(link.inspect)
+		
+		if link ?>
+		<li>#{link.to_href}</li><li>&lambda;</li>
+		<?r end 
+	
+		prev = link
+		?>
+	<?r end ?>
+	
+		<li style="float: right">
+			(<a href="/about">about</a>)			
+		</li>
+	</ul>	
+</div>

@@ -1,8 +1,4 @@
 <page>
-	<heading>Code Otaku</heading>
-	
-	<p>Welcome to my blog. There are many interesting things here, so please enjoy. This is a summary list of all articles.</p>
-	
 	<dl class="article-list">
 	<?r links("./", :sort => :title, :files => false, :virtuals => false).each do |link| ?>
 		<dt>#{Date.parse(link.components[0] + "-1").strftime("%B %Y")}</dt>

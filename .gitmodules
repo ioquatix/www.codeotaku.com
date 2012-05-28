@@ -10,3 +10,6 @@
 [submodule "materials/jquery-xframe"]
 	path = materials/jquery-xframe
 	url = https://github.com/ioquatix/jquery-xframe.git
+[submodule "materials/chorus"]
+	path = materials/chorus
+	url = https://github.com/ioquatix/chorus.git

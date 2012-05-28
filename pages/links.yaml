@@ -1,0 +1,10 @@
+index:
+    order: 1
+    title: "`(code otaku)"
+projects:
+    order: 2
+blog:
+    order: 3
+errors:
+    display: false
+    order: 4

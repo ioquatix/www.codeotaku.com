@@ -1,3 +1,4 @@
 hacking-the-mainframe:
     created: 2012-02-24
     author: Samuel Williams
+    summary: "A simple X86 (32-bit) shellcode exploit written in Ruby."

@@ -1,6 +1,6 @@
 <page>
 	<dl class="article-list">
-	<?r links("./", :sort => :title, :files => false, :virtuals => false).each do |link| ?>
+	<?r links("./", :sort => :title, :files => false, :virtuals => false).reverse.each do |link| ?>
 		<dt>#{Date.parse(link.components[0] + "-1").strftime("%B %Y")}</dt>
 		<?r links(link.path.dirname, :sort => :created).each do |entry| ?>
 		<dd>#{entry.to_href}</dd>

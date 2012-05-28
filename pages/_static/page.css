@@ -95,6 +95,8 @@ dl.article-list dd {
 }
 
 .heading {
+	text-align: center;
+	
 	background-image: url("/_static/gd2.png");
 	padding: 4pt;
 	
@@ -136,6 +138,7 @@ p, li,  dt, dd {
 
 #entry {
 	padding-bottom: 80px;
+	font-size: 10.5pt;
 }
 
 #footer {
@@ -425,7 +428,7 @@ sup a {
 }
 
 /* Page Navigation Bar */
-.header {
+.header {	
 	border-bottom: 1px solid #ccc;
 	margin-bottom: 10pt;
 	

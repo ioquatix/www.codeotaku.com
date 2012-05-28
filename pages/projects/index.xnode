@@ -4,7 +4,10 @@
 
 	<?r
 		tag_names = {
-			'cpp' => 'C++'
+			'cpp' => 'C++',
+			'jquery' => 'jQuery',
+			'javascript' => 'JavaScript',
+			'opengl' => 'OpenGL'
 		}
 		
 		tags = {}
@@ -17,28 +20,34 @@
 		end
 	?>
 	
-	<div class="tags" style="display: none">
-		<a href="#">All</a>
-		<?r tags.keys.each do |tag| ?>
-		<a href="#" name="#{tag}">#{(tag_names[tag] || tag).to_title}</a>
-		<?r end ?>
+	<div class="filter">
+		<div class="tags" style="display: none">
+			<a href="#" class="selected">All</a>
+			<?r tags.keys.each do |tag| ?>
+			<a href="#" name="#{tag}">#{tag_names[tag] || tag.to_title}</a>
+			<?r end ?>
+		</div>
 	</div>
 
-	<ul class="projects">
-		<?r projects.each do |project| ?>
-		<li data-id="#{project.name}" class="#{(project[:tags] || []).join(' ')}">
-			<div class="title">
-				<a href="#{project.href}">#{project.title}</a> &mdash;
-				<?r project[:tags].each do |tag| ?>
-					<span class="tag #{tag}">#{(tag_names[tag] || tag).to_title}</span>
-				<?r end ?>
-			</div>
+	<div style="position: relative">
+		<ul class="projects">
+			<?r projects.each do |project| ?>
+			<li data-id="#{project.name}" class="#{(project[:tags] || []).join(' ')}">
+				<div class="title">
+					<a href="#{project.href}">#{project.title}</a>
+					<div class="tags">
+					<?r project[:tags].each do |tag| ?>
+						<span class="tag #{tag}">#{tag_names[tag] || tag.to_title}</span>
+					<?r end ?>
+					</div>
+				</div>
 			
-			<div class="description">#{project[:description]}</div>
-		</li>
-		<?r end ?>
-	</ul>
-
+				<div class="description">#{project[:description]}</div>
+			</li>
+			<?r end ?>
+		</ul>
+	</div>
+	
 	<script type="text/javascript">
 		$(function() {
 			$('.tags').slideDown();
@@ -59,8 +68,10 @@
 			
 				tags.removeClass('selected');
 				$(this).addClass('selected');
-			
-				$('.projects').quicksand(children);
+				
+				$('.projects').quicksand(children, {
+					adjustHeight: 'dynamic'
+				});
 			
 				e.preventDefault();
 			});

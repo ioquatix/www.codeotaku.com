@@ -1,20 +1,40 @@
 jquery-syntax:
     title: 'jQuery.Syntax'
-    tags: ['javascript', 'internet']
+    tags: ['javascript', 'jquery']
     uri: http://www.oriontransfer.co.nz/projects/jquery-syntax
     description: "Fast client-side syntax highlighting."
 jquery-xframe:
     title: 'jQuery.XFrame'
-    tags: ['javascript', 'internet']
+    tags: ['javascript', 'jquery']
     uri: http://www.oriontransfer.co.nz/projects/jquery-xframe/index
     description: "Simplify client-side dynamic content."
 utopia:
     title: 'Utopia'
-    tags: ['ruby', 'internet', 'content-management']
-    url: http://www.oriontransfer.co.nz/gems/utopia
+    tags: ['ruby', 'rack', 'server']
+    uri: http://www.oriontransfer.co.nz/gems/utopia
     description: "Content-driven website framework based on XML and Ruby."
 dream:
     title: 'Dream'
-    tags: ['graphics', 'cpp']
-    url: http://www.oriontransfer.co.nz/projects/dream
+    tags: ['opengl', 'cpp']
+    uri: http://www.oriontransfer.co.nz/projects/dream
     description: "Dream is a cross-platform game development written in C++."
+property-manager:
+    title: 'Property Manager'
+    tags: ['commercial', 'cocoa', 'objective-c']
+    uri: http://www.housepigeon.com/property-manager
+    description: "Property management made easy for the Mac."
+truth-tables:
+    title: 'Truth Tables'
+    tags: ['education', 'commercial', 'objective-c', 'cpp', 'cocoa']
+    uri: http://www.oriontransfer.co.nz/software/truth-tables
+    description: "An interactive logic calculator with a built in tutor."
+programming-dojo:
+    title: 'Programming Dojo'
+    tags: ['education', 'online']
+    uri: http://programming.dojo.net.nz
+    description: "An educational resource covering a variety of different programming languages."
+house-pigeon:
+    title: 'House Pigeon'
+    tags: ['commercial', 'online']
+    uri: http://www.housepigeon.com
+    description: "An online rental property management and advertising platform."

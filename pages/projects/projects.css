@@ -1,4 +1,9 @@
-.tags {
+.filter {
+}
+
+.filter .tags {
+	font-size: 9pt;
+	
 	text-align: center;
 	
 	background-image: url("/_static/gd2.png");
@@ -7,14 +12,14 @@
 	border-radius: 0.2em;
 }
 
-.tags a {
+.filter .tags a {
 	text-decoration: none;
 	
 	display: inline-block;
 	
 	padding: 0.4em;
 	margin: 0.5em 0.2em 0.5em;
-	min-width: 100px;
+	min-width: 6em;
 	
 	background-image: url("/_static/gd2-small.png");
 	
@@ -23,24 +28,27 @@
 	border-radius: 0.2em;
 }
 
-.tags a:hover {
+.filter .tags a:hover {
 	background-image: url("/_static/gd2-small-hover.png");
 }
 
-.tags a.selected {
+.filter .tags a.selected {
 	background-image: url("/_static/gd2-small-inset.png");
 	color: white;
 }
 
-.projects {
+ul.projects {
+	padding: 0;
 }
 
 .projects li {
 	list-style: none;
 	vertical-align: middle;
 	
-	margin: 20pt 0 20pt 0;
-	padding: 2pt;
+	margin: 0;
+	padding: 10pt 0 10pt 0;
+	
+	width: 100%;
 }
 
 .projects .title a {
@@ -48,26 +56,54 @@
 	text-decoration: none;
 }
 
+.title .tags {
+	float: right;
+}
+
 .title .tag {
-	border: 2px solid #ccf;
+	border: 1px solid #ccf;
 	border-radius: 0.5em;
 	
+	box-shadow: 0 0 2px #eee;
+	
 	background-color: white;
-	padding: 2pt;
+	padding: 1pt 3pt 1pt 3pt;
+	margin: 1pt;
 	font-size: 10pt;
 }
 
-.title .tag.JavaScript, .title .tag.Ruby {
+.title .tag.javascript, .title .tag.ruby, .title .tag.cpp, .title .tag.objective-c {
 	border-color: orange;
+	box-shadow: 0 0 2px orange;
 	color: orange;
 }
 
-.title .tag.Internet {
-	border-color: blue;
-	color: blue;
+.title .tag.cocoa, .title .tag.jquery, .title .tag.rack, .title .tag.opengl {
+	border-color: DodgerBlue;
+	box-shadow: 0 0 2px DodgerBlue;
+	color: DodgerBlue;
 }
 
-.title .tag.Content-Management {
+.title .tag.server {
 	border-color: purple;
+	box-shadow: 0 0 2px purple;
 	color: purple;
+}
+
+.title .tag.commercial, .title .tag.education {
+	border-color: green;
+	box-shadow: 0 0 2px green;
+	color: green;
+}
+
+.title .tag.commercial {
+	border-color: green;
+	box-shadow: 0 0 2px green;
+	color: green;
+}
+
+.title .tag.online {
+	border-color: LimeGreen;
+	box-shadow: 0 0 2px LimeGreen;
+	color: LimeGreen;	
 }

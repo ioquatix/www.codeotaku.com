@@ -90,8 +90,9 @@ Github site: http://github.com/razorjack/quicksand
             };
             
             // Position: relative situations
-            var $correctionParent = $sourceParent.offsetParent();
+            var $correctionParent = $(':first-child', $sourceParent).offsetParent();
             var correctionOffset = $correctionParent.offset();
+			console.log("correctionParent", $correctionParent, correctionOffset);
             if ($correctionParent.css('position') == 'relative') {
                 if ($correctionParent.get(0).nodeName.toLowerCase() == 'body') {
 

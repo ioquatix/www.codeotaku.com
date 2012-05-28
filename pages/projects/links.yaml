@@ -73,3 +73,8 @@ library-inspector:
     tags: ['commercial', 'objective-c', 'application']
     uri: http://www.oriontransfer.co.nz/software/library-inspector
     description: "A graphical symbol table tool and QuickLook plugin for compiled object code."
+quota-check:
+    title: 'Quota Check'
+    tags: ['commercial', 'objective-c', 'application']
+    uri: http://www.oriontransfer.co.nz/software/quota-check
+    description: "Warn users that they are running out of diskspace automatically!"

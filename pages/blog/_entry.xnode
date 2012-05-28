@@ -36,17 +36,6 @@ end
 
 ?>
 <page>
-	<div class="navigation noindex">
-	<?r if prev_link ?>
-		<div class="prev_link">Previously: #{prev_link.to_href}</div>
-	<?r end ?>
-			
-	<?r if next_link ?>
-		<div class="next_link">Afterwards: #{next_link.to_href}</div>
-	<?r end ?>
-		<br style="clear: both" />
-	</div>
-
 	<div class="heading" style="position: relative">
 		<div style="position: absolute; right: 0; padding-top: 5pt">
 			<g:plusone></g:plusone>

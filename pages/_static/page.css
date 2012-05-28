@@ -82,6 +82,8 @@ dl.article-list dd {
 .navigation {
 	font-size: 9pt;
 	clear: both;
+	
+	margin: 10pt 0 10pt 0;
 }
 
 .navigation .prev_link {
@@ -93,7 +95,14 @@ dl.article-list dd {
 }
 
 .heading {
-	margin: 20px;
+	background-image: url("/_static/gd2.png");
+	padding: 4pt;
+	
+	border-radius: 0.2em;
+}
+
+.heading h1 {
+	margin-top: 0;
 }
 
 .heading small {
@@ -444,3 +453,4 @@ sup a {
 	color: white;
 	text-decoration: none;
 }
+

@@ -1,40 +1,75 @@
 jquery-syntax:
     title: 'jQuery.Syntax'
-    tags: ['javascript', 'jquery']
+    tags: ['open', 'javascript', 'jquery', 'framework']
     uri: http://www.oriontransfer.co.nz/projects/jquery-syntax
     description: "Fast client-side syntax highlighting."
 jquery-xframe:
     title: 'jQuery.XFrame'
-    tags: ['javascript', 'jquery']
+    tags: ['open', 'javascript', 'jquery', 'framework']
     uri: http://www.oriontransfer.co.nz/projects/jquery-xframe/index
     description: "Simplify client-side dynamic content."
 utopia:
     title: 'Utopia'
-    tags: ['ruby', 'rack', 'server']
+    tags: ['open', 'ruby', 'rack', 'framework']
     uri: http://www.oriontransfer.co.nz/gems/utopia
     description: "Content-driven website framework based on XML and Ruby."
 dream:
     title: 'Dream'
-    tags: ['opengl', 'cpp']
+    tags: ['open', 'opengl', 'cpp', 'framework']
     uri: http://www.oriontransfer.co.nz/projects/dream
     description: "Dream is a cross-platform game development written in C++."
 property-manager:
     title: 'Property Manager'
-    tags: ['commercial', 'cocoa', 'objective-c']
+    tags: ['commercial', 'cocoa', 'objective-c', 'application']
     uri: http://www.housepigeon.com/property-manager
     description: "Property management made easy for the Mac."
 truth-tables:
     title: 'Truth Tables'
-    tags: ['education', 'commercial', 'objective-c', 'cpp', 'cocoa']
+    tags: ['educational', 'commercial', 'objective-c', 'cpp', 'cocoa', 'application']
     uri: http://www.oriontransfer.co.nz/software/truth-tables
     description: "An interactive logic calculator with a built in tutor."
 programming-dojo:
     title: 'Programming Dojo'
-    tags: ['education', 'online']
+    tags: ['educational', 'website']
     uri: http://programming.dojo.net.nz
     description: "An educational resource covering a variety of different programming languages."
 house-pigeon:
     title: 'House Pigeon'
-    tags: ['commercial', 'online']
+    tags: ['commercial', 'website']
     uri: http://www.housepigeon.com
     description: "An online rental property management and advertising platform."
+lsync:
+    title: 'LSync'
+    tags: ['open', 'ruby', 'framework', 'command-line']
+    uri: http://www.oriontransfer.co.nz/gems/lsync
+    description: "A flexible tool for backup and synchronisation tasks."
+swxmlmapping:
+    title: 'SWXMLMapping'
+    tags: ['open', 'objective-c', 'framework']
+    uri: http://www.oriontransfer.co.nz/frameworks/SWXMLMapping
+    description: "A high level object-graph to XML mapping framework."
+swapplicationsupport:
+    title: 'SWApplicationSupport'
+    tags: ['open', 'objective-c', 'framework']
+    uri: http://www.oriontransfer.co.nz/frameworks/SWApplicationSupport
+    description: "A collection of useful extensions for application development."
+post-remote-log:
+    title: 'Post Remote Log'
+    tags: ['open', 'ruby', 'framework', 'command-line']
+    uri: http://www.oriontransfer.co.nz/gems/post_remote_log
+    description: "A set of tools for remote logging and data analysis."
+fingerprint:
+    title: 'Fingerprint'
+    tags: ['open', 'ruby', 'framework', 'command-line']
+    uri: http://www.oriontransfer.co.nz/gems/fingerprint
+    description: "Data integrity and cryptographic verification tools."
+fingerprint-app:
+    title: 'Fingerprint'
+    tags: ['commercial', 'objective-c', 'application']
+    uri: http://www.oriontransfer.co.nz/software/fingerprint
+    description: "A user interface for the command-line tool of the same name."
+library-inspector:
+    title: 'Library Inspector'
+    tags: ['commercial', 'objective-c', 'application']
+    uri: http://www.oriontransfer.co.nz/software/library-inspector
+    description: "A graphical symbol table tool and QuickLook plugin for compiled object code."

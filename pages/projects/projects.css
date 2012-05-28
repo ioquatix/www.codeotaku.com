@@ -19,7 +19,7 @@
 	
 	padding: 0.4em;
 	margin: 0.5em 0.2em 0.5em;
-	min-width: 6em;
+	min-width: 8em;
 	
 	background-image: url("/_static/gd2-small.png");
 	
@@ -51,6 +51,10 @@ ul.projects {
 	width: 100%;
 }
 
+.projects li .description {
+	clear: both;
+}
+
 .projects .title a {
 	font-size: 14pt;
 	text-decoration: none;
@@ -73,37 +77,25 @@ ul.projects {
 }
 
 .title .tag.javascript, .title .tag.ruby, .title .tag.cpp, .title .tag.objective-c {
-	border-color: orange;
-	box-shadow: 0 0 2px orange;
-	color: orange;
+	border-color: #FF8C00;
+	box-shadow: 0 0 2px #FF8C00;
+	color: #FF8C00;
 }
 
 .title .tag.cocoa, .title .tag.jquery, .title .tag.rack, .title .tag.opengl {
-	border-color: DodgerBlue;
-	box-shadow: 0 0 2px DodgerBlue;
-	color: DodgerBlue;
+	border-color: #1E90FF;
+	box-shadow: 0 0 2px #1E90FF;
+	color: #1E90FF;
 }
 
-.title .tag.server {
-	border-color: purple;
-	box-shadow: 0 0 2px purple;
-	color: purple;
+.title .tag.commercial, .title .tag.educational, .title .tag.open {
+	border-color: #008000;
+	box-shadow: 0 0 2px #008000;
+	color: #008000;
 }
 
-.title .tag.commercial, .title .tag.education {
-	border-color: green;
-	box-shadow: 0 0 2px green;
-	color: green;
-}
-
-.title .tag.commercial {
-	border-color: green;
-	box-shadow: 0 0 2px green;
-	color: green;
-}
-
-.title .tag.online {
-	border-color: LimeGreen;
-	box-shadow: 0 0 2px LimeGreen;
-	color: LimeGreen;	
+.title .tag.website, .title .tag.framework, .title .tag.application, .title .tag.command-line {
+	border-color: #6A5ACD;
+	box-shadow: 0 0 2px #6A5ACD;
+	color: #6A5ACD;	
 }

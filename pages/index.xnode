@@ -29,7 +29,7 @@
 			right: 0;
 
 			font-size: 50pt;
-			padding-right: 0.5em;
+			padding-right: 0.4em;
 		}
 
 		.top h1 {
@@ -43,6 +43,13 @@
 
 		.bottom a {
 			color: white;
+		}
+		
+		@media only screen and (max-width: 600px) {
+			.top h1 {
+				font-size: 30pt;
+				bottom: -15pt;
+			}
 		}
 	</style>
 	<div class="top">

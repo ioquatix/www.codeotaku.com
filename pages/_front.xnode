@@ -1,6 +1,7 @@
-<?r response.content_type! "text/html; charset=utf-8" ?>
-<?r response.cache! ?>
-<!DOCTYPE html>
+<?r 
+	response.content_type! "text/html; charset=utf-8"
+	response.cache! 
+?><!DOCTYPE html>
 <html>
 	<head>
 		<title>`(code otaku)</title>

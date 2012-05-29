@@ -1,4 +1,7 @@
-<!DOCTYPE html>
+<?r 
+	response.content_type! "text/html; charset=utf-8"
+	response.cache! 
+?><!DOCTYPE html>
 <html>
 	<head>
 		<?r if title = (attributes["title"] || @title) ?>

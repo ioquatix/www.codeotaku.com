@@ -23,7 +23,7 @@
 	<?r end ?>
 	
 		<li style="float: right">
-			(<a href="/about">about</a>)			
+			(<a href="/about" rel="author">about</a>)
 		</li>
 	</ul>	
 </div>

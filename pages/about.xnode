@@ -1,7 +1,7 @@
 <page>
 	<heading>About</heading>
 	
-	<p>This is the personal website of <a href="http://www.oriontransfer.co.nz/samuel-williams">Samuel Williams</a>.</p>
+	<p>This is the personal website of <a rel="author" href="http://www.oriontransfer.co.nz/samuel-williams">Samuel Williams</a>.</p>
 	
 	<p>All material here is &copy; 2012 Samuel Williams. All rights reserved. If you'd like to reuse material on this site, please <a href="http://www.oriontransfer.co.nz/welcome/contact-us">contact me first</a>.</p>
 </page>

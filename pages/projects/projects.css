@@ -76,7 +76,7 @@ ul.projects {
 	font-size: 10pt;
 }
 
-.title .tag.javascript, .title .tag.ruby, .title .tag.cpp, .title .tag.objective-c {
+.title .tag.javascript, .title .tag.ruby, .title .tag.cpp, .title .tag.objective-c, .title .tag.kai {
 	border-color: #FF8C00;
 	box-shadow: 0 0 2px #FF8C00;
 	color: #FF8C00;
@@ -88,13 +88,13 @@ ul.projects {
 	color: #1E90FF;
 }
 
-.title .tag.commercial, .title .tag.educational, .title .tag.open {
+.title .tag.commercial, .title .tag.educational, .title .tag.open, .title .tag.research {
 	border-color: #008000;
 	box-shadow: 0 0 2px #008000;
 	color: #008000;
 }
 
-.title .tag.website, .title .tag.framework, .title .tag.application, .title .tag.command-line {
+.title .tag.website, .title .tag.framework, .title .tag.application, .title .tag.command-line, .title .tag.language {
 	border-color: #6A5ACD;
 	box-shadow: 0 0 2px #6A5ACD;
 	color: #6A5ACD;	

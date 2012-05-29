@@ -30,7 +30,7 @@ truth-tables:
     description: "An interactive logic calculator with a built in tutor."
 programming-dojo:
     title: 'Programming Dojo'
-    tags: ['educational', 'website']
+    tags: ['educational', 'research', 'website']
     uri: http://programming.dojo.net.nz
     description: "An educational resource covering a variety of different programming languages."
 house-pigeon:
@@ -78,3 +78,58 @@ quota-check:
     tags: ['commercial', 'objective-c', 'application']
     uri: http://www.oriontransfer.co.nz/software/quota-check
     description: "Warn users that they are running out of diskspace automatically!"
+code-visualisation:
+    title: 'Visualising information change over time'
+    tags: ['research', 'ruby', 'command-line']
+    uri: http://www.oriontransfer.co.nz/research/code-visualisation
+    description: "This research explores how to visualise changes to source code over time."
+mr-painting-robot:
+    title: "Mr. Painting Robot"
+    tags: ['research', 'cpp', 'command-line']
+    uri: http://www.oriontransfer.co.nz/research/mr-painting-robot
+    description: "This research investigates how the identification of oulines from photographs can be used to control a robot with a paintbrush."
+kai:
+    title: "Kai"
+    tags: ['research', 'language']
+    uri: http://www.oriontransfer.co.nz/research/kai
+    description: "Kai is a prototype-based language and interpreter with a syntax somewhere between LISP and Ruby. It provides dynamic compilation via an interface with LLVM."
+pl0-language-tools:
+    title: "PL/0 Language Tools"
+    tags: ['educational', 'research', 'language']
+    uri: http://www.oriontransfer.co.nz/learn/pl0-language-tools
+    description: "PL/0 includes a lexer, parser, interpreter, compiler, assembler and virtual machine written in Python, designed with teaching in mind."
+programming-language-posters:
+    title: "Programming Language Posters"
+    tags: ['educational', 'website']
+    uri: http://programming.dojo.net.nz/resources/programming-language-posters
+    description: "The Programming Language Posters are a set of free posters for use in computer science classrooms."
+register-machine-interpreter:
+    title: "Register Machine Interpreter"
+    tags: ['educational', 'website']
+    uri: http://www.oriontransfer.co.nz/learn/register-machine-interpreter
+    description: "An online register machine computer which has been designed to help explain what it means to be computable."
+truth-table-solver:
+    title: "Truth Table Solver"
+    tags: ['educational', 'website']
+    uri: http://www.oriontransfer.co.nz/learn/truth-table-solver
+    description: "An online boolean logic calculator that generates truth tables."
+xapian:
+    title: "Xapian [Core, Indexer, Rack]"
+    tags: ['open', 'ruby', 'rack', 'framework']
+    uri: http://www.oriontransfer.co.nz/gems/xapian
+    description: "A collection of Ruby based frameworks for providing full-text search functionality."
+goblin-hacker:
+    title: "Goblin Hacker"
+    tags: ['open', 'objective-c', 'application']
+    uri: http://www.oriontransfer.co.nz/software/goblin-hacker
+    description: "A save-game editor for the game 'Eschalon Book I', built from scratch by reverse engineering."
+jquery-menu:
+    title: "jQuery.Menu"
+    tags: ['open', 'javascript', 'framework']
+    uri: http://www.oriontransfer.co.nz/projects/jquery-menu
+    description: "A simple dynamic pop-up menu framework built on top of jQuery."
+rexec:
+    title: "RExec"
+    tags: ['open', 'ruby', 'framework']
+    uri: http://www.oriontransfer.co.nz/gems/rexec
+    description: "Facilitates the execution of Ruby code on remote systems and provides a comprehensive framework for process/task management."

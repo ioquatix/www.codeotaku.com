@@ -34,8 +34,7 @@ if prev_link == nil || next_link == nil
 	end
 end
 
-?>
-<page>
+?><page>
 	<div class="heading" style="position: relative">
 		<div style="position: absolute; right: 0; padding-top: 5pt">
 			<g:plusone></g:plusone>

@@ -109,6 +109,7 @@ dl.article-list dd {
 
 .heading small {
 	margin: 20px;
+	white-space: nowrap;
 }
 
 dl {
@@ -456,4 +457,3 @@ sup a {
 	color: white;
 	text-decoration: none;
 }
-

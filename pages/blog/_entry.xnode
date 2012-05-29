@@ -36,14 +36,16 @@ end
 
 ?><page>
 	<div class="heading" style="position: relative">
-		<div style="position: absolute; right: 0; padding-top: 5pt">
-			<g:plusone></g:plusone>
+		<div style="position: absolute; right: 5pt; bottom: 2pt">
+			<g:plusone align="right"></g:plusone>
 		</div>
-		
+						
 		<heading>#{title}</heading>
 
-		<small class="author">Author: <strong>#{author}</strong></small>
-		<small class="when">When: <strong>#{created.strftime("%A, %d %B %Y")}</strong></small>
+		<div style="padding-left: 80px; padding-right: 80px">
+			<small class="author">Author: <strong>#{author}</strong></small>
+			<small class="when">When: <strong>#{created.strftime("%A, %d %B %Y")}</strong></small>
+		</div>
 	</div>
 	
 	<script type="text/javascript" charset="utf-8">

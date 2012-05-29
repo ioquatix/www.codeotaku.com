@@ -1,0 +1,77 @@
+<?r
+	# By default we produce an inline HTML
+	inline = true
+	# By default we won't reproduce the image
+	regenerate = false
+	# The local cache path
+	cache = parent.node.local_path("_cache")
+	# The filesystem path of the output image
+	cache_file = nil
+	# The text / content for latex processing
+	text = nil
+	
+	if (attributes['src'])
+		inline = false
+		src_file = parent.node.local_path(attributes['src'])
+		hash = Path.create(attributes['src']).basename
+		cache_file = cache + "#{hash}.png"
+		
+		regenerate = !File.exist?(cache + "#{hash}.png")
+		
+		if !regenerate && File.mtime(cache_file) < File.mtime(src_file)
+			regenerate = true
+		end
+		
+		text = File.read(src_file) if regenerate
+	else
+		text = content.gsub("&lt;", "<").gsub("&gt;", ">")
+		hash = Digest::MD5.hexdigest(content)
+		cache_file = cache + "#{hash}.png"
+
+		regenerate = !File.exist?(cache + "#{hash}.png")
+	end
+	
+	if regenerate
+		tmp = cache + hash
+		
+		text = <<EOF
+\\documentclass[10pt]{article}
+
+% add additional packages here
+\\usepackage{amsmath}
+\\usepackage{amsfonts}
+\\usepackage{amssymb}
+\\usepackage{color}
+
+\\pagestyle{empty}
+\\begin{document}
+#{text}
+\\end{document}
+EOF
+		FileUtils.mkdir_p(tmp)
+	
+		input_tex = tmp + "texput.tex"
+		output_dvi = tmp + "texput.dvi"
+		output_png = cache + "#{hash}.png"
+		
+		File.open(input_tex, "w") { |fp| fp.write(text) }
+	
+		IO.popen("latex -interaction=nonstopmode -output-directory=#{tmp} #{input_tex}", "w+") do |io|
+			io.write(text)
+			io.close_write
+			
+			io.readlines
+		end
+	
+		system("dvipng", "-D", "140", "-T", "tight", "-bg", "Transparent", output_dvi, "-o", output_png)
+		
+		FileUtils.rm_rf(tmp)
+	end
+	
+	image_path = parent.node.uri_path.dirname + ["_cache", "#{hash}.png"]
+	
+	if inline
+?><img class="latex inline" src="#{image_path}" /><?r
+	else
+?><div class="gallery"><img class="latex" src="#{image_path}" /></div><?r 
+	end ?>

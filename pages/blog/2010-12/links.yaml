@@ -8,6 +8,7 @@ implicit-and-explicit-delimitation:
     author: Samuel Williams
     summary: "I've been thinking about the differences in modern programming syntax, and how we separate expressions."
 pascals-triangle:
+    display: false
     created: 2010-12-03
     title: "Pascal's Triangle"
     author: Samuel Williams

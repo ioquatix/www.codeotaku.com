@@ -38,7 +38,7 @@
 		
 		<script type="text/javascript">
 			jQuery(function($) {
-				$.syntax({blockLayout: "plain", theme: "modern"});
+				$.syntax({blockLayout: "fixed", theme: "paper"});
 				
 				$('a.lightbox').fancybox();
 				

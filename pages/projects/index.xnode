@@ -1,4 +1,6 @@
 <page>
+	<heading>Samuel's Projects</heading>
+	
 	<script src="/_static/jquery.quicksand.js" type="text/javascript"></script>
 	<link rel="stylesheet" href="projects.css" type="text/css" media="screen" />
 

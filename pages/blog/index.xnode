@@ -1,4 +1,6 @@
 <page>
+	<heading>Samuel's Blog</heading>
+	
 	<dl class="article-list">
 	<?r links("./", :sort => :title, :files => false, :virtuals => false).reverse.each do |link| ?>
 		<dt>#{Date.parse(link.components[0] + "-1").strftime("%B %Y")}</dt>

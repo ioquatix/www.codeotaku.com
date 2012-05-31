@@ -7,7 +7,7 @@
 		
 		
 		selector.css({
-			left: 0, top: 0, width: 0, height: 0, display: "none"
+			right: 0, top: 0, bottom: 0, width: 0, height: 0, display: "none"
 		});
 		
 		$('li', references).bind('highlight', function() {
@@ -15,10 +15,10 @@
 			var offset = $(this).offset();
 			
 			var properties = {
-				width: $(this).width()+padding,
+				width: 25,
 				height: $(this).height()+(padding*0.5),
 				top: offset.top - parentOffset.top - (padding / 2.0),
-				left: offset.left - parentOffset.left - (padding / 2.0)//,
+				left: (offset.left - parentOffset.left - (padding / 2.0)) - 45,
 			};
 			
 			selector.css({'display': "inherit"});
@@ -28,7 +28,13 @@
 		});
 	});
 </script>
+<style type="text/css" media="screen">
+	#references li a {
+		padding-top: 10pt;
+		margin-top: 10pt;
+	}
+</style>
 <ol id="references" style="position: relative">
 	<content/>
-	<div class="selector" style="border: 2px solid #3C36F5; border-radius: 0.2em; position: absolute"></div>
+	<div class="selector" style="font-size: 16pt; font-weight: bold; padding-top: 2pt; border-radius: 0.2em; position: absolute">&rarr;</div>
 </ol>

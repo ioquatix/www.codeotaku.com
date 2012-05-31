@@ -7,7 +7,7 @@
 		
 		
 		selector.css({
-			right: 0, top: 0, bottom: 0, width: 0, height: 0, display: "none"
+			left: 0, top: 0, bottom: 0, width: 0, display: "none"
 		});
 		
 		$('li', references).bind('highlight', function() {

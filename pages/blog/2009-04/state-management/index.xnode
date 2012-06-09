@@ -2,9 +2,9 @@
 	<p>Managing state in a game or simulation can be complex. For a simulation, there are several different kinds of state we might need to consider:</p>
 
 	<ul>
-		<li>State which is created from user input, and will affect the main simulation (m_willShoot = true)</li>
-		<li>State which represents the core of the simulation (std::vector&lt;Bullets&gt;)</li>
-		<li>State which is used to visualise the results of the simulation (std::vector&lt;BulletFragments&gt;)</li>
+		<li>State which is created from user input, and will affect the main simulation (e.g. <code class="syntax clang">m_willShoot = true</code>)</li>
+		<li>State which represents the core of the simulation (e.g. <code class="syntax clang">std::vector&lt;Bullets&gt;</code>)</li>
+		<li>State which is used to visualise the results of the simulation (e.g. <code class="syntax clang">std::vector&lt;BulletFragments&gt;</code>)</li>
 	</ul>
 
 	<p>When considering the overall structure of a simulation, there are various points where real-time input can be supplied. This input must be “normalized” in some way, before it can affect the main game state. The goal of this step is to make sure that the main simulation is deterministic when given the same sets of input.</p>
@@ -18,7 +18,7 @@
 	<p>The benefits of this kind of structure should be apparent, however I'll spell them out:</p>
 
 	<ul>
-		<li>Strict interfaces (IWorldSimulation, IWorldEvents, IWorldRenderer) are very helpful:
+		<li>Strict interfaces (<code class="syntax clang">IWorldSimulation</code>, <code class="syntax clang">IWorldEvents</code>, <code class="syntax clang">IWorldRenderer</code>) are very helpful:
 			<ul>
 				<li>Helps to maintain encapsulation of unrelated state. This is a problem because it can reduce the reliability and reproducibility of the simulation. Simulation can be repeated deterministically given the same set of input.</li>
 				<li>Allows for different types of renders (i.e. different platforms), state input (i.e. from a network). Not all simulations need visual output or visual output may only be desirable when testing. For a complex physical simulation, it might be run across many nodes, and therefore visual simulation needs to be done differently when the computation is distributed vs when it is run on a local machine.</li>

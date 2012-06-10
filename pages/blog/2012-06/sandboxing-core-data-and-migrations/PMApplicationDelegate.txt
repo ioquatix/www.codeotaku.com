@@ -1,0 +1,9 @@
+@implementation PMApplicationDelegate
+
+- (void)applicationWillFinishLaunching:(NSNotification *)notification {
+	[PMDocumentController sharedDocumentController];
+}
+
+// ...
+
+@end

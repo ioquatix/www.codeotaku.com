@@ -1,4 +1,13 @@
 game-programming-weekend:
-    created: 2012-06-01
+    created: 2012-06-05
     author: Samuel Williams
     summary: "Enjoy coding? Why not join in with us during the game programming weekend?"
+cloudflare:
+    created: 2012-06-01
+    author: Samuel Williams
+    summary: "I just setup CloudFlare and found it to be a very interesting service..."
+    display: false
+sandboxing-core-data-and-migrations:
+    created: 2012-06-11
+    author: Samuel Williams
+    summary: "Migrations in a sandbox don't go quite so easily as one would hope..."

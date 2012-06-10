@@ -1,0 +1,27 @@
+<entry>
+	<p>My application <a href="http://www.housepigeon.com/property-manager">Property Manager</a> uses CoreData for its document model and storage. Because the Mac App Store is now requesting that applications are sandboxed, I recently worked on updating Property Manager to work correctly in the sandbox.</p>
+	
+	<h2>Problem Identification</h2>
+	
+	<p>As Property Manager acquires new features (in this case, additional tagging and notation facilities), the data model needs to be updated. This in turn depends on CoreData to migrate the user's previous documents to the latest data model. Traditionally, CoreData migrates the data transparently when the user opens the file, however here lies the problem with sandboxing: the updated file cannot be saved to disk unless the user is presented a <code class="syntax clang">NSSavePanel</code>. Because of this, automatic migrations will fail.</p>
+	
+	<p>As a secondary problem, CoreData only migrates from one version to the next, either by inferring the mapping model or by selecting a single <code>mapping model</code>. If a user migrates from v2 file format to v3, CoreData will handle this automatically. However, CoreData will not handle the case where the user has v1 data which needs to be converted to v2 and then finally v3. In general this seems like very fragile behavior for an application that is managing important user data.</p>
+	
+	<h2>Solution</h2>
+	
+	<p>It turns out that the solution to the above problem is fairly involved, and I ended up rewriting some code (originally written by Marcus S. Zarra in his book <a href="http://pragprog.com/book/mzcd/core-data">Core Data</a>).</p>
+	
+	<p>In order to kick off the new migration process, we need to hijack the document creation process and check if migration is required:</p>
+	
+	<listing src="PMDocumentController.txt" brush="clang" />
+	
+	<p>Finally, the migration controller code incrementally migrates from one model to the next until it gets to the <code class="syntax clang">targetModel</code>.</p>
+	
+	<listing src="PMMigrationController.txt" brush="clang" />
+	
+	<h2>Sandboxing Problems</h2>
+	
+	<p>I would like to say that the above code works flawlessly. In fact it does, under a non-sandbox environment. At this point in time, I've found various bugs and problems with <code class="syntax clang">NSSavePanel</code> when used in the sandbox, although these problems don't seem to be officially acknowledged by Apple. The biggest road block I ran into is that essentially <code class="syntax clang">savePanel.URL</code> is always <code class="syntax clang">nil</code> in the sandbox environment... Hopefully this will be fixed in a future release.</p>
+	
+	<p>However, at the very least, migrating more than one model works perfectly, and the user is given the opportunity to save their datafile in a new location which at least means that the data won't be damaged by a failed migration.</p>
+</entry>

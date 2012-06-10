@@ -1,0 +1,56 @@
+
+@implementation PMDocumentController
+
+- (id)makeDocumentWithContentsOfURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError **)outError {
+	// Initialize the migration controller which will be used to figure out if migration is required:
+	PMMigrationController * migrationController = [[PMMigrationController new] autorelease];
+	
+	// This is the target model we are using:
+	NSURL * targetModelURL = [[NSBundle mainBundle] URLForResource:@"PropertyManager" withExtension:@"momd"];
+	migrationController.targetModel = [[[NSManagedObjectModel alloc] initWithContentsOfURL:targetModelURL] autorelease];
+	
+	// Other details such as the store type and all the intermediate models we could migrate to:
+	migrationController.storeType = NSBinaryStoreType;
+	migrationController.intermediateModels = [PMMigrationController findIntermediateModelsForBundle:[NSBundle mainBundle]];
+	
+	// If migration is required:
+	if ([migrationController requiresMigration:url]) {
+		// Show the user a save panel and tell them that they need to save the migrated document
+		NSSavePanel * savePanel = [NSSavePanel savePanel];
+		savePanel.title = @"Document Migration";
+		savePanel.directoryURL = url;
+		savePanel.nameFieldStringValue = [url lastPathComponent];
+		
+		savePanel.allowedFileTypes = [NSArray arrayWithObject:typeName];
+		savePanel.allowsOtherFileTypes = NO;
+		
+		savePanel.message = @"Your document needs to be upgraded.";
+		
+		[savePanel setCanSelectHiddenExtension:YES];
+		[savePanel setExtensionHidden:YES];
+		
+		if ([savePanel runModal] == NSFileHandlingPanelOKButton) {
+			// At this point, the sandbox has allowed us access to the file given by savePanel.URL
+			
+			// Perform the migration:
+			if ([migrationController migrateURL:url toURL:savePanel.URL error:outError]) {
+				// Hide the file if requested:
+				[[NSFileManager defaultManager] setAttributes:[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:savePanel.isExtensionHidden] forKey:NSFileExtensionHidden] ofItemAtPath:savePanel.URL.path error:nil];
+				
+				// Migrate and open new document:
+				return [super makeDocumentWithContentsOfURL:savePanel.URL ofType:typeName error:outError];
+			}
+		}
+		
+		// outError should have been filled in by migrationController!
+		return nil;
+	} else {
+		return [super makeDocumentWithContentsOfURL:url ofType:typeName error:outError];
+	}
+}
+
+- (id)makeDocumentForURL:(NSURL *)urlOrNil withContentsOfURL:(NSURL *)contentsURL ofType:(NSString *)typeName error:(NSError **)outError {
+	// ...
+}
+
+@end

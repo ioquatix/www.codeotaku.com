@@ -5,42 +5,37 @@
 
 	<h2>Event based state management</h2>
 
-	<p>We maintain state by sending the same events to every simulation. If events are dropped or lost, or not applied in time, the simulation may become incorrect<reference name="1" />, although this can be corrected by sending a "keyframe" of the simulation state to bring the simulation back on track.</p>
+	<p>We maintain state by sending the same events to every simulation. If events are dropped or lost, or not applied in time, the simulation may become incorrect<reference>1</reference>, although this can be corrected by sending a "keyframe" of the simulation state to bring the simulation back on track.</p>
 
 	<ul>
-		<li>An event signals some sort of state change to the world</li>
-		<li>State change may need processing to apply</li>
-		<li>Event based system is generally easier to implement</li>
-		<li>Events can minimize traffic as much data can be evaluated on the client</li>
-		<li>Events from clients can be</li>
+		<li>An event signals some sort of state change to the world.</li>
+		<li>Applying a single event may change multiple parts of the simulation.</li>
+		<li>Events can minimize network traffic as much data can be evaluated on the client.</li>
 		<li>Events sent to clients can be filtered programmatically based on proximity or relevance, thus reducing bandwidth even more.</li>
 		<li>An example of an event is an encapsulated transmission of the <code class="syntax clang">IWorldEvents</code> object. This contains a discrete event that changes the state of the world and is applied at a given timestamp.</li>
 	</ul>
+	
+	<p>Event based systems are generally easier to implement but maintaining a consistent simulation across multiple discrete processes can be difficult<reference>2 3</reference>. They are typically used for real-time games and simulations. Differences in host processor (e.g. floating point accuracy, word size, operating system and standard library implementation) can cause a wide variety of difficult to handle bugs.</p>
 
 	<h2>Synchronization based state management</h2>
 
-	<p>We maintain state by keeping track of individual state values, and noting when they change. These changes are then serialised and sent out across the wire. This is more heavy handed than event based state management, however it has the benefits of being simpler to implement - i.e. there are a limited set of messages to transmit, but it is verbose in that a single event may cause many objects to change.</p>
+	<p>We maintain state by keeping track of individual state values, and noting when they change. These changes are then serialised and sent out across the wire. In effect this is a structured event based state management, but with the effect that events may be coalesced or discarded if they are not important.</p>
 
 	<ul>
-		<li>Synchronize state between client and server</li>
-		<li>Server maintains world state</li>
-		<li>Set of objects, relationships and state</li>
-		<li>Client needs to know a portion of the world state</li>
-		<li>Subset of objects, relationships and state</li>
-		<li>Client state needs to be updated</li>
-		<li>Change state (primitive type change)</li>
-		<li>Instantiate object</li>
-		<li>Destroy object</li>
-		<li>Update relationships</li>
+		<li>Synchronize state between client and server by monitoring changes to key variables.</li>
+		<li>Server maintains world state: sets of objects, relationships and state.</li>
+		<li>Client needs to know a portion of the world state: subsets of objects, relationships and state.</li>
+		<li>State is updated with one of four events: update primitive, update relationship, instantiate object, destroy object.</li>
 	</ul>
 
-	<p>An example of a synchronised system is the Cocoa bindings system (Mac OS X UI framework). This is done using key paths. Key paths are strings such as <code class="syntax clang">myAccount.owner.name</code>. A key path represents an individual piece of state that can change and be updated. When a user interface element is bound to a key path, it (simply) will be informed if the value changes. Conversely, if the user interface element has its value changed, it will update the value at the key path.</p>
-	
+	<p>State synchronization is better for systems where precise step-by-step simulation is not so important, but rather that the final world state needs to be correct regardless of simulation behavior. They are typically used for turn-based games and user-interfaces.</p>
+		
 	<h2>Further Reading</h2>
 	
 	<references>
-		<li><a name="1" href="http://www.altdevblogaday.com/2011/07/09/synchronous-rts-engines-and-a-tale-of-desyncs/">Synchronous RTS Engines and a Tale of Desyncs</a></li>
-		<li><a href="http://www.altdevblogaday.com/2011/07/24/synchronous-rts-engines-2-sync-harder/">Synchronous RTS Engines 2: Sync Harder</a></li>
-		<li><a href="http://community.eveonline.com/devblog.asp?a=blog&amp;nbid=1771">EVE Online: Facing Destiny</a></li>
+		<li><a name="1" href="http://www.altdevblogaday.com/2011/07/09/synchronous-rts-engines-and-a-tale-of-desyncs/">Synchronous RTS Engines and a Tale of Desyncs</a>.</li>
+		<li><a name="2" href="http://www.altdevblogaday.com/2011/07/24/synchronous-rts-engines-2-sync-harder/">Synchronous RTS Engines 2: Sync Harder</a>.</li>
+		<li><a name="3" href="http://www.gamasutra.com/view/feature/3094/1500_archers_on_a_288_network_.php">1500 Archers on a 28.8: Network Programming in Age of Empires and Beyond</a>.</li>
+		<li><a href="http://community.eveonline.com/devblog.asp?a=blog&amp;nbid=1771">EVE Online: Facing Destiny</a>.</li>
 	</references>
 </entry>

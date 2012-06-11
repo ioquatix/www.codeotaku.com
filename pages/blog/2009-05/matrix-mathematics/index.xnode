@@ -17,7 +17,7 @@
 	
 	<p>In C when we can access data in whatever order we like.</p>
 	
-	<dl>
+	<dl class="basic">
 		<dt>Row Major</dt>
 		<dd>Elements of a row are stored contiguously in memory.</dd>
 		<dt>Column Major</dt>
@@ -92,7 +92,7 @@
 	
 	<p>Firstly, we have two options to consider, as mentioned earlier:</p>
 	
-	<dl>
+	<dl class="basic">
 		<dt>Row major order</dt>
 		<dd>A single row should be sequential in memory: <code>float values[2][4]</code></dd>
 		<dd>

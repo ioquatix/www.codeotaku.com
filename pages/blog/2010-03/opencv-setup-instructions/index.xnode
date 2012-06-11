@@ -35,7 +35,7 @@
 	
 	<p>Add the following to your new project (Tools &rarr; Options &rarr; Projects and Solutions &rarr; VC++ Directories):</p>
 	
-	<dl>
+	<dl class="basic">
 		<dt>Include Files</dt>
 		<dd>Add in the directory containing OpenCV header files (e.g. <code>C:\\OpenCV2.0</code>)</dd>
 		<dt>Library Files</dt>

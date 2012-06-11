@@ -5,7 +5,7 @@
 	
 	<p>Pedagogy is <em>the method and practice of teaching, esp. as an academic subject or theoretical concept</em>. It is an umbrella term used in the discussion of teaching methods and covers a wide range of different methods and ideas:</p>
 	
-	<dl>
+	<dl class="basic">
 		<dt>Learning Models</dt>
 		<dd>Student Centered, Instructional Design, Higher-order Thinking</dd>
 		<dt>Learning Styles</dt>

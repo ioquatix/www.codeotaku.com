@@ -4,7 +4,8 @@ body {
 	background-attachment: fixed;
 	color: #000;
 	
-	font-family: georgia, "times new roman";
+	font-family: 'HelveticaNeue-Light', Helvetica, Arial, sans-serif;
+	font-weight: lighter;
 	margin: 0;
 }
 
@@ -19,68 +20,28 @@ blockquote {
 	padding-bottom: 20pt;
 }
 
-dl.article-list dd {
-	padding: 0px;
-}
-
 #content h1 {
 	font-size: 18pt;
 }
 
 #content h2 {
-	margin-top: 50px;
-	font-size: 11pt;
-	
-	text-decoration: underline;
+	margin-top: 50pt;
+	margin-bottom: 10pt;
+	font-size: 16pt;
 }
 
 #content h3 {
-	margin-top: 40px;
-	font-size: 10pt;
-	
-	text-decoration: underline;
-	
-	padding-left: 32px;
-	background: url(bullet.png) center left no-repeat;
+	margin-top: 40pt;
+	margin-bottom: 8pt;
+	font-size: 13pt;
 }
 
-#sidebar {
-	float: right;
-	margin-bottom: 50px;
-	
-	padding: 0px;
-	
-	font-size: 10pt;
-	width: 20%;
-}
-
-#sidebar h1 {
-	font-size: 8pt;
-}
-
-#sidebar ul {
-	padding: 0px;
-	margin: 0px;
-}
-
-#sidebar li {
-	list-style: none;
-	padding: 0px;
-	margin: 4px;
-	font-size: 7pt;
-}
-
-#sidebar em {
-	font-style: normal;
-	font-weight: bold;
-}
-
-#sidebar .ui-accordion-content {
-	padding: 8px;
+#content h2 + p, #content h3 + p {
+	margin-top: 0;
 }
 
 .navigation {
-	font-size: 9pt;
+	font-size: 10pt;
 	clear: both;
 	
 	margin: 10pt 0 10pt 0;
@@ -134,19 +95,19 @@ p, dl.basic dt {
 }
 
 p, li, dt, dd {
-	line-height: 1.8em;
+	line-height: 160%;
 }
 
 dl.options {
 	padding-top: 0.5em;
-	margin: 0 4em 0;
+	margin: 0;
 	
-	border: 1px solid black;
-	background-color: white;
+	background: rgba(230, 230, 230, 0.25);
+	border: 1px solid #ccc;
 }
 
 dl.options dt {
-	font-weight: bold;
+	color: #900;
 	
 	float: left;
 	clear: both;
@@ -157,13 +118,13 @@ dl.options dt {
 	padding: 0 0.5em 0.5em 0.5em;
 }
 
-dl.options dt:after {
-	content: ":";
+dl.options dd {
+	margin: 0 0 0 16%;
+	padding: 0 0.5em 0.5em 0.5em;
 }
 
-dl.options dd {
-	margin: 0 0 0.5em 16%;
-	padding: 0 0.5em 0.5em 0.5em;
+dl.options dd + dd {
+	margin-top: 0.5em;
 }
 
 dl.options dd.container {
@@ -177,7 +138,7 @@ dl.options dd.container p {
 
 #entry {
 	padding-bottom: 80px;
-	font-size: 10.5pt;
+	font-size: 12pt;
 }
 
 #footer {
@@ -205,9 +166,12 @@ table.basic {
 	width: 90%;
 }
 
+table th {
+	font-weight: inherit;
+}
+
 table.basic thead th {
 	font-family: "Lucida Grande", Sans-Serif;
-	font-weight: normal;
 	font-size: 12pt;
 	text-align: left;
 	color: #003399;

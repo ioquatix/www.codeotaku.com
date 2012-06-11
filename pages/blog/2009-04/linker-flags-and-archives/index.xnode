@@ -11,7 +11,7 @@
 
 	<p>There are a number of different solutions to this problem, but on Mac OS X, a quick easy option is the -all_load flag which is passed to ld. From the ld man page:</p>
 
-	<dl>
+	<dl class="options">
 		<dt>-all_load</dt>
 		<dd>Loads all members of static archive libraries.</dd>
 	</dl>

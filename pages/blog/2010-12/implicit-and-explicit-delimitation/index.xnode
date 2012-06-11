@@ -11,7 +11,7 @@
 	
 	<p>Using whitespace to delimit statements reduces visual clutter. There are several different forms of whitespace delimitation, ranging from the very simple S-Expression, to the more complex Python indentation model.</p>
 	
-	<dl>
+	<dl class="basic">
 		<dt>S-Expressions</dt>
 		<dd>
 			<p>The S-expression is a bracketed sequence of items. Because they have a unique start and end symbol, they can be parsed unambiguously when in a sequence and nested.</p>
@@ -49,7 +49,7 @@
 
 	<p>Using explicit characters to delimit statements and expressions can improve the expressiveness of the language, at the cost of additional syntactic complexity. Typically, high level statements are divided using semi-colon ";", and argument lists using comma ",".</p>
 
-	<dl>
+	<dl class="basic">
 		<dt>Separation Markers</dt>
 		<dd>
 			<p>This form is traditionally seen in function argument lists, or in chained method invocations. Each item has a mark between it and the next argument, but there is no mark at the end.</p>

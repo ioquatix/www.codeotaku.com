@@ -32,7 +32,7 @@
 	
 	<p>We will be expecting all projects to be written in JavaScript/jQuery/Canvas/WebGL/HTML5 targeting the latest version of Chrome/Safari. Specific libraries such as <a href="http://gamequeryjs.com/">gameQuery</a> are also acceptable. Some templates will be provided so that projects hit the ground running.</p>
 	
-	<p>All projects will be released available under the MIT license.</p>
+	<p>All projects will be released under the MIT license.</p>
 	
 	<p>A centralised server will be provided for documentation, example code and source code management using continuous deployment (using <a href="http://git-scm.com/">git</a>). You can use the central server for testing and also trying out other teams' projects. A central <a href="http://couchdb.apache.org/">CouchDB</a> server may be provided for games that require persistent storage.</p>
 	
@@ -50,7 +50,7 @@
 	
 	<h2>Provisions</h2>
 	
-	<p>You need to bring your own bedding (e.g. a sleeping bag), clothes, toiletries. Cass Field Station is cold so make sure you bring a warm jacket. There is a the small possibility of snow so gloves/extra thick socks are recommended.</p>
+	<p>You need to bring your own bedding (e.g. a sleeping bag), clothes, toiletries. Cass Field Station is cold so make sure you bring a warm jacket. There is a small possibility of snow so gloves/extra thick socks are recommended.</p>
 	
 	<p>You will need to bring your own laptop along with any software you may need. Internet will be available using standard university accounts. You may want to bring headphones.</p>
 	
@@ -65,4 +65,10 @@
 	<h2>Register!</h2>
 	
 	<p><strong>If you are interested, please <a href="https://docs.google.com/spreadsheet/viewform?formkey=dExUSEdhczJaMDdiV0o3OERSV2V6RFE6MQ">register here</a></strong>. Once more information becomes available we will contact you. We have very <strong>LIMITED</strong> places available!</p>
+	
+	<h2>Further Reading</h2>
+	
+	<ol>
+		<li><a href="http://learningthreejs.com/blog/2012/06/05/3d-physics-with-three-js-and-physijs/">3D Physics With Three.js and Physijs</a></li>
+	</ol>
 </entry>

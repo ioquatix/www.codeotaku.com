@@ -1,12 +1,14 @@
 <page>
-	<heading>Samuel's Blog</heading>
+	<heading>Samuel's Journal</heading>
 	
-	<dl class="article-list">
+	<dl class="options">
 	<?r links("./", :sort => :title, :files => false, :virtuals => false).reverse.each do |link| ?>
 		<dt>#{Date.parse(link.components[0] + "-1").strftime("%B %Y")}</dt>
+		<dd>
 		<?r links(link.path.dirname, :sort => :created).each do |entry| ?>
-		<dd>#{entry.to_href}</dd>
+			#{entry.to_href}<br/>
 		<?r end ?>
+		</dd>
 	<?r end ?>
 	</dl>
 </page>

@@ -3,7 +3,7 @@
 	
 	<p>Source code can be augmented in many ways to provide useful feedback for a programmer. It would be great to see existing source code editors augmented to provide these features.</p>
 	
-	<dl>
+	<dl class="basic">
 		<dt>Code Reviewing</dt>
 		<dd>Highlight lines not covered by unit tests.</dd>
 		<dd>Highlight code which has been changed since the last review.</dd>

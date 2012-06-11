@@ -16,7 +16,7 @@
 	
 	<p>As virtual schooling has become more systematic and developed, several different types of roles have emerged:</p>
 	
-	<dl>
+	<dl class="basic">
 		<dt>Virtual Schooling Teacher : Pedagogy &amp; Class Management</dt>
 		<dd>Presents activities, manages pacing and rigor.</dd>
 		<dd>Interacts with students and their facilitators.</dd>

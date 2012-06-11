@@ -11,7 +11,7 @@
 	
 	<p>Here is a list of terminology, from low-order thinking to high-order thinking:</p>
 	
-	<dl>
+	<dl class="basic">
 		<dt>Knowledge</dt>
 		<dd>Select, List, Name, Define, Describe, Memorize, Label, Identify, Locate, Recite, State, Recognize</dd>
 		<dt>Comprehension</dt>

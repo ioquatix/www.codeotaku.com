@@ -1,7 +1,10 @@
 <?r prev = nil ?>
 <div class="header">
 	<ul class="trail">
-	<?r Path.create(first.node.uri_path || attributes['path']).ascend.reverse.each do |path| 
+	<?r 
+		front = true
+		
+		Path.create(first.node.uri_path || attributes['path']).ascend.reverse.each do |path| 
 		if path.basename.size > 0
 			basename = path.basename
 			indices = false
@@ -11,11 +14,16 @@
 		end
 		
 		link = parent.node.links(path.dirname, :name => basename, :locale => request.current_locale, :indices => indices).first
-				
+		
+		if !front ?>
+		<li>&lambda;</li>
+		<?r end
+		
 		if link ?>
-		<li>#{link.to_href}</li><li>&lambda;</li>
+		<li>#{link.to_href}</li>
 		<?r end 
-	
+				
+		front = false
 		prev = link
 		?>
 	<?r end ?>

@@ -4,6 +4,7 @@ index:
 projects:
     order: 2
 blog:
+    title: "Journal"
     order: 3
 errors:
     display: false

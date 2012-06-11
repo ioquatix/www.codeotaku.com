@@ -59,7 +59,10 @@ blockquote {
 	text-align: center;
 	
 	background-image: url("/_static/gd2.png");
-	padding: 4pt;
+	
+	box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+	margin: 20pt 0 40pt 0;
+	padding: 20pt 4pt;
 	
 	border-radius: 0.2em;
 }

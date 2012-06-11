@@ -112,7 +112,7 @@ dl.article-list dd {
 	white-space: nowrap;
 }
 
-dl {
+dl.basic {
 	padding: 5px;
 }
 
@@ -120,21 +120,59 @@ li {
 	margin: 4px;
 }
 
-dt {
+dl.basic dt {
 	text-decoration: underline;
 	padding-top: 4px;
 }
 
-dd {
+dl.basic dd {
 	padding: 4px;
 }
 
-p, dt {
+p, dl.basic dt {
 	margin-top: 15pt;
 }
 
-p, li,  dt, dd {
+p, li, dt, dd {
 	line-height: 1.8em;
+}
+
+dl.options {
+	padding-top: 0.5em;
+	margin: 0 4em 0;
+	
+	border: 1px solid black;
+	background-color: white;
+}
+
+dl.options dt {
+	font-weight: bold;
+	
+	float: left;
+	clear: both;
+	
+	width: 14%;
+	text-align: right;
+	
+	padding: 0 0.5em 0.5em 0.5em;
+}
+
+dl.options dt:after {
+	content: ":";
+}
+
+dl.options dd {
+	margin: 0 0 0.5em 16%;
+	padding: 0 0.5em 0.5em 0.5em;
+}
+
+dl.options dd.container {
+	border-left: 1px solid #ccc;
+}
+
+dl.options dd.container p {
+	margin-top: 0;
+	margin-bottom: 0;
 }
 
 #entry {

@@ -369,13 +369,8 @@ form.basic dl dt label {
 
 form.basic dl dt small {
 	text-decoration: none;
-	font-size: 7pt;
+	font-size: 8pt;
 	display: block;
-}
-
-form.basic dl dt small {
-	text-decoration: none;
-	font-size: 7pt;
 }
 
 form.basic dl dd {

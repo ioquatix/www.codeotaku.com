@@ -122,8 +122,8 @@ dl.options dt {
 }
 
 dl.options dd {
-	margin: 0 0 0 16%;
-	padding: 0 0 0.5em 0.5em;
+	margin: 0 0 0.5em 16%;
+	padding: 0 4pt;
 }
 
 dl.options dd + dd {

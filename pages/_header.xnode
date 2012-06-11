@@ -11,9 +11,7 @@
 		end
 		
 		link = parent.node.links(path.dirname, :name => basename, :locale => request.current_locale, :indices => indices).first
-		
-		Utopia::LOG.info(link.inspect)
-		
+				
 		if link ?>
 		<li>#{link.to_href}</li><li>&lambda;</li>
 		<?r end 

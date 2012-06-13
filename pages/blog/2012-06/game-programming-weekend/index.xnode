@@ -64,9 +64,45 @@
 	
 	<p>We expect all participants to be considerate of others.</p>
 	
-	<h2>Register!</h2>
+	<style type="text/css" media="screen">
+		a.button {
+			display: inline-block;
+			
+			text-decoration: none;
+			border-radius: 5pt;
+			padding: 10pt;
+			margin: 10pt;
+			font-size: 25pt;
+			
+			color: white;
+			opacity: 0.75;
+			
+			background: #6db3f2; /* Old browsers */
+			background: -moz-linear-gradient(top, #6db3f2 0%, #54a3ee 50%, #3690f0 51%, #1e69de 100%); /* FF3.6+ */
+			background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#6db3f2), color-stop(50%,#54a3ee), color-stop(51%,#3690f0), color-stop(100%,#1e69de)); /* Chrome,Safari4+ */
+			background: -webkit-linear-gradient(top, #6db3f2 0%,#54a3ee 50%,#3690f0 51%,#1e69de 100%); /* Chrome10+,Safari5.1+ */
+			background: -o-linear-gradient(top, #6db3f2 0%,#54a3ee 50%,#3690f0 51%,#1e69de 100%); /* Opera 11.10+ */
+			background: -ms-linear-gradient(top, #6db3f2 0%,#54a3ee 50%,#3690f0 51%,#1e69de 100%); /* IE10+ */
+			background: linear-gradient(top, #6db3f2 0%,#54a3ee 50%,#3690f0 51%,#1e69de 100%); /* W3C */
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6db3f2', endColorstr='#1e69de',GradientType=0 ); /* IE6-9 */
+			
+			-webkit-box-reflect: below 5px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(0.5, transparent), to(rgba(1, 1, 1, 0.4)));
+			-webkit-transition: opacity 0.4s linear;
+		}
+		
+		a.button:hover {
+			opacity: 0.999;
+			-webkit-transition: opacity 0.4s linear;
+		}
+	</style>
 	
-	<p><strong>If you are interested, please <a href="https://docs.google.com/spreadsheet/viewform?formkey=dExUSEdhczJaMDdiV0o3OERSV2V6RFE6MQ">register here</a></strong>. Once more information becomes available we will contact you. We have very <strong>LIMITED</strong> places available!</p>
+	<div style="margin: 25pt -50px 25pt -50px; padding: 25pt; color: white; background-color: black">
+		<div style="text-align: center">
+			<a href="https://docs.google.com/spreadsheet/viewform?formkey=dExUSEdhczJaMDdiV0o3OERSV2V6RFE6MQ" class="button">Register Now!</a>
+		</div>
+		
+		<p style="text-align: center">We have limited places, so <b>register now</b> to avoid disappointment!</p>
+	</div>
 	
 	<h2>Further Reading</h2>
 	

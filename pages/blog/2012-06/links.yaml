@@ -12,3 +12,7 @@ sandboxing-core-data-and-migrations:
     created: 2012-06-11
     author: Samuel Williams
     summary: "Migrations in a sandbox don't go quite so easily as one would hope..."
+passenger-memory-check:
+    created: 2012-06-13
+    author: Samuel Williams
+    summary: "I wish passenger had a memory limit option.. pending that, here is a script with the same effect."

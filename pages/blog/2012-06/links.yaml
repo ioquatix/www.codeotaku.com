@@ -16,3 +16,7 @@ passenger-memory-check:
     created: 2012-06-13
     author: Samuel Williams
     summary: "I wish passenger had a memory limit option.. pending that, here is a script with the same effect."
+sauerbraten:
+    created: 2012-06-16
+    author: Samuel Williams
+    summary: "I recently reinstated my New Zealand based Sauerbraten server."

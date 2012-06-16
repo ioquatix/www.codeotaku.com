@@ -1,0 +1,46 @@
+<?r
+	scores = YAML::load_file(current.node.local_path("score.yaml"))
+	
+	baseline = scores.find { |score| score['name'] == "Tad's Baseline" }
+	
+	scores.each { |score| score['total'] = score['easy'] + score['medium'] + score['hard'] }
+	
+	scores = scores.sort_by { |score| score['total'] }
+?><entry>
+	<p>Solving Sudoku quickly using permutation generation is a challenging problem with many possibilities for optimisation. This page displays the performance of COSC329 student's assignments. To add your program please email source code to <a href="samuel@oriontransfer.org">samuel@oriontransfer.org</a> and it will be benchmarked. This competition is voluntary and does not contribute to grade. Your program source code will be kept private at all times.</p>
+	
+	<h2>How to enter</h2>
+	
+	<p>Because Tad provided the original source code that could only process one sample at a time, it is not easy to test programs with multiple samples. Therefore, for the qualifying round, all programs will be tested manually on the same <code>ff.dat</code> problem supplied with the assignment.</p>
+	
+	<p>After assignment deadline, the top programs will be tested and there may be a prize for best program. Please make sure you can process the <a href="benchmark">test input format</a> otherwise you will not be eligible for the final competition.</p>
+	
+	<h2>2011 Results</h2>
+	
+	<p>Sample files for the three rounds are <a href="samples-2011.zip">available</a>.</p>
+	
+	<table class="basic">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th style="text-align: right">Easy</th>
+				<th style="text-align: right">Medium</th>
+				<th style="text-align: right">Hard</th>
+				<th style="text-align: right">Total</th>
+			</tr>
+		</thead>
+		<tbody>
+			<?r scores.each do |score| ?>
+			<tr>
+				<td>#{score['name'].to_html}</td>
+				<td style="text-align: right">#{sprintf('%0.4f', score['easy']).to_html}s</td>
+				<td style="text-align: right">#{sprintf('%0.4f', score['medium']).to_html}s</td>
+				<td style="text-align: right">#{sprintf('%0.4f', score['hard']).to_html}s</td>
+				<td style="text-align: right">#{sprintf('%0.4f', score['total']).to_html}s</td>
+			</tr>
+			<?r end ?>
+		</tbody>
+	</table>
+	
+	<p>N.B. Your program will be run on a Core i7 with 4 cores and 8GB of ram available.</p>
+</entry>

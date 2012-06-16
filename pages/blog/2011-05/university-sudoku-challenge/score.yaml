@@ -1,0 +1,26 @@
+# ale85
+-   name: "Aaron Lee"
+    easy: 0.00163260277324633
+    medium: 0.156498923076923
+    hard: 0.161604384615385
+# ilm18
+-   name: "Isaac Manuel"
+    easy: 0.00313156025039124
+    medium: 145.198121333333
+    hard: 1.65502266666667
+# jsl176
+-   name: "Joshua Leung"
+    easy: 0.00146047445255474
+    medium: 0.2206726
+    hard: 0.08263776
+# mjl149
+-   name: "Matthew Lang"
+    easy: 0.037832320754717
+# Incorrect results produced
+    medium: 1.68888133333333
+    hard: 1.758818
+# sgw35
+-   name: "Samuel Williams"
+    easy: 0.00120323631990379
+    medium: 0.0102498979591837
+    hard: 0.00668199333333333

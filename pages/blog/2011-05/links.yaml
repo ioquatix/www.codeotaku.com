@@ -3,3 +3,7 @@ cross-domain-ajax:
     summary: "Find out more about HTTP access controls and how to implement them."
     author: "Samuel Williams"
     created: 2011-05-06
+university-sudoku-challenge:
+    created: 2011-05-29
+    author: Samuel Williams
+    summary: "The Canterbury University COSC329 Sudoku Challenge"

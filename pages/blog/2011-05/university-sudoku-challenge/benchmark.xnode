@@ -1,0 +1,21 @@
+<page>
+	<heading>Benchmark</heading>
+	
+	<p>To submit your application to the final competition, you must support the automatic benchmark system. Your application will be compiled with optimizations. You need to check for the <code class="syntax bash-script">-t</code> which is followed by a path to a test file.</p>
+	
+	<h2>Test File</h2>
+	
+	<p>The test file has the following format. The first number specifies the number of problems in the file. For each problem there are 81 numbers which should be read in a 9x9 pattern.</p>
+	
+	<listing src="test.txt" />
+	
+	<p>You need to read the problems in order, and output all solutions.</p>
+	
+	<h2>Test Output</h2>
+	
+	<p>The output of your program should be exactly as follows:</p>
+	
+	<listing src="output.txt" />
+	
+	<p>You must output all solutions. When parsing numbers, whitespace characters are ignored, so feel free to separate solutions by a blank line for readability.</p>
+</page>

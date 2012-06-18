@@ -1,6 +1,8 @@
 <entry>
 	<p>My company <a href="http://www.oriontransfer.co.nz">Orion Transfer</a> proudly sponsors the New Zealand Sauerbraten server. This server offers low latency gaming for New Zealanders.</p>
 
+	<status />
+
 	<p>Sauerbraten is a fast paced <abbr title="first person shooter">FPS</abbr> game primarily designed for online gameplay. It has fantastic graphics and runs fast on most modern computers. It supports a variety of different game modes including such gold standards as <abbr title="capture the flag">CTF</abbr> and death match.</p>
 	
 	<photos path="screenshots" />

@@ -1,9 +1,9 @@
 <entry>
-	<p>I often end up writing authentication systems which have to work over an unencrypted protocol. This requires an additional layer of security, which can be done using client side javascript.</p>
+	<p>A website is only as secure as its weakest link. We should assume that an attacker has access to everything that is on the server. To this end, transmitting the password to a server in clear text isn't such a great idea.</p>
 	
-	<p>It is specifically important to ensure that passwords don't travel in <a href="http://en.wikipedia.org/wiki/Digest_access_authentication">the clear</a>. Using jQuery SHA1 on the client-side to hash the password before it is sent to the server achieves this goal. A random login_hash is fetched from the server every time the password is entered. This is then digested and sent back the server, where it is checked.</p>
+	<p>It is possible to minimise the chance of a password being intercepted by simply not transmitting it at all, and instead sending a <a href="http://en.wikipedia.org/wiki/Digest_access_authentication">password digest</a>. SHA can be used on the client-side to produce a password digest along with a random <a href="http://en.wikipedia.org/wiki/Cryptographic_nonce">nounce</a> to prevent replay attacks.</p>
 	
-	<p>If the user doesn't have JavaScript, it simply supplies the password (as per what is typical).  We must also keep replay attacks in mind when designing this kind of system.</p>
+	<p>If the client doesn't have JavaScript, it simply supplies the password (as per what is typical).</p>
 	
 	<div class="gallery"><img src="secure_login.png" /></div>
 	
@@ -21,7 +21,9 @@
 	
 	<listing src="server_datamapper.txt" lang="ruby" />
 	
-	<p>Here is a server using Ramaze.</p>
+	<p>Here is a server using <a href="http://en.wikipedia.org/wiki/Ramaze">Ramaze</a>.</p>
 	
 	<listing src="server_ramaze.txt" lang="ruby" />
+	
+	<p>Finally, it is important to remember that this approach is not inherently secure. It is just one option to ensure that password does not travel in clear text. I highly recommend this article by Troy Hunt "<a href="http://www.troyhunt.com/2012/06/our-password-hashing-has-no-clothes.html">Our password hashing has no clothes</a>" which discusses the risk of using SHA for password hashing. I personally recommend using <a href="http://en.wikipedia.org/wiki/BCrypt">BCrypt</a>.</p>
 </entry>

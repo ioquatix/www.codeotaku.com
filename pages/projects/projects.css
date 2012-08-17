@@ -94,7 +94,7 @@ ul.projects {
 	color: #008000;
 }
 
-.title .tag.website, .title .tag.framework, .title .tag.application, .title .tag.command-line, .title .tag.language {
+.title .tag.website, .title .tag.framework, .title .tag.application, .title .tag.command-line, .title .tag.language, .title .tag.server {
 	border-color: #6A5ACD;
 	box-shadow: 0 0 2px #6A5ACD;
 	color: #6A5ACD;	

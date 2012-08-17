@@ -133,3 +133,61 @@ rexec:
     tags: ['open', 'ruby', 'framework']
     uri: http://www.oriontransfer.co.nz/gems/rexec
     description: "Facilitates the execution of Ruby code on remote systems and provides a comprehensive framework for process/task management."
+relaxo:
+    tags: ['open', 'ruby', 'framework']
+    uri: https://github.com/ioquatix/relaxo
+    description: "A simple and efficient interface for CouchDB written in Ruby."
+relaxo-model:
+    tags: ['open', 'ruby', 'framework']
+    uri: https://github.com/ioquatix/relaxo-model
+    description: "A simple business logic model for Relaxo/CouchDB written in Ruby."
+relaxo-query-server:
+    tags: ['open', 'ruby', 'server']
+    uri: https://github.com/ioquatix/relaxo-query-server
+    description: "The Relaxo Query Server provides support for executing CouchDB functions using Ruby."
+financier:
+    tags: ['open', 'ruby', 'rack', 'application']
+    uri: https://github.com/ioquatix/financier
+    description: "An open source business management platform using Utopia/Relaxo/CouchDB. Main features include invoicing and periodic billing in multiple currencies."
+periodical:
+    tags: ['open', 'ruby', 'framework']
+    uri: https://github.com/ioquatix/periodical
+    description: "Periodical is a simple framework for working with durations and periods."
+latinum:
+    tags: ['open', 'ruby', 'framework']
+    uri: https://github.com/ioquatix/latinum
+    description: "Latinum is a framework for resource and currency calculations."
+murakumo:
+    tags: ['open', 'ruby', 'server']
+    uri: https://github.com/cookpad/murakumo
+    description: "Murakumo is the internal DNS server which manages name information using a gossip protocol."
+mozarts:
+    title: "Mozarts Limited"
+    tags: ['commercial', 'website']
+    uri: http://www.mozarts.co.nz
+    description: "Mozarts Kindergarten and Drama School website."
+papagenoproductions:
+    title: "Papageno Productions Limited"
+    tags: ['commercial', 'website']
+    uri: http://www.papagenoproductions.com
+    description: "Papageno Productions website."
+lucidsystems:
+    title: "Lucid Information Systems Limited"
+    tags: ['commercial', 'website']
+    uri: http://www.papagenoproductions.com
+    description: "Lucid Information Systems website."
+litepanels:
+    title: "Litepanels New Zealand"
+    tags: ['commercial', 'website']
+    uri: http://www.litepanels.co.nz
+    description: "Litepanels online store for New Zealand."
+drobo:
+    title: "Drobo New Zealand"
+    tags: ['commercial', 'website']
+    uri: http://www.drobo.co.nz
+    description: "Drobo online store for New Zealand."
+tagged-model-format:
+    title: "Tagged Model Format"
+    tags: ['open', 'cpp', 'framework']
+    uri: https://github.com/ioquatix/tagged-model-format
+    description: "A flexible text+binary format for storing mesh data, primarily for modern graphics pipelines."

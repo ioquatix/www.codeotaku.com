@@ -1,0 +1,30 @@
+<page>
+	<?r @title = "Game Mechanics Society" ?>
+	<div class="logo">
+		<img src="logo.png" />
+	</div>
+	
+	<h2>2012 Events</h2>
+	
+	<p>If you are interested in participating in any of the events below, please <a href="mailto:samuel.williams@oriontransfer.co.nz">contact us</a>.</p>
+	
+	<dl class="basic">
+		<dt>Lundam Dare (25th - 27th August 2012)</dt>
+		<dd>
+			Join in the fun this weekend as we work together developing games for the Lundam Dare competition.
+		</dd>
+		
+		<dt>Game Mechanics Conference (November 2012)</dt>
+		<dd>
+			For more details please see the notes from the <a href="/blog/2012-06/game-programming-weekend">previously scheduled event</a>.
+		</dd>
+	</dl>
+	
+	<h2>Community</h2>
+	
+	<p>Participate online at <a href="http://www.reddit.com/r/GMS">r/GMS</a>.</p>
+	
+	<h2>Membership</h2>
+	
+	<p>To become an official member of the Game Mechanics Society you must produce and demonstrate a complete game with novel mechanics. For more information please contact <a href="mailto:samuel.williams@oriontransfer.co.nz">Samuel Williams</a>.</p>
+</page>

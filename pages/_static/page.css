@@ -47,6 +47,10 @@ blockquote {
 	margin: 10pt 0 10pt 0;
 }
 
+.logo {
+	text-align: center;
+}
+
 .navigation .prev_link {
 	float: left;
 }

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Tileshift</title>
+		
+		<link href='http://fonts.googleapis.com/css?family=Eagle+Lake' rel='stylesheet' type='text/css'>
+		
+		<style type="text/css" media="screen">
+			body {
+				color: white;
+				background-color: #000;
+				
+				font-family: 'Eagle Lake', cursive;
+			}
+		</style>
+	</head>
+	<body>
+		<a href="https://github.com/ioquatix/tileshift"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
+		
+		<div style="text-align: center">
+			<h1>Tile Shift</h1>
+			
+			<p>You need to reach the chest. The game world will evolve to both assist and challenge you..</p>
+			
+			<canvas id="tileshift" style="border: 1px solid black; width: 0; height: 0;">
+				<p>Your browser doesn't support canvas.</p>
+			</canvas>
+		</div>
+	
+		<label><input type="checkbox" onclick="javascript:toggleDebugVisualisation(event)" /> Visualise A* Fitness Function</label>
+	
+		<script src="heap.js" type="text/javascript"></script>
+		<script src="pathfinder.js" type="text/javascript"></script>
+		<script src="main.js" type="text/javascript"></script>
+	</body>
+</html>

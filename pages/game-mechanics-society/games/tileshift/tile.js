@@ -45,6 +45,7 @@ Widget.PLAYER = 'Widget.PLAYER';
 Widget.CHEST = 'Widget.CHEST';
 Widget.KEY = 'Widget.KEY';
 Widget.DOOR = 'Widget.DOOR';
+Widget.STAR = 'Widget.STAR';
 
 /// *** Widget Layer ***
 Widget.Layer = function() {
@@ -132,14 +133,16 @@ TileMapSearch.prototype.addStepsFrom = function (pathFinder, node) {
 		
 		if (tile && !tile.blocked()) {
 			var estimateToGoal = this.estimatePathCost(next, goal);
-			pathFinder.addStep(node, next, 0.95, estimateToGoal);
+			pathFinder.addStep(node, next, 1.0, estimateToGoal);
 		}
 	}
 }
 
 TileMapSearch.prototype.estimatePathCost = function (fromNode, toNode) {
-	//return Vec2.euclidianDistance(toNode, fromNode) * 2;
-	return Vec2.manhattenDistance(toNode, fromNode) * 1.2;
+	//return Vec2.euclidianDistance(toNode, fromNode);
+	
+	// This is carefully selected:
+	return Vec2.manhattanDistance(toNode, fromNode) * 1.05;
 }
 
 TileMapSearch.prototype.isGoalState = function (node) {

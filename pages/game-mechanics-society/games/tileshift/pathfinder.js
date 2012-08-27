@@ -7,6 +7,8 @@ function PathFinder (delegate) {
 		return node.cost();
 	});
 	
+	this.best = null;
+	
 	this.state = {};
 }
 
@@ -26,16 +28,16 @@ PathFinder.Node.prototype.cost = function () {
 
 PathFinder.prototype.constructForwardPath = function (node, path) {
 	if (node.parent != null)
-		this.constructForwardPath(node, path);
+		this.constructForwardPath(node.parent, path);
 	
 	path.push(node);
 }
 
 PathFinder.prototype.currentPath = function () {
-	var path = new Array();
+	var path = [];
 	
-	if (this.open.top() != null)
-		constructForwardPath(this.open.top(), path);
+	if (this.best)
+		this.constructForwardPath(this.best, path);
 	
 	return path;
 }
@@ -94,13 +96,6 @@ function SearchRenderer (scale) {
 	this.search = null;
 }
 
-function convertLocationKey(loc) {
-	loc = loc.split(',');
-	loc[0] = parseInt(loc[0]);
-	loc[1] = parseInt(loc[1]);
-	return loc;
-}
-
 SearchRenderer.prototype.display = function (context) {
 	if (!this.search) return;
 	
@@ -122,9 +117,9 @@ SearchRenderer.prototype.display = function (context) {
 		context.textAlign = "center";
 		
 		context.strokeStyle = "#000000";
-		context.strokeText(costText, (0.5+loc[1])*this.scale[1], (loc[0])*this.scale[0]);
+		context.strokeText(costText, (0.5+loc[1])*this.scale[1], (loc[0] + 1)*this.scale[0]);
 		
-		context.fillText(costText, (0.5+loc[1])*this.scale[1], (loc[0])*this.scale[0]);
+		context.fillText(costText, (0.5+loc[1])*this.scale[1], (loc[0] + 1)*this.scale[0]);
 	}
 	
 	var top = this.search.currentBest();
@@ -133,11 +128,11 @@ SearchRenderer.prototype.display = function (context) {
 	context.beginPath();
 
 	if (top) {
-		context.moveTo(this.scale[1] * (0.5 + top.step[1]), this.scale[0] * (0 + top.step[0]))
+		context.moveTo(this.scale[1] * (0.5 + top.step[1]), this.scale[0] * (1 + top.step[0]))
 	}
 
 	while (top != null) {
-		context.lineTo(this.scale[1] * (0.5 + top.step[1]), this.scale[0] * (0 + top.step[0]))
+		context.lineTo(this.scale[1] * (0.5 + top.step[1]), this.scale[0] * (1 + top.step[0]))
 		top = top.parent;
 	}
 	

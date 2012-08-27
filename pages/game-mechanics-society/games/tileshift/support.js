@@ -73,8 +73,6 @@ ResourceLoader.prototype.loadImage = function(name, source) {
 	this.resources[name] = resource;
 	
 	resource.addEventListener('load', this.onLoad.bind(this, name));
-	
-	console.log("Loading image", name, source);
 	resource.src = source;
 }
 
@@ -83,9 +81,9 @@ ResourceLoader.prototype.loadAudio = function(name, source) {
 	resource.preload = true;
 	
 	this.resources[name] = resource;
-	
-	console.log("Loading audio", name, source);
 	resource.src = source;
+	
+	resource.load();
 }
 
 ResourceLoader.prototype.get = function(name) {
@@ -112,4 +110,23 @@ function randomInt(max) {
 
 function randomIntRange(min, max){
 	return Math.floor(Math.random() * (max - min) + min);
+}
+
+function convertLocationKey(location) {
+	location = location.split(',');
+	return [parseInt(location[0]), parseInt(location[1])]
+}
+
+function roundedRectPath(ctx, x, y, width, height, radius) {
+	ctx.beginPath();
+	ctx.moveTo(x + radius, y);
+	ctx.lineTo(x + width - radius, y);
+	ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+	ctx.lineTo(x + width, y + height - radius);
+	ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+	ctx.lineTo(x + radius, y + height);
+	ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+	ctx.lineTo(x, y + radius);
+	ctx.quadraticCurveTo(x, y, x + radius, y);
+	ctx.closePath();
 }

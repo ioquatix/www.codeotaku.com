@@ -22,9 +22,9 @@ KeyWidget.prototype.constructor = KeyWidget;
 Tile.BRIDGE = 'Tile.BRIDGE';
 
 Tileshift.addLevel({
-	name: 'doors',
+	name: 'doorsLevel1',
 	description: 'Find you way through the doors, to open the chest!',
-	difficulty: 1.2,
+	difficulty: 2.1,
 	
 	randomFloorMutation: function(generator, map) {
 		for (var i = 0; i < 4; i++) {
@@ -39,7 +39,7 @@ Tileshift.addLevel({
 			if (c > map.size[1]-1) c = map.size[1]-2;
 
 			if (map.get([r, c]) == null) {
-				map.set([r, c], new Tile(0, Platform.FLOOR));
+				map.set([r, c], new Tile(0, Platform.DIRT));
 			}
 		}
 	},
@@ -51,8 +51,7 @@ Tileshift.addLevel({
 		this.resources.loadAudio(Event.DOOR, 'effects/Door.wav');
 		this.resources.loadAudio(Event.KEY, 'effects/Key.wav');
 		
-		
-		this.onBegin = function() {
+		this.onStart = function() {
 			var map = new TileMap([20, 30]);
 			map.set([1, 1], new Tile(0, Tile.START))
 			map.set([18, 28], new Tile(0, Tile.FLOOR, Tile.END));
@@ -69,12 +68,16 @@ Tileshift.addLevel({
 			map.layers.portals.set([18, 28], new Widget(0, Widget.CHEST));
 
 			this.gameState.playerKeys = {};
-			
+			this.controllerRenderer = new ControllerRenderer(this.resources, map.size, this.mapRenderer.scale);
 			map.rooms = [];
 			map.doors = [];
 			generateRoomsOnMap(map, map.rooms, 4);
-			generateMapDoorsKeys(this.gameState, map, 15);
+			generateMapDoorsKeys(this.gameState, map, 1);
 			
+			controller.showOverlay(document.getElementById('doors'));
+		}
+		
+		this.onResume = function() {
 			this.redraw();
 			
 			if (!this.interval) {
@@ -123,6 +126,7 @@ Tileshift.addLevel({
 				}
 			} else if (this.gameState.isValidEvent(event)) {
 				this.gameState.pushEvent(event);
+				this.resources.get(Event.MOVE).play();
 				
 				if (Vec2.equals(this.gameState.playerLocation, [18, 28])) {
 					this.resources.get(Event.EXIT).play();

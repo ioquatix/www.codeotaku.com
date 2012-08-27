@@ -34,7 +34,7 @@ Platform = Tile;
 function Widget (cost, identity) {
 	this.cost = cost;
 	this.identity = identity;
-	this.offset = -20;
+	this.offset = -40;
 }
 
 Widget.prototype.blocked = function () {
@@ -51,19 +51,49 @@ Widget.STAR = 'Widget.STAR';
 Widget.Layer = function() {
 }
 
+Widget.Layer.prototype.set = function(coordinate, widget) {
+	this[coordinate] = widget;
+}
+
 Widget.Layer.prototype.get = function(coordinate) {
 	return this[coordinate];
+}
+
+Widget.Layer.prototype.remove = function(coordinate) {
+	delete this[coordinate];
+}
+
+Widget.Layer.prototype.move = function(from, to) {
+	var widget = this[from];
+	
+	if (!this.get(to)) {
+		this.remove(from);
+		this.set(to, widget);
+	}
 }
 
 Widget.Layer.prototype.duplicate = function() {
 	var copy = new Widget.Layer();
 	
 	for (var key in this) {
-		//if (this.hasOwnProperty(key))
-		copy[key] = this[key];
+		if (this.hasOwnProperty(key)) {
+			copy[key] = this[key];
+		}
 	}
 	
 	return copy;
+}
+
+Widget.Layer.prototype.allLocations = function() {
+	var locations = [];
+	
+	for (var key in this) {
+		if (this.hasOwnProperty(key)) {
+			locations.push(convertLocationKey(key));
+		}
+	}
+	
+	return locations;
 }
 
 // TileMap data model - contains tiles.
@@ -111,7 +141,7 @@ TileMap.prototype.getSpecials = function (special) {
 			var tile = this.get([r, c]);
 				
 			if (tile && tile.special == special)
-			specials.push([[r, c], tile])
+				specials.push([r, c]);
 		}
 	}
 	
@@ -121,6 +151,8 @@ TileMap.prototype.getSpecials = function (special) {
 function TileMapSearch(map, goals) {
 	this.map = map;
 	this.goals = goals;
+	
+	this.distanceFunction = Vec2.manhattanDistance;
 }
 
 TileMapSearch.prototype.addStepsFrom = function (pathFinder, node) {
@@ -131,18 +163,25 @@ TileMapSearch.prototype.addStepsFrom = function (pathFinder, node) {
 		var next = [step[0] + P[i][0], step[1] + P[i][1]];
 		var tile = this.map.get(next);
 		
+		// This approach adds a step based on the minimum cost for all goals:
 		if (tile && !tile.blocked()) {
-			var estimateToGoal = this.estimatePathCost(next, goal);
-			pathFinder.addStep(node, next, 1.0, estimateToGoal);
+			var minimumEstimate = Infinity;
+			
+			for (var j in this.goals) {
+				var estimateToGoal = this.estimatePathCost(next, this.goals[j]);
+				
+				if (estimateToGoal < minimumEstimate)
+					minimumEstimate = estimateToGoal;
+			}
+			
+			pathFinder.addStep(node, next, 1.0, minimumEstimate);
 		}
 	}
 }
 
 TileMapSearch.prototype.estimatePathCost = function (fromNode, toNode) {
-	//return Vec2.euclidianDistance(toNode, fromNode);
-	
 	// This is carefully selected:
-	return Vec2.manhattanDistance(toNode, fromNode) * 1.05;
+	return this.distanceFunction(toNode, fromNode) * 1.05;
 }
 
 TileMapSearch.prototype.isGoalState = function (node) {
@@ -168,22 +207,24 @@ TileMapSearch.prototype.prime = function(search, start) {
 function TileMapRenderer (resources, size, scale) {
 	this.size = size;
 	
-	this.scale = scale || [40, 50];
+	this.scale = scale || [80, 100];
 	this.resources = resources;
 }
 
 TileMapRenderer.prototype.pixelSize = function() {
-	return [this.size[0] * this.scale[0], this.size[1] * this.scale[1]];
+	return [(this.size[0] + 1.5) * this.scale[0], this.size[1] * this.scale[1]];
 }
 
 TileMapRenderer.prototype.display = function (context, layers) {
 	var pixelSize = this.pixelSize();
-	
+	/*
 	var backgroundStyle = context.createLinearGradient(0, 0, 0, pixelSize[1]);
 	backgroundStyle.addColorStop(0, '#000000');
-	backgroundStyle.addColorStop(1, '#000000');
+	backgroundStyle.addColorStop(1, '#333333');
 	
 	context.fillStyle = backgroundStyle;
+	*/
+	context.fillStyle = 'black';
 	context.fillRect(0, 0, pixelSize[1], pixelSize[0]);
 	
 	for (var r = 0; r < this.size[0]; r += 1) {
@@ -199,7 +240,7 @@ TileMapRenderer.prototype.display = function (context, layers) {
 					
 					if (image) {
 						offset = (this.scale[0] - image.height) + tile.offset;
-						context.drawImage(image, c*this.scale[1], r*this.scale[0] + offset);
+						context.drawImage(image, c*this.scale[1], (r+1)*this.scale[0] + offset);
 					}
 				}
 			}

@@ -125,7 +125,7 @@ goblin-hacker:
     description: "A save-game editor for the game 'Eschalon Book I', built from scratch by reverse engineering."
 jquery-menu:
     title: "jQuery.Menu"
-    tags: ['open', 'javascript', 'framework']
+    tags: ['open', 'javascript', 'jquery', 'framework']
     uri: http://www.oriontransfer.co.nz/projects/jquery-menu
     description: "A simple dynamic pop-up menu framework built on top of jQuery."
 rexec:

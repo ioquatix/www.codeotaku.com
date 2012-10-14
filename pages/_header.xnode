@@ -13,7 +13,7 @@
 			indicies = true
 		end
 		
-		link = parent.node.links(path.dirname, :name => basename, :locale => request.current_locale, :indices => indices).first
+		link = parent.node.links(path.dirname, :name => basename, :locale => request.current_locale, :indices => indices, :display => nil).first
 		
 		if !front ?>
 		<li>&lambda;</li>

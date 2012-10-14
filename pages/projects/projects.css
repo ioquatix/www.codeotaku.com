@@ -6,10 +6,10 @@
 	
 	text-align: center;
 	
-	background-image: url("/_static/gd2.png");
+	background-color: white;
+	box-shadow: 0 0 4px rgba(0, 0, 0, 0.05);
+
 	padding: 4pt;
-	
-	border-radius: 0.2em;
 }
 
 .filter .tags a {

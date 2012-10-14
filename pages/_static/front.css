@@ -1,0 +1,60 @@
+
+.bottom, .top {
+	position: absolute;
+	left: 0;
+	right: 0;
+
+	text-align: center;
+}
+
+.top {
+	bottom: 50%;
+	top: 0;
+
+	background-color: white;
+	box-shadow: 0 0 8px rgba(0, 0, 0, 1.0);
+	z-index: 10;
+}
+
+.bottom {
+	top: 50%;
+	bottom: 0;
+
+	background-color: #333;
+	color: white;
+
+	padding: 8pt;
+}
+
+.bottom a {
+	padding: 0 4pt;
+}
+
+h1 {
+	position: absolute;
+	left: 0;
+	right: 0;
+
+	font-size: 50pt;
+	padding-right: 0.4em;
+}
+
+.top h1 {
+	position: absolute;
+	bottom: -30pt;
+
+	color: #333;
+
+	text-shadow: #aaa 0px 0px 3px;
+}
+
+.bottom a {
+	color: white;
+}
+		
+@media only screen and (max-width: 600px) {
+	.top h1 {
+		font-size: 30pt;
+		bottom: -15pt;
+	}
+}

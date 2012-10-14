@@ -1,65 +1,12 @@
 <front>
-	<style type="text/css" media="screen">
-		.bottom, .top {
-			position: absolute;
-			left: 0;
-			right: 0;
-
-			text-align: center;
-		}
-
-		.top {
-			bottom: 50%;
-			top: 0;
-		}
-
-		.bottom {
-			top: 50%;
-			bottom: 0;
-
-			background-color: black;
-			color: white;
-
-			padding: 10pt;
-		}
-
-		h1 {
-			position: absolute;
-			left: 0;
-			right: 0;
-
-			font-size: 50pt;
-			padding-right: 0.4em;
-		}
-
-		.top h1 {
-			position: absolute;
-			bottom: -30pt;
-
-			color: #333;
-
-			text-shadow: #aaa 0px 0px 3px;
-		}
-
-		.bottom a {
-			color: white;
-		}
-		
-		@media only screen and (max-width: 600px) {
-			.top h1 {
-				font-size: 30pt;
-				bottom: -15pt;
-			}
-		}
-	</style>
 	<div class="top">
 		<h1>`(code otaku)</h1>
 	</div>
 	<div class="bottom">
-		<a href="/game-mechanics-society">GMS</a>
+		<a href="/projects">my projects</a>
 		&lambda;
-		<a href="/projects">projects</a>
+		<a href="/blog">my journal</a>
 		&lambda;
-		<a href="/blog">blog</a>
+		<a href="/game-mechanics-society">game mechanics</a>
 	</div>
 </front>

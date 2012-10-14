@@ -1,12 +1,12 @@
 body {
-	background-color: #fdfdfd;
+	background-color: #333;
 	
 	background-attachment: fixed;
 	color: #000;
 	
 	font-family: 'HelveticaNeue-Light', Helvetica, Arial, sans-serif;
 	font-weight: lighter;
-	margin: 0;
+	margin: 5pt;
 }
 
 blockquote {
@@ -14,23 +14,34 @@ blockquote {
 }
 
 #content {
-	padding-left: 50px;
-	padding-right: 50px;
+	box-shadow: 0px -2px 8px black;
 	
-	padding-bottom: 20pt;
+	background-color: #fdfdfd;
+	margin: 5pt;
+	
+	padding: 20pt;
+}
+
+#content h1, #content h2, #content h3 {
+	font-weight: normal;
+	color: #222;
+	text-shadow: 2px 2px 2px #eee;
 }
 
 #content h1 {
-	font-size: 18pt;
+	margin-top: 0;
+	font-size: 30pt;
 }
 
 #content h2 {
+	font-size: 25pt;
 	margin-top: 50pt;
 	margin-bottom: 10pt;
 	font-size: 16pt;
 }
 
 #content h3 {
+	font-size: 20pt;
 	margin-top: 40pt;
 	margin-bottom: 8pt;
 	font-size: 13pt;
@@ -61,18 +72,20 @@ blockquote {
 
 .heading {
 	text-align: center;
-	
-	background-image: url("/_static/gd2.png");
-	
-	box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 	margin: 20pt 0 40pt 0;
 	padding: 20pt 4pt;
 	
-	border-radius: 0.2em;
+	background-color: white;
+	box-shadow: 0 0 4px rgba(0, 0, 0, 0.05);
 }
 
 .heading h1 {
 	margin-top: 0;
+}
+
+.heading strong {
+	font-weight: normal;
+	color: #00a;
 }
 
 .heading small {
@@ -109,8 +122,8 @@ dl.options {
 	padding-top: 0.5em;
 	margin: 0;
 	
-	background: rgba(230, 230, 230, 0.25);
-	border: 1px solid #ccc;
+	/* background: rgba(230, 230, 230, 0.25);
+	border: 1px solid #ccc; */
 }
 
 dl.options dt {
@@ -275,8 +288,9 @@ pre.code, code.basic {
 }
 
 #comments form {
-	background: white;
-	border: 1px solid black;
+	background-color: white;
+	box-shadow: 0 0 4px rgba(0, 0, 0, 0.05);
+
 	padding: 5px;
 	margin: 5px;
 }
@@ -314,11 +328,11 @@ pre.code, code.basic {
 }
 
 #comments .comment, .about-me {
+	background-color: white;
+	box-shadow: 0 0 4px rgba(0, 0, 0, 0.05);
+	
 	margin: 5px;
 	padding: 5px;
-	background-color: #eee;
-	background-color: rgba(230, 230, 230, 0.25);
-	border: 1px solid #ccc;
 }
 
 form.basic dd.icons img {
@@ -433,28 +447,23 @@ sup a {
 }
 
 /* Page Navigation Bar */
-.header {	
-	border-bottom: 1px solid #ccc;
-	margin-bottom: 10pt;
-	
+.header {
 	position: relative;
-	
-	background-color: black;
 	color: white;
 	
-	font-size: 9pt;
+	font-size: 12pt;
+	padding: 2pt;
 }
 
 .header ul.trail {
-	padding: 1pt 12pt 1pt 12pt;
-	margin: 0;	
+	padding: 2pt;
+	margin: 0;
 }
 
 .header li {
 	display: inline-block;
 	list-style: none;
 	line-height: 10pt;
-	margin-right: 11px;
 }
 
 .header a {

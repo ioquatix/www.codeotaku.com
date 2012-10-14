@@ -1,0 +1,9 @@
+<page>
+	<heading>Relaxo Query Server</heading>
+	
+	<p>Relaxo Query Server allows you to use Ruby for CouchDB design documents and map-reduce functions.</p>
+	
+	<h2>Source Code</h2>
+	
+	<p>Source code is currently available at <a href="https://github.com/ioquatix/relaxo-query-server">GitHub</a>.</p>
+</page>

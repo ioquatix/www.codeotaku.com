@@ -1,0 +1,24 @@
+<page>
+	<heading>Relaxo</heading>
+	
+	<p>Relaxo consists of three projects that provide comprehensive Ruby support for the CouchDB platform. Specifically, Relaxo is a high-performance Ruby client for accessing CouchDB.</p>
+	
+	<h2>Install</h2>
+	
+	<listing brush="bash" src="install.txt" />
+	
+	<h2>Example</h2>
+	
+	<listing brush="ruby" src="example.txt" />
+	
+	<h2>Source Code</h2>
+	
+	<p>Source code is currently available at <a href="https://github.com/ioquatix/relaxo">GitHub</a>.</p>
+	
+	<h2>Related Projects</h2>
+	
+	<ul>
+		<li><a href="query-server">Relaxo Query Server</a> &mdash; a high-performance Ruby query server for CouchDB design documents.</li>
+		<li><a href="model">Relaxo Model</a> &mdash; a document centric data-mapper for CouchDB.</li>
+	</ul>
+</page>

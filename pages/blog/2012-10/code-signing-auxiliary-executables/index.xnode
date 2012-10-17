@@ -1,0 +1,31 @@
+<entry>
+	<p>I recently updated one of my projects <a href="http://www.oriontransfer.co.nz/software/library-inspector">Library Inspector</a> for OS X 10.8. After a month of waiting, it was finally rejected (!#@$%!@) due to problems with the code signing entitlements. The Apple Reviewer was very vague about the problem which caused additional frustrations (%!@#$%) but after searching I found a very helpful application <a href="http://brockerhoff.net/RB/AppCheckerLite/">RB App Checker Lite</a> which can check the certificates, entitlements and other details of your application likely to cause problems.</p>
+	
+	<p>I actally emailed Rainer Brockerhoff since I figured he'd have a lot of experience (and I gave him a free copy of Library Inspector to sweeten the deal). He told me that for <code class="syntax objective-c">NSTask</code> based task invocation I'd need to encode the entitlements directly into the binaries, which I wasn't doing.</p>
+	
+	<p>To make things even more complex, the binaries I am including in the application bundle are actually copied from Xcode (<code>nm</code>, <code>otool</code>, <code>c++filt</code>, etc) and <a href="http://www.codethecode.com/projects/class-dump/">class-dump</a> (a fantastic tool by the way!). So, I am ripping out the existing Apple signatures and adding my own. This is because you can't submit other people's code signed binaries to the Mac App Store.</p>
+	
+	<p>Anyway, here is what I ended up with:</p>
+	
+	<h2>Application Entitlements</h2>
+	
+	<p>This is the main entitlements file for Library Inspector.</p>
+	
+	<listing src="Library Inspector.entitlements" brush="xml" />
+	
+	<h2>Auxiliary Executable Entitlements</h2>
+	
+	<p>This is the entitlements used for the auxiliary binaries.</p>
+	
+	<listing src="Auxiliary Executable.entitlements" brush="xml" />
+	
+	<p>Of particular importance is the <code class="syntax">com.apple.security.inherit</code> property. When Library Inspector, itself running in a sandbox due to <code class="syntax">com.apple.security.app-sandbox</code> invokes tasks using <code class="syntax objective-c">NSTask</code>, it will itself run in a sandbox and inherit the permissions of Library Inspector so it can read any relevant input files (normally provided as arguments).</p>
+	
+	<h2>Code Signing Script</h2>
+	
+	<p>This script is used as a build phase within Library Inspector and signs the auxiliary executables if a signature was specified. For your own application you'd need to update the list of tools and the identifier base.</p>
+	
+	<listing src="codesign.txt" brush="ruby" />
+	
+	<p>Now I just have to submit the application and wait for a month for Apple to review it... Fingers crossed that everything is fine this time through the system.</p>
+</entry>

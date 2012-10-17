@@ -1,0 +1,21 @@
+Dir.chdir ENV['BUILT_PRODUCTS_DIR']
+
+# These tools are copied directly to the built products directory in a previous copy files build phase:
+tools = ['class-dump', 'otool', 'nm', 'c++filt']
+cert = ENV['CODE_SIGN_IDENTITY']
+
+# The base identifier for the tools:
+identifier_base = 'nz.co.oriontransfer.Library-Inspector.tools'
+
+# The path to the auxiliary executable entitlements file:
+entitlements = File.join(ENV['PROJECT_DIR'], 'Auxiliary Executable.entitlements')
+
+tools.each do |tool|
+	full_path = File.join(ENV['EXECUTABLE_FOLDER_PATH'], tool)
+	
+	# The full (new) identifier for the executable:
+	identifier = identifier_base + '.' + tool
+	
+	# Use the codesign tool to embed a new signature and entitlements:
+	system('codesign', '--entitlements', entitlements, '-i', identifier, '--force', '-s', cert, full_path)
+end

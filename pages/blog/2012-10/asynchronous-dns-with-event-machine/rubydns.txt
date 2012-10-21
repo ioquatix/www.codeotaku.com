@@ -1,0 +1,28 @@
+
+require 'rubydns'
+
+resolver = RubyDNS::Resolver.new([[:udp, "8.8.8.8", 53], [:tcp, "8.8.8.8", 53]])
+
+EventMachine::run do
+	resolver.query('www.codeotaku.com') do |response|
+		case response
+		when RubyDNS::Message
+			response.answer.each do |answer|
+				host = answer[0].to_s
+				ttl = answer[1]
+				resource_class = answer[2].class.name.split('::', 4)[-1]
+				address = answer[2].address.to_s
+			
+				puts host.ljust(20) + ttl.to_s.ljust(5) + resource_class.ljust(15) + address.to_s
+			end
+		when RubyDNS::ResolutionFailure
+			puts "Error"
+		end
+		
+		EventMachine::stop
+	end
+end
+
+# Gives the output
+# www.codeotaku.com   287  IN::A          108.162.195.101
+# www.codeotaku.com   287  IN::A          108.162.196.199

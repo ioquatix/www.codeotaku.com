@@ -37,7 +37,10 @@ use Utopia::Middleware::Logger
 use Utopia::Middleware::Redirector, {
 	:errors => {
 		404 => "/errors/file-not-found"
-	}
+	},
+	:patterns => [
+		[:moved, "/samuel-williams", "http://www.oriontransfer.co.nz/samuel-williams"]
+	]
 }
 
 use Utopia::Middleware::Requester

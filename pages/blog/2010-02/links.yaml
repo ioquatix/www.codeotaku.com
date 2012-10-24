@@ -1,8 +1,3 @@
-new-weblog:
-    title: "New Weblog"
-    created: 2010-02-03
-    author: "Samuel Williams"
-    summary: "This is my new weblog. I'm so happy since it is much better :)"
 javascript-loader:
     title: "JavaScript Loader"
     created: 2010-02-05

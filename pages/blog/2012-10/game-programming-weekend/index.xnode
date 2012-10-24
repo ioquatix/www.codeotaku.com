@@ -1,5 +1,5 @@
 <entry>
-	<p>In conjunction with the <a href="http://www.hitlabnz.org">HIT Lab NZ</a> and <a href="http://www.canterbury.ac.nz">Canterbury University</a>, we are running a Game Programming Weekend open to students of Canterbury University at the <a href="http://www.ffc.canterbury.ac.nz/cass/">Cass Field Station</a>. Come and learn about game design and development, meet new and interesting people with similar interests and have a relaxing week in the great outdoors.</p>
+	<p>In conjunction with the Game Mechanics Society, we are running a Game Programming Weekend open to students of Canterbury University at the <a href="http://www.ffc.canterbury.ac.nz/cass/">Cass Field Station</a>. Come and learn about game design and development, meet new and interesting people with similar interests and have a relaxing week in the great outdoors.</p>
 	
 	<photos path="cass" />
 	
@@ -9,7 +9,7 @@
 	
 	<dl class="options">
 		<dt>Day 1</dt>
-		<dd>Leaving at 11am (Tuesday 26th June).</dd>
+		<dd>Leaving at 11am (Early December).</dd>
 		<dd>You will receive a short introduction and briefing at 2pm.</dd>
 		<dd>Prepare and give a short 2 minute pitch for your game idea. You will NOT have access to a projector or any other electronic device. Every participant will be given two votes and you will have an opportunity to vote for the projects you liked. The top ideas will then form teams. For the remainder of the day you will need to develop and iterate on your ideas, delegate work and select your frameworks/APIs.</dd>
 		<dd>Dinner from 6pm-7pm; relaxation/coding 7pm - am.</dd>
@@ -25,7 +25,7 @@
 		<dd>Coding from 10am to 4pm.</dd>
 		<dd>Each team will have 10 minutes to give a demonstration/sales pitch on their prototype. Your projects will be judged and evaluated. There will be prizes. Afterwards, debriefing and relaxation &amp; LAN party.</dd>
 		<dt>Day 6</dt>
-		<dd>Cleaning up and return home by 7pm (Sunday 1st July).</dd>
+		<dd>Cleaning up and return home by 7pm.</dd>
 	</dl>
 	
 	<h2>Technology</h2>
@@ -96,7 +96,7 @@
 		}
 	</style>
 	
-	<div style="margin: 25pt -50px 25pt -50px; padding: 25pt; color: white; background-color: black">
+	<div style="margin: 25pt; padding: 25pt">
 		<div style="text-align: center">
 			<a href="https://docs.google.com/spreadsheet/viewform?formkey=dExUSEdhczJaMDdiV0o3OERSV2V6RFE6MQ" class="button">Register Now!</a>
 		</div>

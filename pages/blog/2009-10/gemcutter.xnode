@@ -1,5 +1,0 @@
-<entry>
-	<p>I've released a lot of gems in the past using regular ol' <a href="http://gems.oriontransfer.org/">gem server</a>, however this site has been brought to my attention: <a href="http://gemcutter.org/">gemcutter.org</a></p>
-
-	<p>It makes deploying and serving gems to other people trivial. It will be interesting to see how they ensure that gem names don't clash... and what happens when they do.</p>
-</entry>

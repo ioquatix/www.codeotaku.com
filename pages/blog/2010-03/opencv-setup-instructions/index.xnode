@@ -37,38 +37,36 @@
 	
 	<dl class="basic">
 		<dt>Include Files</dt>
-		<dd>Add in the directory containing OpenCV header files (e.g. <code>C:\\OpenCV2.0</code>)</dd>
+		<dd>Add in the directory containing OpenCV header files (e.g. <code>C:\OpenCV2.0</code>)</dd>
 		<dt>Library Files</dt>
-		<dd><code>C:\\[OpenCV2.0 Build Directory]\\lib\\debug</code></dd>
-		<dd><code>C:\\[OpenCV2.0 Build Directory]\\lib\\release</code></dd>
+		<dd><code>C:\[OpenCV2.0 Build Directory]\lib\debug</code></dd>
+		<dd><code>C:\[OpenCV2.0 Build Directory]\lib\release</code></dd>
 		<dt>Source Files</dt>
-		<dd><code>C:\\[OpenCV2.0 Build Directory]\\src\\cv</code></dd>
-		<dd><code>C:\\[OpenCV2.0 Build Directory]\\src\\cvaux</code></dd>
-		<dd><code>C:\\[OpenCV2.0 Build Directory]\\src\\cxcore</code></dd>
-		<dd><code>C:\\[OpenCV2.0 Build Directory]\\src\\highgui</code></dd>
+		<dd><code>C:\[OpenCV2.0 Build Directory]\src\cv</code></dd>
+		<dd><code>C:\[OpenCV2.0 Build Directory]\src\cvaux</code></dd>
+		<dd><code>C:\[OpenCV2.0 Build Directory]\src\cxcore</code></dd>
+		<dd><code>C:\[OpenCV2.0 Build Directory]\src\highgui</code></dd>
 	</dl>
 	
 	<p>Thanks to Yen-Sheng Pan for these instructions.</p>
 	
-	<h2>Mac OS X 10.6 / Xcode 3.0 Setup</h2>
+	<h2>Mac OS X 10.8 / Xcode 4+ Setup</h2>
 	
-	<p>Download and install the package here: <a href="http://giesler.biz/~bjoern/downloads/OpenCV-2.0.0-Darwin.dmg">OpenCV-2.0.0-Darwin.dmg</a>.</p>
+	<p>Download and install <a href="http://www.macports.org">MacPorts</a>, and install OpenCV by running <code class="syntax bash-script">sudo port install opencv</code> in a terminal.</p>
 	
 	<p>Create a new Xcode "Command Line Tool" project:</p>
 	
-	<gallery path="_osx" tag="thumbnail" process="thumbnail" filter="stage1" />
+	<gallery path="_osx" tag="thumbnail" process="thumbnail" filter="new-project" />
 	
-	<p>From the menu, select Project &rarr; Edit Active Target "...". Under the "Configuration" drop down, select "All Configurations", and then edit the options under "Architectures" to match the following:</p>
+	<p>From the target's build settings, make sure you set the header and library search paths correctly:</p>
 	
-	<gallery path="_osx" tag="thumbnail" process="thumbnail" filter="stage2" />
+	<gallery path="_osx" tag="thumbnail" process="thumbnail" filter="search-paths" />
 	
 	<p>You should now be able to compile your project with OpenCV.</p>
 	
 	<h2>Simple Example</h2>
 	
 	<listing src="simple_example.txt" brush="clang" />
-	
-	<p>Thanks to <a href="http://giesler.biz/~bjoern/blog/?p=183">Björn Giesler</a> for putting together an installer.</p>
 	
 	<h2>OpenCV 2.0 Documentation</h2>
 	

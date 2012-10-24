@@ -3,24 +3,11 @@ concrete-bath:
     created: 2009-10-02
     author: "Samuel Williams"
     summary: "Here is a recipe for making strong and lightweight concrete. I am planning to build a bath out of it."
-led-lighting-comparison:
-    title: "LED Lighting Comparison"
-    created: 2009-10-03
-    author: "Samuel Williams"
-    summary: "LED lighting is becoming more and more important. But, is it cost effective?"
 thinking-about-programming:
     title: "Thinking about Programming Languages"
     created: 2009-10-04
     author: "Samuel Williams"
     summary: "What is the right level of abstraction and terminology to solve technical problems?"
-how-to-be-a-consultant:
-    created: 2009-10-05
-    author: "Samuel Williams"
-    summary: "Freelancing is often difficult - but there is a lot of advice which can help!"
-lucid-programming-dojo:
-    created: 2009-10-06
-    author: "Samuel Williams"
-    summary: "I'm very interested in improving the standard of computer programming. The Lucid Programaming Dojo is our project to achieve some of these goals."
 exim4-clamav-spamassassin:
     title: "Exim4 + ClamAV + SpamAssassin"
     author: "Samuel Williams"
@@ -35,11 +22,6 @@ ramaze-and-rack:
     author: "Samuel Williams"
     created: 2009-10-10
     summary: "Ramaze is a fantastic framework for web application development. Find out more about it and how it works."
-active-merchant:
-    title: "ActiveMerchant"
-    author: "Samuel Williams"
-    created: 2009-10-11
-    summary: "ActiveMerchant is an interesting framework for eCommerce. It provides a neutral interface for multiple providers of payment processing functionality."
 concurrency-and-immutability:
     author: "Samuel Williams"
     created: 2009-10-13
@@ -52,11 +34,6 @@ floating-point-numbers:
     author: "Samuel Williams"
     created: 2009-10-14
     summary: "Floating point numbers are inexact. But, not many people consider this and it can cause many issues."
-useful-jquery-plugins:
-    title: "Useful jQuery Plugins"
-    author: "Samuel Williams"
-    created: 2009-10-15
-    summary: "jQuery is a fantastic JavaScript library for doing all sorts of things - here are some plugins that I like the look of."
 loading-anonymous-ruby-classes:
     author: "Samuel Williams"
     created: 2009-10-16
@@ -66,36 +43,7 @@ shakuhachi:
     author: "Samuel Williams"
     created: 2009-10-17
     summary: "The Shakuhachi is a fantastically difficult instrument to master - but I enjoy playing mine every now and then."
-card-trick:
-    author: "Samuel Williams"
-    created: 2009-10-18
-    summary: "Statistics provide numerous opportunities for tricking people - here is one in the form of a card trick."
-object-oriented-c:
-    author: "Samuel Williams"
-    created: 2009-10-19
-    summary: "C is a fundamental language in our modern computing environment. Object Oriented C aims to provide some useful levels of abstraction without introducing major complexities."
-gemcutter:
-    author: "Samuel Williams"
-    created: 2009-10-20
-    summary: "GemCutter is a fantastic new way to deploy RubyGems."
-writing-clearly:
-    author: "Samuel Williams"
-    created: 2009-10-21
-    summary: "Writing clearly is an important skill in any field, but even moreso in programming - being able to explain your ideas is critical."
 richard-stallman-in-christchurch:
     author: "Samuel Williams"
     created: 2009-10-22
     summary: "Richard Stallman visited Christchurch recently. The talk was fascinating."
-magnatune:
-    author: "Samuel Williams"
-    created: 2009-10-23
-    summary: "Magnatune is a place where you can get music - for free - but you can also pay for it. I think its a fantastic idea."
-client-side-graphing:
-    author: "Samuel Williams"
-    created: 2009-10-24
-    summary: "Visualization of data can utilize many resources on a server especially if the dataset is big. Here are some tools for doing this on the client-side."
-zena-cms:
-    title: "Zena CMS"
-    author: "Samuel Williams"
-    created: 2009-10-25
-    summary: "Zena CMS is a content management system built on top of Ruby on Rails. It has many interesting and unique ideas."

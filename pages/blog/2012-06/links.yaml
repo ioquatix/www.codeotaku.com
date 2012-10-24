@@ -1,13 +1,3 @@
-game-programming-weekend:
-    title: "Game Programming Weekend (26th June to 1st July)"
-    created: 2012-06-05
-    author: Samuel Williams
-    summary: "Enjoy coding? Why not join in with us during the game programming weekend?"
-cloudflare:
-    created: 2012-06-01
-    author: Samuel Williams
-    summary: "I just setup CloudFlare and found it to be a very interesting service..."
-    display: false
 sandboxing-core-data-and-migrations:
     created: 2012-06-11
     author: Samuel Williams
@@ -16,7 +6,7 @@ passenger-memory-check:
     created: 2012-06-13
     author: Samuel Williams
     summary: "I wish passenger had a memory limit option.. pending that, here is a script with the same effect."
-sauerbraten:
+new-zealand-sauerbraten:
     created: 2012-06-16
     author: Samuel Williams
     summary: "I recently reinstated my New Zealand based Sauerbraten server."

@@ -8,7 +8,7 @@ require 'base64'
 require 'digest/sha1'
 
 require 'sanitize'
-require 'redcloth'
+require 'kramdown'
 
 # DataMapper::Logger.new(STDOUT, :debug)
 DataMapper.setup(:comments, "sqlite3:#{File.dirname(__FILE__)}/comments.sqlite3")
@@ -50,7 +50,7 @@ class Comment
 		end
 		
 		config_base = config.merge(:transformers => codify)
-		Sanitize.clean(RedCloth.new(text).to_html, config_base)
+		Sanitize.clean(Kramdown::Document.new(text).to_html, config_base)
 	end
 	
 	def body=(text)

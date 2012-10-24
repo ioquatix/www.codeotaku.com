@@ -39,7 +39,8 @@ use Utopia::Middleware::Redirector, {
 		404 => "/errors/file-not-found"
 	},
 	:patterns => [
-		[:moved, "/samuel-williams", "http://www.oriontransfer.co.nz/samuel-williams"]
+		[:moved, "/samuel-williams", "http://www.oriontransfer.co.nz/samuel-williams"],
+		[:moved, "/blog", "/journal"],
 	]
 }
 

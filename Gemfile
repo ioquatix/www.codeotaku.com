@@ -2,7 +2,10 @@
 source "https://rubygems.org"
 
 gem "rack"
-gem "utopia", "= 0.10.0"
+
+gem "utopia", "= 0.11.0"
+gem "utopia-extras", "= 0.11.0"
+
 gem "datamapper"
 gem "dm-sqlite-adapter"
 gem "sanitize"

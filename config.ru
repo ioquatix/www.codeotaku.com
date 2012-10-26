@@ -4,9 +4,14 @@ UTOPIA_ENV = (ENV['UTOPIA_ENV'] || ENV['RACK_ENV'] || :development).to_sym
 $LOAD_PATH << File.join(File.dirname(__FILE__), "lib")
 
 # It is recommended that you always explicity specify the version of the gem you are using.
-gem 'utopia', "0.10.0"
+gem 'utopia', "= 0.11.0"
 require 'utopia/middleware/all'
 require 'utopia/tags/all'
+
+# From utopia-extras:
+gem 'utopia-extras', "= 0.11.0"
+require 'utopia/tags/gallery'
+require 'utopia/tags/google_analytics'
 
 # Don't add drop shadows since we are using new CSS box-shadow.
 Utopia::Tags::Gallery::PROCESSES[:photo_thumbnail] = Utopia::Tags::Gallery::Processes::Thumbnail.new([300, 300])

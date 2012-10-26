@@ -17,7 +17,3 @@ scanning-for-unix-permissions:
     author: "Samuel Williams"
     created: 2009-09-17
     summary: "Here is a simple script for scanning for files with a particular set of UNIX permissions."
-theoretical-infinity-machine:
-    author: "Samuel Williams"
-    created: 2009-09-23
-    summary: "Is Turing-Complete the upper bound of computability? What about a theoretical infinity machine?"

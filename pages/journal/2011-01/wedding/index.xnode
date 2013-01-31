@@ -1,0 +1,75 @@
+<page>
+	<link rel="stylesheet" href="wedding.css" type="text/css" media="screen" />
+	
+	<?r @title = "Ayako and Samuel Wedding Celebration" ?>
+	
+	<div class="wedding-header">
+		<div class="lhs"></div>
+		<div class="rhs"></div>
+		<div class="center">
+			<div class="lhs-text">亜<br/>弥<br/>子</div>
+			<div class="center-text">&amp;</div>
+			<div class="rhs-text">さ<br/>み<br/>え<br/>る</div>
+		</div>
+	</div>
+	
+	<p class="wedding-description">
+		Samuel &amp; Ayako are now married!
+	</p>
+	
+	<h2>The Backstory...</h2>
+	
+	<p>
+		On the 7th of August 2004 (a Saturday) at the Modern Jive (UCanDance) party, we met for the first time. This happened because Arham, my good friend, brought me to the party. At the end of the night we had some small talk and I asked Ayako if she liked anime, and if she wanted to come over and watch it some time. A few days later I wrote a letter to Ayako with contact details and gave it to Arham to deliver. Unbeknownst to me, when Arham delivered the letter he said "He likes you!".
+	</p>
+	
+	<p>
+		The next time we met about a week later, we were at another party, actually Arham's birthday. We ended up staying at a friends house for a sleep over. There were lots of other people staying over in the same room, but this event was probably the start of our relationship.
+	</p>
+	
+	<p>
+		Fast forward a few weeks and I was often hanging out with Ayako at Watford St. Because I couldn't drive at the time I asked one my parents to drive us around, and they were very generous. Soon after, Ayako mentioned that she was looking for a flat. She was interested to reduce living costs and so she suggested she could move into my room. Apparently I looked very surprised and agreed to the arrangement. On the 30th October 2004, we ended up living together.
+	</p>
+	
+	<p>
+		Early 2005 we decided to buy a house in Avonhead. Ayako returned to Japan in early February because her visa expired. Then, I went to Japan to visit her in April. We came back together after two weeks.
+	</p>
+	
+	<gallery path="_japan2005" process="photo_thumbnail,large" tag="photo_thumbnail" />
+	
+	<p>
+		Over the next several years we spent a lot of time together, including many trips around New Zealand. Some times we travelled to Lake Alex where we went swimming or fishing.
+	</p>
+	
+	<gallery path="_alex2005" process="photo_thumbnail,large" tag="photo_thumbnail" />
+	
+	<p>
+		After developing a strong and stable relationship for the next 4 years, I decided it was the right time to take the next step. I wanted to propose at Lake Kaniere during the night we were having bonfire, but unfortunately we couldn't get time alone - thus after returning, on the 7th of January 2009 proposal, I proposed to Coco in our garden, while we were lying outside looking at the stars. On the 14th March 2009 we celebrated this with an engagement party at Clemency's house.
+	</p>
+	
+	<p>
+		After <a href="/blog/2009-11/travelling-to-japan">traveling around Japan with Felicity in November 2009</a>, on the 15th of December 2009, myself Samuel Williams and Ayako Tajima were officially married at the Narita City Council. That night we celebrated by enjoying traditional Chirashizushi with her parents.
+	</p>
+	
+	<p>
+		Finally, in order to celebrate this event back in New Zealand, on the 19th March, 2011, Ayako Tajima &amp; Samuel Williams had a traditional wedding ceremony to celebrate their lives together, and the friends and family that have made all this possible.
+	</p>
+	
+	<h2>Wedding Video</h2>
+	
+	<h3>Main Event</h3>
+	
+	<div class="gallery">
+		<iframe width="853" height="510" src="http://www.youtube.com/embed/yfOQ8P_Qlu0" frameborder="0"></iframe>
+	</div>
+	
+	<h3>Reception</h3>
+	
+	<div class="gallery">
+		<iframe width="853" height="510" src="http://www.youtube.com/embed/ZnCzvqcLCvE" frameborder="0"></iframe>
+	</div>
+	
+	<h2>Wedding Photographs</h2>
+	
+	<gallery path="_photographs" process="photo_thumbnail,large" tag="photo_thumbnail" />
+</page>

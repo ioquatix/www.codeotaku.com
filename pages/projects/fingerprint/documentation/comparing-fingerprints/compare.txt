@@ -1,0 +1,28 @@
+$ echo "Hello World" > /tmp/foobar
+$ fingerprint /tmp/ > /tmp/before.fingerprint
+
+$ echo "Hello World." > /tmp/foobar
+$ fingerprint /tmp/ > /tmp/after.fingerprint
+
+-- Compare the two fingerprints
+$ fingerprint -c /tmp/before.fingerprint /tmp/after.fingerprint 
+W ./foobar
+	changes.file.size.new 13
+	changes.file.size.old 12
+	changes.key.MD5.new 770b95bb61d5b0406c135b6e42260580
+	changes.key.MD5.old e59ff97941044f85df5297e1c302d260
+	changes.key.SHA2.256.new bf059f3112049d7299f9dc39397fe721c560e790611bfdc163adadbebb4e9ca9
+	changes.key.SHA2.256.old d2a84f4b8b650937ec8f73cd8be2c74add5a911ba64df27458ed8229da804a26
+	error.code keys_different
+	error.message Key SHA2.256 does not match
+W ./before.fingerprint
+	changes.file.size.new 1049
+	changes.file.size.old 0
+	changes.key.MD5.new ed5593682c6ac6bb63bee56ceb471fa1
+	changes.key.MD5.old d41d8cd98f00b204e9800998ecf8427e
+	changes.key.SHA2.256.new 9e0cb06c72f2e1842252c57e2afdf4d7eb2b09d6cf75dcc3892e66b68e2ca91d
+	changes.key.SHA2.256.old e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+	error.code keys_different
+	error.message Key SHA2.256 does not match
+S 
+	error.count 2

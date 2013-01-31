@@ -1,0 +1,2 @@
+$ fingerprint -a data/
+$ scp -r data/ remote-server.example.com:~/data

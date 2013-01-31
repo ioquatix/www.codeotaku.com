@@ -1,0 +1,65 @@
+$ fingerprint -x /bin/
+C /bin
+	fingerprint.version 1.3.0
+	options.checksums MD5, SHA2.256
+	options.extended true
+	summary.time.start Thu Aug 18 01:21:39 +1200 2011
+D ./
+	posix.mode 40755
+	posix.permissions.group.id 0
+	posix.permissions.group.name wheel
+	posix.permissions.user.id 0
+	posix.permissions.user.name root
+	posix.time.created Wed Jul 06 22:47:58 +1200 2011
+	posix.time.modified Wed Jul 06 22:34:53 +1200 2011
+F ./zsh
+	file.size 1103984
+	key.MD5 88b8770d89a8b6e1ff0a0af26c535f87
+	key.SHA2.256 9c2905022d664ac1ca67949f9475947249019809ac9f4a79992fc4c2a9cc0fc7
+	posix.mode 100755
+	posix.permissions.group.id 0
+	posix.permissions.group.name wheel
+	posix.permissions.user.id 0
+	posix.permissions.user.name root
+	posix.time.created Wed Jul 06 22:34:53 +1200 2011
+	posix.time.modified Wed Jul 06 22:34:53 +1200 2011
+F ./wait4path
+	file.size 34576
+	key.MD5 ba084bba5a7d0ad615ab2822c1c8ab12
+	key.SHA2.256 e33436d49713991ebc465530f84f46f8efad1be7cf2f359e7ddee829ebaeb7d8
+	posix.mode 100555
+	posix.permissions.group.id 0
+	posix.permissions.group.name wheel
+	posix.permissions.user.id 0
+	posix.permissions.user.name root
+	posix.time.created Wed Jul 06 22:34:48 +1200 2011
+	posix.time.modified Wed Jul 06 22:34:48 +1200 2011
+F ./unlink
+	file.size 44528
+	key.MD5 b7921a96ce139ef9b959a671ae12e477
+	key.SHA2.256 94e2afd4f5285853e41a7d4854aa9fc08de055604593bcdbe8ca9e3ce5741838
+	posix.mode 100555
+	posix.permissions.group.id 0
+	posix.permissions.group.name wheel
+	posix.permissions.user.id 0
+	posix.permissions.user.name root
+	posix.time.created Wed Jul 06 22:34:48 +1200 2011
+	posix.time.modified Wed Jul 06 22:34:48 +1200 2011
+F ./test
+	file.size 43120
+	key.MD5 1bb9e3e23eff695ed12ea9ae8ce710a2
+	key.SHA2.256 800fb9163be8504474f63faf488e2bb5d016852e93a1df49d82feb9f8e96d53a
+	posix.mode 100555
+	posix.permissions.group.id 0
+	posix.permissions.group.name wheel
+	posix.permissions.user.id 0
+	posix.permissions.user.name root
+	posix.time.created Wed Jul 06 22:34:50 +1200 2011
+	posix.time.modified Wed Jul 06 22:34:50 +1200 2011
+-- Snip --
+S 
+	summary.directories 1
+	summary.excluded 0
+	summary.files 37
+	summary.size 9440400
+	summary.time.end Thu Aug 18 01:21:40 +1200 2011

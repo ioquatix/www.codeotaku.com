@@ -1,0 +1,6 @@
+$ mv latest.fingerprint previous.fingerprint
+$ ssh server.example.com fingerprint /etc/ > latest.fingerprint
+$ fingerprint -c previous.fingerprint latest.fingerprint
+S 
+	error.count 0
+%%stderr{Data verified, 0 errors found.}

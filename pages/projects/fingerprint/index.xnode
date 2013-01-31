@@ -1,0 +1,20 @@
+<page>
+	<logo src="logo.png" title="Fingerprint" />
+	
+	<p>Fingerprint is a general purpose data integrity tool that uses cryptographic hashes to detect changes in files and directory trees. The <code class="syntax bash-script function">fingerprint</code> command scans a directory tree and generates a fingerprint file containing the names and cryptographic hashes of the files in the tree. This snapshot can be later used to generate a list of files that have been created, deleted or modified. If so much as a single bit in the file data has changed, Fingerprint will detect it.</p>
+	
+	<ul class="features">
+		<li><a href="documentation/data-preservation">Preservation</a>: Detect corruption of important data, e.g. web server integrity, optical storage verification.</li>
+		<li><a href="documentation/security-tripwire">Security</a>: Detect changes made by intruders, e.g. firewall integrity, network configuration, software auditing.</li>
+		<li><a href="documentation/data-transmission">Transfers</a>: Verify file copies and transfers between different systems, e.g. file transfer integrity.</li>
+		<li><a href="documentation/cryptographic-sealing">Sealing</a>: Cryptographically seal critical files, e.g. document verification.</li>
+		<li><a href="documentation/notarizing">Notarizing</a>: Prove that documents existed at a particular time.</li>
+		<li><a href="documentation/backup-integrity">Backups</a>: Verify restored backups to ensure that backups are sound, e.g. backup verification and integrity.</li>
+	</ul>
+	
+	<p>Fingerprint can be integrated with other tools to ensure the integrity of an entire network of computers from a single point.</p>
+	
+	<h2>Documentation</h2>
+	
+	<summary path="documentation" />
+</page>

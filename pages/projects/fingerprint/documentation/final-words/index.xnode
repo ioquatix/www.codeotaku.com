@@ -1,0 +1,9 @@
+<contents-page title="Fingerprint Documentation">
+	<heading>Final Words</heading>
+	
+	<p>As the world becomes further entrenched in digital data and storage, the accuracy and correctness of said data is going to become a bigger problem. As humans create information, we are ultimately decreasing the amount of disorder/entropy in the universe. By the second law of thermodynamics, when a closed system moves from "the least to the most probable, from differentiation to sameness, from ordered individuality to a kind of chaos," (<a href="http://en.wikipedia.org/wiki/The_Crying_of_Lot_49">Thomas Pynchon</a>) the only logical conclusion is that what we consider to be important data is destined to become meaningless noise in the sands of time.</p>
+	
+	<p>Fingerprint is a tool which gives visibility to these types of changes, but as with most tools, the way it is implemented and used with other tools is going to be critical to its long term success.</p>
+	
+	<p>If you have important data, please make sure it is backed up. If you have data that is backed up, please make sure that what you have backed up is <em>actually</em> what you think it is.</p>
+</contents-page>

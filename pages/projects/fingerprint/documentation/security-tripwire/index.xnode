@@ -1,0 +1,15 @@
+<contents-page title="Fingerprint Documentation">
+	<heading>Security Tripwire</heading>
+	
+	<p>Malicious modification of files can be detected using Fingerprint. This setup is typically referred to as a Tripwire, because when an attacker modifies some critical system files, the system administrator will be notified.</p>
+	
+	<p>In order to ensure the validity of fingerprint data, it should not be stored on the server, but instead computed and stored on a remote server. Then, this can be done once an hour, or once a day. If data integrity issues are detected, the administrator can be notified via email.</p>
+	
+	<h2>Example Tripwire Script</h2>
+	
+	<p>The following script will connect to the remote server and fingerprint a directory:</p>
+	
+	<listing src="check.txt" brush="ruby" />
+	
+	<p>This could used as an hourly CRON job.</p>
+</contents-page>

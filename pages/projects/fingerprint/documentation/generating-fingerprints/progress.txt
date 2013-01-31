@@ -1,0 +1,40 @@
+$ fingerprint --progress /bin/
+C /bin
+	fingerprint.version 1.3.0
+	options.checksums MD5, SHA2.256
+	options.extended false
+	summary.time.start Thu Aug 18 01:44:17 +1200 2011
+D ./
+%%stderr{# Progress: File 0 / 37 = 0.00%; Byte 0 / 9440400 = 0.00%}
+F ./zsh
+	file.size 1103984
+	key.MD5 88b8770d89a8b6e1ff0a0af26c535f87
+	key.SHA2.256 9c2905022d664ac1ca67949f9475947249019809ac9f4a79992fc4c2a9cc0fc7
+%%stderr{# Progress: File 1 / 37 = 2.70%; Byte 1103984 / 9440400 = 11.69%}
+F ./wait4path
+	file.size 34576
+	key.MD5 ba084bba5a7d0ad615ab2822c1c8ab12
+	key.SHA2.256 e33436d49713991ebc465530f84f46f8efad1be7cf2f359e7ddee829ebaeb7d8
+%%stderr{# Progress: File 2 / 37 = 5.41%; Byte 1138560 / 9440400 = 12.06%}
+F ./unlink
+	file.size 44528
+	key.MD5 b7921a96ce139ef9b959a671ae12e477
+	key.SHA2.256 94e2afd4f5285853e41a7d4854aa9fc08de055604593bcdbe8ca9e3ce5741838
+%%stderr{# Progress: File 3 / 37 = 8.11%; Byte 1183088 / 9440400 = 12.53%}
+F ./test
+	file.size 43120
+	key.MD5 1bb9e3e23eff695ed12ea9ae8ce710a2
+	key.SHA2.256 800fb9163be8504474f63faf488e2bb5d016852e93a1df49d82feb9f8e96d53a
+%%stderr{# Progress: File 4 / 37 = 10.81%; Byte 1226208 / 9440400 = 12.99%}
+-- Snip --
+F ./[
+	file.size 43120
+	key.MD5 1bb9e3e23eff695ed12ea9ae8ce710a2
+	key.SHA2.256 800fb9163be8504474f63faf488e2bb5d016852e93a1df49d82feb9f8e96d53a
+%%stderr{# Progress: File 37 / 37 = 100.00%; Byte 9440400 / 9440400 = 100.00%}
+S 
+	summary.directories 1
+	summary.excluded 0
+	summary.files 37
+	summary.size 9440400
+	summary.time.end Thu Aug 18 01:44:18 +1200 2011

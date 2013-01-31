@@ -1,0 +1,17 @@
+<contents-page title="Fingerprint Documentation">
+	<heading>Data Transmission</heading>
+	
+	<p>Transferring data by copying it from one location to another may cause data loss and corruption due to transmission errors. Fingerprint can easily check whether data has been transferred correctly.</p>
+	
+	<h2>Before copying..</h2>
+	
+	<p>Simply use fingerprint to analyse the data directory before copying:</p>
+	
+	<listing src="before.txt" brush="bash" />
+	
+	<h2>After copying..</h2>
+	
+	<p>Use fingerprint to verify the data directory on the destination:</p>
+	
+	<listing src="after.txt" brush="bash" />
+</contents-page>

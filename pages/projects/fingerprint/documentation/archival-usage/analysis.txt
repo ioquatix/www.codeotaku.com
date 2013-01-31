@@ -1,0 +1,5 @@
+$ sudo %%function{fingerprint} -a /etc
+
+-- If you are repeating analysis, you need to use -f 
+-- to force updating the existing fingerprint.
+$ sudo %%function{fingerprint} -a -f /etc

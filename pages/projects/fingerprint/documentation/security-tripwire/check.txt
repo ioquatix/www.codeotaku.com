@@ -1,0 +1,20 @@
+#!/usr/bin/env ruby
+
+require 'fileutils'
+
+REMOTE = "server.example.com"
+DIRECTORY = "/etc"
+PREVIOUS = "previous.fingerprint"
+LATEST = "latest.fingerprint"
+
+if File.exist? LATEST
+	FileUtils.mv LATEST, PREVIOUS
+end
+
+$stderr.puts "Generating fingerprint of #{REMOTE}:#{DIRECTORY}..."
+system("ssh #{REMOTE} fingerprint #{DIRECTORY} > #{LATEST}")
+
+if File.exist? PREVIOUS
+	$stderr.puts "Comparing fingerprints..."
+	system('fingerprint', '-c', PREVIOUS, LATEST)
+end

@@ -1,0 +1,5 @@
+-- On remote-server.example.com
+$ fingerprint -v
+S 
+	error.count 0
+%%stderr{Data verified, 0 errors found.}

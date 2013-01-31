@@ -1,0 +1,24 @@
+introduction:
+    order: 1
+installation:
+    order: 2
+generating-fingerprints:
+    order: 3
+comparing-fingerprints:
+    order: 4
+archival-usage:
+    order: 5
+data-preservation:
+    order: 10
+data-transmission:
+    order: 11
+backup-integrity:
+    order: 12
+security-tripwire:
+    order: 13
+cryptographic-sealing:
+    order: 14
+notarizing:
+    order: 15
+final-words:
+    order: 20

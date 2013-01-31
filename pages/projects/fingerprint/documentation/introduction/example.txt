@@ -1,0 +1,16 @@
+$ mkdir toplevel
+$ echo "Hello World" > toplevel/alice
+$ echo "Goodbye World" > toplevel/bob
+
+-- Take a fingerprint of the directory...
+$ %%function{fingerprint} toplevel -o first.fingerprint
+
+-- Make a modification...
+$ echo "Goodbye World" > toplevel/alice
+
+-- Run fingerprint on the updated directory...
+$ %%function{fingerprint} toplevel -o second.fingerprint
+
+-- Compare the two fingerprints...
+$ %%function{fingerprint} -c first.fingerprint second.fingerprint 
+File: "./alice" is different!

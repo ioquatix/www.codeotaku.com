@@ -1,0 +1,27 @@
+<contents-page title="Fingerprint Documentation">
+	<heading>Data Preservation</heading>
+	
+	<p>Data preservation means that data is available in a useful form for as long as it is required (which could be indefinitely). Faulty hardware, software, user error or malicious attack are the primary concern of data preservation. Fingerprint can provide insight into data integrity problems, which can then be resolved appropriately.</p>
+	
+	<p>In almost all cases of data corruption, the sooner the corruption is detected, the less damage that occurs overall. It is in this sense that regular fingerprinting of critical files should be considered an important step in comprehensive data preservation policy.</p>
+	
+	<h3>Backups</h3>
+	
+	<p>Data preservation almost always involves data replication and verification. If data becomes corrupt, it it essential that backups are available to recover the original data. However, it is also important that backup data can be verified otherwise there is no guarantee that the recovered data is correct.</p>
+	
+	<p><strong>End to end testing on a regular basis</strong> is the only sane policy if your data is important.</p>
+	
+	<h2>Non-malicious Verification</h2>
+	
+	<p>Using standard <a href="../archival-usage">analyse/verify procedure</a>, fingerprint can detect file corruption. Make sure you record extended information using <code class="syntax bash-script option">-x</code>. The primary indication of file corruption is a change in checksum data but not in modified time. Standard operating system functions update the modified time when the file is changed. But, if the file changes without this, it may indicate hardware or software fault, and should be investigated further.</p>
+	
+	<p>Once data has been analysed, you can store it on archival media (e.g. optical or tape storage). At a later date, you can verify this to ensure the data has not become damaged over time.</p>
+	
+	<h2 id="Security">Malicious Verification</h2>
+	
+	<p>If an attacker deliberately changes files, they probably have access to the local fingerprint data. It would be easy to regenerate this file with updated data. Therefore, in this case it is recommended that the fingerprint index is stored on a separate machine or cryptographically signed.</p>
+	
+	<p>A simple way to do this would be to have a local server running fingerprint on the remote machine and saving the data locally:</p>
+	
+	<listing src="malicious.txt" brush="bash" />
+</contents-page>

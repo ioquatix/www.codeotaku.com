@@ -1,0 +1,23 @@
+<contents-page title="Fingerprint Documentation">
+	<heading>Archival Usage</heading>
+	
+	<p>Up until this point we have been concerned with the basic low-level operations of the <code class="syntax bash-script function">fingerprint</code> command. However, typical usage for long term archival is very simple.</p>
+	
+	<h2>Analysis</h2>
+	
+	<p>Given a directory of data that you would later like to verify for consistency, we first need to analyse the data to create a fingerprint. Depending on the amount of data this can take some time.</p>
+	
+	<listing src="analysis.txt" brush="bash" />
+	
+	<p>Once this is done, you will notice the file exists in the directory that was analysed: <code class="syntax bash">._index.fingerprint</code>. This file contains the fingerprint data. You can control the name of this file using the <code class="syntax bash-script option">-n $name</code> option.</p>
+	
+	<h2>Verification</h2>
+	
+	<p>After analysis is complete, data can be verified at any time.</p>
+	
+	<listing src="verify-no-errors.txt" brush="bash" />
+	
+	<p>If files were modified or removed, you will receive some error messages:</p>
+	
+	<listing src="verify-errors.txt" brush="bash" />
+</contents-page>

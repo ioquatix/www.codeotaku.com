@@ -61,7 +61,6 @@ post-remote-log:
 fingerprint:
     title: 'Fingerprint'
     tags: ['open', 'ruby', 'framework', 'command-line']
-    uri: http://www.oriontransfer.co.nz/gems/fingerprint
     description: "Data integrity and cryptographic verification tools."
 fingerprint-app:
     title: 'Fingerprint'

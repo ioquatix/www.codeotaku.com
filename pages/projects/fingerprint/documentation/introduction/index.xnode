@@ -1,0 +1,27 @@
+<contents-page title="Fingerprint Documentation">
+	<heading>Introduction</heading>
+	
+	<blockquote><span class="spoken">Matter and energy degrade to more probable, less informative states. The larger the amounts of information processed or diffused, the more likely it is that information will degrade toward meaningless variety, like noise or information overload, or sterile uniformity</span> &mdash; Orrin Klapp</blockquote>
+	
+	<p>Due to the unreliability of physical storage and transmission systems used today, data may become corrupt. However, modern society relies heavily on data, and degradation can cause massive problems. Further, data can also be manipulated maliciously for specific purpose, and unless it is being explicitly observed, such changes may not be detected.</p>
+	
+	<p>Data analysis and verification give visibility to these types of problems so that remedial actions can be taken before major problems are created. As an example, if file corruption or manipulation is detected, a correct version can be restored from backup. To this end, Fingerprint is a tool for data analysis and verification, and provides a basic framework for comparing directories of files.</p>
+	
+	<h2>An example...</h2>
+	
+	<p>
+		In the following example, we deliberately manipulate information, and Fingerprint detects the changes:
+	</p>
+	
+	<listing src="example.txt" brush="bash" />
+	
+	<h2>Warranty</h2>
+	
+	<p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+	AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+	THE SOFTWARE.</p>
+</contents-page>

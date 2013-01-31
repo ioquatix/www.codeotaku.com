@@ -1,0 +1,28 @@
+$ sudo %%function{gem} %%option{install} fingerprint
+Successfully installed fingerprint-1.3.0
+1 gem installed
+Installing YARD documentation for fingerprint-1.3.0...
+$ fingerprint --help
+Usage: fingerprint [options] [path]
+This script is used to create and compare file system fingerprints.
+
+Directory analysis and verification:
+    -a, --analyze [path]             Generage a fingerprint of the given path and save it for later verification.
+    -v, --verify [path]              Verify a given path based on a previously saved fingerprint.
+    -n name                          Specify the name of the fingerprint file.
+                                     Default: ._fingerprint.txt
+    -f                               Force any operation to complete despite warnings.
+
+Low level operations:
+    -c                               Compare the given fingerprints. Check that the second fingerprint is a superset of the first.
+    -o [output-path]                 Write the fingerprint output to the given file.
+        --verbose                    Verbose output, include additional details in the file transcript.
+        --progress                   Print percentage progress to standard error.
+
+    -x                               Include additional extended information about files and directories.
+    -s [checksum1,checksum2]         Provide a list of the checksum algorithms to use.
+                                     Available: SHA2.256, SHA2.512, SHA1, MD5; Default: MD5, SHA2.256
+
+Help and Copyright information:
+        --copy                       Display copyright and warranty information
+    -h, --help                       Show this help message.

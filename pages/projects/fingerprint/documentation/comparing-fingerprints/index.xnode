@@ -1,0 +1,9 @@
+<contents-page title="Fingerprint Documentation">
+	<heading>Comparing Fingerprints</heading>
+	
+	<p>Fingerprint can compare two fingerprints and tell you the difference. Specifically, fingerprint is interested in files that have been tampered with or gone missing:</p>
+	
+	<listing src="compare.txt" brush="bash" />
+	
+	<p>As before, you can use the <code class="syntax bash-script option">--progress</code> option to print progress percentage information to $stderr.</p>
+</contents-page>

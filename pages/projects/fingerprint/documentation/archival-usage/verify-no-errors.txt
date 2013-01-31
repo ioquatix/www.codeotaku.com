@@ -1,0 +1,4 @@
+$ sudo %%function{fingerprint} -v /etc
+S 
+	error.count 0
+%%stderr{Data verified, 0 errors found.}

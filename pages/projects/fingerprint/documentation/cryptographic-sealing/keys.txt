@@ -1,0 +1,10 @@
+-- Create a private key, which you must keep secure.
+$ openssl genrsa -out private-signature.pem 2048
+%%stderr{Generating RSA private key, 2048 bit long modulus}
+%%stderr{.............+++}
+%%stderr{........+++}
+%%stderr{e is 65537 (0x10001)}
+
+-- Create a public key, which can be used to verify sealed fingerprints.
+$ openssl rsa -in private-signature.pem -pubout -out public-signature.pem
+%%stderr{writing RSA key}

@@ -1,0 +1,9 @@
+$ openssl dgst -sha1 -verify public-signature.pem -signature ._index.signature ._index.fingerprint
+Verified OK
+-- Fingerprint data has been cryptographically verified
+
+$ fingerprint -v
+S 
+	error.count 0
+%%stderr{Data verified, 0 errors found.}
+-- File list has been checked and no errors.

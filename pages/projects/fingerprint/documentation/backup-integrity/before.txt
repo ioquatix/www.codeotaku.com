@@ -1,0 +1,5 @@
+-- Perform the data analysis
+$ sudo %%function{fingerprint} -a -f /etc/
+
+-- Backup the data to a remote system
+$ sudo %%function{rsync} --archive /etc/ backups.example.com:/mnt/backups/server.example.com/etc/

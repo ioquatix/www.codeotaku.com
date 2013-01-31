@@ -1,0 +1,16 @@
+$ sudo vim /etc/hosts
+-- Made some changes ^_^'
+
+$ sudo %%function{fingerprint} -v /etc
+W ./hosts
+	changes.file.size.new 245
+	changes.file.size.old 236
+	changes.key.MD5.new e8db756a9ea5cba150a4056af7090d65
+	changes.key.MD5.old cbe7e7eb6480e869bccfa284dc8bd732
+	changes.key.SHA2.256.new c8a1c725a37564ae222fb5916cba645ed8074dcb5ee38a44dac5e2c1713f00c6
+	changes.key.SHA2.256.old e4fe83dc983472b9507fc9dbc30721b6dbdf5ec014ec10b36afb92cef0ab2094
+	error.code keys_different
+	error.message Key SHA2.256 does not match
+S 
+	error.count 1
+%%stderr{Data inconsistent, 1 errors found!}

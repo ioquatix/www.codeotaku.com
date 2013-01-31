@@ -39,7 +39,7 @@ a:hover {
 	padding: 20pt;
 }
 
-#content h1, #content h2, #content h3 {
+#content h1, #content h2, #content h3, #content h4 {
 	font-weight: normal;
 	color: #222;
 	text-shadow: 2px 2px 2px #eee;
@@ -65,10 +65,17 @@ a:hover {
 }
 
 #content h3 {
+	font-size: 14pt;
+	margin-top: 40pt;
+	margin-bottom: 8pt;
+
+	border-bottom: 1px solid #ccc;
+}
+
+#content h4 {
 	font-size: 13pt;
 	margin-top: 40pt;
 	margin-bottom: 8pt;
-	font-size: 13pt;
 }
 
 #content h2 + p, #content h3 + p {
@@ -576,4 +583,18 @@ blockquote .spoken {
 	line-height: 145%;
 	font-size: 14pt;
 	font-variant: small-caps;
+}
+
+/* Features */
+
+ul.features {
+	list-style: none;
+}
+
+ul.features li {
+	background-image: url("/_static/plus.png");
+	padding-left: 32px;
+	
+	background-repeat: no-repeat;
+	margin-bottom: 0.5em;
 }

@@ -1,0 +1,39 @@
+
+.resume .header {
+	width: 20%;
+	float: left;
+	clear: both;
+	
+	font-size: 20pt;
+	text-align: right;
+	font-variant: small-caps;
+	
+	color: black;
+}
+
+.resume .section {
+	margin-left: 22%;
+	margin-bottom: 48pt;
+	
+	border-left: 1px solid #ccc;
+	
+	padding-left: 1em;
+}
+
+.resume .section p {
+	margin-left: 0;
+	margin-right: 0;
+}
+
+.resume dl dt {
+	font-style: italic;
+}
+
+.resume ul {
+	padding: 0;
+}
+
+.resume li {
+	display: inline-block;
+	width: 48%;
+}

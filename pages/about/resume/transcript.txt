@@ -1,0 +1,45 @@
+2010 Master of Science
+COSC401-10S1 (C)	Machine Learning	15.00	A+
+COSC413-10S2 (C)	Advanced Topics in Algorithms	15.00	A+
+COSC415-10S2 (C)	Information and Software Visualisation	15.00	A+
+COSC416-10S2 (C)	Special Topic	15.00	A+
+COSC426-10S2 (C)	Augmented Reality	15.00	A
+COSC428-10S1 (C)	Computer Vision	15.00	A+
+COSC433-10S1 (C)	Special Topic: Computer Science Education	15.00	A+
+COSC475-10W (C)	Independent Course of Study	15.00	A+
+
+2007 Bachelor of Science
+COSC229-07S2 (C)	Algorithms	11.00	A+
+COSC329-07S1 (C)	Algorithms and Artificial Intelligence	14.00	A-
+COSC365-07S2 (C)	Special Topic: Distributed Computing Architectures	14.00	A
+COSC366-07SU2 (C)	Research Project	14.00	A+
+COSC422-07S1 (C)	Advanced Computer Graphics	15.00	A
+PHIL134-08SU1 (C)	Logic and Computability	18.00	A+
+
+2006 Bachelor of Science
+COSC361-06S1 (U)	Microprocessor Systems 1	14.00	A-
+COSC363-06S1 (U)	Computer Graphics	14.00	A
+MUSI226-06W (U)	Sonic Art 1	22.00	B
+
+2005 Bachelor of Science
+COSC208	C Programming	11.00	A+
+COSC209	Experimental Computer Science	11.00	A-
+COSC221	Computer Systems	11.00	A+
+COSC231	Introduction to Data Communications	11.00	A
+
+2003 Bachelor of Science
+COSC224	Introduction to Software Engineering	11.00	B+
+COSC225	Human-Computer Interaction and Computer Graphics	11.00	B
+COSC230	Programming Languages	11.00	B+
+MATH221	Algebra and Cryptography	11.00	C+
+MATH231	Discrete Methods	11.00	WD
+MUSI126	Digital Music	18.00	A-
+PHIL133	Philosophy and Human Nature	18.00	WD
+
+2002 Bachelor of Science
+COSC121	Computer Science 1A	18.00	A+
+COSC122	Computer Science 1B	18.00	B+
+COSC222	Models of Computation	11.00	B+
+MATH105	Mathematics 1B	36.00	B-
+MATH115	Discrete Mathematics 1	18.00	A-
+PHYS111	Introductory Physics for Physical Sciences and Eng	18.00	B+

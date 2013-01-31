@@ -1,0 +1,208 @@
+<page>
+	<link rel="stylesheet" href="resume.css" type="text/css" />
+	
+	<heading>Samuel Williams : Résumé</heading>
+	
+	<div class="resume">
+		<div class="header">Profile</div>
+		<div class="section">
+			<p>Hello! I'm Samuel Williams and I'm passionate about sharing my love of computer science, mathematics, music and photography with other people. I enjoy finding creative solutions to difficult problems and exploring the many different areas within computational theory. I'm always interested in developing cutting edge software and technology, so feel free contact me if I can help!</p>
+			
+			<p>If you'd like to explore some of my project work, I have an <a href="/projects">online project listing</a> which you can organise by category.</p>
+			<dl>
+				<dt>Traits:</dt>
+				<dd>Intelligent, adaptable and good at learning new things, considerate, friendly, happy. Thinks before taking action.</dd>
+		
+				<dt>Personality:</dt>
+				<dd>Works well as a leader and as part of a team. A good negotiator and problem solver. A perfectionist by heart, but understands limits and deadlines. Calm and resourceful under pressure. Creative and good at establishing procedures and policy.</dd>
+			</dl>
+		</div>
+		
+		<div class="header">Contact</div>
+		<div class="section">
+			<ul>
+				<li>Email me at <a href="mailto:samuel@oriontransfer.org">samuel@oriontransfer.org</a>.</li>
+				
+				<li>Visit my <a href="http://nz.linkedin.com/pub/samuel-williams/39/b78/bb5">Linked In</a> profile.</li>
+				
+				<li>Chat via Skype <a href="skype:samuel_williams_nz">samuel_williams_nz</a>.</li>
+				
+				<li>Follow me on <a href="http://twitter.com/oriontransfer">twitter.com/oriontransfer</a>.</li>
+			</ul>
+		</div>
+		
+		<?r if request['references'] ?>
+		<div class="header">References</div>
+		<div class="section">
+			<p><a href="Tadao_Reference.pdf">Reference from Dr. Tadao Takaoka</a>, Professor at the Department of Computer Science and Software Engineering, The University of Canterbury (2013).</p>
+			
+			<p><a href="TimBell_Reference.pdf">Reference from Dr. Tim Bell</a>, Associate Professor and Deputy HOD, Computer Science and Software Engineering, The University of Canterbury (2011).</p>
+			
+			<p><a href="ISBGlobal_Reference.tif">Reference from Simon Osborne</a>, Head of System Solutions, ISB Global Ltd (2004).</p>
+			
+			<p><a href="Attitude_Reference.pdf">Reference from Geoff Ford</a>, Managing Director, Attitude Group Ltd (2004).</p>
+			
+			<p>Additional references can be found on my <a href="">LinkedIn profile</a>.</p>
+		</div>
+		<?r end ?>
+		
+		<div class="header">Education</div>
+		<div class="section">
+			<p>
+				<a href="http://www.canterbury.ac.nz">The University of Canterbury</a>, Christchurch, New Zealand.
+			</p>
+			
+			<dl>
+				<dt>M.Sc. (currently in progress), Computer Science, 2011</dt>
+				<dd>Current GPA: 8.88 out of 9.0 (<a href="transcript">University Transcript</a>)</dd>
+				<dd>Thesis Topic: <a href="/research/hybrid-tracking">Adaptive Hybrid Tracking for Mobile Outdoor Augmented Reality</a>.</dd>
+				<dd>Research assistant to Professor <a href="http://www.cosc.canterbury.ac.nz/tad.takaoka/">Tadao Takaoka</a>.</dd>
+				<dd>Designed and developed the <a href="http://programming.dojo.net.nz">Programming Dojo</a> and <a href="http://programming.dojo.net.nz/resources/programming-language-posters">Programming Language Posters</a> which have been distributed throughout New Zealand and digitally available world-wide.</dd>
+			</dl>
+			
+			<dl>
+				<dt>B.Sc., Computer Science, 2008</dt>
+				<dd>Last year GPA: 8.34 out of 9.0 (<a href="transcript">University Transcript</a>)</dd>
+				<dd>Focus on 3D graphics, game design and associated algorithms.</dd>
+			</dl>
+		</div>
+		
+		<div class="header">Research</div>
+		<div class="section">
+			<p><strong>The University of Tokyo</strong> (2012): Gave a seminar on <a href="">Mr Painting Robot</a> at <a href="http://sacral.c.u-tokyo.ac.jp">Takashi Ikegami Laboratory</a>, a research center for Artificial Life.</p>
+			
+			<p><strong><a href="http://www.oriontransfer.co.nz/research/mr-painting-robot/Mr%20Painting%20Robot.pdf">Mr Painting Robot</a></strong> (<em>Image and Vision Computing New Zealand 2011</em>). This research investigates the identification of outlines, and how this can be used for input into a creative painting algorithm. It builds on several existing algorithms including the bilateral filter and laplacian edge detection, and develops several new algorithms including intensity scanning and brush stroke formation. The primary benefit of this approach is that the output format is vector based (and thus suitable for robotic armatures), rather than pixel based (such as one would expect from the majority of painterly algorithms). Synthetic tests show that the entire process can reproduce sumi-e style images with over 90% accuracy.</p>
+		</div>
+		
+		<div class="header">Awards</div>
+		<div class="section">
+			<p><strong>University of Canterbury &mdash; <a href="http://www.entre.co.nz/">Entré Ltd</a></strong> (2012): Lead developer for startup <a href="http://www.puteko.com">Puteko Ltd</a> which won "Most Entrepreneurial Team" ($6,000 NZD).</p>
+			
+			<p><strong>University of Canterbury &mdash; <a href="http://www.canterbury.ac.nz/jumpstart/">Tech Jumpstart</a></strong> (2012): Lead developer for startup <a href="http://www.puteko.com">Puteko Ltd</a> which won first place ($20,000 NZD).</p>
+			
+			<p><strong>University of Singapore &mdash; <a href="http://www.ece.nus.edu.sg/stfpage/eledbl/mime/">MIME Group</a></strong> (2012): Outdoor augmented reality research and development for mobile phones ($10,000 NZD).</p>
+			
+			<p><strong>University of Canterbury &mdash; <a href="http://www.hitlabnz.org">HIT Lab NZ</a></strong> (2011): Master's Thesis scholarship with a focus on Augmented Reality ($15,000 NZD).</p>
+			
+			<p><strong>University of Canterbury &mdash; <a href="http://www.hitlabnz.org">HIT Lab NZ</a></strong> (2011): Scholarships for the development of augmented reality applications for the iPhone ($10,000.00 NZD).</p>
+			
+			<p><strong>University of Canterbury &mdash; <a href="http://www.tafs.canterbury.ac.nz/">Film and Theatre</a></strong> (2011): Funding for the development of online digital teaching tools ($2,000.00 NZD).</p>
+			
+			<p><strong>University of Canterbury &mdash; <a href="http://www.canterbury.ac.nz/postgrad/">Postgraduate Studies</a></strong> (2010): Summer scholarship with Professor Tadao Takaoka for <a href="/learn/pl0-language-tools">compiler design and program verification</a> ($5,000.00 NZD).</p>
+			
+			<p><strong>University of Canterbury &mdash; <a href="http://cosc.canterbury.ac.nz">Computer Science</a></strong> (2010): Funding for the continued development of the <a href="http://programming.dojo.net.nz/resources/programming-language-posters">Programming Language Posters</a> and distribution to New Zealand Schools ($1,500.00 NZD).</p>
+		</div>
+		
+		<div class="header">Skills</div>
+		<div class="section">
+			<dl>
+				<dt>Networking and Systems Administration</dt>
+				<dd>10+ years of experience as a network and systems administrator.</dd>
+				<dd>Experienced with the deployment of a wide variety of network services, including hardware, software and related infrastructure.</dd>
+				<dd>Familiar with most major operating systems and virtualisation environments.</dd>
+				<dd>Capable of dealing with end user problems professionally, compassionately and in a timely manor.</dd>
+				<dd>Fluent at scripting and able to automate a wide variety of tasks.</dd>
+			</dl>
+			
+			<dl>
+				<dt>Software Design and Development</dt>
+				<dd>10+ years of experience as a programmer including product design and sales.</dd>
+				<dd>Fluent in a variety of different programming languages including: C, C++, Objective-C, PHP, Ruby, Python, Java, JavaScript. Able to pick up new languages and frameworks quickly.</dd>
+				<dd>Experienced with different programming APIs including UNIX/Posix, Cocoa/CoreFoundation and iOS.</dd>
+				<dd>Proficient with version control systems, preferring Git for the majority of <a href="http://www.codeotaku.com/projects">projects</a>.</dd>
+				<dd>Browse my open source code at <a href="https://github.com/ioquatix">github.com/ioquatix</a>, <a href="https://github.com/oriontransfer">github.com/oriontransfer</a> and <a href="https://github.com/dream-framework">github.com/dream-framework</a>.</dd>
+			</dl>
+			
+			<dl>
+				<dt>Computer Vision and Rendering</dt>
+				<dd>Familiar with a variety of feature point detection and tracking algorithms. Implemented several high level tracking algorithms with OpenCV.</dd>
+				<dd>Developed several game prototypes using both OpenGL 3.2 and OpenGL ES 2.0 for rendering, along with custom vertex and fragment shaders. Implemented a variety of physical simulations for real-time game mechanics.</dd>
+				<dd>Developed tools for visualisating large datasets and algorithmic behaviour.</dd>
+			</dl>
+		</div>
+		
+		<div class="header">Work</div>
+		<div class="section">
+			<p><strong>Puteko Ltd</strong> (2012): Lead developer in a startup focusing on <a href="http://www.puteko.com">enhancing children's colouring books with augmented reality</a>. Children can enjoy colouring in pages and seeing the results visualised in 3D through a computer. I have developed the iPad prototype which uses ORB feature point extraction and Lucas-Kanade optical flow.</p>
+			
+			<p><strong>The University of Canterbury</strong> (2012): Participated in the start up of the <a href="http://www.cosc.canterbury.ac.nz/csclub/">Computer Science Club</a>, a weekly group for middle school aged students to learn about computer science concepts. I helped develop the initial course structure along including the badge system and week-to-week social initiatives.</p>
+			
+			<p><strong>The National University of Singapore</strong> (2012): Providing support (as an iPhone developer) with the augmented reality and user interface components of an interactive game. I developed a real-time navigation component where an augmented reality user interface was used to assist the user to navigate through a series of waypoints.</p>
+			
+			<p><strong>The University of Canterbury</strong> (2012): Teaching COSC121 and COSC122 Introduction to Computer Science as part of the STAR course specifically for talented high school students. Developed and marked COSC122 assignments on algorithms using a modern unit test-based approach. Sole tutor for COSC261 Fundamentals of Computer Science, implementing a variety of scripts for teaching and automated marking.</p>
+			
+			<p><strong>HIT Lab NZ</strong> (2011-): iPhone developer for the HIT Lab NZ developing augmented reality applications and middleware. I helped develop a high level outdoor augmented reality library from scratch which has since been used in several projects including DiscovAR and CityViewAR (in progresss as of 2013).</p>
+			
+			<p><strong>Google</strong> (2011): Invited to Google/YouTube's offices in San Francisco to interview for the position of Software Engineer.</p>
+			
+			<p><strong>The University of Canterbury</strong> (2011): Working as a tutor for Computer Science, covering a wide variety of topics in <em>COSC261: Foundations of Computer Science</em> and <em>COSC329: Algorithms and Artificial Intelligence</em> at the University of Canterbury.</p>
+			
+			<p><strong>The University of Canterbury</strong> (2011): Provided support to both teachers in developing course materials and to students as a tutor for various computer science courses.</p>
+			
+			<p><strong>Orion Transfer Ltd</strong> (2009-2011): Website programming and development for <a href="http://www.oriontransfer.co.nz">Orion Transfer Ltd</a> and <a href="http://www.lucidsystems.co.nz">Lucid Information Systems Ltd</a> including online advertising, sales, competitions and content management.</p>
+			
+			<p><strong>St Margaret's College</strong> (2008-2009): Working full time (on contract) to upgrade core network infrastructure. Implemented real-time load monitoring for all desktop computers, and assisted with centralising network management with two other technicians. Designed and implemented policies to reduce stress in a busy office and improve service for students, including a ticketing system to keep track of important jobs. Assisted in the development and management of the school website.</p>
+			
+			<p><strong>Unlimited Paenga Tawhiti</strong> (2006-2008): Worked part time while studying at university as the primary technician and technical advisor. Responsible for school servers and networking infrastructure, along with all desktop computers and printers. Improved utilisation of computer resources by centralising administrative tasks. Developed and implemented policy for the student laptop program, from advertising through to deployment. Provided professional support to all students and staff covering existing technology and advising/deploying new technology where appropriate, to assist with the development of teaching programs.</p>
+			
+			<p><strong>ISB Global</strong> (2004-2006): Working as a programmer designing and developing a consultant placement and management system using Ruby on Rails.</p>
+		</div>
+		
+		<div class="header">Interests</div>
+		<div class="section">
+			<dl>
+				<dt>Programming Language Design and Implementation</dt>
+				<dd><strong><a href="/research/kai">Kai</a></strong>: Exploring the bounds of programming language design.</dd>
+				<dd><strong><a href="/learn/pl0-language-tools">PL/0 Languge Tools</a></strong>: An programming language stack (including compiler, assembler and virtual machine) for educational purposes.</dd>
+				<dd><strong><a href="/learn/register-machine-interpreter/index">Register Machine Interpreter</a></strong>: Exploring the fundamentals of computability.</dd>
+			</dl>
+			
+			<dl>
+				<dt>Game Design and Implementation</dt>
+				<dd><strong><a href="https://plus.google.com/communities/114698704831801249375">Game Mechanics Society</a></strong>: A group I founded of local developers and artists who collaborate on the design and development of games.</dd>
+				<dd><strong>Orbital Panic</strong>: A mashup of space-invaders, pong and breakout. I managed a small team including myself, two artists and another programmer, to develop this arcade game.</dd>
+				<dd><strong>Anima</strong>: A turn-based game build around cellular automata. Curently in the early prototype stage.</dd>
+				<dd><strong><a href="http://www.ludumdare.com/compo/category/ld-24/?author_name=ioquatix">Ludum Dare 24</a></strong> (2012): We created <a href="http://www.codeotaku.com/game-mechanics-society/games/tileshift/index">TileShift</a> in ~48 hours, a game that uses genetic algorithms to evolve levels in real-time. We ranked in the top 10% overall, and in the top 5% for innovation.</dd>
+			</dl>
+			
+			<dl>
+				<dt>Efficient Algorithms and Problem Solving</dt>
+				<dd><strong><a href="/research/Inverse%20Kinematics%20A-star.pdf">Inverse Kinematics using A*</a></strong>: A deterministic solution for inverse kinematics problems.</dd>
+				<dd><strong><a href="/research/mr-painting-robot/index">Mr Painting Robot</a></strong>: A painterly style image processing algorithm.</dd>
+			</dl>
+			
+			<dl>
+				<dt>Networked Information Systems and Applications</dt>
+				<dd><strong><a href="/gems/rubydns">RubyDNS</a></strong>: A domain specific language for processing DNS requests.</dd>
+				<dd><strong><a href="/gems/utopia">Utopia</a></strong>: A rich tag based information processing system for managing websites.</dd>
+				<dd><strong><a href="/gems/xapian">Xapian</a></strong>: The integration of a C++ search engine with Ruby bindings including a web spider.</dd>
+			</dl>
+			
+			<dl>
+				<dt>Game Development</dt>
+				<dd><strong><a href="https://github.com/dream-framework/dream">Dream</a></strong>: A cross-platform C++ framework for game development.</dd>
+				<dd><strong><a href="https://github.com/ioquatix/teapot">Teapot</a></strong>: A cross-platform build environment primarily for C/C++ libraries and applications.</dd>
+			</dl>
+			
+			<dl>
+				<dt>Storage and Backup</dt>
+				<dd><strong><a href="http://www.oriontransfer.co.nz/gems/fingerprint">Fingerprint</a></strong>: A tool for file system analysis and verification.</dd>
+				<dd><strong><a href="http://www.oriontransfer.co.nz/gems/lsync">LSync</a></strong>: A backup and data synchronisation tool.</dd>
+			</dl>
+			
+			<dl>
+				<dt>Computer Science Education and Training</dt>
+				<dd><strong><a href="http://programming.dojo.net.nz">Programming Dojo</a></strong>: A website that exposes students to a wide variety of programming languages.</dd>
+				<dd><strong><a href="http://www.oriontransfer.co.nz/learn/truth-table-solver">Truth Table Solver</a></strong>: An online truth table solver/generator for helping students with logical propositions.</dd>
+				<dd><strong><a href="http://www.oriontransfer.co.nz/learn/register-machine-interpreter">Register Machine Interpreter</a></strong>: A simple register machine computer which allows students to learn about the basics of computability.</dd>
+			</dl>
+			
+			<dl>
+				<dt>Music and Composition</dt>
+				<dd><strong>Trinity College of London</strong>: Classical Flute, Grade 8 with distinction (top in Christchurch).</dd>
+				<dd><strong>The Royal School of Music London</strong>: Music Theory, Grade 5 with distinction (top in New Zealand).</dd>
+				<dd><strong><a href="/music/the-space-between-here-and-there">The Space Between Here And There</a></strong>: A collection of dark ambient music.</dd>
+			</dl>
+		</div>
+	</div>
+</page>

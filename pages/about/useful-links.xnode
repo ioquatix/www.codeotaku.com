@@ -1,0 +1,54 @@
+<page title="Useful Links">
+	<heading>Useful Links</heading>
+
+    <p>For your convenience, here is a list of useful links.</p>
+
+    <h2>Technology News and Events</h2>
+
+    <ul>
+        <li><a href="http://www.slashdot.org">Slashdot</a> - Need I say more? A great news resource for technical minded people.</li>
+        <li><a href="http://www.techcrunch.com/">TechCrunch</a> - A news site that investigates the latest trends in web technology.</li>
+        <li><a href="http://www.insidemacgames.com/">Inside Mac Games</a> - Mac Gaming news and links.</li>
+        <li><a href="http://www.macrumors.com/">Mac Rumors</a> - Latest Apple news and rumors.</li>
+        <li><a href="http://worsethanfailure.com/">Worse Than Failure</a> - A great site about technical disasters. Very funny..</li>
+        <li><a href="http://osx.iusethis.com/">I Use This Mac Software</a> - Digg.com for Mac software.</li>
+        <li><a href="http://www.ajaxian.com/by/topic/ruby">Ajaxian: Ruby</a> - A comprehensive site about new and upcoming AJAX implementations.</li>
+    </ul>
+
+    <h2>Developer Resources</h2>
+
+    <ul>
+        <li><a href="http://www.dzone.com/">DZone</a> - A great list of development related articles and news.</li>
+        <li><a href="http://developer.mozilla.org/en/docs/Main_Page">Mozilla Developer Network</a> - A great resource for web developers and javascript programmers.</li>
+        <li><a href="http://www.cocoadev.com/">CocoaDev</a> - A wiki for Objective-C developers. Also see <a href="http://www.cocoadevcentral.com">CocoaDev Central</a>.</li>
+        <li><a href="http://www.ruby-lang.org/">Ruby-Lang</a> - A great dynamic programming language originally from Japan.</li>
+        <li><a href="http://www.idevapps.com/">iDev Apps</a> - The Mac Developer community.</li>
+		<li><a href="http://memcached.org/">Memcached</a> - A tool for distributing memory access across multiple nodes</li>
+    </ul>
+
+    <h2>Web Development Resources</h2>
+
+    <ul>
+        <li><a href="http://www.alistapart.com/">A List Apart</a> - The web at large: how do people use the internet, and how can you make their experience better.</li>
+        <li><a href="http://api.rubyonrails.org/">api.rubyonrails.org</a> - Ruby on Rails API documentation.</li>
+    </ul>
+
+    <h2>Game Programming Resources</h2>
+
+    <ul>
+        <li><a href="http://gpwiki.org/">Game Programming Wiki</a> - A great place for ideas and information about game programming.</li>
+        <li><a href="http://www.idevgames.com/">iDev Games</a> - Mac OS X Game Developer Community.</li>
+        <li><a href="http://www.ode.org/">ODE</a> - Open Dynamics Engine: BSD Licensed physics engine for your game or simulation.</li>
+        <li><a href="http://www.devmaster.net/">Dev Masters</a> - News and articles about game development.</li>
+    </ul>
+
+    <h2>Ethics and Users</h2>
+
+    <ul>
+        <li><a href="http://slash7.com/pages/vampires">Help Vampires</a> - How to spot a help vampire.</li>
+        <li><a href="http://www.chiark.greenend.org.uk/~sgtatham/bugs.html">How to report a bug</a> - Got a problem with some computer software? You should read this before you ask for help.</li>
+        <li><a href="http://onlineethics.org/codes/softeng.html">Engineers Code of Ethics</a> - IEEE Code of ethics for engineers and software developers.</li>
+        <li><a href="http://winnie-the-pooh.ru/online/lib/tao.html">The Tao of Pooh</a> - An interesting perspective on life.</li>
+        <li><a href="http://www.taobackup.com/">The Tao of Backup</a> - A useful set of ideas regarding data backup.</li>
+    </ul>
+</page>

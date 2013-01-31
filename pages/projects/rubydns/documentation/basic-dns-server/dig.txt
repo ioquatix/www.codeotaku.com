@@ -1,0 +1,20 @@
+$ dig @localhost -p 5300 dev.mydomain.org
+
+; <<>> DiG 9.6.0-APPLE-P2 <<>> @localhost -p 5300 dev.mydomain.org
+; (3 servers found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 37994
+;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 0
+;; WARNING: recursion requested but not available
+
+;; QUESTION SECTION:
+;dev.mydomain.org.		IN	A
+
+;; ANSWER SECTION:
+dev.mydomain.org.	16000	IN	A	10.0.0.80
+
+;; Query time: 5 msec
+;; SERVER: 127.0.0.1#5300(127.0.0.1)
+;; WHEN: Thu Nov  5 22:28:08 2009
+;; MSG SIZE  rcvd: 50

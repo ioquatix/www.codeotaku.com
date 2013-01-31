@@ -1,0 +1,5 @@
+-- Generate a key on the source server (s1.example.com)
+$ sudo %%function{ssh-keygen}
+
+-- Send the public key to the backup server (backups.example.com)
+$ cat /root/.ssh/id_rsa.pub | ssh backup@backups.example.com "cat >> ~/.ssh/authorized_keys"

@@ -1,0 +1,28 @@
+$ ./rexec_example1.rb "ssh xxx.oriontransfer.org ruby" 
+Starting server...
+Sending path...
+Waiting for response...
+Received listing:
+    total 100
+    drwxr-xr-x 23 root root  4096 Mar 12 21:42 .
+    drwxr-xr-x 23 root root  4096 Mar 12 21:42 ..
+    drwxr-xr-x  2 root root  4096 Feb 20 16:45 bin
+    drwxr-xr-x  2 root root  4096 Jan 19 19:56 boot
+    drwxr-xr-x 13 root root  3220 Apr  1 02:34 dev
+    drwxr-xr-x 67 root root  4096 May 17 03:46 etc
+    drwxr-xr-x  3 root root  4096 Jan 23 11:20 home
+    drwxr-xr-x  2 root root  4096 Oct  2  2008 initrd
+    drwxr-xr-x 12 root root 12288 Mar  2 17:37 lib
+    drwx------  2 root root 16384 Oct  2  2008 lost+found
+    drwxr-xr-x  2 root root  4096 Oct  2  2008 media
+    drwxr-xr-x  2 root root  4096 Oct 29  2006 mnt
+    drwxr-xr-x  2 root root  4096 Oct  2  2008 opt
+    dr-xr-xr-x 94 root root     0 Apr  1 02:34 proc
+    drwxr-xr-x  9 root root  4096 May 17 05:11 root
+    drwxr-xr-x  2 root root  4096 Apr 16 20:10 sbin
+    drwxr-xr-x  2 root root  4096 Sep 16  2008 selinux
+    drwxr-xr-x  5 root root  4096 Apr 16 22:09 srv
+    drwxr-xr-x 12 root root     0 Apr  1 02:34 sys
+    drwxrwxrwt  6 root root  4096 May 27 23:06 tmp
+    drwxr-xr-x 11 root root  4096 Jan 19 22:53 usr
+    drwxr-xr-x 14 root root  4096 Jan 19 20:22 var

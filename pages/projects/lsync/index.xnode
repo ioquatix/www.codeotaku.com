@@ -1,0 +1,17 @@
+<page>
+	<logo src="logo.png" title="LSync" />
+	
+	<p>LSync is a tool that can be used to perform a wide variety of backup and synchronization tasks. It is primarily a high level Ruby library for describing backup processes and their associated dependencies.</p>
+
+	<ul class="features">
+		<li>Simple integration with other libraries for advanced functionality such as <a href="documentation/real-time-sync">real-time synchronisation</a>, <a href="documentation/notifications">growl notifications</a>, <a href="documetation/backup-staging">backup staging</a>, data integrity verification (via <a href="../fingerprint/">fingerprint</a>) and transactional locking.</li>
+		<li>Pluggable architecture to support different connection mechanisms (supports SSH by default) and backup protocols (supports RSync by default).</li>
+		<li>Flexible event handling mechanisms provides hooks <code class="syntax ruby">:prepare</code>, <code class="syntax ruby">:success</code>, <code class="syntax ruby">:failure</code> and <code class="syntax ruby">:done</code> for managing external scripts and dependencies.</li>
+		<li>Copy data either by pushing to the backup server, or pulling from the master server, and have your scripts execute seamlessly on the correct host. Complex backups involving multiple master and replica servers can be handled using <a href="documentation/roles">roles</a>.</li>
+		<li>Improve fault tolerance in your network using <a href="documentation/dns-indirection">DNS indirection</a> and <a href="documentation/server-synchronisation">server synchronization</a>.</li>
+	</ul>
+	
+	<h2>Documentation</h2>
+	
+	<summary path="documentation/" />
+</page>

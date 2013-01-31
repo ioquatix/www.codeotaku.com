@@ -1,0 +1,20 @@
+$ rd-dns-check -s ns1-new.mydomain.com -q mydomain.com.yml
+==========================[ Checking Records ]==========================
+... snip ...
+*** Could not resolve hostname "aptcache.mydomain.com."
+   Primary: aptproxy.mydomain.com.                      IN     A 10.0.0.100
+*** Could not resolve hostname "printserver.mydomain.com."
+   Primary: printserver1a.mydomain.com.                 IN     A 10.0.0.140
+*** IP Address does not match
+   Primary: abcproxy.mydomain.com.                      IN     A 123.x.x.x
+ Secondary: abcproxy.mydomain.com.                      IN CNAME proxy.isp.net.
+... snip ...
+==============================[ Summary ]===============================
+Checked 112 record(s). 36 errors.
+The following records are okay:
+... snip ...
+            www.mydomain.com.                           IN     A 10.0.0.41
+            linux.mydomain.com.                         IN     A 10.0.0.44
+            webmail.mydomain.com.                       IN     A 10.0.0.45
+            fc.mydomain.com.                            IN     A 10.0.0.45
+... snip ...

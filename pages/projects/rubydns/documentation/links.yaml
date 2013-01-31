@@ -1,0 +1,15 @@
+installation:
+    order: 1
+basic-dns-server:
+    order: 2
+    title: "Basic DNS Server"
+dns-verification:
+    order: 20
+    title: "DNS Verification"
+dns-testing:
+    order: 25
+    title: "DNS Testing"
+api-documentation:
+    order: 100
+    title: "API Documentation"
+    uri: http://rubydoc.info/gems/rubydns/frames

@@ -1,0 +1,14 @@
+$ rd-dns-check -s ns1.mydomain.com -d mydomain.com -r mydomain.com.yml 
+======================[ Checking Reverse Lookups ]======================
+... snip ...
+*** Hostname does not match
+   Primary: winproxy.mydomain.com.                      IN     A 10.0.0.50
+ Secondary: 50.0.0.10.in-addr.arpa.                     IN   PTR win-proxy.mydomain.com
+... snip ...
+==============================[ Summary ]===============================
+Checked 112 record(s). 3 errors.
+The following records are okay:
+... snip ...
+    Primary: linux.mydomain.com.                        IN     A 10.0.0.44
+  Secondary: 44.0.0.10.in-addr.arpa.                    IN   PTR linux.mydomain.com.
+... snip ...

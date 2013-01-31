@@ -11,8 +11,11 @@ jquery-xframe:
 utopia:
     title: 'Utopia'
     tags: ['open', 'ruby', 'rack', 'framework']
-    uri: http://www.oriontransfer.co.nz/gems/utopia
     description: "Content-driven website framework based on XML and Ruby."
+rubydns:
+    title: 'RubyDNS'
+    tags: ['open', 'ruby', 'server']
+    description: "A fully featured DNS server with a Ruby domain-specific-language for processing requests."
 dream:
     title: 'Dream'
     tags: ['open', 'opengl', 'cpp', 'framework']
@@ -41,7 +44,6 @@ house-pigeon:
 lsync:
     title: 'LSync'
     tags: ['open', 'ruby', 'framework', 'command-line']
-    uri: http://www.oriontransfer.co.nz/gems/lsync
     description: "A flexible tool for backup and synchronisation tasks."
 swxmlmapping:
     title: 'SWXMLMapping'
@@ -56,7 +58,6 @@ swapplicationsupport:
 post-remote-log:
     title: 'Post Remote Log'
     tags: ['open', 'ruby', 'framework', 'command-line']
-    uri: http://www.oriontransfer.co.nz/gems/post_remote_log
     description: "A set of tools for remote logging and data analysis."
 fingerprint:
     title: 'Fingerprint'
@@ -115,7 +116,6 @@ truth-table-solver:
 xapian:
     title: "Xapian [Core, Indexer, Rack]"
     tags: ['open', 'ruby', 'rack', 'framework']
-    uri: http://www.oriontransfer.co.nz/gems/xapian
     description: "A collection of Ruby based frameworks for providing full-text search functionality."
 goblin-hacker:
     title: "Goblin Hacker"
@@ -130,11 +130,9 @@ jquery-menu:
 rexec:
     title: "RExec"
     tags: ['open', 'ruby', 'framework']
-    uri: http://www.oriontransfer.co.nz/gems/rexec
     description: "Facilitates the execution of Ruby code on remote systems and provides a comprehensive framework for process/task management."
 relaxo:
     tags: ['open', 'ruby', 'framework']
-    uri: https://github.com/ioquatix/relaxo
     description: "A simple and efficient interface for CouchDB written in Ruby."
 relaxo-model:
     tags: ['open', 'ruby', 'framework']

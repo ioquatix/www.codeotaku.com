@@ -1,0 +1,17 @@
+<contents-page title="Post Remote Log Documentation">
+	<heading>Installation</heading>
+
+	<p>Post Remote Log is available as a ruby gem:</p>
+
+	<listing brush="bash">$ sudo %%function{gem} %%option{install} post_remote_log</listing>
+	
+	<h2>Source Code</h2>
+	
+	<p>The source code is available on GitHub: <a href="https://github.com/ioquatix/post_remote_log">https://github.com/ioquatix/post_remote_log</a>.</p>
+	
+	<h2>License</h2>
+	
+	<p>PostRemoteLog is released under the MIT license:</p>
+	
+	<listing src="license.txt" brush="plain" />
+</contents-page>

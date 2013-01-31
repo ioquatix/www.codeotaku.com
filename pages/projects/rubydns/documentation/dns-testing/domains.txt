@@ -1,0 +1,8 @@
+-- Contents of domains.txt
+www.google.com
+www.slashdot.org
+
+-- Specify file using -d option:
+$ rd-resolve-test -d domains.txt 10.0.0.80
+Starting test with 2 domains...
+... snip ...

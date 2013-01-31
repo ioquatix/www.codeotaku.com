@@ -1,0 +1,8 @@
+-- Make up your own password!
+CREATE USER "backup"@"localhost" IDENTIFIED BY "$password";
+
+-- Give the backup user access to all databases
+GRANT SELECT, SHOW DATABASES, LOCK TABLES ON *.* TO "backup"@"localhost";
+
+-- Update the MySQL daemon with the new permissions
+FLUSH PRIVILEGES;

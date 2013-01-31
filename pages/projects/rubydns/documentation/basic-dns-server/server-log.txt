@@ -1,0 +1,10 @@
+$ ruby example-dns.rb
+I, [2009-11-05T22:27:53.887513 #1958]  INFO -- : Starting server...
+D, [2009-11-05T22:28:08.777992 #1958] DEBUG -- : Receiving incoming query...
+D, [2009-11-05T22:28:08.778858 #1958] DEBUG -- : Searching for dev.mydomain.org A
+D, [2009-11-05T22:28:08.779126 #1958] DEBUG -- : Checking rule ["dev.mydomain.org", "A"]...
+D, [2009-11-05T22:28:08.779225 #1958] DEBUG -- : Resource type A matched
+D, [2009-11-05T22:28:08.779449 #1958] DEBUG -- : Query dev.mydomain.org matched dev.mydomain.org
+D, [2009-11-05T22:28:08.779912 #1958] DEBUG -- : Rule returned successfully
+D, [2009-11-05T22:28:08.780202 #1958] DEBUG -- : Sending result to ["AF_INET", 62305, "localhost", "127.0.0.1"]:
+D, [2009-11-05T22:28:08.780358 #1958] DEBUG -- : "<snip>"

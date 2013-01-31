@@ -1,0 +1,1 @@
+$ tail -n 20 /var/log/system.log | post-remote-log -c localhost-config.yaml "System Log"

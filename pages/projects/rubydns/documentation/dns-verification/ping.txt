@@ -1,0 +1,16 @@
+$ rd-dns-check -p mydomain.com.yml 
+==========================[ Pinging Records ]===========================
+... snip ...
+*** Could not ping host "aptcache.mydomain.com.": "ping -c 5 -t 5 -i 1 -o 10.0.0.100 > /dev/null"
+            aptproxy.mydomain.com.                      IN     A 10.0.0.100
+*** Could not ping host "printserver.mydomain.com.": "ping -c 5 -t 5 -i 1 -o 10.0.0.140 > /dev/null"
+            printserver1a.mydomain.com.                 IN     A 10.0.0.140
+... snip ...
+==============================[ Summary ]===============================
+Checked 112 record(s). 34 errors.
+The following records are okay:
+... snip ...
+            www.mydomain.com.                           IN     A 10.0.0.41
+            linux.mydomain.com.                         IN     A 10.0.0.44
+            webmail.mydomain.com.                       IN     A 10.0.0.45
+... snip ...

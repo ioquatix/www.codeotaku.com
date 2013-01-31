@@ -1,0 +1,13 @@
+--- 
+- !ruby/object:DNSRecord 
+  record: 
+  - alias.mydomain.com.
+  - IN
+  - CNAME
+  - host.mydomain.com.
+- !ruby/object:DNSRecord 
+  record: 
+  - host.mydomain.com.
+  - IN
+  - A
+  - 10.0.0.100

@@ -1,0 +1,2 @@
+-- On the source server (s1.example.com)
+$ sudo %%function{mkdir} /etc/lsync

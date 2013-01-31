@@ -1,0 +1,5 @@
+$ rd-dns-check -s ns1.mydomain.com -d mydomain.com. -c mydomain.com.yml
+==========================[ Checking Records ]==========================
+==============================[ Summary ]===============================
+Checked 112 record(s). 0 errors.
+Everything seemed okay.

@@ -1,0 +1,20 @@
+$ rd-dns-check -s ns1-new.mydomain.com -d mydomain.com -c test.yml 
+==========================[ Checking Records ]==========================
+... snip ...
+*** Records are different
+   Primary: time.mydomain.com.                          IN CNAME abtime.mydomain.com.
+ Secondary: time.mydomain.com.                          IN CNAME ab-time.mydomain.com.
+*** Could not find record
+   Primary: time2.mydomain.com.                         IN CNAME netboot.mydomain.com.
+*** Could not find record
+   Primary: winproxy.mydomain.com.                      IN     A 10.0.0.50
+... snip ...
+==============================[ Summary ]===============================
+Checked 112 record(s). 71 errors.
+The following records are okay:
+... snip ...
+            www.mydomain.com.                           IN     A 10.0.0.41
+            linux.mydomain.com.                         IN     A 10.0.0.44
+            webmail.mydomain.com.                       IN     A 10.0.0.45
+            fc.mydomain.com.                            IN CNAME webmail.mydomain.com.
+... snip ...

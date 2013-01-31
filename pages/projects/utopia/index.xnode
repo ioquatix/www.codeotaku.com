@@ -1,0 +1,25 @@
+<page>
+    <p style="float: right"><img src="utopiafw.png" alt="Utopia Framework Logo" /></p>
+    
+    <heading>Utopia Framework</heading>
+    
+    <p>The Utopia Framework is a website management tool. It provides a full range of functionality built on top of Ruby and Rack.</p>
+    
+    <h2>Features</h2>
+    
+    <ul class="features">
+        <li>Integrates with existing websites.</li>
+        <li>Dynamic XHTML markup language.</li>
+        <li>Provides easy to use localization features for all kinds of files.</li>
+        <li>Provides a full range of real-time statistics.</li>
+        <li>Flexible redirection from old URIs to new URIs, including statistics.</li>
+        <li>Simple installation and few dependencies.</li>
+        <li>Optimized for speed and simplicity.</li>
+    </ul>
+
+	<p>Source code is available at <a href="http://github.com/ioquatix/utopia">GitHub</a>.</p>
+
+	<h2>Documentation</h2>
+	
+	<summary path="documentation/" />
+</page>

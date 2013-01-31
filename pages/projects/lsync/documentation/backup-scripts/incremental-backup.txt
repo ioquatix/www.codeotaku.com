@@ -1,0 +1,28 @@
+#!/usr/bin/env ruby
+
+require 'rubygems'
+
+require 'lsync'
+require 'lsync/shells/ssh'
+require 'lsync/methods/rsync'
+
+LSync::run_script do |script|
+	script.method = LSync::Methods::RSyncSnapshot.new(:push, :arguments => ["--archive", "--compress", "--stats"])
+	
+	script.master = :src
+	
+	server(:src) do |server|
+		server.root = "/"
+	end
+	
+	server(:dst) do |server|
+		server.root = "/backups"
+		
+		server.on(:success) do |controller|
+			controller.run ['lsync-rotate', script.method.inprogress_path]
+			controller.run ['lsync-prune', '--default-policy']
+		end
+	end
+	
+	backup('etc', 'var', 'srv', 'home')
+end

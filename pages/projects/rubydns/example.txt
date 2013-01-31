@@ -1,0 +1,99 @@
+#!/usr/bin/env ruby
+
+# Copyright (c) 2009 Samuel Williams. Released under the GNU GPLv3.
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+require 'rubygems'
+
+require 'rexec'
+require 'rexec/daemon'
+
+require 'rubygems'
+require 'rubydns'
+
+require 'timeout'
+
+# Run as user "daemon"
+RUN_AS="daemon"
+
+# Cache DNS entries for 5 minutes
+CACHE_TIME=60*5
+
+# We need to be root in order to bind to privileged port
+if RExec.current_user != "root"
+	$stderr.puts "Sorry, this command needs to be run as root!"
+	exit 1
+end
+
+# Helper
+Name = Resolv::DNS::Name
+IN = Resolv::DNS::Resource::IN
+
+HARU_A = "10.0.0.80"
+SCOOTER_A = "10.0.0.10"
+
+# The Daemon itself
+class Server < RExec::Daemon::Base
+	@@var_directory = File.dirname(__FILE__)
+
+	def self.run
+		# Don't buffer output (for debug purposes)
+		$stderr.sync = true
+
+		# Use upstream DNS for name resolution
+		# Scooter DNS
+		$R = Resolv::DNS.new(:nameserver => SCOOTER_A)
+
+		$CACHE = {}
+
+		# Start the RubyDNS server
+		RubyDNS::run_server do
+			on(:start) do
+				RExec.change_user(RUN_AS)
+			end
+			
+			match(/(gems|git|svn).oriontransfer.org$/, IN::A) do |match, transaction|
+				transaction.respond!(HARU_A)
+			end
+
+			match("haru.oriontransfer.org", IN::A) do |transaction|
+				transaction.respond!(HARU_A)
+			end
+
+			match("80.0.0.10.in-addr.arpa", IN::PTR) do |transaction|
+				transaction.respond!(Name.create("haru.oriontransfer.org."))
+			end
+
+			# Default DNS handler
+			otherwise do |transaction|
+				key = [transaction.name, transaction.resource_class]
+				cache = $CACHE[key]
+
+				if cache and (Time.now - cache[1]) < CACHE_TIME
+					logger.info "Cached: #{transaction.name}..."
+					transaction.answer.merge!(cache[0])
+				else
+					logger.info "Lookup: #{transaction.question.to_s}"
+					transaction.passthrough!($R) do |reply, reply_name|
+						$CACHE[key] = [reply, Time.now]
+					end
+				end
+			end
+		end
+	end
+end
+
+# RExec daemon runner
+Server.daemonize

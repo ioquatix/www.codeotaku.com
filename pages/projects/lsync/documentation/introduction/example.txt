@@ -1,0 +1,24 @@
+
+$script = LSync::Script.new do |script|
+	# Use rsync snapshot method
+	script.method = LSync::Methods::RSync.new(:push)
+	
+	script.master = "server1.example.com"
+	
+	server(:server1a) do |server|
+		server.host = "server1a.example.com"
+		server.root = "/"
+	end
+	
+	server(:server1b) do |server|
+		server.host = "server1b.example.com"
+		server.root = "/"
+	end
+	
+	server(:server1c) do |server|
+		server.host = "server1c.example.com"
+		server.root = "/"
+	end
+	
+	backup('srv')
+end

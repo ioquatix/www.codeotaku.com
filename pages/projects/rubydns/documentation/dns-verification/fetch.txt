@@ -1,0 +1,2 @@
+$ rd-dns-check -s ns1.mydomain.com -d mydomain.com. -f mydomain.com.yml
+112 record(s) retrieved.

@@ -1,0 +1,10 @@
+installation:
+    order: 1
+daemonization:
+    order: 2
+remote-code-execution:
+    order: 3
+api-documentation:
+    order: 100
+    title: "API Documentation"
+    uri: http://rubydoc.info/gems/rexec/frames

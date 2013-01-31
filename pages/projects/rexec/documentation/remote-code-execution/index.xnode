@@ -1,0 +1,17 @@
+<contents-page title="RExec Documentation">
+	<heading>Remote Code Execution</heading>
+	
+	<p>Remote Code Execution allows code to be sent over the network and executed remotely as needed, and provides a very simple communication mechanism. RExec works by instantiating ruby on a remote machine, and then sending a small amount of code. It then starts up a connection back to the server process.</p>
+
+	<div class="gallery"><img src="remote-execution.png" /></div>
+	
+	<h2>Example</h2>
+	
+	<h3>Server Code</h3>
+	
+	<listing src="remote-execution-server.txt" brush="ruby" />
+	
+	<h3>Output</h3>
+	
+	<listing src="remote-execution-server-output.txt" brush="bash" />
+</contents-page>

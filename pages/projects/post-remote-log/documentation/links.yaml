@@ -1,0 +1,6 @@
+installation:
+    order: 1
+configuration:
+    order: 2
+usage:
+    order: 3

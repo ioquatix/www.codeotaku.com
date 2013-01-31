@@ -1,0 +1,2 @@
+# Run the radmind update command, which can take several hours to complete.
+nohup daemon-exec -- bash -c "ra update"

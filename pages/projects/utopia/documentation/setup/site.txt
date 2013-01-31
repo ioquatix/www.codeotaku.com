@@ -1,0 +1,17 @@
+$ mkdir test
+$ cd test
+$ utopia
+Copying files from ... to ...
+Updating config.ru...
+Type `thin start' to start the web server.
+I recommend using git for version control.
+*** Thanks for trying out Utopia! ***
+$ thin %%option{start}
+>> Using rack adapter
+** Utopia::Middleware::Content: Running in /private/tmp/test/pages
+** Utopia::Middleware::Static: Running in /private/tmp/test/pages with 63 filetypes
+** Utopia::Middleware::Controller: Running in /private/tmp/test/pages
+** Utopia::Middleware::Redirector: Running with 2 rules
+>> Thin web server (v1.2.7 codename No Hup)
+>> Maximum connections set to 1024
+>> Listening on 0.0.0.0:3000, CTRL+C to stop

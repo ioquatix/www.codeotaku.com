@@ -1,0 +1,13 @@
+<contents-page title="Post Remote Log Documentation">
+	<heading>Configuration</heading>
+	
+	<p>Post Remote Log works using a single configuration file which specifies where the log data is to be sent.</p>
+	
+	<h2>Example Configuration File</h2>
+	
+	<p>The configuration file is formatted using <a href="http://www.yaml.org/">YAML</a>.</p>
+	
+	<listing src="example_config.txt" brush="yaml"/>
+	
+	<p>This example details all possible options.</p>
+</contents-page>

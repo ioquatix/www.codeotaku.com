@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+
+LSYNC_SCRIPTS = Dir["/etc/lsync/*"]
+
+LSYNC_SCRIPTS.each do |script|
+	$stderr.puts "Running #{script}..."
+	system(script)
+end

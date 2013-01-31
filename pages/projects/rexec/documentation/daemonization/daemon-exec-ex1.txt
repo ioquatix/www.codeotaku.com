@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+echo "Listing tmp files"
+ls -la /tmp
+
+echo "Running long time process"
+sleep 50

@@ -1,0 +1,20 @@
+<page>
+    <heading>RubyDNS</heading>
+    
+    <p>RubyDNS is a tool that allows you to intercept and modify DNS requests. It can provide most typical DNS server functionality, including the ability to pull DNS records from any data source.</p>
+	
+	<ul class="features">
+		<li>Fully programmatic DNS server: integrate with databases, servers and caches seamlessly.</li>
+		<li>Match incoming DNS requests using regular expressions.</li>
+		<li>Modify requests in-flight to spoof or manipulate DNS responses.</li>
+		<li>Includes several auxiliary commands for DNS migration, verification and testing.</li>
+	</ul>
+	
+	<h2>Documentation</h2>
+	
+	<summary path="documentation/" />
+	
+	<h2>Example</h2>
+	
+	<listing src="example.txt" brush="ruby" />
+</page>

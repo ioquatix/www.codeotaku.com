@@ -1,0 +1,9 @@
+<page>
+	<h1>CSS Syntax Example</h1>
+
+	<h2>CSS</h2>
+	
+	<p>Note the color boxes, inserted automatically, by the CSS brush.</p>
+	
+	<listing src="css.txt" lang="css" />
+</page>

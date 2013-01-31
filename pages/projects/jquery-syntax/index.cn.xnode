@@ -1,0 +1,62 @@
+<page>
+	<?r @title = "Syntax Highlighting - jQuery.Syntax" ?>
+	<div class="gallery"><img src="logo.png" alt="jQuery.Syntax Logo" /><br/>
+		<strong>I make code look goooood :)</strong>
+	</div>
+	
+	<p>jQuery.Syntax 是一款高效的代码语法高亮程序.完全使用精练JavaScript写成,不仅智能动态的加载所需源文件,而且结构清晰,能够轻易通过CSS配置或者行配置实现自定义和扩展.</p>
+	
+	<listing src="hello_world.txt" />
+	
+	<p>jQuery.Syntax 当然也集成有对 <a href="examples">全部支持的言语</a>的嵌套语法高亮.例如: <code class="syntax ruby">@x = y + 10</code> (Ruby) and <code class="syntax html">&lt;img src="logo.png" /&gt;</code> (HTML)! <a href="http://www.syntax-highlighting.com/">立即在线体验</a>!</p>
+	
+	<h2>文档</h2>
+	
+	<p>jQuery.Syntax 完全可以直接引入到您的网页当中,或者以插件的形式单独包含到开源系统中.</p>
+	
+	<ul>
+		<li><a href="examples">全部支持的言语和实例</a> [<a href="layouts">布局实例</a>]</li>
+		<li><a href="how-to-install">安装指南</a> [<a href="how-to-install/advanced-setup">高级配置</a>]</li>
+		<li><a href="how-to-install/modelines">如何写行配置</a></li>
+		<li><a href="how-to-contribute">捐助(与定制)</a></li>
+		<li><a href="license">License and Copyright information</a></li>
+	</ul>
+	
+	<h2>兼容性</h2>
+	
+	<p>jQuery.Syntax 在开发时就已经充分考虑了跨浏览器之间的兼容性,所支持的浏览器非常全面.我们也致力于跟进测试新版的浏览器.如果您所使用的浏览器不在以下列表中,请告知我们.</p>
+	
+	<table class="basic">
+		<thead><tr><th>浏览器</th><th>支持的版本</th><th>备注</th></tr></thead>
+		<tbody>
+			<tr><td>Firefox</td><td>2+</td><td>完全支持.</td></tr>
+			<tr><td>Safari</td><td>3+</td><td>完全支持.</td></tr>
+			<tr><td>Opera</td><td>9+</td><td>完全支持.</td></tr>
+			<tr><td>Internet Exploder</td><td>6+</td><td>IE6中存在极少Bug.</td></tr>
+		</tbody>
+	</table>
+	
+	<h2>下载</h2>
+	
+	<p>jQuery.Syntax 在MIT许可协议下完全免费.</p>
+	
+	<ul>
+		<li><a href="http://github.com/ioquatix/jquery-syntax/downloads">jQuery.Syntax</a> 源码包和样式库</li>
+		<li><a href="http://www.jquery.org">jQuery 1.4.1+</a> JavaScript 开源框架 (必需)</li>
+	</ul>
+	
+	<p>在线查看源码 <a href="http://github.com/ioquatix/jquery-syntax">GitHub</a>.</p>
+	
+	<h3>插件</h3>
+	
+	<ul>
+		<li><a href="jquery-syntax-dokuwiki.zip">DokuWiki Plugin Download</a> [<a href="http://www.dokuwiki.org/plugin:jquery-syntax">DokuWiki Plugin Page</a>]</li>
+		<li><a href="jquery-syntax-wordpress.zip">WordPress Plugin Download</a> [<a href="wordpress">Install Instructions</a> | <a href="http://wordpress.org/extend/plugins/jquery-syntax/">WordPress Plugin Page</a>]</li>
+	</ul>
+	
+	<h2>捐助</h2>
+	
+	<p>jQuery.Syntax基于免费协议免费发布,如果您认可本程序希望您能考虑捐助我们.</p>
+	
+	<div class="gallery"><a href='http://www.pledgie.com/campaigns/8915'><img alt='Click here to lend your support to: jquery-syntax and make a donation at www.pledgie.com !' src='http://www.pledgie.com/campaigns/8915.png?skin_name=chrome' border='0' /></a></div>
+</page>

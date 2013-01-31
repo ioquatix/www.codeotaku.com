@@ -1,0 +1,1 @@
+Plain PHP supports both short tags <? echo "Foo" ?> and long tags <?php echo "Bar" ?>

@@ -1,0 +1,7 @@
+<page>
+	<h1>Diff Syntax Example</h1>
+
+	<h2>Diff</h2>
+	
+	<listing src="diff.txt" lang="diff" />
+</page>

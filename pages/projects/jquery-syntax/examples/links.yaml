@@ -1,0 +1,60 @@
+sql:
+    title: "SQL"
+ooc:
+    title: "Object-Oriented C"
+yaml:
+    title: "YAML"
+css:
+    title: "CSS"
+html:
+    title: "HTML"
+php:
+    title: "PHP"
+javascript:
+    title: "JavaScript"
+assembly:
+    title: "Assembly"
+clang:
+    title: "C/C++/Objective-C"
+csharp:
+    title: "C#"
+bash:
+    uri: "/software/rexec"
+bash-script:
+    uri: "/software/rexec/documentation/daemon-exec"
+applescript:
+    title: "AppleScript"
+    uri: "/blog/2009-05/applescript-insanity"
+apache:
+    title: "Apache Config"
+    uri: "/blog/2009-04/apache-webdav-configuration"
+ruby:
+    uri: "/software/ruby-dns/index"
+pascal:
+    uri: "http://programming.dojo.net.nz/languages/pascal"
+smalltalk:
+    uri: "http://programming.dojo.net.nz/languages/smalltalk"
+perl5:
+    title: "Perl 5"
+    uri: "http://programming.dojo.net.nz/languages/perl"
+haskell:
+    uri: "http://programming.dojo.net.nz/languages/haskell"
+kai:
+    uri: "/research/kai"
+io:
+    title: "io"
+xml:
+    title: "XML"
+protobuf:
+    title: "Protocol Buffers"
+    uri: http://www.syntax-highlighting.com/p/show?id=2973
+scala:
+    uri: http://www.syntax-highlighting.com/p/show?id=2965
+go:
+    uri: http://www.syntax-highlighting.com/p/show?id=2969
+super-collider:
+    title: "SuperCollider"
+    uri: http://www.syntax-highlighting.com/p/show?id=2972
+ocaml:
+    title: "OCaml"
+    uri: http://www.syntax-highlighting.com/p/show?id=2974

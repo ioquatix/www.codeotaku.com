@@ -1,0 +1,4 @@
+<pre class="syntax javascript">
+function hello () {
+	return 10 &lt; 20;
+}</pre>

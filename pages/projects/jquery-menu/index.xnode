@@ -1,0 +1,18 @@
+<page>
+	<heading>jQuery.Menu</heading>
+	
+	<p>jQuery.Menu is a simple and elegant menu system. For an example, please see the <a href="http://programming.dojo.net.nz">Programming Dojo</a>.</p>
+	
+	<h2>Download</h2>
+
+	<div style="float: right"><img src="../jquery-syntax/agplv3.png" /></div>
+
+	<p>jQuery.Menu is available freely under the AGPLv3 license.</p>
+	
+	<ul>
+		<li><a href="http://github.com/ioquatix/jquery-menu/downloads">jQuery.Menu</a></li>
+		<li><a href="http://www.jquery.org">jQuery 1.4.1+</a></li>
+	</ul>
+	
+	<p>Source code is available at <a href="http://github.com/ioquatix/jquery-menu">GitHub</a>.</p>
+</page>

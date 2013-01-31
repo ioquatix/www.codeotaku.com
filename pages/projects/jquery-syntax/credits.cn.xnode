@@ -1,0 +1,21 @@
+<page>
+	<h2>Credits</h2>
+	
+	<p>I, Samuel Williams, developed the majority of this code. I was helped by a number of kind people on IRC when banging my head against bugs in Internet Explorer, and other such issues. Thanks to everyone who helped.<br/>
+	我,Samuel Williams,负责编写了本程序大部分源码.我开发过程遇到IE上的冲突及其他问题时曾受到IRC上很多人的帮助.感谢所有帮助过我的人.
+	</p>
+	
+	<p>Thanks to The jQuery Project for providing such a wonderful framework. It is easy to work with and makes life much easier when dealing with cross-browser issues.<br/>
+	感谢jQuery工程提供了如此完美的框架.它易用而且轻而易举的解决跨浏览器问题.
+	</p>
+	
+	<p>Thanks to Alex Gorbatchev whose SyntaxHighlighter project provided a lot of ideas and inspired me to work hard. I think he has contributed a great deal to the community.<br/>
+	感谢Alex Gorbatchev,他的代码语法高亮工程给了我很多灵感,并激励我努力钻研.同时我也感谢他给社会作出的巨大贡献.
+	</p>
+	
+	<p>Thanks to Tadao Takaoka, my wise sensei, who has listened to me talk about algorithms for countless hours. jQuery.Syntax has a number of interesting and unique algorithms to solve highlighting problems efficiently.jQuery.Syntax is extremely fast because he helped me to think about the problem in new ways.<br/>
+	感谢Tadao Takaoka,我的导师,他曾经不厌其烦的听我讨论相关算法.jQuery.Syntax 有大量处理效率问题的有趣和首创的算法.jQuery.Syntax 是高效性的,因为有他帮助我换新的方式来思考问题.
+	 </p>
+
+	<p>Thanks to <a href="http://iunbug.appspot.com/">Gaolu Li (李高禄)</a> who translated the Simplified Chinese version of this page.</p>
+</page>

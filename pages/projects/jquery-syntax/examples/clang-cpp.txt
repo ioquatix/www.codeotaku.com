@@ -1,0 +1,129 @@
+#include <iostream>
+
+/* Multi-line comment test
+ Hello World!
+ */
+
+
+// If we increase row by 1, the offset will increase by sz (number of elements per row i.e. number of columns)
+// If we increase col by 1, the offset will increase by 1
+unsigned rowMajorOffset(unsigned row, unsigned col, unsigned sz)
+{
+  return col + row * sz;
+}
+ 
+// If we increase col by 1, the offset will increase by sz (number of elements per column i.e. number of rows)
+// If we increase row by 1, the offset will increase by 1
+unsigned columnMajorOffset(unsigned row, unsigned col, unsigned sz)
+{
+  return row + col * sz;
+}
+ 
+template <typename _ValueT, unsigned _R, unsigned _C, bool _ColumnMajor>
+class Matrix {
+protected:
+	enum { ColumnMajor = _ColumnMajor };
+	enum { R = _R };
+	enum { C = _C };
+ 
+	typedef _ValueT ValueT;
+ 
+	ValueT m_values[C*R];
+ 
+public:
+	const ValueT & at (unsigned r, unsigned c) const
+	{
+		if (ColumnMajor)
+			return m_values[columnMajorOffset(r, c, R)];
+		else
+			return m_values[rowMajorOffset(r, c, C)];
+	}
+ 
+	ValueT & at (unsigned r, unsigned c)
+	{
+		if (ColumnMajor)
+			return m_values[columnMajorOffset(r, c, R)];
+		else
+			return m_values[rowMajorOffset(r, c, C)];
+	}
+ 
+	void loadTestPattern ()
+	{
+		for (unsigned r = 0; r < R; r += 1)
+			for (unsigned c = 0; c < C; c += 1)
+				at(r, c) = (r+1) * 1000 + (c+1);
+	}
+ 
+	void debug ()
+	{
+		using namespace std;
+ 
+		if (ColumnMajor)
+			cout << "Column-Major Matrix " << "(" << R << "," << C << ")" << " @ " << this << endl;
+		else
+			cout << "Row-Major Matrix " << "(" << R << "," << C << ")" << " @ " << this << endl;
+ 
+		cout << "Memory Offset: ";
+		for (unsigned i = 0; i < (R*C); i += 1)
+			cout << i << "    ";
+		cout << endl;
+ 
+		cout << "       Values: ";	
+		for (unsigned i = 0; i < (R*C); i += 1)
+			cout << m_values[i] << " ";
+		cout << endl;
+ 
+		cout << "Standard Mathematical Notation:" << endl;
+		cout << "      ";
+		for (unsigned c = 0; c < C; c += 1)
+			cout << "Col " << c << " ";
+		cout << endl;
+ 
+		for (unsigned r = 0; r < R; r += 1) {
+			cout << "Row " << r << " ";
+			for (unsigned c = 0; c < C; c += 1)
+				cout << at(r, c) << "  ";
+			cout << endl;
+		}
+		cout << endl;
+	}
+ 
+	Matrix<ValueT, R, C, !ColumnMajor> transposeStorage () const
+	{
+		Matrix<ValueT, R, C, !ColumnMajor> result;
+ 
+		for (unsigned r = 0; r < R; r += 1)
+			for (unsigned c = 0; c < C; c += 1)
+				result.at(r, c) = at(r, c);
+ 
+		return result;
+	}
+ 
+	Matrix<ValueT, C, R, !ColumnMajor> transposeMatrix () const
+	{
+		Matrix<ValueT, C, R, !ColumnMajor> result;
+ 
+		memcpy(&result.at(0,0), m_values, sizeof(m_values));
+ 
+		return result;
+	}
+};
+ 
+int main (int argc, char * const argv[]) {
+	Matrix<float, 4, 2, false> rowMajorMatrix;
+	Matrix<float, 4, 2, true> columnMajorMatrix;
+ 
+	rowMajorMatrix.loadTestPattern();
+	rowMajorMatrix.debug();
+ 
+	columnMajorMatrix.loadTestPattern();
+	columnMajorMatrix.debug();
+ 
+	rowMajorMatrix = columnMajorMatrix.transposeStorage();
+	rowMajorMatrix.debug();
+ 
+	Matrix<float, 2, 4, false> transposedMatrix = columnMajorMatrix.transposeMatrix();
+	transposedMatrix.debug();
+ 
+	return 0;
+}

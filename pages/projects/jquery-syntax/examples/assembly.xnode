@@ -1,0 +1,9 @@
+<page>
+	<h1>Assembly Syntax Example</h1>
+
+	<h2>Hello World!</h2>
+	
+	<p>Note the use of a modeline in this example</p>
+	
+	<listing src="assembly.txt" />
+</page>

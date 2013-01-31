@@ -1,0 +1,13 @@
+<script type="text/javascript" charset="utf-8"><!--
+$(function() {
+	// Assuming you've made the files:
+	//     jquery.syntax.layout.my_block.js 
+	//     jquery.syntax.layout.my_inline.js
+	
+	// Simple function...
+	$.syntax({blockLayout: "my_block", inlineLayout: "my_inline"});
+		
+	// Or...
+	$('pre.js').syntax({brush: "javascript", layout: "my_block"})
+});
+--></script>

@@ -1,0 +1,15 @@
+# "base" is the basic theme. It adds minor scaffolding
+# to support a website which doesn't have the right
+# css for .syntax and .syntax-container layout.
+depends:
+    - base
+# This adds code to existing css generation files - when 
+# the specified file is processed, this file is also 
+# included at the end.
+extends:
+    "jquery.syntax.core.sass": "_jquery.syntax.core.sass"
+# Specifies files to prefix on every other file processed.
+# Normally you wouldn't declare rules in this as they would
+# end up duplicated in every CSS file generated.
+includes:
+    - _modern.scss

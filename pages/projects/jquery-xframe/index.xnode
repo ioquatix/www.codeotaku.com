@@ -1,0 +1,15 @@
+<page>
+	<?r @title = "Dynamic Content - jQuery.XFrame" ?>
+	<div class="gallery"><img src="logo.png" alt="jQuery.XFrame Logo" /></div>
+	
+	<p>jQuery.XFrame is a client-side include system built on top of AJAX. It is designed to simplify the development of cache friendly dynamic websites by simplifying the complexity of combining static content with dynamic content (or more generally, content with different caching strategies).</p>
+	
+	<ul class="features">
+		<li>Simplify static and dynamic generated content by using an XFrame.</li>
+		<li>Recursively update all content on a page with a single call: <code class="syntax javascript">$.xframe()</code>!</li>
+	</ul>
+	
+	<h2>Source Code</h2>
+	
+	<p>Source code is available at <a href="http://github.com/ioquatix/jquery-xframe">GitHub</a>.</p>
+</page>

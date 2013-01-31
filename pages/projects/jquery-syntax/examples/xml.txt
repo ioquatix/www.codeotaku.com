@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<atom:feed xml:base="http://www.oriontransfer.co.nz/" xmlns:atom="http://www.w3.org/2005/Atom">
+	<atom:title>Code Otaku</atom:title>
+	<atom:subtitle>System Administration, Computer Programming, and Travelling</atom:subtitle>
+	<atom:link href="http://www.oriontransfer.co.nz/blog"/>
+
+	<atom:icon>/_images/icon.png</atom:icon>
+
+	<atom:author>
+		<atom:name>Samuel Williams</atom:name>
+		<atom:email>samuelNO@SPAMoriontransfer.org</atom:email>
+	</atom:author>
+	
+	<sneaky-node:testing-bob.dole12 apples-and-oranges="Hello World!" f.o.o="bar" />
+	
+	<atom:rights>© 2010 Samuel Williams</atom:rights>
+
+	<atom:id>/blog/atom</atom:id>
+	
+	<atom:entry>
+		<atom:id>/blog/2009-04/apache-webdav-configuration/index</atom:id>
+		<atom:title>Apache WebDAV Configuration</atom:title>
+		<atom:updated>2009-04-01T12:00:00+12:00</atom:updated>
+		<atom:link href="/blog/2009-04/apache-webdav-configuration/index"/>
+
+		
+		<atom:summary>Configuring WebDAV can be complicated - view an example configuration that I use.</atom:summary>
+		
+	</atom:entry>
+	
+	
+	<atom:entry>
+		<atom:id>/blog/2009-04/poll-and-kqueue-hack/index</atom:id>
+		<atom:title>Poll and Kqueue Hack</atom:title>
+		<atom:updated>2009-04-02T12:00:00+12:00</atom:updated>
+		<atom:link href="/blog/2009-04/poll-and-kqueue-hack/index"/>
+
+		
+		<atom:summary>Poll doesn't work well with STDIN on Mac OS X - here is a workaround.</atom:summary>
+		
+	</atom:entry>
+		
+</atom:feed>

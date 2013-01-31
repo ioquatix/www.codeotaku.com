@@ -1,0 +1,5 @@
+<page>
+	<heading>LUA Syntax Example</heading>
+	
+	<listing src="lua.txt" brush="lua" />
+</page>

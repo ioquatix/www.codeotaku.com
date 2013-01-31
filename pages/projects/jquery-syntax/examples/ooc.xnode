@@ -1,0 +1,9 @@
+<page>
+	<h1>OOC Syntax Example</h1>
+
+	<h2>Basic OOC Example</h2>
+	
+	<p>For more information about this interesting new language, visit <a href="http://ooc-lang.org/">http://ooc-lang.org/</a>.</p>
+	
+	<listing src="ooc.txt" lang="ooc" />
+</page>

@@ -1,13 +1,11 @@
 jquery-syntax:
     title: 'jQuery.Syntax'
     tags: ['open', 'javascript', 'jquery', 'framework']
-    uri: http://www.oriontransfer.co.nz/projects/jquery-syntax
-    description: "Fast client-side syntax highlighting."
+    description: "Fast and flexible client-side syntax highlighting for source code."
 jquery-xframe:
     title: 'jQuery.XFrame'
     tags: ['open', 'javascript', 'jquery', 'framework']
-    uri: http://www.oriontransfer.co.nz/projects/jquery-xframe/index
-    description: "Simplify client-side dynamic content."
+    description: "Simplify client-side dynamic content by using tags that reference remote content."
 utopia:
     title: 'Utopia'
     tags: ['open', 'ruby', 'rack', 'framework']
@@ -19,7 +17,6 @@ rubydns:
 dream:
     title: 'Dream'
     tags: ['open', 'opengl', 'cpp', 'framework']
-    uri: http://www.oriontransfer.co.nz/projects/dream
     description: "Dream is a cross-platform game development written in C++."
 property-manager:
     title: 'Property Manager'
@@ -45,15 +42,13 @@ lsync:
     title: 'LSync'
     tags: ['open', 'ruby', 'framework', 'command-line']
     description: "A flexible tool for backup and synchronisation tasks."
-swxmlmapping:
-    title: 'SWXMLMapping'
+SWXMLMapping:
     tags: ['open', 'objective-c', 'framework']
-    uri: http://www.oriontransfer.co.nz/frameworks/SWXMLMapping
+    uri: https://github.com/oriontransfer/SWXMLMapping
     description: "A high level object-graph to XML mapping framework."
-swapplicationsupport:
-    title: 'SWApplicationSupport'
+SWApplicationSupport:
     tags: ['open', 'objective-c', 'framework']
-    uri: http://www.oriontransfer.co.nz/frameworks/SWApplicationSupport
+    uri: https://github.com/oriontransfer/SWApplicationSupport
     description: "A collection of useful extensions for application development."
 post-remote-log:
     title: 'Post Remote Log'
@@ -76,7 +71,6 @@ library-inspector:
 quota-check:
     title: 'Quota Check'
     tags: ['commercial', 'objective-c', 'application']
-    uri: http://www.oriontransfer.co.nz/software/quota-check
     description: "Warn users that they are running out of diskspace automatically!"
 code-visualisation:
     title: 'Visualising information change over time'
@@ -120,12 +114,10 @@ xapian:
 goblin-hacker:
     title: "Goblin Hacker"
     tags: ['open', 'objective-c', 'application']
-    uri: http://www.oriontransfer.co.nz/software/goblin-hacker
     description: "A save-game editor for the game 'Eschalon Book I', built from scratch by reverse engineering."
 jquery-menu:
     title: "jQuery.Menu"
     tags: ['open', 'javascript', 'jquery', 'framework']
-    uri: http://www.oriontransfer.co.nz/projects/jquery-menu
     description: "A simple dynamic pop-up menu framework built on top of jQuery."
 rexec:
     title: "RExec"
@@ -183,8 +175,16 @@ drobo:
     tags: ['commercial', 'website']
     uri: http://www.drobo.co.nz
     description: "Drobo online store for New Zealand."
-tagged-model-format:
-    title: "Tagged Model Format"
+tagged-format:
+    title: "Tagged Format"
     tags: ['open', 'cpp', 'framework']
-    uri: https://github.com/ioquatix/tagged-model-format
-    description: "A flexible text+binary format for storing mesh data, primarily for modern graphics pipelines."
+    uri: https://github.com/dream-framework/tagged-format
+    description: "A flexible text+binary format for storing geometry data, primarily for modern graphics pipelines."
+printing-works:
+    title: "Printing Works"
+    tags: ['open', 'framework']
+    description: "An (incomplete) open print accounting platform which includes CUPS backends, authentication frontends and administrative tools."
+gps-tool:
+    title: "GPS Tool"
+    tags: ['commercial', 'application']
+    description: "GPS Tool is an application for importing data from various antique GPS hardware. It is no longer sufficiently relevant to warrant further development."

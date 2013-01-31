@@ -1,0 +1,5 @@
+<page>
+	<heading>XML Syntax Examples</heading>
+
+	<listing src="xml.txt" lang="xml" />
+</page>

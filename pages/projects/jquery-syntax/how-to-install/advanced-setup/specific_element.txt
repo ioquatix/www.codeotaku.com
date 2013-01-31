@@ -1,0 +1,6 @@
+$('div.java').syntax({
+	brush: 'java',
+	layout: 'fixed',
+	tabWidth: 8,
+	replace: true
+});

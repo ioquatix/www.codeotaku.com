@@ -1,0 +1,33 @@
+What Is Veracity?
+
+Veracity is a general purpose commercial data integrity tool that uses cryptographic hashes to detect changes in files. Veracity is a computer program that detects changes in directory trees. The user instructs this software to write a snapshot of a directory tree to a snapshot file. The snapshot file contains the names and signatures of each of the files in the tree, and is usually about 1/200th of the size of the tree.
+Veracity scans a directory tree and generates a small snapshot file containing the names and cryptographic hashes of the files in a tree. This snapshot file can then later be used by this program to generate a list of files that have been created, deleted, or modified. If so much as a single bit in a single file in the directory tree has changed, Veracity will detect it. 
+Veracity can also be run as a client and server over the Internet, allowing it to monitor the integrity of hundreds of computers from a single point. For more information , see the web site at http://www.veracity.com/
+Veracity represents a whole new approach to data protection. Until Veracity, the only way to preserve data was to take regular backups and hope that any unwanted changes that occurred would be major, obvious ones (such as loss of the disk). This approach meant trusting all the software to which the data was exposed: operating systems, backup software, communications software, compression software, encryption software, and archiving software. Unfortunately, each of these systems is highly complex and can inflict all kinds of damage on the data, much of the damage undetectable to humans who aren't actively using the data at the time.
+The Veracity approach is to keep an eye on the data itself, detecting even the change of a single bit. If a change is detected, the corrupted data can be restored from backups. This approach provides far more assurance than the traditional approach, and represents a quiet revolution in the management of data. Veracity's applications include:
+Preservation: Detect corruptions of online data.
+Security: Detect changes made by intruders.
+Sealing: Cryptographically seal critical files.
+Transfers: Verify file transfers between different operating systems.
+Notarizing: Prove that documents existed at a particular time.
+Backups: Verify restored backups to ensure that backups are sound.
+
+
+
+
+VERACITY FUNCTIONS
+
+• Enterprise Network Security
+• Embedded Enterprise
+• Firewall Integrity Monitoring
+• Web Server Integrity
+• File Transfer Verification
+• Backup Verification
+• CD-ROM Verification
+• Monitoring On-Disk data
+• Comparing Online/Offline
+• Comparing Remote File
+• Auditing Installed Software
+• Document Archiving
+• Document Timestamping
+• Auditing Preinstalled Software

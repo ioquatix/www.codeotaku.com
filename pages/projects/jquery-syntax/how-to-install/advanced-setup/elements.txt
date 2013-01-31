@@ -1,0 +1,22 @@
+// Callback functions receives three arguments
+// 'options' are the options given for the processing of this element
+// 'html' is the resulting syntax highlighted html
+// 'container' is the original element where the code was extracted
+
+$('pre.js').syntax(
+	{brush: 'javascript', layout: 'table'},
+	function (options, html, container) {
+		// A callback that reimplements the default behaviour (as an example).
+		container.replaceWith(html.clone(true));
+	}
+);
+
+$('code.js').syntax(
+	{brush: 'javascript', layout: 'inline', replace: true}, 
+	function (options, html, container) {
+		// The result of this callback is replaced into container (like above), because
+		// 'replace: true' is suppled as an option and the result is non-null.
+		// You could perform further manipulation on this result, if required.
+		return html;
+	}
+);

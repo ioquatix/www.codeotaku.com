@@ -1,0 +1,39 @@
+diff --git a/pages/_page.xnode b/pages/_page.xnode
+index 76bab5e..04fffe3 100644
+--- a/pages/_page.xnode
++++ b/pages/_page.xnode
+@@ -13,15 +13,23 @@
+ 		<link rel="icon" type="image/png" href="/_images/icon.png" />
+ 
+ 		<link rel="stylesheet" href="http://files.oriontransfer.org/oriontransfer/basic.css?1" type="text/css" media="screen" charset="utf-8" />
+-		<link rel="stylesheet" href="/_css/jquery.lightbox.css" type="text/css" media="screen" charset="utf-8" />
+-		<link rel="stylesheet" href="/_css/site.css" type="text/css" media="screen" charset="utf-8" />
+ 
+-		<script src="/_js/jquery.js" type="text/javascript" charset="utf-8"></script>
+-		<script src="/_js/jquery.lightbox-0.5.js" type="text/javascript" charset="utf-8"></script>
++		<link rel="stylesheet" href="/_css/site.css" type="text/css" media="screen" charset="utf-8" />
+ 
++		<script src="/_static/jquery-1.4.1.min.js" type="text/javascript" charset="utf-8"></script>
++		
++		<script src="/_static/jquery.lightbox-0.5.js" type="text/javascript" charset="utf-8"></script>
++		<link rel="stylesheet" href="/_static/jquery.lightbox.css" type="text/css" media="screen" charset="utf-8" />
++		
++		<script src="/_static/jquery.syntax.js" type="text/javascript" charset="utf-8"></script>
++		<script src="/_static/jquery.syntax.cache.js" type="text/javascript" charset="utf-8"></script>
++		
+ 		<script type="text/javascript" charset="utf-8">
+ 		$(function() {
+ 			$('a.thumbnail').lightBox({fixedNavigation:true});
++			
++			Syntax.root = "/_static/";
++			$.syntax({layout: 'table'});
+ 		});
+ 		</script>
+ 	</head>
+@@ -71,4 +79,4 @@
+ 
+ 		<google_analytics id="UA-2590906-1" />
+ 	</body>
+-</html>
++</html>
+\ No newline at end of file

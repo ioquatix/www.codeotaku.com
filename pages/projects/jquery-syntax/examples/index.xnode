@@ -1,0 +1,20 @@
+<page>
+	<heading>jQuery.Syntax Supported Languages</heading>
+	
+	<table class="basic">
+		<thead>
+			<tr>
+				<th>Language</th>
+				<th>Aliases</th>
+				<th>Example</th>
+			</tr>
+		</thead>
+		<tbody>
+			<?r links(".").sort_by(&:name).each do |link| ?>
+			<tr><td>#{link.title.to_html}</td><td><script type="text/javascript">document.write(Syntax.brushAliases(#{link.name.dump}).join(", "));</script></td><td>#{link.to_href}</td></tr>
+			<?r end ?>
+		</tbody>
+	</table>
+	
+	<p>If your language is not supported, please feel free to <a href="../how-to-install/advanced-setup#CreatingYourOwnBrush">contribute it!</a></p>
+</page>

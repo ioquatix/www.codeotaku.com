@@ -1,0 +1,21 @@
+; -*- mode: lisp -*-
+
+(define (fizzify i) 
+	(cond 
+		((= (modulo i 15) 0) 	"FizzBuzz") 
+		((= (modulo i 3) 0) 	"Fizz") 
+		((= (modulo i 5) 0) 	"Buzz") 
+		(#t 					i)
+	)
+)
+
+(define (fizzbuzz i) 
+	(if (<= i 100)
+		(begin
+			(display (fizzify i)) (display "\n")
+			(fizzbuzz (+ i 1))
+		)
+	)
+) 
+
+(fizzbuzz 1)

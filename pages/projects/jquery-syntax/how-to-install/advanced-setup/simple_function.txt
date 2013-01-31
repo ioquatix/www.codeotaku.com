@@ -1,0 +1,13 @@
+// This function is called when the preview is updated.
+function updatePreview () {
+	// Update preview with result of AJAX...
+	// ...snip...
+	
+	// Update any source code in the preview
+	$.syntax({context: $("#comment-preview")});
+}
+
+$.post('update-preview', {
+	success: updatePreview,
+	...etc...
+})

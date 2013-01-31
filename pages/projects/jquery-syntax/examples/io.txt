@@ -1,0 +1,12 @@
+# io delimits method invocations using spaces:
+Account := Object clone
+Account balance := 0
+
+# io uses commas for argument lists:
+Account deposit := method(amount,
+    balance = balance + amount
+)
+
+account := Account clone
+account deposit(10.00)
+account balance println

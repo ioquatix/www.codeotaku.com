@@ -1,0 +1,7 @@
+<page>
+	<h1>Lisp Syntax Example</h1>
+
+	<p>The Lisp Syntax is intentionally very sparse.</p>
+	
+	<listing src="lisp.txt" brush="lisp" />
+</page>

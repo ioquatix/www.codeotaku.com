@@ -1,0 +1,31 @@
+<page>
+	<img style="float: right; margin: 20px" src="icon.png" alt="Application Icon" />
+	
+	<heading>Quota Check</heading>
+	
+	<p>QuotaCheck is a simple application which is designed to run when a user logs into a computer. If they have less than a certain amount (defaults to 20Mbytes) they are told to visit the system administrator and logged out.</p>
+	
+	<p>When a user tries to log into a network home directory which has a quota enforced, and they don't have enough disk space, they risk corrupting their files. Quota Check makes this situation very clear to users who may be otherwise unaware of the problem.</p>
+	
+	<gallery path="screenshots" tag="thumbnail" process="thumbnail" />
+	
+	<h2>Integration</h2>
+	
+	<p>Quota Check comes with a <code>launchd</code> script which will run the application when a user logs in. Simply install Quota Check to install this setup script.</p>
+	
+	<p>Quota Check integrates with <a href="../post-remote-log">Post Remote Log</a> for providing centralized notifications. Notifications include the initial Disk Space Report and the Stop Bypass (if enabled). This information can be sent via email, XMLRPC or Growl.</p>
+	
+	<h2>Download</h2>
+	
+	<p>Quota Check is available at no cost for evaluation, simply download it and try it for as long as you require to ensure that it meets your needs. However, there are some limitations on this: The evaluation license does not permit you to install Quota Check on more than 5 machines for testing purposes.</p>
+	
+	<p>Licenses for Quota Check are sold in blocks of 25, at NZ$25 per block. A license covers the installation and usage of Quota Check on a single machine. A block of licenses covers all minor releases of the software, or one year of updates, which ever is longer.</p>
+	
+	<p>Orion Transfer Ltd also offers consultation services to customize the application to your exact requirements. This includes custom text, language, images, warnings, etc.</p>
+	
+	<h3>Compatibility</h3>
+	
+	<p>Quota Check is compatible with Mac OS X 10.4+</p>
+	
+	<filebox path="Quota Check-1.3rc1.zip" />
+</page>

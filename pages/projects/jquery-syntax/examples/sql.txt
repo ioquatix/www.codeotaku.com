@@ -1,0 +1,15 @@
+
+-- Doesn't everyone keep track of their eggs?
+CREATE TABLE chickens (
+    name VARCHAR(128),
+    eggs INT,
+    PRIMARY KEY (name)
+);
+
+-- Find all customers that have more than 10 orders
+SELECT customer_id, customer_name, COUNT(order_id) as total
+	FROM customers INNER JOIN orders ON customers.customer_id = orders.customer_id
+	GROUP BY customer_id, customer_name
+	HAVING COUNT(order_id) > 10
+	ORDER BY COUNT(order_id) DESC;
+

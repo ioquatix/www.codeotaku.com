@@ -1,0 +1,26 @@
+<p>The bold items are the main brush name (which you should use primarily), the italic items are aliases:</p>
+
+<p id="jquery_languages"></p>
+
+<script type="text/javascript" charset="utf-8"><!--
+	$(function() {
+		var brushes = $('<p>');
+		var first = true;
+		
+		for (var name in Syntax.aliases) {
+			if (first) {
+				first = false;
+			} else {
+				brushes.append(", ");
+			}
+			
+			if (name === Syntax.aliases[name]) {
+				brushes.append($('<strong>').text(name));
+			} else {
+				brushes.append($('<em title="' + Syntax.aliases[name] + '">' + name + '</em>'));
+			}
+		}
+		
+		$('#jquery_languages').replaceWith(brushes);
+	});
+--></script>

@@ -1,0 +1,9 @@
+<page>
+	<heading>Modelines Examples</heading>
+
+	<p>Note that modeline can either be first or second line. It must have the format given below: <code class="syntax">-*- mode: [lang]; -*-</code>. You can also specify <a href="advanced-setup.en#SyntaxHighlightingOptions">tab-width</a>.</p>
+
+	<listing src="modeline_javascript.txt" />
+
+	<listing src="modeline_ruby.txt" />
+</page>

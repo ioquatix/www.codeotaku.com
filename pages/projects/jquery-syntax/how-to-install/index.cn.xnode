@@ -1,0 +1,66 @@
+<page>
+	<heading>如何安装jQuery.Syntax</heading>
+	
+	<h2>步骤 1: 下载 jQuery和jQuery.Syntax</h2>
+	<p>下载最新版本的 <a href="http://www.jquery.org/">jQuery</a> (minimum version 1.4.1+)
+		和 <a href="http://github.com/ioquatix/jquery-syntax/downloads">jQuery.Syntax</a>. 把所有文件直接解压到您的网站项目目录下, 例如:</p>
+	
+	<ol>
+		<li>解压 jQuery到目录<code class="syntax">{webroot}/public/_static/</code></li>
+		<li>解压 jQuery.Syntax 到目录 <code class="syntax">{webroot}/materials/jquery-syntax/</code></li>
+	</ol>
+	
+	<h2>步骤2: 插入javascript脚本</h2>
+	<p>将以下代码插入到您想使用语法高亮的页面的 <code class="syntax html">&lt;head&gt;</code>标签里:</p>
+	
+	<listing src="example-head.txt" lang="html" />
+	
+	<p>以下是此方法的一些可配置参数:</p>
+	
+	<dl class="options">
+		<dt>options.root</dt>
+		<dd>通过指定的路径更新 <code class="syntax">Syntax.root</code> . 即您先前将jQuery.Syntax 解压到的网站项目的目录的路径. 本路径也是jQuery.Syntax用以动态加载所需脚本和样式文件的路径.</dd>
+		<dt>options.blockSelector</dt>
+		<dd>采集block代码块的block选择器. 默认为 <code class="syntax">pre.syntax</code>.</dd>
+		<dt>options.inlineSelector</dt>
+		<dd>采集inline代码块的inline选择器. 默认为  <code class="syntax">code.syntax</code>.</dd>
+		<dt>options.blockLayout</dt>
+		<dd>用以替换block代码块的布局方式.默认为  <code class="syntax">table</code>.</dd>
+		<dt>options.inlineLayout</dt>
+		<dd>用以替换inline代码块的布局方式.默认为 <code class="syntax">inline</code>.</dd>
+		<dt>options.context</dt>
+		<dd>指定当前元素应用语法高亮的范围,在页面中进行局部更新特别有用 (例如,预览评论).</dd>
+	</dl>
+	
+	<h3>针对高级用户</h3>
+
+	<p>其他参数请看 <a href="advanced-setup">高级的配置</a> 文档.</p>
+	
+	<h2>步骤3: 插入源代码</h2>
+
+	<p>将要被语法高亮的代码如下插入到 <code class="syntax html">&lt;pre&gt;</code> 标签里:</p>
+
+	<listing src="example-pre.txt" lang="html" />
+
+	<p>注意 <code class="syntax html">class="syntax brush-javascript"</code>中的 <code class="syntax html">"syntax"</code> 类通知 jQuery.Syntax 语法高亮应用到此 <code class="syntax html">&lt;pre&gt;</code>, 而 <code class="syntax html">"brush-javascript"</code> 通知 jQuery.Syntax 您要高亮的代码(语言)种类.</p>
+
+	<h3>缩略符</h3>
+
+	<p>自<code class="syntax">release-1.8</code> 版本后您可以为代码刷(应用高亮)统一缩略符. 意味着您可以任意指定 <code class="syntax html">"syntax"</code>类类名和代码种类的别名:</p>
+	
+	<listing src="example-pre-short.txt" lang="html" />
+
+	<p>当然也可能同时配置其他类, 例如 <code class="syntax moo html">&lt;pre class="syntax escaped html"&gt;</code> (顺序是可以任意的).</p>
+
+	<h3>可用的代码刷</h3>
+	
+	<p>粗体字是主要的代码刷名称 (您应该优先使用的),斜体字是别名:</p>
+	
+	<available_brushes />
+
+	<h2>完整示例</h2>
+
+	<p>这里是<a href="example.html">完整示例</a> 源码 (为代码刷使用缩略符):</p>
+
+	<listing src="example.html" lang="html" />
+</page>

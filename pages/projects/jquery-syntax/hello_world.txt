@@ -1,0 +1,9 @@
+// -*- mode: javascript; -*-
+
+var foo = function () {
+	alert("Hello World");
+}
+
+for (var i = 0; i < 100; i += 1) {
+	foo();
+}

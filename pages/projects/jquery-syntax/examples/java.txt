@@ -1,0 +1,1357 @@
+/*
+	JFtp FTP Client. Copyright 2005 Samuel G D Williams. All Rights Reserved.
+
+	Please execute with the flag --help for more information about command line
+	flags and the execution of this program.
+
+	Please note the 'help' command when running this program interactively,
+	it details all available commands, along with detailed information.
+	
+	There are probably a few bugs that I am not aware of as I have only tested
+	this on a few FTP servers. Most notably, the client seems a bit slow if
+	the remote ftp server has high latency or doesn't respond right away, although
+	this is probably more of a user interface problem. I expect while the client
+	holds together under most situations, I would like to add some kind of ping
+	command to keep server connections alive and active.
+	
+	Local commands have not been implemented as Ctrl-Z and fg do an adequate job.
+
+	23 September 2005
+		Initial Release.
+
+	2 October 2005
+		Added class CommandSet, Command, etc for better command handling. Added
+		help command.
+		
+	3 October 2005
+		Implemented passive mode in 20 minutes! Thanks to my great implementation
+		of DataConnection, which did have a bug which caused the whole program to
+		hang.... arh...
+*/
+
+import java.nio.*;
+import java.nio.channels.*;
+import java.io.*;
+import java.lang.*;
+import java.net.*;
+import java.util.*;
+import java.util.regex.*;
+import java.lang.reflect.*;
+
+/*
+	Utilities for string processing and io. Because java api sucks.
+*/
+class Utilities {
+	public static int copy(InputStream input, OutputStream output) throws IOException {
+	    byte[] buffer = new byte[1024];
+	    int count = 0, n = 0;
+	    while (-1 != (n = input.read(buffer))) {
+	        output.write(buffer, 0, n);
+	        count += n;
+	    }
+	    return count;
+	}
+	
+	public static int copy (byte[] input, OutputStream output) throws IOException {
+		output.write (input);
+		return input.length;
+	}
+	
+	public static String[] tokenize (String input, int count) {
+		String[] tokens = input.split ("((?<!\\\\)\\s)+", count);
+		
+		for (int i = 0; i < tokens.length; ++i)
+			tokens[i] = tokens[i].replaceAll ("\\\\ ", " ");
+
+		return tokens;
+	}
+}
+
+/*
+	CommandException is thrown when a command the user typed fails. It
+	will usually contain another exception, for example, a ServerException,
+	or an IOException.
+*/
+class CommandException extends Exception {
+	public CommandException (String s) {
+		super (s);
+	}
+	
+	public CommandException (String s, Exception e) {
+		super (s, e);
+	}
+	
+	public CommandException (Exception e) {
+		super (e);
+	}
+	
+	public String toString () {
+		if (getCause().getClass() == ServerException.class)
+			return getCause().toString();
+		else
+			return super.toString();	
+	}
+	
+	//public CommandException (Exception e) {
+	//	super (e);
+	//}
+}
+
+/*
+	ServerException is thrown when a message sent from the server
+	is not a success.
+*/
+class ServerException extends Exception {
+	protected Message msg;
+	
+	public ServerException (Message m) {
+		super (m.message());
+		msg = m;	
+	}
+	
+	public ServerException (String s, Message m) {
+		super (s + "#" + m.message());
+		msg = m;
+	}
+	
+	public Message serverFailureMessage () {
+		return msg;
+	}
+}
+
+/*
+	Message is used for collecting lines from the server connection
+	and turning it into an FTP message.
+*/
+class Message {
+	static public final int PASSWORD_REQUIRED = 331;
+	static public final int LOGIN_SUCCESSFUL = 230;
+	static public final int NOT_LOGGED_IN = 530;
+	static public final int BEGINNING_SEND = 150;
+	static public final int SEND_COMPLETE = 226;
+	static public final int PORT_COMMAND_SUCCESSFUL = 200;
+	
+	public boolean isPreliminarySuccess () {
+		return code >= 100 && code < 200;
+	}
+	
+	public boolean isCompleteSuccess () {
+		return code >= 200 && code < 300;
+	}
+	
+	public boolean isItermediateSuccess () {
+		return code >= 300 && code < 400;
+	}
+	
+	public boolean isTransientFailure () {
+		return code >= 400 && code < 500;
+	}
+	
+	public boolean isCompleteFailure () {
+		return code >= 500 && code < 600;
+	}
+	
+	public boolean isSuccess () {
+		return !isFailure();
+	}
+	
+	public boolean isFailure () {
+		return isCompleteFailure() || isTransientFailure();
+	}
+	
+	private int code;
+	private String message = null;
+	private boolean needsMoreLines;
+	
+	public Message (int c, String m) {
+		code = c;
+		message = "";
+		
+		appendLine (m);
+	}
+	
+	public Message (String msg) {
+		code = Integer.parseInt(msg.substring (0, 3));
+		if (msg.substring (3, 4).compareTo ("-") == 0)
+			needsMoreLines = true;
+		else needsMoreLines = false;
+		
+		appendLine(msg.substring (4));
+	}
+	
+	public int code () {
+		return code;
+	}
+	
+	public String message () {
+		return message;
+	}
+	
+	/* internal */
+	public void appendLine (String msg) {
+		String line = null;
+		try {
+			int lineCode = Integer.parseInt(msg.substring (0, 3));
+			if (lineCode == code && msg.substring (3, 4).compareTo (" ") == 0) {
+				needsMoreLines = false;
+				line = msg.substring (4).trim();
+			} else {
+				line = msg;
+			}
+		} catch (Exception e) { }
+		
+		if (line == null) line = msg;
+		
+		line = line.trim();
+				
+		if (line.compareTo("") != 0) {
+			if (message == null)
+				message = line;
+			else
+				message += "\n" + line;
+		}
+	}
+
+	/* internal */	
+	public boolean needsMoreLines () {
+		return needsMoreLines;
+	}
+	
+	public String toString () {
+		return new Integer (code).toString() + " " + message;
+	}
+}
+
+/*
+	DataConnectionHandlers must process a data connection between the client and the server-
+	either sending or receiving data.
+*/
+interface DataConnectionHandler {
+	void process (InputStream in, OutputStream out) throws IOException;
+}
+
+/*
+	DataConnection is an abstract base class for both ActiveDataConnection and PassiveDataConnection.
+	It is used for data connections to the server.
+*/
+abstract class DataConnection implements Runnable {
+	protected ServerConnection server;
+	protected DataConnectionHandler handler;
+	protected Thread dataThread = null;
+	
+	public DataConnection (ServerConnection serverConnection, DataConnectionHandler connectionHandler) {
+		server = serverConnection;
+		handler = connectionHandler;
+	}
+	
+	protected void startThread () {
+		if (dataThread == null) {
+			dataThread = new Thread (this);
+			dataThread.start ();
+		}
+	}
+	
+	//will only be called once
+	abstract protected Socket getSocket () throws IOException;
+	abstract protected void closeConnection ();
+	abstract protected void beginConnection () throws ServerException, IOException;
+	
+	public void run () {
+		JFtp.debug ("DataConnection thread running");
+		Socket connection = null;
+
+		try {
+			//get a data connection
+			connection = getSocket();
+			
+			InputStream connInput = connection.getInputStream();
+			OutputStream connOutput = connection.getOutputStream();
+			
+			JFtp.debug ("DataConnection got connection");
+			
+			handler.process (connInput, connOutput);
+			JFtp.debug ("DataConnectionHandler finished processing...");
+		} catch (Exception e) {
+			JFtp.printException (e);
+			notifyConnectionFailure (e);
+		} finally {
+			closeConnection ();
+		}
+		
+		notifyConnectionFinished();
+
+		JFtp.debug ("DataConnection thread finishing");
+	}
+	
+	private boolean connectionFinished = false;
+	private boolean connectionError = false;
+	private Exception exception = null;
+	
+	protected synchronized void notifyConnectionFinished () {
+		connectionFinished = true;
+		notifyAll ();
+	}
+	
+	protected void notifyConnectionFailure (Exception e) {
+		exception = e;
+		connectionError = true;
+		
+		notifyConnectionFinished ();
+	}
+	
+	public void waitUntilFinished () throws Exception, ServerException {
+		Message m;
+		m = server.popMessage();
+		if (m.isFailure())
+			throw (new ServerException (m));
+		
+		//get all data
+		while (connectionFinished == false) {
+			try { wait(); } catch (InterruptedException e) { }
+		}
+		
+		if (connectionError) throw exception;
+	}
+	
+	public static DataConnection create (boolean active, ServerConnection serverConnection, DataConnectionHandler connectionHandler) throws IOException {
+		if (active)
+			return new ActiveDataConnection (serverConnection, connectionHandler);
+		else
+			return new PassiveDataConnection (serverConnection, connectionHandler);
+	}
+}
+
+/*
+	ActiveDataConnection implements the process of an active connection
+*/
+class ActiveDataConnection extends DataConnection {
+	private ServerSocket serverSocket;
+	private Socket clientSocket = null;
+	
+	public ActiveDataConnection (ServerConnection serverConnection, DataConnectionHandler connectionHandler) throws IOException {
+		super (serverConnection, connectionHandler);
+		
+		//we must setup the server before we call beginConnection
+		serverSocket = new ServerSocket (50000);
+		//don't have this line it sevearly messes up most ftp servers timeouts
+		serverSocket.setReuseAddress (true);
+		
+		JFtp.debug ("Setting up server!");
+		
+		startThread();
+	}
+
+	protected Socket getSocket () throws IOException {
+		if (clientSocket == null)
+			clientSocket = serverSocket.accept();
+		
+		return clientSocket;
+	}
+	
+	protected void closeConnection () {
+		try {
+			if (serverSocket != null) {
+				serverSocket.close();
+				JFtp.debug ("Closing server connection!");
+			}
+			if (clientSocket != null)
+				clientSocket.close();
+		} catch (IOException e) {
+			JFtp.printException (e);
+		} finally {
+			serverSocket = null;
+			clientSocket = null;
+		}
+	}
+	
+	protected void beginConnection () throws ServerException, IOException {
+		Message msg;
+
+		msg = server.sendCommandAndGetMessage ("PORT " + portString());
+		if (msg.isFailure()) throw new ServerException (msg);
+	}
+	
+	public short[] portAddress () {
+		InetAddress localAddress;
+		byte[] a;
+		int serverPort = 0;
+		
+		short[] ret = new short[6];
+		
+		try {
+			localAddress = serverSocket.getInetAddress().getLocalHost();
+			a = localAddress.getAddress();
+			serverPort = serverSocket.getLocalPort();
+		
+			for (int i = 0; i < 4; ++i) {
+				ret[i] = a[i];
+				//the byte type is signed for whatever reason... so we use short
+				if (ret[i] < 0) ret[i] += 256;
+			}
+		} catch (UnknownHostException e) {
+			JFtp.printException (e);
+			ret[0] = 0; ret[1] = 0; ret[2] = 0; ret[3] = 0;	
+		}
+				
+		//top byte of port
+		ret[4] = (short)((serverPort & 0xFF00) >> 8);
+		//lower byte of port
+		ret[5] = (short)(serverPort & 0xFF);
+		
+		return ret;
+	}
+
+	public String portString () {
+		short[] address = portAddress();	
+		String buf = "";
+		for (int i = 0; i < 6; ++i) {
+			buf += Short.toString (address[i]);
+			if (i < 5) buf += ",";
+		}
+		return buf;
+	}
+}
+
+class PassiveDataConnection extends DataConnection {
+	private Socket serverSocket = null;
+	private int port = -1;
+	
+	public PassiveDataConnection (ServerConnection serverConnection, DataConnectionHandler connectionHandler) throws IOException {
+		super (serverConnection, connectionHandler);
+	}
+
+	protected Socket getSocket () throws IOException {
+		if (serverSocket == null)
+			serverSocket = new Socket (server.getServerAddress(), port);
+		
+		return serverSocket;
+	}
+	
+	protected void closeConnection () {
+		try {
+			if (serverSocket != null)
+				serverSocket.close();
+		} catch (IOException e) {
+			JFtp.printException (e);
+		} finally {
+			serverSocket = null;
+		}
+	}
+	
+	protected void beginConnection () throws ServerException, IOException {
+		Message msg;
+
+		msg = server.sendCommandAndGetMessage ("PASV");
+		if (msg.isFailure()) throw new ServerException (msg);
+		
+		String hostAddress = msg.message();
+		Matcher m = Pattern.compile ("(\\d+),(\\d+),(\\d+),(\\d+),(-?\\d+),(-?\\d+)").matcher (hostAddress);
+		
+		if (!m.find()) throw new ServerException ("Invalid address format!", msg);
+		
+		int highPort, lowPort, ip1, ip2, ip3, ip4;
+		ip1 = Integer.parseInt(m.group(1));
+		ip2 = Integer.parseInt(m.group(2));
+		ip3 = Integer.parseInt(m.group(3));
+		ip4 = Integer.parseInt(m.group(4));
+		
+		highPort = Integer.parseInt(m.group(5));
+		lowPort = Integer.parseInt(m.group(6));
+		
+		port = (highPort * 256) + lowPort;
+		//ignore address and connect to the same address as serverConnection
+		//this is to support IPv6 (in the future).
+		
+		//start the data thread once we have a correct port number
+		startThread();
+	}
+}
+
+/*
+	Used for receiving data from the server to a local output
+*/
+class DataReceiver implements DataConnectionHandler {
+	OutputStream localOutput;
+	
+	public DataReceiver (OutputStream outputStream) {
+		localOutput = outputStream;
+	}
+	
+	public void process (InputStream in, OutputStream out) throws IOException {
+		Utilities.copy (in, localOutput);
+	}
+}
+
+/*
+	Used for sending data from a local input
+*/
+class DataSender implements DataConnectionHandler {
+	InputStream localInput;
+	
+	public DataSender (InputStream inputStream) {
+		localInput = inputStream;
+	}
+	
+	public void process (InputStream in, OutputStream out) throws IOException {
+		Utilities.copy (localInput, out);
+	}
+}
+
+/*
+	Used for notifying the client of various server events
+*/
+interface ServerConnectionDelegate {
+	//The server has disconnected...
+	void serverDidDisconnect (ServerConnection sc);
+}
+
+/*
+	Represents a connected server connection
+*/
+class ServerConnection implements Runnable {	
+	public static String ENDL = "\r\n";
+	public BufferedReader input;
+	public BufferedWriter output;	
+	public Socket socket = null;
+	public String host;
+	public int port;
+	public Thread serverThread;
+	private boolean running;
+	
+	public InetAddress getServerAddress () {
+		return socket.getInetAddress();
+	}
+	
+	private ServerConnectionDelegate delegate;
+	
+	public ServerConnectionDelegate delegate () {
+		return delegate;
+	}
+	
+	public void setDelegate (ServerConnectionDelegate del) {
+		delegate = del;
+	}
+	
+	private void notifyDelegateOfDisconnect () {
+		if (delegate != null)
+			delegate.serverDidDisconnect(this);
+	}
+	
+	public ServerConnection (String newHost, int newPort) throws IOException {
+		JFtp.debug ("ServerConnection initialised to " + newHost + " " + new Integer(newPort).toString() + "...");
+		
+		socket = new Socket (newHost, newPort);
+		socket.setKeepAlive (true);
+		
+		output = new BufferedWriter (new OutputStreamWriter(socket.getOutputStream()));
+		input = new BufferedReader (new InputStreamReader(socket.getInputStream()));
+		host = newHost;
+		port = newPort;
+		
+		responses = new LinkedList();
+		
+		serverThread = new Thread (this);
+		running = true;
+		serverThread.start();
+	}
+	
+	private boolean activeDataConnections = true;
+	public boolean togglePassiveMode () {
+		activeDataConnections = !activeDataConnections;
+		//returns true if we have enabled passive mode
+		return !activeDataConnections;
+	}
+
+
+	public void uploadFile (InputStream file, String remoteName) throws ServerException, Exception {
+		DataConnection dc = DataConnection.create (activeDataConnections, this, new DataSender (file));
+		
+		try {		
+			dc.beginConnection();
+		
+			Message msg = sendCommandAndGetMessage ("STOR " + remoteName);
+			if (msg.isFailure()) throw new ServerException (msg);
+		
+			dc.waitUntilFinished();
+		} finally {
+			dc.closeConnection();
+		}
+	}
+	
+	public void downloadFile (String remoteName, OutputStream file) throws ServerException, Exception {
+		DataConnection dc = DataConnection.create (activeDataConnections, this, new DataReceiver (file));
+		
+		try {
+			dc.beginConnection();
+
+			Message msg = sendCommandAndGetMessage ("RETR " + remoteName);
+			if (msg.isFailure()) throw new ServerException (msg);
+
+			dc.waitUntilFinished();
+		} finally {
+			dc.closeConnection();
+		}
+	}
+	
+	public String directoryListing () throws ServerException, Exception {
+		ByteArrayOutputStream data = new ByteArrayOutputStream ();
+		DataConnection dc = DataConnection.create (activeDataConnections, this, new DataReceiver (data));
+		
+		try {
+			dc.beginConnection();
+		
+			Message m = sendCommandAndGetMessage ("LIST");
+		
+			JFtp.debug ("Waiting until finished!");
+			dc.waitUntilFinished();
+			JFtp.debug ("Finished!");
+		
+			return data.toString ("US-ASCII");
+		} finally {
+			dc.closeConnection();
+		}
+	}
+	
+	public Message sendCommandAndGetMessage (String command) throws IOException {
+		Message msg;
+		
+		sendCommand (command);
+		
+		return popMessage ();
+	}
+	
+	public synchronized void sendCommand (String command) throws IOException {
+		JFtp.debug (command);
+		output.write (command + ENDL);
+		output.flush ();
+	}
+	
+	public void run () {
+		JFtp.debug ("ServerConnection thread running");
+		String buffer;
+		while (running) {
+			try {
+				buffer = input.readLine ();
+				if (buffer == null) {
+					running = false;
+					
+					break;
+				}
+				pushResponse (buffer);
+			} catch (Exception e) {
+				if (socket.isClosed()) {
+					if (running == false) continue;
+					else running = false;
+				}
+
+				JFtp.printException (e);				
+			}
+		}
+		notifyDelegateOfDisconnect ();
+		JFtp.debug ("ServerConnection thread finishing");
+	}
+	
+	private List responses;
+	public synchronized int countResponses () {
+		return responses.size();
+	}
+	
+	public synchronized void flushResponses () {
+		responses.clear();
+	}
+	
+	public synchronized void pushResponse (String msg) {
+		responses.add (0, msg);
+		notifyAll ();
+	}
+	
+	public synchronized String popResponse () {
+		while (responses.size() == 0) {
+			try {
+				wait();
+			} catch (InterruptedException e) { }
+		}
+		
+		int index = responses.size() - 1;
+		String msg = (String)responses.get (index);
+		responses.remove (index);
+		return msg;
+	}
+	
+	public synchronized Message popMessage () {
+		Message m = new Message (popResponse());
+		
+		while (m.needsMoreLines())
+			m.appendLine (popResponse());
+			
+		JFtp.debug ("<Server> " + m.toString());
+		return m;
+	}
+	
+	public void disconnect () {
+		running = false;
+		try {		
+			socket.close ();
+		} catch (Exception e) {
+			JFtp.printException (e);
+		}
+		
+		JFtp.debug ("ServerConnection Disconnected");
+	}
+}
+
+/*
+	Represents the credentials and host information needed to connect to a remote server.
+	Can parse user strings in the form [username:password@]host[:port]
+*/
+class ConnectionSpecifications {
+	public final int DEFAULT_PORT = 21;
+	
+	private String username = "anonymous";
+	private String password = "";
+	private String host = "";
+	private int port = 21;
+
+	protected void setPort (String portString) throws NumberFormatException {
+		setPort (Integer.parseInt (portString));
+	}
+
+	public void setPort (int newPort) throws NumberFormatException {
+		if (newPort < 1 || newPort > 65535)
+			throw new NumberFormatException("Port must be in range 1 to 65535");
+		port = newPort;
+	}
+	
+	public int port () {
+		return port;
+	}
+	
+	public void setHost (String newHost) {
+		host = newHost;
+	}
+	
+	public String host () {
+		return host;
+	}
+	
+	public void setPassword (String newPassword) {
+		password = newPassword;
+	}
+	
+	public String password () {
+		return password;
+	}
+	
+	public void setUsername (String newUsername) {
+		username = newUsername;
+	}
+	
+	public String username () {
+		return username;
+	}
+
+	//takes a host (all optional except for host name) user:pass@host:port
+	public void setSpecificationsFromHostString (String hostString) {
+		String _username = null, _password = null, _host = null;
+
+		String[] tmp = hostString.split ("@", 2);
+		if (tmp.length == 2) {
+			_host = tmp[1];
+			tmp = tmp[0].split (":", 2);
+
+			_username = tmp[0];
+			if (tmp.length == 2) {
+				_password = tmp[1];
+			}
+		} else {
+			_host = tmp[0];
+		}
+		
+		tmp = _host.split (":");
+		_host = tmp[0];
+		if (tmp.length == 2) {
+			setPort (tmp[1]);
+		}
+		
+		username = _username;
+		password = _password;
+		host = _host;
+	}
+
+	public ConnectionSpecifications (String hostString) {
+		setSpecificationsFromHostString (hostString);
+	}
+	
+	public ConnectionSpecifications (String _username, String _password, String _host, int _port) {
+		username = _username;
+		password = _password;
+		host = _host;
+		port = _port;
+	}
+	
+	public ConnectionSpecifications () {
+	}
+}
+
+/*
+	An abstract command interface. Represents a single client command,
+	for example 'get' or 'list' or 'bye'.
+*/
+interface Command {
+	public String helpInformation ();
+	public void execute (Object target, String cmd, String arg) throws CommandException;
+}
+
+/*
+	Represents a command which is a method of an instance object.
+	Uses reflection to invoke.
+*/
+class ObjectMethodCommand implements Command {
+	Object receiver;
+	String commandName;
+	String helpInformation;
+	
+	public ObjectMethodCommand (Object obj, String cmd, String help) {
+		receiver = obj;
+		commandName = cmd;
+		helpInformation = help;
+	}
+	
+	public String helpInformation () {
+		return helpInformation;
+	}
+	
+	public void execute (Object target, String cmd, String arg) throws CommandException {
+		Class[] argumentClasses = {Object.class, String.class, String.class};
+		
+		
+		try {
+			Method method = receiver.getClass().getMethod (commandName, argumentClasses);
+			method.invoke (receiver, new Object[] {target, cmd, arg});
+		} catch (InvocationTargetException ie) {
+			throw new CommandException ((Exception)ie.getCause());
+		} catch (Exception e) { //NoSuchMethodException
+			throw new CommandException (e);
+		}
+	}
+}
+
+/*
+	Represents a set of commands, that the client may execute.
+*/
+class CommandSet {
+	//a map of aliases
+	private Map commandNames;
+	//<class String canonicalName: interface Command cmd>
+	private Map commands;
+
+	public Set allCommands () {
+		return commands.keySet();
+	}
+	
+	//java has crap APIs so this is excessively complicated.
+	public Set aliasesForCommand (String cmd) {
+		Set aliases = new TreeSet();
+		Iterator iter = commandNames.entrySet().iterator();
+		while (iter.hasNext()) {
+			Map.Entry element = (Map.Entry)iter.next();
+			
+			if (element.getValue() == cmd)
+				aliases.add (element.getKey());
+		}
+		
+		return aliases;
+	}
+
+	public void addCommandName (String alias, String name) {
+		commandNames.put (alias, name);
+	}
+
+	public void addCommandNames (String[] aliases, String name) {
+		for (int i = 0; i < aliases.length; ++i)
+			commandNames.put (aliases[i], name); 		
+	}
+
+	public void addCommand (String[] aliases, String name, Command cmd) {
+		commands.put (name, cmd);
+		
+		addCommandNames (aliases, name);
+	}
+
+	public void addCommand (String alias, String name, Command cmd) {
+		commands.put (name, cmd);
+		
+		addCommandName (alias, name);
+	}
+	
+	public Command commandWithName (String name) {
+		name = name.toUpperCase();
+		if (commandNames.containsKey (name))
+			name = (String)commandNames.get (name);
+		
+		if (commands.containsKey (name))
+			return (Command)commands.get (name);
+		else
+			return null;
+	}
+
+	public CommandSet () {
+		commandNames = new TreeMap();
+		commands = new TreeMap();		
+	}
+	
+	private Pattern commandSplitPattern = Pattern.compile ("\\s+");
+	public void processString (String command, Object target) throws CommandException {
+		/*
+			Process a command from a string.
+		*/
+		String[] _parts = commandSplitPattern.split (command, 2);
+		String[] parts = {"", ""};
+		if (_parts.length == 2) parts[1] = _parts[1];
+		if (_parts.length >= 1) parts[0] = _parts[0];
+
+		//for (int i = 0; i < parts.length; ++i)
+		//	System.err.println ("'" + parts[i] + "'");
+		
+		Command cmd = commandWithName (parts[0]);
+		if (cmd == null) throw (new CommandException("No such command!"));
+		
+		cmd.execute (target, parts[0], parts[1]);
+	}
+}
+
+/*
+	The main JFtp class. Implements a client console interface, maintains a ServerConnection, contains code for
+	most of the standard commands, support for command line arguments, etc.
+*/
+class JFtp implements ServerConnectionDelegate {
+	/* Static Constructors */
+	public static void main (String[] args) {
+		JFtp client = null;
+		ConnectionSpecifications cs = null;
+		boolean interactive = false;
+		boolean printHelp = false;
+		
+		System.err.println ("JFtp FTP Client. Copyright 2005 Samuel G D Williams. All Rights Reserved.");
+		
+		for (int i = 0; i < args.length; ++i) {
+			try {
+				if (args[i].compareTo("--debug") == 0 || args[i].compareTo("-d") == 0) JFtp.debug = true;
+				else if (args[i].compareTo("--help") == 0 || args[i].compareTo("-h") == 0) printHelp = true;
+				else if (args[i].compareTo("--exceptions") == 0 || args[i].compareTo("-e") == 0) printExceptions = true;
+				else if (args[i].compareTo("--interactive") == 0 || args[i].compareTo("-i") == 0) interactive = true;
+				else if (cs == null) {
+					cs = new ConnectionSpecifications (args[i]);
+				} else throw new Exception();
+			} catch (Exception e) {
+				printHelp = true;
+				System.err.println ("*** Unknown argument: " + args[i] + " ***");
+			}
+		}
+		
+		if (printHelp) {
+			System.err.println ("");
+			System.err.println ("JFtp [options] [username][:password]@host[:port]");
+			System.err.println ("Options  -d / --debug          Enable debug mode");
+			System.err.println ("         -i / --interactive    Interactive login");
+			System.err.println ("         -h / --help           Print this information");
+			System.err.println ("         -e / --exceptions     Print detailed exception information");
+			return;
+		}
+		
+		try {
+			client = new JFtp(System.in, System.out);
+			if (cs != null)
+				client.connect (cs, interactive);
+		} catch (Exception e) {
+			System.err.println ("JFtp failed to initialise! Sorry. Please run with --exceptions for more information.");
+			JFtp.printException (e);
+		}
+		
+		try {
+			client.run();
+		} catch (Exception e) {
+			System.err.println ("JFtp had an internal failure! Sorry. Please run with --exceptions for more information.");
+			JFtp.printException (e);
+		}
+		
+		
+	}
+	
+	public static void printException (Exception e) {
+		if (JFtp.printExceptions)
+			e.printStackTrace();
+	}
+	
+	/* Client State */
+	ServerConnection serverConnection = null;
+	BufferedReader userInput;
+	BufferedWriter userOutput;
+	public JFtp (InputStream input, OutputStream output) {
+		userInput = new BufferedReader (new InputStreamReader (input));
+		userOutput = new BufferedWriter (new OutputStreamWriter (output));
+		
+		setupCommandSet ();
+		
+		debug ("JFtp Instance Constructed");
+	}
+		
+	private void setupCommandSet () {
+		commands = new CommandSet ();
+		
+		commands.addCommand ("OPEN", "Connect", new ObjectMethodCommand (this, "performConnectCommand", 
+					"Syntax: open [username:password@]host[:port] - Open a connection to a remote host."));
+		commands.addCommand ("USER", "User", new ObjectMethodCommand (this, "performUserCommand", 
+					"Syntax: user [username] - Send credentials to the server."));
+		commands.addCommand ("BYE", "Disconnect", new ObjectMethodCommand (this, "performDisconnectCommand",
+					"Syntax: bye - Disconnect from the remote server."));
+		commands.addCommand ("QUIT", "Quit", new ObjectMethodCommand (this, "performQuitCommand", 
+					"Syntax: quit - Quit JFtp, disconnecting from the remote server if connected."));
+		
+		commands.addCommand ("CD", "ChangeDirectory", new ObjectMethodCommand (this, "performChangeDirectoryCommand", 
+					"Syntax: cd remote-path - Change the current working directory on the remote host."));
+		commands.addCommand (new String[] {"LIST", "LS"}, "ListDirectory", new ObjectMethodCommand (this, "performListDirectoryCommand",
+					"Syntax: list - List the current remote directory."));
+		commands.addCommand ("PUT", "UploadFile", new ObjectMethodCommand (this, "performUploadFileCommand",
+					"Syntax: put file - Uploads a local file to the current remote directory."));
+		commands.addCommand ("GET", "DownloadFile", new ObjectMethodCommand (this, "performDownloadFileCommand", 
+					"Syntax: get file - Downloads a remote file to the current local directory."));
+
+		commands.addCommand ("DEBUG", "Debug", new ObjectMethodCommand (this, "performDebugCommand", 
+					"Syntax: debug - Toggles extra debug information. Useful for tracking down bugs."));
+		commands.addCommand ("HELP", "Help", new ObjectMethodCommand (this, "performPrintHelpCommand", 
+					"Syntax: help [command] - Prints help information!"));
+					
+		commands.addCommand ("PASSIVE", "Passive", new ObjectMethodCommand (this, "performTogglePassiveCommand", 
+					"Syntax: passive - Toggles passive mode [default: off]"));
+	}
+	
+	public static void debug (String s) {
+		if (JFtp.debug)
+			System.err.println ("*** " + s);
+	}
+	
+	public void connect (ConnectionSpecifications cs, boolean interactive) throws IOException {
+		if (isConnected()) disconnect();
+
+		userWriteln ("Connecting to: " + cs.host() + ":" + cs.port() + "...");
+	
+		try {
+			serverConnection = new ServerConnection (cs.host(), cs.port());
+			serverConnection.setDelegate (this);
+		} catch (IOException e) {
+			System.err.println ("Connection error: " + e.getMessage());
+			throw e;
+		}
+	
+		Message m = serverConnection.popMessage();
+		debug (m.toString());
+
+		sendCredentials (cs.username(), cs.password(), interactive);
+
+		debug ("JFtp Finished Connect");
+		
+		setupNewConnection ();
+	}
+	
+	private void setupNewConnection () throws IOException {
+		Message msg;
+		
+		msg = serverConnection.sendCommandAndGetMessage ("TYPE I");
+		if (msg.isSuccess())
+			userWriteln ("Set type to binary.");
+		else {
+			userWriteln ("Setting type to binary failed:");
+			userWriteln (msg.toString());
+		}
+		
+		msg = serverConnection.sendCommandAndGetMessage ("SYST");
+		if (msg.isSuccess())
+			userWriteln ("System: " + msg.message());
+		else {
+			debug ("SYST Failed: " + msg.toString());
+		}
+	}
+
+	public void performConnectCommand (Object target, String cmd, String arg) throws CommandException {
+		try {
+			ConnectionSpecifications cs = new ConnectionSpecifications (arg);
+			connect (cs, true);
+		} catch (NumberFormatException nfe) {
+			throw new CommandException (nfe.toString());
+		} catch (Exception e) {
+			throw (new CommandException ("Could not connect!", e));
+		}
+	}
+
+	public void performUserCommand (Object target, String cmd, String arg) throws CommandException {
+		try {
+			sendCredentials (arg, null, true);
+		} catch (Exception e) {
+			JFtp.printException (e);
+			throw new CommandException (e);
+		}
+	}
+	
+	public void performDisconnectCommand (Object target, String cmd, String arg) throws CommandException {
+		try {
+			if (isConnected())
+				disconnect();
+			else
+				throw (new CommandException ("Not Connected!"));
+		} catch (Exception e) {
+			throw (new CommandException (e));
+		}
+	}
+	
+	//this is used to support multiple languages		
+	public void performQuitCommand (Object target, String cmd, String arg) throws CommandException {
+		running = false;
+		if (isConnected()) {
+			disconnect();
+		}
+	}
+	
+	public void performUploadFileCommand (Object target, String cmd, String arg) throws CommandException {
+		//this function could be made a lot better
+		//it doesn't downloading to a different name
+		//it will overwrite any local file of the same name!!!!
+		commandRequiresConnectionCheck();
+		try {
+			String from = arg, to = arg;
+			
+			serverConnection.uploadFile (new FileInputStream (from), to);
+			userWriteln ("Transfer Complete.");
+		} catch (Exception e) {
+			throw new CommandException (e);
+		}
+	}
+
+	public void performDownloadFileCommand (Object target, String cmd, String arg) throws CommandException {
+		String[] args = arg.split (" ");
+		commandRequiresConnectionCheck();
+		try {
+			String from = arg, to = arg;
+
+			ByteArrayOutputStream dataBuffer = new ByteArrayOutputStream ();
+
+			serverConnection.downloadFile (from, dataBuffer);
+			
+			Utilities.copy (dataBuffer.toByteArray(), new FileOutputStream(to));
+			userWriteln ("Transfer Complete.");
+		} catch (Exception e) {
+			JFtp.printException (e);
+			throw new CommandException (e);
+		}
+	}
+	
+	public void sendCredentials (String username, String password, boolean interactive) throws IOException {
+		String input;
+		Message m;
+		
+		if (interactive || username == null) {
+			if (username == null) username = "anonymous";
+			
+			userWrite ("Username (" + username + "): ");
+			input = userInput.readLine();
+			if (input.compareTo("") != 0)
+				username = input.trim();
+		}
+
+		m = serverConnection.sendCommandAndGetMessage ("USER " + username);
+
+		if (m.code() == Message.PASSWORD_REQUIRED) {
+			if (interactive || password == null) {
+				if (password == null)
+					userWrite ("Password: ");
+				else
+					userWrite ("Password (*******): ");
+				input = userInput.readLine();
+				if (input.compareTo("") != 0)
+					password = input.trim();
+			}
+
+			serverConnection.sendCommand ("PASS " + password);
+			
+			m = serverConnection.popMessage();
+			debug (m.toString());
+		}
+		
+		if (m.isSuccess()) {
+			userOutput.write ("User logged in.");
+			userOutput.newLine ();
+			userOutput.flush ();
+		} else {
+			userOutput.write ("Login incorrect!");
+			userOutput.newLine ();
+			userOutput.flush ();
+		}
+	}
+
+	//static public String ENDL = "\r\n";
+	public boolean isConnected () {
+		return serverConnection != null && !isDisconnecting;
+	}
+
+	public void disconnect () {
+		isDisconnecting = false;
+		
+		try {	
+			Message msg = serverConnection.sendCommandAndGetMessage ("QUIT");
+			userWriteln (msg.message());
+		} catch (Exception e) {}
+		
+		if (serverConnection != null) {
+			serverConnection.disconnect ();
+			serverConnection = null;
+		}
+		debug ("JFtp Instance Disconnected");
+	}
+
+	private boolean running;
+	static public boolean debug = false;
+	static public boolean printExceptions = false;
+	private final String PROMPT = "JFtp> ";
+
+	private void userWriteln (String s) {
+		try {
+			userOutput.write (s);
+			userOutput.newLine ();
+			userOutput.flush ();
+		} catch (Exception e) {
+			System.err.println (s);
+			JFtp.printException (e);
+		}
+	}
+	
+	private void userWrite (String s) {
+		try {
+			userOutput.write (s);
+			userOutput.flush ();
+		} catch (Exception e) {
+			System.err.println (s);
+			JFtp.printException (e);
+		}
+	}
+
+	private boolean isDisconnecting = false;
+	public synchronized void serverDidDisconnect (ServerConnection sc) {
+		if (sc == serverConnection)
+			isDisconnecting = true;
+	}
+	
+	private synchronized boolean isDisconnecting () {
+		return isDisconnecting;
+	}
+
+	CommandSet commands;
+	public void run () {
+		String input = null;
+		int activity;
+		running = true;
+		
+		while (running) {	
+			try {
+				userWrite (PROMPT);
+				try {
+					input = userInput.readLine();
+				} catch (Exception e) {
+					JFtp.printException (e);
+					input = "";
+				}
+				
+				//Ctrl-C / Ctrl-D
+				if (input == null) {
+					userWriteln ("");
+					performQuitCommand (this, "Quit", "");
+					continue;
+				}
+	
+				if (isDisconnecting()) {
+					userWriteln ("Remote server has disconnected");
+					disconnect();
+				}
+	
+				if (input.trim().compareTo("") == 0)
+					continue;
+				
+				commands.processString (input, this);
+			} catch (CommandException ce) {
+				userWriteln (ce.getMessage());
+			}
+		}
+		debug ("Falling off the end of run! We are finished here.");
+	}
+
+	public void performDebugCommand (Object target, String cmd, String arg) throws CommandException {
+		JFtp.debug = !JFtp.debug;
+		if (JFtp.debug)
+			userWriteln ("Debug: ON");
+		else
+			userWriteln ("Debug: OFF");
+	}
+	
+	public void performListDirectoryCommand (Object target, String cmd, String arg) throws CommandException {
+		try {
+			String listing = serverConnection.directoryListing();
+			if (listing == null) throw (new CommandException("Server did not reply with directory listing!"));
+			
+			userOutput.write (listing);
+			userOutput.newLine ();
+		} catch (Exception e) {
+			throw (new CommandException ("Could not get directory listing", e));
+		}
+	}
+	
+	public void performChangeDirectoryCommand (Object target, String cmd, String arg) throws CommandException {
+		commandRequiresConnectionCheck();
+		try {
+			Message result = serverConnection.sendCommandAndGetMessage ("CWD " + arg);
+			if (result.isFailure()) throw new CommandException ("No such directory: " + arg);
+		} catch (IOException e) {
+			throw new CommandException (e);
+		}
+	}
+	
+	private void commandRequiresConnectionCheck () throws CommandException {
+		if (!isConnected()) throw new CommandException ("Not Connected!");
+	}
+	
+	public void performPrintHelpCommand (Object target, String cmd, String arg) throws CommandException {
+		if (arg == null || arg.length() == 0) {
+			userWriteln ("help [command] for more detailed information.");
+			userWriteln ("Commands Available:");
+			
+			Iterator iter = commands.allCommands().iterator();
+			
+			while (iter.hasNext()) {
+				String cmdName = (String)iter.next();
+				
+				userWrite (cmdName + " [");
+				
+				Iterator aliasIter = commands.aliasesForCommand (cmdName).iterator();
+				while (aliasIter.hasNext()) {
+					String alias = (String)aliasIter.next();
+					userWrite (alias);
+					if (aliasIter.hasNext()) userWrite (" ");
+				}
+				
+				userWriteln ("]");
+			}
+		} else {
+			Command commandObject = commands.commandWithName (arg);
+			if (commandObject == null)
+				userWriteln ("No such command: " + arg);
+			else
+				userWriteln (commandObject.helpInformation());
+		}
+	}
+	
+	public void performTogglePassiveCommand (Object target, String cmd, String arg) throws CommandException {
+		commandRequiresConnectionCheck();
+		if (serverConnection.togglePassiveMode ())
+			userWriteln ("Enabled Passive Transfers (client connects to server).");
+		else 
+			userWriteln ("Enabled Active Transfers (server connects to client).");
+	}
+}

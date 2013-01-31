@@ -63,6 +63,12 @@ use Utopia::Session::EncryptedCookie, {
 
 use Utopia::Middleware::Controller
 
+use Utopia::Middleware::Localization, {
+	:default => "en",
+	:all => ["en", "jp", "cn"],
+	:nonlocalized => [Regexp.starts_with('/_static/flags')]
+}
+
 # To enable full Sendfile support, please refer to the Rack::Sendfile documentation for your webserver.
 use Rack::Sendfile
 use Utopia::Middleware::Static

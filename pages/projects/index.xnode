@@ -13,7 +13,7 @@
 		}
 		
 		tags = {}
-		projects = links(".", :files => false)
+		projects = links(".", :files => false, :locale => 'en')
 	
 		projects.each do |project|
 			(project[:tags] || []).each do |tag|

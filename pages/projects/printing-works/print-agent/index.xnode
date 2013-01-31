@@ -1,0 +1,15 @@
+<page>
+	<heading>Print Agent</heading>
+	
+	<p>Print Agent is a tool for authenticating and billing for print jobs on a CUPS queue.</p>
+	
+	<div class="gallery">
+		<img src="JobFlowDiagram.png" />
+	</div>
+	
+	<h2>Installation</h2>
+	
+	<listing src="installation.txt" brush="bash" />
+	
+	<p>Source code is available at <a href="http://github.com/ioquatix/print-agent">GitHub</a>.</p>
+</page>

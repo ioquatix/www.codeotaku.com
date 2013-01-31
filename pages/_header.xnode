@@ -28,8 +28,12 @@
 		?>
 	<?r end ?>
 	
-		<li style="float: right">
-			(<a href="/about" rel="author">about</a>)
-		</li>
-	</ul>	
+	<?r locale_names = {'jp' => '日本語', 'en' => 'English', 'cn' => '简体中文'} ?>
+
+	<?r if (related_links = first.node.related_links).size > 1 ?>
+		<?r related_links.each do |link| ?>
+		<li class="locale" style="background-image: url('/_static/flags/#{link.locale}.png')"><a href="#{link.href}">#{locale_names[link.locale] || link.locale}</a></li>
+		<?r end ?>
+	<?r end ?>
+	</ul>
 </div>

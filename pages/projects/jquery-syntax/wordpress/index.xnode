@@ -1,0 +1,15 @@
+<page>
+	<heading>jQuery.Syntax WordPress Plugin</heading>
+	
+	<p>To install this plugin, simply download the zip file and install it by extracting the contents into <code>{wordpress}/wp-content/plugins/</code>.</p>
+	
+	<h2>Example Post</h2>
+	
+	<p>Here is the code for a WordPress post:</p>
+	
+	<listing src="post.txt" brush="html"/>
+	
+	<p>Here is the resulting post in a default install of WordPress:</p>
+	
+	<gallery path="screenshots" tag="thumbnail" process="thumbnail" />
+</page>

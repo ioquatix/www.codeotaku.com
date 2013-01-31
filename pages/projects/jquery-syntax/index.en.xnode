@@ -1,0 +1,84 @@
+<page>
+	<?r @title = "Syntax Highlighting - jQuery.Syntax" ?>
+	<div class="gallery"><img src="logo.png" alt="jQuery.Syntax Logo" /><br/>
+		<strong>I make code look goooood :)</strong>
+	</div>
+	
+	<p>jQuery.Syntax is an extremely fast and lightweight syntax highlighter written in JavaScript. It has dynamic loading of syntax source files and integrates cleanly using CSS or modelines. <a href="http://www.syntax-highlighting.com/">Try it online right now</a>!</p>
+	
+	<p id="jquery-theme-selector" style="text-align: right; margin-bottom: 0">Theme: </p>
+	<script type="text/javascript" src="theme-selector.js"></script>
+	<listing src="hello_world.txt" />
+	
+	<p>Watch the <a href="how-to-install/introduction">introductory video</a> for a quick overview.</p>
+	
+	<ul class="features">
+		<li>Supports both <a href="how-to-install">simple installation</a> and <a href="how-to-install/advanced-setup">full configuration</a>.</li>
+		<li><a href="layouts">Multiple layouts</a> including line wrapping and scrolling!</li>
+		<li>Highlights both <code class="syntax html">&lt;pre&gt;</code> (blocks of code) and <code class="syntax html">&lt;code&gt;</code> (inline code) tags for <a href="http://www.w3.org/TR/html5/text-level-semantics.html#the-code-element">semantic correctness</a>!</li>
+		<li>Out of the box support for <a href="examples">a wide variety of languages</a>: #{links("examples").sort_by(&:name).collect{|link| link.title}.join(", ")}</li>
+		<li>Dynamic themes using CSS (development version only!)</li>
+		<li>Tested and working in all major modern browsers! (Firefox, Safari, Chrome, Opera, Internet Exploder)</li>
+		<li>Easy integration with <a href="how-to-install/advanced-setup#DynamicHighlighting">dynamically generated content</a>.</li>
+	</ul>
+	
+	<h2>Download</h2>
+
+	<filebox icon="zip" path="https://github.com/ioquatix/jquery-syntax/zipball/3.1" name="jQuery.Syntax-3.1.zip">
+		Released: 11 June 2012<br/>
+		<a href="http://github.com/ioquatix/jquery-syntax">Source Code</a> (GitHub)
+	</filebox>
+	
+	<h3>Plugins</h3>
+	
+	<ul>
+		<li><a href="jquery-syntax-dokuwiki.zip">DokuWiki Plugin Download</a> (zip)
+			<ul>
+				<li><a href="http://www.dokuwiki.org/plugin:jquery-syntax">DokuWiki Plugin Page</a></li>
+			</ul>
+		</li>
+		<li><a href="jquery-syntax-wordpress.zip">WordPress Plugin Download</a> (zip)
+			<ul>
+				<li><a href="wordpress">Install Instructions</a></li>
+				<li><a href="http://wordpress.org/extend/plugins/jquery-syntax/">WordPress Plugin Page</a></li>
+			</ul>
+		</li>
+	</ul>
+	
+	<h2>Documentation</h2>
+	
+	<p>jQuery.Syntax is available to be installed directly into your website, or as a plugin to several open source content management systems.</p>
+	
+	<ul>
+		<li><a href="how-to-install">Installation Instructions</a>
+			<ul>
+				<li><a href="how-to-install/introduction">Introductory Video</a></li>
+				<li><a href="how-to-install/advanced-setup">Advanced Setup</a></li>
+				<li><a href="how-to-install/modelines">Modelines</a></li>
+			</ul>
+		</li>
+		<li><a href="examples">Supported Languages &amp; Examples</a>
+			<ul>
+				<li><a href="layouts">Layout Examples</a></li>
+			</ul>
+		</li>
+		<li><a href="how-to-contribute">How to contribute</a></li>
+		<li><a href="license">License and Copyright information</a></li>
+		<li><a href="credits">Credits</a></li>
+	</ul>
+	
+	<h2>Used By...</h2>
+	
+	<ul>
+		<li><a href="http://publisherhandbuch.speedata.de/">Speedata Publisher</a> &mdash; A database publishing system based on LuaTeX; Documentation augmented with jQuery.Syntax.</li>
+		<li><a href="http://simple-press.com/">Simple:Press</a> &mdash; The WordPress Forum Plugin</li>
+		<li><a href="http://projects.gnome.org/yelp/">Yelp</a> &mdash; Gnome documentation and help viewer</li>
+		<li><a href="http://library.edgecase.com/">EdgeCase Library</a> &mdash; A blog about programming</li>
+	</ul>
+	
+	<h2>Donations</h2>
+	
+	<p>jQuery.Syntax is released under a free software license. If you find this software useful, please donate.</p>
+	
+	<div class="gallery"><a href='http://www.pledgie.com/campaigns/8915'><img alt='Click here to lend your support to: jquery-syntax and make a donation at www.pledgie.com !' src='http://www.pledgie.com/campaigns/8915.png?skin_name=chrome' border='0' /></a></div>
+</page>

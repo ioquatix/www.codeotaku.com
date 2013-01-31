@@ -1,0 +1,15 @@
+<page>
+	<h1>Clang Syntax Example</h1>
+
+	<h2>C++</h2>
+	
+	<listing src="clang-cpp.txt" lang="clang" />
+	
+	<h2>Objective-C Header</h2>
+	
+	<listing src="clang-objective-c-h.txt" lang="clang" />
+
+	<h2>Objective-C Implementation</h2>
+	
+	<listing src="clang-objective-c-m.txt" lang="clang" />
+</page>

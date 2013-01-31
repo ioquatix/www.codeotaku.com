@@ -1,0 +1,76 @@
+<page>
+	<heading>How To Install jQuery.Syntax</heading>
+	
+	<p>Watch the <a href="introduction" class="button">introduction video</a> to get started with jQuery.Syntax quickly! It covers all the steps outlined below.</p>
+	
+	<h2>Step 1: Download jQuery.Syntax</h2>
+	<p>Download the latest version of <a href="http://github.com/ioquatix/jquery-syntax/downloads">jQuery.Syntax</a> and extract the contents into a temporary directory e.g. <code class="syntax">{tmp}/jquery-syntax</code>.</p>
+	
+	<h2>Step 2: Copy the public files from jQuery.Syntax to your website</h2>
+	
+	<p>Copy all the files in <code class="syntax">{tmp}/jquery-syntax/public/</code> to an appropriate sub-directory of your website, e.g. <code class="syntax">{webroot}/_static/jquery-syntax</code>.</p>
+	
+	<p>Copy the file <code class="syntax">{tmp}/jquery-syntax/examples/jquery-1.6.min.js</code> to an appropriate sub-directory of your website, e.g. <code class="syntax">{webroot}/_static/</code>. Alternatively, install any supported version of <a href="http://www.jquery.com/">jQuery</a> (1.4.1+).</p>
+	
+	<h3>For Experts</h3>
+
+	<p>For information about customising the install process, see the <a href="advanced-setup#Installer">advanced setup</a> documentation.</p>
+	
+	<h2>Step 3: Insert JavaScript Scripts</h2>
+	<p>In the page where you want to use syntax highlighting, add the following code to your <code class="syntax html">&lt;head&gt;</code>:</p>
+	
+	<listing src="example-head.txt" lang="html" />
+	
+	<p>Here are the options for this function:</p>
+	
+	<dl class="options">
+		<dt>blockSelector</dt>
+		<dd>The selector used for picking out blocks of code. Defaults to <code class="syntax javascript">"pre.syntax"</code>.</dd>
+		<dt>inlineSelector</dt>
+		<dd>The selector used for picking out inline code. Defaults to <code class="syntax javascript">"code.syntax"</code>.</dd>
+		<dt>blockLayout</dt>
+		<dd>The layout used for replacing blocks of code. Defaults to <code class="syntax javascript">"table"</code>. There are several <a href="../layouts">other layouts</a> available.</dd>
+		<dt>inlineLayout</dt>
+		<dd>The layout used for replacing inline code. Defaults to <code class="syntax javascript">"inline"</code>. By default, this is the only layout suitable for inline code.</dd>
+		<dt>context</dt>
+		<dd>Limit the scope of the search for elements to highlight to within this element. Provide an element such as <code class="syntax javascript">$('#comment_preview')</code>. Defaults to <code class="syntax javascript">undefined</code>.</dd>
+	</dl>
+	
+	<p>To use an option, supply a dictionary of key-value pairs:</p>
+	
+	<listing src="options.txt" lang="javascript" />
+	
+	<h3>For Experts</h3>
+
+	<p>For information about other options and advanced usage, see the <a href="advanced-setup">advanced setup</a> documentation.</p>
+	
+	<h2>Step 4: Insert Source Code</h2>
+
+	<p>Add the code to your page in between <code class="syntax html">&lt;pre&gt;</code> tags like the following:</p>
+
+	<listing src="example-pre.txt" lang="html" />
+
+	<p>Note the <code class="syntax html">class="syntax javascript"</code>. The <code class="syntax html">"syntax"</code> class tells jQuery.Syntax to highlight this <code class="syntax html">&lt;pre&gt;</code>, while <code class="syntax html">"javascript"</code> tells jQuery.Syntax what kind of code it is.</p>
+
+	<h3>Escaping Code</h3>
+	
+	<p>Code embedded in HTML needs to be embedded in CDATA blocks or escaped appropriately.</p>
+	
+	<h4>Code embedded in CDATA</h4>
+	
+	<listing src="code-cdata.txt" lang="html" />
+	
+	<h4>Code with HTML/XML entities</h4>
+	
+	<listing src="code-escaped.txt" lang="html" />
+
+	<h3>Available Brushes</h3>
+
+	<available_brushes />
+
+	<h2>Complete Example</h2>
+
+	<p>Here is the <a href="example.html">complete example</a> source code (using shorthand notation for brush classes):</p>
+
+	<listing src="example.html" lang="html" />
+</page>

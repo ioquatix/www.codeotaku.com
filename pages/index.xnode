@@ -3,10 +3,12 @@
 		<h1>`(code otaku)</h1>
 	</div>
 	<div class="bottom">
-		<a href="/projects">my projects</a>
+		<a href="/projects" title="my projects">code</a>
 		&lambda;
-		<a href="/journal">my journal</a>
+		<a href="/journal" title="my journal">journal</a>
 		&lambda;
-		<a href="http://www.gmsoc.org">game mechanics</a>
+		<a href="/music" title="my music">sounds</a>
+		&lambda;
+		<a href="/about" title="about me">inspect</a>
 	</div>
 </front>

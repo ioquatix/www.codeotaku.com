@@ -194,14 +194,23 @@ table th {
 	font-weight: inherit;
 }
 
-table.basic thead th {
+table.basic thead th, table.basic tfoot th {
 	font-family: "Lucida Grande", Sans-Serif;
 	font-size: 12pt;
 	text-align: left;
 	color: #003399;
+}
+
+table.basic thead th {
 	border-bottom: 2px solid #6678b2;
 	padding: 10px 8px;
 }
+
+table.basic tfoot th {
+	border-bottom: 2px solid #6678b2;
+	padding: 10px 8px;
+}
+
 
 table.basic tbody th,
 table.basic tbody td {
@@ -259,8 +268,6 @@ pre.code, code.basic {
 
 .gallery {
 	text-align: center;
-	background: rgba(230, 230, 230, 0.25);
-	border: 1px solid #ccc;
 	padding: 5px;
 }
 
@@ -473,4 +480,48 @@ sup a {
 .header a {
 	color: white;
 	text-decoration: none;
+}
+
+/* Filebox */
+
+.filebox {
+	position: relative;
+
+	margin: auto;
+	width: 608px;
+	height: 192px;
+
+	background-image: url("filebox.png");
+}
+
+.filebox .icon {
+	position: absolute;
+
+	width: 128px;
+	height: 128px;
+
+	left: 32px;
+	top: 32px;
+}
+
+.filebox .text {
+	position: absolute;
+
+	left: 180px;
+	top: 55px;
+
+	color: #ccc;
+	font-size: 11pt;
+}
+
+.filebox .text a {
+	color: #ccf;
+}
+
+.filebox .text a.download {
+	font-size: 14pt;
+}
+
+.filebox .text a:hover {
+	color: white;
 }

@@ -1,0 +1,36 @@
+<page>
+	<heading>Music</heading>
+	
+	<p>Music is a fundamental form of expression. I love to create music, but it requires inspiration that does not always come easily.</p>
+	
+	<p>Humans are intrinsically musical. I believe music should be available to everyone for personal use. Please share and enjoy my music that I have created.</p>
+	
+	<p>If you want a hard copy, or simply want me to create more music, please consider donating money. I can ship anywhere in the world.</p>
+	
+	<div class="gallery"><img src="flowers.jpg" /></div>
+	
+	<h2>Currently Available Albums</h2>
+	
+	<ul>
+		<?r links("./").each do |s| ?>
+			<li>#{s.to_href}</li>
+		<?r end ?>
+	</ul>
+	
+	<h2>Audio Playback</h2>
+	
+	<p>This website uses HTML5 audio and Ogg Vorbis. It won't work unless you use a modern standards compliant browser.</p>
+	
+	<table class="basic">
+		<thead>
+			<tr><th>Browser</th><th>Support</th></tr>
+		</thead>
+		<tbody>
+			<tr><td><a href="http://www.mozilla.com/">FireFox</a> 3.5+</td><td>Works Fine</td></tr>
+			<tr><td><a href="http://www.google.com/chrome">Chrome</a></td><td>Works Fine</td></tr>
+			<tr><td><a href="http://www.opera.com/">Opera</a> 10.5+</td><td>Works Fine</td></tr>
+			<tr><td>Safari</td><td><a href="http://www.vorbis.com/setup_osx/">Install Ogg Vorbis Codecs</a></td></tr>
+			<tr><td>Internet Exploder</td><td><a href="http://xiph.org/dshow/downloads/">Install Ogg Vorbis Codecs</a></td></tr>
+		</tbody>
+	</table>
+</page>

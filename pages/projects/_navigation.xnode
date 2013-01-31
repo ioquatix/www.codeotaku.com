@@ -1,0 +1,37 @@
+<?r prev = nil ?>
+<div class="navigation">
+	<ul class="trail">
+	<?r Path.create(first.node.uri_path || attributes['path']).ascend.reverse.each do |path| ?>
+		<?r link = parent.node.links(path.dirname, :name => path.basename, :locale => request.current_locale).first
+	
+		next if link == prev
+	
+		if link ?>
+		<li>#{link.to_href}</li><li>/</li>
+		<?r end 
+	
+		prev = link
+		?>
+	<?r end ?>
+	</ul>
+
+	<div class="items">
+		<div class="search">
+			<search />
+		</div>
+
+		<ul class="translations">
+			<?r locale_names = {'jp' => '日本語', 'en' => 'English', 'cn' => '简体中文'} ?>
+
+			<?r if (related_links = first.node.related_links).size > 1 ?>
+				<?r related_links.each do |link| ?>
+				<li class="locale" style="background-image: url('/_images/flags/#{link.locale}.png')"><a href="#{link.href}">#{locale_names[link.locale] || link.locale}</a></li>
+				<?r end ?>
+			<?r end ?>
+		</ul>
+		
+		<div class="plusone">
+			<g:plusone size="medium"></g:plusone>
+		</div>
+	</div>
+</div>

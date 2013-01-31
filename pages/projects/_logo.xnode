@@ -1,0 +1,4 @@
+<?r @title = attributes['title'] ?>
+<div class="gallery"><img src="#{attributes['src'].to_html}" alt="#{attributes['title'].to_html}"/><br/>
+	<content/>
+</div>

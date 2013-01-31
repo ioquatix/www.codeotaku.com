@@ -1,0 +1,20 @@
+<?r
+
+sibling_links = parent.node.sibling_links
+prev_links, current_link, next_links = sibling_links.split_at{|link| link.path == parent.node.uri_path}
+
+?>
+<div class="table-of-contents">
+	<h4>#{(attributes['title'] || "Table of contents").to_html}</h4>
+	<ol>
+	<?r (prev_links || []).each do |link| ?>
+		<li>#{link.to_href}</li>
+	<?r end ?>
+		<li class="current">#{current_link.to_href}</li>
+	<?r (next_links || []).each do |link| ?>
+		<li>#{link.to_href}</li>
+	<?r end ?>
+	</ol>
+	
+	<content />
+</div>

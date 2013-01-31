@@ -1,0 +1,19 @@
+<?r
+
+sibling_links = parent.node.sibling_links
+prev_links, current_link, next_links = sibling_links.split_at{|link| link.path == parent.node.uri_path}
+
+prev_link = prev_links.last if prev_links
+next_link = next_links.first if next_links
+
+?>
+<div class="siblings">
+<?r if prev_link ?>
+	<div class="prev_link">Previous: #{prev_link.to_href}</div>
+<?r end ?>
+		
+<?r if next_link ?>
+	<div class="next_link">Next: #{next_link.to_href}</div>
+<?r end ?>
+	<br style="clear: both" />
+</div>

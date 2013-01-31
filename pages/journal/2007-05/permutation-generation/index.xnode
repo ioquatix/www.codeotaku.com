@@ -1,0 +1,7 @@
+<entry>
+	<p><a href="Permutation-Generation.pdf">This research</a> investigates the performance of various different permutation generation algorithms and how they can be optimised to improve execution time. Feel free to use the <a href="main.cpp">source code</a>, which implements 5 different methods of permutation generation.</p>
+	
+	<h2>Example Usage</h2>
+	
+	<listing src="example.txt" brush="bash" />
+</entry>

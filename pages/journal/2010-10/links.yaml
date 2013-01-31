@@ -1,0 +1,15 @@
+visualising-information-change-over-time:
+    title: "Visualising Information Change Over Time"
+    created: 2010-10-08
+    author: Samuel Williams
+    summary: "Some examples of my source code visualisation research."
+kai:
+    title: "Kai 会"
+    created: 2010-10-14
+    author: Samuel Williams
+    summary: "Kai is my attempt to build a programming language interpreter which can itself compile and execute code dynamically."
+mr-painting-robot:
+    title: "Mr. Painting Robot"
+    created: 2010-10-07
+    author: Samuel Williams
+    summary: "Here are the first results of my Mr. Painting Robot research - looking good!"

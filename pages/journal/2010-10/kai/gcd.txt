@@ -1,0 +1,10 @@
+# Create a function to calculate greatest common divisor
+[(this) set `gcd
+	# It takes two arguments a and b,
+	(lambda (list a b) `{
+		(if [b == 0]
+			(return a)
+			(return (gcd b [a % b]))
+		)
+	})
+]

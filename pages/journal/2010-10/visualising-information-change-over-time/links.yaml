@@ -1,0 +1,7 @@
+llvm-monthly:
+    title: "LLVM Monthly"
+    display: false
+llvm-quarterly:
+    title: "LLVM Quarterly"
+llvm-yearly:
+    title: "LLVM Yearly"

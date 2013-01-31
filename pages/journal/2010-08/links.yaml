@@ -11,3 +11,8 @@ java-me-games:
     created: 2010-08-10
     author: Samuel Williams
     summary: "I recently had to make some Java ME games for an assignment. Here are the results."
+rsa-encryption:
+    title: "Reasonably Efficient RSA Encryption/Decryption with C++"
+    created: 2010-08-19
+    author: Samuel Williams
+    summary: "I developed an interesting method for multiple-precision devision in my RSA implementation."

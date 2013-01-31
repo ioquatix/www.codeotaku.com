@@ -4,12 +4,12 @@ UTOPIA_ENV = (ENV['UTOPIA_ENV'] || ENV['RACK_ENV'] || :development).to_sym
 $LOAD_PATH << File.join(File.dirname(__FILE__), "lib")
 
 # It is recommended that you always explicity specify the version of the gem you are using.
-gem 'utopia', "= 0.11.0"
+gem 'utopia', "~> 0.11"
 require 'utopia/middleware/all'
 require 'utopia/tags/all'
 
 # From utopia-extras:
-gem 'utopia-extras', "= 0.11.0"
+gem 'utopia-extras', "~> 0.11.0"
 require 'utopia/tags/gallery'
 require 'utopia/tags/google_analytics'
 
@@ -22,6 +22,8 @@ require 'rack/contrib'
 # Utopia relies heavily on accurately caching resources
 gem 'rack-cache'
 require 'rack/cache'
+
+require 'to_bytes'
 
 if UTOPIA_ENV == :development
 	use Rack::ShowExceptions

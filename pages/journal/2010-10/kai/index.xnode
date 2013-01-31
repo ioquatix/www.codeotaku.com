@@ -1,0 +1,34 @@
+<entry>
+	<p>Kai (会 in Japanese) is an experimental interpreter that provides a highly extensible runtime environment and explicit control over the compilation process.</p>
+	
+	<div class="gallery"><img src="logo.png" /></div>
+	
+	<p>Programs are defined using nested symbolic expressions, which are all parsed into first-class values with minimal intrinsic semantics. Kai can generate optimised code at run-time (using <a href="http://www.llvm.org/">Low Level Virtual Machine</a>) in order to exploit the nature of the underlying hardware and to integrate with external software libraries. It is a unique exploration into world of dynamic code compilation, and the interaction between high level and low level semantics.</p>
+	
+	<listing src="gcd.txt" brush="kai" />
+	
+	<p>You can try the <a href="http://kai.oriontransfer.co.nz/">online demo</a>. Source code is available at <a href="http://github.com/ioquatix/kai">GitHub</a>.</p>
+	
+	<h2>The Moment of Kai</h2>
+	
+	<p>The Japanese character 会 generally translates into 'meeting'. There are many ways in which this is significant. In this particular instance its usage can be considered in terms of 弓道, which roughly translates into 'Way of the Bow' (Archery). The highest goals in 弓道 are truth 真, goodness 善 and beauty 美. Truth is the pursuit of the correct technique and to grasp the truth of things; Goodness represents inner calm and balance; beauty is to maintain a clear structure and composition. There are many formal steps in 弓道; Kai 会 is the moment before the arrow is released, when the energy of the bow and the body of the archer are in balance.</p>
+	
+	<h3>Goals</h3>
+	
+	<ul>
+		<li>Fast and reliable execution.</li>
+		<li>Easy to embed and extend.</li>
+		<li>Simple semantics using <a href="http://en.wikipedia.org/wiki/Fexpr">fexprs</a>.</li>
+		<li>Dynamic compilation using <a href="http://www.llvm.org/">LLVM</a>.</li>
+		<li>Syntactic enhancements to improve usability.</li>
+	</ul>
+	
+	<h2>Further Reading</h2>
+	
+	<ul>
+		<li><a href="Kai - Software Overview.pdf">Kai - Software Overview</a> &mdash; High level overview of usage and implementation.</li>
+		<li><a href="Kai - A Dynamic Compiler.pdf">Kai - A Dynamic Compiler</a> &mdash; Extensive research report and performance analysis.</li>
+	</ul>
+	
+	<p>I developed Kai over several years to learn more about computer programming. Thanks to Tadao Takaoka for his supervision and support.</p>
+</entry>

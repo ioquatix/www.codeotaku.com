@@ -1,0 +1,5 @@
+inverse-kinematics-a-star:
+    title: "A discrete solution for the inverse kinematics problem."
+    author: Samuel Williams
+    created: 2008-02-10
+    summary: "I developed an interesting solution to the inverse kinematics problem using the A* algorithm."

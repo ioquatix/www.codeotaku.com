@@ -53,7 +53,7 @@
 	<body>
 		<header />
 		
-		<div id="content">
+		<div id="content" class="#{attributes['class'] || 'normal'}">
 			<content />
 		</div>
 		

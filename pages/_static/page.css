@@ -1,3 +1,4 @@
+
 body {
 	background-color: #333;
 	
@@ -14,7 +15,17 @@ blockquote {
 }
 
 p {
-	margin: 0 5pt;
+	margin: 5pt 5pt;
+}
+
+a {
+	color: #3456ef;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #2345ef;
+	text-decoration: underline;
 }
 
 #content {
@@ -22,7 +33,9 @@ p {
 	
 	background-color: #fdfdfd;
 	margin: 5pt;
-	
+}
+
+#content.normal {
 	padding: 20pt;
 }
 
@@ -38,14 +51,21 @@ p {
 }
 
 #content h2 {
-	font-size: 25pt;
-	margin-top: 50pt;
-	margin-bottom: 10pt;
-	font-size: 16pt;
+	font-size: 15pt;
+	
+	padding: 0.5em 0.8em;
+	margin: 6em 0 2em;
+	
+	color: #333;
+	background-color: #eee;
+	letter-spacing: 0.12em;
+	
+	background-color: white;
+	box-shadow: 0 0 4px rgba(0, 0, 0, 0.05);
 }
 
 #content h3 {
-	font-size: 20pt;
+	font-size: 13pt;
 	margin-top: 40pt;
 	margin-bottom: 8pt;
 	font-size: 13pt;
@@ -53,6 +73,10 @@ p {
 
 #content h2 + p, #content h3 + p {
 	margin-top: 0;
+}
+
+.syntax-container {
+	font-size: 90%;
 }
 
 .navigation {
@@ -524,4 +548,32 @@ sup a {
 
 .filebox .text a:hover {
 	color: white;
+}
+
+/* Blockquotes */
+
+blockquote {
+	font-family: "Adobe Caslon Pro", "Hoefler Text", Georgia, Garamond, Times, serif;
+	line-height: 2em;
+}
+
+blockquote .spoken:before {
+	content: "“";
+}
+ 
+blockquote .spoken:after {
+	content: "”";
+}
+
+blockquote .spoken:first-letter {
+}
+
+blockquote .spoken {
+	color: #424242;
+	letter-spacing:0.1em;
+	text-align:center;
+	margin: 40px auto;
+	line-height: 145%;
+	font-size: 14pt;
+	font-variant: small-caps;
 }

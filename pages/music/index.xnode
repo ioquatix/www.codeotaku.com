@@ -17,6 +17,8 @@
 		<?r end ?>
 	</ul>
 	
+	<p>Please browse my <a href="https://soundcloud.com/mobius-frequency">in-progress work at SoundCloud</a>.</p>
+	
 	<h2>Audio Playback</h2>
 	
 	<p>This website uses HTML5 audio and Ogg Vorbis. It won't work unless you use a modern standards compliant browser.</p>

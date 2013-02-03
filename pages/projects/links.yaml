@@ -75,22 +75,22 @@ quota-check:
 code-visualisation:
     title: 'Visualising information change over time'
     tags: ['research', 'ruby', 'command-line']
-    uri: http://www.oriontransfer.co.nz/research/code-visualisation
+    uri: /journal/2010-10/visualising-information-change-over-time
     description: "This research explores how to visualise changes to source code over time."
 mr-painting-robot:
     title: "Mr. Painting Robot"
     tags: ['research', 'cpp', 'command-line']
-    uri: http://www.oriontransfer.co.nz/research/mr-painting-robot
+    uri: /journal/2010-10/mr-painting-robot
     description: "This research investigates how the identification of oulines from photographs can be used to control a robot with a paintbrush."
 kai:
     title: "Kai"
     tags: ['research', 'language']
-    uri: http://www.oriontransfer.co.nz/research/kai
+    uri: /journal/2010-10/kai
     description: "Kai is a prototype-based language and interpreter with a syntax somewhere between LISP and Ruby. It provides dynamic compilation via an interface with LLVM."
 pl0-language-tools:
     title: "PL/0 Language Tools"
     tags: ['educational', 'research', 'language']
-    uri: http://www.oriontransfer.co.nz/learn/pl0-language-tools
+    uri: http://programming.dojo.net.nz/study/pl0-language-tools
     description: "PL/0 includes a lexer, parser, interpreter, compiler, assembler and virtual machine written in Python, designed with teaching in mind."
 programming-language-posters:
     title: "Programming Language Posters"
@@ -100,12 +100,12 @@ programming-language-posters:
 register-machine-interpreter:
     title: "Register Machine Interpreter"
     tags: ['educational', 'website']
-    uri: http://www.oriontransfer.co.nz/learn/register-machine-interpreter
+    uri: http://programming.dojo.net.nz/study/register-machine-interpreter
     description: "An online register machine computer which has been designed to help explain what it means to be computable."
-truth-table-solver:
-    title: "Truth Table Solver"
+truth-table-generator:
+    title: "Truth Table Generator"
     tags: ['educational', 'website']
-    uri: http://www.oriontransfer.co.nz/learn/truth-table-solver
+    uri: http://programming.dojo.net.nz/study/truth-table-generator
     description: "An online boolean logic calculator that generates truth tables."
 xapian:
     title: "Xapian [Core, Indexer, Rack]"
@@ -163,8 +163,13 @@ papagenoproductions:
 lucidsystems:
     title: "Lucid Information Systems Limited"
     tags: ['commercial', 'website']
-    uri: http://www.papagenoproductions.com
+    uri: http://www.lucidsystems.co.nz
     description: "Lucid Information Systems website."
+game-mechanics-society:
+    title: "Game Mechanics Society"
+    tags: ['community', 'website']
+    uri: http://www.gmsoc.org
+    description: A local game development community website.
 litepanels:
     title: "Litepanels New Zealand"
     tags: ['commercial', 'website']

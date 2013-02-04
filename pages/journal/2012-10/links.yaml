@@ -12,3 +12,8 @@ asynchronous-dns-with-event-machine:
     created: 2012-10-20
     author: Samuel Williams
     summary: "I recently implemented an asynchronous DNS resolver on top of EventMachine..."
+hybrid-tracking:
+    title: "Adaptive Hybrid Tracking for Mobile Outdoor Augmented Reality"
+    created: 2012-10-01
+    author: Samuel Williams
+    summary: "Here are some of the details of my current research in Outdoor Augmented Reality."

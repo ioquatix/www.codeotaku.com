@@ -1,0 +1,16 @@
+<entry>
+	<p>Sudoku is an interesting problem because ultimately it has a mechanical solution, and yet finding this solution still presents an difficult challenge. One way to solve the problem is to systematically generate all possible permutations and discard those that violate the rules. You can do this one row at a time, and if you finally fill in all the rows, you've found a valid solution.</p>
+	
+	<p>However, this method, brute force, can be slow. There are a variety of optimisations you can apply to the above problem to improve the efficiency:</p>
+	
+	<ul>
+		<li>Rather than solving rows from top to bottom, order them from least empty to most empty. This crease a bottom heavy search tree which ensures that as many branches will be culled with the smallest amount of work.</li>
+		<li>Rotate the puzzle 90&degrees; to increase the effect of the above optimisation.</li>
+		<li>Encode the rules into the permutation generation function to avoid generating permutations that won't work.</li>
+		<li>Within individual rows, generate permutations for columns sorted by least possibilities to most possibilies.</li>
+	</ul>
+	
+	<p>There are many more optimisations, but here is my efficient implementation which does all of the above and <a href="graph-125.pdf">more</a>.</p>
+	
+	<listing src="main.cpp.txt" brush="cpp" />
+</entry>

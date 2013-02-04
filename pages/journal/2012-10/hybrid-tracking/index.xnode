@@ -1,7 +1,5 @@
-<page>
-	<heading>Adaptive Hybrid Tracking for Mobile Outdoor Augmented Reality</heading>
-	
+<entry>
 	<p>Outdoor augmented reality provides many opportunities for improving the way in which information is presented and organised. However, to create a coherent and authentic experience, virtual content must be registered in the physical world such that the user's expectations of reality are respected. Modern mobile devices provide a wide variety of sensor data which can assist with achieving this goal, however few existing platforms explore how this data can be intelligently merged together to provide robust camera tracking and object registration.</p>
 	
-	<p>As more information becomes available, it will be published here.</p>
-</page>
+	<p><a href="report.pdf">My current progress report</a> reviews all the different methods and techniques I've studied thus far and outlines my next steps. My goal is to improve compass tracking using a simplified form of optical flow called transform flow. It measures change in one dimension only, but theoretically you should be able to combine both horizontal and vertical tracking to improve the scope of the tracking.</p>
+</entry>

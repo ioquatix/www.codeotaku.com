@@ -193,3 +193,18 @@ gps-tool:
     title: "GPS Tool"
     tags: ['commercial', 'application']
     description: "GPS Tool is an application for importing data from various antique GPS hardware. It is no longer sufficiently relevant to warrant further development."
+tileshift:
+    title: "TileShift"
+    tags: ['open', 'javascript', 'game']
+    uri: http://www.gmsoc.org/games/tileshift/index
+    description: "A game based on evolution; levels are dynamically generated and modified using genetic algorithms. Made for Ludam Dare 24."
+teapot:
+    title: "Teapot"
+    tags: ['open', 'ruby', 'framework']
+    uri: https://github.com/ioquatix/teapot
+    description: "Teapot is a cross-platform build tool for C/C++ libraries and applications. In addition, it provides simple git-based dependency management."
+adaptive-hybrid-tracking:
+    title: "Adaptive Hybrid Tracking for Outdoor Augmented Reality"
+    tags: ['research', 'computer-vision']
+    uri: /journal/2012-10/hybrid-tracking
+    description: "A master's thesis investigating methods to enhance tracking for outdoor augmented reality applications."

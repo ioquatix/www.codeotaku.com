@@ -4,6 +4,10 @@ cross-domain-ajax:
     author: "Samuel Williams"
     created: 2011-05-06
 university-sudoku-challenge:
-    created: 2011-05-29
+    created: 2011-05-01
     author: Samuel Williams
     summary: "The Canterbury University COSC329 Sudoku Challenge"
+solving-sudoku-efficiently:
+    created: 2011-05-26
+    author: Samuel Williams
+    summary: "Here is my solution to solve Sudoku efficiently."

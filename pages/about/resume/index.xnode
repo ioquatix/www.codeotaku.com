@@ -34,15 +34,17 @@
 		<?r if request['references'] ?>
 		<div class="header">References</div>
 		<div class="section">
-			<p><a href="Tadao_Reference.pdf">Reference from Dr. Tadao Takaoka</a>, Professor at the Department of Computer Science and Software Engineering, The University of Canterbury (2013).</p>
+			<p><a href="_references/Tadao-Takaoka-Google-2013.pdf">Reference from Dr. Tadao Takaoka</a>, Professor at the Department of Computer Science and Software Engineering, The University of Canterbury (2013).</p>
 			
-			<p><a href="TimBell_Reference.pdf">Reference from Dr. Tim Bell</a>, Associate Professor and Deputy HOD, Computer Science and Software Engineering, The University of Canterbury (2011).</p>
+			<p><a href="_references/Mark-Billinghurst-Google-2013.pdf">Reference from Dr. Mark Billinghurst</a>, Director, HIT Lab NZ, The University of Canterbury (2013).</p>
 			
-			<p><a href="ISBGlobal_Reference.tif">Reference from Simon Osborne</a>, Head of System Solutions, ISB Global Ltd (2004).</p>
+			<p><a href="_references/Tim-Bell-Google-2011.pdf">Reference from Dr. Tim Bell</a>, Associate Professor and Deputy HOD, Computer Science and Software Engineering, The University of Canterbury (2011).</p>
 			
-			<p><a href="Attitude_Reference.pdf">Reference from Geoff Ford</a>, Managing Director, Attitude Group Ltd (2004).</p>
+			<p><a href="_references/Simon-Osborne-2004.tif">Reference from Simon Osborne</a>, Head of System Solutions, ISB Global Ltd (2004).</p>
 			
-			<p>Additional references can be found on my <a href="">LinkedIn profile</a>.</p>
+			<p><a href="_references/Geoff-Ford-2004.pdf">Reference from Geoff Ford</a>, Managing Director, Attitude Group Ltd (2004).</p>
+			
+			<p>Additional references can be found on my <a href="http://nz.linkedin.com/pub/samuel-williams/39/b78/bb5">LinkedIn profile</a>.</p>
 		</div>
 		<?r end ?>
 		
@@ -55,7 +57,7 @@
 			<dl>
 				<dt>M.Sc. (currently in progress), Computer Science, 2011</dt>
 				<dd>Current GPA: 8.88 out of 9.0 (<a href="transcript">University Transcript</a>)</dd>
-				<dd>Thesis Topic: <a href="/research/hybrid-tracking">Adaptive Hybrid Tracking for Mobile Outdoor Augmented Reality</a>.</dd>
+				<dd>Thesis Topic: <a href="/projects/redirect?project=adaptive-hybrid-tracking">Adaptive Hybrid Tracking for Mobile Outdoor Augmented Reality</a>.</dd>
 				<dd>Research assistant to Professor <a href="http://www.cosc.canterbury.ac.nz/tad.takaoka/">Tadao Takaoka</a>.</dd>
 				<dd>Designed and developed the <a href="http://programming.dojo.net.nz">Programming Dojo</a> and <a href="http://programming.dojo.net.nz/resources/programming-language-posters">Programming Language Posters</a> which have been distributed throughout New Zealand and digitally available world-wide.</dd>
 			</dl>
@@ -69,9 +71,9 @@
 		
 		<div class="header">Research</div>
 		<div class="section">
-			<p><strong>The University of Tokyo</strong> (2012): Gave a seminar on <a href="">Mr Painting Robot</a> at <a href="http://sacral.c.u-tokyo.ac.jp">Takashi Ikegami Laboratory</a>, a research center for Artificial Life.</p>
+			<p><strong>The University of Tokyo</strong> (2012): Gave a seminar on <a href="/projects/redirect?project=mr-painting-robot">Mr Painting Robot</a> at <a href="http://sacral.c.u-tokyo.ac.jp">Takashi Ikegami Laboratory</a>, a research center for Artificial Life.</p>
 			
-			<p><strong><a href="http://www.oriontransfer.co.nz/research/mr-painting-robot/Mr%20Painting%20Robot.pdf">Mr Painting Robot</a></strong> (<em>Image and Vision Computing New Zealand 2011</em>). This research investigates the identification of outlines, and how this can be used for input into a creative painting algorithm. It builds on several existing algorithms including the bilateral filter and laplacian edge detection, and develops several new algorithms including intensity scanning and brush stroke formation. The primary benefit of this approach is that the output format is vector based (and thus suitable for robotic armatures), rather than pixel based (such as one would expect from the majority of painterly algorithms). Synthetic tests show that the entire process can reproduce sumi-e style images with over 90% accuracy.</p>
+			<p><strong><a href="/journal/2010-10/mr-painting-robot/Mr%20Painting%20Robot.pdf">Mr Painting Robot</a></strong> (<em>Image and Vision Computing New Zealand 2011</em>). This research investigates the identification of outlines, and how this can be used for input into a creative painting algorithm. It builds on several existing algorithms including the bilateral filter and laplacian edge detection, and develops several new algorithms including intensity scanning and brush stroke formation. The primary benefit of this approach is that the output format is vector based (and thus suitable for robotic armatures), rather than pixel based (such as one would expect from the majority of painterly algorithms). Synthetic tests show that the entire process can reproduce sumi-e style images with over 90% accuracy.</p>
 		</div>
 		
 		<div class="header">Awards</div>
@@ -88,28 +90,19 @@
 			
 			<p><strong>University of Canterbury &mdash; <a href="http://www.tafs.canterbury.ac.nz/">Film and Theatre</a></strong> (2011): Funding for the development of online digital teaching tools ($2,000.00 NZD).</p>
 			
-			<p><strong>University of Canterbury &mdash; <a href="http://www.canterbury.ac.nz/postgrad/">Postgraduate Studies</a></strong> (2010): Summer scholarship with Professor Tadao Takaoka for <a href="/learn/pl0-language-tools">compiler design and program verification</a> ($5,000.00 NZD).</p>
+			<p><strong>University of Canterbury &mdash; <a href="http://www.canterbury.ac.nz/postgrad/">Postgraduate Studies</a></strong> (2010): Summer scholarship with Professor Tadao Takaoka for <a href="/projects/redirect?project=pl0-language-tools">compiler design and program verification</a> ($5,000.00 NZD).</p>
 			
-			<p><strong>University of Canterbury &mdash; <a href="http://cosc.canterbury.ac.nz">Computer Science</a></strong> (2010): Funding for the continued development of the <a href="http://programming.dojo.net.nz/resources/programming-language-posters">Programming Language Posters</a> and distribution to New Zealand Schools ($1,500.00 NZD).</p>
+			<p><strong>University of Canterbury &mdash; <a href="http://cosc.canterbury.ac.nz">Computer Science</a></strong> (2010): Funding for the continued development of the <a href="/projects/redirect?project=programming-language-posters">Programming Language Posters</a> and distribution to New Zealand Schools ($1,500.00 NZD).</p>
 		</div>
 		
 		<div class="header">Skills</div>
 		<div class="section">
 			<dl>
-				<dt>Networking and Systems Administration</dt>
-				<dd>10+ years of experience as a network and systems administrator.</dd>
-				<dd>Experienced with the deployment of a wide variety of network services, including hardware, software and related infrastructure.</dd>
-				<dd>Familiar with most major operating systems and virtualisation environments.</dd>
-				<dd>Capable of dealing with end user problems professionally, compassionately and in a timely manor.</dd>
-				<dd>Fluent at scripting and able to automate a wide variety of tasks.</dd>
-			</dl>
-			
-			<dl>
 				<dt>Software Design and Development</dt>
 				<dd>10+ years of experience as a programmer including product design and sales.</dd>
-				<dd>Fluent in a variety of different programming languages including: C, C++, Objective-C, PHP, Ruby, Python, Java, JavaScript. Able to pick up new languages and frameworks quickly.</dd>
+				<dd>Fluent in a variety of different programming languages including: C, C++, Objective-C, Ruby, Python, JavaScript. Able to pick up new languages and frameworks quickly. Familiar with PHP, Java, and a variety of other programming languages.</dd>
 				<dd>Experienced with different programming APIs including UNIX/Posix, Cocoa/CoreFoundation and iOS.</dd>
-				<dd>Proficient with version control systems, preferring Git for the majority of <a href="http://www.codeotaku.com/projects">projects</a>.</dd>
+				<dd>Proficient with source code management systems, continuous deployment and unit testing.</dd>
 				<dd>Browse my open source code at <a href="https://github.com/ioquatix">github.com/ioquatix</a>, <a href="https://github.com/oriontransfer">github.com/oriontransfer</a> and <a href="https://github.com/dream-framework">github.com/dream-framework</a>.</dd>
 			</dl>
 			
@@ -118,6 +111,15 @@
 				<dd>Familiar with a variety of feature point detection and tracking algorithms. Implemented several high level tracking algorithms with OpenCV.</dd>
 				<dd>Developed several game prototypes using both OpenGL 3.2 and OpenGL ES 2.0 for rendering, along with custom vertex and fragment shaders. Implemented a variety of physical simulations for real-time game mechanics.</dd>
 				<dd>Developed tools for visualisating large datasets and algorithmic behaviour.</dd>
+			</dl>
+			
+			<dl>
+				<dt>Networking and Systems Administration</dt>
+				<dd>10+ years of experience as a network and systems administrator.</dd>
+				<dd>Experienced with the deployment of a wide variety of network services, including hardware, software and related infrastructure.</dd>
+				<dd>Familiar with most major operating systems and virtualisation environments.</dd>
+				<dd>Capable of dealing with end user problems professionally, compassionately and in a timely manor.</dd>
+				<dd>Fluent at scripting and able to automate a wide variety of tasks.</dd>
 			</dl>
 		</div>
 		
@@ -152,9 +154,9 @@
 		<div class="section">
 			<dl>
 				<dt>Programming Language Design and Implementation</dt>
-				<dd><strong><a href="/research/kai">Kai</a></strong>: Exploring the bounds of programming language design.</dd>
-				<dd><strong><a href="/learn/pl0-language-tools">PL/0 Languge Tools</a></strong>: An programming language stack (including compiler, assembler and virtual machine) for educational purposes.</dd>
-				<dd><strong><a href="/learn/register-machine-interpreter/index">Register Machine Interpreter</a></strong>: Exploring the fundamentals of computability.</dd>
+				<dd><strong><a href="/projects/redirect?project=kai">Kai</a></strong>: Exploring the bounds of programming language design.</dd>
+				<dd><strong><a href="/projects/redirect?project=pl0-language-tools">PL/0 Languge Tools</a></strong>: An programming language stack (including compiler, assembler and virtual machine) for educational purposes.</dd>
+				<dd><strong><a href="/projects/redirect?project=register-machine-interpreter">Register Machine Interpreter</a></strong>: Exploring the fundamentals of computability.</dd>
 			</dl>
 			
 			<dl>
@@ -162,39 +164,39 @@
 				<dd><strong><a href="https://plus.google.com/communities/114698704831801249375">Game Mechanics Society</a></strong>: A group I founded of local developers and artists who collaborate on the design and development of games.</dd>
 				<dd><strong>Orbital Panic</strong>: A mashup of space-invaders, pong and breakout. I managed a small team including myself, two artists and another programmer, to develop this arcade game.</dd>
 				<dd><strong>Anima</strong>: A turn-based game build around cellular automata. Curently in the early prototype stage.</dd>
-				<dd><strong><a href="http://www.ludumdare.com/compo/category/ld-24/?author_name=ioquatix">Ludum Dare 24</a></strong> (2012): We created <a href="http://www.codeotaku.com/game-mechanics-society/games/tileshift/index">TileShift</a> in ~48 hours, a game that uses genetic algorithms to evolve levels in real-time. We ranked in the top 10% overall, and in the top 5% for innovation.</dd>
+				<dd><strong><a href="http://www.ludumdare.com/compo/category/ld-24/?author_name=ioquatix">Ludum Dare 24</a></strong> (2012): We created <a href="/projects/redirect?project=tileshift">TileShift</a> in ~48 hours, a game that uses genetic algorithms to evolve levels in real-time. We ranked in the top 10% overall, and in the top 5% for innovation.</dd>
 			</dl>
 			
 			<dl>
 				<dt>Efficient Algorithms and Problem Solving</dt>
-				<dd><strong><a href="/research/Inverse%20Kinematics%20A-star.pdf">Inverse Kinematics using A*</a></strong>: A deterministic solution for inverse kinematics problems.</dd>
-				<dd><strong><a href="/research/mr-painting-robot/index">Mr Painting Robot</a></strong>: A painterly style image processing algorithm.</dd>
+				<dd><strong><a href="/journal/2008-02/inverse-kinematics-a-star">Inverse Kinematics using A*</a></strong>: A deterministic solution for inverse kinematics problems.</dd>
+				<dd><strong><a href="/projects/redirect?project=mr-painting-robot">Mr Painting Robot</a></strong>: A painterly style image processing algorithm.</dd>
 			</dl>
 			
 			<dl>
 				<dt>Networked Information Systems and Applications</dt>
-				<dd><strong><a href="/gems/rubydns">RubyDNS</a></strong>: A domain specific language for processing DNS requests.</dd>
-				<dd><strong><a href="/gems/utopia">Utopia</a></strong>: A rich tag based information processing system for managing websites.</dd>
-				<dd><strong><a href="/gems/xapian">Xapian</a></strong>: The integration of a C++ search engine with Ruby bindings including a web spider.</dd>
+				<dd><strong><a href="/projects/redirect?project=rubydns">RubyDNS</a></strong>: A domain specific language for processing DNS requests.</dd>
+				<dd><strong><a href="/projects/redirect?project=utopia">Utopia</a></strong>: A rich tag based information processing system for managing content and websites.</dd>
+				<dd><strong><a href="/projects/redirect?project=xapian">Xapian</a></strong>: Xapian is a C++ based search engine framework with Ruby bindings and several high-level components including a comprehensive web spider.</dd>
 			</dl>
 			
 			<dl>
 				<dt>Game Development</dt>
-				<dd><strong><a href="https://github.com/dream-framework/dream">Dream</a></strong>: A cross-platform C++ framework for game development.</dd>
-				<dd><strong><a href="https://github.com/ioquatix/teapot">Teapot</a></strong>: A cross-platform build environment primarily for C/C++ libraries and applications.</dd>
+				<dd><strong><a href="/projects/redirect?project=dream">Dream</a></strong>: A cross-platform C++ framework for game development.</dd>
+				<dd><strong><a href="/projects/redirect?project=teapot">Teapot</a></strong>: A cross-platform build environment primarily for C/C++ libraries and applications.</dd>
 			</dl>
 			
 			<dl>
 				<dt>Storage and Backup</dt>
-				<dd><strong><a href="http://www.oriontransfer.co.nz/gems/fingerprint">Fingerprint</a></strong>: A tool for file system analysis and verification.</dd>
-				<dd><strong><a href="http://www.oriontransfer.co.nz/gems/lsync">LSync</a></strong>: A backup and data synchronisation tool.</dd>
+				<dd><strong><a href="/projects/redirect?project=fingerprint">Fingerprint</a></strong>: A tool for file system analysis and verification.</dd>
+				<dd><strong><a href="/projects/redirect?project=lsync">LSync</a></strong>: A backup and data synchronisation tool.</dd>
 			</dl>
 			
 			<dl>
 				<dt>Computer Science Education and Training</dt>
-				<dd><strong><a href="http://programming.dojo.net.nz">Programming Dojo</a></strong>: A website that exposes students to a wide variety of programming languages.</dd>
-				<dd><strong><a href="http://www.oriontransfer.co.nz/learn/truth-table-solver">Truth Table Solver</a></strong>: An online truth table solver/generator for helping students with logical propositions.</dd>
-				<dd><strong><a href="http://www.oriontransfer.co.nz/learn/register-machine-interpreter">Register Machine Interpreter</a></strong>: A simple register machine computer which allows students to learn about the basics of computability.</dd>
+				<dd><strong><a href="/projects/redirect?project=programming-dojo">Programming Dojo</a></strong>: A website that exposes students to a wide variety of programming languages.</dd>
+				<dd><strong><a href="/projects/redirect?project=truth-table-generator">Truth Table Generator</a></strong>: An online truth table solver/generator for helping students with logical propositions.</dd>
+				<dd><strong><a href="/projects/redirect?project=register-machine-interpreter">Register Machine Interpreter</a></strong>: A simple register machine computer which allows students to learn about the basics of computability.</dd>
 			</dl>
 			
 			<dl>

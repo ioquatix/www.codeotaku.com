@@ -94,7 +94,14 @@ ul.projects {
 	color: #008000;
 }
 
-.title .tag.website, .title .tag.framework, .title .tag.application, .title .tag.command-line, .title .tag.language, .title .tag.server {
+.title .tag.website, .title .tag.framework, .title .tag.application, .title .tag.command-line, .title .tag.language, .title .tag.server, .title .tag.game {
+	border-color: #6A5ACD;
+	box-shadow: 0 0 2px #6A5ACD;
+	color: #6A5ACD;	
+}
+
+/* Research areas */
+.title .tag.computer-vision  {
 	border-color: #6A5ACD;
 	box-shadow: 0 0 2px #6A5ACD;
 	color: #6A5ACD;	

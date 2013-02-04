@@ -3,8 +3,8 @@ source "https://rubygems.org"
 
 gem "rack"
 
-gem "utopia", "= 0.11.0"
-gem "utopia-extras", "= 0.11.0"
+gem "utopia", "~> 0.11"
+gem "utopia-extras", "= 0.11"
 
 gem "datamapper"
 gem "dm-sqlite-adapter"

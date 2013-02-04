@@ -433,7 +433,7 @@ class SudokuBoard {
 			print_solution = true;
 		}
 		
-		unsigned & pieceAt (unsigned x, unsigned y) {
+		unsigned & piece_at (unsigned x, unsigned y) {
 			return _pieces[y][x];
 		}
 		
@@ -441,7 +441,7 @@ class SudokuBoard {
 			for (unsigned i = 0; i < 9; i += 1) {
 				RowT values;
 				
-				unsigned rowMask = 0;
+				unsigned row_mask = 0;
 				
 				// Load one row at a time.
 				for (unsigned j = 0; j < 9; j += 1) {
@@ -452,11 +452,11 @@ class SudokuBoard {
 					}
 					
 					if (values[j] != 0)
-						set_bit(rowMask, values[j] - 1);
+						set_bit(row_mask, values[j] - 1);
 				}
 				
 				// Keep track of what values are fixed so we can optimise calculating forbidden positions.
-				_fixed[i] = rowMask;
+				_fixed[i] = row_mask;
 				set_row(i, values);
 			}
 		}
@@ -570,13 +570,13 @@ class SudokuBoard {
 			}
 			
 			for (unsigned i = 0; i < 3; i += 1) {
-				CountT blockCount(i, 0);
+				CountT block_count(i, 0);
 				
 				for (unsigned j = 0; j < 3; j += 1) {
-					blockCount.second += rows[i * 3 + j].second;
+					block_count.second += rows[i * 3 + j].second;
 				}
 				
-				blocks.push_back(blockCount);
+				blocks.push_back(block_count);
 			}
 			
 			//std::sort(rows.begin(), rows.end(), sort_counts);
@@ -620,7 +620,7 @@ class SudokuBoard {
 			}
 			
 			for (unsigned i = 0; i < 9; i += 1) {
-				unsigned piece = pieceAt(i, row);
+				unsigned piece = piece_at(i, row);
 				if (piece == 0) {
 					size += 1;
 					
@@ -728,7 +728,7 @@ void SudokuBoard::print(std::ostream & output) {
 			if (x != 0)
 				output << " ";
 				
-			output << pieceAt(x, y);
+			output << piece_at(x, y);
 		}
 		
 		output << std::endl;
@@ -747,12 +747,12 @@ void profile_sudoku (std::string path) {
 		SudokuBoard b;
 		b.load(fp);
 		
-		//clock_t startTime = clock();
+		//clock_t start_time = clock();
 		b.solve();
-		//clock_t endTime = clock();
+		//clock_t end_time = clock();
 		
-		//double totalTime = double(endTime - startTime) / CLOCKS_PER_SEC;
-		//std::cout << "Time: " << totalTime << "s" << std::endl;
+		//double total_time = double(end_time - start_time) / CLOCKS_PER_SEC;
+		//std::cout << "Time: " << total_time << "s" << std::endl;
 	}
 	
 	std::cout << std::flush;

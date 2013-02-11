@@ -139,7 +139,7 @@
 				<dt>Software Design and Development</dt>
 				<dd>10+ years of experience as a programmer including product design and sales.</dd>
 				<dd>Fluent in a variety of different programming languages including: C++, Objective-C, Ruby (favourite language), Python (mainly teaching), JavaScript.</dd>
-				<dd>Experienced with different programming APIs including UNIX, Posix, Cocoa, CoreFoundation and iOS, OpenGL, OpenAL.</dd>
+				<dd>Experienced with different programming APIs including: UNIX, Posix, Cocoa, CoreFoundation, iOS, OpenGL, OpenAL.</dd>
 				<dd>Proficient with source code management systems, continuous deployment and unit testing.</dd>
 				<dd>Proud open source software contributor; experienced at collaborating with other developers.</dd>
 			</dl>
@@ -156,18 +156,18 @@
 			
 			<dl class="itemized">
 				<dt>Programming Language Design and Implementation</dt>
+				<dd>Fascinated by language design, syntax, semantics and program analysis/verification.</dd>
 				<dd>Implemented several experimental programming languages.</dd>
 				<dd>Experienced with byte-code interpreters, garbage collection, parsing and code generation.</dd>
 				<dd>Designed a variety of programming language tools specifically for teaching purposes.</dd>
-				<dd>Fascinated by language design, syntax, semantics and program analysis/verification.</dd>
 			</dl>
 			
 			<dl class="itemized">
 				<dt>Computer Vision and Rendering</dt>
 				<dd>Familiar with a variety of feature point detection and tracking algorithms.</dd>
 				<dd>Implemented several high level tracking algorithms with OpenCV.</dd>
-				<dd>Interested in painterly rendering algorithms and algorithms that produce 'creative' output.</dd>
-				<dd>Experienced with the implementation of augmented reality systems and their practical use.</dd>
+				<dd>Interested in painterly rendering algorithms and systems that produce 'creative' output.</dd>
+				<dd>Experienced with the implementation of augmented reality applications and their practical use.</dd>
 				<dd>Developed tools for visualising large datasets and algorithmic behaviour.</dd>
 			</dl>
 			
@@ -203,7 +203,7 @@
 			<dl class="compact">
 				<dt><a href="http://www.gmsoc.org/">Game Mechanics Society</a></dt>
 				<dd>(2012-) A society of local programmers and artists who collaborate on the design and development of games. I am the founding member and assist with the organisation of events.</dd>
-				<dd>(2012) We created <a href="/projects/redirect?project=tileshift">TileShift</a>, a game that uses genetic algorithms to evolve levels in real-time, for <a href="http://www.ludumdare.com/compo/category/ld-24/?author_name=ioquatix">Ludum Dare 24</a>. We ranked in the top 10% overall, and in the top 5% for innovation.</dd>
+				<dd>(2012) We created <a href="/projects/redirect?project=tileshift">TileShift</a>, a game that uses genetic algorithms to evolve levels in real-time for <a href="http://www.ludumdare.com/compo/category/ld-24/?author_name=ioquatix">Ludum Dare 24</a>. We ranked in the top 10% overall, and in the top 5% for innovation.</dd>
 			</dl>
 			
 			<dl class="compact">
@@ -218,18 +218,18 @@
 			
 			<dl class="compact">
 				<dt><a href="http://www.ece.nus.edu.sg/stfpage/eledbl/mime/">MIME Group</a>, National University of Singapore</dt>
-				<dd>(2012) Developed an augmented reality navigation system which guides users through a series of waypoints as part of an interactive game. I designed several visualisations and assisted with their associated evaluation and research.</dd>
+				<dd>(2012) Developed an augmented reality navigation system which guides users through a series of waypoints as part of an interactive game. I implemented several visualisations and assisted with the associated evaluation and research.</dd>
 			</dl>
 			
 			<dl class="compact">
 				<dt><a href="http://cosc.canterbury.ac.nz/">Computer Science and Software Engineering</a>, University of Canterbury</dt>
-				<dd>(2012-) Teaching <em>COSC121 and COSC122 Introduction to Computer Science</em> as part of the STAR course specifically for talented high school students. I designed and marked all COSC122 assignments on algorithms using a modern unit test-based approach. I was the main tutor for COSC261 Fundamentals of Computer Science, implementing a variety of algorithms for teaching.</dd>
-				<dd>(2013-) Continuing teaching <em>COSC121 and COSC122</em>.</dd>
+				<dd>(2012-) Teaching <em>COSC121</em> and <em>COSC122 Introduction to Computer Science</em> as part of the STAR course specifically for talented high school students. I designed and marked all <em>COSC122</em> assignments on algorithms using a modern unit test-based approach. I was the main tutor for <em>COSC261 Fundamentals of Computer Science</em>, implementing a variety of algorithms for teaching.</dd>
+				<dd>(2013-) Continuing teaching <em>COSC121</em> and <em>COSC122</em>.</dd>
 			</dl>
 			
 			<dl class="compact">
 				<dt><a href="http://www.cosc.canterbury.ac.nz/ACMchapter/">University of Canterbury Student Chapter</a>, Association for Computing Machinery</dt>
-				<dd>(2011-) I am the president and responsible for managing various local events. I am helping to recover the chapter after it was suspended during the Christchurch Earthquakes.</dd>
+				<dd>(2011-) President of the local chapter. I am helping to recover the chapter after it was suspended during the Christchurch Earthquakes.</dd>
 			</dl>
 			
 			<dl class="compact">
@@ -249,17 +249,17 @@
 			
 			<dl class="compact">
 				<dt><a href="http://www.stmargarets.school.nz/">St Margaret's College</a></dt>
-				<dd>(2008-2009) Improving network infrastructure and day to day operations. I implemented real-time load monitoring for all desktop computers and used this information to assist with software and hardware deployment. I designed and implemented policies to reduce stress in a busy office, including a ticketing system to keep track of important jobs. Assisted in the development and management of the school website.</dd>
+				<dd>(2008-2009) Consultant and finally employee, improving network infrastructure and day to day operations. I implemented real-time load monitoring for all desktop computers and used this information to assist with software and hardware deployment. I designed and implemented policies to reduce stress in a busy office, including a ticketing system to keep track of important jobs. I assisted with the development and management of the school website as well as a system for tracking potential enrolments during open-day.</dd>
 			</dl>
 			
 			<dl class="compact">
 				<dt><a href="http://unlimited.school.nz/">Unlimited Paenga Tawhiti</a></dt>
-				<dd>(2006-2008) Sole technician, technical advisor and technical support, responsible for  all computers and related infrastructure. I improved utilisation of computer resources by centralising administrative tasks. I developed and implemented policy for the student laptop program, from advertising through to deployment. I provided professional support to all students and staff covering existing technology and advising/deploying new technology where appropriate.</dd>
+				<dd>(2006-2008) Main technician, responsible for all computers and related infrastructure. I improved utilisation of computer resources by centralising administrative tasks. I developed and implemented policy for the student laptop program, from advertising through to deployment. I provided professional support to all students and staff covering existing technology and advising/deploying new technology where appropriate.</dd>
 			</dl>
 			
 			<dl class="compact">
 				<dt><a href="http://www.isbglobal.co.uk/">ISB Global</a></dt>
-				<dd>(2004-2006) Working as a programmer designing and developing a consultant placement and management system using Ruby on Rails.</dd>
+				<dd>(2004-2006) Working as a programmer designing and developing a consultant placement system using Ruby on Rails.</dd>
 			</dl>
 		</div>
 	</div>

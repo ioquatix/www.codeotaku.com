@@ -138,7 +138,7 @@
 			<dl class="itemized">
 				<dt>Software Design and Development</dt>
 				<dd>10+ years of experience as a programmer including product design and sales.</dd>
-				<dd>Fluent in a variety of different programming languages including: C++, Objective-C, Ruby (favorite language), Python (mainly teaching), JavaScript.</dd>
+				<dd>Fluent in a variety of different programming languages including: C++, Objective-C, Ruby (favourite language), Python (mainly teaching), JavaScript.</dd>
 				<dd>Experienced with different programming APIs including UNIX, Posix, Cocoa, CoreFoundation and iOS, OpenGL, OpenAL.</dd>
 				<dd>Proficient with source code management systems, continuous deployment and unit testing.</dd>
 				<dd>Proud open source software contributor; experienced at collaborating with other developers.</dd>
@@ -168,7 +168,7 @@
 				<dd>Implemented several high level tracking algorithms with OpenCV.</dd>
 				<dd>Interested in painterly rendering algorithms and algorithms that produce 'creative' output.</dd>
 				<dd>Experienced with the implementation of augmented reality systems and their practical use.</dd>
-				<dd>Developed tools for visualisating large datasets and algorithmic behaviour.</dd>
+				<dd>Developed tools for visualising large datasets and algorithmic behaviour.</dd>
 			</dl>
 			
 			<dl class="itemized">
@@ -181,7 +181,7 @@
 			<dl class="itemized">
 				<dt>Game Design and Implementation</dt>
 				<dd>Enjoys the creative challenges associated with creating fun and engaging games.</dd>
-				<dd>Passionate about developing interesting game mechanics and artifical intelligence.</dd>
+				<dd>Passionate about developing interesting game mechanics and artificial intelligence.</dd>
 				<dd>Familiar with content generation and working in a diverse team environment.</dd>
 			</dl>
 			
@@ -213,7 +213,7 @@
 			
 			<dl class="compact">
 				<dt> <a href="http://sacral.c.u-tokyo.ac.jp/">Takashi Ikegami Laboratory</a>, University of Tokyo</dt>
-				<dd>(2012) Gave a seminar on <a href="/projects/redirect?project=mr-painting-robot">Mr Painting Robot</a>, with a specific focus on how it relates to artifical life.</dd>
+				<dd>(2012) Gave a seminar on <a href="/projects/redirect?project=mr-painting-robot">Mr Painting Robot</a>, with a specific focus on how it relates to artificial life.</dd>
 			</dl>
 			
 			<dl class="compact">

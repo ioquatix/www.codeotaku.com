@@ -73,7 +73,7 @@ quota-check:
     tags: ['commercial', 'objective-c', 'application']
     description: "Warn users that they are running out of diskspace automatically!"
 code-visualisation:
-    title: 'Visualising information change over time'
+    title: 'Visualising Information Change Over Time'
     tags: ['research', 'ruby', 'command-line']
     uri: /journal/2010-10/visualising-information-change-over-time
     description: "This research explores how to visualise changes to source code over time."

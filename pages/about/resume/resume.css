@@ -25,8 +25,19 @@
 	margin-right: 0;
 }
 
-.resume dl dt {
-	font-style: italic;
+/* Definition list layout */
+.resume .section dl.itemized dt {
+	font-weight: bold;
+}
+
+.resume .section dl.compact dt {
+	font-weight: bold;
+	display: inline;
+}
+
+.resume .section dl.compact dd {
+	display: inline;
+	margin-left: 0;
 }
 
 .resume ul {

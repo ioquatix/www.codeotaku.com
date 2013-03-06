@@ -1,6 +1,6 @@
 <page>
-    <heading>RubyDNS</heading>
-    
+	<logo src="logo.png" title="RubyDNS" />
+	
     <p>RubyDNS is a tool that allows you to intercept and modify DNS requests. It can provide most typical DNS server functionality, including the ability to pull DNS records from any data source.</p>
 	
 	<ul class="features">

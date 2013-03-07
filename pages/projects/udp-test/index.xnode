@@ -1,0 +1,33 @@
+<page>
+	<heading>UDP Test</heading>
+	
+	<p><code>udptest.rb</code> is a simple UDP server and client bundled into a single script. It is designed to be used as a network testing tool, and detect packet loss and corruption.</p>
+	
+	<p>UDP is a lossy network transport in that UDP packets may be dropped if there is not enough capacity to send them. UDP is typically used in real-time scenarios such as voice and video chat. <code>udptest.rb</code> is designed to be as simple as possible. It bounces small packets from the client to the server and back again. If the packet checksum is incorrect at any point, the script exits with an error.</p>
+	
+	<p>This type of script is designed to detect faulty hardware and errors in configuration, as well as network performance.</p>
+	
+	<h2>Installation</h2>
+	
+	<p>Available from GitHub: <a href="https://github.com/oriontransfer/UDPTest">https://github.com/oriontransfer/UDPTest</a>.</p>
+	
+	<p><code>udptest.rb</code> requires <code>Ruby</code>, therefore it is important to make sure that it is installed.</p>
+	
+	<p>The source code is also available: <git path="Scripting/AdminToolbox.git" /></p>
+	
+	<h2>Usage</h2>
+	
+	<p>On one machine we run the following:</p>
+	
+	<listing src="example_server.txt" brush="bash" />
+	
+	<p>On another machine we run the following:</p>
+	
+	<listing src="example_client.txt" brush="bash" />
+	
+	<p>On the first machine, we will get the following output:</p>
+	
+	<listing src="example_server_output.txt" brush="bash" />
+	
+	<p>Each + represents a transmission of a packet. Errors will be reported on the server and client. Since the client is the one sending the packets, it is more likely to detect errors. Also, a single udptest.rb –server instance can support multiple clients.</p>
+</page>

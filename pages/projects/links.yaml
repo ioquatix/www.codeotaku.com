@@ -204,7 +204,28 @@ teapot:
     uri: https://github.com/ioquatix/teapot
     description: "Teapot is a cross-platform build tool for C/C++ libraries and applications. In addition, it provides simple git-based dependency management."
 adaptive-hybrid-tracking:
-    title: "Adaptive Hybrid Tracking for Outdoor Augmented Reality"
+    title: "Adaptive Hybrid Tracking For Outdoor Augmented Reality"
     tags: ['research', 'computer-vision']
     uri: /journal/2012-10/hybrid-tracking
     description: "A master's thesis investigating methods to enhance tracking for outdoor augmented reality applications."
+inverse-kinematics-a-star:
+    title: "A Discrete Solution For The Inverse Kinematics Problem"
+    tags: ['research']
+    uri: /journal/2008-02/inverse-kinematics-a-star
+    description: "Research investigating the application of the A* algorithm to the inverse kinematics problem."
+anima:
+    title: "Anima"
+    tags: ['commercial', 'game']
+    description: "A turn-based game build around cellular automata. Curently in the early prototype stage."
+orbital-panic:
+    title: "Orbital Panic"
+    tags: ['commercial', 'game']
+    description: "An action game mashup combining space-invaders, pong and breakout."
+udp-test:
+    title: "UDP Test"
+    tags: ['open', 'ruby', 'command-line']
+    description: "A client/server tool for network anaylsis and error detection."
+eventplayer:
+    title: "EventPlayer"
+    tags: ['open', 'javascript', 'framework']
+    description: "A set tools for synchronising content and events with HTML5 audio/video elements."

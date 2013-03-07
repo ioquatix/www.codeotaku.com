@@ -1,0 +1,6 @@
+$ ./udptest.rb --help
+Usage: udptest.rb [options]
+A simple UDP network tester. Start a server somewhere, and then use the client to connect.
+This will continually send packets through the network and stop when an error is detected.
+      --server [port]              Start a server on port (default 30000)
+      --client [hostname]          Start a client connecting to the hostname specified.

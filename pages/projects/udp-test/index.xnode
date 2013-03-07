@@ -13,8 +13,6 @@
 	
 	<p><code>udptest.rb</code> requires <code>Ruby</code>, therefore it is important to make sure that it is installed.</p>
 	
-	<p>The source code is also available: <git path="Scripting/AdminToolbox.git" /></p>
-	
 	<h2>Usage</h2>
 	
 	<p>On one machine we run the following:</p>

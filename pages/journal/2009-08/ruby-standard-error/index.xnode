@@ -7,7 +7,7 @@
 	
 	<listing src="exception_catch_results.txt" />
 	
-	<p>This behavior is consistent with the way ruby exceptions are designed; Errors which you can generally deal with are subclassed from <code>StandardError</code>, while errors which indicate a failure in the semantic meaning of the code or its execution inherit directly from <code>Exception</code></p>
+	<p>This behavior is consistent with the way ruby exceptions are designed; Errors which you can generally deal with are subclassed from <code class="syntax ruby">StandardError</code>, while errors which indicate a failure in the semantic meaning of the code or its execution inherit directly from <code class="syntax ruby">Exception</code></p>
 	
 	<listing src="list_exceptions.txt" lang="ruby" />
 	
@@ -15,5 +15,5 @@
 	
 	<listing src="list_exceptions_results.txt" brush="ruby" />
 	
-	<p>Generally, if you are making your own exception class for non-fatal execution errors, you should inherit from <code>SystemError</code> or one of its descendants.</p>
+	<p>Generally, if you are making your own exception class for non-fatal execution errors, you should inherit from <code class="syntax ruby">StandardError</code> or one of its descendants.</p>
 </entry>

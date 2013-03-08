@@ -99,7 +99,7 @@ $(function() {
 
 	var livePreview = new AggregateCallback(1000, true, function() {
 		$.post("comments/preview", {'body': $('textarea[name=body]', commentsForm).val()}, function(data) {
-			$('.preview', commentsForm).html(data);
+			$('.preview', commentsForm).empty().append(data);
 			$.syntax({context: $('.preview', commentsForm)});
 		});
 	});

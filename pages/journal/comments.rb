@@ -45,7 +45,7 @@ class Comment
 				
 				node['class'] = klass
 				
-				{:whitelist => true, :attr_whitelist => ['class']}
+				{:node_whitelist => [node]}
 			end
 		end
 		

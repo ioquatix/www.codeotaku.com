@@ -78,7 +78,7 @@
 					</dt>
 					<dd><textarea style="height: 100px;" name="body"></textarea></dd>
 				
-					<dd class="preview"></dd>
+					<dd class="preview" style="font-size: 60%"></dd>
 			
 					<dd class="footer"><input type="submit" value="Post Comment" /></dd>
 				</dl>

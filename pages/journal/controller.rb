@@ -6,14 +6,14 @@ def on_comments_preview(path, request)
 	body = request[:body]
 	
 	formatted_html = Comment.format_body_html(body)
-
-	return {:status => :success, :content => formatted_html}
+	
+	success! content: formatted_html, type: "text/html"
 end
 
 def on_comments_edit(path, request)
 	comment = Comment.get(request[:id].to_i)
 
-	if comment && (request.controller.admin? || request.controller.user == comment.user)
+	if comment and (request.controller.admin? || request.controller.user == comment.user)
 		fields = {
 			:id => comment.id,
 			:body => comment.body,
@@ -24,14 +24,14 @@ def on_comments_edit(path, request)
 			:icon => comment.user.icon
 		}
 		
-		return {:status => :success, :content => fields.to_json, :type => "application/json"}
+		success! content: fields.to_json, type: "application/json"
 	end
 	
-	return :unauthorized
+	fail! :unauthorized
 end
 
 def on_comments_update(path, request)
-	return :unauthorized unless request.post? and request.controller.admin?
+	fail! unless request.post? and request.controller.admin?
 	
 	comment = Comment.get(request[:id].to_i)
 	
@@ -46,14 +46,14 @@ def on_comments_update(path, request)
 		comment.user.save
 		comment.save
 		
-		return :success
+		success!
+	else
+		fail!
 	end
-	
-	return :unauthorized
 end
 
 def on_comments_create(path, request)
-	return :unauthorized unless request.post?
+	fail! unless request.post?
 
 	user = nil
 
@@ -68,7 +68,7 @@ def on_comments_create(path, request)
 		if user
 			unless user.guest? && user.email == request[:email]
 				LOG.debug("User name is not guest (#{user.access}), or email is not correct (#{user.email} != #{request[:email]}).")
-				return :unauthorized
+				fail! :unauthorized
 			end
 		else
 			LOG.debug("Creating new user for #{request[:posted_by]}")
@@ -119,34 +119,26 @@ def on_comments_create(path, request)
 		LOG.error("Could not send notification: #{$!.inspect}")
 	end
 	
-	return {:status => :success, :content => comment.to_json(:only => [:id]), :type => "application/json"}
+	success! content: comment.to_json(:only => [:id]), type: "application/json"
 end
 
 def on_comments_toggle(path, request)
-	return :forbidden unless request.post?
+	fail! unless request.post? and request.controller.admin?
 	
-	if request.controller.admin?
-		comment = Comment.first(:id => request[:id])
-		comment.visible = !comment.visible
-		comment.save
+	comment = Comment.first(:id => request[:id])
+	comment.visible = !comment.visible
+	comment.save
 		
-		return :success
-	else
-		return :forbidden
-	end
+	success!
 end
 
 def on_comments_delete(path, request)
-	return :forbidden unless request.post?
+	fail! unless request.post? and request.controller.admin?
 	
-	if request.controller.admin?
-		comment = Comment.first(:id => request[:id])
-		comment.destroy!
+	comment = Comment.first(:id => request[:id])
+	comment.destroy!
 		
-		return :success
-	else
-		return :forbidden
-	end
+	success!
 end
 
 def on_login_salt(path, request)
@@ -154,11 +146,11 @@ def on_login_salt(path, request)
 	
 	request.session['login_salt'] = salt
 	
-	return {:code => :success, :content => salt}
+	success! content: salt
 end
 
 def on_login(path, request)
-	return :forbidden unless request.post?
+	fail! unless request.post?
 	
 	name = request[:username]
 	password = request[:password]
@@ -179,16 +171,18 @@ def on_login(path, request)
 	if user
 		request.session['user'] = user.id
 		
-		return {:redirect => request.referer}
+		redirect! request.referer
 	else
 		LOG.debug("User #{name} (#{password.inspect} / #{password_hash.inspect}) was not logged in.")
-		return :unauthorized
+		
+		fail! :unauthorized
 	end
 end
 
 def on_logout(path, request)
 	request.session['user'] = nil
-	return :success
+	
+	success!
 end
 
 def process!(path, request)
@@ -217,6 +211,6 @@ def process!(path, request)
 		end
 	end
 	
-	return passthrough(path, request)
+	passthrough(path, request)
 end
 

@@ -4,7 +4,7 @@ UTOPIA_ENV = (ENV['UTOPIA_ENV'] || ENV['RACK_ENV'] || :development).to_sym
 $LOAD_PATH << File.join(File.dirname(__FILE__), "lib")
 
 # It is recommended that you always explicity specify the version of the gem you are using.
-gem 'utopia', "~> 0.11"
+gem 'utopia', "~> 0.12"
 require 'utopia/middleware/all'
 require 'utopia/tags/all'
 
@@ -16,9 +16,6 @@ require 'utopia/tags/google_analytics'
 # Don't add drop shadows since we are using new CSS box-shadow.
 Utopia::Tags::Gallery::PROCESSES[:photo_thumbnail] = Utopia::Tags::Gallery::Processes::Thumbnail.new([300, 300])
 
-gem 'rack-contrib'
-require 'rack/contrib'
-
 # Utopia relies heavily on accurately caching resources
 gem 'rack-cache'
 require 'rack/cache'
@@ -29,13 +26,7 @@ if UTOPIA_ENV == :development
 	use Rack::ShowExceptions
 else
 	use Utopia::Middleware::ExceptionHandler, "/errors/exception"
-
-	# Fill out these details to receive email reports of exceptions when running in a production environment.
-	# use Rack::MailExceptions do |mail|
-	# 	mail.from $MAIL_EXCEPTIONS_FROM
-	# 	mail.to $MAIL_EXCEPTIONS_TO
-	# 	mail.subject "Website Error: %s"
-	# end
+	use Utopia::Middleware::MailExceptions
 end
 
 use Rack::ContentLength

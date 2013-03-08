@@ -1,0 +1,9 @@
+<page>
+	<heading>Comment Moderation Queue</heading>
+	
+	<ul>
+	<?r request.controller[:comments].each do |comment| ?>
+		<li><a href="#{comment.node.to_html}">#{comment.node.to_html} from #{comment.user.name.to_html}</a></li>
+	<?r end ?>
+	</ul>
+</page>

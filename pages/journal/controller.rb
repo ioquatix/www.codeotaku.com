@@ -2,6 +2,12 @@
 require_local 'comments'
 require 'digest/sha1'
 
+def on_queue(path, request)
+	fail! unless request.controller.admin?
+
+	@comments = Comment.all(:visible => false)
+end
+
 def on_comments_preview(path, request)
 	body = request[:body]
 	

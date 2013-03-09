@@ -23,9 +23,17 @@
 	
 	<h2>Code Signing Script</h2>
 	
-	<p>This script is used as a build phase within Library Inspector and signs the auxiliary executables if a signature was specified. For your own application you'd need to update the list of tools and the identifier base.</p>
+	<p>This Ruby script is used as a build phase within Library Inspector and signs the auxiliary executables if a signature was specified. For your own application you'd need to update the list of tools and the identifier base.</p>
 	
 	<listing src="codesign.txt" brush="ruby" />
 	
 	<p>Now I just have to submit the application and wait for a month for Apple to review it... Fingers crossed that everything is fine this time through the system.</p>
+	
+	<h2>Addendum, March 2013: Quicklook Plugins</h2>
+	
+	<p>I found that there are some issues when the above approach is used with Quicklook Plugins. I found that my external processes were crashing with the following type of error:</p>
+	
+	<listing src="nm-crash.txt"/>
+	
+	<p>I narrowed it down to the entitlements. It turns out that the Quicklook Plugin Host doesn't seem to run in a typical sandbox (as far as I can tell), and thus trying to use the inherit entitlement doesn't work. Simply removing the entitlements file arguments (<code class="syntax ruby">'--entitlements', entitlements</code>) from the above code signing script fixes the issue. This works because the executable no longer tries to inherit sandbox permissions from the parent, but I'm not exactly sure why this is an issue. It seems like this is only affects Mac OS X 10.8.2+ but I haven't had a lot of experience with this problem yet.</p>
 </entry>

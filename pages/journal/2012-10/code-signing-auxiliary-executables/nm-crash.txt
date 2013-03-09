@@ -1,0 +1,38 @@
+Process:         nm [45806]
+Path:            /Applications/Developer/Library Inspector.app/Contents/Library/QuickLook/Library Inspector Quick Look.qlgenerator/Contents/MacOS/nm
+Identifier:      nm
+Version:         ???
+Code Type:       X86-64 (Native)
+Parent Process:  sh [45805]
+User ID:         502
+
+Date/Time:       2013-03-09 19:10:04.506 +1300
+OS Version:      Mac OS X 10.8.2 (12C60)
+Report Version:  10
+
+Crashed Thread:  0  Dispatch queue: com.apple.main-thread
+
+Exception Type:  EXC_BAD_INSTRUCTION (SIGILL)
+Exception Codes: 0x0000000000000001, 0x0000000000000000
+
+Application Specific Information:
+XPC domain creation failed: Process is not in an inherited sandbox.
+
+Thread 0 Crashed:: Dispatch queue: com.apple.main-thread
+0   libxpc.dylib                  	0x00007fff8678424a _xpc_runtime_init_once + 1077
+1   libdispatch.dylib             	0x00007fff8cb2f0b6 _dispatch_client_callout + 8
+2   libdispatch.dylib             	0x00007fff8cb2f041 dispatch_once_f + 50
+3   libxpc.dylib                  	0x00007fff8677b919 _xpc_runtime_set_domain + 190
+4   libxpc.dylib                  	0x00007fff8677ae90 _libxpc_initializer + 430
+5   libSystem.B.dylib             	0x00007fff8c78bb2d libSystem_initializer + 172
+6   dyld                          	0x00007fff61f38378 ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) + 236
+7   dyld                          	0x00007fff61f38762 ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) + 46
+8   dyld                          	0x00007fff61f3506e ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, ImageLoader::InitializerTimingList&) + 380
+9   dyld                          	0x00007fff61f34fc4 ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, ImageLoader::InitializerTimingList&) + 210
+10  dyld                          	0x00007fff61f34eba ImageLoader::runInitializers(ImageLoader::LinkContext const&, ImageLoader::InitializerTimingList&) + 54
+11  dyld                          	0x00007fff61f26fc0 dyld::initializeMainExecutable() + 207
+12  dyld                          	0x00007fff61f2ab04 dyld::_main(macho_header const*, unsigned long, int, char const**, char const**, char const**, unsigned long*) + 3060
+13  dyld                          	0x00007fff61f26397 dyldbootstrap::start(macho_header const*, int, char const**, long, macho_header const*, unsigned long*) + 761
+14  dyld                          	0x00007fff61f2605e _dyld_start + 54
+
+<...snip...>

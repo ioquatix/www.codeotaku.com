@@ -9,7 +9,7 @@ require 'utopia/middleware/all'
 require 'utopia/tags/all'
 
 # From utopia-extras:
-gem 'utopia-extras', "~> 0.11"
+gem 'utopia-extras', "~> 0.12"
 require 'utopia/tags/gallery'
 require 'utopia/tags/google_analytics'
 

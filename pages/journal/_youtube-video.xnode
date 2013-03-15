@@ -1,3 +1,0 @@
-<div class="gallery">
-	<iframe width="640" height="480" src="http://www.youtube.com/embed/#{attributes['id']}" frameborder="0" allowfullscreen></iframe>
-</div>

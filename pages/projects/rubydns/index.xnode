@@ -10,6 +10,10 @@
 		<li>Includes several auxiliary commands for DNS migration, verification and testing.</li>
 	</ul>
 	
+	<h2>Introduction Video</h2>
+	
+	<youtube-video id="0h3FN0R6XY4" />
+	
 	<h2>Documentation</h2>
 	
 	<summary path="documentation/" />

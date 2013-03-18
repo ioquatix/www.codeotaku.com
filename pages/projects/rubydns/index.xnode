@@ -1,13 +1,16 @@
 <page>
 	<logo src="logo.png" title="RubyDNS" />
 	
-    <p>RubyDNS is a tool that allows you to intercept and modify DNS requests. It can provide most typical DNS server functionality, including the ability to pull DNS records from any data source.</p>
+    <p>RubyDNS is a high-performance DNS server which can be easily integrated into other projects or used as a stand-alone daemon (via <a href="../rexec/">RExec</a>). By default it uses rule-based pattern matching. Results can be hard-coded, computed, fetched from a remote DNS server or fetched from a local cache, depending on requirements.</p>
+
+	<p>In addition, RubyDNS includes a high-performance asynchronous DNS resolver built on top of EventMachine. This module can be used by itself in client applications without using the full RubyDNS server stack.</p>
 	
 	<ul class="features">
 		<li>Fully programmatic DNS server: integrate with databases, servers and caches seamlessly.</li>
-		<li>Match incoming DNS requests using regular expressions.</li>
+		<li>Robust asynchronous DNS client: builds on EventMachine to provide flexible name resolution.</li>
+		<li>Match incoming DNS requests using regular expressions and resource classes.</li>
 		<li>Modify requests in-flight to spoof or manipulate DNS responses.</li>
-		<li>Includes several auxiliary commands for DNS migration, verification and testing.</li>
+		<li>Includes several useful commands for DNS migration, verification and testing.</li>
 	</ul>
 	
 	<h2>Introduction Video</h2>
@@ -18,7 +21,14 @@
 	
 	<summary path="documentation/" />
 	
-	<h2>Example</h2>
+	<h2>Used By</h2>
 	
-	<listing src="example.txt" brush="ruby" />
+	<ul>
+		<li><a href="https://github.com/cookpad/murakumo">Murakumo</a>: Murakumo is the internal DNS server which manages name information using a gossip protocol.</li>
+		<li><a href="http://www.siriproxy.info/">SiriProxy</a>: A proxy for Apple's "assistant", that allows for new functionality via plugins.</li>
+		<li><a href="http://sw.cow.tc/devdnsd/">devdnsd</a>: A small DNS server to enable local .dev domain resolution.</li>
+		<li><a href="https://github.com/coreyti/meltdown">Meltdown</a>: A ruby alternative to pow/powder.</li>
+		<li><a href="https://github.com/lox/awsquery">awsquery</a>: A collection of tools for querying AWS hosts based on metadata and manipulating them.</li>
+		<li><a href="https://github.com/BerlinVagrant/vagrant-dns">Vagrant DNS</a> / <a href="https://github.com/narkisr/vagrant-dns-server">Vagrant DNS Server</a>: Enables easy DNS management of multiple local Vagrant machines.</li>
+	</ul>
 </page>

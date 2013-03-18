@@ -1,5 +1,7 @@
 
 body {
+	min-width: 740px;
+	
 	background-color: #333;
 	
 	background-attachment: fixed;
@@ -597,4 +599,31 @@ li.locale {
 	background-repeat: no-repeat;
 	background-position: 0 50%;
 	padding-left: 20px;
+}
+
+/* Resize the video based on the screen width: */
+.youtube-video {
+	width: 1920px;
+	height: 1080px;
+}
+
+@media only screen and (max-width: 2020px) {
+	.youtube-video {
+		width: 1280px;
+		height: 720px;
+	}
+}
+
+@media only screen and (max-width: 1380px) {
+	.youtube-video {
+		width: 960px;
+		height: 540px;
+	}
+}
+
+@media only screen and (max-width: 1060px) {
+	.youtube-video {
+		width: 640px;
+		height: 360px;
+	}
 }

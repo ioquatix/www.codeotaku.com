@@ -1,0 +1,2 @@
+SERVERS = [[:udp, '127.0.0.1', 5330], [:tcp, '127.0.0.1', 5330]]
+resolver = RubyDNS::Resolver.new(SERVERS, :timeout => 60)

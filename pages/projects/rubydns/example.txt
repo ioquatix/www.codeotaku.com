@@ -21,7 +21,7 @@ require 'rexec'
 require 'rexec/daemon'
 
 require 'rubygems'
-require 'rubydns'
+require 'rubydns', '~> 0.6.0'
 
 require 'timeout'
 
@@ -64,7 +64,7 @@ class Server < RExec::Daemon::Base
 				RExec.change_user(RUN_AS)
 			end
 			
-			match(/(gems|git|svn).oriontransfer.org$/, IN::A) do |match, transaction|
+			match(/(gems|git|svn).oriontransfer.org$/, IN::A) do |transaction|
 				transaction.respond!(HARU_A)
 			end
 

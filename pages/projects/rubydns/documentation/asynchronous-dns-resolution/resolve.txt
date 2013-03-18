@@ -1,0 +1,11 @@
+# There technically should be at least one nameserver:
+resolver = RubyDNS::Resolver.new(RubyDNS::System::nameservers)
+
+EventMachine::run do
+	resolver.query('google.com') do |response|
+		assert_equal RubyDNS::Message, response.class
+		assert_equal Resolv::DNS::RCode::NoError, response.rcode
+
+		EventMachine::stop
+	end
+end

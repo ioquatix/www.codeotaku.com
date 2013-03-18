@@ -3,6 +3,9 @@ installation:
 basic-dns-server:
     order: 2
     title: "Basic DNS Server"
+asynchronous-dns-resolution:
+    order: 3
+    title: "Asynchronous DNS Resolution"
 dns-verification:
     order: 20
     title: "DNS Verification"

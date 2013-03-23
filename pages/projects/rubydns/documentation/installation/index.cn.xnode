@@ -1,21 +1,21 @@
-<contents-page title="RubyDNS Documentation">
-	<heading>Installation</heading>
+<contents-page title="RubyDNS文档">
+	<heading>安装</heading>
 	
-	<p>RubyDNS is available as a ruby gem:</p>
+	<p>RubyDNS 可以通过rubygems安装:</p>
 	
 	<listing src="installation.txt" brush="bash" />
 	
-	<p>Some of the auxiliary commands rely on dig:</p>
+	<p>一些辅助命令依赖dig:</p>
 	
 	<listing src="dig.txt" brush="bash" />
 	
-	<h2>Source Code</h2>
+	<h2>源码</h2>
 	
-	<p>The source code is available on GitHub: <a href="https://github.com/ioquatix/rubydns">https://github.com/ioquatix/rubydns</a>.</p>
+	<p>源码可以从GitHub获取: <a href="https://github.com/ioquatix/rubydns">https://github.com/ioquatix/rubydns</a>.</p>
 	
-	<h2>License</h2>
+	<h2>许可证</h2>
 	
-	<p>RubyDNS is released under the MIT license:</p>
+	<p>RubyDNS 在MIT许可证下发布:</p>
 	
 	<listing src="license.txt" brush="plain" />
 </contents-page>

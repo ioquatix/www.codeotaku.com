@@ -1,4 +1,4 @@
-<contents-page title="RubyDNS Documentation">
+<contents-page title="RubyDNS文档">
 	<heading>异步DNS查询</heading>
 	
 	<p>RubyDNS可以被用来当作异步DNS客户端，请求一个指定的DNS服务器或系统默认的解析器。</p>

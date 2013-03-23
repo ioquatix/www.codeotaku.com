@@ -1,5 +1,5 @@
-<contents-page title="RubyDNS Documentation">
-	<heading>Basic DNS Server</heading>
+<contents-page title="RubyDNS文档">
+	<heading>基本的DNS服务器</heading>
 	
 	<p>RubyDNS可以用作一个灵活的DNS服务器，直接处理DNS查询请求或转交给上游DNS服务器。下面是做为基本DNS服务器的例子： </p>
 	

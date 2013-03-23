@@ -1,16 +1,16 @@
 <page>
 	<logo src="logo.png" title="RubyDNS" />
 	
-    <p>RubyDNS是一个高性能DNS服务器，可以轻易被集成到其他项目或以守护进程(通过 <a href="../rexec/">RExec</a>)方式使用。它默认使用基于规则的模式匹配。结果可以是根据实际需求通过硬编码的，通过计算处理得到的，或者从远程／本地DNS服务器获取到的。</p>
-
-	<p>另外，RubyDNS包含一个基于EventMachine的高性能异步DNS解析器。这个模块可以脱离整个RubyDNS服务器独立使用。</p>
+	<p>RubyDNS是一个高性能DNS服务器，可以很容易被集成到其他项目或者作为守护进程 (通过 <a href="../rexec/">RExec</a>) 的方式使用。它在默认情况下使用的是规则的模式匹配，其结果可以是根据实际需求通过硬编码、计算处理、远程DNS服务器、或从本地缓存获取得到的。</p>
+	
+	<p>另外，RubyDNS包含一个基于EventMachine之上的高性能异步DNS解析器。这个模块可以脱离整个RubyDNS服务器在客户端的应用程序里独立使用。</p>
 	
 	<ul class="features">
 		<li>完全可编程的DNS服务器：无缝集成数据库系统，服务器和缓存系统。</li>
-		<li>健壮的异步DNS客户端：基于EventMachine来提供灵活的域名解析。</li>
+		<li>强大的异步DNS客户端：基于EventMachine的基础来提供灵活的域名解析。</li>
 		<li>通过正则表达式和资源类来匹配DNS查询请求。</li>
-		<li>修改DNS请求或操纵DNS响应结果。</li>
-		<li>包含一些做DNS迁移、验证和测试的有用工具。</li>
+		<li>修改DNS请求或操纵DNS响应。</li>
+		<li>包含一些做DNS迁移、验证和测试的有用命令。</li>
 	</ul>
 	
 	<h2>视频介绍</h2>

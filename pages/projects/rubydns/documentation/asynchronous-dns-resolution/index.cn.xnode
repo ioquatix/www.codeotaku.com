@@ -1,0 +1,23 @@
+<contents-page title="RubyDNS Documentation">
+	<heading>异步DNS查询</heading>
+	
+	<p>RubyDNS可以被用来当作异步DNS客户端，请求一个指定的DNS服务器或系统默认的解析器。</p>
+	
+	<listing src="resolve.txt" brush="ruby" />
+	
+	<p><code class="syntax ruby">EventMachine</code> 提供基本的异步事件处理，因此 <code class="syntax ruby">RubyDNS::Resolver</code>相关的代码必须在<code class="syntax ruby">EventMachine</code> 上下文里执行。</p>
+	
+	<h2>超时处理 </h2>
+	
+	<p>因为是异步服务，一个超时时间可以被设置（默认是5秒）。如果在给定的时间内没有收到响应，一个<code class="syntax ruby">RubyDNS::ResolutionFailure</code> 错误就会返回给调用者，在<code class="syntax ruby">response</code> 参数里:</p>
+	
+	<listing src="timeout.txt" brush="ruby" />
+	
+	<p>更多例子，请查看<a href="https://github.com/ioquatix/rubydns/blob/master/test/test_slow_server.rb">rubydns/test/test_slow_server.rb</a>.</p>
+	
+	<h2>日志</h2>
+	
+	<p>额外的调试输出可以被写到日志文件，通过提供的<code class="syntax ruby">:logger</code> 选项:</p>
+	
+	<listing src="logging.txt" brush="ruby" />
+</contents-page>

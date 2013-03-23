@@ -1,5 +1,5 @@
 <ol>
-	<?r parent.node.links(attributes['path']).each do |c| ?>
+	<?r parent.node.links(attributes['path'], :locale => request.current_locale).each do |c| ?>
 		<li>#{c.to_href}</li>
 	<?r end ?>
 </ol>

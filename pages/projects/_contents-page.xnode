@@ -4,7 +4,7 @@
 	<div style="clear: both; position: relative;">
 		<?r
 
-		sibling_links = parent.node.sibling_links
+		sibling_links = parent.node.sibling_links(:locale => request.current_locale)
 		prev_links, current_link, next_links = sibling_links.split_at{|link| link.path == parent.node.uri_path}
 
 		prev_link = prev_links.last if prev_links

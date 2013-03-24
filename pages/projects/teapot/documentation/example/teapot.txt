@@ -1,0 +1,45 @@
+# Teapot configuration generated at 2013-03-25 04:34:21 +1300
+
+required_version "0.7.0"
+
+# The main target to build this application:
+define_target "my-project" do |target|
+	target.build do |environment|
+		# To use this target, we need to build everything in the source directory:
+		build_directory(package.path, 'source', environment)
+	end
+	
+	# This target depends on a platform and the C++11 language:
+	target.depends :platform
+	target.depends "Language/C++11"
+	
+	# This target exposes an application provision:
+	target.provides "Application/MyProject"
+end
+
+# A (less important) target which builds unit tests:
+define_target "my-project-tests" do |target|
+	target.build do |environment|
+		# To use this target, we need to build everything in the test directory:
+		build_directory(package.path, 'test', environment)
+	end
+	
+	# This target depends on a platform and the C++11 language:
+	target.depends :platform
+	target.depends "Language/C++11"
+	
+	# This target also depends on something which provides the UnitTest library:
+	target.depends "Library/UnitTest"
+	
+	# This target exposes a test provision:
+	target.provides "Test/MyProject"
+end
+
+# The first configuration is the default configuration for a project. 
+define_configuration "my-project" do |configuration|
+	# Where do we fetch dependencies from?
+	configuration[:source] = "https://github.com/dream-framework/"
+	
+	# Fetch and import the project configuration into this configuration:
+	configuration.import! "project"
+end

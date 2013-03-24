@@ -1,0 +1,16 @@
+<page>
+	<logo src="logo.png" title="Teapot" />
+	
+	<p>Teapot is a decentralised build tool for managing complex cross-platform projects. It has many goals but it is primarily designed to improve the experience for developers trying to make cross-platform applications and libraries with a minimum of overhead.</p>
+
+	<ul class="features">
+		<li>Provide useful feedback when dependencies are not met or errors are encountered.</li>
+		<li>Decentralised dependency management allows use within private organisations without exposing code.</li>
+		<li>Generators can simplify the construction of new projects as well as assist with the development of existing ones.</li>
+		<li>The build subsystem provides a simple set of canonical operations for building libraries and executables to minimise configuration overhead.</li>
+	</ul>
+	
+	<h2>Documentation</h2>
+	
+	<summary path="documentation/" />
+</page>

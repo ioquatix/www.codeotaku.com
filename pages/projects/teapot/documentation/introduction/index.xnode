@@ -1,0 +1,17 @@
+<contents-page title="Teapot Documentation">
+	<heading>Introduction</heading>
+	
+	<p>Teapot is an opinionated tool for building cross-platform software, with a primary focus on modern C++ code. It is designed from the ground up to encourage modular and reusable software components, with a minimal amount of configuration.</p>
+	
+	<p>Teapot supports creative coding and collaboration by making it easy to create and fork existing code and including it in another project. Dependencies are automatically fetched and versioned using <code class="syntax">git</code>, which helps to ensures that code behaves the same on all platforms.</p>
+	
+	<p>Teapot configurations are driven using the Ruby programming language, which means that you will never be limited by Teapot itself. You can easily integrate external build systems along with teapot's own native build system, as is useful.</p>
+	
+	<h2>Dream Framework</h2>
+	
+	<p>The <a href="https://github.com/dream-framework/">Dream Framework</a> is a set of modern open source libraries for C++ development. Teapot was originally part of the <a href="https://github.com/dream-framework/dream">Dream</a> project, but was extracted out into its own tool. The original Dream project suffers from a monolitic architecture - many dependencies were compiled directly into the project and this made it hard to maintain. Specifically, I found myself wanting to create many small example projects, shared libraries, and so on, but without good tools to do so. With a monolithic library, you can't choose only some parts - and this becomes a problem when you need to support, say, different versinos of OpenGL, different audio subsystems, etc.</p>
+	
+	<p>Another big issue that I faced involved working with other people. I wanted a tool that was sufficiently simple and intelligent, that it could just work out of the box, even for non-programmers. Teapot, in it's current state, isn't quite there yet. But this is also an important goal.</p>
+	
+	<p>The Dream Framework as it were, is now a set of modules which can be compiled using Teapot. Many of the examples in this documentation will use it. However, Teapot is a completely generic tool.</p>
+</contents-page>

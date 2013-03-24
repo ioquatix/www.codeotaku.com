@@ -201,8 +201,7 @@ tileshift:
 teapot:
     title: "Teapot"
     tags: ['open', 'ruby', 'framework']
-    uri: https://github.com/ioquatix/teapot
-    description: "Teapot is a cross-platform build tool for C/C++ libraries and applications. In addition, it provides simple git-based dependency management."
+    description: "Teapot is a cross-platform build tool for C/C++ libraries and applications. In addition, it provides comprehensive git-based dependency management."
 adaptive-hybrid-tracking:
     title: "Adaptive Hybrid Tracking For Outdoor Augmented Reality"
     tags: ['research', 'computer-vision']

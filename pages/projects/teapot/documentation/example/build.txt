@@ -1,0 +1,4 @@
+$ cd my-project
+
+-- You might need to specify a different platform.
+$ teapot build Application/MyProject platform-darwin-osx variant-debug

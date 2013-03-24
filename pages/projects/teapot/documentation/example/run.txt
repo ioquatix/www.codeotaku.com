@@ -1,0 +1,1 @@
+$ ./teapot/platforms/my-project/darwin-osx-debug/Applications/My\ Project/My\ Project 

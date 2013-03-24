@@ -1,0 +1,6 @@
+introduction:
+    order: 1
+installation:
+    order: 2
+example:
+    order: 3

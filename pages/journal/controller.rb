@@ -1,6 +1,8 @@
 
 require_local 'comments'
+
 require 'digest/sha1'
+require 'json'
 
 def on_queue(path, request)
 	fail! unless request.controller.admin?

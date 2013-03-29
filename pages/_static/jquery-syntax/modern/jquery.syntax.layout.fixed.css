@@ -1,4 +1,4 @@
-.syntax-container.syntax-theme-modern code.syntax {
+.syntax-container.syntax-theme-modern div.fixed.syntax {
   background: #f0f0f0;
   filter: progid:DXImageTransform.Microsoft.gradient(StartColorStr='white', EndColorStr='#f0f0f0');
   background: -webkit-gradient(linear, left top, left bottom, from(white), to(#f0f0f0));
@@ -9,5 +9,9 @@
   -moz-box-shadow: 1px 1px 3px #ddd;
   -webkit-box-shadow: 1px 1px 3px #ddd;
   box-shadow: 1px 1px 3px #ddd;
-  padding: 0 0.3em;
-  margin: -1px 0; }
+  padding: 0.6em;
+  border: 1px solid #aaaaaa; }
+  .syntax-container.syntax-theme-modern div.fixed.syntax pre {
+    margin: 0;
+    font-family: inherit;
+    overflow: auto; }

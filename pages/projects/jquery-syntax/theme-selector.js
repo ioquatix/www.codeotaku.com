@@ -20,10 +20,14 @@ jQuery(function($) {
 	var select = $('<select>');
 	
 	for (var key in Syntax.themes) {
-		console.log("key", key);
+		if (key == 'base')
+			continue;
 		
 		var option = $('<option>' + key + '</option>');
 		option.attr('value', key);
+		
+		if (key == 'paper')
+			option.attr('selected', true);
 		
 		select.append(option);
 	}

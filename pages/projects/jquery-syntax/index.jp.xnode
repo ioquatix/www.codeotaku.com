@@ -20,27 +20,13 @@
 		<li><a href="how-to-install/modelines">How to use modelines</a></li>
 		<li><a href="how-to-contribute">How to contribute</a></li>
 	</ul>
-	
-	<h2>互換性</h2>
-	
-	<p>jQuery.Syntaxは、最大限の互換性を視野に入れながら開発されたため、広範囲にわたるウェブブラウザに対応しています。私たちは、常に新しいブラウザをテストしているので、利用されているブラウザがリストにない場合にはお問い合わせください。</p>
-	
-	<table class="basic">
-		<thead><tr><th>Browser</th><th>Supported Versions</th><th>Notes</th></tr></thead>
-		<tbody>
-			<tr><td>Firefox</td><td>2+</td><td>フルサポート</td></tr>
-			<tr><td>Safari</td><td>3+</td><td>フルサポート</td></tr>
-			<tr><td>Opera</td><td>9+</td><td>フルサポート</td></tr>
-			<tr><td>Internet Exploder</td><td>6+</td><td>IE6に問題箇所あり</td></tr>
-		</tbody>
-	</table>
-	
+		
 	<h2>ダウンロード</h2>
 
 	<p>jQuery.Syntaxは、MITライセンスの元で、無料で利用になれます。</p>
 	
 	<ul>
-		<li><a href="http://github.com/ioquatix/jquery-syntax/downloads">jQuery.Syntax</a> Prepackaged Source Code &amp; Stylesheets</li>
+		<li><a href="https://github.com/ioquatix/jquery-syntax/tags">jQuery.Syntax</a> Prepackaged Source Code &amp; Stylesheets</li>
 		<li><a href="http://www.jquery.org">jQuery 1.4.1+</a> JavaScript Framework (Required)</li>
 	</ul>
 	

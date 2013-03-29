@@ -22,26 +22,12 @@
 		<li><a href="license">License and Copyright information</a></li>
 	</ul>
 	
-	<h2>兼容性</h2>
-	
-	<p>jQuery.Syntax 在开发时就已经充分考虑了跨浏览器之间的兼容性,所支持的浏览器非常全面.我们也致力于跟进测试新版的浏览器.如果您所使用的浏览器不在以下列表中,请告知我们.</p>
-	
-	<table class="basic">
-		<thead><tr><th>浏览器</th><th>支持的版本</th><th>备注</th></tr></thead>
-		<tbody>
-			<tr><td>Firefox</td><td>2+</td><td>完全支持.</td></tr>
-			<tr><td>Safari</td><td>3+</td><td>完全支持.</td></tr>
-			<tr><td>Opera</td><td>9+</td><td>完全支持.</td></tr>
-			<tr><td>Internet Exploder</td><td>6+</td><td>IE6中存在极少Bug.</td></tr>
-		</tbody>
-	</table>
-	
 	<h2>下载</h2>
 	
 	<p>jQuery.Syntax 在MIT许可协议下完全免费.</p>
 	
 	<ul>
-		<li><a href="http://github.com/ioquatix/jquery-syntax/downloads">jQuery.Syntax</a> 源码包和样式库</li>
+		<li><a href="https://github.com/ioquatix/jquery-syntax/tags">jQuery.Syntax</a> 源码包和样式库</li>
 		<li><a href="http://www.jquery.org">jQuery 1.4.1+</a> JavaScript 开源框架 (必需)</li>
 	</ul>
 	

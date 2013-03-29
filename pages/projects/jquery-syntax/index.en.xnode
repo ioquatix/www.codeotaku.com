@@ -24,9 +24,9 @@
 	
 	<h2>Download</h2>
 
-	<filebox icon="zip" path="https://github.com/ioquatix/jquery-syntax/zipball/3.1" name="jQuery.Syntax-3.1.zip">
-		Released: 11 June 2012<br/>
-		<a href="http://github.com/ioquatix/jquery-syntax">Source Code</a> (GitHub)
+	<filebox icon="zip" path="https://github.com/ioquatix/jquery-syntax/archive/v3.1.1.zip" name="jQuery.Syntax-3.1.1.zip">
+		Released: 29 March 2013<br/>
+		<a href="http://github.com/ioquatix/jquery-syntax">Source Code</a>
 	</filebox>
 	
 	<h3>Plugins</h3>

@@ -21,5 +21,5 @@
 	
 	<listing src="sh_main.txt" lang="html" />
 	
-	<p>As you can see, due to the script loader, the code is relatively simple. As an alternative, my <a href="/software/jquery-syntax/">jQuery.Syntax</a> highlighter dynamically loads all code by default, avoiding the need for additional loader scripts.</p>
+	<p>As you can see, due to the script loader, the code is relatively simple. As an alternative, my <a href="/projects/jquery-syntax">jQuery.Syntax</a> highlighter dynamically loads all code by default, avoiding the need for additional loader scripts.</p>
 </entry>

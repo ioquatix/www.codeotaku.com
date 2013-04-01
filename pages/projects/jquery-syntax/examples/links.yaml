@@ -19,9 +19,9 @@ clang:
 csharp:
     title: "C#"
 bash:
-    uri: "/software/rexec"
+    uri: "/projects/rexec"
 bash-script:
-    uri: "/software/rexec/documentation/daemon-exec"
+    uri: "/projects/rexec/documentation/daemon-exec"
 applescript:
     title: "AppleScript"
     uri: "/blog/2009-05/applescript-insanity"
@@ -29,7 +29,7 @@ apache:
     title: "Apache Config"
     uri: "/blog/2009-04/apache-webdav-configuration"
 ruby:
-    uri: "/software/ruby-dns/index"
+    uri: "/projects/rubydns/index"
 pascal:
     uri: "http://programming.dojo.net.nz/languages/pascal"
 smalltalk:

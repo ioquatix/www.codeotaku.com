@@ -28,7 +28,7 @@
 	
 	<listing src="example.txt" brush="ruby" />
 	
-	<p>In order to handle CNAME redirection, <a href="/gems/rubydns">RubyDNS</a> could be used for detecting failure and automatically updating the DNS results.</p>
+	<p>In order to handle CNAME redirection, <a href="/projects/rubydns">RubyDNS</a> could be used for detecting failure and automatically updating the DNS results.</p>
 	
 	<h2>Warranty</h2>
 

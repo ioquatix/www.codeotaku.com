@@ -7,7 +7,7 @@
 	
 	scores = scores.sort_by { |score| score['total'] }
 ?><entry>
-	<p>Solving Sudoku quickly using permutation generation is a challenging problem with many possibilities for optimisation. This page displays the performance of COSC329 student's assignments. To add your program please email source code to <a href="samuel@oriontransfer.org">samuel@oriontransfer.org</a> and it will be benchmarked. This competition is voluntary and does not contribute to grade. Your program source code will be kept private at all times.</p>
+	<p>Solving Sudoku quickly using permutation generation is a challenging problem with many possibilities for optimisation. This page displays the performance of COSC329 student's assignments. To add your program please email source code to <a href="mailto:samuel@oriontransfer.org">samuel@oriontransfer.org</a> and it will be benchmarked. This competition is voluntary and does not contribute to grade. Your program source code will be kept private at all times.</p>
 	
 	<h2>How to enter</h2>
 	

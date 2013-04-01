@@ -7,7 +7,7 @@
 	
 	<h2>Server-side implementation</h2>
 	
-	<p>Here is an example of how to respond to the <code>HTTP</code> options method using the <a href="/software/utopia">Utopia</a> framework:</p>
+	<p>Here is an example of how to respond to the <code>HTTP</code> options method using the <a href="/projects/utopia">Utopia</a> framework:</p>
 	
 	<listing src="request-options.txt" brush="ruby" />
 	

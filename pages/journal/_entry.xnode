@@ -48,15 +48,6 @@ end
 		</div>
 	</div>
 	
-	<script type="text/javascript" charset="utf-8">
-		$(function() {
-			$("#sidebar .accordion").accordion({
-				active: $("#sidebar .default"),
-				autoHeight: false
-			});
-		});
-	</script>
-	
 	<div id="entry">
 		<content/>
 		<br/>

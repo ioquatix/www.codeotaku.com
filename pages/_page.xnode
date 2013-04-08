@@ -28,7 +28,6 @@
 		<script src="/_static/jquery-syntax/jquery.syntax.min.js" type="text/javascript"></script>
 		<script src="/_static/jquery-xframe/jquery.xframe.js" type="text/javascript"></script>
 		
-		<script src="https://blockchain.info/Resources/wallet/pay-now-button.js" type="text/javascript"></script>
 		
 		<!-- Google +1 -->
 		<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>

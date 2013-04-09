@@ -7,31 +7,31 @@
 	
 	<p>Run CMake GUI tool and configure OpenCV there:</p>
 	
-	<gallery path="_windows" tag="thumbnail" process="thumbnail" filter="stage1" />
+	<gallery path="_windows" tag="thumbnail" process="small" filter="stage1" />
 	
 	<p>Click the Configure button in the lower left hand corner, and in the window that opens, choose your IDE (e.g. Visual Studio 9):</p>
 	
-	<gallery path="_windows" tag="thumbnail" process="thumbnail" filter="stage2" />
+	<gallery path="_windows" tag="thumbnail" process="small" filter="stage2" />
 	
 	<p>Once you've done this, click configure again, and the generate button should become enabled:</p>
 	
-	<gallery path="_windows" tag="thumbnail" process="thumbnail" filter="stage3" />
+	<gallery path="_windows" tag="thumbnail" process="small" filter="stage3" />
 	
 	<p>Click the generate button:</p>
 	
-	<gallery path="_windows" tag="thumbnail" process="thumbnail" filter="stage4" />
+	<gallery path="_windows" tag="thumbnail" process="small" filter="stage4" />
 	
 	<p>Once all the files have been generated, you will need to open the project that has been created in the output directory you choose earlier:</p>
 	
-	<gallery path="_windows" tag="thumbnail" process="thumbnail" filter="stage5" />
+	<gallery path="_windows" tag="thumbnail" process="small" filter="stage5" />
 	
 	<p>Build this project in both debug and release mode (this could take a bit of time depending on your computer):</p>
 	
-	<gallery path="_windows" tag="thumbnail" process="thumbnail" filter="stage6" />
+	<gallery path="_windows" tag="thumbnail" process="small" filter="stage6" />
 	
 	<p>When creating a new project, you will need to ensure that the headers and libraries are available:</p>
 	
-	<gallery path="_windows" tag="thumbnail" process="thumbnail" filter="stage8" />
+	<gallery path="_windows" tag="thumbnail" process="small" filter="stage8" />
 	
 	<p>Add the following to your new project (Tools &rarr; Options &rarr; Projects and Solutions &rarr; VC++ Directories):</p>
 	
@@ -56,11 +56,11 @@
 	
 	<p>Create a new Xcode "Command Line Tool" project:</p>
 	
-	<gallery path="_osx" tag="thumbnail" process="thumbnail" filter="new-project" />
+	<gallery path="_osx" tag="thumbnail" process="small" filter="new-project" />
 	
 	<p>From the target's build settings, make sure you set the header and library search paths correctly:</p>
 	
-	<gallery path="_osx" tag="thumbnail" process="thumbnail" filter="search-paths" />
+	<gallery path="_osx" tag="thumbnail" process="small" filter="search-paths" />
 	
 	<p>You should now be able to compile your project with OpenCV.</p>
 	

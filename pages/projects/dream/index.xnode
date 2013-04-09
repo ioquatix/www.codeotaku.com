@@ -20,7 +20,7 @@
 	
 	<h2>Examples</h2>
 		
-	<gallery path="screenshots" tag="thumbnail" process="thumbnail" />
+	<gallery path="screenshots" tag="thumbnail" process="small" />
 	
 	<h3>Death Ball</h3>
 	

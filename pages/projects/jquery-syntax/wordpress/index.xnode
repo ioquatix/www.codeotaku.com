@@ -11,5 +11,5 @@
 	
 	<p>Here is the resulting post in a default install of WordPress:</p>
 	
-	<gallery path="screenshots" tag="thumbnail" process="thumbnail" />
+	<gallery path="screenshots" tag="thumbnail" process="small" />
 </page>

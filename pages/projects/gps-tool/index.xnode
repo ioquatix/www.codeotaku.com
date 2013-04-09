@@ -3,7 +3,7 @@
 
     <p>GPS Tool is a flexible open source tool for downloading and processing GPS data on Mac OS X. The tool itself is a front-end for various cross-platform tools, namely <a href="http://www.gpsbabel.org/">GPS Babel</a> and scripts which are used to download GPS data. GPS Tool is released under the GNU GPL v3.</p>
 
-    <gallery path="screenshots" tag="thumbnail" process="thumbnail" />
+    <gallery path="screenshots" tag="thumbnail" process="small" />
 
     <h2>Supported Devices/Formats</h2>
 

@@ -5,23 +5,23 @@
 	
 	<p>In this game you play an aphid collecting seeds, and you must gather these and avoid the snails.</p>
 	
-    <gallery path="snails" tag="thumbnail" process="thumbnail" />
+    <gallery path="snails" tag="thumbnail" process="small" />
 	
 	<p>This game makes extensive use of the Java ME LCDUI classes including the <code class="syntax java">LayerManager</code>, <code class="syntax java">TiledLayer</code> and <code class="syntax java">GameCanvas</code> classes.</p>
 	
 	<p>There are four tile sets used, and two animated sprite characters.</p>
 	
-    <gallery path="tiles" tag="thumbnail" process="thumbnail" />
+    <gallery path="tiles" tag="thumbnail" process="small" />
 	
 	<p>The character sprite sheets are animated from left to right and have four poses, forward, right, back, left.</p>
 	
-	<gallery path="entities" tag="thumbnail" process="thumbnail" />
+	<gallery path="entities" tag="thumbnail" process="small" />
 	
 	<p>I made the water sprite sheet by hand.</p>
 	
 	<p>The map was put together using <a href="http://www.mapeditor.org/">Tiled Map Editor</a>, a fairly powerful map editing tool. The map data was hard coded into the application to reduce the amount of development work required.</p>
 	
-	<gallery path="tiled" tag="thumbnail" process="thumbnail" />
+	<gallery path="tiled" tag="thumbnail" process="small" />
 	
 	<p>The movement of the snails is calculated by moving one tile at a time, and at each tile, checking which direction the snail can move in. If the snail can move in the same direction, there is a high chance that the snail will keep moving in that direction, otherwise, the snail will randomly try one of the other available directions.</p>
 	
@@ -29,11 +29,11 @@
 	
 	<p>In this game you can watch a robot walk around in circles. The robot is animated using simple keyframe animation.</p>
 	
-	<gallery path="robots" tag="thumbnail" process="thumbnail" />
+	<gallery path="robots" tag="thumbnail" process="small" />
     
 	<p>Several textures were used to add realism to the scene. The trees are rendered using <code class="syntax java">Sprite3D</code>.</p>
 	
-	<gallery path="textures" tag="thumbnail" process="thumbnail" />
+	<gallery path="textures" tag="thumbnail" process="small" />
 	
 	<h2>Resources Used</h2>
 	

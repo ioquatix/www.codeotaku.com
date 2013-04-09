@@ -3,7 +3,7 @@
     
 	<p>Goblin Hacker is a simple tool to allow you to hack basic statistics of <a href="http://basiliskgames.com/eschalon-book-i">Eschalon: Book I</a> save game files.</p>
 
-	<gallery path="screenshots" tag="thumbnail" process="thumbnail" />
+	<gallery path="screenshots" tag="thumbnail" process="small" />
 	
 	<p><strong>Requires Mac OS X 10.5</strong>. Sorry, I used some new features while building this app, so it won't work on 10.4.</p>
 	

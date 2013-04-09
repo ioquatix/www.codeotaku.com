@@ -7,7 +7,7 @@
 	
 	<p>When a user tries to log into a network home directory which has a quota enforced, and they don't have enough disk space, they risk corrupting their files. Quota Check makes this situation very clear to users who may be otherwise unaware of the problem.</p>
 	
-	<gallery path="screenshots" tag="thumbnail" process="thumbnail" />
+	<gallery path="screenshots" tag="thumbnail" process="small" />
 	
 	<h2>Integration</h2>
 	

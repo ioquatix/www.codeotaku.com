@@ -5,7 +5,7 @@
 	
 	<p>The majority of these images were produced from photographs.</p>
 	
-	<gallery path="examples" tag="photo_thumbnail" process="photo_thumbnail,large" />
+	<photos path="examples" />
 	
 	<p>I've written about the <a href="/blog/2010-04/image-processing">image processing pipeline in the past</a>. The next step is to create an actual robot!</p>
 </entry>

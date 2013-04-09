@@ -3,8 +3,9 @@ source "https://rubygems.org"
 
 gem "rack"
 
-gem "utopia", "~> 0.12"
-gem "utopia-extras", "= 0.12"
+gem "utopia", "~> 0.12.0"
+gem "utopia-tags-gallery", "~> 0.12.0"
+gem "utopia-tags-google-analytics", "~> 0.12.0"
 
 gem "datamapper"
 gem "dm-sqlite-adapter"

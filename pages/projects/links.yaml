@@ -201,7 +201,8 @@ tileshift:
 teapot:
     title: "Teapot"
     tags: ['open', 'ruby', 'framework']
-    description: "Teapot is a cross-platform build tool for C/C++ libraries and applications. In addition, it provides comprehensive git-based dependency management."
+    uri: http://www.kyusu.org
+    description: "Teapot is a decentralised dependency management and cross-platform build tool for C/C++ libraries and applications."
 adaptive-hybrid-tracking:
     title: "Adaptive Hybrid Tracking For Outdoor Augmented Reality"
     tags: ['research', 'computer-vision']

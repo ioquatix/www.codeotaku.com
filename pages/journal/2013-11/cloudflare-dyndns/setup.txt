@@ -1,0 +1,16 @@
+$ cloudflare-dns-update -c home.example.com.yml
+This configuration file appears to be new, we require some details.
+CloudFlare Key: %%highlight{8afbe6dea02407989af4dd4c97bb6e25}
+CloudFlare Email: %%highlight{sample@example.com}
+What zone do you want to modify? e.g. 'oriontransfer.co.nz'
+DNS Zone: %%highlight{example.com}
+Getting list of domains for example.com...
+Finished.
+(0) direct.example.com A 0.0.0.0
+(1) home.example.com A 0.0.0.0
+(2) example.com A 0.0.0.0
+(3) test.example.com A 0.0.0.0
+(4) yay.example.com CNAME direct.example.com.
+Which record to update? %%highlight{1}
+What command to get content for record? e.g. 'curl ipinfo.io/ip'
+Command to get latest IP address: %%highlight{curl ipinfo.io/ip}

@@ -1,0 +1,23 @@
+<entry>
+	<p>I've been using <a href="http://www.cloudflare.com">CloudFlare</a> for quite a while now and generally found that it is a good service, even the free plans &mdash; my sites load faster for people around the world, especially since I host most of my content in New Zealand which has a high latency to practically everywhere.</p>
+	
+	<p>I host a couple of local off-site backup servers connected using consumer-level internet connections, and the IP address occasionally changes. Fortunately, CloudFlare provides a <a href="http://www.cloudflare.com/docs/client-api.html">comprehensive client API</a> for accessing and updating DNS records. I was previously using ddclient, but found that it wasn't easy to get it working with CloudFlare<reference>1</reference>.</p>
+	
+	<p>So, using the incredibly easy <a href="https://github.com/B4k3r/cloudflare">CloudFlare Ruby bindings</a>, I created the <a href="https://github.com/ioquatix/cloudflare-dns-update">CloudFlare DNS Update</a> gem which can be used to update a DNS records.</p>
+	
+	<p>To set up the tool to perform dyndns-like updates, make sure you have a recent version of Ruby (2.0+ is ideal), then install the cloudflare-dns-update gem:</p>
+	
+	<listing src="install.txt" brush="bash" />
+	
+	<p>Then, you need to grab your CloudFlare email address and API key from the CloudFlare <a href="https://www.cloudflare.com/my-account">My Account</a> page and setup the configuration:</p>
+	
+	<listing src="setup.txt" brush="bash" />
+	
+	<p>Once you've done this much, everything is saved and you can just run the command directly to update the remote record in CloudFlare's DNS servers.</p>
+	
+	<h2>Further Reading</h2>
+	
+	<references>
+		<li><a name="1" href="http://robertianhawdon.me.uk/2012/07/17/fixing-ddclient-to-work-with-cloudflare/">Fixing ddclient to work with Cloudflare</a>.</li>
+	</references>
+</entry>

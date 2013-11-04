@@ -5,7 +5,6 @@
 		var selector = $('.selector', references);
 		var padding = 5.0;
 		
-		
 		selector.css({
 			left: 0, top: 0, bottom: 0, width: 0, display: "none"
 		});
@@ -29,12 +28,11 @@
 	});
 </script>
 <style type="text/css" media="screen">
-	#references li a {
-		padding-top: 10pt;
+	#references li {
 		margin-top: 10pt;
 	}
 </style>
 <ol id="references" style="position: relative">
 	<content/>
-	<div class="selector" style="font-size: 16pt; font-weight: bold; padding-top: 2pt; border-radius: 0.2em; position: absolute">&rarr;</div>
+	<div class="selector" style="font-size: 16pt; font-weight: bold; padding-top: 1pt; border-radius: 0.2em; position: absolute">&rarr;</div>
 </ol>

@@ -1,0 +1,5 @@
+cloudflare-dyndns:
+    author: "Samuel Williams"
+    created: 2013-11-04
+    title: "CloudFlare Dynamic DNS Client in Ruby"
+    summary: "An example of how to set up dyndns for CloudFlare."

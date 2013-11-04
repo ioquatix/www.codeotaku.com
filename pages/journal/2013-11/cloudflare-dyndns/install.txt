@@ -1,0 +1,4 @@
+$ gem install cloudflare-dns-update
+Successfully installed cloudflare-dns-update
+Parsing documentation for cloudflare-dns-update
+1 gem installed

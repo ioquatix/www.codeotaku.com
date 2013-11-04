@@ -1,6 +1,5 @@
 .syntax-theme-base .syntax .bash {
-  color: #555555;
-  font-style: italic; }
+  color: #555555; }
   .syntax-theme-base .syntax .bash .prompt {
     color: #00cc00;
     font-weight: bold; }

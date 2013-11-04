@@ -1,8 +1,5 @@
 // This file is part of the "jQuery.Syntax" project, and is distributed under the MIT License.
 // Copyright (c) 2011 Samuel G. D. Williams. <http://www.oriontransfer.co.nz>
 
-
-Syntax.layouts.list=function(options,code,container){var listTag=options.listTag||'ol';var list=jQuery('<'+listTag+' class="syntax highlighted">'),line=1,space=/^\s*$/;var toolbar=jQuery('<div class="toolbar">');var rawCode=container.clone();rawCode.addClass("raw syntax highlighted");code.children().each(function(){var li=document.createElement('li');li.className="line ln"+line
-if(line%2){li.className+=" alt";}
-if(line==1){li.className+=" first"}
-var div=document.createElement('div');div.className="source "+this.className;div.appendChild(this);li.appendChild(div);list[0].appendChild(li);line=line+1;});a=jQuery('<a href="#">View Raw Code</a>');a.click(function(event){event.preventDefault();if(jQuery(list).is(':visible')){rawCode.height(jQuery(list).height());jQuery(list).replaceWith(rawCode);}else{jQuery(rawCode).replaceWith(list);}});toolbar.append(a);toolbar.append('<a href="http://www.oriontransfer.co.nz/software/jquery-syntax" target="oriontransfer">?</a>');return jQuery('<div class="syntax-container">').append(toolbar).append(list);};
+Syntax.layouts.list=function(b,g,h){var d=jQuery("<"+(b.listTag||"ol")+' class="syntax highlighted">'),e=1;b=jQuery('<div class="toolbar">');var f=h.clone();f.addClass("raw syntax highlighted");g.children().each(function(){var c=document.createElement("li");c.className="line ln"+e;e%2&&(c.className+=" alt");1==e&&(c.className+=" first");var b=document.createElement("div");b.className="source "+this.className;b.appendChild(this);c.appendChild(b);d[0].appendChild(c);e+=1});a=jQuery('<a href="#">View Raw Code</a>');
+a.click(function(b){b.preventDefault();jQuery(d).is(":visible")?(f.height(jQuery(d).height()),jQuery(d).replaceWith(f)):jQuery(f).replaceWith(d)});b.append(a);b.append('<a href="http://www.oriontransfer.co.nz/software/jquery-syntax" target="oriontransfer">?</a>');return jQuery('<div class="syntax-container">').append(b).append(d)};

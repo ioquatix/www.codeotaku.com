@@ -1,6 +1,6 @@
 .syntax-theme-base .syntax {
   font-family: Menlo, Monaco, Consolas, monospace;
-  line-height: 1.5em; }
+  line-height: 1.15em; }
   .syntax-theme-base .syntax .function {
     color: #3333ff; }
   .syntax-theme-base .syntax .keyword, .syntax-theme-base .syntax .access {

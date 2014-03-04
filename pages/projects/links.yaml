@@ -203,11 +203,21 @@ teapot:
     tags: ['open', 'ruby', 'framework']
     uri: http://www.kyusu.org
     description: "Teapot is a decentralised dependency management and cross-platform build tool for C/C++ libraries and applications."
-adaptive-hybrid-tracking:
-    title: "Adaptive Hybrid Tracking For Outdoor Augmented Reality"
+mobile-outdoor-augmented-reality:
+    title: "Real-time Hybrid Tracking For Outdoor Augmented Reality"
     tags: ['research', 'computer-vision']
-    uri: /journal/2012-10/hybrid-tracking
+    uri: /journal/2013-10/mobile-outdoor-augmented-reality
     description: "A master's thesis investigating methods to enhance tracking for outdoor augmented reality applications."
+hybrid-tracking:
+    title: "Hybrid Tracking using Gravity Aligned Edges"
+    tags: ['research', 'computer-vision']
+    uri: /journal/2013-11/hybrid-tracking/index
+    description: "A research paper about hybrid tracking algorithms for mobile outdoor augmented reality, presented at CHINZ 2013."
+transform-flow-toolkit:
+    title: "Transform Flow: A Mobile Augmented Reality Visualisation and Evaluation Toolkit"
+    tags: ['research', 'computer-vision']
+    uri: /journal/2013-11/transform-flow-toolkit
+    description: "An overview of the Transform Flow toolkit assists with the development of mobile outdoor augmented reality applications, presented at IVCNZ 2013."
 inverse-kinematics-a-star:
     title: "A Discrete Solution For The Inverse Kinematics Problem"
     tags: ['research']

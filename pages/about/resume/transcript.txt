@@ -1,3 +1,14 @@
+2013 Master of Science
+COSC690-13A (C)	MSc Thesis: Real-time Hybrid Tracking for Outdoor Augmented Reality	30.00	A+
+
+2012 Master of Science
+COSC690-12A (C)	M.Sc. Thesis	19.50	A+
+COSC690-12A (C)	M.Sc. Thesis	60.00	A+
+
+2011 Master of Science
+COSC690-11A (C)	M.Sc. Thesis	69.00	A+
+COSC690-11A (C)	M.Sc. Thesis	33.00	A+
+
 2010 Master of Science
 COSC401-10S1 (C)	Machine Learning	15.00	A+
 COSC413-10S2 (C)	Advanced Topics in Algorithms	15.00	A+

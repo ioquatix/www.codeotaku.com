@@ -51,9 +51,9 @@
 		<div class="header">Education</div>
 		<div class="section">
 			<dl>
-				<dt><strong><a href="http://www.canterbury.ac.nz">University of Canterbury</a> &mdash; M.Sc., Computer Science</strong> (currently in progress)</dt>
-				<dd>Current GPA: 8.88 out of 9.0 (<a href="transcript">University Transcript</a>)</dd>
-				<dd>Thesis: <a href="/projects/redirect?project=adaptive-hybrid-tracking">Adaptive Hybrid Tracking for Mobile Outdoor Augmented Reality</a>.</dd>
+				<dt><strong><a href="http://www.canterbury.ac.nz">University of Canterbury</a> &mdash; M.Sc., Computer Science</strong> with 1st class Honours (2013).</dt>
+				<dd>GPA: 8.95 out of 9.0 (<a href="transcript">University Transcript</a>)</dd>
+				<dd>Thesis: <a href="/projects/redirect?project=mobile-outdoor-augmented-reality">Real-time Hybrid Tracking for Outdoor Augmented Reality</a>.</dd>
 			</dl>
 			
 			<dl>
@@ -128,6 +128,16 @@
 		<div class="header">Research</div>
 		<div class="section">
 			<dl class="compact">
+				<dt><a href="/projects/redirect?project=transform-flow-toolkit">Transform Flow: A Mobile Augmented Reality Visualisation and Evaluation Toolkit</a></dt>
+				<dd>(Image and Vision Computing New Zealand 2013). An overview of the Transform Flow toolkit for mobile augmented reality research and application development.</dd>
+			</dl>
+			
+			<dl class="compact">
+				<dt><a href="/projects/redirect?project=hybrid-tracking">Hybrid Tracking using Gravity Aligned Edges</a> (awarded best paper)</dt>
+				<dd>(Computer-Human Interaction New Zealand 2013). Hybrid Tracking algorithm for mobile outdoor augmented reality.</dd>
+			</dl>
+			
+			<dl class="compact">
 				<dt><a href="/projects/redirect?project=mr-painting-robot">Mr Painting Robot</a></dt>
 				<dd>(Image and Vision Computing New Zealand 2011). Investigated the identification of outlines, and how these can be used for input into a creative painting algorithm.</dd>
 			</dl>
@@ -197,7 +207,7 @@
 		<div class="section career">
 			<dl class="compact">
 				<dt><a href="http://www.puteko.com/">Puteko Ltd</a></dt>
-				<dd>(2012-) Lead developer in a startup focusing on enhancing children's colouring books with augmented reality. Children can enjoy colouring in pages and seeing the results animated in 3D. I developed the iPad prototype which uses modern computer vision tracking algorithms and provided entrepreneurial guidance.</dd>
+				<dd>(2012-2013) Lead developer in a startup focusing on enhancing children's colouring books with augmented reality. Children can enjoy colouring in pages and seeing the results animated in 3D. I developed the iPad prototype which uses modern computer vision tracking algorithms and provided entrepreneurial guidance.</dd>
 			</dl>
 			
 			<dl class="compact">

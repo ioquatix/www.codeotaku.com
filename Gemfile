@@ -3,7 +3,7 @@ source "https://rubygems.org"
 
 gem "rack"
 
-gem "utopia", "~> 0.12.0"
+gem "utopia", "~> 0.12.1"
 gem "utopia-tags-gallery", "~> 0.12.0"
 gem "utopia-tags-google-analytics", "~> 0.12.0"
 

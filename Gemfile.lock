@@ -66,7 +66,7 @@ GEM
     multi_json (1.7.2)
     nokogiri (1.5.9)
     polyglot (0.3.3)
-    rack (1.4.5)
+    rack (1.5.2)
     rack-cache (1.2)
       rack (>= 0.4)
     rmagick (2.13.2)
@@ -81,13 +81,13 @@ GEM
       polyglot
       polyglot (>= 0.3.1)
     trenni (1.2.0)
-    utopia (0.12.0)
+    utopia (0.12.1)
       mail
       mime-types
-      rack (~> 1.4.1)
+      rack (~> 1.4)
       rack-cache
       trenni (~> 1.2.0)
-    utopia-tags-gallery (0.12.0)
+    utopia-tags-gallery (0.12.1)
       rmagick
       utopia (~> 0.12.0)
     utopia-tags-google-analytics (0.12.0)
@@ -103,6 +103,6 @@ DEPENDENCIES
   rack
   sanitize
   thin
-  utopia (~> 0.12.0)
+  utopia (~> 0.12.1)
   utopia-tags-gallery (~> 0.12.0)
   utopia-tags-google-analytics (~> 0.12.0)

@@ -3,3 +3,13 @@ cloudflare-dyndns:
     created: 2013-11-04
     title: "CloudFlare Dynamic DNS Client in Ruby"
     summary: "An example of how to set up dyndns for CloudFlare."
+hybrid-tracking:
+    author: "Samuel Williams"
+    created: 2013-11-15
+    title: "Hybrid Tracking using Gravity Aligned Edges"
+    summary: "A research paper about hybrid tracking algorithms for mobile outdoor augmented reality, presented at IVCNZ 2013."
+transform-flow-toolkit:
+    author: "Samuel Williams"
+    created: 2013-11-27
+    title: "Transform Flow: A Mobile Augmented Reality Visualisation and Evaluation Toolkit"
+    summary: "An overview of the Transform Flow toolkit assists with the development of mobile outdoor augmented reality applications, presented at CHINZ 2013."

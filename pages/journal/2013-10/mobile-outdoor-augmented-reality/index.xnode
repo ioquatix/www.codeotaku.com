@@ -1,0 +1,24 @@
+<entry>
+	<p>Outdoor tracking and registration are important enabling technologies for mobile augmented reality.</p>
+	
+	<p>Sensor fusion and image processing can be used to improve global tracking and registration for low-cost mobile devices with limited computational power and sensor accuracy.
+Prior research has confirmed the benefits of this approach with high-end hardware, however the methods previously used are not ideal for current consumer mobile devices.</p>
+
+	<p>We discuss the development of a hybrid tracking and registration algorithm that combines multiple sensors and image processing to improve on existing work in both performance and accuracy. As part of this, we developed the Transform Flow toolkit, which is one of the first open source systems for developing and quantifiably evaluating mobile AR tracking algorithms.</p>
+
+	<p>We used this system to compare our proposed hybrid tracking algorithm with a purely sensor based approach, and to perform a user study to analyse the effects of improved precision on real world tracking tasks.</p>
+	
+	<p>Our results show that our implementation was an improvement over a purely sensor fusion based approach; accuracy was improved up to 25&times; in some cases with only 2-4ms additional processing per frame, in comparison with other algorithms which can take over 300ms.</p>
+	
+	<dl class="options">
+		<dt>M.Sc. Thesis:</dt>
+		<dd><a href="Real-time Hybrid Tracking for Outdoor Augmented Reality.pdf">Real-time Hybrid Tracking for Outdoor Augmented Reality.pdf</a></dd>
+	</dl>
+	
+	<h2>Further Reading</h2>
+	
+	<references>
+		<li><a href="../../2013-11/hybrid-tracking">Hybrid Tracking using Gravity Aligned Edges</a>.</li>
+		<li><a href="../../2013-11/transform-flow-toolkit">Transform Flow: A Mobile Augmented Reality Visualisation and Evaluation Toolkit</a>.</li>
+	</references>
+</entry>

@@ -178,14 +178,14 @@ dl.options dt {
 	float: left;
 	clear: both;
 	
-	width: 14%;
+	width: 14em;
 	text-align: right;
 	
 	padding: 0 0.5em 0.5em 0.5em;
 }
 
 dl.options dd {
-	margin: 0 0 0.5em 16%;
+	margin: 0 0 0.5em 15em;
 	padding: 0 4pt;
 }
 

@@ -15,10 +15,10 @@
 			server_online = io.read =~ /running/
 		end
 	end
-?><dl class="basic xframe" src="#{current.node.uri_path.to_s.to_html}">
+?><dl class="basic xframe" src="#{Strings::to_html current.node.uri_path.to_s}">
 	<dt>Server Status</dt>
 	<?r if server_online ?>
-		<dd style="color: green">Online. #{(player_status || "unknown").to_html}</dd>
+		<dd style="color: green">Online. #{Strings::to_html (player_status || "unknown")}</dd>
 	<?r else ?>
 		<dd style="color: red">Offline.</dd>
 	<?r end ?>

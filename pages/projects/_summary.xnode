@@ -1,5 +1,7 @@
 <ol>
-	<?r parent.node.links(attributes['path'], :locale => request.current_locale).each do |c| ?>
-		<li>#{c.to_href}</li>
+	<?r 
+		parent.node.links(attributes['path'], :variant => request.current_locale).each do |c| 
+		?>
+		<li>#{c.to_href(base: first.node.uri_path)(base: first.node.uri_path)}</li>
 	<?r end ?>
 </ol>

@@ -31,20 +31,20 @@
 			<div class="text">
 				<span class="author">
 				<?r if comment.user.website ?>
-					<a rel="nofollow" href="#{comment.user.website.to_html}">#{comment.user.name.to_html}</a>
+					<a rel="nofollow" href="#{Strings::to_html comment.user.website}">#{Strings::to_html comment.user.name}</a>
 				<?r else ?>
-					#{comment.user.name.to_html}
+					#{Strings::to_html comment.user.name}
 				<?r end ?>
 		
 				<?r if admin_user ?>
 				[id #{comment.user.id}]
-				[email <a href="mailto:#{comment.user.email.to_html}">#{comment.user.email.to_html}</a>]
+				[email <a href="mailto:#{Strings::to_html comment.user.email}">#{Strings::to_html comment.user.email}</a>]
 				<?r elsif comment.user.admin? ?>
 				[admin]
 				<?r end ?>
 		
 				<?r if comment.user.from and comment.user.from.size > 0 ?>
-				(from #{comment.user.from.to_html})
+				(from #{Strings::to_html comment.user.from})
 				<?r end ?>
 		
 				</span>

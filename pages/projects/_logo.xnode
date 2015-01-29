@@ -1,4 +1,4 @@
 <?r @title = attributes['title'] ?>
-<div class="gallery"><img src="#{attributes['src'].to_html}" alt="#{attributes['title'].to_html}"/><br/>
+<div class="gallery"><img src="#{Strings::to_html attributes['src']}" alt="#{Strings::to_html attributes['title']}"/><br/>
 	<content/>
 </div>

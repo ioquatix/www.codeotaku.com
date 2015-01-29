@@ -1,7 +1,7 @@
 <?r 
 if attributes['src']
-	path = parent.node.local_path(Path.create(attributes['src']))
-	escaped_code = File.read(path).to_html
+	path = parent.node.local_path(Utopia::Path.create(attributes['src']))
+	escaped_code = Strings::to_html(File.read(path))
 else
 	escaped_code = content
 end

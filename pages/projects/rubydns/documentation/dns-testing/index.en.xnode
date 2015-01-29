@@ -1,4 +1,4 @@
-<contents-page>
+<contents-page title="RubyDNS Documentation">
 	<heading>DNS Testing</heading>
 	
 	<p><code>rd-resolve-test</code> is a tool for testing DNS resolution speed and reliability. It works by repeatedly querying a server with names from a list.</p>

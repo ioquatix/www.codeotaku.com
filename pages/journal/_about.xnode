@@ -4,6 +4,6 @@
 	</div>
 
 	<div style="display: inline-block; vertical-align: middle">
-		<reddit url="http://www.oriontransfer.co.nz#{first.node.link.href.to_html}" />
+		<reddit url="http://www.oriontransfer.co.nz#{Strings::to_html first.node.link.href}" />
 	</div>
 </div>

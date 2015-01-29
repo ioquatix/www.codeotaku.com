@@ -5,7 +5,7 @@ ACCESS_CONTROLS = {
 	"Access-Control-Max-Age" => "60"
 }
 
-def on_index(path, request)
+on 'index' do |request, path|
 	# ...
 	if request.options?
 		# Allow AJAX requests from different domains.

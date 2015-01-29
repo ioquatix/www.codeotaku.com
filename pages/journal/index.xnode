@@ -2,11 +2,11 @@
 	<heading>Samuel's Journal</heading>
 	
 	<dl class="options">
-	<?r links("./", :sort => :title, :files => false, :virtuals => false).reverse.each do |link| ?>
-		<dt>#{Date.parse(link.components[0] + "-1").strftime("%B %Y")}</dt>
+	<?r links("./", :sort => :title, :files => false, :virtuals => false).reverse_each do |link| ?>
+		<dt>#{Date.parse(link.name + "-1").strftime("%B %Y")}</dt>
 		<dd>
 		<?r links(link.path.dirname, :sort => :created).each do |entry| ?>
-			#{entry.to_href}<br/>
+			#{entry.to_href(base: first.node.uri_path)}<br/>
 		<?r end ?>
 		</dd>
 	<?r end ?>

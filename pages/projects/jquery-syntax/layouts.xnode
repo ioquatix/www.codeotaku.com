@@ -23,8 +23,8 @@ EOF
 	<p>Layouts can be used to add advanced features to jQuery.Syntax such as unit test code coverage, code execution or  built-in documentation.</p>
 	
 	<?r layouts.each do |layout| ?>
-	<h2>#{layout.to_s.to_title} Layout</h2>
-	<pre id="#{layout}_code">#{code.to_html}</pre>
+	<h2>#{Strings::to_title(layout.to_s)} Layout</h2>
+	<pre id="#{Strings::to_html layout}_code">#{code}</pre>
 	<script type="text/javascript">
 		jQuery(function($){
 			$('\##{layout}_code').syntax({

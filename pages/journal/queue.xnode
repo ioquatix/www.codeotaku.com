@@ -3,7 +3,7 @@
 	
 	<ul>
 	<?r request.controller[:comments].each do |comment| ?>
-		<li><a href="#{comment.node.to_html}">#{comment.node.to_html} from #{comment.user.name.to_html}</a></li>
+		<li><a href="#{Strings::to_html comment.node}">#{Strings::to_html comment.node} from #{Strings::to_html comment.user.name}</a></li>
 	<?r end ?>
 	</ul>
 </page>

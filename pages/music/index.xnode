@@ -13,7 +13,7 @@
 	
 	<ul>
 		<?r links("./").each do |s| ?>
-			<li>#{s.to_href}</li>
+			<li>#{s.to_href(base: first.node.uri_path)}</li>
 		<?r end ?>
 	</ul>
 	

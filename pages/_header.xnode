@@ -4,35 +4,35 @@
 	<?r 
 		front = true
 		
-		Path.create(first.node.uri_path || attributes['path']).ascend.reverse.each do |path| 
-		if path.basename.size > 0
-			basename = path.basename
-			indices = false
-		else
-			basename = "index"
-			indicies = true
-		end
-		
-		link = parent.node.links(path.dirname, :name => basename, :locale => request.current_locale, :indices => indices, :display => nil).first
-		
-		if !front ?>
-		<li>&lambda;</li>
-		<?r end
-		
-		if link ?>
-		<li>#{link.to_href}</li>
-		<?r end 
-				
-		front = false
-		prev = link
-		?>
-	<?r end ?>
+		Utopia::Path.create(first.node.uri_path || attributes['path']).descend do |path|
+			
+			if path.last
+				basename = path.last
+				indices = false
+			else
+				basename = "index"
+				indicies = true
+			end
+			
+			link = parent.node.links(path.dirname, :name => basename, :variant => request.current_locale, :indices => indices, :display => nil).first
+			
+			if !front ?>
+			<li>&lambda;</li>
+			<?r end
+			
+			if link ?>
+			<li>#{link.to_href(base: first.node.uri_path)}</li>
+			<?r end 
+					
+			front = false
+			prev = link
+		end ?>
 	
-	<?r locale_names = {'jp' => '日本語', 'en' => 'English', 'cn' => '简体中文'} ?>
+	<?r locale_names = {'ja' => '日本語', 'en' => 'English', 'zh' => '简体中文'} ?>
 
 	<?r if (related_links = first.node.related_links).size > 1 ?>
 		<?r related_links.each do |link| ?>
-		<li class="locale" style="background-image: url('/_static/flags/#{link.locale}.png')"><a href="#{link.href}">#{locale_names[link.locale] || link.locale}</a></li>
+		<li class="variant" style="background-image: url('/_static/flags/#{link.variant}.png')"><a href="/#{link.variant}#{link.href}">#{locale_names[link.variant] || link.variant}</a></li>
 		<?r end ?>
 	<?r end ?>
 	</ul>

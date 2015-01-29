@@ -42,12 +42,12 @@
 			<h1>Navigation</h1>
 			<ul class="top">
 				<?r links("/", :indices => true).each do |s| ?>
-				<li>#{s.to_href}
+				<li>#{s.to_href(base: first.node.uri_path)}
 					<ul>
 						<?r if s.path && s.kind == :directory ?>
 						<?r links(s.path.dirname).each do |c| ?>
 						<?r if c.href? ?>
-						<li>#{c.to_href}</li>
+						<li>#{c.to_href(base: first.node.uri_path)}</li>
 						<?r end ?>
 						<?r end ?>
 						<?r end ?>
@@ -61,7 +61,7 @@
 			<div id="locales">
 				<?r if (related_links = first.node.related_links).size > 1 ?>
 					<?r related_links.each do |link| ?>
-						<a href="#{link.href}">#{link.locale}</a>
+						<a href="#{link.href}">#{link.variant}</a>
 					<?r end ?>
 				<?r end ?>
 			</div>

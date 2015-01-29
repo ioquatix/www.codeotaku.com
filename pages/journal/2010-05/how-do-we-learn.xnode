@@ -24,7 +24,7 @@
 	<?r links.each do |link|
 		next unless (link[:tags] || []).include? 'pedagogy'
 	?>
-		<li>#{link.to_href}</li>
+		<li>#{link.to_href(base: first.node.uri_path)}</li>
 	<?r end ?>
 	</ul>
 </entry>

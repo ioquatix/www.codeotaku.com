@@ -1,7 +1,5 @@
 
-include Direct
-
-def on_redirect(path, request)
+on 'redirect' do |request, path|
 	links = Links.index(BASE_PATH, Path.new)
 	
 	name = request['project']

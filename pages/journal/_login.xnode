@@ -49,7 +49,7 @@
 	});
 
 	function showLoginWindow () {
-		$.getScript('@rel@/_static/jquery.sha1.js', function() {
+		$.getScript('/_static/jquery.sha1.js', function() {
 			$('#login_dialog').dialog('open');
 		});
 		

@@ -7,8 +7,9 @@
 	node_name = (request['node'] || attributes['node'])
 	
 	if node_name
+		comments_path = current.node.uri_path.dirname + 'comments'
 ?>
-<div class="xframe" src="#{current.node.uri_path.dirname + 'comments'}?node=#{node_name.to_html}">
+<div class="xframe" src="#{Strings::to_html comments_path.to_s}?node=#{node_name}">
 	<div id="comments">
 		<login />
 	
@@ -46,7 +47,7 @@
 					<dt><label for="name">* Your Name:</label></dt>
 					<dd>
 						<?r if request.controller.user ?>
-						<input type="text" name="posted_by" value="#{request.controller.user.name.to_html}" />
+						<input type="text" name="posted_by" value="#{Strings::to_html request.controller.user.name}" />
 						<?r else ?>
 						<input type="text" name="posted_by" />
 						<?r end ?>
@@ -67,7 +68,7 @@
 					</dt>
 					<dd>
 						<?r if request.controller.user ?>
-						<input type="text" name="email" value="#{request.controller.user.email.to_html}" />
+						<input type="text" name="email" value="#{Strings::to_html request.controller.user.email}" />
 						<?r else ?>
 						<input type="text" name="email" value="" />
 						<?r end ?>
@@ -87,7 +88,7 @@
 	
 		<p>Please note, you can leave a comment that uses (<em>limited</em>) XHTML and <a href="http://redcloth.org/textile">Textile</a> syntax.</p>
 	
-		<script src="@rel@/_static/comments.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/_static/comments.js" type="text/javascript" charset="utf-8"></script>
 	</div>
 	<?r if first == current ?>
 	<script type="text/javascript">

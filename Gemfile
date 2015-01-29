@@ -1,17 +1,16 @@
-# A sample Gemfile
-source "https://rubygems.org"
 
-gem "rack"
+source "http://rubygems.org"
 
-gem "utopia", "~> 0.12.1"
-gem "utopia-tags-gallery", "~> 0.12.0"
-gem "utopia-tags-google-analytics", "~> 0.12.0"
+gem "utopia", "~> 1.0.0"
+gem "utopia-tags-gallery"
+gem "utopia-tags-google-analytics"
 
 gem "datamapper"
 gem "dm-sqlite-adapter"
+
 gem "sanitize"
 gem "kramdown"
 
 group :development do
-	gem "thin"
+	gem "puma"
 end

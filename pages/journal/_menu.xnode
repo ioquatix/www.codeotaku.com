@@ -15,5 +15,5 @@
 ?>
 	<a href="/blog/index" class="link title">Code Otaku [Blog]</a>
 	<?r latest_entries(10).each do |entry| ?>
-	#{entry.to_href(:class => "link child")}
+	#{entry.to_href(base: first.node.uri_path, class: "link child")}
 	<?r end ?>

@@ -146,10 +146,6 @@ latinum:
     tags: ['open', 'ruby', 'framework']
     uri: https://github.com/ioquatix/latinum
     description: "Latinum is a framework for resource and currency calculations."
-murakumo:
-    tags: ['open', 'ruby', 'server']
-    uri: https://github.com/cookpad/murakumo
-    description: "Murakumo is the internal DNS server which manages name information using a gossip protocol."
 mozarts:
     title: "Mozarts Limited"
     tags: ['commercial', 'website']
@@ -219,14 +215,10 @@ transform-flow-toolkit:
     uri: /journal/2013-11/transform-flow-toolkit
     description: "An overview of the Transform Flow toolkit assists with the development of mobile outdoor augmented reality applications, presented at IVCNZ 2013."
 inverse-kinematics-a-star:
-    title: "A Discrete Solution For The Inverse Kinematics Problem"
+    title: "A Discrete SolutFion For The Inverse Kinematics Problem"
     tags: ['research']
     uri: /journal/2008-02/inverse-kinematics-a-star
     description: "Research investigating the application of the A* algorithm to the inverse kinematics problem."
-anima:
-    title: "Anima"
-    tags: ['commercial', 'game']
-    description: "A turn-based game build around cellular automata. Curently in the early prototype stage."
 orbital-panic:
     title: "Orbital Panic"
     tags: ['commercial', 'game']

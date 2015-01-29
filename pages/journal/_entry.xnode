@@ -52,16 +52,16 @@ end
 		<content/>
 		<br/>
 				
-		<comments node="#{parent.node.uri_path.to_s.to_html}" />
+		<comments node="#{Strings::to_html parent.node.uri_path.to_s}" />
 	</div>
 	
 	<div class="navigation noindex">
 	<?r if prev_link ?>
-		<div class="prev_link">Previously: #{prev_link.to_href}</div>
+		<div class="prev_link">Previously: #{prev_link.to_href(base: first.node.uri_path)}</div>
 	<?r end ?>
 			
 	<?r if next_link ?>
-		<div class="next_link">Afterwards: #{next_link.to_href}</div>
+		<div class="next_link">Afterwards: #{next_link.to_href(base: first.node.uri_path)}</div>
 	<?r end ?>
 		<br style="clear: both" />
 	</div>

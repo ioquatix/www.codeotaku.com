@@ -4,13 +4,13 @@ require_local 'comments'
 require 'digest/sha1'
 require 'json'
 
-def on_queue(path, request)
+on 'queue' do |request, path|
 	fail! unless request.controller.admin?
 
 	@comments = Comment.all(:visible => false)
 end
 
-def on_comments_preview(path, request)
+on '**/comments/preview' do |request, path|
 	body = request[:body]
 	
 	formatted_html = Comment.format_body_html(body)
@@ -18,7 +18,7 @@ def on_comments_preview(path, request)
 	success! content: formatted_html, type: "text/html"
 end
 
-def on_comments_edit(path, request)
+on '**/comments/edit' do |request, path|
 	comment = Comment.get(request[:id].to_i)
 
 	if comment and (request.controller.admin? || request.controller.user == comment.user)
@@ -38,7 +38,7 @@ def on_comments_edit(path, request)
 	fail! :unauthorized
 end
 
-def on_comments_update(path, request)
+on '**/comments/update' do |request, path|
 	fail! unless request.post? and request.controller.admin?
 	
 	comment = Comment.get(request[:id].to_i)
@@ -60,7 +60,7 @@ def on_comments_update(path, request)
 	end
 end
 
-def on_comments_create(path, request)
+on '**/comments/create' do |request, path|
 	fail! unless request.post?
 
 	user = nil
@@ -130,7 +130,7 @@ def on_comments_create(path, request)
 	success! content: comment.to_json(:only => [:id]), type: "application/json"
 end
 
-def on_comments_toggle(path, request)
+on '**/comments/toggle' do |request, path|
 	fail! unless request.post? and request.controller.admin?
 	
 	comment = Comment.first(:id => request[:id])
@@ -140,7 +140,7 @@ def on_comments_toggle(path, request)
 	success!
 end
 
-def on_comments_delete(path, request)
+on '**/comments/delete' do |request, path|
 	fail! unless request.post? and request.controller.admin?
 	
 	comment = Comment.first(:id => request[:id])
@@ -149,7 +149,7 @@ def on_comments_delete(path, request)
 	success!
 end
 
-def on_login_salt(path, request)
+on '**/login/salt' do |request, path|
 	salt = Digest::SHA1.hexdigest(Time.now.to_s + rand.to_s)
 	
 	request.session['login_salt'] = salt
@@ -157,7 +157,7 @@ def on_login_salt(path, request)
 	success! content: salt
 end
 
-def on_login(path, request)
+on '**/login' do |request, path|
 	fail! unless request.post?
 	
 	name = request[:username]
@@ -187,13 +187,13 @@ def on_login(path, request)
 	end
 end
 
-def on_logout(path, request)
+on '**/logout' do |request, path|
 	request.session['user'] = nil
 	
 	success!
 end
 
-def process!(path, request)
+on '**' do |request, path|
 	request.controller do
 		@session = request.session
 		
@@ -218,7 +218,4 @@ def process!(path, request)
 			end
 		end
 	end
-	
-	passthrough(path, request)
 end
-

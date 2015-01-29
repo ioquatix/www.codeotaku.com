@@ -1,37 +1,37 @@
 installation.en:
     order: 1
-installation.cn:
+installation.zh:
     order: 1
     title: "安装"
 basic-dns-server.en:
     order: 2
     title: "Basic DNS Server"
-basic-dns-server.cn:
+basic-dns-server.zh:
     order: 2
     title: "基本的DNS服务器"
 asynchronous-dns-resolution.en:
     order: 3
     title: "Asynchronous DNS Resolution"
-asynchronous-dns-resolution.cn:
+asynchronous-dns-resolution.zh:
     order: 3
     title: "异步DNS查询"
 dns-verification.en:
     order: 20
     title: "DNS Verification"
-#dns-verification.cn:
+#dns-verification.zh:
 #    order: 20
 #    title: "DNS验证"
-dns-testing:
+dns-testing.en:
     order: 25
     title: "DNS Testing"
-#dns-testing.cn:
+#dns-testing.zh:
 #    order: 25
 #    title: "DNS测试"
 api-documentation.en:
     order: 100
     title: "API Documentation"
     uri: http://rubydoc.info/gems/rubydns/frames
-api-documentation.cn:
+api-documentation.zh:
     order: 100
     title: "API文档"
     uri: http://rubydoc.info/gems/rubydns/frames

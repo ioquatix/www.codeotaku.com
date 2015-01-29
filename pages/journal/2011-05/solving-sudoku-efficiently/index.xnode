@@ -5,7 +5,7 @@
 	
 	<ul>
 		<li>Rather than solving rows from top to bottom, order them from least empty to most empty. This crease a bottom heavy search tree which ensures that as many branches will be culled with the smallest amount of work.</li>
-		<li>Rotate the puzzle 90&degrees; to increase the effect of the above optimisation.</li>
+		<li>Rotate the puzzle 90&deg; to increase the effect of the above optimisation.</li>
 		<li>Encode the rules into the permutation generation function to avoid generating permutations that won't work.</li>
 		<li>Within individual rows, generate permutations for columns sorted by least possibilities to most possibilies.</li>
 	</ul>

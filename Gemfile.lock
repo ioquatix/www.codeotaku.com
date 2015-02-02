@@ -79,7 +79,7 @@ GEM
       nokogumbo (= 1.2.0)
     stringex (1.5.1)
     trenni (1.4.1)
-    utopia (1.0.0)
+    utopia (1.0.1)
       mail (~> 2.6.1)
       mime-types (~> 2.0)
       rack (~> 1.5)
@@ -101,6 +101,6 @@ DEPENDENCIES
   kramdown
   puma
   sanitize
-  utopia (~> 1.0.0)
+  utopia (~> 1.0.1)
   utopia-tags-gallery
   utopia-tags-google-analytics

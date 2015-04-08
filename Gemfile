@@ -1,15 +1,9 @@
 
-source "http://rubygems.org"
+source "https://rubygems.org"
 
-gem "utopia", "~> 1.0.1"
-gem "utopia-tags-gallery"
-gem "utopia-tags-google-analytics"
-
-gem "datamapper"
-gem "dm-sqlite-adapter"
-
-gem "sanitize"
-gem "kramdown"
+gem "utopia", "~> 1.0.6"
+# gem "utopia-tags-gallery"
+# gem "utopia-tags-google-analytics"
 
 group :development do
 	gem "puma"

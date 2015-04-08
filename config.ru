@@ -1,6 +1,6 @@
 #!/usr/bin/env rackup
 
-# Setup encodings:
+# Setup default encoding:
 Encoding.default_external = Encoding::UTF_8
 Encoding.default_internal = Encoding::UTF_8
 
@@ -22,7 +22,7 @@ require 'to_bytes'
 if RACK_ENV == :production
 	use Utopia::ExceptionHandler, "/errors/exception"
 	use Utopia::MailExceptions
-else
+elsif RACK_ENV == :development
 	use Rack::ShowExceptions
 end
 
@@ -54,12 +54,11 @@ use Utopia::Redirector,
 use Utopia::Session::EncryptedCookie,
 	:expire_after => 2592000,
 	:secret => '6965ae9b95a55907648721638d70cf1a'
-	
 
 use Utopia::Localization,
 	:default_locale => 'en',
 	:locales => ['en', 'ja', 'zh'],
-	:nonlocalized => ['/_static/']
+	:nonlocalized => ['/_static/', '/_cache/']
 
 use Utopia::Controller,
 	cache_controllers: (RACK_ENV == :production)
@@ -73,7 +72,8 @@ use Utopia::Content,
 		'override' => Utopia::Tags::Override,
 		'node' => Utopia::Tags::Node,
 		'environment' => Utopia::Tags::Environment.for(RACK_ENV),
-		'gallery' => Utopia::Tags::Gallery
+		'gallery' => Utopia::Tags::Gallery,
+		'google-analytics' => Utopia::Tags::GoogleAnalytics,
 	}
 
 run lambda { |env| [404, {}, []] }

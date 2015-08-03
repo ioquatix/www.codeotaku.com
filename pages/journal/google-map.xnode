@@ -18,7 +18,7 @@
 <div class="google-map" id="#{map_id}"></div>
 <script type="text/javascript"><!--
 	jQuery(function(){
-		var kml, map, container = document.getElementById(#{map_id.to_quoted_string});
+		var kml, map, container = document.getElementById(#{Strings::to_quoted_string(map_id)});
 		
 		options = {
 			<?r if zoom ?>
@@ -33,7 +33,7 @@
 		map = new google.maps.Map(container, options);
 			
 		<?r if kml ?>
-		var kmlLayer = new google.maps.KmlLayer(#{kml.to_quoted_string});
+		var kmlLayer = new google.maps.KmlLayer(#{Strings::to_quoted_string(kml)});
 		kmlLayer.setMap(map);
 		<?r end ?>
 	});

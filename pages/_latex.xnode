@@ -13,7 +13,7 @@
 	if (attributes['src'])
 		inline = false
 		src_file = parent.node.local_path(attributes['src'])
-		hash = Path.create(attributes['src']).basename
+		hash = Utopia::Path.create(attributes['src']).basename
 		cache_file = cache + "#{hash}.png"
 		
 		regenerate = !File.exist?(cache + "#{hash}.png")

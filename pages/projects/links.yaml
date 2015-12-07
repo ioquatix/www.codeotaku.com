@@ -215,7 +215,7 @@ transform-flow-toolkit:
     uri: /journal/2013-11/transform-flow-toolkit
     description: "An overview of the Transform Flow toolkit assists with the development of mobile outdoor augmented reality applications, presented at IVCNZ 2013."
 inverse-kinematics-a-star:
-    title: "A Discrete SolutFion For The Inverse Kinematics Problem"
+    title: "A Discrete Solution For The Inverse Kinematics Problem"
     tags: ['research']
     uri: /journal/2008-02/inverse-kinematics-a-star
     description: "Research investigating the application of the A* algorithm to the inverse kinematics problem."

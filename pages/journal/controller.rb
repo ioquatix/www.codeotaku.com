@@ -1,11 +1,12 @@
 
-require_local 'comments'
+require_relative 'comments'
 
 require 'digest/sha1'
 require 'json'
+require 'lazy'
 
 on 'queue' do |request, path|
-	fail! unless request.controller.admin?
+	fail! unless @user.admin?
 
 	@comments = Comment.all(:visible => false)
 end
@@ -21,7 +22,7 @@ end
 on '**/comments/edit' do |request, path|
 	comment = Comment.get(request[:id].to_i)
 
-	if comment and (request.controller.admin? || request.controller.user == comment.user)
+	if comment and (@user.admin? or @user == comment.user)
 		fields = {
 			:id => comment.id,
 			:body => comment.body,
@@ -39,7 +40,7 @@ on '**/comments/edit' do |request, path|
 end
 
 on '**/comments/update' do |request, path|
-	fail! unless request.post? and request.controller.admin?
+	fail! unless request.post? and @user.admin?
 	
 	comment = Comment.get(request[:id].to_i)
 	
@@ -63,42 +64,43 @@ end
 on '**/comments/create' do |request, path|
 	fail! unless request.post?
 
-	user = nil
+	author = nil
 
-	if request.controller.user
+	if @user
 		LOG.debug("Posting comment from logged in user.")
-		user = request.controller.user
+		author = @user
 	else
 		LOG.debug("Posting comment from guest user.")
 		# If we are posting anonymously, try and find user by name and email..
-		user = User.first(:name => request[:posted_by])
+		author = User.first(:name => request[:posted_by])
 		
-		if user
-			unless user.guest? && user.email == request[:email]
-				LOG.debug("User name is not guest (#{user.access}), or email is not correct (#{user.email} != #{request[:email]}).")
+		if author
+			unless @author.guest? and @author.email == request[:email]
+				LOG.debug("User name is not guest (#{author.access}), or email is not correct (#{author.email} != #{request[:email]}).")
 				fail! :unauthorized
 			end
 		else
 			LOG.debug("Creating new user for #{request[:posted_by]}")
-			user = User.new
+			author = User.new
 		end
 	end
 	
-	user.name = request[:posted_by]
-	user.icon = request[:icon]
-	user.from = request[:from]
-	user.email = request[:email]
-	user.website = request[:website]
-	user.save
+	author.name = request[:posted_by]
+	author.icon = request[:icon]
+	author.from = request[:from]
+	author.email = request[:email]
+	author.website = request[:website]
+	author.save
 
 	# Security - can't log in as admin this way, under any circumstance.
-	unless user.admin? || request.session['user'] != nil
+	unless author.admin? || request.session['user'] != nil
 		LOG.debug("Logging user #{user.name} [#{user.id}] in.")
-		request.session['user'] = user.id
+		request.session['user'] = author.id
+		@user = author
 	end
 	
 	comment = Comment.new
-	comment.user = user
+	comment.user = author
 	
 	comment.node = request[:node]
 	comment.posted_on = DateTime.now
@@ -131,7 +133,7 @@ on '**/comments/create' do |request, path|
 end
 
 on '**/comments/toggle' do |request, path|
-	fail! unless request.post? and request.controller.admin?
+	fail! unless request.post? and @user.admin?
 	
 	comment = Comment.first(:id => request[:id])
 	comment.visible = !comment.visible
@@ -141,7 +143,7 @@ on '**/comments/toggle' do |request, path|
 end
 
 on '**/comments/delete' do |request, path|
-	fail! unless request.post? and request.controller.admin?
+	fail! unless request.post? and @user.admin?
 	
 	comment = Comment.first(:id => request[:id])
 	comment.destroy!
@@ -194,28 +196,11 @@ on '**/logout' do |request, path|
 end
 
 on '**' do |request, path|
-	request.controller do
-		@session = request.session
-		
-		# Lazy load the user object if required by the view
-		def user
-			if defined? @user
-				@user
-			else
-				if @session['user']
-					@user ||= User.first(:id => @session['user'])
-				else
-					@user = nil
-				end
-			end
-		end
-		
-		def admin?
-			if user
-				user.admin?
-			else
-				false
-			end
+	@session = request.session
+	
+	if user_id = request.session['user']
+		@user = Lazy::Promise.new do
+			User.first(:id => user_id)
 		end
 	end
 end

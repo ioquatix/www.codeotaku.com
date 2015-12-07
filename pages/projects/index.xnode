@@ -13,8 +13,7 @@
 		}
 		
 		tags = {}
-		puts "Current locale: #{request.current_locale}"
-		projects = links(".", :files => false, :variant => request.current_locale)
+		projects = links(".", :files => false, :locale => localization.current_locale)
 		
 		projects.each do |project|
 			(project[:tags] || []).each do |tag|

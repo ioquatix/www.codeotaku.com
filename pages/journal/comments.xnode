@@ -15,12 +15,12 @@
 	
 		<h1>Comments</h1>
 	<?r
-		admin_user = request.controller.user if request.controller.admin?
+		admin_user = controller[:user] and controller[:user].admin?
 
 		if admin_user
 			comments = Comment.all(:node => node_name)
-		elsif request.controller.user
-			comments = Comment.all(:conditions => ['node = ? AND (user_id = ? OR visible = ?)', node_name, request.controller.user.id, true])
+		elsif controller[:user]
+			comments = Comment.all(:conditions => ['node = ? AND (user_id = ? OR visible = ?)', node_name, controller[:user].id, true])
 		else
 			comments = Comment.all(:node => node_name, :visible => true)
 		end
@@ -46,8 +46,8 @@
 				<dl>
 					<dt><label for="name">* Your Name:</label></dt>
 					<dd>
-						<?r if request.controller.user ?>
-						<input type="text" name="posted_by" value="#{Strings::to_html request.controller.user.name}" />
+						<?r if controller[:user] ?>
+						<input type="text" name="posted_by" value="#{Strings::to_html controller[:user].name}" />
 						<?r else ?>
 						<input type="text" name="posted_by" />
 						<?r end ?>
@@ -67,8 +67,8 @@
 						<small>Your email won't be displayed.</small>
 					</dt>
 					<dd>
-						<?r if request.controller.user ?>
-						<input type="text" name="email" value="#{Strings::to_html request.controller.user.email}" />
+						<?r if controller[:user] ?>
+						<input type="text" name="email" value="#{Strings::to_html controller[:user].email}" />
 						<?r else ?>
 						<input type="text" name="email" value="" />
 						<?r end ?>

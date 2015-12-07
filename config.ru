@@ -22,8 +22,9 @@ require 'to_bytes'
 if RACK_ENV == :production
 	use Utopia::ExceptionHandler, "/errors/exception"
 	use Utopia::MailExceptions
-elsif RACK_ENV == :development
-	use Rack::ShowExceptions
+else
+	use Rack::ShowExceptions unless RACK_ENV == :test
+	use Utopia::Static, root: Utopia::default_root('public')
 end
 
 use Rack::Sendfile
@@ -56,7 +57,6 @@ use Utopia::Session::EncryptedCookie,
 	:secret => '6965ae9b95a55907648721638d70cf1a'
 
 use Utopia::Localization,
-	:default_locale => 'en',
 	:locales => ['en', 'ja', 'zh'],
 	:nonlocalized => ['/_static/', '/_cache/']
 

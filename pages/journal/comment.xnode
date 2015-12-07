@@ -5,9 +5,9 @@
 	end
 	
 	comment = Comment.get((request['id'] || attributes['id']).to_i) 
-	admin_user = request.controller.user if request.controller.admin?
+	admin_user = controller[:user] and controller[:user].admin?
 	
-	if comment && (comment.visible || request.controller.user == comment.user || admin_user)
+	if comment && (comment.visible || controller[:user] == comment.user || admin_user)
 ?>
 <div class="xframe" src="#{current.node.uri_path.dirname + 'comment'}?id=#{comment.id}">
 	<div class="comment">

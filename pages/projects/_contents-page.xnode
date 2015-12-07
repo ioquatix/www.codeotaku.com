@@ -4,7 +4,7 @@
 	<div style="clear: both; position: relative;">
 		<?r
 
-		sibling_links = parent.node.sibling_links(:variant => request.current_locale)
+		sibling_links = parent.node.sibling_links(:locale => localization.current_locale)
 		
 		puts parent.node.uri_path.inspect
 		puts YAML::dump(sibling_links)

@@ -2,7 +2,7 @@
 	<heading>Comment Moderation Queue</heading>
 	
 	<ul>
-	<?r request.controller[:comments].each do |comment| ?>
+	<?r controller[:comments].each do |comment| ?>
 		<li><a href="#{Strings::to_html comment.node}">#{Strings::to_html comment.node} from #{Strings::to_html comment.user.name}</a></li>
 	<?r end ?>
 	</ul>

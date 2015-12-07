@@ -58,7 +58,7 @@
 </script>
 
 <div class="login_buttons" style="float: right">
-	<?r if request.controller.user ?>
+	<?r if controller[:user] ?>
 	<button onclick="$.post('logout', xReload(this));">Logout</button>
 	<?r else ?>
 	<button onclick="return showLoginWindow()">Login</button>

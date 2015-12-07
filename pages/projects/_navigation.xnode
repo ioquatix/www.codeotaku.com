@@ -2,7 +2,7 @@
 <div class="navigation">
 	<ul class="trail">
 	<?r Path.create(first.node.uri_path || attributes['path']).ascend.reverse.each do |path| ?>
-		<?r link = parent.node.links(path.dirname, :name => path.basename, :variant => request.current_locale).first
+		<?r link = parent.node.links(path.dirname, :name => path.basename, :locale => localization.current_locale).first
 	
 		next if link == prev
 	
@@ -25,7 +25,7 @@
 
 			<?r if (related_links = first.node.related_links).size > 1 ?>
 				<?r related_links.each do |link| ?>
-				<li class="variant" style="background-image: url('/_images/flags/#{link.variant}.png')"><a href="#{link.href}">#{locale_names[link.variant] || link.variant}</a></li>
+				<li class="locale" style="background-image: url('/_images/flags/#{link.locale}.png')"><a href="#{link.href}">#{locale_names[link.locale] || link.locale}</a></li>
 				<?r end ?>
 			<?r end ?>
 		</ul>

@@ -1,6 +1,6 @@
 
 on 'redirect' do |request, path|
-	links = Utopia::Content::Links.index(BASE_PATH, Path.new)
+	links = Utopia::Content::Links.index(BASE_PATH, Path.root)
 	
 	name = request['project']
 	

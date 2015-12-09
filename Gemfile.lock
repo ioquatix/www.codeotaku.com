@@ -1,7 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    addressable (2.3.8)
+    addressable (2.4.0)
     bcrypt (3.1.10)
     bcrypt-ruby (3.1.5)
       bcrypt (>= 3.1.3)
@@ -80,7 +80,7 @@ GEM
       nokogumbo (= 1.4.1)
     stringex (1.5.1)
     trenni (1.4.3)
-    utopia (1.2.0)
+    utopia (1.2.1)
       concurrent-ruby (~> 1.0.0)
       mail (~> 2.6.1)
       mime-types (~> 2.0)
@@ -105,7 +105,7 @@ DEPENDENCIES
   lazy
   puma
   sanitize
-  utopia (~> 1.2.0)
+  utopia (~> 1.2.1)
   utopia-tags-gallery
   utopia-tags-google-analytics
 

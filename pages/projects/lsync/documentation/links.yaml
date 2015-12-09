@@ -1,10 +1,23 @@
 introduction:
-    order: 1
-installation:
-    order: 2
-concepts:
-    order: 3
-backup-scripts:
-    order: 4
-basic-server-backup:
     order: 10
+installation:
+    order: 20
+concepts:
+    order: 30
+backup-policy:
+    order: 50
+storage-solutions:
+    order: 60
+backup-scripts:
+    order: 70
+basic-server-backup:
+    order: 80
+real-time-synchronization:
+    order: 90
+backup-staging:
+    order: 100
+dns-indirection:
+    order: 110
+    title: "DNS Indirection"
+server-synchronization:
+    order: 120

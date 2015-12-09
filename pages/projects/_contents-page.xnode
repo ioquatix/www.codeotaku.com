@@ -6,9 +6,6 @@
 
 		sibling_links = parent.node.sibling_links(:locale => localization.current_locale)
 		
-		puts parent.node.uri_path.inspect
-		puts YAML::dump(sibling_links)
-		
 		prev_links, current_link, next_links = sibling_links.split_at{|link| link.path == parent.node.uri_path}
 
 		prev_link = prev_links.last if prev_links

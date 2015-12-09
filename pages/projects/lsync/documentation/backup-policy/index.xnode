@@ -1,0 +1,114 @@
+<contents-page title="LSync Documentation">
+	<heading>What is a backup policy?</heading>
+
+	<p>For organisations that rely on computers, a Digital Information Backup Policy is <em>critical</em> to secure and reliable business operations. A backup policy dictates how <em>important data</em> and <em>systems</em> are managed to ensure that there is a tolerance for various forms of data loss. The main goal is to ensure that if an organisation suffers some kind of data loss, it can continue to function effectively with a minimal additional overhead during data recovery.</p>
+	
+	<p>Consider an office without a sufficiently capable backup; What would happen if all the customer invoices were accidentally deleted? Would anyone know who had paid what? How about filling a tax return? If an offsite backup was performed, was it secure? Was it complete and correct? If someone stole the offsite backup would that be a serious breach of customer confidence?</p>
+	
+	<p>From our experience, many people buy hardware and try to fit that around their requirements without thinking about exactly the kind of data retention challenges they are facing. In many ways, this is like "putting the carriage in front of the horse". If you don't structure your backup policy around your requirements, there is the potential for serious problems.</p>
+	
+	<h2>Policy Overview</h2>
+	
+	<p>The policy overview is a set of specific areas that need to be broadly considered when developing a backup policy. They represent the main concerns affecting data retention and backup.</p>
+	
+	<dl class="basic">
+		<dt>Accidental or malicious deletion of critical data</dt>
+		<dd>The ability to quickly and easily restore individual files and folders.</dd>
+		
+		<dt>Data that is corrupted or lost over a period of time</dt>
+		<dd>The ability to detect corruption and verify the correctness of a backup.</dd>
+		<dd>The ability to recover data from a previous point in time.</dd>
+		
+		<dt>Storage hardware failure (partial or complete)</dt>
+		<dd>The ability to recover quickly and easily from a complete hardware failure.</dd>
+		<dd>The amount of manual work required to fix a hardware failure.</dd>
+		
+		<dt>Server and software failure (partial or complete)</dt>
+		<dd>The ability to quickly diagnose and fix software problems.</dd>
+		<dd>The ability to replace failed servers with a minimal downtime.</dd>
+		<dd>The ability to replace failed servers without affecting the integrity of the backup.</dd>
+		
+		<dt>Local or regional disaster (partial or complete loss of an entire office/facility)</dt>
+		<dd>The ability to have multiple backups in physically different locations outside of the disaster zone.</dd>
+		
+		<dt>Remote offices and branch offices</dt>
+		<dd>The ability to manage backup requirements with minimal technical support (including both performing backups and restoring lost files).</dd>
+		
+		<dt>Resource usage (including hardware, power, time)</dt>
+		<dd>The ability to <em>efficiently</em> perform backup and restore operations within a reasonable length of time.</dd>
+		
+		<dt>Data security (both on-site and off-site)</dt>
+		<dd>The ability to move data (as required) between different locations safely and securely.</dd>
+		<dd>The ability to maintain company reputation and customer confidence.</dd>
+	</dl>
+	
+	<p>A backup policy may also be part of a wider company management policy regarding data retention and document management. In this case, you may specifically want to refer to it as a Digital Information Backup Policy.</p>
+	
+	<h2>Policy Details</h2>
+	
+	<p>With the above concerns in mind, a backup policy can be structured to deal with the major issues of day-to-day operations. In a typical backup system, there are many specific details that need to be considered.</p>
+	
+	<dl class="basic">
+		<dt>Data Backup Requirements</dt>
+		<dd>Data Sources
+			<ul>
+				<li>File Servers</li>
+				<li>Database Servers</li>
+				<li>Client Desktops</li>
+			</ul>
+		</dd>
+		<dd>Data Volume
+			<ul>
+				<li>Initial Storage Capacity</li>
+				<li>Incremental Storage Growth (i.e. how much additional storage is required per month?)</li>
+			</ul>
+		</dd>
+		<dd>Data Security
+			<ul>
+				<li>The appropriate use of encryption and access control technologies to protect sensitive data.</li>
+			</ul>
+		</dd>
+		<dd>Backup Frequency</dd>
+		<dd>Backup Monitoring
+			<ul>
+				<li>Backup Manager (i.e. who is responsible for backups?)</li>
+				<li>Backup Logging (i.e. success/failure email notifications)</li>
+			</ul>
+		</dd>
+		<dd>Auditing and Verification</dd>
+		
+		<dt>Data Retention Requirements</dt>
+		<dd>Maximum allowable time for data recovery</dd>
+		<dd>Minimum data retention period</dd>
+		
+		<dt>Offsite Storage Requirements</dt>
+		<dd>Location and facility specifications</dd>
+		<dd>Security of facility
+			<ul>
+				<li>Authorised Personnel</li>
+				<li>Security Logging (i.e. security cameras, door monitoring, guards)</li>
+			</ul>
+		</dd>
+		<dd>Storage of backup data and associated hardware/media
+			<ul>
+				<li>Environmental Controls (i.e. temperature and humidity)</li>
+				<li>Power Conditioning (i.e. UPS, generator)</li>
+			</ul>
+		</dd>
+		<dd>Auditing and Verification</dd>
+	</dl>
+	
+	<p>One of the most critical parts of a working backup is auditing and verification of the backup data. If this is not done, then at the time when a backup is needed, the data may be corrupt or missing. It is like paying someone to build a house without actually ever checking that there is any house being built.</p>
+	
+	<h2>Solutions</h2>
+	
+	<p>A complete and efficient backup policy can require expert attention. Lucid Information Systems provides several hardware and software solutions to match your exact requirements. We are available to review your business operation and provide a comprehensive backup policy and assist with both risk management and disaster recovery.</p>
+	
+	<ul>
+		<li><a href="http://www.lbackup.org/">LBackup</a> &mdash; A free open source incremental backup tool (produced by Lucid Information Systems).</li>
+		<li><a href="../../">LSync</a> &mdash; A free open source server synchronisation and incremental backup tool.</li>
+		<li><a href="http://www.rsync.net">rsync.net</a> &mdash; Simple, live, offsite filesystem for business continuity and disaster recovery.</li>
+		<li><a href="http://www.lucidsystems.co.nz/links/backblaze">Backblaze</a> &mdash; A provider for online storage and backup applications.</li>
+		<li><a href="http://www.lucidsystems.co.nz/links/spideroak">SpiderOak</a> &mdash; Online backup and synchronisation</li>
+	</ul>
+</contents-page>

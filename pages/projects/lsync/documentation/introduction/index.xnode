@@ -12,8 +12,8 @@
 	<p>While LSync can facilitate many kinds of data synchronsation, it isn't the only way to replicate data. Other solutions such as online database replication and hardware-based replication may be a better solution depending on your requirements. If you are considering a backup solution and need advice and support you may want to read some of the articles I've written on backup policy:</p>
 	
 	<ul>
-		<li><a href="http://www.drobo.co.nz/blog/2010-10/backup-policy">What is a backup policy?</a></li>
-		<li><a href="http://www.drobo.co.nz/blog/2010-12/small-business-storage-solutions">Small Business Storage Solutions</a></li>
+		<li><a href="../backup-policy">What is a backup policy?</a></li>
+		<li><a href="../storage-solutions">Small Business Storage Solutions</a></li>
 	</ul>
 	
 	<p>Finally, if you are still unsure about your situation and require a personal touch, please feel free to contact <a href="http://www.lucidsystems.co.nz">Lucid Information Systems</a>, a company specialising in data management and backup that I work for.</p>

@@ -1,79 +1,50 @@
 #!/usr/bin/env rackup
 
-# Setup default encoding:
-Encoding.default_external = Encoding::UTF_8
-Encoding.default_internal = Encoding::UTF_8
-
-# Setup the server environment:
-RACK_ENV = ENV.fetch('RACK_ENV', :development).to_sym unless defined?(RACK_ENV)
-
-# Allow loading library code from lib directory:
-$LOAD_PATH << File.expand_path("../lib", __FILE__)
-
-require 'utopia'
-require 'utopia/extensions/array'
-require 'utopia/session/encrypted_cookie'
-require 'utopia/tags/gallery'
-require 'utopia/tags/google-analytics'
-require 'rack/cache'
-
-require 'to_bytes'
+require_relative 'config/environment'
 
 if RACK_ENV == :production
-	use Utopia::ExceptionHandler, "/errors/exception"
-	use Utopia::MailExceptions
+	# Handle exceptions in production with a error page and send an email notification:
+	use Utopia::Exceptions::Handler
+	use Utopia::Exceptions::Mailer
 else
+	# We want to propate exceptions up when running tests:
 	use Rack::ShowExceptions unless RACK_ENV == :test
-	use Utopia::Static, root: Utopia::default_root('public')
+	
+	# Serve the public directory in a similar way to the web server:
+	use Utopia::Static, root: 'public'
 end
 
 use Rack::Sendfile
 
-if RACK_ENV == :production
-	use Rack::Cache,
-		metastore: "file:#{Utopia::default_root("cache/meta")}",
-		entitystore: "file:#{Utopia::default_root("cache/body")}",
-		verbose: RACK_ENV == :development
-end
+use Utopia::ContentLength
 
-use Rack::ContentLength
+use Utopia::Redirection::Rewrite,
+	'/' => '/welcome/index'
 
-use Utopia::Redirector,
-	patterns: [
-		Utopia::Redirector::DIRECTORY_INDEX,
-		[:moved, "/samuel-williams", "/about"],
-		[:moved, "/blog", "/journal"],
-		[:moved, "/game-mechanics-society", "http://www.gmsoc.org"],
-	],
-	strings: {
-		'/' => '/index',
-	},
-	errors: {
-		404 => "/errors/file-not-found"
-	}
+use Utopia::Redirection::DirectoryIndex
 
-use Utopia::Session::EncryptedCookie,
-	:expire_after => 2592000,
-	:secret => '6965ae9b95a55907648721638d70cf1a'
+use Utopia::Redirection::Errors,
+	404 => '/errors/file-not-found'
 
 use Utopia::Localization,
-	:locales => ['en', 'ja', 'zh'],
+	:default_locale => 'en',
+	:locales => ['en', 'de', 'ja', 'zh'],
 	:nonlocalized => ['/_static/', '/_cache/']
 
 use Utopia::Controller,
-	cache_controllers: (RACK_ENV == :production)
+	cache_controllers: (RACK_ENV == :production),
+	base: Utopia::Controller::Base
 
 use Utopia::Static
 
+# Serve dynamic content
 use Utopia::Content,
 	cache_templates: (RACK_ENV == :production),
 	tags: {
 		'deferred' => Utopia::Tags::Deferred,
 		'override' => Utopia::Tags::Override,
 		'node' => Utopia::Tags::Node,
-		'environment' => Utopia::Tags::Environment.for(RACK_ENV),
-		'gallery' => Utopia::Tags::Gallery,
-		'google-analytics' => Utopia::Tags::GoogleAnalytics,
+		'environment' => Utopia::Tags::Environment.for(RACK_ENV)
 	}
 
 run lambda { |env| [404, {}, []] }

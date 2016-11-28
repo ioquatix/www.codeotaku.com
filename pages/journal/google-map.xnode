@@ -1,10 +1,10 @@
 <?r
-	map_id = attributes['id'] || 'map'
+	map_id = attributes[:id] || 'map'
 	
-	latitude = attributes['latitude']
-	longitude = attributes['longitude']
-	zoom = attributes['zoom']
-	kml = attributes['kml']
+	latitude = attributes[:latitude]
+	longitude = attributes[:longitude]
+	zoom = attributes[:zoom]
+	kml = attributes[:kml]
 	
 	if kml
 		kml = parent.node.uri_path.dirname + kml

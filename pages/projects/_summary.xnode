@@ -1,6 +1,6 @@
 <ol>
 	<?r
-		parent.node.links(attributes['path'], :locale => localization.current_locale).each do |c| 
+		parent.node.links(attributes[:path], :locale => localization.current_locale).each do |c| 
 	?>
 		<li>#{c.to_href(base: first.node.uri_path)}</li>
 	<?r end ?>

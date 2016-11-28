@@ -1,1 +1,1 @@
-<gallery path="#{parent.node.parent_path + attributes['path']}" tag="photo_thumbnail" process="photo,large" />
+<gallery path="#{parent.node.parent_path + attributes[:path]}" tag="photo_thumbnail" process="photo,large" />

@@ -1,4 +1,4 @@
 <span class="photo_thumbnail" style="width: auto">
-	<img src="#{attributes["src"].large}" alt="#{attributes["alt"]}" />
-	<div class="caption">#{attributes["alt"]}</div>
+	<img src="#{attributes[:src].large}" alt="#{attributes[:alt]}" />
+	<div class="caption">#{attributes[:alt]}</div>
 </span>

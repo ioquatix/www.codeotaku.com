@@ -1,19 +1,19 @@
 <?r
-	icon_image = attributes['icon'] || attributes['path'].split('.').last
-	download_link = attributes['path']
+	icon_image = attributes[:icon] || attributes[:path].split('.').last
+	download_link = attributes[:path]
 	
 	file_size = nil
-	local_path = parent.node.local_path(attributes['path'])
+	local_path = parent.node.local_path(attributes[:path])
 	file_size = File.size(local_path) if File.exist?(local_path)
 	
 ?>
 <div class="filebox">
 	<div class="icon" style="background-image: url(/_static/filetypes/#{icon_image}.png)"></div>
 	<div class="text">
-		<a class="download" href="#{download_link}">#{attributes['name'] || File.basename(attributes['path'])}</a>
+		<a class="download" href="#{download_link}">#{attributes[:name] || File.basename(attributes[:path])}</a>
 		<p>
 			<?r if file_size ?>
-			Size: #{file_size.to_bytes}<br/>
+			Size: #{file_size}<br/>
 			<?r end ?>
 			<content/>
 		</p>

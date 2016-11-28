@@ -1,9 +1,12 @@
 
+prepend Actions
+
 require_relative 'comments'
 
 require 'digest/sha1'
 require 'json'
-require 'lazy'
+
+require 'promise'
 
 on 'queue' do |request, path|
 	fail! unless @user.admin?
@@ -199,8 +202,6 @@ on '**' do |request, path|
 	@session = request.session
 	
 	if user_id = request.session['user']
-		@user = Lazy::Promise.new do
-			User.first(:id => user_id)
-		end
+		@user = promise {User.first(:id => user_id)}
 	end
 end

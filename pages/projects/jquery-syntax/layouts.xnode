@@ -24,7 +24,7 @@ EOF
 	
 	<?r layouts.each do |layout| ?>
 	<h2>#{Strings::to_title(layout.to_s)} Layout</h2>
-	<pre id="#{Strings::to_html(layout.to_s)}_code">#{code}</pre>
+	<pre id="#{(layout.to_s)}_code">#{code}</pre>
 	<script type="text/javascript">
 		jQuery(function($){
 			$('\##{layout}_code').syntax({

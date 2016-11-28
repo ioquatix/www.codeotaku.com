@@ -1,6 +1,6 @@
 <?r 
-if attributes['src']
-	path = parent.node.local_path(Utopia::Path.create(attributes['src']))
+if attributes[:src]
+	path = parent.node.local_path(Utopia::Path.create(attributes[:src]))
 	escaped_code = Strings::to_html(File.read(path))
 else
 	escaped_code = content
@@ -10,7 +10,7 @@ escaped_code = escaped_code.gsub(/%%([a-z]+)\{(.*?)\}/) do |match|
 	"<span class=\"#{$1}\">#{$2}</span>"
 end
 
-if lang = (attributes['lang'] || attributes['brush']) ?>
+if lang = (attributes[:lang] || attributes[:brush]) ?>
 	<pre class="syntax brush-#{lang}">#{escaped_code}</pre>
 <?r else ?>
 	<pre class="syntax">#{escaped_code}</pre>

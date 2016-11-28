@@ -1,4 +1,5 @@
 <script type="text/javascript">
+//<![CDATA[
 	jQuery(function($){
 		var references = $('#references');
 		var reference = $('li:first a', references);
@@ -26,6 +27,7 @@
 			return false;
 		});
 	});
+//]]>
 </script>
 <style type="text/css" media="screen">
 	#references li {

@@ -13,7 +13,7 @@
 
 		?>
 		<div class="table-of-contents">
-			<h4>#{Strings::to_html (attributes['title'] || "Table Of Contents")}</h4>
+			<h4>#{ (attributes[:title] || "Table Of Contents")}</h4>
 			<ol>
 			<?r (prev_links || []).each do |link| ?>
 				<li>#{link.to_href(base: first.node.uri_path)}</li>

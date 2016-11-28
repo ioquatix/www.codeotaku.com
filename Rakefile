@@ -1,9 +1,5 @@
 
-task :server do
-	system('puma')
-end
+# Load all rake tasks:
+import(*Dir.glob('tasks/*.rake'))
 
-task :deploy do
-	# This task is typiclly run after the site is updated but before the server is restarted.
-	puts "Preparing to deploy site in #{Dir.pwd.inspect}..."
-end
+task :default => :server

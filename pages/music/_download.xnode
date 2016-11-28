@@ -1,6 +1,6 @@
 <?r
 	media_server_url = "http://media.oriontransfer.org/www.oriontransfer.co.nz"
-	media_url = media_server_url + (parent.node.parent_path + attributes['file']).to_s
+	media_url = media_server_url + (parent.node.parent_path + attributes[:file]).to_s
 ?>
 <h2>Audio Stream</h2>
 
@@ -8,6 +8,6 @@
 	<audio style="width: 100%" src="#{media_url}" controls="controls"></audio>
 </p>
 
-<p>Direct Download Link: <a href="#{media_url}">#{File.basename(attributes['file'])}</a></p>
+<p>Direct Download Link: <a href="#{media_url}">#{File.basename(attributes[:file])}</a></p>
 
 <p>To download this file, you might need to right click and choose "Download Linked File" or similar. Released under the <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Attribution-Noncommercial-Share Alike 3.0 Unported</a> license. </p>

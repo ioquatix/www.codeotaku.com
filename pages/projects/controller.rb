@@ -1,4 +1,6 @@
 
+prepend Actions
+
 on 'redirect' do |request, path|
 	links = Utopia::Content::Links.index(BASE_PATH, Path.root)
 	

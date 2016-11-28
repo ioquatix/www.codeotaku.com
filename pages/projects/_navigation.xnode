@@ -1,7 +1,7 @@
 <?r prev = nil ?>
 <div class="navigation">
 	<ul class="trail">
-	<?r Path.create(first.node.uri_path || attributes['path']).ascend.reverse.each do |path| ?>
+	<?r Path.create(first.node.uri_path || attributes[:path]).ascend.reverse.each do |path| ?>
 		<?r link = parent.node.links(path.dirname, :name => path.basename, :locale => localization.current_locale).first
 	
 		next if link == prev

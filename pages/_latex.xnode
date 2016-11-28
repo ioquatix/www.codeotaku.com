@@ -10,10 +10,10 @@
 	# The text / content for latex processing
 	text = nil
 	
-	if (attributes['src'])
+	if (attributes[:src])
 		inline = false
-		src_file = parent.node.local_path(attributes['src'])
-		hash = Utopia::Path.create(attributes['src']).basename
+		src_file = parent.node.local_path(attributes[:src])
+		hash = Utopia::Path.create(attributes[:src]).basename
 		cache_file = cache + "#{hash}.png"
 		
 		regenerate = !File.exist?(cache + "#{hash}.png")

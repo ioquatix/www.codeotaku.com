@@ -4,7 +4,7 @@
 	<?r 
 		front = true
 		
-		Utopia::Path.create(first.node.uri_path || attributes['path']).descend do |path|
+		Utopia::Path.create(first.node.uri_path || attributes[:path]).descend do |path|
 			
 			if path.last
 				basename = path.last

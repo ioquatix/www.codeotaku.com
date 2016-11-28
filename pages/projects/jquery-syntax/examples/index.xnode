@@ -11,7 +11,7 @@
 		</thead>
 		<tbody>
 			<?r links(".").sort_by(&:name).each do |link| ?>
-			<tr><td>#{Strings::to_html link.title}</td><td><script type="text/javascript">document.write(Syntax.brushAliases(#{link.name.dump}).join(", "));</script></td><td>#{link.to_href(base: first.node.uri_path)}</td></tr>
+			<tr><td>#{ link.title}</td><td><script type="text/javascript">document.write(Syntax.brushAliases(#{link.name.dump}).join(", "));</script></td><td>#{link.to_href(base: first.node.uri_path)}</td></tr>
 			<?r end ?>
 		</tbody>
 	</table>

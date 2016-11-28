@@ -1,10 +1,10 @@
 <?r
 	unless parent
-		response["Content-Type"] = "text/html; charset=utf-8"
+		response.content_type = "text/html; charset=utf-8"
 		response.do_not_cache!
 	end
 	
-	comment = Comment.get((request['id'] || attributes['id']).to_i) 
+	comment = Comment.get((request['id'] || attributes[:id]).to_i) 
 	admin_user = controller[:user] and controller[:user].admin?
 	
 	if comment && (comment.visible || controller[:user] == comment.user || admin_user)
@@ -31,20 +31,20 @@
 			<div class="text">
 				<span class="author">
 				<?r if comment.user.website ?>
-					<a rel="nofollow" href="#{Strings::to_html comment.user.website}">#{Strings::to_html comment.user.name}</a>
+					<a rel="nofollow" href="#{ comment.user.website}">#{ comment.user.name}</a>
 				<?r else ?>
-					#{Strings::to_html comment.user.name}
+					#{ comment.user.name}
 				<?r end ?>
 		
 				<?r if admin_user ?>
 				[id #{comment.user.id}]
-				[email <a href="mailto:#{Strings::to_html comment.user.email}">#{Strings::to_html comment.user.email}</a>]
+				[email <a href="mailto:#{ comment.user.email}">#{ comment.user.email}</a>]
 				<?r elsif comment.user.admin? ?>
 				[admin]
 				<?r end ?>
 		
 				<?r if comment.user.from and comment.user.from.size > 0 ?>
-				(from #{Strings::to_html comment.user.from})
+				(from #{ comment.user.from})
 				<?r end ?>
 		
 				</span>

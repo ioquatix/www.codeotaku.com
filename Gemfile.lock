@@ -97,7 +97,7 @@ GEM
       nokogumbo (~> 1.4.1)
     slop (3.6.0)
     stringex (1.5.1)
-    trenni (2.0.1)
+    trenni (2.0.2)
     utopia (1.9.0)
       concurrent-ruby (~> 1.0)
       http-accept (~> 1.6)

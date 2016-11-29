@@ -1,3 +1,2 @@
-<?r @title ||= content ?>
-<h1><content/>
-</h1>
+<?r transaction.attributes[:title] ||= content ?>
+<h1><content/></h1>

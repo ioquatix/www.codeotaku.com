@@ -4,7 +4,7 @@
 ?><!DOCTYPE html>
 <html>
 	<head>
-		<?r if title = (attributes[:title] || @title) ?>
+		<?r if title = self[:title] ?>
 			<title>#{title}</title>
 		<?r else ?>
 			<title>`(code otaku)</title>

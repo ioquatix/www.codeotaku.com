@@ -1,9 +1,0 @@
-<h1>Example Inline PHP</h1>
-
-<p>Here is some inline PHP code: <code class="syntax php">$x = 50 + mysql_last_insert_id()</code>.</p>
-
-<h1>Example Block of Javascript</h1>
-		
-<pre class="syntax javascript">function min (a, b) {
-	return a &lt; b ? a : b;
-}</pre>

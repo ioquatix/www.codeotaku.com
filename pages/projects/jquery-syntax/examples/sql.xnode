@@ -1,5 +1,0 @@
-<page>
-	<heading>SQL Syntax Example</heading>
-	
-	<listing src="sql.txt" brush="sql" />
-</page>

@@ -1,5 +1,0 @@
-<page>
-	<heading>Perl5 Syntax Example</heading>
-	
-	<listing src="perl5.txt" brush="perl5" />
-</page>

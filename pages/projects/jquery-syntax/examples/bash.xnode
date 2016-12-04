@@ -1,7 +1,0 @@
-<page>
-	<heading>Bash Example</heading>
-	
-	<pre class="syntax bash-script">
-		<span class="function">bob</span> <span class="option">argument</span>
-	</pre>
-</page>

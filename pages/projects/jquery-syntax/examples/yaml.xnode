@@ -1,5 +1,0 @@
-<page>
-	<heading>YAML Syntax Example</heading>
-	
-	<listing src="yaml.txt" brush="yaml" />
-</page>

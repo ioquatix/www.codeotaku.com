@@ -1,6 +1,0 @@
-$.syntax({
-	blockSelector: "pre.syntax",
-	inlineSelector: "code.syntax",
-	blockLayout: "fixed",
-	context: $('#preview')
-});

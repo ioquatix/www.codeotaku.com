@@ -1,8 +1,0 @@
-// Because resources need to be loaded, this method is asynchronous,
-// and you need to provide a callback function
-var code = $('<pre>int main (int argc, char ** argv);</pre>');
-
-code.syntax({brush: 'c'}, function(options, html, container) {
-	// The variable 'html' contains the highlighted source code elements.
-	console.log(html);
-})

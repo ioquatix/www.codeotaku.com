@@ -1,9 +1,0 @@
-<page>
-	<heading>行配置示例</heading>
-
-	<p>注意行配置可以起于任意行. 但是必须按如下格式: <code class="syntax">-*- mode: [lang]; -*-</code>. 您也可以指定 <a href="advanced-setup.cn#SyntaxHighlightingOptions">tab-width</a>.</p>
-
-	<listing src="modeline_javascript.txt" />
-
-	<listing src="modeline_ruby.txt" />
-</page>

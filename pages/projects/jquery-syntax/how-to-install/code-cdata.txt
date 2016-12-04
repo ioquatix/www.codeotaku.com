@@ -1,4 +1,0 @@
-<pre class="syntax javascript"><![CDATA[
-function hello () {
-	return 10 < 20;
-}]]></pre>

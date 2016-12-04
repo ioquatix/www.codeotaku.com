@@ -1,5 +1,0 @@
-<page>
-	<heading>Java Syntax Example</heading>
-	
-	<listing src="java.txt" brush="java" />
-</page>

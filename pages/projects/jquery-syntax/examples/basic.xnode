@@ -1,7 +1,0 @@
-<page>
-	<heading>Basic Syntax Example</heading>
-	
-	<listing src="basic.txt" brush="basic" />
-	
-	<listing src="visual_basic.txt" brush="vb" />
-</page>

@@ -1,5 +1,0 @@
-<page>
-	<heading>Python Syntax Example</heading>
-	
-	<listing src="python.txt" brush="python" />
-</page>

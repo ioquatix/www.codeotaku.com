@@ -1,7 +1,0 @@
-<page>
-	<h1>JavaScript Syntax Example</h1>
-
-	<h2>jQuery.Syntax Code</h2>
-	
-	<listing src="javascript.txt" lang="javascript" />
-</page>

@@ -2,9 +2,6 @@
 
 require_relative 'config/environment'
 
-require 'utopia/tags/gallery'
-require 'utopia/tags/google-analytics'
-
 if RACK_ENV == :production
 	# Handle exceptions in production with a error page and send an email notification:
 	use Utopia::Exceptions::Handler
@@ -22,11 +19,7 @@ use Rack::Sendfile
 use Utopia::ContentLength
 
 use Utopia::Redirection::Rewrite,
-	'/' => '/index'
-
-use Utopia::Redirection::Moved, "/samuel-williams", "/about"
-use Utopia::Redirection::Moved, "/blog", "/journal"
-use Utopia::Redirection::Moved, "/game-mechanics-society", "http://www.gmsoc.org"
+	'/' => '/welcome/index'
 
 use Utopia::Redirection::DirectoryIndex
 
@@ -35,7 +28,7 @@ use Utopia::Redirection::Errors,
 
 use Utopia::Localization,
 	:default_locale => 'en',
-	:locales => ['en', 'ja', 'zh'],
+	:locales => ['en', 'de', 'ja', 'zh'],
 	:nonlocalized => ['/_static/', '/_cache/']
 
 use Utopia::Controller,
@@ -51,9 +44,7 @@ use Utopia::Content,
 		'deferred' => Utopia::Tags::Deferred,
 		'override' => Utopia::Tags::Override,
 		'node' => Utopia::Tags::Node,
-		'environment' => Utopia::Tags::Environment.for(RACK_ENV),
-		'gallery' => Utopia::Tags::Gallery,
-		'google-analytics' => Utopia::Tags::GoogleAnalytics,
+		'environment' => Utopia::Tags::Environment.for(RACK_ENV)
 	}
 
 run lambda { |env| [404, {}, []] }

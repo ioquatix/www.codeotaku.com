@@ -1,7 +1,21 @@
 
+html {
+	font-family: "PT Sans", Verdana, Helvetica, Arial, sans-serif;
+	font-size: 16px;
+	font-size: 2.0vw;
+}
+
+@media (min-width: 30em) {
+	html {
+		font-size: 1em;
+	}
+}
+
+pre {
+	tab-size: 4;
+}
+
 body {
-	min-width: 740px;
-	
 	background-color: #333;
 	
 	background-attachment: fixed;
@@ -9,11 +23,11 @@ body {
 	
 	font-family: 'HelveticaNeue-Light', Helvetica, Arial, sans-serif;
 	font-weight: lighter;
-	margin: 5pt;
+	margin: 0.5rem;
 }
 
 p {
-	margin: 5pt 5pt;
+	margin: 0.5rem 0.5rem;
 }
 
 a {
@@ -26,53 +40,53 @@ a:hover {
 }
 
 #content {
-	box-shadow: 0px -2px 8px black;
+	box-shadow: 0rem -0.125rem 0.5rem black;
 	
 	background-color: #fdfdfd;
-	margin: 5pt;
+	margin: 0.5rem;
 }
 
 #content.normal {
-	padding: 20pt;
+	padding: 2rem;
 }
 
 #content h1, #content h2, #content h3, #content h4 {
 	font-weight: normal;
 	color: #222;
-	text-shadow: 2px 2px 2px #eee;
+	text-shadow: 0.125rem 0.125rem 0.125rem #eee;
 }
 
 #content h1 {
 	margin-top: 0;
-	font-size: 30pt;
+	font-size: 2.5rem;
 }
 
 #content h2 {
-	font-size: 15pt;
+	font-size: 1.5rem;
 	
-	padding: 0.5em 0.8em;
-	margin: 6em 0 2em;
+	padding: 0.5rem 0.8rem;
+	margin: 6rem 0 2rem;
 	
 	color: #333;
 	background-color: #eee;
-	letter-spacing: 0.12em;
+	letter-spacing: 0.12rem;
 	
 	background-color: white;
-	box-shadow: 0 0 4px rgba(0, 0, 0, 0.05);
+	box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.05);
 }
 
 #content h3 {
-	font-size: 14pt;
-	margin-top: 40pt;
-	margin-bottom: 8pt;
+	font-size: 1.4rem;
+	margin-top: 4rem;
+	margin-bottom: 0.8rem;
 
-	border-bottom: 1px solid #ccc;
+	border-bottom: 0.0625rem solid #ccc;
 }
 
 #content h4 {
-	font-size: 13pt;
-	margin-top: 40pt;
-	margin-bottom: 8pt;
+	font-size: 1.3rem;
+	margin-top: 4rem;
+	margin-bottom: 0.8rem;
 }
 
 #content h2 + p, #content h3 + p {
@@ -83,10 +97,10 @@ a:hover {
 	clear: both;
 	
 	text-align: center;
-	font-size: 11px;
+	font-size: 0.6875rem;
 	color: white;
 	
-	padding: 20px;
+	padding: 1.25rem;
 }
 
 #footer a {
@@ -98,10 +112,10 @@ a:hover {
 }
 
 .navigation {
-	font-size: 10pt;
+	font-size: 1rem;
 	clear: both;
 	
-	margin: 10pt 0 10pt 0;
+	margin: 1rem 0 1rem 0;
 }
 
 .logo {
@@ -118,11 +132,11 @@ a:hover {
 
 .heading {
 	text-align: center;
-	margin: 20pt 0 40pt 0;
-	padding: 20pt 4pt;
+	margin: 2rem 0 4rem 0;
+	padding: 2rem 0.4rem;
 	
 	background-color: white;
-	box-shadow: 0 0 4px rgba(0, 0, 0, 0.05);
+	box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.05);
 }
 
 .heading h1 {
@@ -135,29 +149,29 @@ a:hover {
 }
 
 .heading small {
-	margin: 20px;
+	margin: 1.25rem;
 	white-space: nowrap;
 }
 
 dl.basic {
-	padding: 5px;
+	padding: 0.3125rem;
 }
 
 li {
-	margin: 4px;
+	margin: 0.25rem;
 }
 
 dl.basic dt {
 	text-decoration: underline;
-	padding-top: 4px;
+	padding-top: 0.25rem;
 }
 
 dl.basic dd {
-	padding: 4px;
+	padding: 0.25rem;
 }
 
 p, dl.basic dt {
-	margin-top: 15pt;
+	margin-top: 1.5rem;
 }
 
 p, li, dt, dd {
@@ -165,11 +179,11 @@ p, li, dt, dd {
 }
 
 dl.options {
-	padding-top: 0.5em;
+	padding-top: 0.5rem;
 	margin: 0;
 	
 	/* background: rgba(230, 230, 230, 0.25);
-	border: 1px solid #ccc; */
+	border: 0.0625rem solid #ccc; */
 }
 
 dl.options dt {
@@ -178,23 +192,23 @@ dl.options dt {
 	float: left;
 	clear: both;
 	
-	width: 14em;
+	width: 30%;
 	text-align: right;
 	
-	padding: 0 0.5em 0.5em 0.5em;
+	padding: 0 0.5rem 0.5rem 0.5rem;
 }
 
 dl.options dd {
-	margin: 0 0 0.5em 15em;
-	padding: 0 4pt;
+	margin: 0 0 0.5rem 32%;
+	padding: 0 0.4rem;
 }
 
 dl.options dd + dd {
-	margin-top: 0.5em;
+	margin-top: 0.5rem;
 }
 
 dl.options dd.container {
-	border-left: 1px solid #ccc;
+	border-left: 0.0625rem solid #ccc;
 }
 
 dl.options dd.container p {
@@ -203,8 +217,7 @@ dl.options dd.container p {
 }
 
 #entry {
-	padding-bottom: 80px;
-	font-size: 12pt;
+	padding-bottom: 5rem;
 }
 
 img {
@@ -223,85 +236,81 @@ table th {
 
 table.basic thead th, table.basic tfoot th {
 	font-family: "Lucida Grande", Sans-Serif;
-	font-size: 12pt;
+	font-size: 1.2rem;
 	text-align: left;
 	color: #003399;
 }
 
 table.basic thead th {
-	border-bottom: 2px solid #6678b2;
-	padding: 10px 8px;
+	border-bottom: 0.125rem solid #6678b2;
+	padding: 0.625rem 0.5rem;
 }
 
 table.basic tfoot th {
-	border-bottom: 2px solid #6678b2;
-	padding: 10px 8px;
+	border-bottom: 0.125rem solid #6678b2;
+	padding: 0.625rem 0.5rem;
 }
 
 
 table.basic tbody th,
 table.basic tbody td {
 	border: none;
-	font-size: .9em;
-	padding: 9px 8px 0px 8px;
+	font-size: .9rem;
+	padding: 0.5625rem 0.5rem 0rem 0.5rem;
 	color: #666699
 }
 
 table.basic tbody th {
 	text-align: left;
 	text-decoration: underline;
-	padding-top: 12px;
+	padding-top: 0.75rem;
 }
 
 table.basic tbody tr:hover td {
 	color: #000;
-	text-shadow: #aaa 1px 1px 2px;
+	text-shadow: #aaa 0.0625rem 0.0625rem 0.125rem;
 }
 
 table.data th {
 	background-color: #e0e0e0;
-	padding: 4px;
+	padding: 0.25rem;
 }
 
 table.data {
 	background-color: #fff;
-	border: 1px solid black;
+	border: 0.0625rem solid black;
 	
 	margin: auto;
 	text-align: center;
 }
 
 table.data td {
-	padding: 4px;
+	padding: 0.25rem;
 }
 
 code.basic {
 	display: block;
 }
 
-pre.code, code.basic {
-	/* border: 2px solid #ccc;
-	border-left: 2px solid #333; */
-	margin: 10px;
-	padding: 2px;
-	padding-left: 10px;
-	background-color: #404040;
-	color: #d0d0d0;
-	padding: 10px;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	border-radius: 5px;
+pre {
+	margin: 0.625rem;
+	padding: 0.125rem;
+	padding-left: 0.625rem;
+	background-color: rgba(20, 20, 20, 0.05);
+	color: #333;
+	padding: 0.625rem;
+	border-radius: 0.3125rem;
 }
 
 .gallery {
 	text-align: center;
-	padding: 5px;
+	padding: 0.3125rem;
 }
 
 .gallery .photo_thumbnail img {
-	-moz-box-shadow: 4px 4px 8px #888;
-	-webkit-box-shadow: 4px 4px 8px #888;
-	box-shadow: 4px 4px 8px #888;
+	-moz-box-shadow: 0.25rem 0.25rem 0.5rem #888;
+	-webkit-box-shadow: 0.25rem 0.25rem 0.5rem #888;
+	box-shadow: 0.25rem 0.25rem 0.5rem #888;
 }
 
 .gallery .photo_thumbnail, .gallery .thumbnail {
@@ -310,40 +319,40 @@ pre.code, code.basic {
 }
 
 .gallery img {
-	margin: 10px 10px 5px;
+	margin: 0.625rem 0.625rem 0.3125rem;
 }
 
 .gallery .photo_thumbnail {
-	width: 320px;
+	width: 20rem;
 }
 
 .gallery .photo_thumbnail, .gallery .thumbnail {
-	margin: 0.5em;
+	margin: 0.5rem;
 }
 
 .gallery .caption {
-	font-size: 10pt;
+	font-size: 1rem;
 }
 
 #comments form {
 	background-color: white;
-	box-shadow: 0 0 4px rgba(0, 0, 0, 0.05);
+	box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.05);
 
-	padding: 5px;
-	margin: 5px;
+	padding: 0.3125rem;
+	margin: 0.3125rem;
 }
 
 #comments .comment .byline {
 	color: #333;
-	font-size: 9pt;
-	padding: 8px 4px;
+	font-size: 0.9rem;
+	padding: 0.5rem 0.25rem;
 	
 	position: relative;
 }
 
 #comments .comment .moderation {
 	text-align: center;
-	padding: 5px;
+	padding: 0.3125rem;
 }
 
 #comments .comment .byline .posted_on {
@@ -352,31 +361,31 @@ pre.code, code.basic {
 }
 
 #comments .comment .text {
-	margin-top: 28px;
+	margin-top: 1.75rem;
 }
 
 #comments .comment .icon {
-	margin: 0px 20px 5px 10px;
+	margin: 0rem 1.25rem 0.3125rem 0.625rem;
 	float: left;
 }
 
 #comments .comment .body {
-	margin: 2px;
-	border-top: 1px solid #ccc;
+	margin: 0.125rem;
+	border-top: 0.0625rem solid #ccc;
 }
 
 #comments .comment, .about-me {
 	background-color: white;
-	box-shadow: 0 0 4px rgba(0, 0, 0, 0.05);
+	box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.05);
 	
-	margin: 5px;
-	padding: 5px;
+	margin: 0.3125rem;
+	padding: 0.3125rem;
 }
 
 form.basic dd.icons img {
-	margin: 3px;
-	width: 32px;
-	height: 32px;
+	margin: 0.1875rem;
+	width: 2rem;
+	height: 2rem;
 }
 
 form.basic dd.icons {
@@ -385,33 +394,33 @@ form.basic dd.icons {
 }
 
 form.basic dd.icons .selected {
-	border: 3px solid #FFCC00;
+	border: 0.1875rem solid #FFCC00;
 	margin: 0;
 }
 
 form.basic fieldset {
 	margin: auto;
 	border: none;
-	font-size: 16pt;
-	padding: 10px;
+	font-size: 1.6rem;
+	padding: 0.625rem;
 }
 
 form.basic dl {
-	margin: 0px;
+	margin: 0rem;
 }
 
 form.basic dl dt,
 form.basic dl dd {
-	margin: 0px;
-	padding: 0px;
-	padding-top: 5px;
-	padding-bottom: 10px;
-	line-height: 1.0em;
+	margin: 0rem;
+	padding: 0rem;
+	padding-top: 0.3125rem;
+	padding-bottom: 0.625rem;
+	line-height: 1.0rem;
 }
 
 form.basic dl dt {
 	clear: both;
-	font-size: 12pt;
+	font-size: 1.2rem;
 	display: block;
 	float: left;
 	text-align: right;
@@ -428,7 +437,7 @@ form.basic dl dt label {
 
 form.basic dl dt small {
 	text-decoration: none;
-	font-size: 8pt;
+	font-size: 0.8rem;
 	display: block;
 }
 
@@ -465,7 +474,7 @@ audio {
 }
 
 .latex.inline {
-	padding: 0px 5px 0px;
+	padding: 0rem 0.3125rem 0rem;
 	vertical-align: middle;
 }
 
@@ -478,8 +487,8 @@ sup a {
 /* Google Maps */
 
 .google-map {
-	width: 800px;
-	height: 600px;
+	width: 50rem;
+	height: 37.5rem;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -489,19 +498,19 @@ sup a {
 	position: relative;
 	color: white;
 	
-	font-size: 12pt;
-	padding: 2pt;
+	font-size: 1.2rem;
+	padding: 0.2rem;
 }
 
 .header ul.trail {
-	padding: 2pt;
+	padding: 0.2rem;
 	margin: 0;
 }
 
 .header li {
 	display: inline-block;
 	list-style: none;
-	line-height: 10pt;
+	line-height: 1rem;
 }
 
 .header a {
@@ -515,8 +524,8 @@ sup a {
 	position: relative;
 
 	margin: auto;
-	width: 608px;
-	height: 192px;
+	width: 38rem;
+	height: 12rem;
 
 	background-image: url("filebox.png");
 }
@@ -524,21 +533,21 @@ sup a {
 .filebox .icon {
 	position: absolute;
 
-	width: 128px;
-	height: 128px;
+	width: 8rem;
+	height: 8rem;
 
-	left: 32px;
-	top: 32px;
+	left: 2rem;
+	top: 2rem;
 }
 
 .filebox .text {
 	position: absolute;
 
-	left: 180px;
-	top: 55px;
+	left: 11.25rem;
+	top: 3.4375rem;
 
 	color: #ccc;
-	font-size: 11pt;
+	font-size: 1.1rem;
 }
 
 .filebox .text a {
@@ -546,7 +555,7 @@ sup a {
 }
 
 .filebox .text a.download {
-	font-size: 14pt;
+	font-size: 1.4rem;
 }
 
 .filebox .text a:hover {
@@ -557,7 +566,7 @@ sup a {
 
 blockquote {
 	font-family: "Adobe Caslon Pro", "Hoefler Text", Georgia, Garamond, Times, serif;
-	line-height: 2em;
+	line-height: 2rem;
 }
 
 blockquote .spoken:before {
@@ -573,9 +582,9 @@ blockquote .spoken:first-letter {
 
 blockquote .spoken {
 	color: #424242;
-	letter-spacing: 0.1em;
+	letter-spacing: 0.1rem;
 	text-align: center;
-	font-size: 14pt;
+	font-size: 1.4rem;
 	font-variant: small-caps;
 }
 
@@ -587,10 +596,10 @@ ul.features {
 
 ul.features li {
 	background-image: url("/_static/plus.png");
-	padding-left: 32px;
+	padding-left: 2rem;
 	
 	background-repeat: no-repeat;
-	margin-bottom: 0.5em;
+	margin-bottom: 0.5rem;
 }
 
 /* Translations header */
@@ -598,32 +607,32 @@ ul.features li {
 li.locale {
 	background-repeat: no-repeat;
 	background-position: 0 50%;
-	padding-left: 20px;
+	padding-left: 1.25rem;
 }
 
 /* Resize the video based on the screen width: */
 .youtube-video {
-	width: 1920px;
-	height: 1080px;
+	width: 120rem;
+	height: 67.5rem;
 }
 
-@media only screen and (max-width: 2020px) {
+@media only screen and (max-width: 126.25rem) {
 	.youtube-video {
-		width: 1280px;
-		height: 720px;
+		width: 80rem;
+		height: 45rem;
 	}
 }
 
-@media only screen and (max-width: 1380px) {
+@media only screen and (max-width: 86.25rem) {
 	.youtube-video {
-		width: 960px;
-		height: 540px;
+		width: 60rem;
+		height: 33.75rem;
 	}
 }
 
-@media only screen and (max-width: 1060px) {
+@media only screen and (max-width: 66.25rem) {
 	.youtube-video {
-		width: 640px;
-		height: 360px;
+		width: 40rem;
+		height: 22.5rem;
 	}
 }

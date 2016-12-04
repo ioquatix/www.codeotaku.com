@@ -1,4 +1,16 @@
 
+html {
+	font-family: "PT Sans", Verdana, Helvetica, Arial, sans-serif;
+	font-size: 16px;
+	font-size: 2.0vw;
+}
+
+@media (min-width: 30em) {
+	html {
+		font-size: 1.2vw;
+	}
+}
+
 .bottom, .top {
 	position: absolute;
 	left: 0;
@@ -11,8 +23,6 @@
 	bottom: 50%;
 	top: 0;
 	
-	min-height: 200px;
-
 	background-color: white;
 	box-shadow: 0 0 8px rgba(0, 0, 0, 1.0);
 	z-index: 10;
@@ -26,6 +36,8 @@
 	color: white;
 
 	padding: 8pt;
+	
+	font-size: 1.5rem;
 }
 
 .bottom a {
@@ -37,34 +49,19 @@ h1 {
 	left: 0;
 	right: 0;
 
-	font-size: 50pt;
-	padding-right: 0.4em;
+	font-size: 8vw;
+	padding-right: 0.2em;
 }
 
 .top h1 {
 	position: absolute;
-	bottom: -30pt;
+	bottom: -5vw;
 
 	color: #333;
 
-	text-shadow: #aaa 0px 0px 3px;
+	text-shadow: #aaa 0 0 5rem;
 }
 
 .bottom a {
 	color: white;
-}
-
-@media only screen and (max-width: 600px) {
-	.top h1 {
-		font-size: 30pt;
-		bottom: -15pt;
-	}
-	
-	.top blockquote {
-		line-height: 1em;
-	}
-	
-	.top blockquote > * {
-		font-size: 80%;
-	}
 }

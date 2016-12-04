@@ -13,7 +13,7 @@ escaped_code = escaped_code.gsub(/%%([a-z]+)\{(.*?)\}/) do |match|
 end
 
 if lang = (attributes[:lang] || attributes[:brush]) ?>
-	<pre class="syntax brush-#{lang}">#{escaped_code}</pre>
+	<pre><code class="syntax brush-#{lang}">#{escaped_code}</code></pre>
 <?r else ?>
-	<pre class="syntax">#{escaped_code}</pre>
+	<pre>#{escaped_code}</pre>
 <?r end ?>

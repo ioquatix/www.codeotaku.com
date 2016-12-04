@@ -36,10 +36,6 @@ end
 
 ?><page>
 	<div class="heading" style="position: relative">
-		<div style="position: absolute; right: 5pt; bottom: 2pt">
-			<g:plusone align="right"></g:plusone>
-		</div>
-						
 		<heading>#{title}</heading>
 
 		<div style="padding-left: 80px; padding-right: 80px">

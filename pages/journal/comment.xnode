@@ -58,7 +58,7 @@
 			<div class="moderation">This comment is currently awaiting moderation.</div>
 			<?r end ?>
 		
-			#{comment.body_html}
+			#{MarkupString.raw comment.body_html}
 		</div>
 	</div>
 	<?r if first == current ?>

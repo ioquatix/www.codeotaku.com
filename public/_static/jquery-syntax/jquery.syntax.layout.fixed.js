@@ -1,6 +1,0 @@
-// This file is part of the "jQuery.Syntax" project, and is distributed under the MIT License.
-// Copyright (c) 2011 Samuel G. D. Williams. <http://www.oriontransfer.co.nz>
-
-Syntax.layouts.fixed=function(e,m,f){var b=jQuery('<div class="fixed syntax highlighted">'),d=1;e=jQuery('<div class="toolbar">');var g=f.clone();g.addClass("raw syntax highlighted");f=document.createElement("table");var h=document.createElement("tbody");f.appendChild(h);var k=jQuery('<div class="numbers-column">'),l=jQuery('<div class="code-column">');m.children().each(function(){var c=document.createElement("div");c.className="line ln"+d;c.innerHTML=d;k.append(c);var b=document.createElement("td");
-b.className="source "+this.className;d%2&&(b.className+=" alt");1==b&&(c.className+=" first");b.appendChild(this);c=document.createElement("tr");c.appendChild(b);h.appendChild(c);d+=1});l.append(f);b.append(k);b.append(l);a=jQuery('<a href="#">View Raw Code</a>');a.click(function(c){c.preventDefault();jQuery(b).is(":visible")?(g.height(jQuery(b).height()),jQuery(b).replaceWith(g)):jQuery(g).replaceWith(b)});e.append(a);e.append('<a href="http://www.oriontransfer.co.nz/software/jquery-syntax" target="oriontransfer">?</a>');
-return jQuery('<div class="syntax-container">').append(e).append(b)};

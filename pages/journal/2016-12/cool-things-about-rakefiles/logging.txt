@@ -1,0 +1,13 @@
+LOGGER = Logger.new
+
+task :verbose do
+	LOGGER.level = Logger::DEBUG
+end
+
+task :deploy do
+	LOGGER.debug(:environment){ENV}
+	
+	# ...
+end
+
+# invoke as rake verbose deploy

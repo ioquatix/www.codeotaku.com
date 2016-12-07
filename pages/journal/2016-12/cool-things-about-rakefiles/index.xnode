@@ -1,0 +1,33 @@
+<entry>
+	<p>Rakefiles provide a simple task execution mechanism, but it also has some useful logic for extending existing tasks.</p>
+	
+	<h2>Chaining Tasks</h2>
+	
+	<p>It's possible for one task to call another, but it's also possible for this to go between namespaces:</p>
+	
+	<listing src="chain.txt" brush="ruby" />
+	
+	<p>Running <code class="language-bash">$ rake db:environment</code> will invoke both the <code>db:environment</code> and <code>environment</code> tasks.</p>
+	
+	<p>We use this to integrate with other task libraries, e.g. ActiveRecord.</p>
+	
+	<h2>Stateful Tasks</h2>
+	
+	<p>Sometimes it's useful to have stateful tasks:</p>
+	
+	<listing src="logging.txt" brush="ruby" />
+	
+	<p>Running <code class="language-bash">$ rake verbose deploy</code> will print out more detailed information.</p>
+	
+	<p>We use this when running tasks as background jobs - verbose is not defined unless we want extra output for debugging.</p>
+	
+	<h2>Multiple Tasks</h2>
+	
+	<p>It's possible to define multiple tasks with the same name. This is useful if you want to combine multiple files containing tasks</p>
+	
+	<listing src="multiple.txt" brush="ruby" />
+	
+	<p>Running <code class="language-bash">$ rake deploy</code> will invoke both tasks.</p>
+	
+	<p>We use this to keep our <code>.rake</code> files simple, focused and organised.</p>
+</entry>

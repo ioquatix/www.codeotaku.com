@@ -1,0 +1,7 @@
+task :deploy do
+	puts "Deploy 1"
+end
+
+task :deploy do
+	puts "Deploy 2"
+end

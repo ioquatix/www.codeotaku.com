@@ -2,6 +2,7 @@
 source "https://rubygems.org"
 
 gem "utopia", "~> 1.9.3"
+
 gem "utopia-tags-gallery"
 gem "utopia-tags-google-analytics"
 
@@ -12,7 +13,6 @@ gem "promise"
 
 gem "sanitize"
 gem "kramdown"
-
 
 gem "rake"
 gem "bundler"

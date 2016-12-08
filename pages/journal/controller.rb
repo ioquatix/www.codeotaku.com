@@ -19,7 +19,7 @@ on '**/comments/preview' do |request, path|
 	
 	formatted_html = Comment.format_body_html(body)
 	
-	success! content: formatted_html, type: "text/html"
+	succeed! content: formatted_html, type: "text/html"
 end
 
 on '**/comments/edit' do |request, path|
@@ -36,7 +36,7 @@ on '**/comments/edit' do |request, path|
 			:icon => comment.user.icon
 		}
 		
-		success! content: fields.to_json, type: "application/json"
+		succeed! content: fields.to_json, type: "application/json"
 	end
 	
 	fail! :unauthorized
@@ -58,7 +58,7 @@ on '**/comments/update' do |request, path|
 		comment.user.save
 		comment.save
 		
-		success!
+		succeed!
 	else
 		fail!
 	end
@@ -132,7 +132,7 @@ on '**/comments/create' do |request, path|
 		LOG.error("Could not send notification: #{$!.inspect}")
 	end
 	
-	success! content: comment.to_json(:only => [:id]), type: "application/json"
+	succeed! content: comment.to_json(:only => [:id]), type: "application/json"
 end
 
 on '**/comments/toggle' do |request, path|
@@ -142,7 +142,7 @@ on '**/comments/toggle' do |request, path|
 	comment.visible = !comment.visible
 	comment.save
 		
-	success!
+	succeed!
 end
 
 on '**/comments/delete' do |request, path|
@@ -151,7 +151,7 @@ on '**/comments/delete' do |request, path|
 	comment = Comment.first(:id => request[:id])
 	comment.destroy!
 		
-	success!
+	succeed!
 end
 
 on '**/login/salt' do |request, path|
@@ -159,7 +159,7 @@ on '**/login/salt' do |request, path|
 	
 	request.session['login_salt'] = salt
 	
-	success! content: salt
+	succeed! content: salt
 end
 
 on '**/login' do |request, path|
@@ -195,7 +195,7 @@ end
 on '**/logout' do |request, path|
 	request.session['user'] = nil
 	
-	success!
+	succeed!
 end
 
 on '**' do |request, path|

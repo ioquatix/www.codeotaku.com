@@ -21,6 +21,14 @@
 	
 	<p>We use this when running tasks as background jobs - verbose is not defined unless we want extra output for debugging.</p>
 	
+	<h3>Stateful Pipelines</h3>
+	
+	<p>You can use this to make flexible filters and tasks which can be configured to do different things:</p>
+	
+	<listing src="dump.txt" brush="ruby" />
+	
+	<p>We use tasks like these to export data for customers - we almost always have some specific requirements, but we chain usually chain together a set of existing tasks to get the desired output.</p>
+	
 	<h2>Multiple Tasks</h2>
 	
 	<p>It's possible to define multiple tasks with the same name. This is useful if you want to combine multiple files containing tasks</p>

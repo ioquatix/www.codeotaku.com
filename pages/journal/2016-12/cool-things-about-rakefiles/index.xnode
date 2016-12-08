@@ -1,5 +1,5 @@
 <entry>
-	<p>Rakefiles provide a simple task execution mechanism, but it also has some useful logic for extending existing tasks.</p>
+	<p>Rake provide an easy to use task execution mechanism, but it also has some useful logic for extending existing tasks. Here are a few examples of the kinds of Rake tasks I've been using to make my life easier.</p>
 	
 	<h2>Chaining Tasks</h2>
 	

@@ -27,7 +27,7 @@
 	
 	<listing src="dump.txt" brush="ruby" />
 	
-	<p>We use tasks like these to export data for customers - we almost always have some specific requirements, but we chain usually chain together a set of existing tasks to get the desired output.</p>
+	<p>We use tasks like these to export data for customers - we almost always have some specific requirements - but we can usually chain together a set of existing tasks to get the desired output.</p>
 	
 	<h2>Multiple Tasks</h2>
 	

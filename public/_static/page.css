@@ -602,6 +602,12 @@ ul.features li {
 	margin-bottom: 0.5rem;
 }
 
+/* Blog comments */
+
+#comments h1 {
+	margin-top: 8rem;
+}
+
 /* Translations header */
 
 li.locale {

@@ -1,0 +1,29 @@
+<entry>
+	<p><a href="https://github.com/ioquatix/jquery-syntax">jQuery.Syntax</a> is a small client side library for source code highlighting (&lt; 4000 lines of JS and CSS). It's designed to be fast and simple to use. The last major update was in 2012 and since then, HTML5 was released, IE6 became much less important, and the web in general has seen many major improvements.</p>
+	
+	<p>Recently, I decided to modernize jQuery.Syntax. Overall, the source was reduced by about 15% and the API simplified. The main changes and improvements are outlined below.</p>
+	
+	<h2>CSS now supports <code class="syntax language-css"><span class="property">tab-size</span></code></h2>
+	
+	<p>jQuery.Syntax used to convert all tabs to spaces in order to correctly present code. However, that's no longer necessary as you can specify tab width using CSS. Eliminating this process simplified the code and improved performance.</p>
+	
+	<p>In terms of presentation, it preserves the original text better and can be styled using CSS. Additionally, <code class="syntax language-css"><span class="property">tab-size</span></code> can be defined as part of a responsive stylesheet, so if you prefer 4-space indentation on desktop and 2-space indentation on mobile, that's possible.</p>
+	
+	<h2>Prefer semantic <code class="syntax language-html">&lt;code&gt;</code> tags</h2>
+	
+	<p>jQuery.Syntax used to have a (rather heavy weight) concept of <em>layouts</em>. A layout was a function applied to source code after it was highlighted, but before it was inserted into the DOM. Back in 2012, CSS directives for counters and white-space (e.g. pre-wrap) handling were not well supported. So, layouts wrapped the highlighted code into tables, lists, to provide these features in a way that worked across all browsers.</p>
+	
+	<p>Because CSS has improved significantly, layouts are no longer necessary or useful. This simplified jQuery.Syntax significantly. The main semantic change is that jQuery.Syntax now uniformly highlights <code class="syntax language-html">&lt;code&gt;</code> tags, and it's up to the top level CSS to style <code class="syntax language-css">p code {}</code> and <code class="syntax language-css">pre code {}</code> elements as desired.</p>
+	
+	<p>This has simplified the way jQuery.Syntax integrates with CSS and gives much more flexibility when styling code. Additionally, CSS has (<a href="https://bugs.webkit.org/show_bug.cgi?id=165299">almost</a>) improved to the point where it's possible to do hanging indentation of wrapped lines. This is now supported in jQuery.Syntax and I'm pretty proud of it:</p>
+	
+	<listing src="hanging.txt" brush="c" />
+	
+	<h2>Bower integration</h2>
+	
+	<p>Bower has become the predominant way people install JavaScript packages for the web. So, jQuery.Syntax is now available as a bower package. It includes a minified release in <code>dist/</code> and integrates well with <a href="https://github.com/ioquatix/utopia">Utopia</a>'s new <a href="https://github.com/ioquatix/utopia/blob/master/setup/site/tasks/bower.rake">bower.rake</a> tasks for deployment.</p>
+	
+	<h2>New brushes and general improvements</h2>
+	
+	<p>Since 2012, some new languages became significant, including Swift, and Nginx. There are new brushes for highlighting these languages. Rust is also an important candidate. Feel free to submit a <a href="https://github.com/ioquatix/jquery-syntax">PR</a> :)</p>
+</entry>

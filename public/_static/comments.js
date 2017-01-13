@@ -197,7 +197,7 @@ function editComment (button, id) {
 		});
 		
 		$.post("comments/update", submission, function(comment) {
-			$(button).xreload();
+			$(commentsForm).xreload();
 		});
 	});
 }

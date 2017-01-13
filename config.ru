@@ -2,6 +2,7 @@
 
 require_relative 'config/environment'
 
+require 'utopia/session'
 require 'utopia/tags/gallery'
 require 'utopia/tags/google-analytics'
 

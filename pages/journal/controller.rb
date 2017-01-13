@@ -45,9 +45,11 @@ on '**/comments/edit' do |request, path|
 end
 
 on '**/comments/update' do |request, path|
-	fail! unless request.post? and @user.admin?
+	fail! unless request.post?
 	
 	comment = Comment.get(request[:id].to_i)
+	
+	fail! :unauthorized unless @user.admin? or comment.user == @user
 	
 	if comment
 		comment.body = request[:body]
@@ -110,7 +112,7 @@ on '**/comments/create' do |request, path|
 	comment.node = request[:node]
 	comment.posted_on = DateTime.now
 	
-	if user.admin?
+	if @user.admin?
 		# LOG.debug("Comment is visible, because user was admin.")
 		comment.visible = true
 	else
@@ -148,9 +150,12 @@ on '**/comments/toggle' do |request, path|
 end
 
 on '**/comments/delete' do |request, path|
-	fail! unless request.post? and @user.admin?
+	fail! unless request.post?
 	
 	comment = Comment.first(:id => request[:id])
+	
+	fail! :unauthorized unless @user.admin? or comment.user == @user
+	
 	comment.destroy!
 		
 	succeed!

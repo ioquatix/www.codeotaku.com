@@ -80,7 +80,7 @@ on '**/comments/create' do |request, path|
 		author = User.first(:name => request[:posted_by])
 		
 		if author
-			unless @author.guest? and @author.email == request[:email]
+			unless author.guest? and author.email == request[:email]
 				# LOG.debug("User name is not guest (#{author.access}), or email is not correct (#{author.email} != #{request[:email]}).")
 				fail! :unauthorized
 			end

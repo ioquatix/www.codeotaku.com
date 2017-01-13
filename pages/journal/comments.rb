@@ -97,7 +97,7 @@ class User
 	def digest_authenticate(login_digest, login_salt)
 		return false if password == nil
 		
-		Utopia::LOG.debug("digest_auth: digest = #{login_digest} salt = #{login_salt} password = #{password}")
+		# Utopia::LOG.debug("digest_auth: digest = #{login_digest} salt = #{login_salt} password = #{password}")
 
 		return login_digest == secure_digest(login_salt + password)
 	end

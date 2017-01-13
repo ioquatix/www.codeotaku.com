@@ -72,20 +72,20 @@ on '**/comments/create' do |request, path|
 	author = nil
 
 	if @user
-		LOG.debug("Posting comment from logged in user.")
+		# LOG.debug("Posting comment from logged in user.")
 		author = @user
 	else
-		LOG.debug("Posting comment from guest user.")
+		# LOG.debug("Posting comment from guest user.")
 		# If we are posting anonymously, try and find user by name and email..
 		author = User.first(:name => request[:posted_by])
 		
 		if author
 			unless @author.guest? and @author.email == request[:email]
-				LOG.debug("User name is not guest (#{author.access}), or email is not correct (#{author.email} != #{request[:email]}).")
+				# LOG.debug("User name is not guest (#{author.access}), or email is not correct (#{author.email} != #{request[:email]}).")
 				fail! :unauthorized
 			end
 		else
-			LOG.debug("Creating new user for #{request[:posted_by]}")
+			# LOG.debug("Creating new user for #{request[:posted_by]}")
 			author = User.new
 		end
 	end
@@ -99,7 +99,7 @@ on '**/comments/create' do |request, path|
 
 	# Security - can't log in as admin this way, under any circumstance.
 	unless author.admin? || request.session['user'] != nil
-		LOG.debug("Logging user #{user.name} [#{user.id}] in.")
+		# LOG.debug("Logging user #{user.name} [#{user.id}] in.")
 		request.session['user'] = author.id
 		@user = author
 	end
@@ -111,10 +111,10 @@ on '**/comments/create' do |request, path|
 	comment.posted_on = DateTime.now
 	
 	if user.admin?
-		LOG.debug("Comment is visible, because user was admin.")
+		# LOG.debug("Comment is visible, because user was admin.")
 		comment.visible = true
 	else
-		LOG.debug("Comment is awaiting moderation.")
+		# LOG.debug("Comment is awaiting moderation.")
 		comment.visible = false
 	end
 
@@ -131,7 +131,7 @@ on '**/comments/create' do |request, path|
 		
 		notification.deliver!
 	rescue
-		LOG.error("Could not send notification: #{$!.inspect}")
+		# LOG.error("Could not send notification: #{$!.inspect}")
 	end
 	
 	succeed! content: comment.to_json(:only => [:id]), type: "application/json"
@@ -188,7 +188,7 @@ on '**/login' do |request, path|
 		
 		redirect! request.referer
 	else
-		LOG.debug("User #{name} (#{password.inspect} / #{password_hash.inspect}) was not logged in.")
+		# LOG.debug("User #{name} (#{password.inspect} / #{password_hash.inspect}) was not logged in.")
 		
 		fail! :unauthorized
 	end

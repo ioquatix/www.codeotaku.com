@@ -13,3 +13,6 @@
 [submodule "materials/chorus"]
 	path = materials/chorus
 	url = https://github.com/ioquatix/chorus.git
+[submodule "lib/components/jquery-syntax"]
+	path = lib/components/jquery-syntax
+	url = https://github.com/ioquatix/jquery-syntax.git

@@ -1,9 +1,4 @@
 <content:page>
-	<script src="/_static/tipsy/src/javascripts/jquery.tipsy.js" type="text/javascript"></script>
-	<link rel="stylesheet" href="/_static/tipsy/src/stylesheets/tipsy.css" type="text/css" media="screen" />
-	
-	<script src="jquery.drag-scrollable.js" type="text/javascript"></script>
-	
 	<link rel="stylesheet" href="heatmap.css" type="text/css" media="screen" />
 	<script src="heatmap.js" type="text/javascript"></script>
 	

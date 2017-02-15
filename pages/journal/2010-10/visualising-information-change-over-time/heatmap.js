@@ -32,18 +32,18 @@ jQuery(function(){
 			});
 		});
 	});
-	
-	tipsy_options = {
-		gravity: function() {
-			return $(this).offset().left > ($(document).scrollLeft() + $(window).width() / 2) ? 'ne' : 'nw';
-	    },
-		delayIn: 100,
-	};
-	
-	$('a.temperature', this).tipsy(tipsy_options);
-	$('a.date', this).tipsy(tipsy_options);
-	
-	$('.data', this).dragscrollable({
-		dragSelector: '>*'
-	});
+	// 
+	// tipsy_options = {
+	// 	gravity: function() {
+	// 		return $(this).offset().left > ($(document).scrollLeft() + $(window).width() / 2) ? 'ne' : 'nw';
+	//     },
+	// 	delayIn: 100,
+	// };
+	// 
+	// $('a.temperature', this).tipsy(tipsy_options);
+	// $('a.date', this).tipsy(tipsy_options);
+	// 
+	// $('.data', this).dragscrollable({
+	// 	dragSelector: '>*'
+	// });
 });

@@ -9,7 +9,7 @@
 	if node_name
 		comments_path = current.node.uri_path.dirname + 'comments'
 ?>
-<div class="xframe" src="#{ comments_path.to_s}?node=#{node_name}">
+<div class="xframe" src="#{comments_path.to_s}?node=#{node_name}">
 	<div id="comments">
 		<content:login />
 	

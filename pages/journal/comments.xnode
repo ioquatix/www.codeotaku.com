@@ -9,7 +9,7 @@
 	if node_name
 		comments_path = current.node.uri_path.dirname + 'comments'
 ?>
-<div class="xframe" src="#{comments_path.to_s}?node=#{node_name}">
+<div class="xframe" data-xframe-source="#{comments_path.to_s}?node=#{node_name}">
 	<div id="comments">
 		<content:login />
 	
@@ -47,7 +47,7 @@
 					<dt><label for="name">* Your Name:</label></dt>
 					<dd>
 						<?r if controller[:user] ?>
-						<input type="text" name="posted_by" value="#{ controller[:user].name}" />
+						<input type="text" name="posted_by" value="#{controller[:user].name}" />
 						<?r else ?>
 						<input type="text" name="posted_by" />
 						<?r end ?>
@@ -68,7 +68,7 @@
 					</dt>
 					<dd>
 						<?r if controller[:user] ?>
-						<input type="text" name="email" value="#{ controller[:user].email}" />
+						<input type="text" name="email" value="#{controller[:user].email}" />
 						<?r else ?>
 						<input type="text" name="email" value="" />
 						<?r end ?>

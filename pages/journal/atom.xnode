@@ -27,13 +27,13 @@
 		<?r links(link.path.dirname, :sort => :created).each do |entry| ?>
 		<?r latest = entry[:created] if !latest || entry[:created] > latest ?>
 		<atom:entry>
-			<atom:id>#{ entry.href}</atom:id>
-			<atom:title>#{ entry.title}</atom:title>
+			<atom:id>#{entry.href}</atom:id>
+			<atom:title>#{entry.title}</atom:title>
 			<atom:updated>#{entry[:created].strftime('%F')}</atom:updated>
-			<atom:link href="#{ entry.href}" />
+			<atom:link href="#{entry.href}" />
 
 			<?r if entry[:summary] ?>
-			<atom:summary>#{ entry[:summary]}</atom:summary>
+			<atom:summary>#{entry[:summary]}</atom:summary>
 			<?r end ?>
 		</atom:entry>
 		<?r end ?>

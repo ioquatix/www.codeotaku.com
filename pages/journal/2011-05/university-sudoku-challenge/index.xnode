@@ -32,11 +32,11 @@
 		<tbody>
 			<?r scores.each do |score| ?>
 			<tr>
-				<td>#{ score['name']}</td>
-				<td style="text-align: right">#{ sprintf('%0.4f', score['easy'])}s</td>
-				<td style="text-align: right">#{ sprintf('%0.4f', score['medium'])}s</td>
-				<td style="text-align: right">#{ sprintf('%0.4f', score['hard'])}s</td>
-				<td style="text-align: right">#{ sprintf('%0.4f', score['total'])}s</td>
+				<td>#{score['name']}</td>
+				<td style="text-align: right">#{sprintf('%0.4f', score['easy'])}s</td>
+				<td style="text-align: right">#{sprintf('%0.4f', score['medium'])}s</td>
+				<td style="text-align: right">#{sprintf('%0.4f', score['hard'])}s</td>
+				<td style="text-align: right">#{sprintf('%0.4f', score['total'])}s</td>
 			</tr>
 			<?r end ?>
 		</tbody>

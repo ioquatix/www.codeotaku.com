@@ -130,7 +130,7 @@ $(function() {
 		
 		// document.location.href
 		$.post("comments/create", submission, function(comment) {
-			//var commentHTML = $('<div class="xframe" src="/blog/comment?id=' + comment.id + '" />');
+			//var commentHTML = $('<div class="xframe" data-xframe-source="/blog/comment?id=' + comment.id + '" />');
 			//commentHTML.insertBefore(commentsForm);
 			//commentHTML.xreload();
 			commentsForm.xreload();

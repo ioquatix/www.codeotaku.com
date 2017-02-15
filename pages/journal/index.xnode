@@ -2,7 +2,7 @@
 	<content:heading>Samuel's Journal</content:heading>
 	
 	<dl class="options">
-	<?r links("./", :sort => :title, :files => false, :virtuals => false).reverse_each do |link| ?>
+	<?r links(:sort => :title, :files => false, :virtuals => false).reverse_each do |link| ?>
 		<dt>#{Date.parse(link.name + "-1").strftime("%B %Y")}</dt>
 		<dd>
 		<?r links(link.path.dirname, :sort => :created).each do |entry| ?>

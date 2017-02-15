@@ -48,7 +48,7 @@ end
 		<utopia:content/>
 		<br/>
 				
-		<content:comments node="#{ parent.node.uri_path.to_s}" />
+		<content:comments node="#{parent.node.uri_path}" />
 	</div>
 	
 	<div class="navigation noindex">

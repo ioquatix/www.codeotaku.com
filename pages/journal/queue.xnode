@@ -3,7 +3,7 @@
 	
 	<ul>
 	<?r controller[:comments].each do |comment| ?>
-		<li><a href="#{ comment.node}">#{ comment.node} from #{ comment.user.name}</a></li>
+		<li><a href="#{comment.node}">#{comment.node} from #{comment.user.name}</a></li>
 	<?r end ?>
 	</ul>
 </content:page>

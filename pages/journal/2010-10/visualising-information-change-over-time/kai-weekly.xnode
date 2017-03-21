@@ -1,5 +1,5 @@
 <heatmap>
-	<heading>Heat Map : Kai Weekly</heading>
+	<content:heading>Heat Map : Kai Weekly</content:heading>
 	
 	<table class="heatmap-summary">
 		<thead>

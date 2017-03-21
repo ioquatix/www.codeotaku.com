@@ -1,0 +1,69 @@
+<content:contents-page title="LSync Documentation">
+	<content:heading>Server Backup</content:heading>
+	
+	<p>This guide explains how to use LSync to push data from a server to a remote backup destination. Here is an overview:</p>
+	
+	<div class="gallery">
+		<img src="overview.png" />
+	</div>
+	
+	<h2>Step 1: Server Setup</h2>
+	
+	<p>We need to make sure the backup source and destinations have all the right software installed, and we also need to create a user on the backup server which will be used for ssh access. These installation instructions should work for Debian/Ubuntu Linux; you may need to use a different package manager on other platforms.</p>
+	
+	<content:listing src="install.txt" brush="bash" />
+	
+	<h2>Step 2: Enable SSH Access</h2>
+	
+	<p>On the source server (s1.example.com) we need to enable password-less SSH login to the backup server (backups.example.com):</p>
+	
+	<content:listing src="ssh-setup.txt" brush="bash" />
+	
+	<p>You can test this by checking whether you can log into <code class="syntax">backup@backups.example.com</code> without having to enter in a password. Make sure you run this test as root, as this is the account on the source server which has the appropriate keys:</p>
+	
+	<content:listing src="ssh-test.txt" brush="bash" />
+	
+	<h2>Step 3: Setting up the backup script</h2>
+	
+	<p>Firstly, we need to setup a directory for the backup scripts.</p>
+	
+	<content:listing src="backup-scripts.txt" brush="bash" />
+	
+	<p>Then, create the following file named <code class="syntax">/etc/lsync/server-backup.rb</code>. You will need to update references to the various hostnames to suit your exact requirements:</p>
+	
+	<content:listing src="backup-script-example.txt" brush="ruby" />
+	
+	<h2>Step 4: Testing the backup</h2>
+	
+	<p>You can now test the backup to ensure that it is setup correctly.</p>
+	
+	<content:listing src="lsync-test.txt" brush="bash" />
+	
+	<h2>Step 5: Adding MySQL backup</h2>
+	
+	<p>It is generally not advisable to backup the working files of a database server while it is in operation. This is because the database files are constantly in use, and while the database server is running these files may not be in a consistent state. Thus, it is a good policy to dump data to a known plain text format for backup purposes.</p>
+	
+	<p>Firstly, we need to create an account for dumping the data. You will need to log into MySQL with an account that can create users and grant permissions. Select an appropriate <tt>$password</tt>:</p>
+	
+	<content:listing src="mysql-user.txt" brush="sql" />
+	
+	<p>Once this is done, we need to update the <code class="syntax">/etc/lsync/server-backup.rb</code> backup script:</p>
+	
+	<content:listing src="mysql-lsync-script.txt" brush="ruby" />
+	
+	<p>The <code class="syntax ruby">:prepare</code> event for a server specifies scripts that run before the backup is executed, on either the master or target server. This means that when we run the backup, a copy of the database will be dumped into <code class="syntax">/var/backups</code>, and this will be copied as part of the regular data backup.</p>
+	
+	<p>Note, if you are adding sensitive information (in this case, a password for MySQL) to the configuration file, you may want to restrict access to the file. In this case, you should execute <code class="syntax bash">$ chmod go= /etc/cron.daily/lsync-backup</code>, and make sure the file is owned by root (or another similar secure account).</p>
+	
+	<h2>Step 6: Integrating with cron</h2>
+	
+	<p>To ensure the backup is running automatically, you can add it into cron. This is fairly simple, simply create a file called <code class="syntax">/etc/cron.daily/lsync-backup</code>:</p>
+	
+	<content:listing src="lsync-cron.txt" brush="ruby" />
+	
+	<p>Don't forget to <code class="syntax bash">$ chmod +x /etc/cron.daily/lsync-backup</code>. Depending on your requirements, you might add this as an hourly job rather than a daily job.</p>
+	
+	<h2>Conclusion</h2>
+	
+	<p>This guide is a simple outline to incrementally backup a server. The basic configuration supplied will prune older backups according to the default policy (see the prune command for more details). This configuration can easily be expanded to backup the data to multiple endpoints, as required, simply by adding additional server clauses.</p>
+</content:contents-page>

@@ -1,5 +1,5 @@
-<page>
-    <heading>Scared By The Waves</heading>
+<content:page>
+    <content:heading>Scared By The Waves</content:heading>
     
     <p>Clarity of the mind; takes time.</p>
     
@@ -10,4 +10,4 @@
     <p>To move beyond this mindset, we can truly become clear of mind and vision. Life is too short to dwell on those things which are not possible. Yet, one can stand in the rain and not get wet. My desire is to stand in the rain until I no longer exist.</p>
     
 	<download file="02 Scared By The Waves.ogg" />
-</page>
+</content:page>

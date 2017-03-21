@@ -1,4 +1,4 @@
-<entry>
+<content:entry>
 	<p>Sudoku is an interesting problem because ultimately it has a mechanical solution, and yet finding this solution still presents an difficult challenge. One way to solve the problem is to systematically generate all possible permutations and discard those that violate the rules. You can do this one row at a time, and if you finally fill in all the rows, you've found a valid solution.</p>
 	
 	<p>However, this method, brute force, can be slow. There are a variety of optimisations you can apply to the above problem to improve the efficiency:</p>
@@ -12,5 +12,5 @@
 	
 	<p>There are many more optimisations, but here is my efficient implementation which does all of the above and <a href="graph-125.pdf">more</a>.</p>
 	
-	<listing src="main.cpp.txt" brush="cpp" />
-</entry>
+	<content:listing src="main.cpp.txt" brush="cpp" />
+</content:entry>

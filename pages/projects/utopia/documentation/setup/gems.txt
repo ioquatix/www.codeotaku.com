@@ -1,1 +1,0 @@
-$ sudo %%function{gem} %%option{install} utopia thin

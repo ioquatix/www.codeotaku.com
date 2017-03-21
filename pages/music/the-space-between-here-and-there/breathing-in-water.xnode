@@ -1,5 +1,5 @@
-<page>
-	<heading>Breathing Water</heading>
+<content:page>
+	<content:heading>Breathing Water</content:heading>
 
 	<p>...Below and above are black. The sky is cut down the middle by a knife, like a zip undoing, demonic animals spew forth across the world...</p>
 
@@ -12,4 +12,4 @@
 	<p>... the mind is free ...</p>
 
 	<download file="04 Breathing In Water.ogg" />
-</page>
+</content:page>

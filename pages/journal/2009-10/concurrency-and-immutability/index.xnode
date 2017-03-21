@@ -1,4 +1,4 @@
-<entry>
+<content:entry>
 	<p>I recently found this great talk by Rich Hickey (the developer of <a href="http://clojure.org/">Clojure</a>):</p>
 
 	<p>http://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey</p>
@@ -9,7 +9,7 @@
 
 	<p>The concept that <a href="http://c2.com/cgi/wiki?ValueObjectsShouldBeImmutable">everything is an immutable value</a> also intrigues me. We can implement this approach in C++ for example:</p>
 
-	<listing src="immutable_cpp.txt" brush="clang" />
+	<content:listing src="immutable_cpp.txt" brush="clang" />
 
 	<p>We can achieve some of the same semantics proposed by Rich Hickey. The  important idea is that ''p'' is never in an inconsistent state, even if accessed from multiple threads.</p>
 
@@ -22,4 +22,4 @@
 	<p>One language which I find particularly interesting is <a href="http://www.iolanguage.com">IO</a>, which supports <a href="http://iolanguage.com/scm/git/checkout/Io/docs/IoGuide.html#Concurrency">actor-based concurrency and coroutines</a>. It has first-class support for ''futures'' and asynchronous message sending, which I think is a very interesting concept.</p>
 
 	<p><a href="http://wiki.reia-lang.org/wiki/Reia_Programming_Language">Reia</a> is another interesting language with a focus on immutability and concurrency. It compiles into <a href="http://www.erlang.org/">Erlang</a> abstract format. It has a syntax very similar to ruby, but in many ways more consistent and concise.</p>
-</entry>
+</content:entry>

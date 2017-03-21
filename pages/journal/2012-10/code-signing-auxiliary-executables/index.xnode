@@ -1,4 +1,4 @@
-<entry>
+<content:entry>
 	<p>I recently updated one of my projects <a href="http://www.oriontransfer.co.nz/software/library-inspector">Library Inspector</a> for OS X 10.8. After a month of waiting, it was finally rejected (!#@$%!@) due to problems with the code signing entitlements. The Apple Reviewer was very vague about the problem which caused additional frustrations (%!@#$%) but after searching I found a very helpful application <a href="http://brockerhoff.net/RB/AppCheckerLite/">RB App Checker Lite</a> which can check the certificates, entitlements and other details of your application likely to cause problems.</p>
 	
 	<p>I actally emailed Rainer Brockerhoff since I figured he'd have a lot of experience (and I gave him a free copy of Library Inspector to sweeten the deal). He told me that for <code class="syntax objective-c">NSTask</code> based task invocation I'd need to encode the entitlements directly into the binaries, which I wasn't doing.</p>
@@ -11,13 +11,13 @@
 	
 	<p>This is the main entitlements file for Library Inspector.</p>
 	
-	<listing src="Library Inspector.entitlements" brush="xml" />
+	<content:listing src="Library Inspector.entitlements" brush="xml" />
 	
 	<h2>Auxiliary Executable Entitlements</h2>
 	
 	<p>This is the entitlements used for the auxiliary binaries.</p>
 	
-	<listing src="Auxiliary Executable.entitlements" brush="xml" />
+	<content:listing src="Auxiliary Executable.entitlements" brush="xml" />
 	
 	<p>Of particular importance is the <code class="syntax">com.apple.security.inherit</code> property. When Library Inspector, itself running in a sandbox due to <code class="syntax">com.apple.security.app-sandbox</code> invokes tasks using <code class="syntax objective-c">NSTask</code>, it will itself run in a sandbox and inherit the permissions of Library Inspector so it can read any relevant input files (normally provided as arguments).</p>
 	
@@ -25,7 +25,7 @@
 	
 	<p>This Ruby script is used as a build phase within Library Inspector and signs the auxiliary executables if a signature was specified. For your own application you'd need to update the list of tools and the identifier base.</p>
 	
-	<listing src="codesign.txt" brush="ruby" />
+	<content:listing src="codesign.txt" brush="ruby" />
 	
 	<p>Now I just have to submit the application and wait for a month for Apple to review it... Fingers crossed that everything is fine this time through the system.</p>
 	
@@ -33,7 +33,7 @@
 	
 	<p>I found that there are some issues when the above approach is used with Quicklook Plugins. I found that my external processes were crashing with the following type of error:</p>
 	
-	<listing src="nm-crash.txt"/>
+	<content:listing src="nm-crash.txt"/>
 	
 	<p>I narrowed it down to the entitlements. It turns out that the Quicklook Plugin Host doesn't seem to run in a typical sandbox (as far as I can tell), and thus trying to use the inherit entitlement doesn't work. Simply removing the entitlements file arguments (<code class="syntax ruby">'--entitlements', entitlements</code>) from the above code signing script fixes the issue. This works because the executable no longer tries to inherit sandbox permissions from the parent, but I'm not exactly sure why this is an issue. It seems like this is only affects Mac OS X 10.8.2+ but I haven't had a lot of experience with this problem yet.</p>
-</entry>
+</content:entry>

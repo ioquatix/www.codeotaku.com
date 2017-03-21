@@ -1,4 +1,4 @@
-<entry>
+<content:entry>
 	<p>Mathematics can sometimes be a bit daunting, and one thing I've always found a bit difficult is matrix mathematics. So, I am writing down some notes regarding this particular subject, and the implementation of said subject in C/C++.</p>
 	
 	<h2>Mathematical Notation</h2>
@@ -26,7 +26,7 @@
 	
 	<p>In C we also have multi-dimensional arrays to assist with accessing data. These are per the C specification laid out in memory in sequential arrays the size of the last dimension. For example:</p>
 	
-	<listing src="multidimensional_arrays.txt" lang="clang" />
+	<content:listing src="multidimensional_arrays.txt" lang="clang" />
 	
 	<p>What this is saying is "2 arrays of 4 float values". And that is the way they are arranged in memory also:</p>
 	
@@ -71,7 +71,7 @@
 	
 	<p>The function for row and column major order are not complex:</p>
 	
-	<listing src="major_order_functions.txt" lang="clang" />
+	<content:listing src="major_order_functions.txt" lang="clang" />
 	
 	<p>It is important you understand the following are equivalent terms:</p>
 	
@@ -86,7 +86,7 @@
 	
 	<p>Here we can use the rowMajorLookup function which is equivalent to the standard C array indexing:</p>
 	
-	<listing src="row_major_lookup.txt" lang="clang" />
+	<content:listing src="row_major_lookup.txt" lang="clang" />
 	
 	<p>So, we know the standard mathematical representation of a matrix, and we know how they can be represented in memory, but where does that leave us? Right, we need to make some concrete implementation so we can really see how it all comes together.</p>
 	
@@ -127,13 +127,13 @@
 	
 	<p>As you can see, it is as simple as swapping (the technical term is transpose) around the dimensions for the array declaration. We can design a simple template class which will handle just about anything we can throw at it.</p>
 	
-	<listing src="matrix_implementation.txt" lang="clang" />
+	<content:listing src="matrix_implementation.txt" lang="clang" />
 	
 	<p>The code is available as an <a href="matrices.zip">Xcode project</a>.</p>
 	
 	<p>Here is the result after running this code</p>
 	
-	<listing src="results.txt" />
+	<content:listing src="results.txt" />
 	
 	<p>As you can see, it doesn't matter how we store the data in memory (depending on what you are doing, it may be more or less convenient to use either way), we can still retrieve the data in standard mathematical form.</p>
 	
@@ -144,4 +144,4 @@
 	<p>It is also worthwhile to point out, that at least in my case, it was confusing to think of matrices having "width" and "height". In order to consider a matrix with width and height, we actually need to rotate the matrix to get a co-ordinate system that makes sense, i.e. x, y in the origin.</p>
 
 	<p>I personally find the transpose functions fascinating. For example, simply by reinterpreting the data from row major to column major we can transpose the data.</p>
-</entry>
+</content:entry>

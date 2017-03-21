@@ -1,5 +1,5 @@
-<contents-page title="Fingerprint Documentation">
-	<heading>Backup Integrity</heading>
+<content:contents-page title="Fingerprint Documentation">
+	<content:heading>Backup Integrity</content:heading>
 	
 	<p>Data backup is typically an important part of any storage system. However, without end-to-end verification of backup data, it may not be possible to ensure that a backup system is working correctly. In the event that a failure occurs, data recovery may not be possible despite the existence of a backup, if that data has not been backed up reliably or correctly.</p>
 	
@@ -13,13 +13,13 @@
 	
 	<p>To ensure that data has been backed up correctly, use Fingerprint to analyse the data before it is backed up.</p>
 	
-	<listing src="before.txt" brush="bash" />
+	<content:listing src="before.txt" brush="bash" />
 	
 	<p>After the data has been copied to the remote backup device, restore the data to a temporary location and use fingerprint to verify the data. The exact procedure will depend on your backup system, e.g. if you use a tape you may need to restore from the tape to local storage first.</p>
 	
-	<listing src="after.txt" brush="bash" />
+	<content:listing src="after.txt" brush="bash" />
 	
 	<h2>Preserving Backups</h2>
 	
 	<p>If your primary concern is ensuring that backup data is consistent over time (e.g. files are not modified or damaged), Fingerprint can be used directly on the backup data to check for corruption. After the data has been backed up successfully, simply analyse the data as above, but on the backup server. Once this is done, at any point in the future you can verify the correctness of the backup set.</p>
-</contents-page>
+</content:contents-page>

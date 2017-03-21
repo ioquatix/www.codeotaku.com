@@ -1,15 +1,15 @@
-<contents-page title="RubyDNS Documentation">
-	<heading>Basic DNS Server</heading>
+<content:contents-page title="RubyDNS Documentation">
+	<content:heading>Basic DNS Server</content:heading>
 	
 	<p>RubyDNS can be used as a flexible DNS server, either processing requests directly or passing them upstream. Here is an example of a very basic server:</p>
 	
-	<listing src="example.txt" brush="ruby" />
+	<content:listing src="example.txt" brush="ruby" />
 	
 	<p>If you run this program, you can use <code>dig</code> to see the result of the manipulation:</p>
 	
-	<listing src="dig.txt" brush="bash" />
+	<content:listing src="dig.txt" brush="bash" />
 	
 	<p>Here is the output from the server running in debug mode:</p>
 	
-	<listing src="server-log.txt" brush="bash" />
-</contents-page>
+	<content:listing src="server-log.txt" brush="bash" />
+</content:contents-page>

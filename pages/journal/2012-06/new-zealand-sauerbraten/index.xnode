@@ -1,4 +1,4 @@
-<entry>
+<content:entry>
 	<p>My company <a href="http://www.oriontransfer.co.nz">Orion Transfer</a> proudly sponsors the New Zealand Sauerbraten server. This server offers low latency gaming for New Zealanders.</p>
 
 	<status />
@@ -10,4 +10,4 @@
 	<p>In addition to online gameplay, Sauerbraten supports collaborative online map building. This allows designers to test modifications in real time and see the results on playability immediately, and it can be a lot of fun to build a map as part of a team.</p>
 	
 	<p>For more details about Sauerbraten, please see the <a href="http://sauerbraten.org/">official Sauerbraten website</a>. The game is available for free for Linux, Mac and Windows. The server will show up in the normal Sauerbraten server browser with the name "New Zealand Sauerbraten".</p>
-</entry>
+</content:entry>

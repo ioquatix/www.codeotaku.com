@@ -8,6 +8,8 @@ require 'json'
 
 require 'promise'
 
+LOG = Logger.new($stderr)
+
 on 'queue' do |request, path|
 	fail! unless @user.admin?
 

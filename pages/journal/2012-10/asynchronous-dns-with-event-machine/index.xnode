@@ -1,7 +1,7 @@
-<entry>
+<content:entry>
 	<p>DNS resolution in a typical application is a blocking operation. This is especially problematic if your program is event driven as you can cause the run loop to stall while waiting for a response. <a href="/projects/rubydns">RubyDNS</a> provides a fully featured asynchronous DNS resolver built on top of <a href="http://rubyeventmachine.com">EventMachine</a>, and can be used to minimise the latency of name resolution in your program.</p>
 	
-	<listing src="rubydns.txt" brush="ruby" />
+	<content:listing src="rubydns.txt" brush="ruby" />
 	
 	<p>In your own code you'd probably want to use the new <code class="syntax ruby">resolver.addresses_for</code> method which helpfully returns a list of addresses.</p>
 	
@@ -23,7 +23,7 @@
 	
 	<p>Given a request, which consists of one or more DNS questions, our resolver firstly checks whether UDP is a suitable transport. DNS packets are typically routed over UDP but if the packet is too big it should use TCP:</p>
 	
-	<listing brush="ruby"><![CDATA[
+	<content:listing brush="ruby"><![CDATA[
 # `message` is the outgoing DNS request. `servers` is an array of potential
 # upstream servers who might be able to provide an answer.
 def initialize(message, servers, options = {}, &block)
@@ -42,11 +42,11 @@ def initialize(message, servers, options = {}, &block)
 				
 	@logger = options[:logger]
 end
-	]]></listing>
+	]]></content:listing>
 	
 	<p>With this list of candidates, we connect to each one and send the request. In all failure cases, we try the next server if one is available, otherwise if no servers have been successful we signal a resolution failure:</p>
 
-	<listing brush="ruby"><![CDATA[
+	<content:listing brush="ruby"><![CDATA[
 def try_next_server!
 	if @request
 		@request.close_connection
@@ -76,11 +76,11 @@ def try_next_server!
 		fail ResolutionFailure.new("No available servers responded to the request.")
 	end
 end
-	]]></listing>
+	]]></content:listing>
 	
 	<p>We then wait until EventMachine tells us one of two things: some response was received or there was a timeout. If we receive a response, as long as it wasn't truncated, we are successful:</p>
 	
-	<listing brush="ruby"><![CDATA[
+	<content:listing brush="ruby"><![CDATA[
 def process_response!(response)
 	if response.tc != 0
 		# We hardcode this behaviour for now.
@@ -89,7 +89,7 @@ def process_response!(response)
 		succeed response
 	end
 end
-	]]></listing>
+	]]></content:listing>
 	
 	<p>In practice, we use <code class="syntax ruby">EventMachine::Deferrable</code> to handle this signalling. Using deferrables ultiamtely led to concise and reliable code and I was very happy with the results. I'd recommend taking a look at the <a href="https://github.com/ioquatix/rubydns/blob/master/lib/rubydns/resolver.rb">full source code</a>.</p>
-</entry>
+</content:entry>

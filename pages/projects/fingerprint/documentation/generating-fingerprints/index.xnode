@@ -1,21 +1,21 @@
-<contents-page title="Fingerprint Documentation">
-	<heading>Generating Fingerprints</heading>
+<content:contents-page title="Fingerprint Documentation">
+	<content:heading>Generating Fingerprints</content:heading>
 	
 	<p>Fingerprint is designed to index directories. With no arguments, it will index the current directory, or the specified directory if given:</p>
 	
-	<listing src="current-directory.txt" brush="bash" />
+	<content:listing src="current-directory.txt" brush="bash" />
 	
 	<h2>Extended Information</h2>
 	
 	<p>Fingerprint can include extended information which can be useful for monitoring sensitive files:</p>
 	
-	<listing src="extended.txt" brush="bash" />
+	<content:listing src="extended.txt" brush="bash" />
 	
 	<h2>Specifying Checksums</h2>
 	
 	<p>Fingerprint can use specific checksum algorithms, including MD5, SHA1 and SHA2:</p>
 	
-	<listing src="checksums.txt" brush="bash" />
+	<content:listing src="checksums.txt" brush="bash" />
 	
 	<p>Using different checksums allows increased security at the cost of processing power, in the following order from weak to strong: MD5, SHA1, SHA2.256, SHA2.512. Using multiple checksums can assist when migrating from a weaker checksum to a stronger checksum, so that old fingerprints can be verified which only support a weaker checksum.</p>
 	
@@ -23,7 +23,7 @@
 	
 	<p>When fingerprinting large amounts of data, it can be reassuring to watch the progress of the command:</p>
 	
-	<listing src="progress.txt" brush="bash" />
+	<content:listing src="progress.txt" brush="bash" />
 	
 	<p>Progress information is printed to $stderr, as denoted by the red colour above.</p>
-</contents-page>
+</content:contents-page>

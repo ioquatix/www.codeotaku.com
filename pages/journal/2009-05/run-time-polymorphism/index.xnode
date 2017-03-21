@@ -1,4 +1,4 @@
-<entry>
+<content:entry>
 	<p>Runtime polymorphism is typically the usage of function pointers to provide an implementation for functionality that is not known at compile time. It is also often used to simplify the structure of a program, by using common interfaces to expose specific functionality.</p>
 
 	<p>There are a number of purposes for runtime polymorphism:</p>
@@ -19,7 +19,7 @@
 	
 	<p>The function body we are calling is identical in all cases, and looks like this:</p>
 	
-	<listing src="basic_benchmark.txt" brush="clang" />
+	<content:listing src="basic_benchmark.txt" brush="clang" />
 	
 	<p>Here is a table of the results. Non-dynamic C function dispatch was used as the baseline. The bigger the percentage, the slower it is.</p>
 	
@@ -46,11 +46,11 @@
 
 	<p>Here is the code before it is inlined (<code>-O0</code> to <code>-O2</code>):</p>
 	
-	<listing src="c_before_inline.txt" lang="asm" />
+	<content:listing src="c_before_inline.txt" lang="asm" />
 	
 	<p>Here is the code after it is inlined (<code>-O3</code> and <code>-Os</code>):</p>
 	
-	<listing src="c_after_inline.txt" lang="asm" />
+	<content:listing src="c_after_inline.txt" lang="asm" />
 	
 	<p>I think the funny thing about this is that the compiler did inline the function, but failed to reduce the loop to a simple addition - e.g. rather than adding 1 several thousand times, why not just add several thousand one time. I've seen GCC do this optimization before, so I'm not sure why it isn't doing it here.</p>
 	
@@ -62,7 +62,7 @@
 
 	<p>Here is the code generated for <code>-O0</code>:</p>
 	
-	<listing src="c_pointer_dispatch.txt" lang="asm" />
+	<content:listing src="c_pointer_dispatch.txt" lang="asm" />
 	
 	<p>The interesting thing about this method of dispatch, is that it it is the most basic kind of dynamic dispatch, and it can't be optimized very much, the improvement between <code>-O0</code> and <code>-O3</code> is minimal. It also has a clear relationship to C++ dynamic dispatch in terms of performance cost and the ability for the compiler to provide optimizations.</p>
 	
@@ -78,7 +78,7 @@
 
 	<p>Here is the code for virtual dispatch at <code>-O0</code>:</p>
 	
-	<listing src="virtual_dispatch.txt" lang="asm" />
+	<content:listing src="virtual_dispatch.txt" lang="asm" />
 	
 	<h2>Objective-C Dispatch</h2>
 	
@@ -98,11 +98,11 @@
 
 	<p>Here is the code for Objective-C dispatch at <code>-O0</code>:</p>
 	
-	<listing src="objective_c_dispatch.txt" lang="asm" />
+	<content:listing src="objective_c_dispatch.txt" lang="asm" />
 	
 	<h2>Conclusion</h2>
 	
 	<p>There are many options available to programmers to design robust and efficient programs. It is important to learn where to use dynamic dispatch, especially in performance critical code paths. There is a lot of good advice out there in books and on the internet, and it is worthwhile taking the time to benchmark your program. Although from the benchmarks the performance cost may appear minimal, if you are dealing with thousands of objects, these small costs can really add up.</p>
 	
 	<p>The topic of dynamic dispatch and inter-procedural optimisation is a big one and ever increasing in scope. One interesting area of research is the Java HotSpot compiler, which from what I've read, can provide optimistic optimisation of dynamic dispatch. Even thought this option is available in terms of improving speed, it is fairly complex in terms of implementation, and is not going to give completely consistent results.</p>
-</entry>
+</content:entry>

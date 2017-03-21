@@ -1,15 +1,15 @@
-<entry>
+<content:entry>
 	<p>In a comment form, you might want to send the data using AJAX to get a preview. In this case, you generally want to aggregate the events so that you only fetch a new preview when the user stops typing or a certain timeout is reached.</p>
 	
 	<p>Here is some JavaScript code for implementing this kind of behaviour.</p>
 	
-	<listing src="aggregate-callback.txt" brush="javascript" />
+	<content:listing src="aggregate-callback.txt" brush="javascript" />
 	
 	<p>Here is an example of how to use it:</p>
 	
-	<listing src="example.txt" brush="javascript" />
+	<content:listing src="example.txt" brush="javascript" />
 	
 	<p>Here is an explanation of how it works: You create an AggregateCallback with a <em>timeout</em> value (in milliseconds). You call update a number of times. If you <strong>don't</strong> call update within the <em>timeout</em>, the callback is fired.</p>
 	
 	<p>If you set enforce to true, the callback will be fired every <em>timeout</em> milliseconds, and also finally <em>timeout</em> milliseconds after the last call to update. This means that, in the case of a live preview, the server will be polled once every second even while the user is continuing to type.</p>
-</entry>
+</content:entry>

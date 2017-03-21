@@ -1,4 +1,4 @@
-<entry>
+<content:entry>
 	<p>I recently implemented some cross-domain AJAX using jQuery. I wanted to <code>POST</code> data using JavaScript's <code class="syntax javascript">XMLHttpRequest</code> to another site, and this required the use of the new <code>HTTP</code> access control headers<reference>1</reference>.</p>
 	
 	<p>You can try out the functionality on the new site <a href="http://www.litepanels.co.nz">litepanels.co.nz</a> - simply click the "Contact Us" link in the footer and send us message. That form <code>POST</code>s data to <a href="http://www.lucidsystems.co.nz/company/contact-us">http://www.lucidsystems.co.nz/company/contact-us/send</a> which is responsible for actually sending us a message.</p>
@@ -9,23 +9,23 @@
 	
 	<p>Here is an example of how to respond to the <code>HTTP</code> options method using the <a href="/projects/utopia">Utopia</a> framework:</p>
 	
-	<listing src="request-options.txt" brush="ruby" />
+	<content:listing src="request-options.txt" brush="ruby" />
 	
 	<p>You can check this using <code class="syntax bash-script">curl -i -X OPTIONS $URI</code>:</p>
 	
-	<listing src="curl.txt" brush="bash" />
+	<content:listing src="curl.txt" brush="bash" />
 	
 	<p>One problem I encountered when executing <code class="syntax javascript">XMLHttpRequest</code>s was the fact that they process <code>3xx</code> redirections transparently. So, if you return a <code>3xx</code> redirect, it won't actually return this status code to your handler, but instead process the redirection<reference>3</reference>. For cross-domain requests, this can be a big problem unless you correctly specify OPTIONS for the redirected page too. Therefore, it is wise to ensure that controllers that process <code class="syntax javascript">XMLHttpRequest</code>s return <code>2xx</code> or <code>4xx</code> status codes.</p>
 	
 	<p>It is also important that controllers return the access control headers.</p>
 	
-	<listing src="response.txt" brush="ruby" />
+	<content:listing src="response.txt" brush="ruby" />
 	
 	<h2>Client-side implementation</h2>
 	
 	<p>On the <a href="http://www.litepanels.co.nz">litepanels.co.nz</a>, I use <code>JavaScript</code> and <code>jQuery</code> to serialize the contact form and send this data to <a href="http://www.lucidsystems.co.nz/company/contact-us">http://www.lucidsystems.co.nz/company/contact-us/send</a>:</p>
 	
-	<listing src="ajax.txt" brush="javascript" />
+	<content:listing src="ajax.txt" brush="javascript" />
 	
 	<p><code>jQuery</code> by default doesn't set <code class="syntax plain">X-Requested-With</code> for cross-domain requests, so you need to do this manually.</p>
 	
@@ -38,4 +38,4 @@
 		<li><a href="../../2009-10/secure-login-using-ajax">Secure login using AJAX</a></li>
 		<li><a href="../2011-08/rack-memory-usage">Rack Memory Usage</a></li>
 	</references>
-</entry>
+</content:entry>

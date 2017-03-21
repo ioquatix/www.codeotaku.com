@@ -1,5 +1,5 @@
-<page>
-	<heading>Music</heading>
+<content:page>
+	<content:heading>Music</content:heading>
 	
 	<p>Music is a fundamental form of expression. I love to create music, but it requires inspiration that does not always come easily.</p>
 	
@@ -35,4 +35,4 @@
 			<tr><td>Internet Exploder</td><td><a href="http://xiph.org/dshow/downloads/">Install Ogg Vorbis Codecs</a></td></tr>
 		</tbody>
 	</table>
-</page>
+</content:page>

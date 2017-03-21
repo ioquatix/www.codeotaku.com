@@ -1,4 +1,4 @@
-<entry>
+<content:entry>
 	<p>Recently I have had the pleasure to use <a href="http://antoniocangiano.com/2008/01/08/ramaze-a-ruby-framework-that-will-amaze/">Ramaze</a>. It is an interesting new framework which has introduced me to Rack, another framework which seems very powerful.</p>
 
 	<p>Ramaze is built on top of another framework called Innate. Here is the documentation:</p>
@@ -16,4 +16,4 @@
 	<p>Going forward, I've found another interesting framework called <a href="http://docs.heroku.com/heroku">heroku</a> which promises to make deployment easier. While (re)deployment difficulty typically scales based on dependencies and internal changes, Passenger has certainly made the task easy. I look forward to trying heroku.</p>
 
 	<p>On another note, heroku has some <a href="http://docs.heroku.com/rack">great examples</a> of ''config.ru'' files. I found it quite hard to figure out what to put initially. Once you have the general idea, it is easy.. but this page provides examples for many different web frameworks which I found gave me a better understanding of Rack and what it provides. Here is another useful <a href="http://wiki.github.com/rack/rack/tutorial-rackup-howto">Rackup Tutorial</a>.</p>
-</entry>
+</content:entry>

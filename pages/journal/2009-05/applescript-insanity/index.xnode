@@ -1,4 +1,4 @@
-<entry>
+<content:entry>
 	<p>I recently had to make a tool for resizing and compressing images. It was a complete nightmare. AppleScript has to be one of the worst development environments I've ever worked with.</p>
 
 	<p>One of the most fascinating things about the design is the concept of the <code>tell application</code> clause. I don't know exactly how it works, but depending on what bundle you are within, the same syntax/code can have different results - or even what appears to be the same result, but further on in the program it doesn't work as expected. The syntax is also overly verbose, as can be seen in the example code. There appear to be multiple ways of doing the same thing, but sometimes with subtle differences.</p>
@@ -15,9 +15,9 @@
 	
 	<h3>Source code</h3>
 	
-	<listing src="drop_zip.txt" lang="applescript" />
+	<content:listing src="drop_zip.txt" lang="applescript" />
 	
 	<p>This script, when files are dragged on top of the application icon, will resize them proportionally so the maximum dimension is 800px. It will then ask the user for a name and create an archive on the desktop containing all the images.</p>
 	
 	<p>The compiled application <a href="image_to_medium_jpeg_zipper.app.zip">is available</a>.</p>
-</entry>
+</content:entry>

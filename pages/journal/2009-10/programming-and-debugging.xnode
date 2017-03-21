@@ -1,4 +1,4 @@
-<entry>
+<content:entry>
 	<p>My friend Pistos recently pointed me to <a href="http://friendfeed.com/pistos/0ffdc52b/debugging-is-twice-as-hard-writing-program-in">this quote:</a></p>
 
 	<p>	<blockquote>"Debugging is twice as hard as writing a program in the first place. So if you're as clever as you can be when you write it, how will you ever debug it?" - Brian Kernighan</blockquote></p>
@@ -6,4 +6,4 @@
 	<p>	I'm not sure I agree with it but I can understand what he is saying. I don't know if debugging and writing a program are two separate issues... When we write a program, we can write a small complex portion with a clear interface. We can then write tests assertions which ensure that the computer is actually doing what we think we told it to do :) Even if that part is complex, there are techniques and processes that can assist with this.</p>
 
 	<p>	Sometimes, debugging is complicated, but I don't believe that is a real problem - it simply means the tools we have are not adequate. And with that, GDB 7.0 has <a href="http://article.gmane.org/gmane.comp.gdb.announce/47">recently been released</a>. It has a number of cool new features including scriptability with python and reverse debugging (you can step backwards). I'm looking forward to trying it out.</p>
-</entry>
+</content:entry>

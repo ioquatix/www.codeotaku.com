@@ -1,5 +1,5 @@
-<page>
-	<logo src="logo.png" title="Fingerprint" />
+<content:page>
+	<content:logo src="logo.png" title="Fingerprint" />
 	
 	<p>Fingerprint is a general purpose data integrity tool that uses cryptographic hashes to detect changes in files and directory trees. The <code class="syntax bash-script function">fingerprint</code> command scans a directory tree and generates a fingerprint file containing the names and cryptographic hashes of the files in the tree. This snapshot can be later used to generate a list of files that have been created, deleted or modified. If so much as a single bit in the file data has changed, Fingerprint will detect it.</p>
 	
@@ -16,5 +16,5 @@
 	
 	<h2>Documentation</h2>
 	
-	<summary path="documentation" />
-</page>
+	<content:summary path="documentation" />
+</content:page>

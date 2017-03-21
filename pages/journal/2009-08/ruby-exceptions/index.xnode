@@ -1,35 +1,35 @@
-<entry>
+<content:entry>
 	<p>The following code surprised me:</p>
 	
-	<listing src="system_exit.txt" lang="ruby" />
+	<content:listing src="system_exit.txt" lang="ruby" />
 	
 	<p>The result of this code is:</p>
 	
-	<listing src="system_exit_results.txt" />
+	<content:listing src="system_exit_results.txt" />
 	
 	<p>Like all things in ruby, there is a way to bypass this:</p>
 	
-	<listing src="exit_now.txt" lang="ruby" />
+	<content:listing src="exit_now.txt" lang="ruby" />
 	
 	<p>The result of this code is:</p>
 	
-	<listing src="exit_now_results.txt" />
+	<content:listing src="exit_now_results.txt" />
 	
 	<p>One of the interesting side-effects of processing ensure blocks is that we can actually cancel the exit function:</p>
 	
-	<listing src="exit_cancelled.txt" lang="ruby" />
+	<content:listing src="exit_cancelled.txt" lang="ruby" />
 	
 	<p>The surprising result of this program is:</p>
 	
-	<listing src="exit_cancelled_results.txt" />
+	<content:listing src="exit_cancelled_results.txt" />
 	
 	<p>Therefore, even though we asked ruby to <code>exit</code>, because of the second exception, the program kept running! The reason for this is that <code>exit</code> doesn't actually do what it says it does; actually it simply raises the <code>SystemExit</code> exception, which when received at the top level, causes the interpreter to stop.</p>
 	
-	<listing src="rescue_system_exit.txt" lang="ruby" />
+	<content:listing src="rescue_system_exit.txt" lang="ruby" />
 	
 	<p>The result of this code is:</p>
 	
-	<listing src="rescue_system_exit_results.txt" />
+	<content:listing src="rescue_system_exit_results.txt" />
 	
 	<p>This is by design: It means that you can process exit in a way other than exiting a program. For example, in a networking library, you might not want individual connections exiting the entire app, so you can can trap this kind of behaviour and deal with it specifically.</p>
-</entry>
+</content:entry>

@@ -1,6 +1,9 @@
-.cache.*
-.DS_Store
-_cache
-/access_log/
-/cache/
-.sass-cache
+# Development specific:
+.rspec_status
+.tags*
+
+# Temporary data should not be added to the repository:
+tmp/
+
+# This file should only ever exist on production, and may contain sensitive information:
+config/environment.yaml

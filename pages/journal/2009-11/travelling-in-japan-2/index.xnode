@@ -1,4 +1,4 @@
-<entry>
+<content:entry>
 	<google-map kml="rbt-2009-11-20.kml" />
 	
 	<p>We wake up early, around 8am. This is in anticipation for getting the Shinkansen to <em>Beppu</em>. We have been told that Beppu is a great place to find the traditional Japanese bath and <em>ryokan</em> (Japanese Inn).</p>
@@ -30,4 +30,4 @@
 	<photos path="bath" />
 	
 	<p>We slept on traditional style futon, which was laid out by the ryokan while we were out of the room. It was very comfortable.</p>
-</entry>
+</content:entry>

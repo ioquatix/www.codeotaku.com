@@ -1,4 +1,4 @@
-<entry>
+<content:entry>
 	<p>Ensuring sites are cache-friendly is an important part of deploying a website. Sites that load quickly and reduce bandwidth costs are great, especially when there are lots of visitors.</p>
 	
 	<p>I've been experimenting with <a href="http://rtomayko.github.com/rack-cache/">Rack-Cache</a> which is an excellent project. It is a full-featured cache for Rack with support for multiple backends.</p>
@@ -7,11 +7,11 @@
 	
 	<p>Caching for resources such as files and other static resources should rely on <code>ETags</code>. Each static resource has an ETag, which is typically a hash of the file size and last modified time. This is pretty easy to implement.</p>
 	
-	<listing src="file_cache.txt" brush="ruby" />
+	<content:listing src="file_cache.txt" brush="ruby" />
 	
 	<p>Caching for resources such as content that is dynamically generated should typically use last modified time exclusively, and typically for only a short period of time (such as 1 hour). This ensures that your site won't be overloaded generating content (when you get slashdotted), but that content will be regenerated fairly frequently.</p>
 	
-	<listing src="rack_cache.txt" brush="ruby" />
+	<content:listing src="rack_cache.txt" brush="ruby" />
 	
 	<p>Also, just because you are caching content, doesn't mean your page can't have dynamic elements - <code>AJAX</code> can provide interactive RSS feeds, change images, change content, very trivially. This means that the majority of your content can be cached while specific parts are generated on the client dynamically. This is something which I'm experimenting with.</p>
 	
@@ -27,4 +27,4 @@
 	</ul>
 	
 	<p>Both of these sites will point out issues with the content you are serving, and highlight potential problems with resources which won't be cached properly due to missing headers, incorrect headers and/or incorrect behavior.</p>
-</entry>
+</content:entry>

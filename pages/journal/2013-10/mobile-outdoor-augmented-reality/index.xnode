@@ -1,4 +1,4 @@
-<entry>
+<content:entry>
 	<p>Outdoor tracking and registration are important enabling technologies for mobile augmented reality.</p>
 	
 	<p>Sensor fusion and image processing can be used to improve global tracking and registration for low-cost mobile devices with limited computational power and sensor accuracy.
@@ -21,4 +21,4 @@ Prior research has confirmed the benefits of this approach with high-end hardwar
 		<li><a href="../../2013-11/hybrid-tracking">Hybrid Tracking using Gravity Aligned Edges</a>.</li>
 		<li><a href="../../2013-11/transform-flow-toolkit">Transform Flow: A Mobile Augmented Reality Visualisation and Evaluation Toolkit</a>.</li>
 	</references>
-</entry>
+</content:entry>

@@ -47,16 +47,16 @@
 	</head>
 
 	<body>
-		<header />
+		<content:header />
 		
 		<div id="content" class="#{attributes[:class] || 'normal'}">
-			<content />
+			<utopia:content />
 		</div>
 		
 		<div id="footer">
 			<a href="mailto:samuel@codeotaku.com">Contact Me</a> &mdash;
 			<a href="/about" rel="author">About Me</a> &mdash;
-			&copy; 2013 Samuel Williams.
+			&copy; #{Time.now.year} Samuel Williams.
 		</div>
 		
 		<env only="production">

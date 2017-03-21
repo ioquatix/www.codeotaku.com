@@ -1,4 +1,4 @@
-<entry>
+<content:entry>
 	<p>As part of a research project I have been working on visualising the changes in source code over time. There are many different approaches to this; part of solving this problem is understanding the kinds of information that are useful in such visualisations. I have designed a visualisation tool for <em>git</em>. These graphs show time along the horizontal axis and project sub-directory along the vertical axis. The number of files changed per time segment are plotted, and used to determine the colour of the box, from blue (not many changes) to red (many changes).</p>
 	
 	<p>My report "<a href="Visualising Information Change Over Time.pdf">Visualising Information Change Over Time</a>" discusses the design and development of two different visualisation techniques, which ultimately lead to the visualisations below.</p>
@@ -17,4 +17,4 @@
 	<p>
 		Commits: <em>(number-of-commits)</em>/<em>(number-of-authors)</em>, Touched: <em>(total-files-modified)</em>/<em>(unique-files-modified)</em>, Lines: +<em>(lines-added)</em>/-<em>(lines-removed)</em>.
 	</p>
-</entry>
+</content:entry>

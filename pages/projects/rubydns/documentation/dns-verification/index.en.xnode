@@ -1,5 +1,5 @@
-<contents-page title="RubyDNS Documentation">
-	<heading>DNS Verification</heading>
+<content:contents-page title="RubyDNS Documentation">
+	<content:heading>DNS Verification</content:heading>
 	
 	<p><code>rd-dns-check</code> is a tool to help migrate data from one DNS server to another and assist with DNS auditing. It assists by providing a comprehensive framework for retrieving and verifying sets of records. It has several main functions:</p>
 	
@@ -29,13 +29,13 @@
 	
 	<p>Your DNS server will need to be configured for zone transfers in order for this to work.</p>
 
-	<listing src="fetch.txt" brush="bash" />
+	<content:listing src="fetch.txt" brush="bash" />
 
 	<p>The file <code>mydomain.com.yml</code> now contains a bunch of records. This command ignores the following records: TXT, HINFO, SOA, NS, so they won't be in the file. There is currently no way to change this behavior. However, this command cannot check those types of records anyway. The data in this file is stored using YAML, hence if you want to change some names or addresses, or remove addresses, you can just edit this file directly using a text editor.</p>
 
 	<p>Here is an example of the data generated:</p>
 
-	<listing src="example_data.txt" />
+	<content:listing src="example_data.txt" />
 
 	<p>It is generally expected that if one is using this tool to migrate to a new DNS server, modifications and removals will need to be made to the <code>mydomain.com.yml</code> file to remove old records that are no longer useful (servers that don't exist, for example), or to add or change records for equipment that still exists but has not had a consistent naming convention in the past.</p>
 	
@@ -45,11 +45,11 @@
 
 	<p>If we test it against the original DNS server that we pulled the data from we will get no errors (unless something is really screwy):</p>
 
-	<listing src="check-success.txt" brush="bash" />
+	<content:listing src="check-success.txt" brush="bash" />
 
 	<p>If you check it against another server set up for the same domain, which is missing records, you will find they are output as errors. Here is an example from a real world DNS setup, however it is truncated and anonymized to protect the innocent:</p>
 
-	<listing src="check-errors.txt" brush="bash" />
+	<content:listing src="check-errors.txt" brush="bash" />
 	
 	<p>From this report we can see that the DNS servers are not identical. We can use this information to fix any problems, if we need them to be identical.</p>
 
@@ -61,13 +61,13 @@
 
 	<p>So, if you are migrating your DNS server and want to change the structure of some host records, but don't want to break anything, this tool will check to make sure that all original hostnames still resolve to the given IP addresses.</p>
 
-	<listing src="check-individual-queries.txt" brush="bash" />
+	<content:listing src="check-individual-queries.txt" brush="bash" />
 	
 	<h2>Pinging All Hosts</h2>
 	
 	<p>In order to find hosts which no longer exist, there is the ping check. This will attempt to ping every A record and report back if there were any failures. Typically, if a failure was because the server/device no longer exists, then one would remove it from the <code>mydomain.com.yml</code> file.</p>
 	
-	<listing src="ping.txt" brush="bash" />
+	<content:listing src="ping.txt" brush="bash" />
 	
 	<h2>Checking the Reverse Records</h2>
 
@@ -75,11 +75,11 @@
 
 	<p>For example, to check if the server <code>ns1.mydomain.com</code> has a reverse record for 192.168.1.10 we can use dig:</p>
 
-	<listing src="dig-reverse.txt" brush="bash" />
+	<content:listing src="dig-reverse.txt" brush="bash" />
 	
 	<p>N.B: The options <code>+nottlid +nocmd +noall +answer</code> simply make <code>dig</code> less verbose.</p>
 
 	<p>We can test all addresses in a given file:</p>
 
-	<listing src="check-reverse.txt" brush="bash" />
-</contents-page>
+	<content:listing src="check-reverse.txt" brush="bash" />
+</content:contents-page>

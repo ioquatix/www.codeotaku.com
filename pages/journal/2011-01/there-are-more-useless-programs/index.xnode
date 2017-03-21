@@ -1,4 +1,4 @@
-<entry>
+<content:entry>
 	<p>As a programmer, I sometimes write incorrect programs. The most common problems I experience:</p>
 	
 	<ul>
@@ -52,4 +52,4 @@
 	<p>Thus, as programmers, it is our job to be aware of these issues, and develop the intuition and skills required to develop programs that work correctly. There are many well-documented ways to deal with these problems: modular code reduces coupling, compilation verifies program syntax, static logic and type checking provides warnings and errors for many semantic and logical errors, etc. And, general problem solving skills, analytical thinking, mathematical ability, visualisation, etc, all help to improve our ability to write correct programs.</p>
 	
 	<p>Yet, despite our best intentions and abilities thus far, as programs become complex and enter the realm of non-determinism (e.g. network communication, algorithms based on probability, lock-free algorithms, parallel processing), we have yet another level of complexity to contend with. At this point, we are still lacking the right tools for solving many problems in this category. In this case, even very subtle changes in the execution environment may cause a useful program to become useless..</p>
-</entry>
+</content:entry>

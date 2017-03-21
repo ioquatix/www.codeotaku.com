@@ -1,4 +1,4 @@
-<entry>
+<content:entry>
 	<google-map kml="rbt-2009-11-21.kml" />
 	
 	<p>In the morning we travel south from Beppu to Oita. We then get a train to Miyazaki to see Ayako's friend, Miho.</p>
@@ -57,4 +57,4 @@
 	<p>At home we all sit in the <em>Kotatsu</em> and eat desert. We then have a bath, and watch a Japanese Anime <em>Chi's New Address</em>. Everyone is tired and we all enjoy a deep sleep.</p>
 	
 	<photos path="bed" />
-</entry>
+</content:entry>

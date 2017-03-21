@@ -1,4 +1,4 @@
-<entry>
+<content:entry>
 	<p>In conjunction with the Game Mechanics Society, we are running a Game Programming Weekend open to students of Canterbury University at the <a href="http://www.ffc.canterbury.ac.nz/cass/">Cass Field Station</a>. Come and learn about game design and development, meet new and interesting people with similar interests and have a relaxing week in the great outdoors.</p>
 	
 	<photos path="cass" />
@@ -109,4 +109,4 @@
 	<ol>
 		<li><a href="http://learningthreejs.com/blog/2012/06/05/3d-physics-with-three-js-and-physijs/">3D Physics With Three.js and Physijs</a></li>
 	</ol>
-</entry>
+</content:entry>

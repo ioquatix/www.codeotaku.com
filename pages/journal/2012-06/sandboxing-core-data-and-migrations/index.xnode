@@ -1,4 +1,4 @@
-<entry>
+<content:entry>
 	<p>My application <a href="http://www.housepigeon.com/property-manager">Property Manager</a> uses CoreData for its document model and storage. Because the Mac App Store is now requesting that applications are sandboxed, I recently worked on updating Property Manager to work correctly in the sandbox.</p>
 	
 	<h2>Problem Identification</h2>
@@ -13,15 +13,15 @@
 	
 	<p>In order to kick off the new migration process, we need to hijack the document creation process and check if migration is required:</p>
 	
-	<listing src="PMDocumentController.txt" brush="clang" />
+	<content:listing src="PMDocumentController.txt" brush="clang" />
 	
 	<p>Finally, the migration controller code incrementally migrates from one model to the next until it gets to the <code class="syntax clang">targetModel</code>.</p>
 	
-	<listing src="PMMigrationController.txt" brush="clang" />
+	<content:listing src="PMMigrationController.txt" brush="clang" />
 	
 	<h2>Sandboxing Problems</h2>
 	
 	<p>I would like to say that the above code works flawlessly. In fact it does, under a non-sandbox environment. At this point in time, I've found various bugs and problems with <code class="syntax clang">NSSavePanel</code> when used in the sandbox, although these problems don't seem to be officially acknowledged by Apple. The biggest road block I ran into is that essentially <code class="syntax clang">savePanel.URL</code> is always <code class="syntax clang">nil</code> in the sandbox environment... Hopefully this will be fixed in a future release.</p>
 	
 	<p>However, at the very least, migrating more than one model works perfectly, and the user is given the opportunity to save their datafile in a new location which at least means that the data won't be damaged by a failed migration.</p>
-</entry>
+</content:entry>

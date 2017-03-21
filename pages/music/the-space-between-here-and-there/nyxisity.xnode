@@ -1,5 +1,5 @@
-<page>
-	<heading>Nyxisity</heading>
+<content:page>
+	<content:heading>Nyxisity</content:heading>
 
 	<p>
 		The mother earth has<br />
@@ -14,4 +14,4 @@
 	</p>
 
 	<download file="03 Nyxisity.ogg" />
-</page>
+</content:page>

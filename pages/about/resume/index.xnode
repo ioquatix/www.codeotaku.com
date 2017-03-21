@@ -1,7 +1,7 @@
-<page>
+<content:page>
 	<link rel="stylesheet" href="resume.css" type="text/css" />
 	
-	<heading>Samuel Williams : Résumé</heading>
+	<content:heading>Samuel Williams : Résumé</content:heading>
 	
 	<div class="resume">
 		<div class="header">Profile</div>
@@ -31,7 +31,6 @@
 			</ul>
 		</div>
 		
-		<?r if request['references'] ?>
 		<div class="header">References</div>
 		<div class="section">
 			<p><a href="_references/Tadao-Takaoka-Google-2013.pdf">Reference from Dr. Tadao Takaoka</a>, Professor at the Department of Computer Science and Software Engineering, University of Canterbury (2013).</p>
@@ -40,13 +39,10 @@
 			
 			<p><a href="_references/Tim-Bell-Google-2011.pdf">Reference from Dr. Tim Bell</a>, Associate Professor and Deputy HOD, Computer Science and Software Engineering, University of Canterbury (2011).</p>
 			
-			<p><a href="_references/Simon-Osborne-2004.tif">Reference from Simon Osborne</a>, Head of System Solutions, ISB Global Ltd (2004).</p>
-			
 			<p><a href="_references/Geoff-Ford-2004.pdf">Reference from Geoff Ford</a>, Managing Director, Attitude Group Ltd (2004).</p>
 			
 			<p>Additional references can be found on my <a href="http://nz.linkedin.com/pub/samuel-williams/39/b78/bb5">LinkedIn profile</a>.</p>
 		</div>
-		<?r end ?>
 		
 		<div class="header">Education</div>
 		<div class="section">
@@ -128,6 +124,11 @@
 		<div class="header">Research</div>
 		<div class="section">
 			<dl class="compact">
+				<dt><a href="http://hilandtom.com/tombotterill/pruner-preprint.pdf">A Robot System for Pruning Grape Vines</a></dt>
+				<dd>(Journal of Field Robotics 2016) A robot system for the automatic pruning of grape vines.</dd>
+			</dl>
+			
+			<dl class="compact">
 				<dt><a href="/projects/redirect?project=transform-flow-toolkit">Transform Flow: A Mobile Augmented Reality Visualisation and Evaluation Toolkit</a></dt>
 				<dd>(Image and Vision Computing New Zealand 2013). An overview of the Transform Flow toolkit for mobile augmented reality research and application development.</dd>
 			</dl>
@@ -206,6 +207,16 @@
 		<div class="header">Work</div>
 		<div class="section career">
 			<dl class="compact">
+				<dt><a href="http://www.redbubble.com.au/">RedBubble Ltd</a></dt>
+				<dd>(2016-) Developed scalable Vulkan-based rendering technology.</dd>
+			</dl>
+		
+			<dl class="compact">
+				<dt><a href="http://www.geozone.co.nz/">GeoZone Ltd</a></dt>
+				<dd>(2013-) Lead Dev-Ops in a startup developing popular mobile apps for tourists. Specialized in web application development, deployment, and scaling.</dd>
+			</dl>
+			
+			<dl class="compact">
 				<dt><a href="http://www.puteko.com/">Puteko Ltd</a></dt>
 				<dd>(2012-2013) Lead developer in a startup focusing on enhancing children's colouring books with augmented reality. Children can enjoy colouring in pages and seeing the results animated in 3D. I developed the iPad prototype which uses modern computer vision tracking algorithms and provided entrepreneurial guidance.</dd>
 			</dl>
@@ -273,4 +284,4 @@
 			</dl>
 		</div>
 	</div>
-</page>
+</content:page>

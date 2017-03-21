@@ -1,4 +1,4 @@
-<entry>
+<content:entry>
 	<p>I travelled from New Zealand to Japan today. We used Air New Zealand which was actually pretty good. We used Singapore Air last time and it was a bit cramped.</p>
 	
 	<photos path="travelling" />
@@ -8,4 +8,4 @@
 	<photos path="food" />
 	
 	<p>Fresh fish in Japan is amazing. It is basically a corner stone of the diet, but in western culture it is more of a delicacy. I'm in heaven :)</p>
-</entry>
+</content:entry>

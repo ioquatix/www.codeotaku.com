@@ -1,5 +1,5 @@
-<entry>
+<content:entry>
 	<p>This script will scan for a specific mask on directories and print out the result:</p>
 	
-	<listing src="scan_for_unix_permissions.txt" lang="ruby" />
-</entry>
+	<content:listing src="scan_for_unix_permissions.txt" lang="ruby" />
+</content:entry>

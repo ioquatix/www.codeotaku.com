@@ -1,15 +1,15 @@
-<entry>
+<content:entry>
 	<p>I was testing RubyDNS and found that it was a bit unreliable after a few minutes. This was actually due to a bug in the net-mdns resolver. Basically, if you want DNS resolving to work, don't use net-mdns gem. The standard resolver, works fine though (apparently it used to be broken, which is why I used the net-mdns implementation in the first place).</p>
 
 	<p>Anyway, during testing I made a script for testing DNS resolution, and it is bundled as part of RubyDNS:</p>
 	
-	<listing src="benchmark_results.txt" lang="bash" />
+	<content:listing src="benchmark_results.txt" lang="bash" />
 	
 	<p><code>rd-resolve-test</code> is a simple executable which starts a number of threads. Each thread resolves a number of names against given DNS servers. This allows you to test both performance and success of a DNS server under load.</p>
 
 	<p>You can specify a file that contains a list of domains to use for testing, e.g.:</p>
 	
-	<listing src="domains.txt" />
+	<content:listing src="domains.txt" />
 	
 	<p>You can customize the number of threads and names resolved per thread. Use <code>-h</code> super powers for more information!</p>
-</entry>
+</content:entry>

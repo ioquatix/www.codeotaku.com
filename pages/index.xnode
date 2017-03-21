@@ -1,6 +1,6 @@
-<front>
+<content:front>
 	<div class="top">
-		<censorship />
+		<content:censorship />
 		
 		<h1>`(code otaku)</h1>
 	</div>
@@ -13,4 +13,4 @@
 		&lambda;
 		<a href="/about" title="about me">inspect</a>
 	</div>
-</front>
+</content:front>

@@ -1,11 +1,11 @@
-<entry>
+<content:entry>
 	<p>Rake provide an easy to use task execution mechanism, but it also has some useful logic for extending existing tasks. Here are a few examples of the kinds of Rake tasks I've been using to make my life easier.</p>
 	
 	<h2>Chaining Tasks</h2>
 	
 	<p>It's possible for one task to call another, but it's also possible for this to go between namespaces:</p>
 	
-	<listing src="chain.txt" brush="ruby" />
+	<content:listing src="chain.txt" brush="ruby" />
 	
 	<p>Running <code class="language-bash">$ rake db:environment</code> will invoke both the <code>db:environment</code> and <code>environment</code> tasks.</p>
 	
@@ -15,7 +15,7 @@
 	
 	<p>Sometimes it's useful to have stateful tasks:</p>
 	
-	<listing src="logging.txt" brush="ruby" />
+	<content:listing src="logging.txt" brush="ruby" />
 	
 	<p>Running <code class="language-bash">$ rake verbose deploy</code> will print out more detailed information.</p>
 	
@@ -25,7 +25,7 @@
 	
 	<p>You can use this to make flexible filters and tasks which can be configured to do different things:</p>
 	
-	<listing src="dump.txt" brush="ruby" />
+	<content:listing src="dump.txt" brush="ruby" />
 	
 	<p>We use tasks like these to export data for customers - we almost always have some specific requirements - but we can usually chain together a set of existing tasks to get the desired output.</p>
 	
@@ -33,9 +33,9 @@
 	
 	<p>It's possible to define multiple tasks with the same name. This is useful if you want to combine multiple files containing tasks</p>
 	
-	<listing src="multiple.txt" brush="ruby" />
+	<content:listing src="multiple.txt" brush="ruby" />
 	
 	<p>Running <code class="language-bash">$ rake deploy</code> will invoke both tasks.</p>
 	
 	<p>We use this to keep our <code>.rake</code> files simple, focused and organised.</p>
-</entry>
+</content:entry>

@@ -1,9 +1,9 @@
 <?r response.do_not_cache! ?>
-<page>
-	<heading>Error</heading>
+<content:page>
+	<content:heading>Error</content:heading>
 	
 	<p>Chaos reigns within.<br/>
 	Reflect, repent, and reboot.<br/>
 	Order shall return.<br/>
 		&mdash; Suzie Wagner</p>
-</page>
+</content:page>

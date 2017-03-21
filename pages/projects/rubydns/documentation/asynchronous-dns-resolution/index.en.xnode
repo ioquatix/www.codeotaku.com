@@ -1,9 +1,9 @@
-<contents-page title="RubyDNS Documentation">
-	<heading>Asynchronous DNS Resolution</heading>
+<content:contents-page title="RubyDNS Documentation">
+	<content:heading>Asynchronous DNS Resolution</content:heading>
 	
 	<p>RubyDNS can be used as an asynchronous DNS client, either passing requests to a specific server or using default system resolvers.</p>
 	
-	<listing src="resolve.txt" brush="ruby" />
+	<content:listing src="resolve.txt" brush="ruby" />
 	
 	<p><code class="syntax ruby">EventMachine</code> provides the basic asynchronous event processing loop, and thus any use of <code class="syntax ruby">RubyDNS::Resolver</code> must happen within a valid <code class="syntax ruby">EventMachine</code> context.</p>
 	
@@ -11,7 +11,7 @@
 	
 	<p>As this is an asynchronous service, a timeout can be provided (the default is 5 seconds). If a response is not received within a given time, a <code class="syntax ruby">RubyDNS::ResolutionFailure</code> error will be returned to the caller in the <code class="syntax ruby">response</code> argument:</p>
 	
-	<listing src="timeout.txt" brush="ruby" />
+	<content:listing src="timeout.txt" brush="ruby" />
 	
 	<p>For more examples, please check out <a href="https://github.com/ioquatix/rubydns/blob/master/test/test_slow_server.rb">rubydns/test/test_slow_server.rb</a>.</p>
 	
@@ -19,5 +19,5 @@
 	
 	<p>Additional debugging output can be sent to a log file by providing the <code class="syntax ruby">:logger</code> option:</p>
 	
-	<listing src="logging.txt" brush="ruby" />
-</contents-page>
+	<content:listing src="logging.txt" brush="ruby" />
+</content:contents-page>

@@ -1,8 +1,8 @@
-<entry>
+<content:entry>
 	<p>RubyDNS is a tool that allows you to create a simple DNS server. The tool provides a DSL (Domain Specific Language) using Ruby as the base language. The server is designed to be incredibly flexible. It is not designed for high performance.</p>
 	
 	<p>This tool was developed to initially scratch an itch.. The problem is that I have a number of servers behind NAT. I also sometimes work behind said NAT. It is a problem because to have the addressing handled correctly you need an internal and external DNS server. This is because the address for everyone else is different for you (when you are behind the NAT).</p>
 
 	<p>If you have a large DNS zone, you might have to duplicate lots of records, quite often many are not different. This tool allows you to intercept specific queries and adjust them as needed… i.e. to rewrite addresses when you are behind the NAT.</p>
 	
-	<p>For more information, please visit the <a href="http://www.oriontransfer.co.nz/software/ruby-dns">RubyDNS page</a>.</p></entry>
+	<p>For more information, please visit the <a href="http://www.oriontransfer.co.nz/software/ruby-dns">RubyDNS page</a>.</p></content:entry>

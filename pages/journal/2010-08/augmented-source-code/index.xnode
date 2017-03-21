@@ -1,4 +1,4 @@
-<entry>
+<content:entry>
 	<!-- http://web.archive.org/web/20080624034050/http://drinkbroken.typepad.com/drink_broken/2007/11/syntax-highligh.html -->
 	
 	<p>Source code can be augmented in many ways to provide useful feedback for a programmer. It would be great to see existing source code editors augmented to provide these features.</p>
@@ -28,7 +28,7 @@
 	
 	<p>This file format is very simple and is designed so that it can be generated and parsed very easily. It is designed to annotate specific parts of a text file with information such as </p>
 	
-	<listing src="format.txt" brush="xml" />
+	<content:listing src="format.txt" brush="xml" />
 	
 	<p>I hope to add this functionality to <a href="/software/jquery-syntax">jQuery.Syntax</a> as a concept demonstration.</p>
-</entry>
+</content:entry>

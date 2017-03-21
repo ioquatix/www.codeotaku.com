@@ -1,5 +1,5 @@
 <heatmap>
-	<heading>Heat Map : LLVM Quarterly</heading>
+	<content:heading>Heat Map : LLVM Quarterly</content:heading>
 		
 	<table class="heatmap-summary">
 		<thead>

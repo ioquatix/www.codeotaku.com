@@ -1,4 +1,4 @@
-<entry>
+<content:entry>
 	<p>Hello. This entry is about me. I've taken a moment to write something meaningful.</p>
 
 	<p>My name is Samuel and I live in Christchurch, New Zealand. My goal in life is to make the world a better place.</p>
@@ -38,4 +38,4 @@
 	<div class="gallery"><img src="monkies.jpg" /></div>
 
 	<p>Thanks for taking the time to learn about me. I am always happy to have guests stay, so if you are traveling and looking for someone to hang out with, get in touch :D.</p>
-</entry>
+</content:entry>

@@ -1,15 +1,15 @@
-<entry>
+<content:entry>
 	<p>I have been working on a <a href="http://gigamonkeys.com/book/">LISP</a>-like environment. At some point you have to wonder, what is the right level of <a href="http://en.wikipedia.org/wiki/Programming_paradigm">abstraction and terminology</a> to solve technical problems. The LISP <a href="http://en.wikipedia.org/wiki/REPL">REPL</a> is a great example of meta programming that I admire.</p>
 
 	<p>Rich Hickey's <a href="http://wiki.jvmlangsummit.com/images/a/ab/HickeyJVMSummit2009.pdf">presentation</a> provides an interesting perspective on where we currently stand with regards overall approach and technique. It seems like he believes that current programming languages are not providing the right set of functionality to solve modern programming problems.</p>
 
 	<p>I personally believe that a programming language needs to be concise. This is not only with respect to the terminology (syntax), but also that the design and usage of data should match effectively to the most typical requirements. For example iterating over a set of items in C++ is generally very difficult.</p>
 
-	<listing src="iterate_cpp.txt" brush="clang" />
+	<content:listing src="iterate_cpp.txt" brush="clang" />
 
 	<p>In this example, there is much <a href="http://www.pphsg.org/cdsmith/types.html">type annotation</a> which can be inferred and complex syntax which doesn't actually add anything to the solution. Here is the "same idea" written in Ruby</p>
 
-	<listing src="iterate_rb.txt" brush="ruby" />
+	<content:listing src="iterate_rb.txt" brush="ruby" />
 	
 	<p>This is much more concise, and represents functionality that is far more abstract and this behaviour can work on lists of anything that support the required functionality. While Ruby (i.e. <a href="http://en.wikipedia.org/wiki/Ruby_MRI">MRI</a>) runs this dynamically, there is no reason why it couldn't be compiled using type inference, optimization, and so on. And compilation is just an optimization step anyway.</p>
 
@@ -20,4 +20,4 @@
 	<p>While working on my own programming languages, I've encountered many different possibilities and techniques. I really enjoyed <a href="http://gnuu.org/2009/09/18/writing-your-own-toy-compiler/">Writing your own toy compiler</a>. The cost of entry into building your own language and compiler is so low these days that anyone with a new idea can try it out and produce a useful environment for solving problems. I personally think this is fantastic.</p>
 
 	<p>Programming languages make me excited because of the possibilities and implications. We are so lucky to be in an age where all this is accessible and I look forward to future and all the different programming languages that people are creating.</p>
-</entry>
+</content:entry>

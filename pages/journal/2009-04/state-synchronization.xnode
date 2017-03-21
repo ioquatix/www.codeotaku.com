@@ -1,4 +1,4 @@
-<entry>
+<content:entry>
 	<p>When dealing with state, synchronization between multiple simulations may become important. For example, with a client-server model network game, or when distributing the simulation processing.</p>
 
 	<p>There are two approaches to state synchronization within this model, which ultimately are two sides of the same coin.</p>
@@ -38,4 +38,4 @@
 		<li><a name="3" href="http://www.gamasutra.com/view/feature/3094/1500_archers_on_a_288_network_.php">1500 Archers on a 28.8: Network Programming in Age of Empires and Beyond</a>.</li>
 		<li><a href="http://community.eveonline.com/devblog.asp?a=blog&amp;nbid=1771">EVE Online: Facing Destiny</a>.</li>
 	</references>
-</entry>
+</content:entry>

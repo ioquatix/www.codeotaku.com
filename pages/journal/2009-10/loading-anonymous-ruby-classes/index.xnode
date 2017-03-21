@@ -1,9 +1,9 @@
-<entry>
+<content:entry>
 	<p>The following is an excerpt from a project I am working on. This function reads ruby code and turns it into an anonymous class. This class is then instantiated and returned. It allows you to load code from a file dynamically - it can also be reloaded.</p>
 	
-	<listing src="loader.txt" lang="ruby" />
+	<content:listing src="loader.txt" lang="ruby" />
 	
-	<listing src="plugin.txt" lang="ruby" />
+	<content:listing src="plugin.txt" lang="ruby" />
 	
 	<p>The goal for this is to provide a class loader for a web framework experiment I'm working on. Plugins can be loaded and reloaded as many times as is required.</p>
-</entry>
+</content:entry>

@@ -1,4 +1,4 @@
-<entry>
+<content:entry>
 	<p>For thousands of years, humans have been learning new things. Each step we take is brought about by the teachers who have come before us. But, when it comes to teaching, what does a teacher need to learn and know in order to effectively help their students?</p>
 	
 	<h2>Pedagogy</h2>
@@ -27,4 +27,4 @@
 		<li>#{link.to_href(base: first.node.uri_path)}</li>
 	<?r end ?>
 	</ul>
-</entry>
+</content:entry>

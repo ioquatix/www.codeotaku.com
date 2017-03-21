@@ -1,10 +1,12 @@
 jquery-syntax:
     title: 'jQuery.Syntax'
     tags: ['open', 'javascript', 'jquery', 'framework']
+    uri: https://github.com/ioquatix/jquery-syntax
     description: "Fast and flexible client-side syntax highlighting for source code."
 jquery-xframe:
     title: 'jQuery.XFrame'
     tags: ['open', 'javascript', 'jquery', 'framework']
+    uri: https://github.com/ioquatix/jquery-xframe
     description: "Simplify client-side dynamic content by using tags that reference remote content."
 utopia:
     title: 'Utopia'
@@ -17,6 +19,7 @@ rubydns:
 dream:
     title: 'Dream'
     tags: ['open', 'opengl', 'cpp', 'framework']
+    uri: http://github.com/kurocha/dream
     description: "Dream is a cross-platform game development written in C++."
 property-manager:
     title: 'Property Manager'
@@ -38,8 +41,8 @@ house-pigeon:
     tags: ['commercial', 'website']
     uri: http://www.housepigeon.com
     description: "An online rental property management and advertising platform."
-lsync:
-    title: 'LSync'
+synco:
+    title: 'Synco'
     tags: ['open', 'ruby', 'framework', 'command-line']
     description: "A flexible tool for backup and synchronisation tasks."
 SWXMLMapping:
@@ -50,13 +53,10 @@ SWApplicationSupport:
     tags: ['open', 'objective-c', 'framework']
     uri: https://github.com/oriontransfer/SWApplicationSupport
     description: "A collection of useful extensions for application development."
-post-remote-log:
-    title: 'Post Remote Log'
-    tags: ['open', 'ruby', 'framework', 'command-line']
-    description: "A set of tools for remote logging and data analysis."
 fingerprint:
     title: 'Fingerprint'
     tags: ['open', 'ruby', 'framework', 'command-line']
+    uri: http://github.com/ioquatix/fingerprint
     description: "Data integrity and cryptographic verification tools."
 fingerprint-app:
     title: 'Fingerprint'
@@ -68,10 +68,6 @@ library-inspector:
     tags: ['commercial', 'objective-c', 'application']
     uri: http://www.oriontransfer.co.nz/software/library-inspector
     description: "A graphical symbol table tool and QuickLook plugin for compiled object code."
-quota-check:
-    title: 'Quota Check'
-    tags: ['commercial', 'objective-c', 'application']
-    description: "Warn users that they are running out of diskspace automatically!"
 code-visualisation:
     title: 'Visualising Information Change Over Time'
     tags: ['research', 'ruby', 'command-line']
@@ -107,33 +103,24 @@ truth-table-generator:
     tags: ['educational', 'website']
     uri: http://programming.dojo.net.nz/study/truth-table-generator
     description: "An online boolean logic calculator that generates truth tables."
-xapian:
-    title: "Xapian [Core, Indexer, Rack]"
-    tags: ['open', 'ruby', 'rack', 'framework']
-    description: "A collection of Ruby based frameworks for providing full-text search functionality."
 goblin-hacker:
     title: "Goblin Hacker"
     tags: ['open', 'objective-c', 'application']
+    uri: https://github.com/ioquatix/goblin-hacker
     description: "A save-game editor for the game 'Eschalon Book I', built from scratch by reverse engineering."
 jquery-menu:
     title: "jQuery.Menu"
     tags: ['open', 'javascript', 'jquery', 'framework']
+    uri: https://github.com/ioquatix/jquery-menu
     description: "A simple dynamic pop-up menu framework built on top of jQuery."
-rexec:
-    title: "RExec"
-    tags: ['open', 'ruby', 'framework']
-    description: "Facilitates the execution of Ruby code on remote systems and provides a comprehensive framework for process/task management."
 relaxo:
     tags: ['open', 'ruby', 'framework']
-    description: "A simple and efficient interface for CouchDB written in Ruby."
+    uri: https://github.com/ioquatix/relaxo
+    description: "A transactional database built on top of git."
 relaxo-model:
     tags: ['open', 'ruby', 'framework']
     uri: https://github.com/ioquatix/relaxo-model
-    description: "A simple business logic model for Relaxo/CouchDB written in Ruby."
-relaxo-query-server:
-    tags: ['open', 'ruby', 'server']
-    uri: https://github.com/ioquatix/relaxo-query-server
-    description: "The Relaxo Query Server provides support for executing CouchDB functions using Ruby."
+    description: "A simple ORM layer for Relaxo."
 financier:
     tags: ['open', 'ruby', 'rack', 'application']
     uri: https://github.com/ioquatix/financier
@@ -151,11 +138,6 @@ mozarts:
     tags: ['commercial', 'website']
     uri: http://www.mozarts.co.nz
     description: "Mozarts Kindergarten and Drama School website."
-papagenoproductions:
-    title: "Papageno Productions Limited"
-    tags: ['commercial', 'website']
-    uri: http://www.papagenoproductions.com
-    description: "Papageno Productions website."
 lucidsystems:
     title: "Lucid Information Systems Limited"
     tags: ['commercial', 'website']
@@ -166,29 +148,11 @@ game-mechanics-society:
     tags: ['community', 'website']
     uri: http://www.gmsoc.org
     description: A local game development community website.
-litepanels:
-    title: "Litepanels New Zealand"
-    tags: ['commercial', 'website']
-    uri: http://www.litepanels.co.nz
-    description: "Litepanels online store for New Zealand."
-drobo:
-    title: "Drobo New Zealand"
-    tags: ['commercial', 'website']
-    uri: http://www.drobo.co.nz
-    description: "Drobo online store for New Zealand."
 tagged-format:
     title: "Tagged Format"
     tags: ['open', 'cpp', 'framework']
-    uri: https://github.com/dream-framework/tagged-format
+    uri: https://github.com/kurocha/tagged-format
     description: "A flexible text+binary format for storing geometry data, primarily for modern graphics pipelines."
-printing-works:
-    title: "Printing Works"
-    tags: ['open', 'framework']
-    description: "An (incomplete) open print accounting platform which includes CUPS backends, authentication frontends and administrative tools."
-gps-tool:
-    title: "GPS Tool"
-    tags: ['commercial', 'application']
-    description: "GPS Tool is an application for importing data from various antique GPS hardware. It is no longer sufficiently relevant to warrant further development."
 tileshift:
     title: "TileShift"
     tags: ['open', 'javascript', 'game']
@@ -222,12 +186,5 @@ inverse-kinematics-a-star:
 orbital-panic:
     title: "Orbital Panic"
     tags: ['commercial', 'game']
+    uri: http://www.orbitalpanic.com
     description: "An action game mashup combining space-invaders, pong and breakout."
-udp-test:
-    title: "UDP Test"
-    tags: ['open', 'ruby', 'command-line']
-    description: "A client/server tool for network anaylsis and error detection."
-eventplayer:
-    title: "EventPlayer"
-    tags: ['open', 'javascript', 'framework']
-    description: "A set tools for synchronising content and events with HTML5 audio/video elements."

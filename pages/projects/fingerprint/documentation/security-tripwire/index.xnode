@@ -1,5 +1,5 @@
-<contents-page title="Fingerprint Documentation">
-	<heading>Security Tripwire</heading>
+<content:contents-page title="Fingerprint Documentation">
+	<content:heading>Security Tripwire</content:heading>
 	
 	<p>Malicious modification of files can be detected using Fingerprint. This setup is typically referred to as a Tripwire, because when an attacker modifies some critical system files, the system administrator will be notified.</p>
 	
@@ -9,7 +9,7 @@
 	
 	<p>The following script will connect to the remote server and fingerprint a directory:</p>
 	
-	<listing src="check.txt" brush="ruby" />
+	<content:listing src="check.txt" brush="ruby" />
 	
 	<p>This could used as an hourly CRON job.</p>
-</contents-page>
+</content:contents-page>

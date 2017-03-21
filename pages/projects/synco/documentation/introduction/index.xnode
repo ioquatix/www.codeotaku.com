@@ -1,0 +1,36 @@
+<content:contents-page title="LSync Documentation">
+	<content:heading>Introduction</content:heading>
+	
+	<p>Data is a valuable and often irreplaceable asset. Because of this, it is important to protect data such that it continues to exist despite failure and loss of equipment.</p>
+	
+	<p>Long term protection of data involves replication. This is because the probability of a catastrophic failure leading to data loss is reduced when said data is replicated across different storage systems.</p>
+	
+	<p>LSync aims to provide a technically comprehensive platform for developing data backup and replication systems, including support for both online (realtime) and offline replication. It is designed to provide scalability and simplicity without compromising either.</p>
+	
+	<h2>A few notes...</h2>
+	
+	<p>While LSync can facilitate many kinds of data synchronsation, it isn't the only way to replicate data. Other solutions such as online database replication and hardware-based replication may be a better solution depending on your requirements. If you are considering a backup solution and need advice and support you may want to read some of the articles I've written on backup policy:</p>
+	
+	<ul>
+		<li><a href="../backup-policy">What is a backup policy?</a></li>
+		<li><a href="../storage-solutions">Small Business Storage Solutions</a></li>
+	</ul>
+	
+	<p>Finally, if you are still unsure about your situation and require a personal touch, please feel free to contact <a href="http://www.lucidsystems.co.nz">Lucid Information Systems</a>, a company specialising in data management and backup that I work for.</p>
+	
+	<h2>An example...</h2>
+	
+	<p>Many systems provide essential services to the network and end users. In order to provide a reliable service, data may need to be replicated over multiple (potentially identical) hardware servers. In this case, it is unlikely for all hardware systems to fail simultaneously, and thus improved reliability can be achieved.</p>
+	
+	<div class="gallery"><img src="server-failure.png" /></div>
+	
+	<p>A LSync implementation for the above diagram would look something like this:</p>
+	
+	<content:listing src="example.txt" brush="ruby" />
+	
+	<p>In order to handle CNAME redirection, <a href="/projects/rubydns">RubyDNS</a> could be used for detecting failure and automatically updating the DNS results.</p>
+	
+	<h2>Warranty</h2>
+
+	<p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+</content:contents-page>

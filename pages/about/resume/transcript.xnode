@@ -1,4 +1,4 @@
-<page>
+<content:page>
 	<?r
 		def grade_to_gpa(grade)
 			grades = ["C-", "C", "C+", "B-", "B", "B+", "A-", "A", "A+"]
@@ -52,7 +52,7 @@
 		gpa[:overall] = gpa[:grades].to_f / gpa[:points]
 	?>
 
-	<heading>University Transcript</heading>
+	<content:heading>University Transcript</content:heading>
 
 	<table class="basic">
 		<thead>
@@ -88,4 +88,4 @@
 	</table>
 	
 	<p>N.B. At the end of 2002, following into 2003 I had personal crisis which affected my academic work. On the advice of the University Counsellors I withdrew from second semester courses in 2003, as I felt that I was not in a position to achieve my best. After having some time out, I returned in 2005.</p>
-</page>
+</content:page>

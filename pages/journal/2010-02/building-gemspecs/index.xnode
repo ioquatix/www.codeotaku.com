@@ -1,33 +1,33 @@
-<entry>
+<content:entry>
 	<p>I have created a very simple script to automate the process of building and installing gems. It is very easy to use and makes it easy to test code prior to deployment to a gem server.</p>
 	
 	<h2>build/Rakefile</h2>
 	
 	<p>This file should require little or no customization.</p>
 	
-	<listing src="build-rakefile.txt" lang="ruby" />
+	<content:listing src="build-rakefile.txt" lang="ruby" />
 		
 	<h2>build/gemspec.master</h2>
 	
 	<p>This file will require almost every field to be changed, depending on your project, dependencies, etc.</p>
 	
-	<listing src="build-gemspec.txt" lang="ruby" />
+	<content:listing src="build-gemspec.txt" lang="ruby" />
 		
 	<h2>lib/[project-name]/version.rb</h2>
 	
 	<p>This file needs to have your project's current version in it. This controls the version in the GemSpec file.</p>
 	
-	<listing src="lib-version.txt" lang="ruby" />
+	<content:listing src="lib-version.txt" lang="ruby" />
 	
 	<h2>Usage</h2>
 	
 	<p>Basically, when you create a gem, it will have a file layout similar to the following:</p>
 	
-	<listing src="gem-layout.txt" />
+	<content:listing src="gem-layout.txt" />
 	
 	<p>To install the gem, simply run <code>sudo rake install_gem</code> from the build directory:</p>
 	
-	<listing src="install-example.txt" lang="bash" />
+	<content:listing src="install-example.txt" lang="bash" />
 	
 	<p>This will, along with installing the gem, produce a working gem and gemspec file in the root directory. In this case, <code>utopia-0.9.14.gem</code> and <code>utopia.gemspec</code>. These can be used for automatic build and deployment tasks via a git post-commit hook, for example. <a href="http://gems.oriontransfer.org/">My server</a> automatically compiles and installs the latest gem using this process.</p>
-</entry>
+</content:entry>

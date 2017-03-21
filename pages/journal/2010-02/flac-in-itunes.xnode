@@ -1,4 +1,4 @@
-<entry>
+<content:entry>
 	<p>I have a bunch of music stored using FLAC, which I generally think compresses better than ALAC (Apple Lossless Audio Codec) anyway. I found a great project that installs all the dependencies on Mac OS X:</p>
 
 	<ul>
@@ -8,4 +8,4 @@
 	<p>It is too bad Apple doesn't embrace free standards and make their software compatible by default.</p>
 
 	<p>In the comments of <a href="http://ask.metafilter.com/107172/FLAC-ALAC">this page</a> there is a command to convert FLAC to ALAC using <code>ffmpeg</code>. This may also be useful.</p>
-</entry>
+</content:entry>

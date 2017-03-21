@@ -1,4 +1,4 @@
-<entry>
+<content:entry>
 	<p>I have developed two Java ME games. The first game is a 2D tile based game, and the second is a simple 3D animated world using the M3G API.</p>
 	
 	<h2>Snails</h2>
@@ -45,4 +45,4 @@
 		<li><a href="http://digitalholeinone.com/trees-textures-materials/3ds-materials-textures.html">Pine Tree</a></li>
 		<li><a href="http://en.cze.cz/Textures">Grass Texture</a></li>
 	</ul>
-</entry>
+</content:entry>

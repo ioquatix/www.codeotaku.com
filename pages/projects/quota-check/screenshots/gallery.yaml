@@ -1,6 +1,0 @@
-"Disk Storage Report.png":
-    order: 1
-    caption: "This is shown when the application is run."
-"Stop.png":
-    order: 2
-    caption: "This is shown when the user has less than a certain amount of space available."

@@ -1,9 +1,9 @@
-<page>
-	<heading>Comment Moderation Queue</heading>
+<content:page>
+	<content:heading>Comment Moderation Queue</content:heading>
 	
 	<ul>
 	<?r controller[:comments].each do |comment| ?>
 		<li><a href="#{ comment.node}">#{ comment.node} from #{ comment.user.name}</a></li>
 	<?r end ?>
 	</ul>
-</page>
+</content:page>

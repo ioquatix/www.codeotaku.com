@@ -1,10 +1,14 @@
 
 source "https://rubygems.org"
 
-gem "utopia", "~> 1.9.3"
-
+gem "utopia", "~> 2.0.0"
 gem "utopia-tags-gallery"
 gem "utopia-tags-google-analytics"
+
+gem "rake"
+gem "bundler"
+
+gem "rack-freeze", "~> 1.2"
 
 gem "datamapper"
 gem "dm-sqlite-adapter"
@@ -14,12 +18,11 @@ gem "promise"
 gem "sanitize"
 gem "kramdown"
 
-gem "rake"
-gem "bundler"
-
 group :development do
 	# For `rake server`:
 	gem "puma"
+	gem "guard-puma", require: false
+	gem 'guard-rspec', require: false
 	
 	# For `rake console`:
 	gem "pry"

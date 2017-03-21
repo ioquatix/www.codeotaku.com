@@ -1,4 +1,4 @@
-<entry>
+<content:entry>
 	<p>I've been getting more and more frustrated with purchasing games recently - I've had several bad experiences with games that require online activation or other such nonsense. Thus, I've been looking more and more to free software and open source to satisfy my desire for computer gaming. Also, I primarily use a Mac as a laptop and Linux as a server, so this also limits the amount of commercially available software, since most companies don't bother to support a wide variety of platforms.</p>
 	
 	<p>The following is a list of enjoyable free software games that I have been playing recently.</p>
@@ -24,4 +24,4 @@
 	<p>It has several unique innovations including the ability to design the units from scratch, and the persistence of the bases that you build throughout the campaign; this makes it important to think about your long term strategy.</p>
 	
     <photos path="warzone2100" />
-</entry>
+</content:entry>

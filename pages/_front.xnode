@@ -1,14 +1,9 @@
-<?r 
-	response.content_type! "text/html; charset=utf-8"
-	response.cache! 
-?><!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 	<head>
 		<title>`(code otaku)</title>
 		
-		<!--[if IE 8]>
-		<meta http-equiv="X-UA-Compatible" content="IE=8" />
-		<![endif]-->
+		<?r response.cache! ?>
 		
 		<link rel="icon" type="image/png" href="/_static/icon.png" />
 		<link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/blog/atom" />
@@ -18,10 +13,10 @@
 	</head>
 
 	<body>
-		<content />
+		<utopia:content />
 		
-		<env only="production">
+		<utopia:environment only="production">
 			<google_analytics id="UA-2590906-11" />
-		</env>
+		</utopia:environment>
 	</body>
 </html>

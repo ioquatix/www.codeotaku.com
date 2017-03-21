@@ -1,5 +1,5 @@
-<page>
-	<logo src="logo.png" title="RubyDNS" />
+<content:page>
+	<content:logo src="logo.png" title="RubyDNS" />
 	
     <p>RubyDNS is a high-performance DNS server which can be easily integrated into other projects or used as a stand-alone daemon (via <a href="../rexec/">RExec</a>). By default it uses rule-based pattern matching. Results can be hard-coded, computed, fetched from a remote DNS server or fetched from a local cache, depending on requirements.</p>
 
@@ -19,7 +19,7 @@
 	
 	<h2>Documentation</h2>
 	
-	<summary path="documentation/" />
+	<content:summary path="documentation/" />
 	
 	<h2>Used By</h2>
 	
@@ -31,4 +31,4 @@
 		<li><a href="https://github.com/lox/awsquery">awsquery</a>: A collection of tools for querying AWS hosts based on metadata and manipulating them.</li>
 		<li><a href="https://github.com/BerlinVagrant/vagrant-dns">Vagrant DNS</a> / <a href="https://github.com/narkisr/vagrant-dns-server">Vagrant DNS Server</a>: Enables easy DNS management of multiple local Vagrant machines.</li>
 	</ul>
-</page>
+</content:page>

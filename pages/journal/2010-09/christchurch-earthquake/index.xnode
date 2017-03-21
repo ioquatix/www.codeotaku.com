@@ -1,4 +1,4 @@
-<entry>
+<content:entry>
 	<p>Last night at around 4:30AM in Christchurch, New Zealand, there was a large earthquake. At the time I was programming, specifically running a benchmark of RSA key generation. I'd just finished working setting up hosting in Germany for a company in the UK, and it was time to settle down.</p>
 	
 	<p>Unfortunately, to my surprise the room started shaking. Next to me was Coco in a deep sleep. When the earth quake persisted, I protectively jumped on top of her and said, "It's an earthquake!". Normally, you can simply wait and the shake will dissipate, but this one suddenly got a lot stronger. At that point I grabbed half-asleep Coco and stood up in the door frame bracing myself against either side.</p>
@@ -60,4 +60,4 @@
 		<li>Some iconic buildings in Christchurch appear to have been damaged significantly, and may need to be demolished (or simply be cost ineffective to fix). Whether they are rebuilt in traditional or modern style could change the style of Christchurch.</li>
 		<li>I wonder whether people will be allowed to rebuild chimneys, as the City now has various clean air ordinances. This could be a problem for many home owners who rely on fire for heating.</li>
 	</ul>
-</entry>
+</content:entry>

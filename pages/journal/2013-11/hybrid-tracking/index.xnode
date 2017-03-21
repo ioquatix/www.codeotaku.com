@@ -1,4 +1,4 @@
-<entry>
+<content:entry>
 	<p>We have developed a hybrid tracking algorithm for mobile outdoor augmented reality (AR) applications. Our approach combines inertial sensors and camera video to improve global bearing calculations. Prior research in this area has focused on gravity aware feature descriptors, but we expand this to efficient full-frame vertical edge detection. We discuss our implementation and evaluate it’s performance on an iPhone 5, which reveals that our approach is over 100 times faster than existing feature alignment algorithms and can improve tracking with only 2-4ms of additional processing per frame on current generation mobile phones.
 </p>
 	
@@ -19,4 +19,4 @@
 		<li><a href="../transform-flow-toolkit">Transform Flow: A Mobile Augmented Reality Visualisation and Evaluation Toolkit</a>.</li>
 		<li><a href="../../2013-10/mobile-outdoor-augmented-reality">Real-time Hybrid Tracking for Outdoor Augmented Reality</a></li>
 	</references>
-</entry>
+</content:entry>

@@ -1,9 +1,9 @@
-<entry>
+<content:entry>
 	<p>I was interested to learn more about garbage collection. The idea is not complex, but obviously writing a fast, portable implementation that deals with all the edge cases is a challenge.</p>
 	
 	<p>However, I just wanted to try something simple - detecting when pointers are no longer directly on the stack is a good starting point, so I implemented that with a very basic mark and sweep algorithm.</p>
 	
-	<listing src="garbage-collector.txt" brush="c++" />
+	<content:listing src="garbage-collector.txt" brush="c++" />
 	
 	<p>This garbage collector will only scan the stack for allocated memory pointers. It isn't portable or efficient. However, I enjoyed writing the code and trying it out. Maybe I'll make something more complete in the future.</p>
 	
@@ -20,4 +20,4 @@
 	</ul>
 	
 	<p>Feel free to improve the code and send suggestions. Ideally, I want to keep it as easy to understand as possible.</p>
-</entry>
+</content:entry>

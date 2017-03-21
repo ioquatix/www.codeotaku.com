@@ -1,9 +1,9 @@
-<contents-page title="Fingerprint Documentation">
-	<heading>Installation</heading>
+<content:contents-page title="Fingerprint Documentation">
+	<content:heading>Installation</content:heading>
 
 	<p>Fingerprint requires ruby so make sure this is installed first.</p>
 	
-	<listing src="installation.txt" brush="bash" />
+	<content:listing src="installation.txt" brush="bash" />
 	
 	<h2>Source Code</h2>
 	
@@ -13,5 +13,5 @@
 	
 	<p>Fingerprint is released under the MIT license:</p>
 	
-	<listing src="license.txt" brush="plain" />
-</contents-page>
+	<content:listing src="license.txt" brush="plain" />
+</content:contents-page>

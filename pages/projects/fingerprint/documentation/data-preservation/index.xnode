@@ -1,5 +1,5 @@
-<contents-page title="Fingerprint Documentation">
-	<heading>Data Preservation</heading>
+<content:contents-page title="Fingerprint Documentation">
+	<content:heading>Data Preservation</content:heading>
 	
 	<p>Data preservation means that data is available in a useful form for as long as it is required (which could be indefinitely). Faulty hardware, software, user error or malicious attack are the primary concern of data preservation. Fingerprint can provide insight into data integrity problems, which can then be resolved appropriately.</p>
 	
@@ -23,5 +23,5 @@
 	
 	<p>A simple way to do this would be to have a local server running fingerprint on the remote machine and saving the data locally:</p>
 	
-	<listing src="malicious.txt" brush="bash" />
-</contents-page>
+	<content:listing src="malicious.txt" brush="bash" />
+</content:contents-page>

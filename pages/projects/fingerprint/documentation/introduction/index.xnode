@@ -1,5 +1,5 @@
-<contents-page title="Fingerprint Documentation">
-	<heading>Introduction</heading>
+<content:contents-page title="Fingerprint Documentation">
+	<content:heading>Introduction</content:heading>
 	
 	<blockquote><span class="spoken">Matter and energy degrade to more probable, less informative states. The larger the amounts of information processed or diffused, the more likely it is that information will degrade toward meaningless variety, like noise or information overload, or sterile uniformity</span> &mdash; Orrin Klapp</blockquote>
 	
@@ -13,7 +13,7 @@
 		In the following example, we deliberately manipulate information, and Fingerprint detects the changes:
 	</p>
 	
-	<listing src="example.txt" brush="bash" />
+	<content:listing src="example.txt" brush="bash" />
 	
 	<h2>Warranty</h2>
 	
@@ -24,4 +24,4 @@
 	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 	THE SOFTWARE.</p>
-</contents-page>
+</content:contents-page>

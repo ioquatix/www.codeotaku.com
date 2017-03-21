@@ -1,4 +1,4 @@
-<?r transaction.attributes[:title] ||= attributes[:title] ?>
+<?r document.attributes[:title] ||= attributes[:title] ?>
 <div class="gallery"><img src="#{attributes[:src]}" alt="#{attributes[:title]}"/><br/>
 	<content/>
 </div>

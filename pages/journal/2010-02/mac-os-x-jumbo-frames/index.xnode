@@ -1,4 +1,4 @@
-<entry>
+<content:entry>
 	<p>Mac OS X Ethernet usually supports jumbo frames. A jumbo frame is a frame with an MTU set (typically) to 9000 bytes. Using larger frames means that the network is optimised for throughput rather than latency.</p>
 	
 	<p>Firstly, open "System Preferences". Click on "Network":</p>
@@ -12,4 +12,4 @@
 	<p>Set "Configure" to "Manually". Set "Speed" to "autoselect". Set "MTU" to "Custom" and enter in "9000". This number enables jumbo frames to be sent via this ethernet adaptor.</p>
 	
 	<p>I have found that this value does not always get saved correctly. Make sure at this point you apply the settings by clicking "OK" and then "Apply".</p>
-</entry>
+</content:entry>

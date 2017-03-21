@@ -1,5 +1,5 @@
-<page>
-	<logo src="logo.png" title="RubyDNS" />
+<content:page>
+	<content:logo src="logo.png" title="RubyDNS" />
 	
 	<p>RubyDNS是一个高性能DNS服务器，可以很容易被集成到其他项目或者作为守护进程 (通过 <a href="../rexec/">RExec</a>) 的方式使用。它在默认情况下使用的是规则的模式匹配，其结果可以是根据实际需求通过硬编码、计算处理、远程DNS服务器、或从本地缓存获取得到的。</p>
 	
@@ -19,7 +19,7 @@
 	
 	<h2>文档</h2>
 	
-	<summary path="documentation/" />
+	<content:summary path="documentation/" />
 	
 	<h2>被以下项目使用</h2>
 	
@@ -31,4 +31,4 @@
 		<li><a href="https://github.com/lox/awsquery">awsquery</a>: A collection of tools for querying AWS hosts based on metadata and manipulating them.</li>
 		<li><a href="https://github.com/BerlinVagrant/vagrant-dns">Vagrant DNS</a> / <a href="https://github.com/narkisr/vagrant-dns-server">Vagrant DNS Server</a>: Enables easy DNS management of multiple local Vagrant machines.</li>
 	</ul>
-</page>
+</content:page>

@@ -1,11 +1,11 @@
-<entry>
+<content:entry>
 	<p>I recently had to upgrade DataMapper which has lots of separate gems for different bits of functionality. Rather than typing them all in manually, I wrote a one-liner to do it. Firstly, we have a list of gems on the computer, and then we <code class="syntax bash-script">grep</code> for "dm":</p>
 	
-	<listing src="gem-list.txt" brush="bash" />
+	<content:listing src="gem-list.txt" brush="bash" />
 	
 	<p>So we have a list of gems.. but we need to remove the version number brackets <code class="syntax">(0.10.2, 0.10.1)</code>. To do this there are a number of options, but we will use <code class="syntax bash-script">sed</code>:</p>
 	
-	<listing src="gem-install.txt" brush="bash" />
+	<content:listing src="gem-install.txt" brush="bash" />
 	
 	
-</entry>
+</content:entry>

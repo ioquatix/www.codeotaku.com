@@ -1,4 +1,0 @@
-$ ./udptest.rb --server
-Server starting on port 30000
-New connection from ["AF_INET", 54475, "localhost", "127.0.0.1"]
-++++++++++++++++++++++

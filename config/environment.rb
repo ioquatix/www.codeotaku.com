@@ -5,6 +5,6 @@ Bundler.setup
 require 'utopia/setup'
 Utopia.setup
 
-require 'utopia/extensions/array'
+require 'utopia/extensions/array_split'
 
 RACK_ENV = ENV.fetch('RACK_ENV', :development).to_sym unless defined? RACK_ENV

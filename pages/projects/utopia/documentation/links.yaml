@@ -1,6 +1,0 @@
-introduction:
-    order: 1
-setup:
-    order: 2
-content-middleware:
-    order: 3

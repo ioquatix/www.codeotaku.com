@@ -1,10 +1,10 @@
 <?r response.do_not_cache! ?>
-<page>
-	<heading>File not found</heading>
+<content:page>
+	<content:heading>File not found</content:heading>
 	
 	<p>You step in the stream,<br/>
 		But the water has moved on.<br/>
 		This page is not here.<br/>
 		&mdash; Cass Whittington
 	</p>
-</page>
+</content:page>

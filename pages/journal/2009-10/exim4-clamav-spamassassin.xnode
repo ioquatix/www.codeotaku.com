@@ -1,4 +1,4 @@
-<entry>
+<content:entry>
 	<p>I recently setup Exim4, ClamAV and SpamAssassin on my VPS. I found many useful resources, but <a href="http://www.maretmanu.org/homepage/inform/exim-spam.php">this one</a> was fantastic.</p>
 	
 	<p>I found an <a href="http://www.taugh.com/greylist.pdf">interesting paper</a> on greylisting. I've use grey listing for a long time as the sole method to reduce spam. Basically almost 100% of spam is blocked by grey listing.</p>
@@ -8,4 +8,4 @@
 	<p>The biggest problem with grey listing is non-conformant SMTP servers that don't handle errors properly.</p>
 	
 	<p>You can see a diagram of what I finally ended up creating <a href="http://www.oriontransfer.co.nz/services/internet-services">here</a>, under <em>Spam Protection</em>.</p>
-</entry>
+</content:entry>

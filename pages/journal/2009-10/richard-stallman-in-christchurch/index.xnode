@@ -1,4 +1,4 @@
-<entry>
+<content:entry>
 	<p>The other day, Richard Stallman gave a lecture at Canterbury University. When I first approached him, we had an interesting discussion about the <a href="http://www.gnu.org/philosophy/open-source-misses-the-point.html">difference between open source and free software</a>. He is a wise man with many ideas about computers and society.</p>
 
 	<photos path="richard" />
@@ -32,4 +32,4 @@
 	<ul>
 		<li><a href="http://oreilly.com/openbook/freedom/ch01.html">Free as in Freedom: For Want of a Printer</a></li>
 	</ul>
-</entry>
+</content:entry>

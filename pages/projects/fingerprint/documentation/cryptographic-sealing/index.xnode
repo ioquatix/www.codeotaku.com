@@ -1,5 +1,5 @@
-<contents-page title="Fingerprint Documentation">
-	<heading>Cryptographic Sealing</heading>
+<content:contents-page title="Fingerprint Documentation">
+	<content:heading>Cryptographic Sealing</content:heading>
 	
 	<p>Fingerprint can be used to ensure that a set of files has been delivered without manipulation, by creating a fingerprint and signing this with a private key. The fingerprint and associated files can later be verified using the public key.</p>
 	
@@ -7,19 +7,19 @@
 	
 	<p>To sign fingerprints, the first step is to create a private and public key pair. This is easily achieved using OpenSSL:</p>
 	
-	<listing src="keys.txt" brush="bash" />
+	<content:listing src="keys.txt" brush="bash" />
 	
 	<h2>Signing Fingerprints</h2>
 	
 	<p>After you have generated a fingerprint, you can sign it easily using the private key:</p>
 	
-	<listing src="digest.txt" brush="bash" />
+	<content:listing src="digest.txt" brush="bash" />
 	
 	<h2>Verifying Fingerprints</h2>
 	
 	<p>You can easily verify the security of the fingerprint data:</p>
 	
-	<listing src="verify.txt" brush="bash" />
+	<content:listing src="verify.txt" brush="bash" />
 	
 	<p>As long as private key is kept secure, we can be sure that these files have not been tampered with.</p>
-</contents-page>
+</content:contents-page>

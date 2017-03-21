@@ -1,19 +1,19 @@
-<entry>
+<content:entry>
 	<p>I have a problem where sometimes certain passenger spawned processes use too much memory. I've never been able to figure out why this is - it happens about once a month and debugging with GDB on a production server hasn't been so easy. I have not been able to reproduce the problem locally during testing. I can only assume some combination of software and hardware is causing some issues.</p>
 	
 	<p>So, in order to minimise downtime when this occurs, I've written the following simple script. Pending an option in Phusion Passenger which allows one to set a memory limit, this script will terminate any passenger related process that exceeds a certain memory limit.</p>
 	
-	<listing src="passenger-memory-check.txt" brush="ruby" />
+	<content:listing src="passenger-memory-check.txt" brush="ruby" />
 	
 	<p>You can put this in <code class="syntax">/etc/crontab</code> to run every 10 minutes:</p>
 	
-	<listing>*/10 * * * * root /srv/scripts/passenger-memory-check</listing>
+	<content:listing>*/10 * * * * root /srv/scripts/passenger-memory-check</content:listing>
 	
 	<h2>Technical Details</h2>
 	
 	<p>Just in case anyone is interested, this happens on a XEN VPS. From GDB inspection, I've often found that the Ruby process (version 1.8.7) is stuck in garbage collection code. Secondly, I've also noticed that within 30 minutes of the memory spike, there is typically some message like:</p>
 	
-	<listing>Jun 13 05:01:57 ayako kernel: [1124672.119348] clocksource/0: Time went backwards: ret=f58a06913e397 delta=-38334276 shadow=f58a0581b591f offset=1341a9a7</listing>
+	<content:listing>Jun 13 05:01:57 ayako kernel: [1124672.119348] clocksource/0: Time went backwards: ret=f58a06913e397 delta=-38334276 shadow=f58a0581b591f offset=1341a9a7</content:listing>
 	
 	<p>I wonder if there is some race condition/timing glitch in the garbage collection? I hope to upgrade to Ruby 1.9.3 but I'm very cautious about doing this on a production server without a lot of testing..</p>
-</entry>
+</content:entry>

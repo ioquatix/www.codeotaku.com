@@ -1,5 +1,5 @@
-<page>
-	<heading>About</heading>
+<content:page>
+	<content:heading>About</content:heading>
 	
 	<p>Hello~ welcome to my corner of the internet. This is my personal site for project work and personal thoughts.</p>
 	
@@ -12,4 +12,4 @@
 	<p>I have a wide range of interests including game design, programming language semantics, writing, ambient music, algorithms and tree climbing. When I need a break, I head outside and look after my garden. I'm growing Wasabi, I've got several chickens, lots of fish and a cat. Once my cat fell in the pond because she was trying to catch the fish. She still tries to catch them, but she is a bit more cautious now.</p>
 	
 	<p>I value honesty, kindness, mindfulness, wisdom and creativity, and above all else I want to share these values with other people.</p>
-</page>
+</content:page>

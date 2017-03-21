@@ -1,5 +1,5 @@
-<page>
-	<heading>Samuel's Journal</heading>
+<content:page>
+	<content:heading>Samuel's Journal</content:heading>
 	
 	<dl class="options">
 	<?r links("./", :sort => :title, :files => false, :virtuals => false).reverse_each do |link| ?>
@@ -11,4 +11,4 @@
 		</dd>
 	<?r end ?>
 	</dl>
-</page>
+</content:page>

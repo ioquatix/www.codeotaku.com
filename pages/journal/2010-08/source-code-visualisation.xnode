@@ -1,4 +1,4 @@
-<entry>
+<content:entry>
 	<p>Source code visualisation can potentially help programmers understand a program more quickly, especially if they are not familiar with it. Traditional tools are being improved to allow for more accurate software engineering and better visibility of program structure.</p>
 	
 	<p>Find/Replace is being improved by project visualisation and language aware refactoring tools. Browsing classes and functions has become easier with high level visualisations. Changing the name of a variable, moving a function from one class to another, and many other structured tasks are becoming much simpler with language aware editors.</p>
@@ -38,4 +38,4 @@
 		<li><a href="http://en.wikipedia.org/wiki/SuperCollider">SuperCollider</a> - Source code is stored as RTF.</li>
 		<li><a href="../2010-10/visualising-information-change-over-time">Visualising Information Change Over Time</a> - A browser based visualisation of source code repositories.</li>
 	</ul>
-</entry>
+</content:entry>

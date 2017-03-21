@@ -1,4 +1,4 @@
-<entry>
+<content:entry>
 	<p>At its core, Computer Science is the study of programming languages, algorithms and data structures. Learning a programming language allows one to grapple with these ideas and bring them to life. However, it can be a barrier too: a difficult language can be discouraging and hinder progress. Choosing a suitable language for students is important, and there are many factors to consider.</p>
 
 	<p>In addition to learning a single programming language, exposure to a variety of different programming languages increases awareness of not only what is available, but also the different approaches one can take to solve various kinds of problems.</p>
@@ -12,4 +12,4 @@
 	<p>The word ‘Dojo’ is actually pronounced ‘Dou-Jyou’, and written in Japanese Kanji ‘道場’; it can most easily be translated into ‘Dou’ meaning pathway, and ‘Jyou’ meaning place. ‘Programming Dojo’ means the place where one can start on the pathway of programming.</p>
 
 	<p><em>Samuel Williams is a master's candidate in Computer Science at Canterbury University, New Zealand. The ‘Programming Dojo’ was developed as project work for a course on Computer Science Education run by Tim Bell and Lynn Lambert. Samuel Williams is an enthusiastic free software advocate and computer programmer, and enjoys hiking in the mountains.</em></p>
-</entry>
+</content:entry>

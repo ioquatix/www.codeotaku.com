@@ -1,2 +1,0 @@
-$ ./udptest.rb --server
-Server starting on port 30000

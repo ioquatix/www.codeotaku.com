@@ -1,4 +1,4 @@
-<entry>
+<content:entry>
 	<p>Managing state in a game or simulation can be complex. For a simulation, there are several different kinds of state we might need to consider:</p>
 
 	<ul>
@@ -13,7 +13,7 @@
 
 	<h2>Basic Example of State Management</h2>
 
-	<listing src="simulation.txt" brush="clang" />
+	<content:listing src="simulation.txt" brush="clang" />
 
 	<p>The benefits of this kind of structure should be apparent, however I'll spell them out:</p>
 
@@ -33,4 +33,4 @@
 			</ul>
 		</li>
 	</ul>
-</entry>
+</content:entry>

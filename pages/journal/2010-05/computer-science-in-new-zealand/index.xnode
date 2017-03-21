@@ -1,4 +1,4 @@
-<entry>
+<content:entry>
 	<p>I have recently been studying Computer Science in Education. Part of my project work was the creation of the <a href="http://programming.dojo.net.nz">Programming Dojo</a> (<a href="../../2010-04/programming-dojo">meta release</a>). I'm going to summarise some of the issues surrounding Computer Science Education.</p>
 	
 	<h2>Computer Science in New Zealand High Schools</h2>
@@ -44,4 +44,4 @@
 		<li><a href="http://dtg.tki.org.nz/">New Zealand Curriculum: Digital Technologies Guidelines</a></li>
 		<li><a href="http://www.techlink.org.nz/curriculum-support/tks/index.htm">Techlink: Technological Context Knowledge and Skills</a> (Digital Technologies Expert Panel Review July 2009)</li>
 	</ul>
-</entry>
+</content:entry>

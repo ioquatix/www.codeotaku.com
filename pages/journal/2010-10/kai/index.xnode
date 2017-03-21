@@ -1,11 +1,11 @@
-<entry>
+<content:entry>
 	<p>Kai (会 in Japanese) is an experimental interpreter that provides a highly extensible runtime environment and explicit control over the compilation process.</p>
 	
 	<div class="gallery"><img src="logo.png" /></div>
 	
 	<p>Programs are defined using nested symbolic expressions, which are all parsed into first-class values with minimal intrinsic semantics. Kai can generate optimised code at run-time (using <a href="http://www.llvm.org/">Low Level Virtual Machine</a>) in order to exploit the nature of the underlying hardware and to integrate with external software libraries. It is a unique exploration into world of dynamic code compilation, and the interaction between high level and low level semantics.</p>
 	
-	<listing src="gcd.txt" brush="kai" />
+	<content:listing src="gcd.txt" brush="kai" />
 	
 	<p>You can try the <a href="http://kai.oriontransfer.co.nz/">online demo</a>. Source code is available at <a href="http://github.com/ioquatix/kai">GitHub</a>.</p>
 	
@@ -31,4 +31,4 @@
 	</ul>
 	
 	<p>I developed Kai over several years to learn more about computer programming. Thanks to Tadao Takaoka for his supervision and support.</p>
-</entry>
+</content:entry>

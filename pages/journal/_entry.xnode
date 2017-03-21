@@ -34,9 +34,9 @@ if prev_link == nil || next_link == nil
 	end
 end
 
-?><page>
+?><content:page>
 	<div class="heading" style="position: relative">
-		<heading>#{title}</heading>
+		<content:heading>#{title}</content:heading>
 
 		<div style="padding-left: 80px; padding-right: 80px">
 			<small class="author">Author: <strong>#{author}</strong></small>
@@ -45,10 +45,10 @@ end
 	</div>
 	
 	<div id="entry">
-		<content/>
+		<utopia:content/>
 		<br/>
 				
-		<comments node="#{ parent.node.uri_path.to_s}" />
+		<content:comments node="#{ parent.node.uri_path.to_s}" />
 	</div>
 	
 	<div class="navigation noindex">
@@ -61,4 +61,4 @@ end
 	<?r end ?>
 		<br style="clear: both" />
 	</div>
-</page>
+</content:page>

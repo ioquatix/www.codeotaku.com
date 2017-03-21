@@ -1,4 +1,4 @@
-<entry>
+<content:entry>
 	<h2>Problem</h2>
 	
 	<p>Fibonacci numbers are given by:</p>
@@ -18,4 +18,4 @@
 	<p>We can rewrite the original problem as a summation. Because we know that </p>
 	
 	<latex src="proof.tex" />
-</entry>
+</content:entry>

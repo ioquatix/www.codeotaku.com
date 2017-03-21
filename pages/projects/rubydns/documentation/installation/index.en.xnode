@@ -1,13 +1,13 @@
-<contents-page title="RubyDNS Documentation">
-	<heading>Installation</heading>
+<content:contents-page title="RubyDNS Documentation">
+	<content:heading>Installation</content:heading>
 	
 	<p>RubyDNS is available as a ruby gem:</p>
 	
-	<listing src="installation.txt" brush="bash" />
+	<content:listing src="installation.txt" brush="bash" />
 	
 	<p>Some of the auxiliary commands rely on dig:</p>
 	
-	<listing src="dig.txt" brush="bash" />
+	<content:listing src="dig.txt" brush="bash" />
 	
 	<h2>Source Code</h2>
 	
@@ -17,5 +17,5 @@
 	
 	<p>RubyDNS is released under the MIT license:</p>
 	
-	<listing src="license.txt" brush="plain" />
-</contents-page>
+	<content:listing src="license.txt" brush="plain" />
+</content:contents-page>

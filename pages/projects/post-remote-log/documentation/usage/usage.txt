@@ -1,6 +1,0 @@
-$ post-remote-log -h
-Usage: post-remote-log [options] [classification] < log-data.txt
-Copyright (c) 2010 Samuel Williams <http://www.oriontransfer.co.nz/>.
-	-c config.yaml                   Configuration file; defaults to /etc/post-remote-log.conf
-	-d                               Run in background as a daemon. Requires daemon-exec.
-	-v                               Verbose output.

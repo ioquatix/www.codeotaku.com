@@ -1,25 +1,25 @@
-<entry>
+<content:entry>
 	<p>I recently started experimenting with <a href="">SyntaxHighlighter</a> for making code on my blog more readable. Generally, SyntaxHighlighter has been great. However one issue I ran into was the number of files that need to be loaded. Each language has its own JavaScript file that must be loaded in order to display that particular language. This leads to slow page loads, even if the majority of the code is cached.</p>
 	
 	<p>To solve this problem, I've written a dynamic JavaScript and CSS loader using jQuery. It is really very simple.</p>
 	
 	<p>This class is a helper class to load external code. It assists with this process by allowing code to load asynchronously, and once it has all been loaded, to execute a given function.</p>
 	
-	<listing src="script_loader.txt" lang="javascript" />
+	<content:listing src="script_loader.txt" lang="javascript" />
 	
 	<p>Here is a simple example of how to use this loader:</p>
 	
-	<listing src="script_loader_example.txt" lang="javascript" />
+	<content:listing src="script_loader_example.txt" lang="javascript" />
 	
 	<p>In this example, the final function <code>Teapot.initialize()</code> will only be run after all the scripts have been loaded. The order of loading scripts is also enforced. This is important, because since the scripts are loaded asynchronously, we don't know when the <code>Teapot</code> will be available.</p>
 	
 	<p>Here is the code which scans through all <code>&lt;pre&gt;</code> elements and loads the appropriate files:</p>
 	
-	<listing src="sh_loader.txt" lang="javascript" />
+	<content:listing src="sh_loader.txt" lang="javascript" />
 	
 	<p>In my main page HTML, I have the following which kicks the whole process off:</p>
 	
-	<listing src="sh_main.txt" lang="html" />
+	<content:listing src="sh_main.txt" lang="html" />
 	
 	<p>As you can see, due to the script loader, the code is relatively simple. As an alternative, my <a href="/projects/jquery-syntax">jQuery.Syntax</a> highlighter dynamically loads all code by default, avoiding the need for additional loader scripts.</p>
-</entry>
+</content:entry>

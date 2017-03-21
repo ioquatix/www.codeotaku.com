@@ -1,6 +1,0 @@
-methods:
-    test:
-        method: xmlrpc
-        host: localhost
-        port: 9080
-        path: "/post-remote-log"

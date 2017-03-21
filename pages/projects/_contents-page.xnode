@@ -27,7 +27,7 @@
 
 		<div class="contents-page">
 			<div class="content">
-				<content/>
+				<utopia:content/>
 
 				<div class="siblings">
 				<?r if prev_link ?>

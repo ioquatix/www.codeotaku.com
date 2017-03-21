@@ -1,5 +1,5 @@
-<contents-page title="Fingerprint Documentation">
-	<heading>Notarizing</heading>
+<content:contents-page title="Fingerprint Documentation">
+	<content:heading>Notarizing</content:heading>
 	
 	<p>In many cases it is good to ensure that documents existed at a particular time. With modern document storage systems, it may be impossible to verify this by simply relying on databases and filesystems alone, especially because technology can be manipulated.</p>
 	
@@ -8,4 +8,4 @@
 	<p>Simply follow the procedure to produce a <a href="../cryptographic-sealing/">cryptographic hash of a directory</a>, print these documents out, and get them signed.</p>
 	
 	<p>N.B. Please consult a lawyer for the correct procedure and legal standing of such techniques. This document is not legal advise and Orion Transfer Ltd accepts no responsibility for any use or misuse of this tool.</p>
-</contents-page>
+</content:contents-page>

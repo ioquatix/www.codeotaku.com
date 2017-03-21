@@ -1,4 +1,4 @@
-<entry>
+<content:entry>
 	<p>I have a dream.. that one day a robot can paint.</p>
 	
 	<p>Painting is surprisingly difficult. It involves a huge number of cognitive processes such as shape recognition and color matching. I've been interested in robots that can paint for some time.</p>
@@ -39,4 +39,4 @@
 	<p>I respectfully thank the authors of the source images I used for these examples.</p>
 	
 	<photos path="examples" />
-</entry>
+</content:entry>

@@ -1,4 +1,4 @@
-<entry>
+<content:entry>
 	<p>I have implemented RSA encryption and decryption using C++, along with support functions such as key generation. This implementation is purely academic and does not take into consideration many important real-world security issues. Several of the multiple precision integer algorithms were developed and implemented from the book <a href="http://www.cacr.math.uwaterloo.ca/hac/">Handbook of Applied Cryptography</a>. I wrote <a href="Multiple Precision RSA Implementation Documentation.pdf">some documentation</a> for my implementation, which may be helpful if you are making your own implementation.</p>
 	
 	<p>This implementation supports both single precision and multiple precision (a.k.a. big integer) mathematics. Several optimised functions are implemented including Barrett Modular Reduction.</p>
@@ -9,7 +9,7 @@
 	
 	<p>The multiple precision implementation contains a unique division algorithm by repeated doubling.</p>
 	
-	<listing src="division.txt" brush="c++" />
+	<content:listing src="division.txt" brush="c++" />
 	
 	<p>The main benefit of this approach is that it only uses additions and shifts to perform division. This algorithm can probably be extended to support multi-core implementation and is very robust.</p>
 	
@@ -25,7 +25,7 @@
 	
 	<p>The source code is available as an Xcode project. This project may not be reproduced except for personal use.</p>
 	
-	<filebox path="RSA.zip">
+	<content:filebox path="RSA.zip">
 		Released: 5 April 2011
-	</filebox>
-</entry>
+	</content:filebox>
+</content:entry>

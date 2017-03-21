@@ -1,4 +1,4 @@
-<entry>
+<content:entry>
 	<p>OpenCV 2.0 can be difficult to setup and install. Here are some setup instructions for Windows and Mac OS X, including how to create a new project in Visual C / Xcode.</p>
 	
 	<h2>Windows Setup</h2>
@@ -66,9 +66,9 @@
 	
 	<h2>Simple Example</h2>
 	
-	<listing src="simple_example.txt" brush="clang" />
+	<content:listing src="simple_example.txt" brush="clang" />
 	
 	<h2>OpenCV 2.0 Documentation</h2>
 	
 	<p>The best documentation I can find is <a href="http://opencv.willowgarage.com/documentation/">this wiki</a>. It has a good search function and I've generally found the documentation to be concise and easy to understand.</p>
-</entry>
+</content:entry>

@@ -1,4 +1,4 @@
-<page>
+<content:page>
 	<link rel="stylesheet" href="wedding.css" type="text/css" media="screen" />
 	
 	<?r @title = "Ayako and Samuel Wedding Celebration" ?>
@@ -72,4 +72,4 @@
 	<h2>Wedding Photographs</h2>
 	
 	<photos path="_photographs" />
-</page>
+</content:page>

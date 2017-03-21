@@ -11,7 +11,7 @@
 ?>
 <div class="xframe" src="#{ comments_path.to_s}?node=#{node_name}">
 	<div id="comments">
-		<login />
+		<content:login />
 	
 		<h1>Comments</h1>
 	<?r

@@ -1,4 +1,4 @@
-<entry>
+<content:entry>
 	<p>It is common in mobile augmented reality (AR) research to examine results that were attained with unpublished tools and data sets, which makes it difficult to compare and improve existing work without significant effort. We discuss the development of an open source toolkit called Transform Flow, which includes a data capture application for iOS, a desktop application to replay and analyse captured data sets with different algorithms, and a mobile application that can run these algorithms in real-time. Our results suggest that our toolkit can be a centre for collaborative research, as it provides a common platform on which tracking algorithms for mobile AR can be developed, studied and eventually deployed.</p>
 	
 	<dl class="options">
@@ -18,4 +18,4 @@
 		<li><a href="../hybrid-tracking">Hybrid Tracking using Gravity Aligned Edges</a>.</li>
 		<li><a href="../../2013-10/mobile-outdoor-augmented-reality">Real-time Hybrid Tracking for Outdoor Augmented Reality</a></li>
 	</references>
-</entry>
+</content:entry>

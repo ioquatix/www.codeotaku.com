@@ -1,19 +1,19 @@
-<entry>
+<content:entry>
 	<p>It is important to understand the place of StandardError in the hierarchy of ruby exceptions:</p>
 	
-	<listing src="exception_catch.txt" lang="ruby" />
+	<content:listing src="exception_catch.txt" lang="ruby" />
 	
 	<p>The result of this code is:</p>
 	
-	<listing src="exception_catch_results.txt" />
+	<content:listing src="exception_catch_results.txt" />
 	
 	<p>This behavior is consistent with the way ruby exceptions are designed; Errors which you can generally deal with are subclassed from <code class="syntax ruby">StandardError</code>, while errors which indicate a failure in the semantic meaning of the code or its execution inherit directly from <code class="syntax ruby">Exception</code></p>
 	
-	<listing src="list_exceptions.txt" lang="ruby" />
+	<content:listing src="list_exceptions.txt" lang="ruby" />
 	
 	<p>This gives us a list of exception classes:</p>
 	
-	<listing src="list_exceptions_results.txt" brush="ruby" />
+	<content:listing src="list_exceptions_results.txt" brush="ruby" />
 	
 	<p>Generally, if you are making your own exception class for non-fatal execution errors, you should inherit from <code class="syntax ruby">StandardError</code> or one of its descendants.</p>
-</entry>
+</content:entry>

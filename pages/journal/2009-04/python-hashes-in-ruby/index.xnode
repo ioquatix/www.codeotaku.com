@@ -1,13 +1,13 @@
-<entry>
+<content:entry>
 	<p>Python is a great language, and I use it frequently. However, I also use Ruby. One thing that recently became a bit of a problem was hashing. Python has a magic function called hash which works on strings and produces a signed integer hash. Because this was used in a script for storing files in the file-system, I've got a problem when I wanted to write a script in ruby, as it was impossible for me to calculate the Python hash in Ruby.</p>
 	
 	<p>The basic problem was as follows. Here is the working Python code.</p>
 	
-	<listing src="python_hash.txt" lang="python" />
+	<content:listing src="python_hash.txt" lang="python" />
 	
 	<p>Here is the ruby code:</p>
 	
-	<listing src="ruby_hash.txt" lang="ruby" />
+	<content:listing src="ruby_hash.txt" lang="ruby" />
 	
 	<p>Because <code>hash</code> function is specific to Python, this was a bit of a problem. Well, I found a great page explaining the python <code>hash</code> function.</p>
 	
@@ -18,11 +18,11 @@
 	
 	<p>The only complicated part in porting this code to Ruby was the signed arithmetic required. Basically, the above code relies on the behaviour of 2s-compliment overflow for 32bit signed integers. Because Ruby doesn't (as far as I know) have facilities for this, I've added in a function <code>unsigned_to_signed</code> which can do the conversion for arbitrary sized integers.</p>
 	
-	<listing src="ruby_implementation.txt" lang="ruby" />
+	<content:listing src="ruby_implementation.txt" lang="ruby" />
 	
 	<p>This is a simple program you can use pick out some random words and compare the hash between Python and Ruby.</p>
 	
-	<listing src="ruby_test.txt" lang="ruby" />
+	<content:listing src="ruby_test.txt" lang="ruby" />
 	
 	<p>This code will be helpful for what I am trying to achieve, however if you are storing hash functions, make sure you are using standard functions such as MD5, SHA1, etc. This way, logic is easy to port across multiple platforms and code bases.</p>
-</entry>
+</content:entry>

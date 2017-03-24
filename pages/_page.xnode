@@ -55,8 +55,8 @@
 			&copy; #{Time.now.year} Samuel Williams.
 		</div>
 		
-		<env only="production">
-			<google-analytics id="UA-2590906-11" />
-		</env>
+		<utopia:environment only="production">
+			<content:analytics id="UA-2590906-11"/>
+		</utopia:environment>
 	</body>
 </html>

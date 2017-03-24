@@ -167,7 +167,7 @@ GEM
     thor (0.19.4)
     trenni (3.0.4)
       rake-compiler
-    utopia (2.0.0)
+    utopia (2.0.1)
       concurrent-ruby (~> 1.0)
       http-accept (~> 1.6)
       mail (~> 2.6)
@@ -179,7 +179,6 @@ GEM
     utopia-gallery (2.0.1)
       utopia (~> 2.0)
       vips-thumbnail
-    utopia-tags-google-analytics (0.12.0)
     uuidtools (2.1.5)
     vips-thumbnail (1.0.0)
       ruby-vips (~> 1.0)
@@ -204,9 +203,8 @@ DEPENDENCIES
   rspec
   sanitize
   simplecov
-  utopia (~> 2.0.0)
+  utopia (~> 2.0.1)
   utopia-gallery (~> 2.0)
-  utopia-tags-google-analytics
 
 BUNDLED WITH
    1.14.6

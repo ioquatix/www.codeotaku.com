@@ -13,31 +13,27 @@
 		<link rel="icon" type="image/png" href="/_static/icon.png" />
 		<link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/blog/atom" />
 
-		<script src="/_static/components/jquery/dist/jquery.min.js" type="text/javascript"></script>
+		<script src="/_components/jquery/jquery.min.js" type="text/javascript"></script>
 		<script src="/_static/components/jquery.validate/dist/jquery.validate.min.js" type="text/javascript"></script>
 		
-		<script src="/_static/components/magnific-popup/dist/jquery.magnific-popup.min.js" type="text/javascript"></script>
-		<link rel="stylesheet" href="/_static/components/magnific-popup/dist/magnific-popup.css" type="text/css" media="screen" />
-		
 		<script src="/_static/components/jquery.cookie/jquery.cookie.js" type="text/javascript"></script>
+		
+		<link rel="stylesheet" href="/_components/jquery-litebox/jquery.litebox.css" type="text/css" media="screen" />
+		<link rel="stylesheet" href="/_components/jquery-litebox/jquery.litebox.gallery.css" type="text/css" media="screen" />
+		<script src="/_components/jquery-litebox/jquery.litebox.js"></script>
 		
 		<script src="/_components/jquery-syntax/jquery.syntax.min.js" type="text/javascript"></script>
 		<script src="/_components/jquery-xframe/jquery.xframe.js" type="text/javascript"></script>
 		
 		<script src="/_static/components/jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
 		
-		<?r Array(@scripts).each do |script| ?>
-		<script src="#{script}" type="text/javascript"></script>
-		<?r end ?>
-		
 		<script type="text/javascript">
 		//<![CDATA[
 			jQuery(function($) {
 				$.syntax();
-				
-				$('a.lightbox').magnificPopup({type:'image'});
-				
 				$.xframe();
+				
+				$('figure.photo a').litebox();
 			});
 		//]]>
 		</script>

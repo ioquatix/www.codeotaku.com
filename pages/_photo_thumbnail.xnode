@@ -1,6 +1,4 @@
-<span class="photo_thumbnail">
-	<a rel="photos" class="thumbnail lightbox" href="#{attributes[:src].large}" title="#{attributes[:alt]}">
-		<img src="#{attributes[:src].photo}" alt="#{attributes[:alt]}" />
-	</a>
-	<div class="caption">#{attributes[:alt]}</div>
-</span>
+<figure class="photo">
+	<a href="#{attributes[:src].large}" title="#{attributes[:alt]}"><img src="#{attributes[:src].small}" alt="#{attributes[:alt]}"/></a>
+	<?r if caption = attributes[:alt].caption ?><figcaption>#{caption}</figcaption><?r end ?>
+</figure>

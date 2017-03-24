@@ -3,7 +3,7 @@
 	
 	<p>Hello~ welcome to my corner of the internet. This is my personal site for project work and personal thoughts.</p>
 	
-	<div class="gallery">
+	<div style="text-align: center">
 		<img src="chi-keyboard.gif" alt="programming" />
 	</div>
 	

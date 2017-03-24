@@ -11,23 +11,23 @@
 	
 	<p>The first thing I noticed outside was that the neighbours fence had fallen over. This fence wasn't very good previously, but now it was completely destroyed. This fence had survived the first earthquake, so that was the first sign that this one was quite a bit more powerful.</p>
 	
-	<photos path="_maidstone" />
+	<content:photos path="_maidstone" />
 	
 	<p>I then decided to go check on my sister Clemency at Canterbury University, since I was sure she was working there. We jumped in the car and the devastation started to become apparent.</p>
 	
-	<photos path="_clemency" />
+	<content:photos path="_clemency" />
 	
 	<p>I actually found out that my sister got out of the university safely, so that was good news, and we drove over to her house to touch base. I grabbed one of the bikes and decided to go out to get some more photos.</p>
 	
-	<photos path="_suburbs" />
+	<content:photos path="_suburbs" />
 	
 	<p>At this point I decided to head into the City to survey the damage. Being on a bike was great because there were so many damaged roads and traffic jams, so it allowed me to get around easily.</p>
 	
-	<photos path="_city" />
+	<content:photos path="_city" />
 	
 	<p>At this point, I called my friends Henri and Yoko. They were over at St Margaret's. I went over to meet them, and on the way I also met Tomomi and Emiko. Their flat was badly damaged.</p>
 	
-	<photos path="_strowan" />
+	<content:photos path="_strowan" />
 	
 	<p>All in all, a very difficult and tragic event for people living in Christchurch!</p>
 </content:entry>

@@ -302,38 +302,6 @@ pre {
 	border-radius: 0.3125rem;
 }
 
-.gallery {
-	text-align: center;
-	padding: 0.3125rem;
-}
-
-.gallery .photo_thumbnail img {
-	-moz-box-shadow: 0.25rem 0.25rem 0.5rem #888;
-	-webkit-box-shadow: 0.25rem 0.25rem 0.5rem #888;
-	box-shadow: 0.25rem 0.25rem 0.5rem #888;
-}
-
-.gallery .photo_thumbnail, .gallery .thumbnail {
-	display: inline-block;
-	vertical-align: middle;
-}
-
-.gallery img {
-	margin: 0.625rem 0.625rem 0.3125rem;
-}
-
-.gallery .photo_thumbnail {
-	width: 20rem;
-}
-
-.gallery .photo_thumbnail, .gallery .thumbnail {
-	margin: 0.5rem;
-}
-
-.gallery .caption {
-	font-size: 1rem;
-}
-
 #comments form {
 	background-color: white;
 	box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.05);

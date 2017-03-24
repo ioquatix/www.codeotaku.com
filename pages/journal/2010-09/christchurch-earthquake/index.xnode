@@ -13,29 +13,29 @@
 	
 	<p>At this point, Michael suggested we headed up for the hills to have a look at the City. With nothing better to do, we grabbed some blankets and jumped into his car.</p>
 	
-	<photos path="traffic" />
+	<content:photos path="traffic" />
 	
 	<p>Some people were driving like maniacs. Since many traffic lights were non-functional, I saw several people simply drive through intersections without slowing down or checking. This was a bit shocking to me (and later in the day I noticed glass on the road at several intersections). Once we got up the Port Hills, it was clear that there were some major problems.</p>
 	
-	<photos path="power-crisis" />
+	<content:photos path="power-crisis" />
 	
 	<p><em>Please view the <a href="power-crisis/pano.jpg">high resolution panorama</a>.</em> It seemed that about 2/3 or more of Christchurch had lost power. After spending time taking photographs, we headed around to watch the sun rise.. but there was a problem..</p>
 	
-	<photos path="port-hills" />
+	<content:photos path="port-hills" />
 	
 	<p>One rock had obviously bounced right in the middle of the road and almost knocked a whole section down the side of the hill. Looking closely, I could track the path of the rock a significant distance down the valley. It must have been a reckoning force, hurling down that slope.</p>
 	
 	<p>We decided to go home. However, I suggested we head over and see my parents. To do this, we went via the City. We  were shocked to find a large number of damaged buildings in various levels of destruction..</p>
 	
-	<photos path="central-city" />
+	<content:photos path="central-city" />
 	
 	<p>After travelling past the City, we were in the suburbs. Again, destruction was visible; it primarily seemed to affect the older character houses, especially those with brick chimneys.</p>
 	
-	<photos path="suburbs" />
+	<content:photos path="suburbs" />
 	
 	<p>At my parents house, we listened to the Radio broadcast. It was nice to hear that there were no direct casualties, and that people were working on sorting out the damaged buildings. Many public facilities were damaged: water supply pipes and sewage pipes have been damaged in many parts of the City and surrounding Canterbury district. The real problem is not the immediate danger but the way in which people deal with the following days.</p>
 	
-	<photos path="mud" />
+	<content:photos path="mud" />
 	
 	<p>We also talked about <a href="http://en.wikipedia.org/wiki/Soil_liquefaction">liquefaction</a> and how it might have reduced the amount of damage, since the liquefaction effect probably dampens the impact of the shockwaves.</p>
 	

@@ -1,5 +1,5 @@
 <content:entry>
-	<photos path="oni-shop" />
+	<content:photos path="oni-shop" />
 
-	<photos path="street" />
+	<content:photos path="street" />
 </content:entry>

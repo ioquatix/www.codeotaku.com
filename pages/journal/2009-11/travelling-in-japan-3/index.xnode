@@ -5,33 +5,33 @@
 	
 	<p>She picks us up from the train station with her car, and we then go and visit Starbucks because Felicity wants coffee.</p>
 	
-	<photos path="coffee" />
+	<content:photos path="coffee" />
 	
 	<p>We then decide to go to <em>Udo Shrine</em> which is a temple built in a sandstone cave beside the sea.</p>
 	
 	<p>We head south to a place near Aoshima, which is on the coast. Here we can see <em>oni no araidana</em> (loosely "oni's washboard", oni being a kind of tricky demon god). Finally we arrive at the Udo Shrine.</p>
 	
-	<photos path="journey" />
+	<content:photos path="journey" />
 	
 	<p>The path to the temple is built into the coastline. We walk along slowly.</p>
 	
-	<photos path="coast" />
+	<content:photos path="coast" />
 	
 	<p>At the temple there are a number of things for good luck. We rub the ears of <em>Usagi-san</em> (rabbit), there is fresh spring water which we drink, which is especially good for mothers.</p>
 	
-	<photos path="shrine" />
+	<content:photos path="shrine" />
 	
 	<p>Outside the cave there is a rock with a basin in it. Other people are throwing stones, trying to get them to fall into this small area. Apparently, if you are successful, you will have good luck. We purchase 5 stones, and each try to get it in, unfortunately no one is successful.</p>
 	
-	<photos path="luck" />
+	<content:photos path="luck" />
 	
 	<p>On the way back to the car, I find another path leading up into the mountain along the coast. We decide to walk along. The track is not easy, and we walk through slippery mud, and then down a riverbed to the ocean. It is at this point we find another small shrine which looks out over the ocean.</p>
 	
-	<photos path="path" />
+	<content:photos path="path" />
 	
 	<p>We walk back to the car, on the way we receive free oranges from some of the shops. We also have ice cream - I get black sesame seed, and Felicity gets chestnut.</p>
 	
-	<photos path="oranges" />
+	<content:photos path="oranges" />
 	
 	<p>Next, we stop at the <em>michi no eki</em> (road station, where the word station is similar to that in "train station"). We stretch our legs and look through the shop, which has a wide variety of interesting local fruits and vegetables. Outside we gaze out at the ocean. I pick up some paper rubbish lying on the ground - this later turned out to be an envelope containing ¥5000.</p>
 	
@@ -39,7 +39,7 @@
 	
 	<p>Last time we were in Japan we had dinner in <em>Gyoen</em>. It was so good we had been planning to have dinner there again. Miho's mother had already made a reservation, and apparently they remembered both myself and Ayako.</p>
 	
-	<photos path="dinner" />
+	<content:photos path="dinner" />
 
 	<p>We are seated around a hollowed out cylinder of a tree which has a barbecue in the middle. We ordered many delicious dishes:</p>
 	
@@ -52,9 +52,9 @@
 
 	<p>The food is delicious and enjoyed by all. We head home, but on the way we stop at a super market and get Häagen Daz ice cream, a cheese cake, and several other delicious desert items.</p>
 	
-	<photos path="dessert" />
+	<content:photos path="dessert" />
 	
 	<p>At home we all sit in the <em>Kotatsu</em> and eat desert. We then have a bath, and watch a Japanese Anime <em>Chi's New Address</em>. Everyone is tired and we all enjoy a deep sleep.</p>
 	
-	<photos path="bed" />
+	<content:photos path="bed" />
 </content:entry>

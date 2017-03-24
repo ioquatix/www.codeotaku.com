@@ -1,4 +1,4 @@
-<entry>
+<content:entry>
 	<p><a href="https://github.com/ioquatix/jquery-syntax">jQuery.Syntax</a> is a small client side library for source code highlighting (&lt; 4000 lines of JS and CSS). It's designed to be fast and simple to use. The last major update was in 2012 and since then, HTML5 was released, IE6 became much less important, and the web in general has seen many major improvements.</p>
 	
 	<p>Recently, I decided to modernize jQuery.Syntax. Overall, the source was reduced by about 15% and the API simplified. The main changes and improvements are outlined below.</p>
@@ -26,4 +26,4 @@
 	<h2>New brushes and general improvements</h2>
 	
 	<p>Since 2012, some new languages became significant, including Swift, and Nginx. There are new brushes for highlighting these languages. Rust is also an important candidate. Feel free to submit a <a href="https://github.com/ioquatix/jquery-syntax">PR</a> :)</p>
-</entry>
+</content:entry>

@@ -38,5 +38,5 @@
 	
 	<p>I respectfully thank the authors of the source images I used for these examples.</p>
 	
-	<photos path="examples" />
+	<content:photos path="examples" />
 </content:entry>

@@ -38,7 +38,7 @@
 				<div class="title">
 					<a href="#{project.href}" target="_blank">#{project.title}</a>
 					<div class="tags">
-					<?r project[:tags].each do |tag| ?>
+					<?r project[:tags]&.each do |tag| ?>
 						<span class="tag #{tag}">#{tag_names[tag] || Strings::to_title(tag)}</span>
 					<?r end ?>
 					</div>

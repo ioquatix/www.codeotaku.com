@@ -1,7 +1,7 @@
 <content:entry>
 	<p>Due to the recent earthquake in Christchurch myself and my family and friends have moved to Tekapo temporarily. While some things such as internet are proving to be slightly more difficult, it is certainly great that my sister's two children can go to school!</p>
 	
-	<photos path="_tekapo_school" />
+	<content:photos path="_tekapo_school" />
 	
 	<p>Apparently we weren't the only ones with the idea &mdash; the typical role more than doubled from about ~12 students to 25+.</p>
 </content:entry>

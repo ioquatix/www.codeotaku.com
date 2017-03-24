@@ -7,7 +7,7 @@
 	
 	<p><a href="http://www.wesnoth.org/">Battle For Wesnoth</a> is an excellent <em>turn based strategy</em> game. It has many single player campaigns and a large amount of user contributed content, along with a campaign editor for creating your own content.</p>
 	
-    <photos path="wesnoth" />
+    <content:photos path="wesnoth" />
 	
 	<h2>Sauerbraten</h2>
 	
@@ -15,7 +15,7 @@
 	
 	<p>One of Sauerbraten's more interesting multiplayer modes is cooperative editing; this allows several people to create a map together online, and instantly try it out.</p>
 	
-    <photos path="sauerbraten" />
+    <content:photos path="sauerbraten" />
 	
 	<h2>Warzone 2100</h2>
 	
@@ -23,5 +23,5 @@
 	
 	<p>It has several unique innovations including the ability to design the units from scratch, and the persistence of the bases that you build throughout the campaign; this makes it important to think about your long term strategy.</p>
 	
-    <photos path="warzone2100" />
+    <content:photos path="warzone2100" />
 </content:entry>

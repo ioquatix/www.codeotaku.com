@@ -3,15 +3,15 @@
 	
 	<p>Then for the first time we travel up the west coast of Japan on the <em>Super Oki</em>. We go to Izumo on the train, and visit the information center. At the information center we get a nice brochure about Matsue, which has more attractions within walking distance.. so we decide to get back on the train and travel there as it is only a short distance away.</p>
 	
-	<photos path="super-oki" />
+	<content:photos path="super-oki" />
 	
 	<p>We arrive at Matsue, and we look for a place to stay. The local specialty food is <em>soba</em> which is made out of buckwheat. While we were eating Ayako found a hotel on her cellphone so we decided to check it out. The hotel is called <em>Green Rich Hotel</em> and it has a private <em>onsen</em> for hotel guests only. Ayako had some hotel points, so we get a discount of ¥1000.</p>
 	
-	<photos path="lunch" />
+	<content:photos path="lunch" />
 	
 	<p>After we have settled in, we walk to <em>Shinjiko</em> (Lake Shinji). It only takes a few minutes. We walk along the lake and the sun is beginning to sink. I find it funny because more and more camera men are turning up with tripods and expensive cameras. I'm not talking about 2 or 3, more like 20-30 unbelievably expensive looking setups. We sit and enjoy the sun set with probably several hundred other spectators who have all turned up.</p>
 	
-	<photos path="sunset" />
+	<content:photos path="sunset" />
 	
 	<p>Afterwards, we walk through the museum which is on the shorefront. There was a competition for local artists and photographers, and their work is on display.</p>
 	

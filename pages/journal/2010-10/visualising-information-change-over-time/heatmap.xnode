@@ -2,5 +2,5 @@
 	<link rel="stylesheet" href="heatmap.css" type="text/css" media="screen" />
 	<script src="heatmap.js" type="text/javascript"></script>
 	
-	<content />
+	<utopia:content/>
 </content:page>

@@ -1,4 +1,4 @@
-<heatmap>
+<content:heatmap>
 	<content:heading>Heat Map : Kai Weekly</content:heading>
 	
 	<table class="heatmap-summary">
@@ -54,4 +54,4 @@
 			
 		</ul>
 	</div>
-</heatmap>
+</content:heatmap>

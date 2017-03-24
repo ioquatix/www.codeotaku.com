@@ -1,4 +1,4 @@
-<heatmap>
+<content:heatmap>
 	<content:heading>Heat Map : LLVM Quarterly</content:heading>
 		
 	<table class="heatmap-summary">
@@ -386,4 +386,4 @@
 			
 		</ul>
 	</div>
-</heatmap>
+</content:heatmap>

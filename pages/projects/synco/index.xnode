@@ -1,7 +1,7 @@
 <content:page>
-	<content:logo src="logo.png" title="LSync" />
+	<content:logo src="logo.png" title="Synco" />
 	
-	<p>LSync is a tool that can be used to perform a wide variety of backup and synchronization tasks. It is primarily a high level Ruby library for describing backup processes and their associated dependencies.</p>
+	<p>Synco is a tool that can be used to perform a wide variety of backup and synchronization tasks. It is primarily a high level Ruby library for describing backup processes and their associated dependencies.</p>
 
 	<ul class="features">
 		<li>Simple integration with other libraries for advanced functionality such as <a href="documentation/real-time-syncronization">real-time synchronisation</a>, <a href="documetation/backup-staging">backup staging</a>, data integrity verification (via <a href="../fingerprint/">fingerprint</a>) and transactional locking.</li>

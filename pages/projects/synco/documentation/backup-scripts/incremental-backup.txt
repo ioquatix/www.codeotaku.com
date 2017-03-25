@@ -6,8 +6,8 @@ require 'lsync'
 require 'lsync/shells/ssh'
 require 'lsync/methods/rsync'
 
-LSync::run_script do |script|
-	script.method = LSync::Methods::RSyncSnapshot.new(:push, :arguments => ["--archive", "--compress", "--stats"])
+Synco::run_script do |script|
+	script.method = Synco::Methods::RSyncSnapshot.new(:push, :arguments => ["--archive", "--compress", "--stats"])
 	
 	script.master = :src
 	

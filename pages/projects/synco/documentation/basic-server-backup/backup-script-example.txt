@@ -6,8 +6,8 @@ require 'lsync'
 require 'lsync/shells/ssh'
 require 'lsync/methods/rsync'
 
-LSync::run_script do |script|
-	script.method = LSync::Methods::RSyncSnapshot.new(:push, :arguments => ["--archive", "--compress", "--stats"])
+Synco::run_script do |script|
+	script.method = Synco::Methods::RSyncSnapshot.new(:push, :arguments => ["--archive", "--compress", "--stats"])
 
 	script.master = :src
 
@@ -19,7 +19,7 @@ LSync::run_script do |script|
 	server(:dst) do |server|
 		server.host = "backups.example.com"
 		server.root = "/mnt/backups/s1.example.com/"
-		server.shell = LSync::Shells::SSH.new(:user => 'backup')
+		server.shell = Synco::Shells::SSH.new(:user => 'backup')
 
 		server.on(:success) do |controller|
 			controller.run ['lsync-rotate', script.method.inprogress_path]

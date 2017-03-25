@@ -7,8 +7,8 @@ require 'lsync/method'
 require 'lsync/shells/ssh'
 require 'lsync/methods/rsync'
 
-$script = LSync::Script.new do |script|
-	script.method = LSync::Methods::RSyncSnapshot.new(:push, :arguments => ["--archive", "--compress", "--stats"])
+$script = Synco::Script.new do |script|
+	script.method = Synco::Methods::RSyncSnapshot.new(:push, :arguments => ["--archive", "--compress", "--stats"])
 	script.master = :ayako
 	
 	server(:ayako) do |server|
@@ -23,7 +23,7 @@ $script = LSync::Script.new do |script|
 		server.host = 'haru.oriontransfer.org'
 		server.root = '/mnt/backups/ayako.oriontransfer.org/'
 
-		server.shell = LSync::Shells::SSH.new(:port => 1015, :user => 'backup')
+		server.shell = Synco::Shells::SSH.new(:port => 1015, :user => 'backup')
 		
 		server.on(:success) do |controller|
 			controller.run! :rotate, script.method.inprogress_path

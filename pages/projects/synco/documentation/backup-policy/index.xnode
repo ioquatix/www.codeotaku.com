@@ -1,4 +1,4 @@
-<content:contents-page title="LSync Documentation">
+<content:contents-page title="Synco Documentation">
 	<content:heading>What is a backup policy?</content:heading>
 
 	<p>For organisations that rely on computers, a Digital Information Backup Policy is <em>critical</em> to secure and reliable business operations. A backup policy dictates how <em>important data</em> and <em>systems</em> are managed to ensure that there is a tolerance for various forms of data loss. The main goal is to ensure that if an organisation suffers some kind of data loss, it can continue to function effectively with a minimal additional overhead during data recovery.</p>
@@ -106,7 +106,7 @@
 	
 	<ul>
 		<li><a href="http://www.lbackup.org/">LBackup</a> &mdash; A free open source incremental backup tool (produced by Lucid Information Systems).</li>
-		<li><a href="../../">LSync</a> &mdash; A free open source server synchronisation and incremental backup tool.</li>
+		<li><a href="../../">Synco</a> &mdash; A free open source server synchronisation and incremental backup tool.</li>
 		<li><a href="http://www.rsync.net">rsync.net</a> &mdash; Simple, live, offsite filesystem for business continuity and disaster recovery.</li>
 		<li><a href="http://www.lucidsystems.co.nz/links/backblaze">Backblaze</a> &mdash; A provider for online storage and backup applications.</li>
 		<li><a href="http://www.lucidsystems.co.nz/links/spideroak">SpiderOak</a> &mdash; Online backup and synchronisation</li>

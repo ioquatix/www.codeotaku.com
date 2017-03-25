@@ -1,7 +1,7 @@
 
-$script = LSync::Script.new do |script|
+$script = Synco::Script.new do |script|
 	# Use rsync snapshot method
-	script.method = LSync::Methods::RSync.new(:push)
+	script.method = Synco::Methods::RSync.new(:push)
 	
 	script.master = "server1.example.com"
 	

@@ -1,7 +1,7 @@
-<content:contents-page title="LSync Documentation">
+<content:contents-page title="Synco Documentation">
 	<content:heading>Concepts</content:heading>
 	
-	<p>LSync has several important concepts which are used to structure the backup script: <b>servers</b>, <b>directories</b>, the <b>master</b>, and the <b>method</b>. Each of these objects has associated <b>event handlers</b>.</p>
+	<p>Synco has several important concepts which are used to structure the backup script: <b>servers</b>, <b>directories</b>, the <b>master</b>, and the <b>method</b>. Each of these objects has associated <b>event handlers</b>.</p>
 	
 	<div class="gallery"><img src="script-structure.png" /></div>
 	
@@ -17,7 +17,7 @@
 	
 	<h3>Method</h3>
 	
-	<p>A method specifies the way data is copied between servers and directories. As an example, LSync includes two methods <code class="syntax ruby">RSync</code> which provides data synchronisation and <code class="syntax ruby">RSyncSnapshot</code> which provides incremental backups.</p>
+	<p>A method specifies the way data is copied between servers and directories. As an example, Synco includes two methods <code class="syntax ruby">RSync</code> which provides data synchronisation and <code class="syntax ruby">RSyncSnapshot</code> which provides incremental backups.</p>
 	
 	<p>Typically, methods also have directionality associated with them:</p>
 	

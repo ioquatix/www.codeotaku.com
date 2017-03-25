@@ -33,7 +33,7 @@
 
 	<div style="position: relative">
 		<ul class="projects">
-			<?r projects.each do |project| ; puts project.inspect ?>
+			<?r projects.each do |project| ?>
 			<li data-id="#{project.object_id}" class="#{(project[:tags] || []).join(' ')}">
 				<div class="title">
 					<a href="#{project.href}" target="_blank">#{project.title}</a>

@@ -1,7 +1,7 @@
-<content:contents-page title="LSync Documentation">
+<content:contents-page title="Synco Documentation">
 	<content:heading>Backup Scripts</content:heading>
 	
-	<p>A backup script represents a single backup process that involves one or more computers and directories. By default, LSync relies on <tt>RSync</tt>, but there are a variety of different tools available for copying data.</p>
+	<p>A backup script represents a single backup process that involves one or more computers and directories. By default, Synco relies on <tt>RSync</tt>, but there are a variety of different tools available for copying data.</p>
 
 	<h2>Basic Data Synchronisation</h2>
 	

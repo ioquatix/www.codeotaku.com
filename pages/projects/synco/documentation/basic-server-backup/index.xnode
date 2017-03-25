@@ -1,7 +1,7 @@
-<content:contents-page title="LSync Documentation">
+<content:contents-page title="Synco Documentation">
 	<content:heading>Server Backup</content:heading>
 	
-	<p>This guide explains how to use LSync to push data from a server to a remote backup destination. Here is an overview:</p>
+	<p>This guide explains how to use Synco to push data from a server to a remote backup destination. Here is an overview:</p>
 	
 	<div class="gallery">
 		<img src="overview.png" />

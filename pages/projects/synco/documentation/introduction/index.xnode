@@ -1,15 +1,15 @@
-<content:contents-page title="LSync Documentation">
+<content:contents-page title="Synco Documentation">
 	<content:heading>Introduction</content:heading>
 	
 	<p>Data is a valuable and often irreplaceable asset. Because of this, it is important to protect data such that it continues to exist despite failure and loss of equipment.</p>
 	
 	<p>Long term protection of data involves replication. This is because the probability of a catastrophic failure leading to data loss is reduced when said data is replicated across different storage systems.</p>
 	
-	<p>LSync aims to provide a technically comprehensive platform for developing data backup and replication systems, including support for both online (realtime) and offline replication. It is designed to provide scalability and simplicity without compromising either.</p>
+	<p>Synco aims to provide a technically comprehensive platform for developing data backup and replication systems, including support for both online (realtime) and offline replication. It is designed to provide scalability and simplicity without compromising either.</p>
 	
 	<h2>A few notes...</h2>
 	
-	<p>While LSync can facilitate many kinds of data synchronsation, it isn't the only way to replicate data. Other solutions such as online database replication and hardware-based replication may be a better solution depending on your requirements. If you are considering a backup solution and need advice and support you may want to read some of the articles I've written on backup policy:</p>
+	<p>While Synco can facilitate many kinds of data synchronsation, it isn't the only way to replicate data. Other solutions such as online database replication and hardware-based replication may be a better solution depending on your requirements. If you are considering a backup solution and need advice and support you may want to read some of the articles I've written on backup policy:</p>
 	
 	<ul>
 		<li><a href="../backup-policy">What is a backup policy?</a></li>
@@ -24,7 +24,7 @@
 	
 	<div class="gallery"><img src="server-failure.png" /></div>
 	
-	<p>A LSync implementation for the above diagram would look something like this:</p>
+	<p>A Synco implementation for the above diagram would look something like this:</p>
 	
 	<content:listing src="example.txt" brush="ruby" />
 	

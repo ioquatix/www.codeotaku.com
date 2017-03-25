@@ -3,7 +3,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:base="http://www.codeotaku.com">
 	<title>Code Otaku</title>
 	<subtitle>System Administration, Computer Programming, and Travelling</subtitle>
-	<link href="http://www.codeotaku.com/journal/"/>
+	<link href="http://www.codeotaku.com/journal/atom" rel="self"/>
 
 	<icon>/_images/icon.png</icon>
 

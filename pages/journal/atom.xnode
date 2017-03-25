@@ -24,7 +24,7 @@
 		<entry>
 			<id>#{entry.href}</id>
 			<title>#{entry.title}</title>
-			<updated>#{entry[:created].strftime('%F')}</updated>
+			<updated>#{entry[:created].rfc3339}</updated>
 			<link href="#{entry.href}" />
 
 			<?r if entry[:summary] ?>
@@ -35,6 +35,6 @@
 	<?r end ?>
 	
 	<?r if latest ?>
-		<updated>#{latest.strftime('%F')}</updated>
+		<updated>#{latest.rfc3339}</updated>
 	<?r end ?>
 </feed>

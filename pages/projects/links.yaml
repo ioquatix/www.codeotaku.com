@@ -56,7 +56,6 @@ SWApplicationSupport:
 fingerprint:
     title: 'Fingerprint'
     tags: ['open', 'ruby', 'framework', 'command-line']
-    uri: http://github.com/ioquatix/fingerprint
     description: "Data integrity and cryptographic verification tools."
 fingerprint-app:
     title: 'Fingerprint'

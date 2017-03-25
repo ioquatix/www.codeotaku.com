@@ -12,10 +12,4 @@
 	<h2>源码</h2>
 	
 	<p>源码可以从GitHub获取: <a href="https://github.com/ioquatix/rubydns">https://github.com/ioquatix/rubydns</a>.</p>
-	
-	<h2>许可证</h2>
-	
-	<p>RubyDNS 在MIT许可证下发布:</p>
-	
-	<content:listing src="license.txt" brush="plain" />
 </content:contents-page>

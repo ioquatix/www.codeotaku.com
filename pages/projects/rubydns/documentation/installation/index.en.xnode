@@ -12,10 +12,4 @@
 	<h2>Source Code</h2>
 	
 	<p>The source code is available on GitHub: <a href="https://github.com/ioquatix/rubydns">https://github.com/ioquatix/rubydns</a>.</p>
-	
-	<h2>License</h2>
-	
-	<p>RubyDNS is released under the MIT license:</p>
-	
-	<content:listing src="license.txt" brush="plain" />
 </content:contents-page>

@@ -1,7 +1,11 @@
 <?r 
 if attributes[:src]
 	path = parent.node.local_path(Utopia::Path.create(attributes[:src]))
-	code = File.read(path)
+	if File.exist?(path)
+		code = File.read(path)
+	else
+		code = "Could not read file: #{path}"
+	end
 else
 	code = content
 end

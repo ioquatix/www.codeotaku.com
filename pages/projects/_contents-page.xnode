@@ -1,4 +1,4 @@
-<page class="basic">
+<content:page class="basic">
 	<link rel="stylesheet" href="#{current.node.uri_path.dirname + 'contents-page.css'}" type="text/css" />
 	
 	<div style="clear: both; position: relative;">
@@ -44,4 +44,4 @@
 	
 		<br style="clear: both" />
 	</div>
-</page>
+</content:page>

@@ -12,7 +12,7 @@ time-limited-error-recovery:
     author: "Samuel Williams"
     created: 2009-08-11
     summary: "TLER, or Time Limited Error Recovery, is a new feature on hard drives which needs to be considered when setting up a RAID - learn more about the implications of drives with and without TLER."
-rubydns-0.1-released:
+rubydns-released:
     title: "RubyDNS 0.1 Released"
     author: "Samuel Williams"
     created: 2009-08-26

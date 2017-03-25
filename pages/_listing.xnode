@@ -15,5 +15,5 @@ end
 if lang = (attributes[:lang] || attributes[:brush]) ?>
 	<pre><code class="syntax brush-#{lang}">#{escaped_code}</code></pre>
 <?r else ?>
-	<pre>#{escaped_code}</pre>
+	<pre><code class="syntax brush-plain">#{escaped_code}</code></pre>
 <?r end ?>

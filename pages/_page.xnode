@@ -10,6 +10,8 @@
 			<title>`(code otaku)</title>
 		<?r end ?>
 		
+		<base href="#{first.node.uri_path}"/>
+		
 		<link rel="icon" type="image/png" href="/_static/icon.png" />
 		<link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/blog/atom" />
 

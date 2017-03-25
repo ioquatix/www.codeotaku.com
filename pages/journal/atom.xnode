@@ -1,45 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?r response.content_type = 'application/atom+xml' ?>
-<atom:feed xmlns:atom="http://www.w3.org/2005/Atom" xml:base="http://www.oriontransfer.co.nz/">
-	<atom:title>Code Otaku</atom:title>
-	<atom:subtitle>System Administration, Computer Programming, and Travelling</atom:subtitle>
-	<atom:link href="http://www.oriontransfer.co.nz/blog"/>
+<feed xmlns="http://www.w3.org/2005/Atom">
+	<title>Code Otaku</title>
+	<subtitle>System Administration, Computer Programming, and Travelling</subtitle>
+	<link href="http://www.codeotaku.com/journal/"/>
 
-	<atom:icon>/_images/icon.png</atom:icon>
+	<icon>/_images/icon.png</icon>
 
-	<atom:author>
-		<atom:name>Samuel Williams</atom:name>
-		<atom:email>samuel@oriontransfer.org</atom:email>
-	</atom:author>
+	<author>
+		<name>Samuel Williams</name>
+		<email>samuel@codeotaku.com</email>
+	</author>
 	
-	<atom:rights>© 2011 Samuel Williams</atom:rights>
+	<rights>© #{Time.now.year} Samuel Williams</rights>
 
-	<atom:id>#{current.node.uri_path}</atom:id>
-
-	<?r
-		# The weird to_datetime.new_offset(0.5) is because Safari doesn't handle
-		# this situation well.
-	?>
+	<id>#{current.node.uri_path}</id>
 
 	<?r latest = nil ?>
 
-	<?r links("./", :sort => :title, :files => false, :virtuals => false).each do |link| ?>
+	<?r links(:sort => :title, :files => false, :virtuals => false).each do |link| ?>
 		<?r links(link.path.dirname, :sort => :created).each do |entry| ?>
 		<?r latest = entry[:created] if !latest || entry[:created] > latest ?>
-		<atom:entry>
-			<atom:id>#{entry.href}</atom:id>
-			<atom:title>#{entry.title}</atom:title>
-			<atom:updated>#{entry[:created].strftime('%F')}</atom:updated>
-			<atom:link href="#{entry.href}" />
+		<entry>
+			<id>#{entry.href}</id>
+			<title>#{entry.title}</title>
+			<updated>#{entry[:created].strftime('%F')}</updated>
+			<link href="#{entry.href}" />
 
 			<?r if entry[:summary] ?>
-			<atom:summary>#{entry[:summary]}</atom:summary>
+			<summary>#{entry[:summary]}</summary>
 			<?r end ?>
-		</atom:entry>
+		</entry>
 		<?r end ?>
 	<?r end ?>
 	
 	<?r if latest ?>
-		<atom:updated>#{latest.strftime('%F')}</atom:updated>
+		<updated>#{latest.strftime('%F')}</updated>
 	<?r end ?>
-</atom:feed>
+</feed>

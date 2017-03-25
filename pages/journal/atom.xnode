@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?r response.content_type = 'application/atom+xml' ?>
-<feed xmlns="http://www.w3.org/2005/Atom">
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:base="http://www.codeotaku.com">
 	<title>Code Otaku</title>
 	<subtitle>System Administration, Computer Programming, and Travelling</subtitle>
 	<link href="http://www.codeotaku.com/journal/"/>

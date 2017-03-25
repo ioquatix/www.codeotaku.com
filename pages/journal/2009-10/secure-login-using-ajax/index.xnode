@@ -5,7 +5,7 @@
 	
 	<p>If the client doesn't have JavaScript, it simply supplies the password (as per what is typical).</p>
 	
-	<div class="gallery"><img src="secure_login.png" /></div>
+	<div class="centered"><img src="secure_login.png" /></div>
 	
 	<p>This diagram shows the basic of a secure hashing login system, which can be easily implemented.</p>
 	

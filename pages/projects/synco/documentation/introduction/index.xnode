@@ -22,7 +22,7 @@
 	
 	<p>Many systems provide essential services to the network and end users. In order to provide a reliable service, data may need to be replicated over multiple (potentially identical) hardware servers. In this case, it is unlikely for all hardware systems to fail simultaneously, and thus improved reliability can be achieved.</p>
 	
-	<div class="gallery"><img src="server-failure.png" /></div>
+	<div class="centered"><img src="server-failure.png" /></div>
 	
 	<p>A Synco implementation for the above diagram would look something like this:</p>
 	

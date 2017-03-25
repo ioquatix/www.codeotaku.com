@@ -3,7 +3,7 @@
 	
 	<p>Synco has several important concepts which are used to structure the backup script: <b>servers</b>, <b>directories</b>, the <b>master</b>, and the <b>method</b>. Each of these objects has associated <b>event handlers</b>.</p>
 	
-	<div class="gallery"><img src="script-structure.png" /></div>
+	<div class="centered"><img src="script-structure.png" /></div>
 	
 	<h3>Servers</h3>
 	

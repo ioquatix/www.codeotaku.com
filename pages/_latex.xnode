@@ -73,5 +73,5 @@ EOF
 	if inline
 ?><img class="latex inline" src="#{image_path}" /><?r
 	else
-?><div class="gallery"><img class="latex" src="#{image_path}" /></div><?r 
+?><div class="centered"><img class="latex" src="#{image_path}" /></div><?r 
 	end ?>

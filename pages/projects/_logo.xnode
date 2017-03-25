@@ -1,4 +1,4 @@
 <?r document.attributes[:title] ||= attributes[:title] ?>
-<div class="gallery"><img src="#{attributes[:src]}" alt="#{attributes[:title]}"/><br/>
+<div class="centered"><img src="#{attributes[:src]}" alt="#{attributes[:title]}"/><br/>
 	<content/>
 </div>

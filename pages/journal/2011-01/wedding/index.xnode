@@ -59,13 +59,13 @@
 	
 	<h3>Main Event</h3>
 	
-	<div class="gallery">
+	<div class="centered">
 		<iframe width="853" height="510" src="http://www.youtube.com/embed/yfOQ8P_Qlu0" frameborder="0"></iframe>
 	</div>
 	
 	<h3>Reception</h3>
 	
-	<div class="gallery">
+	<div class="centered">
 		<iframe width="853" height="510" src="http://www.youtube.com/embed/ZnCzvqcLCvE" frameborder="0"></iframe>
 	</div>
 	

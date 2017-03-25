@@ -5,7 +5,7 @@
 	
 	<p>I'm interested in almost every area of computer science, from optimizing algorithms to game design. I'm also interested in ceremony, culture and nature.</p>
 
-	<div class="gallery"><img src="me.jpg" /></div>
+	<div class="centered"><img src="me.jpg" /></div>
 
 	<p>I have enjoyed working as a programmer in both the embedded space and the internet. I've also had fun working as an computer technician since it gives me a lot of creative freedom to solve challenging problems, and many things I produce can be released open source, which I think is a <strong>good thing</strong>.</p>
 
@@ -23,7 +23,7 @@
 
 	<p>For over 8 years I have used Apple laptops. I like Apple design, and they have been pretty good. If it is not in front of me or on a desk, it is normally in my backpack. I travel like this everywhere. My friend Arham likes to say that if I was an action figure it would be glued to my body somewhere.</p>
 
-	<div class="gallery"><img src="alex.jpg" /></div>
+	<div class="centered"><img src="alex.jpg" /></div>
 
 	<p>Even so, I classify myself as a wise geek. I like to get out and enjoy nature, including swimming and climbing trees. I like to enjoy healthy food and I don't indulge in energy drinks and try to avoid a life full of chemicals. I find it amazing what some people eat and do these days in the name of being a geek. I think we need better role models.</p>
 
@@ -31,11 +31,11 @@
 
 	<p>I think reliable family, friends and good health are the most important, irreplaceable thing you can have in this world.</p>
 
-	<div class="gallery"><img src="friends.jpg" /></div>
+	<div class="centered"><img src="friends.jpg" /></div>
 
 	<p>My partner is Japanese and I enjoy many Japanese things such as learning <a href="http://en.wikipedia.org/wiki/Shakuhachi"> Shakuhachi</a>, Samurai Sword, Tea Ceremony, Kimono, Anime, <a href="http://en.wikipedia.org/wiki/Ofuro">Ofuro</a> (Japanese style bath) and many other things. I have travelled all as far north as <a href="http://en.wikipedia.org/wiki/Wakkanai,_Hokkaidō">Wakkanai</a> and as far south as <a href="http://en.wikipedia.org/wiki/Yakushima">Yakushima</a>.</p>
 
-	<div class="gallery"><img src="monkies.jpg" /></div>
+	<div class="centered"><img src="monkies.jpg" /></div>
 
 	<p>Thanks for taking the time to learn about me. I am always happy to have guests stay, so if you are traveling and looking for someone to hang out with, get in touch :D.</p>
 </content:entry>

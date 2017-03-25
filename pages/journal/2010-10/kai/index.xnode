@@ -1,7 +1,7 @@
 <content:entry>
 	<p>Kai (会 in Japanese) is an experimental interpreter that provides a highly extensible runtime environment and explicit control over the compilation process.</p>
 	
-	<div class="gallery"><img src="logo.png" /></div>
+	<div class="centered"><img src="logo.png" /></div>
 	
 	<p>Programs are defined using nested symbolic expressions, which are all parsed into first-class values with minimal intrinsic semantics. Kai can generate optimised code at run-time (using <a href="http://www.llvm.org/">Low Level Virtual Machine</a>) in order to exploit the nature of the underlying hardware and to integrate with external software libraries. It is a unique exploration into world of dynamic code compilation, and the interaction between high level and low level semantics.</p>
 	

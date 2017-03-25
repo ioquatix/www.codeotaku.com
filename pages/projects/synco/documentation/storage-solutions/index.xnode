@@ -31,7 +31,7 @@
 	
 	<p>The following diagram outlines a basic storage network. Depending on the devices and connectivity chosen, the performance can be improved.</p>
 	
-	<div class="gallery">
+	<div class="centered">
 		<img src="Shared Storage.png" />
 	</div>
 	

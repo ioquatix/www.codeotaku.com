@@ -3,11 +3,11 @@
 	
 	<p>Firstly, open "System Preferences". Click on "Network":</p>
 		
-	<div class="gallery"><img src="network.png" /></div>
+	<div class="centered"><img src="network.png" /></div>
 	
 	<p>Choose the ethernet device you want to configure from the list on the left hand side. Click on "Advanced..." on the bottom right. On the sheet that comes down, select the right most tab "Ethernet":</p>
 	
-	<div class="gallery"><img src="ethernet.png" /></div>
+	<div class="centered"><img src="ethernet.png" /></div>
 	
 	<p>Set "Configure" to "Manually". Set "Speed" to "autoselect". Set "MTU" to "Custom" and enter in "9000". This number enables jumbo frames to be sent via this ethernet adaptor.</p>
 	

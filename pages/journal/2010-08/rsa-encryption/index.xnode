@@ -15,7 +15,7 @@
 	
 	<p>This diagram shows the process going on inside the algorithm when computing <em>30/5</em>.</p>
 	
-	<div class="gallery">
+	<div class="centered">
 		<img src="division.png" alt="Division by repeated doubling." />
 	</div>
 	

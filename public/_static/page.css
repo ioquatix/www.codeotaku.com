@@ -39,6 +39,10 @@ a:hover {
 	color: #2345ef;
 }
 
+div.centered {
+	text-align: center;
+}
+
 #content {
 	box-shadow: 0rem -0.125rem 0.5rem black;
 	

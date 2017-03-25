@@ -176,7 +176,7 @@ GEM
       rainbow (~> 2.1)
       samovar (~> 1.2)
       trenni (~> 3.0)
-    utopia-gallery (2.0.1)
+    utopia-gallery (2.0.2)
       utopia (~> 2.0)
       vips-thumbnail
     uuidtools (2.1.5)

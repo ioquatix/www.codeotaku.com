@@ -176,11 +176,11 @@ GEM
       rainbow (~> 2.1)
       samovar (~> 1.2)
       trenni (~> 3.0)
-    utopia-gallery (2.0.2)
+    utopia-gallery (2.0.3)
       utopia (~> 2.0)
       vips-thumbnail
     uuidtools (2.1.5)
-    vips-thumbnail (1.0.0)
+    vips-thumbnail (1.0.1)
       ruby-vips (~> 1.0)
 
 PLATFORMS

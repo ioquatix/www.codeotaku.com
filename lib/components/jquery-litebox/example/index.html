@@ -42,8 +42,13 @@
 		
 		<div class="gallery">
 			<figure class="photo">
-				<a href="sample_images/large/IMG_3341.jpg"><img src="sample_images/small/IMG_3341.jpg"/></a>
-				<figcaption>The forest in South Japan.</figcaption>
+				<a href="sample_images/large/IMG_3341.jpg">
+					<picture>
+						<source srcset="sample_images/small/IMG_3341.jpg, sample_images/medium/IMG_3341.jpg 2x"/>
+						<img src="sample_images/small/IMG_3341.jpg"/>
+					</picture>
+				</a>
+				<figcaption>Using the picture element for 1x and 2x resolution.</figcaption>
 			</figure>
 			
 			<figure class="photo">
@@ -57,7 +62,7 @@
 				<a href="sample_images/large/IMG_3351.jpg" class="thumbnail">
 					<img src="sample_images/small/IMG_3351.jpg"/>
 				</a>
-				<figcaption>The forest in South Japan.</figcaption>
+				<figcaption>We went walking in Miyazaki, in the rain. It was beautiful. We could see frogs everywhere.</figcaption>
 			</figure>
 		</div>
 	</body>

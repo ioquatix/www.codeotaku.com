@@ -17,7 +17,7 @@
 	
 	<p>This has simplified the way jQuery.Syntax integrates with CSS and gives much more flexibility when styling code. Additionally, CSS has (<a href="https://bugs.webkit.org/show_bug.cgi?id=165299">almost</a>) improved to the point where it's possible to do hanging indentation of wrapped lines. This is now supported in jQuery.Syntax and I'm pretty proud of it:</p>
 	
-	<listing src="hanging.txt" brush="c" />
+	<content:listing src="hanging.txt" brush="c" />
 	
 	<h2>Bower integration</h2>
 	

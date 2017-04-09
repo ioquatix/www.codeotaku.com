@@ -5,14 +5,18 @@ html {
 	font-size: 2.0vw;
 }
 
-@media (min-width: 30em) {
+pre {
+	tab-size: 2;
+}
+
+@media (min-width: 40em) {
 	html {
 		font-size: 1em;
 	}
-}
-
-pre {
-	tab-size: 4;
+	
+	pre {
+		tab-size: 4;
+	}
 }
 
 body {

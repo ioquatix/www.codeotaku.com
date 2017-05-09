@@ -30,6 +30,8 @@ use Utopia::Redirection::Moved, "/samuel-williams", "/about"
 use Utopia::Redirection::Moved, "/blog", "/journal"
 use Utopia::Redirection::Moved, "/game-mechanics-society", "http://www.gmsoc.org"
 
+use Utopia::Redirection::Moved, "/projects/jquery-syntax", "https://www.github.com/ioquatix/jquery-syntax", flatten: true
+
 use Utopia::Redirection::DirectoryIndex
 
 use Utopia::Redirection::Errors,

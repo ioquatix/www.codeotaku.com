@@ -32,6 +32,9 @@ use Utopia::Redirection::Moved, "/game-mechanics-society", "http://www.gmsoc.org
 
 use Utopia::Redirection::Moved, "/projects/jquery-syntax", "https://www.github.com/ioquatix/jquery-syntax", flatten: true
 
+# Old localization redirects:
+use Utopia::Redirection::Moved, "/projects/rubydns/index.en", "/en/projects/rubydns/index"
+
 use Utopia::Redirection::DirectoryIndex
 
 use Utopia::Redirection::Errors,

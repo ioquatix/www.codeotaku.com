@@ -34,7 +34,7 @@
 			</div>
 		
 			<?r if author = comment.user and author.email? ?>
-				<img class="icon" src="http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(author.email)}.jpg?size=48&amp;default=retro" />
+				<img class="icon" style="width: 48px; height: 48px;" src="//www.gravatar.com/avatar/#{Digest::MD5.hexdigest(author.email)}.jpg?size=128&amp;default=retro" />
 			<?r end ?>
 		
 			<div class="summary">

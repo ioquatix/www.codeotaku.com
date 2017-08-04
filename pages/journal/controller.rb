@@ -42,9 +42,12 @@ on '**/comments/update' do |request, path|
 	fail! :unauthorized unless @comment.editable_by(@user)
 	
 	DB.commit(message: "Update Comment") do |dataset|
-		@user.updated_at = DateTime.now
-		@user.assign(request.params, [:name, :email, :website, :from])
-		@user.save(dataset)
+		# We only update the user if it's the same one as the comment.
+		if @comment.user == @user
+			@user.updated_at = DateTime.now
+			@user.assign(request.params, [:name, :email, :website, :from])
+			@user.save(dataset)
+		end
 		
 		@comment.updated_at = DateTime.now
 		@comment.body = request.params['body']

@@ -30,8 +30,8 @@ body {
 	margin: 0.5rem;
 }
 
-p {
-	margin: 0.5rem 0.5rem;
+p, pre {
+	margin: 1.0rem;
 }
 
 a {
@@ -298,16 +298,6 @@ table.data td {
 
 code.basic {
 	display: block;
-}
-
-pre {
-	margin: 0.625rem;
-	padding: 0.125rem;
-	padding-left: 0.625rem;
-	background-color: rgba(20, 20, 20, 0.05);
-	color: #333;
-	padding: 0.625rem;
-	border-radius: 0.3125rem;
 }
 
 #comments form {

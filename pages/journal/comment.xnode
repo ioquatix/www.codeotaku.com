@@ -4,52 +4,66 @@
 		response.do_not_cache!
 	end
 	
-	comment = Comment.get((request['id'] || attributes[:id]).to_i) 
-	admin_user = controller[:user] and controller[:user].admin?
+	id = request.params['id'] || attributes[:id]
 	
-	if comment && (comment.visible || controller[:user] == comment.user || admin_user)
+	comment = Journal::Comment.fetch_all(DB.current, id: id)
+	
+	user = controller[:user]
+	
+	if comment && comment.visible_to(user)
 ?>
 <div class="xframe" data-xframe-source="#{current.node.uri_path.dirname + 'comment'}?id=#{comment.id}">
-	<div class="comment">
+	<div class="comment" data-id="#{comment.id}">
 		<div class="byline">
-			<?r if admin_user ?>
-			<div class="admin" style="float: right">
-				<button onclick="editComment(this, #{comment.id})">Edit</button>
-				<?r unless comment.visible ?>
-				<button onclick="moderateComment(this, #{comment.id})">Accept</button>
-				<?r else ?>
-				<button onclick="moderateComment(this, #{comment.id})">Moderate</button>
+			<div class="tools" style="float: right">
+				<?r if comment.editable_by(user) ?>
+					<button onclick="editComment(this)">Edit</button>
 				<?r end ?>
-				<button onclick="deleteComment(this, #{comment.id})">Delete</button>
+				
+				<?r if user&.admin? ?>
+					<?r unless comment.visible ?>
+					<button onclick="moderateComment(this)">Accept</button>
+					<?r else ?>
+					<button onclick="moderateComment(this)">Moderate</button>
+					<?r end ?>
+				<?r end ?>
+				
+				<?r if comment.editable_by(user) ?>
+					<button onclick="deleteComment(this)">Delete</button>
+				<?r end ?>
 			</div>
+		
+			<?r if author = comment.user and author.email? ?>
+				<img class="icon" src="http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(author.email)}.jpg?size=48&amp;default=retro" />
 			<?r end ?>
 		
-			<?r if comment.user.email ?>
-			<img class="icon" src="http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(comment.user.email)}.jpg?size=48&amp;default=retro" />
-			<?r end ?>
-		
-			<div class="text">
+			<div class="summary">
 				<span class="author">
-				<?r if comment.user.website ?>
-					<a rel="nofollow" href="#{comment.user.website}">#{comment.user.name}</a>
-				<?r else ?>
-					#{comment.user.name}
-				<?r end ?>
-		
-				<?r if admin_user ?>
-				[id #{comment.user.id}]
-				[email <a href="mailto:#{comment.user.email}">#{comment.user.email}</a>]
-				<?r elsif comment.user.admin? ?>
-				[admin]
-				<?r end ?>
-		
-				<?r if comment.user.from and comment.user.from.size > 0 ?>
-				(from #{comment.user.from})
-				<?r end ?>
-		
+					<?r if author = comment.user ?>
+						<?r if author.website ?>
+							<a rel="nofollow" href="#{author.website}">#{author.name}</a>
+						<?r else ?>
+							#{author.name}
+						<?r end ?>
+				
+						<?r if user&.admin? ?>
+						[id #{author.id}]
+						[email <a href="mailto:#{author.email}">#{author.email}</a>]
+						<?r elsif author.admin? ?>
+						[admin]
+						<?r end ?>
+				
+						<?r if from = author.from and !from.empty? ?>
+						(from #{from})
+						<?r end ?>
+					<?r else ?>
+						Unknown
+					<?r end ?>
 				</span>
+				
 				said:
-				<span class="posted_on">#{comment.posted_on.strftime("%a, %d %b %Y at %I:%M%p")}</span>
+				
+				<span class="posted_on">#{comment.created_at.strftime("%a, %d %b %Y at %I:%M%p")}</span>
 			</div>
 		</div>
 	

@@ -1,0 +1,17 @@
+<div class="login_buttons" style="float: right">
+	<?r if controller[:user] ?>
+	<form id="login" method="post" action="logout">
+		<fieldset>
+			<input type="submit" value="Logout #{controller[:user].name}" />
+		</fieldset>
+	</form>
+	<?r else ?>
+	<form id="login" method="post" action="login">
+		<fieldset>
+			<label for="username">Email:</label> <input type="text" id="username" name="username" />
+			<label for="password">Password:</label> <input type="password" id="password" name="password" />
+			<input type="submit" value="Login" />
+		</fieldset>
+	</form>
+	<?r end ?>
+</div>

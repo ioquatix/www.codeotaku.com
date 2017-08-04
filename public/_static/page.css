@@ -178,7 +178,7 @@ dl.basic dd {
 	padding: 0.25rem;
 }
 
-p, dl.basic dt {
+dl.basic dt {
 	margin-top: 1.5rem;
 }
 
@@ -336,7 +336,7 @@ pre {
 	float: right;
 }
 
-#comments .comment .text {
+#comments .comment .byline .summary {
 	margin-top: 1.75rem;
 }
 
@@ -356,6 +356,11 @@ pre {
 	
 	margin: 0.3125rem;
 	padding: 0.3125rem;
+}
+
+form#login fieldset {
+	border: none;
+	font-size: 80%;
 }
 
 form.basic dd.icons img {
@@ -428,8 +433,14 @@ form.basic dl dd.icons {
 }
 
 form.basic dd input[type="text"],
-form.basic dd input[type="password"] {
+form.basic dd input[type="password"],
+form.basic dd input[type="email"] {
 	width: 70%;
+}
+
+form.basic input:invalid,
+form.basic textarea:invalid {
+	background-color: #ffdddd;
 }
 
 form.basic dd textarea {
@@ -540,9 +551,10 @@ sup a {
 
 /* Blockquotes */
 
-blockquote {
-	font-family: "Adobe Caslon Pro", "Hoefler Text", Georgia, Garamond, Times, serif;
-	line-height: 2rem;
+.comment blockquote {
+	border-left: 0.2rem solid blue;
+	margin-left: 1.5rem;
+	padding-left: 0.5rem;
 }
 
 blockquote .spoken:before {
@@ -557,6 +569,8 @@ blockquote .spoken:first-letter {
 }
 
 blockquote .spoken {
+	font-family: "Adobe Caslon Pro", "Hoefler Text", Georgia, Garamond, Times, serif;
+	
 	color: #424242;
 	letter-spacing: 0.1rem;
 	text-align: center;

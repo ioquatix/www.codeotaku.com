@@ -32,12 +32,33 @@ AggregateCallback.prototype.update = function () {
 	this.timer = setTimeout(function () { target.fire(); }, this.timeout);
 }
 
-$(function() {
+function setupPreview(form) {
+	console.log("setupPreview", form);
+	
+	var livePreview = new AggregateCallback(1000, true, function() {
+		$.post("comments/preview", {'body': $('textarea[name=body]', form).val()}, function(data) {
+			$('.preview', form).empty().append(data);
+			$.syntax({context: $('.preview', form)});
+		});
+	});
+	
+	$('textarea[name=body]', form).keyup(function() {
+		livePreview.update();
+	});
+	
+	livePreview.update();
+}
+
+function setupComments(parent) {
+	console.log("setupComments", parent);
+	
+	jQuery.syntax();
+	
 	var cookieOptions = {'path': '/', 'expires': 21};
 	
 	// Load default field values from local cookies.
 	var commentsForm = $("#comments_form");
-	var fields = ["posted_by", "from", "website", "email"];
+	var fields = ["name", "from", "website", "email"];
 	
 	for (var i in fields) {
 		key = fields[i];
@@ -48,65 +69,7 @@ $(function() {
 		}
 	}
 	
-	var currentIcon = $.cookie("icon");
-	if (currentIcon) {
-		$("input[value=" + currentIcon + "]").attr("checked", "checked");
-	}
-	
-	// Setup icon selector
-	var checkIconFunction = null;
-	
-	$('.icons span').each(function() {
-		var button = $('input[name=icon]', this);
-		var icon = $('img', this);
-		
-		var updateIconFunction = function() {
-			if (button.is(':checked')) {
-				$('.icons img.selected').removeClass('selected');
-				icon.addClass('selected');
-			}
-		};
-		
-		if (checkIconFunction == null || button.is(":checked")) {
-			checkIconFunction = function() {
-				button.attr("checked", "checked");
-				updateIconFunction();
-				current = button;
-			}
-		}
-		
-		button.change(updateIconFunction);
-		button.bind('propertychange', updateIconFunction);
-		button.hide();
-	});
-
-	if (checkIconFunction)
-		checkIconFunction();
-	
-	$("#comments_form").validate({
-		rules: {
-			posted_by: "required",
-			email: {
-				required: true,
-				email: true
-			},
-			website: {
-				url: true
-			},
-			body: "required"
-		}
-	});
-
-	var livePreview = new AggregateCallback(1000, true, function() {
-		$.post("comments/preview", {'body': $('textarea[name=body]', commentsForm).val()}, function(data) {
-			$('.preview', commentsForm).empty().append(data);
-			$.syntax({context: $('.preview', commentsForm)});
-		});
-	});
-	
-	$('textarea[name=body]', commentsForm).keyup(function() {
-		livePreview.update();
-	});
+	setupPreview(commentsForm);
 	
 	commentsForm.submit(function(evt) {
 		evt.preventDefault();
@@ -122,24 +85,17 @@ $(function() {
 			$.cookie(fields[i], value, cookieOptions);
 			submission[fields[i]] = value;
 		}
-
-		var currentIcon = $("input[name=icon]:checked", commentsForm).each(function() {
-			$.cookie("icon", this.value, cookieOptions);
-			submission["icon"] = this.value;
-		});
 		
 		// document.location.href
 		$.post("comments/create", submission, function(comment) {
-			//var commentHTML = $('<div class="xframe" data-xframe-source="/blog/comment?id=' + comment.id + '" />');
-			//commentHTML.insertBefore(commentsForm);
-			//commentHTML.xreload();
 			commentsForm.xreload();
-			//$('textarea[name=body]', commentsForm).val('');
 		});
 	});
-});
+}
 
-function deleteComment (button, id) {
+function deleteComment (button) {
+	var id = $(button).parents('div.comment').data('id');
+	
 	if (confirm("Are you sure you want to delete this comment?")) {
 		$.post('comments/delete', {'id': id}, function () {
 			$(button).parents('div.comment').slideUp();
@@ -147,17 +103,21 @@ function deleteComment (button, id) {
 	}
 }
 
-function moderateComment (button, id) {
+function moderateComment (button) {
+	var id = $(button).parents('div.comment').data('id');
+	
 	$.post('comments/toggle', {'id': id}, function () {
 		$(button).xreload();
 	});
 }
 
-function editComment (button, id) {
+function editComment (button) {
+	var id = $(button).parents('div.comment').data('id');
+	
 	var commentsForm = $('#comments_form').clone().attr('id', '');
 	$(button).parents('div.comment').replaceWith(commentsForm);
 	
-	var fields = ["posted_by", "from", "website", "email"];
+	var fields = ["name", "from", "website", "email"];
 	
 	$.get('comments/edit', {'id': id}, function (comment) {
 		for (var i in fields) {
@@ -178,6 +138,8 @@ function editComment (button, id) {
 	
 	commentsForm.unbind('submit');
 	
+	setupPreview(commentsForm);
+	
 	commentsForm.submit(function(evt) {
 		evt.preventDefault();
 		
@@ -191,10 +153,6 @@ function editComment (button, id) {
 			var value = $("input[name=" + fields[i] + "]", commentsForm).val();
 			submission[fields[i]] = value;
 		}
-
-		var currentIcon = $("input[name=icon]:checked", commentsForm).each(function() {
-			submission["icon"] = this.value;
-		});
 		
 		$.post("comments/update", submission, function(comment) {
 			$(commentsForm).xreload();

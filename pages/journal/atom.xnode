@@ -19,7 +19,7 @@
 	<?r latest = nil ?>
 
 	<?r links(:sort => :title, :files => false, :virtuals => false).each do |link| ?>
-		<?r links(link.path.dirname, :sort => :created).each do |entry| ?>
+		<?r links(link.path, :sort => :created).each do |entry| ?>
 		<?r latest = entry[:created] if !latest || entry[:created] > latest ?>
 		<entry>
 			<id>#{entry.href}</id>

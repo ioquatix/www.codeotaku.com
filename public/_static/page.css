@@ -11,7 +11,7 @@ pre {
 
 @media (min-width: 40em) {
 	html {
-		font-size: 1em;
+		font-size: 16px;
 	}
 	
 	pre {
@@ -294,10 +294,6 @@ table.data {
 
 table.data td {
 	padding: 0.25rem;
-}
-
-code.basic {
-	display: block;
 }
 
 #comments form {

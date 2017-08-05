@@ -1,0 +1,9 @@
+<content:entry>
+	<p>I've recently been working on an offline vulkan renderer/compositor. Our initial implementation was a one-shot renderer - spawn the process, render the image, and exit. However, to amortize startup costs, we are converting it to a multi-shot renderer using an HTTP API. The first implementation simply used <code class="syntax language-c++">vkQueueWaitIdle</code>, but in a multi-threaded environment this might cause overly optimisting waiting.</p>
+	
+	<p>Using a fence allows the CPU to wait for the GPU to complete a specific set of comments, in this case, rendering the image and saving it to host memory. It's not a very complex concept, but another developer on the project used a timeout of 0, which I just assumed meant "wait until it's signalled". After implementing the multi-threaded renderer, we had some issues with the output framebuffers. Despite our logging indicating a successful render, the actual output might be empty, or partially complete.</p>
+	
+	<p>After checking the documentation, I found that it means, check and return right away - and the correct implementation really needs to use a loop.</p>
+	
+	<content:listing src="fence.cpp" lang="c++" />
+</content:entry>

@@ -1,9 +1,9 @@
 <content:entry>
-	<p>I've recently been working on an offline vulkan renderer/compositor. Our initial implementation was a one-shot renderer - spawn the process, render the image, and exit. However, to amortize startup costs, we are converting it to a multi-shot renderer with an HTTP API. The first implementation simply used <code class="syntax language-c++">vkQueueWaitIdle()</code>, but in a multi-threaded environment this might be less than optimal as multiple command buffers are submitted to the same queue (feel free to correct me if wrong).</p>
+	<p>I've recently been working on an offline vulkan renderer/compositor. Our initial implementation was a one-shot renderer - spawn the process, render the image, and exit. However, to amortize startup costs, we are converting it to a multi-shot renderer with an HTTP API. The first implementation simply used <code class="syntax language-c++">vkQueueWaitIdle()</code>, but in a multi-threaded environment this might be less than optimal as multiple command buffers are submitted to the same queue.</p>
 	
-	<p>Using a fence allows the CPU to wait for the GPU to complete a specific set of comments, in this case, rendering the image and saving it to host memory.</p>
+	<p>Using a fence allows the CPU to wait for the GPU to complete a specific command buffer, in this case, rendering the image and saving it to host memory.</p>
 	
-	<p>In our renderer, we tried using a fence (incorrectly) with a timeout of 0, assuming it meant to wait indefinitely. We couldn't get it to work so we reverted back to using After implementing the multi-threaded renderer, we had some issues with the output framebuffers.</p>
+	<p>In our renderer, we tried using a fence (incorrectly) with a timeout of 0, assuming it meant to wait indefinitely. We couldn't get it to work so we reverted back to using <code class="syntax language-c++">vkQueueWaitIdle()</code> which was fine for a one-shot renderer. However, after implementing our multi-threaded renderer, and attempting to (incorrectly) use fences again, we experienced corrupt output:</p>
 	
 	<content:photos path="framebuffers" />
 	
@@ -13,9 +13,9 @@
 		<p>If timeout is zero, then vkWaitForFences does not wait, but simply returns the current state of the fences. VK_TIMEOUT will be returned in this case if the condition is not satisfied, even though no actual wait was performed.</p>
 	</blockquote>
 	
-	<p>The correct implementation uses a loop. As a side effect, we can issue a warning if the job appears to be taking longer than expected.</p>
+	<p>The correct implementation uses a loop; we can issue a warning if the job appears to be taking longer than expected:</p>
 	
 	<content:listing src="fence.cpp" lang="c++" />
 	
-	<p>One of the interesting side-effects of vulkan, is that because the code is so precise/verbose, sometimes it's hard to know where a bug may be in the code. In particular, I initially suspected that we had some problems with our image barriers. When code gets bulky, it makes refactoring and the subsequent debugging harder.</p>
+	<p>In hindsight, this was a relatively trivial problem, however it highlighted the fact that Vulkan can sometimes be hard to comprehend in it's entirety. I didn't write the original fence code, so without knowing any better, I initially suspected some problem with image barriers. When code gets bulky, it makes refactoring and the subsequent debugging harder.</p>
 </content:entry>

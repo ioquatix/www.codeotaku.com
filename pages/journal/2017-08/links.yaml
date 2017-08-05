@@ -3,3 +3,4 @@ vulkan-fences:
   created: 2017-08-05
   title: "Using fences to wait for command buffer completion"
   summary: "Learn how to use vulkan fences to wait for command buffer completion."
+  display: false

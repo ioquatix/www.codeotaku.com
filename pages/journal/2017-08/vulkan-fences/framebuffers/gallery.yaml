@@ -1,0 +1,6 @@
+good.png:
+  order: 1
+  caption: "Sample Output"
+bad.png:
+  order: 2
+  caption: "Corrupt Output"

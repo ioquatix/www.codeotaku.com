@@ -16,7 +16,7 @@
 		<utopia:content />
 		
 		<utopia:environment only="production">
-			<google_analytics id="UA-2590906-11" />
+			<analytics:google id="UA-2590906-11"/>
 		</utopia:environment>
 	</body>
 </html>

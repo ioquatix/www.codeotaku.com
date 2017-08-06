@@ -3,7 +3,7 @@ source "https://rubygems.org"
 
 gem "utopia", "~> 2.2.0"
 gem "utopia-gallery", "~> 2.0"
-# gem "utopia-tags-google-analytics"
+gem "utopia-analytics"
 
 gem "rake"
 gem "bundler"

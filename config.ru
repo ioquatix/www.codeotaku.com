@@ -4,6 +4,7 @@ require_relative 'config/environment'
 
 require 'utopia/session'
 require 'utopia/gallery'
+require 'utopia/analytics'
 
 require 'rack/freeze'
 
@@ -56,7 +57,8 @@ use Utopia::Static
 # Serve dynamic content
 use Utopia::Content,
 	namespaces: {
-		"gallery" => Utopia::Gallery::Tags.new
+		"analytics" => Utopia::Analytics,
+		"gallery" => Utopia::Gallery::Tags.new,
 	}
 
 run lambda { |env| [404, {}, []] }

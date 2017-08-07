@@ -1,7 +1,7 @@
 <?r prev = nil ?>
 <nav>
 	<ul class="trail">
-	<?r 
+	<?r
 		front = true
 		
 		Utopia::Path.create(first.node.uri_path || attributes[:path]).descend do |path|

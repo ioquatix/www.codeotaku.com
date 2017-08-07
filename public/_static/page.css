@@ -1,20 +1,10 @@
 
-html {
-	font-family: "PT Sans", Verdana, Helvetica, Arial, sans-serif;
-	font-size: 16px;
-	font-size: 2.0vw;
-}
-
 pre {
 	tab-size: 2;
 	overflow: auto;
 }
 
 @media (min-width: 40em) {
-	html {
-		font-size: 16px;
-	}
-	
 	pre {
 		tab-size: 4;
 	}
@@ -405,6 +395,12 @@ sup a {
 nav {
 	position: relative;
 	color: white;
+	
+	display:inline-block;
+	
+	width:100%;
+	white-space:nowrap;
+	overflow:hidden;
 }
 
 nav ul.trail {

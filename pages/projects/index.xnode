@@ -1,7 +1,7 @@
 <content:page>
 	<content:heading>Samuel's Projects</content:heading>
 	
-	<script src="/_static/components/quicksand/jquery.quicksand.js" type="text/javascript"></script>
+	<script src="/_components/quicksand/jquery.quicksand.js" type="text/javascript"></script>
 	<link rel="stylesheet" href="projects.css" type="text/css" media="screen" />
 
 	<?r

@@ -1,5 +1,5 @@
 <?r prev = nil ?>
-<div class="header">
+<nav>
 	<ul class="trail">
 	<?r 
 		front = true
@@ -38,4 +38,4 @@
 		<?r end ?>
 	<?r end ?>
 	</ul>
-</div>
+</nav>

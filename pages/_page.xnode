@@ -11,6 +11,7 @@
 		<?r end ?>
 		
 		<base href="#{first.node.uri_path}"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
 		
 		<link rel="icon" type="image/png" href="/_static/icon.png" />
 		<link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/journal/atom" />
@@ -42,15 +43,15 @@
 	<body>
 		<content:header />
 		
-		<div id="content" class="#{attributes[:class] || 'normal'}">
+		<main class="#{attributes[:class] || 'normal'}">
 			<utopia:content />
-		</div>
+		</main>
 		
-		<div id="footer">
+		<footer>
 			<a href="mailto:samuel@codeotaku.com">Contact Me</a> &mdash;
 			<a href="/about" rel="author">About Me</a> &mdash;
 			&copy; #{Time.now.year} Samuel Williams.
-		</div>
+		</footer>
 		
 		<utopia:environment only="production">
 			<content:analytics id="UA-2590906-11"/>

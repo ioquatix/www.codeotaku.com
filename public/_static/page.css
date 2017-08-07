@@ -2,7 +2,7 @@
 html {
 	font-family: "PT Sans", Verdana, Helvetica, Arial, sans-serif;
 	font-size: 16px;
-	font-size: 3.0vw;
+	font-size: 2.0vw;
 }
 
 pre {
@@ -20,14 +20,14 @@ pre {
 }
 
 body {
-	background-color: #333;
+	background-color: #444;
 	
 	background-attachment: fixed;
 	color: #000;
 	
 	font-family: 'HelveticaNeue-Light', Helvetica, Arial, sans-serif;
 	font-weight: lighter;
-	margin: 0.5rem;
+	margin: 0;
 }
 
 p, pre {
@@ -47,42 +47,42 @@ div.centered {
 	text-align: center;
 }
 
-#content {
+main {
 	box-shadow: 0rem -0.125rem 0.5rem black;
 	
 	background-color: #fdfdfd;
 }
 
-#content.normal {
+main.normal {
 	padding: 1rem;
 }
 
-#content h1, #content h2, #content h3, #content h4 {
+main h1, main h2, main h3, main h4 {
 	font-weight: normal;
 	color: #222;
 	text-shadow: 0.125rem 0.125rem 0.125rem #eee;
 }
 
-#content h1 {
+main h1 {
 	margin-top: 0;
 	font-size: 2.5rem;
 }
 
-#content h2 {
+main h2 {
 	font-size: 1.5rem;
 	
 	padding: 0.5rem 0.8rem;
 	margin: 6rem 0 2rem;
 	
 	color: #333;
-	background-color: #eee;
+	/*background-color: #eee;*/
 	letter-spacing: 0.12rem;
 	
-	background-color: white;
-	box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.05);
+	/*background-color: white;
+	box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.05);*/
 }
 
-#content h3 {
+main h3 {
 	font-size: 1.4rem;
 	margin-top: 4rem;
 	margin-bottom: 0.8rem;
@@ -90,32 +90,27 @@ div.centered {
 	border-bottom: 0.0625rem solid #ccc;
 }
 
-#content h4 {
+main h4 {
 	font-size: 1.3rem;
 	margin-top: 4rem;
 	margin-bottom: 0.8rem;
 }
 
-#content h2 + p, #content h3 + p {
+main h2 + p, main h3 + p {
 	margin-top: 0;
 }
 
-#footer {
+footer {
 	clear: both;
 	
 	text-align: center;
-	font-size: 0.6875rem;
 	color: white;
 	
 	padding: 1.25rem;
 }
 
-#footer a {
+footer a {
 	color: white;
-}
-
-.syntax-container {
-	font-size: 90%;
 }
 
 .navigation {
@@ -137,25 +132,31 @@ div.centered {
 	float: right;
 }
 
-.heading {
+header {
 	text-align: center;
 	margin: 2rem 0 4rem 0;
 	padding: 2rem 0.4rem;
 	
-	background-color: white;
-	box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.05);
+	/*background-color: white;
+	box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.05);*/
 }
 
-.heading h1 {
+header .details {
+	padding: 0 4rem;
+}
+
+
+
+header h1 {
 	margin-top: 0;
 }
 
-.heading strong {
+header strong {
 	font-weight: normal;
 	color: #00a;
 }
 
-.heading small {
+header span {
 	margin: 1.25rem;
 	white-space: nowrap;
 }
@@ -295,14 +296,6 @@ table.data td {
 	padding: 0.25rem;
 }
 
-#comments form {
-	background-color: white;
-	box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.05);
-
-	padding: 0.3125rem;
-	margin: 0.3125rem;
-}
-
 #comments .comment .byline {
 	color: #333;
 	font-size: 0.9rem;
@@ -335,91 +328,40 @@ table.data td {
 	border-top: 0.0625rem solid #ccc;
 }
 
-#comments .comment, .about-me {
-	background-color: white;
+#comments .comment {
+	/*background-color: white;
 	box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.05);
 	
 	margin: 0.3125rem;
-	padding: 0.3125rem;
+	padding: 0.3125rem;*/
 }
 
-form#login fieldset {
+form label {
+	display: block;
+	margin: 0.5rem;
+}
+
+form label input, form label textarea {
+	display: block;
+	margin:  0.5rem 0;
+	padding: 0.5rem;
+	
+	font-size: 1rem;
+}
+
+form fieldset {
 	border: none;
+}
+
+form fieldset.footer {
+	text-align: right;
 }
 
 form#login fieldset input {
 	max-width: 8rem;
 }
 
-form.basic dd.icons img {
-	margin: 0.1875rem;
-	width: 2rem;
-	height: 2rem;
-}
-
-form.basic dd.icons {
-	clear: both;
-	text-align: center;
-}
-
-form.basic dd.icons .selected {
-	border: 0.1875rem solid #FFCC00;
-	margin: 0;
-}
-
-form.basic fieldset {
-	margin: auto;
-	border: none;
-	font-size: 1.6rem;
-	padding: 0.625rem;
-}
-
-form.basic dl {
-	margin: 0rem;
-}
-
-form.basic dl dt,
-form.basic dl dd {
-	margin: 0rem;
-	padding: 0rem;
-	padding-top: 0.3125rem;
-	padding-bottom: 0.625rem;
-}
-
-form.basic dl dt {
-	clear: both;
-	font-size: 1.2rem;
-	display: block;
-	float: left;
-	text-align: right;
-	width: 28%;
-}
-
-form.basic dl dt {
-	text-decoration: none;
-}
-
-form.basic dl dt label {
-	-text-decoration: underline;
-}
-
-form.basic dl dt small {
-	text-decoration: none;
-	font-size: 0.8rem;
-	display: block;
-}
-
-form.basic dl dd {
-	float: right;
-	width: 70%;
-}
-
-form.basic dl dd.icons {
-	width: auto;
-	float: none;
-}
-
-form.basic dd input:not([type=button]):not([type=reset]):not([type=submit]) {
+form.basic input:not([type=button]):not([type=reset]):not([type=submit]) {
 	width: 70%;
 }
 
@@ -428,17 +370,10 @@ form.basic textarea:invalid {
 	background-color: #ffdddd;
 }
 
-form.basic dd textarea {
-	width: 95%;
-}
-
-form.basic dd.footer {
-	text-align: right;
-}
-
-form.basic dd label.error {
-	display: block;
-	color: red;
+form.basic textarea {
+	box-sizing: border-box;
+	width: 100%;
+	
 }
 
 audio {
@@ -466,25 +401,22 @@ sup a {
 }
 
 /* Page Navigation Bar */
-.header {
+nav {
 	position: relative;
 	color: white;
-	
-	font-size: 1.2rem;
-	padding: 0.2rem;
 }
 
-.header ul.trail {
-	padding: 0.2rem;
+nav ul.trail {
+	padding: 0;
 	margin: 0;
 }
 
-.header li {
+nav li {
 	display: inline-block;
 	list-style: none;
 }
 
-.header a {
+nav a {
 	color: white;
 	text-decoration: none;
 }

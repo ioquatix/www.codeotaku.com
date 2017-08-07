@@ -40,21 +40,20 @@ if prev_link == nil || next_link == nil
 end
 
 ?><content:page>
-	<div class="heading" style="position: relative">
+	<header>
 		<content:heading>#{title}</content:heading>
 
-		<div style="padding-left: 80px; padding-right: 80px">
-			<small class="author">Author: <strong>#{author}</strong></small>
-			<small class="when">When: <strong>#{created.strftime("%A, %d %B %Y")}</strong></small>
+		<div class="details">
+			<span class="author">Author: <strong>#{author}</strong></span>
+			<span class="when">When: <strong>#{created.strftime("%A, %d %B %Y")}</strong></span>
 		</div>
-	</div>
+	</header>
 	
-	<div id="entry">
+	<article>
 		<utopia:content/>
-		<br/>
-				
-		<content:comments node="#{parent.node.uri_path}" />
-	</div>
+	</article>
+	
+	<content:comments node="#{parent.node.uri_path}" />
 	
 	<div class="navigation">
 	<?r if prev_link ?>

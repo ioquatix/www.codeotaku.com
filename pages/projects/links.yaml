@@ -160,7 +160,7 @@ tileshift:
 teapot:
     title: "Teapot"
     tags: ['open', 'ruby', 'framework']
-    uri: http://www.kyusu.org
+    uri: https://teapot.nz
     description: "Teapot is a decentralised dependency management and cross-platform build tool for C/C++ libraries and applications."
 mobile-outdoor-augmented-reality:
     title: "Real-time Hybrid Tracking For Outdoor Augmented Reality"

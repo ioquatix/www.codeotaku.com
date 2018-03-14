@@ -10,15 +10,15 @@ module Journal
 			'em' => [],
 			'strong' => [],
 			'p' => [],
-			'img' => [] + ['src', 'alt', 'width', 'height'],
-			'a' => ['href', 'target'],
+			'img' => ['src', 'alt', 'width', 'height'],
+			'a' => ['href'],
 			'pre' => [],
 			'code' => ['class'],
 		}.freeze
 		
 		def filter(node)
 			if attributes = ALLOWED_TAGS[node.name]
-				node.tag.attributes.slice!(attributes)
+				node.tag.attributes.slice!(*attributes)
 			else
 				# Skip the tag, and all contents
 				skip!(ALL)
@@ -50,7 +50,7 @@ module Journal
 		def self.format_body_html(text)
 			html = Kramdown::Document.new(text, input: 'GFM', syntax_highlighter: nil).to_html
 			
-			return Fragment.parse(html)
+			return Fragment.parse(html).output
 		end
 		
 		def body=(text)

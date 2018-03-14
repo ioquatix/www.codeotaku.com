@@ -12,7 +12,7 @@ gem "rack-freeze", "~> 1.2"
 
 gem "relaxo-model", "~> 0.10.0"
 
-gem "sanitize"
+gem "trenni-sanitize"
 gem "kramdown"
 gem "bcrypt"
 

@@ -1,10 +1,37 @@
 
 require 'relaxo/model'
 
-require 'sanitize'
+require 'trenni/sanitize'
 require 'kramdown'
 
 module Journal
+	class Fragment < Trenni::Sanitize::Filter
+		ALLOWED_TAGS = {
+			'em' => [],
+			'strong' => [],
+			'p' => [],
+			'img' => [] + ['src', 'alt', 'width', 'height'],
+			'a' => ['href', 'target'],
+			'pre' => [],
+			'code' => ['class'],
+		}.freeze
+		
+		def filter(node)
+			if attributes = ALLOWED_TAGS[node.name]
+				node.tag.attributes.slice!(attributes)
+			else
+				# Skip the tag, and all contents
+				skip!(ALL)
+			end
+		end
+		
+		def doctype(string)
+		end
+		
+		def instruction(string)
+		end
+	end
+	
 	class Comment
 		include Relaxo::Model
 		
@@ -22,7 +49,8 @@ module Journal
 		
 		def self.format_body_html(text)
 			html = Kramdown::Document.new(text, input: 'GFM', syntax_highlighter: nil).to_html
-			return Sanitize.fragment(html, Sanitize::Config::RELAXED)
+			
+			return Fragment.parse(html)
 		end
 		
 		def body=(text)

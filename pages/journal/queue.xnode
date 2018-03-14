@@ -1,6 +1,8 @@
 <content:page>
 	<content:heading>Comment Moderation Queue</content:heading>
 	
+	<script src="/_static/comments.js"></script>
+	
 	<ul>
 	<?r controller[:comments].each do |comment| ?>
 		<li>

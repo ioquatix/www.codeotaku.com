@@ -1,0 +1,5 @@
+asynchronous-ruby:
+  author: "Samuel Williams"
+  created: 2018-03-15
+  title: "Asynchronous Ruby"
+  summary: "Improve Ruby's scalabiltiy using concurrent IO."

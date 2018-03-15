@@ -23,6 +23,14 @@ body {
 
 p, pre {
 	margin: 1.0rem;
+	font-size: 12pt;
+}
+
+p.discussion {
+	background-color: #cdc;
+	padding: 1rem;
+	
+	border-radius: 1rem;
 }
 
 a {
@@ -152,8 +160,8 @@ header span {
 	white-space: nowrap;
 }
 
-dl.basic {
-	padding: 0.3125rem;
+dl {
+	margin: 1rem;
 }
 
 li {
@@ -221,6 +229,10 @@ dl.options dd.container p {
 
 img {
 	border: none;
+}
+
+.diagram {
+	text-align: center;
 }
 
 table.basic {

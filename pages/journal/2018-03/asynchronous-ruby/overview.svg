@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xl="http://www.w3.org/1999/xlink" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="383.5 127.5 481 321" width="481" height="321">
+  <defs>
+    <font-face font-family="Fira Code" font-size="16" panose-1="0 0 5 9 0 0 0 0 0 0" units-per-em="1000" underline-position="-75" underline-thickness="50" slope="0" x-height="527" cap-height="689" ascent="935.0019" descent="-265.00054" font-weight="400">
+      <font-face-src>
+        <font-face-name name="FiraCode-Regular"/>
+      </font-face-src>
+    </font-face>
+  </defs>
+  <metadata> Produced by OmniGraffle 7.7.1 
+    <dc:date>2018-03-15 01:40:09 +0000</dc:date>
+  </metadata>
+  <g id="Canvas_1" fill-opacity="1" stroke-dasharray="none" stroke="none" stroke-opacity="1" fill="none">
+    <title>Canvas 1</title>
+    <g id="Canvas_1: Layer 1">
+      <title>Layer 1</title>
+      <g id="Graphic_3">
+        <path d="M 389 128 L 859 128 C 861.7614 128 864 130.23858 864 133 L 864 443 C 864 445.7614 861.7614 448 859 448 L 389 448 C 386.23858 448 384 445.7614 384 443 L 384 133 C 384 130.23858 386.23858 128 389 128 Z" fill="#ffffc0"/>
+        <path d="M 389 128 L 859 128 C 861.7614 128 864 130.23858 864 133 L 864 443 C 864 445.7614 861.7614 448 859 448 L 389 448 C 386.23858 448 384 445.7614 384 443 L 384 133 C 384 130.23858 386.23858 128 389 128 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(389 133)" fill="black">
+          <tspan font-family="Fira Code" font-size="16" font-weight="400" fill="black" x="0" y="15">Process (Ruby)</tspan>
+        </text>
+      </g>
+      <g id="Graphic_4">
+        <path d="M 421 160 L 851 160 C 853.7614 160 856 162.23858 856 165 L 856 435 C 856 437.7614 853.7614 440 851 440 L 421 440 C 418.2386 440 416 437.7614 416 435 L 416 165 C 416 162.23858 418.2386 160 421 160 Z" fill="#c0ffff"/>
+        <path d="M 421 160 L 851 160 C 853.7614 160 856 162.23858 856 165 L 856 435 C 856 437.7614 853.7614 440 851 440 L 421 440 C 418.2386 440 416 437.7614 416 435 L 416 165 C 416 162.23858 418.2386 160 421 160 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(421 165)" fill="black">
+          <tspan font-family="Fira Code" font-size="16" font-weight="400" fill="black" x="0" y="15">Thread</tspan>
+        </text>
+      </g>
+      <g id="Graphic_5">
+        <path d="M 453 192 L 843 192 C 845.7614 192 848 194.23858 848 197 L 848 427 C 848 429.7614 845.7614 432 843 432 L 453 432 C 450.2386 432 448 429.7614 448 427 L 448 197 C 448 194.23858 450.2386 192 453 192 Z" fill="#c0ffc0"/>
+        <path d="M 453 192 L 843 192 C 845.7614 192 848 194.23858 848 197 L 848 427 C 848 429.7614 845.7614 432 843 432 L 453 432 C 450.2386 432 448 429.7614 448 427 L 448 197 C 448 194.23858 450.2386 192 453 192 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(453 197)" fill="black">
+          <tspan font-family="Fira Code" font-size="16" font-weight="400" fill="black" x="0" y="15">Reactor</tspan>
+        </text>
+      </g>
+      <g id="Graphic_6">
+        <path d="M 485 224 L 835 224 C 837.7614 224 840 226.23858 840 229 L 840 315 C 840 317.76142 837.7614 320 835 320 L 485 320 C 482.2386 320 480 317.76142 480 315 L 480 229 C 480 226.23858 482.2386 224 485 224 Z" fill="#ffc0ff"/>
+        <path d="M 485 224 L 835 224 C 837.7614 224 840 226.23858 840 229 L 840 315 C 840 317.76142 837.7614 320 835 320 L 485 320 C 482.2386 320 480 317.76142 480 315 L 480 229 C 480 226.23858 482.2386 224 485 224 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(485 229)" fill="black">
+          <tspan font-family="Fira Code" font-size="16" font-weight="400" fill="black" x="0" y="15">Task (listening on 127.0.0.1:80)</tspan>
+        </text>
+      </g>
+      <g id="Graphic_7">
+        <path d="M 485 328 L 835 328 C 837.7614 328 840 330.23858 840 333 L 840 419 C 840 421.7614 837.7614 424 835 424 L 485 424 C 482.2386 424 480 421.7614 480 419 L 480 333 C 480 330.23858 482.2386 328 485 328 Z" fill="#ffc0ff"/>
+        <path d="M 485 328 L 835 328 C 837.7614 328 840 330.23858 840 333 L 840 419 C 840 421.7614 837.7614 424 835 424 L 485 424 C 482.2386 424 480 421.7614 480 419 L 480 333 C 480 330.23858 482.2386 328 485 328 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(485 333)" fill="black">
+          <tspan font-family="Fira Code" font-size="16" font-weight="400" fill="black" x="0" y="15">Task (listening on [::]:80)</tspan>
+        </text>
+      </g>
+      <g id="Graphic_8">
+        <path d="M 517 256 L 827 256 C 829.7614 256 832 258.23858 832 261 L 832 307 C 832 309.76142 829.7614 312 827 312 L 517 312 C 514.2386 312 512 309.76142 512 307 L 512 261 C 512 258.23858 514.2386 256 517 256 Z" fill="#ff80ff"/>
+        <path d="M 517 256 L 827 256 C 829.7614 256 832 258.23858 832 261 L 832 307 C 832 309.76142 829.7614 312 827 312 L 517 312 C 514.2386 312 512 309.76142 512 307 L 512 261 C 512 258.23858 514.2386 256 517 256 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(517 261)" fill="black">
+          <tspan font-family="Fira Code" font-size="16" font-weight="400" fill="black" x="0" y="15">Task (handling request)</tspan>
+        </text>
+      </g>
+    </g>
+  </g>
+</svg>

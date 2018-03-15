@@ -1,39 +1,41 @@
 <content:entry>
-	<p>The goal for Ruby 3 is to improve performance significantly. A number of areas are being explored, including compilation, concurrency, garbage collection, data structures, etc. Server applications processing many concurrent requests are an area where Ruby typically struggles. The typical thread-per-request model is well understood, however threads are a limited resource and can lead to synchronisation issues, deadlocks and other problems. We will discuss the reactor pattern, explore several real world implementations for Ruby, and look at how they compare to existing thread-per-request servers.</p>
+	<p>Server applications processing many asynchronous requests are an area where Ruby typically struggles. Client applications that need to perform multiple things simulatenously are also difficult to write. The traditional process/thread model can be hard get right and does not scale well, especially for highly concurrent workloads. We will discuss the reactor pattern, explore how <a href="https://github.com/socketry/async">async</a> implements it and look at real-world usage.</p>
 	
 	<h2>What is asynchronous programming?</h2>
 	
-	<p>If a program can be broken up into a series of tasks which can execute independently of each other, it can be considered asynchronous, as in, without synchronisation. A program like a network server which handles incoming requests can typically be structured as one task per request. Asynchronous programs are not limited to just executing one task at a time, and thus improve both throughput and latency.</p>
+	<p>If a program can be broken up into a series of tasks which can execute independently of each other, it can be considered asynchronous, as in, without synchronisation. A program like a network server which handles incoming requests can typically be structured as one task per request. Asynchronous programs can improve CPU utilization, increasing throughput and lowering latency.</p>
 	
-	<p>There are different execution models for asynchronous programs. These execution models directly affect the scalability of a program, that is, can adding additional processors to the computer improve the performance of the program and is the relationship linear?</p>
+	<p>There are different execution models for asynchronous programs. These execution models directly affect the scalability of a program; that is, can adding additional processors to the computer improve the performance of the program and is the relationship linear?</p>
 	
-	<p>Programs which execute their tasks, typically by threads or processes, on multiple processors at the same time are considered to be parallel. Parallel programs are good for CPU-bound workloads because each processor executes at least one task until completion, and contention on the CPU is limited to a single task.</p>
+	<p>Parallel programs are those which execute tasks simulateously on multiple processors, typically using proceses or threads. Parallel programs are good for CPU-bound workloads because each processor executes at least one task until completion, and contention on the CPU is limited to a single task.</p>
 	
-	<p>Programs which share a single processor, typically by cooperative or preemptive scheduling, between multiple active tasks are considered to be concurrent. Concurrent programs are good for IO-bound workloads because IO typically has a very high latency compared to the execution speed of a processor, therefore allowing many tasks to scheudle high latency IO operations.</p>
-	
-	<p class="discussion">Are operating systems parallel or concurrent with respect to process execution? How about Ruby?</p>
+	<p>Concurrent programs interleave task execution on a single processor, typically by cooperative or preemptive scheduling. Concurrent programs are good for IO-bound workloads because IO typically has a very high latency compared to the execution speed of a processor, therefore allowing many tasks to scheudle high latency IO operations.</p>
 	
 	<h2>What makes asynchronous programs slow?</h2>
 	
-	<p>If you have several processors, and several tasks, you can execute those tasks in parallel to minimise latency and increase throughput. However, if those tasks require synchronisation, e.g. to access a shared resource to to wait on some particular operation to complete, this will cause the task to stop executing (block) until the resource becomes available.</p>
-		
-	<p>Blocking operations cause tasks to stall and increase latency. However, if you have more tasks than processors, it's also an opportunitiy to (cooperatively) schedule a different task, until the original task is ready to run.</p>
+	<p>If you have several processors, and several tasks, you can execute those tasks in parallel to minimise latency and increase throughput. If you have more tasks than processors, you will have CPU-contention, and latency will increase as tasks wait in a queue to be processed.</p>
+	
+	<p>Tasks which perform IO operations, such as HTTP RPC, WebSockets or database connections, typically spend a lot of time waiting for these operations to complete. These blocking operations cause threads to stall and increase latency. However, if you can schedule another task to run, you can minimise the effect of the blocking operations on other tasks, thereby reducing overall latency and increasing throughput.</p>
 	
 	<h2>State of Ruby in 2018</h2>
 	
-	<p>Ruby (the interpreter) has a global interpreter lock which ensures that only one line of Ruby is executing at any time within a single process. Even if you have multiple threads, you can't execute Ruby code in parallel. Some specific parts of the interpreter give up this lock when executing blocking system calls, which allows other Ruby threads to execute.</p>
+	<p>Ruby (the interpreter) has a global interpreter lock which ensures that only one line of Ruby is executing at any time within a single Ruby process. Even if you have multiple threads, you can't execute Ruby code in parallel without multiple processes. Some specific parts of the interpreter give up this lock when executing blocking system calls, which allows other Ruby threads to execute. Leveraging this is the key to improving Ruby's throughput and minimising latency.</p>
 	
-	<p>Ruby (the standard library) has a very confused IO model. It has a mixture of blocking and nonblocking operations (in some cases missing <code class="syntax ruby">_nonblocking</code> variants), a confusing array of <code class="syntax ruby">Socket</code> and Socket-like classes (e.g. <code class="syntax ruby">UDPSocket</code>) which have the same methods but return different things (e.g. <code class="syntax ruby">recvfrom_nonblock</code>), at least <a href="https://github.com/socketry/async-io/blob/02a051bb638b40aa49c3cd322ec09b719a30158a/lib/async/io/generic.rb#L96-L153">3 different ways to invoke non-blocking behavior</a> (and perhaps several more if you count <code>io/nonblock</code>), one of which completely destroyed performance by blowing away the entire VM method cache on each non-blocking call.</p>
+	<p>Ruby (the standard library) has a very confused IO model:</p>
 	
-	<p>There is a <a href="https://bugs.ruby-lang.org/issues/13618">patch for Ruby</a> to add support for a per-process IO reactor which allows cooperatively scheduled fibers when IO operations would otherwise block the thread.</p>
+	<ul>
+		<li>It has a mixture of blocking and nonblocking operations (in some cases missing <code class="syntax ruby">_nonblocking</code> variants)</li>
+		<li>A confusing array of <code class="syntax ruby">Socket</code> and Socket-like classes (e.g. <code class="syntax ruby">UDPSocket</code>) which have the same methods but return different things (e.g. <code class="syntax ruby">recvfrom_nonblock</code>).</li>
+		<li>At least <a href="https://github.com/socketry/async-io/blob/02a051bb638b40aa49c3cd322ec09b719a30158a/lib/async/io/generic.rb#L96-L153">3 different ways to invoke non-blocking behavior</a>.</li>
+	</ul>
+	
+	<p>There is a <a href="https://bugs.ruby-lang.org/issues/13618">patch for Ruby</a> to add support for a per-process IO reactor which allows cooperatively scheduled fibers when IO operations would otherwise block the thread. However experiments with similar designs have shown that there are significant performance overheads due to the synchronisation required.</p>
 	
 	<p>There are several open source efforts to add cooperatively scheduled operations to Ruby: <a href="https://github.com/celluloid/celluloid-io">Celluloid::IO</a>, <a href="https://github.com/socketry/async">Async</a>, <a href="https://github.com/socketry/lightio">LightIO</a>, <a href="https://github.com/eventmachine/eventmachine">EventMachine</a>, <a href="https://github.com/chuckremes/ruby-io">ruby-io</a>.</p>
 	
 	<h2>An overview of Async</h2>
 	
-	<p>The <a href="https://github.com/socketry/async">async</a> gem provides a stable implementation of a concurrent reactor. It uses implicitly cooperatively scheduled fibers which yield when an operation would block.</p>
-	
-	<p>The basic concurrency model is the task:</p>
+	<p>The <a href="https://github.com/socketry/async">async</a> gem provides a stable implementation of a concurrent reactor. It provides cooperatively scheduled tasks which yield when an operation would block. The basic concurrency model is the task:</p>
 	
 	<div class="diagram">
 		<img src="overview.svg" />
@@ -47,15 +49,17 @@
 	
 	<h2>Why not just use multi-threaded concurrency?</h2>
 	
-	<p>Threads have a higher overhead when compared with Fibers. While it is possible to schedule literally billions of fibers per second, the same is not true for threads. Additionally, an IO model built on cooperative scheduling avoids synchronisation when accessing thread-local resources which, depending on workload, can be a big win.</p>
+	<p><a href="https://github.com/socketry/async-postgres#performance">Threads have a higher overhead when compared with Fibers</a>. While it is possible to schedule literally billions of fibers per second, the same is not true for threads. Additionally, an IO model built on cooperative scheduling avoids synchronisation when accessing thread-local resources which, depending on workload, can be a big win.</p>
 	
 	<h2>Practical implementation with Async</h2>
 	
 	<p>The <a href="https://github.com/socketry/async">async</a> gem provides an IO reactor and the task structure along with a generic IO wrapper. This code is very stable and is unlikely to change much except for performance improvements.</p>
 	
-	<p>The <a href="https://github.com/socketry/async-io">async-io</a> gem provides a set of primatives which in some cases are a drop-in replacement. However, even thought this is possible, in practice it is a bad idea. The canonical example would be something like <code class="syntax ruby">Net::HTTP</code> which invokes both blocking and non-blocking methods.</p>
+	<p>The <a href="https://github.com/socketry/async-io">async-io</a> gem provides a set of primatives which in some cases are a drop-in replacement. However, even thought this is possible, in practice it is a bad idea. The canonical example would be something like <code class="syntax ruby">Net::HTTP</code> which invokes both blocking and non-blocking methods. It is likely that the design of this gem will evolve.</p>
 	
-	<p>The <a href="https://github.com/socketry/async-websocket">async-websocket</a> gem provides a simple example client/server and is a good place to start if you'd just like to try something out.</p>
+	<p>The <a href="https://github.com/socketry/async-websocket">async-websocket</a> gem provides a <a href="https://github.com/socketry/async-websocket#usage">simple example client/server</a> and is a good place to start if you'd just like to try something out.</p>
+	
+	<p>The <a href="https://github.com/socketry/async-postgres">async-postgres</a> gem provides a drop-in rplacement for ActiveRecord. It must be used with the <a href="https://github.com/socketry/falcon">falcon</a> web server.</p>
 	
 	<p>Be aware that the current implemenation of <a href="https://github.com/socketry/nio4r">nio4r</a> has some limitations on macOS (due to OS bugs), so you'll only get really amazing performance on Linux. JRuby has similar issues (limitations due to the JVM).</p>
 	

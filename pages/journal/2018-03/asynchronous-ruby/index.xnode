@@ -63,5 +63,5 @@
 	
 	<p>Be aware that the current implemenation of <a href="https://github.com/socketry/nio4r">nio4r</a> has some limitations on macOS (due to OS bugs), so you'll only get really amazing performance on Linux. JRuby has similar issues (limitations due to the JVM).</p>
 	
-	<p>Finally, if you really need rediculous throughput, you can <a href="https://github.com/kurocha/async">always use C++</a>.</p>
+	<p>Finally, if you really need rediculous throughput, you can <a href="https://github.com/kurocha/async">always use C++</a> :)</p>
 </content:entry>

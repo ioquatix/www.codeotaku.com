@@ -1,0 +1,19 @@
+async-postgres/examples $ wrk -t 32 -c 512 -d 2 http://localhost:9292
+Running 2s test @ http://localhost:9292
+  32 threads and 512 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency   132.50ms   20.07ms 261.55ms   83.84%
+    Req/Sec   120.47     28.21   161.00     64.62%
+  7834 requests in 2.10s, 374.87KB read
+%%highlight{Requests/sec:   3731.87}
+Transfer/sec:    178.58KB
+
+async-postgres/examples $ wrk -t 32 -c 512 -d 2 http://localhost:9292
+Running 2s test @ http://localhost:9292
+  32 threads and 512 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency     1.12s   808.12ms   1.95s    57.85%
+    Req/Sec    28.29     23.46    90.00     58.47%
+  446 requests in 2.10s, 21.34KB read
+%%highlight{Requests/sec:    212.34}
+Transfer/sec:     10.16KB

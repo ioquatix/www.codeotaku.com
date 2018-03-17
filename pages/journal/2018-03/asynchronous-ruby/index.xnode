@@ -7,9 +7,9 @@
 	
 	<p>There are different execution models for asynchronous programs. These execution models directly affect the scalability of a program; that is, can adding additional processors to the computer improve the performance of the program and is the relationship linear?</p>
 	
-	<p>Parallel programs are those which execute tasks simulateously on multiple processors, typically using proceses or threads. Parallel programs are good for CPU-bound workloads because each processor executes at least one task until completion, and contention on the CPU is limited to a single task.</p>
+	<p>Parallel programs are those which execute tasks simulateously on multiple processors, typically using processes or threads. Parallel programs are good for CPU-bound workloads because tasks can be executed on independent processors at full speed with minimal contention.</p>
 	
-	<p>Concurrent programs interleave task execution on a single processor, typically by cooperative or preemptive scheduling. Concurrent programs are good for IO-bound workloads because IO typically has a very high latency compared to the execution speed of a processor, therefore allowing many tasks to scheudle high latency IO operations.</p>
+	<p>Concurrent programs interleave task execution on a single processor, typically by cooperative or preemptive scheduling. Concurrent programs are good for IO-bound workloads because tasks share the processor during high-latency IO operations.</p>
 	
 	<h2>What makes asynchronous programs slow?</h2>
 	

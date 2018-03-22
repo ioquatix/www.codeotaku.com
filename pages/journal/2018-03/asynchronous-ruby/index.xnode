@@ -32,7 +32,7 @@
 	
 	<p>Async uses stackful coroutines, otherwise known as fibers (similar to green threads). Fibers allow us to use normal function, loops and conditionals to execute our program. When an operation would block, we yield the fiber back to the reactor, which will resume from that point when the operation can continue. In the mean time, other tasks can execute. Because no new syntax required for blocking operations (they are just normal function calls), it's possible for existing code to work in a reactor with no modifications; we can also avoid callback hell, a problem associated with more explicit forms of concurrency.</p>
 	
-	<p>Typical reactors handle blocking IO and timers. Some operations don't have non-blocking operating system level interfaces (e.g. <code class="syntax clang">gethostbyname()</code>), and in that case you need to use thread pools or other concurrency primaives. For the most part these can be implemented cleanly with non-blocking interfaces.</p>
+	<p>Typical reactors handle blocking IO and timers. Some operations don't have non-blocking operating system level interfaces (e.g. <code class="syntax clang">gethostbyname()</code>), and in that case you need to use thread pools or other concurrency primatives. For the most part these can be implemented cleanly with non-blocking interfaces.</p>
 	
 	<h2>State of Ruby in 2018</h2>
 	

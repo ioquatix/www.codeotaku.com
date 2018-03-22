@@ -1,4 +1,3 @@
-// Released under the GNU GPLv3. Copyright 2010 Samuel Williams.
 
 function AggregateCallback (timeout, enforce, callback) {
 	this.timeout = timeout;

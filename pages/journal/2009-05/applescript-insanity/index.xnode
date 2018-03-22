@@ -13,7 +13,7 @@
 
 	<p>AppleScript has a lot of interesting ideas in terms of syntax and making code readable. I think that the access it provides to other applications is fantastic when compared to other similar tools. However, it has a high cost of entry for someone used to shell scripting / programming as its programming constructs are not consistent. I might need to use AppleScript again, and I'm sure as I use it more I will understand its peculiarities, but for now, I'm happy to be done with it.</p>
 	
-	<h3>Source code</h3>
+	<h2>Source code</h2>
 	
 	<content:listing src="drop_zip.txt" lang="applescript" />
 	

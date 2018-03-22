@@ -26,6 +26,14 @@
 	
 	<p>If you can schedule another task to run, you can minimise the effect of the blocking operations on other tasks, thereby reducing overall latency and increasing throughput. Hyper-threading, which operates at the CPU level, is one technique that CPU designers use to increase throughput at the expense of latency (due to context switching on the CPU core).</p>
 	
+	<h2>What is the Reactor pattern?</h2>
+	
+	<p>The <a href="https://en.wikipedia.org/wiki/Reactor_pattern">reactor pattern</a> is simply a way of scheduling blocking operations so that other tasks can run concurrently. Initially, an operation that would otherwise block is requested in an asynchronous manor. When the operation is ready to continue, the code is resumed. In some systems, you provide a callback, in other systems, you can use stackless or stackful fibers to manage state.</p>
+	
+	<p>Async uses stackful fibers as they work best with existing code are a negative overhead abstraction which makes them very elegant in practice. They minimise the need for complex (and often buggy) callback driven state machines, and instead use function calls and flow control to manage behaviour.</p>
+	
+	<p>Typical reactors handle blocking IO and timers. Some operations don't have non-blocking operating system level interfaces (e.g. <code class="syntax clang">gethostbyname()</code>), and in that case you need to use thread pools or other concurrency primaives. For the most part these can be implemented cleanly with non-blocking interfaces.</p>
+	
 	<h2>State of Ruby in 2018</h2>
 	
 	<p>Ruby (the interpreter) has a global interpreter lock which ensures that only one line of Ruby is executing at any time within a single Ruby process. Even if you have multiple threads, you can't execute Ruby code in parallel without multiple processes. Some specific parts of the interpreter give up this lock when executing blocking system calls, which allows other Ruby threads to execute. The implications of this is that a multi-process design has better throughput and lower latency than multi-thread. We can compare this using <a href="https://github.com/socketry/falcon">falcon</a> which supports both models:</p>
@@ -35,9 +43,34 @@
 	<p>Ruby (the standard library) has a frustrating IO model:</p>
 	
 	<ul>
-		<li>It has a mixture of blocking and non-blocking operations (in <a href="https://github.com/socketry/async-io/blob/55662bf3e2fbf9b076429b21add6f1a01ca3b990/lib/async/io/udp_socket.rb#L37-L38">some</a> <a href="https://github.com/socketry/async-io/blob/55662bf3e2fbf9b076429b21add6f1a01ca3b990/lib/async/io/tcp_socket.rb#L38-L46">cases</a> <a href="http://ruby-doc.org/stdlib-2.5.0/libdoc/openssl/rdoc/OpenSSL/SSL/SSLServer.html#method-i-accept">missing</a> non-blocking variants). This is a leaky abstraction - how Ruby handles blocking IO operations should be a detail of the interpreter, not the user code.</li>
-		<li>A variety of <code class="syntax ruby">Socket</code> and Socket-like classes with slightly different APIs (e.g. <a href="https://ruby-doc.org/stdlib-2.5.0/libdoc/socket/rdoc/Socket.html#method-i-recvfrom">Socket#recvfrom</a> vs <a href="https://ruby-doc.org/stdlib-2.5.0/libdoc/socket/rdoc/UDPSocket.html#method-i-recvfrom">UDPSocket#recvfrom</a>).</li>
-		<li>Many different places where blocking DNS resolution can occur (hard to wrap).</li>
+		<li>It has a mixture of blocking and non-blocking operations, e.g.
+			<ul>
+				<li><a href="https://github.com/socketry/async-io/blob/55662bf3e2fbf9b076429b21add6f1a01ca3b990/lib/async/io/udp_socket.rb#L37-L38">UDPSocket#send</a></li>
+				<li><a href="https://github.com/socketry/async-io/blob/55662bf3e2fbf9b076429b21add6f1a01ca3b990/lib/async/io/tcp_socket.rb#L38-L46">TCPSocket.new</a></li>
+				<li><a href="http://ruby-doc.org/stdlib-2.5.0/libdoc/openssl/rdoc/OpenSSL/SSL/SSLServer.html#method-i-accept">SSLServer.accept</a></li>
+				<li><a href="https://github.com/socketry/async-io/blob/fa3d3e4beee0c82444c34d6f061e1076f900b279/lib/async/io/unix_socket.rb#L26-L27">UNIXSocket#send_io, #recv_io, #recvfrom</a></li>
+			</ul>
+		</li>
+		<li>A variety of <code class="syntax ruby">Socket</code> and Socket-like classes with slightly different method signatures, e.g.
+			<ul>
+				<li><a href="https://ruby-doc.org/stdlib-2.5.0/libdoc/socket/rdoc/Socket.html#method-i-recvfrom">Socket#recvfrom</a></li>
+				<li><a href="https://ruby-doc.org/stdlib-2.5.0/libdoc/socket/rdoc/IPSocket.html#method-i-recvfrom">IPSocket#recvfrom</a></li>
+				<li><a href="https://ruby-doc.org/stdlib-2.5.0/libdoc/socket/rdoc/UNIXSocket.html#method-i-recvfrom">UNIXSocket#recvfrom</a></li>
+			</ul>
+		</li>
+		<li>Large surface area for basic operations, some of which may or may not use internal buffering, e.g. <code>pread, read, recv, sysread, readpartial, sync=, fsync, flush, close</code>. There is no general buffering implementation, and so it gets reinvented, e.g.
+			<ul>
+				<li><a href="https://github.com/socketry/async-io/blob/master/lib/async/io/stream.rb">Async::IO::Stream</a></li>
+				<li><a href="http://ruby-doc.org/stdlib-2.5.0/libdoc/openssl/rdoc/OpenSSL/Buffering.html">OpenSSL::Buffering</a></li>
+				<li><a href="https://github.com/celluloid/celluloid-io/blob/master/lib/celluloid/io/stream.rb">Celluloid::IO::Stream</a></li>
+			</ul>
+		</li>
+		<li>Many different places where blocking DNS resolution can occur. Many networking classes take strings for addresses which are resolved internally with blocking DNS, e.g.
+			<ul>
+				<li><a href="http://ruby-doc.org/stdlib-2.5.0/libdoc/socket/rdoc/TCPSocket.html#method-c-new">TCPSocket#new</a></li>
+				<li><a href="https://ruby-doc.org/stdlib-2.5.0/libdoc/socket/rdoc/Socket.html#method-i-recvfrom">Socket#recvfrom</a></li>
+			</ul>
+		</li>
 		<li>At least <a href="https://github.com/socketry/async-io/blob/02a051bb638b40aa49c3cd322ec09b719a30158a/lib/async/io/generic.rb#L96-L153">3 different ways to invoke non-blocking behavior</a>, the oldest of which destroyed VM performance.</li>
 		<li>JRuby incorrectly implements lots of it. It doesn't support the standard UNIX socket model due to limitations of the JVM.</li>
 	</ul>
@@ -78,19 +111,25 @@
 	
 	<ul>
 		<li><a href="https://github.com/socketry/async">Async</a> provides a reactor, the task structure and a generic IO wrapper. This code is very stable and is unlikely to change much except for performance improvements.</li>
-	
+		
 		<li><a href="https://github.com/socketry/async-io">Async::IO</a> provides IO wrappers which in many cases are a drop-in replacements for the Ruby standard library. It is likely that the design of this gem will continue to evolve.</li>
-
+		
+		<li><a href="https://github.com/socketry/async-container">Async::Container</a> provides policy driven concurrency for servers. You write your server function, and you deploy it on as many threads or processes as you have available.</li>
+		
 		<li><a href="https://github.com/socketry/async-dns">Async::DNS</a> provides both DNS resolver (client) and server. It's the guts of <a href="https://github.com/socketry/rubydns">RubyDNS</a>.</li>
-
+		
 		<li><a href="https://github.com/socketry/async-http">Async::HTTP</a> provides both HTTP(S) client and server, with experimental support for HTTP/2.</li>
 
 		<li><a href="https://github.com/socketry/async-websocket">Async::WebSocket</a> provides a <a href="https://github.com/socketry/async-websocket#usage">simple example client/server</a> and is a good place to start if you'd just like to try something out.</li>
-
+		
 		<li><a href="https://github.com/socketry/async-postgres">Async::Postgres</a> provides a drop-in replacement for ActiveRecord. It must be used with the <a href="https://github.com/socketry/falcon">falcon</a> web server. It's a bit of an experiment to see what's possible.</li>
-
-		<li><a href="https://github.com/socketry/async-await">Async::Await</a> transparently wraps your code and makes it asynchronous. It's magic.
-			<content:listing src="chickens.rb" lang="ruby" />
-		</li>
+		
+		<li><a href="https://github.com/socketry/async-await">Async::Await</a> transparently wraps your code and makes it asynchronous. It's magic.</li>
 	</ul>
+	
+	<p>Here is an example of non-blocking Ruby using <code>async-await</code>:</p>
+	
+	<content:listing src="chickens.rb" lang="ruby" />
+	
+	<p>We look forward to a future where such a model can be brought to all of Ruby.</p>
 </content:entry>

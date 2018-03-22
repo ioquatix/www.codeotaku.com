@@ -1,8 +1,6 @@
 <content:page>
 	<content:heading>The Space Between Here And There</content:heading>
 	
-	<content:gallery path="_art" tag="content:album_art"/>
-	
 	<h2>Track Listing</h2>
 	
 	<table class="basic centered">

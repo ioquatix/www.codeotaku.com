@@ -43,7 +43,7 @@
 	<body>
 		<content:header />
 		
-		<main class="#{attributes[:class] || 'normal'}">
+		<main>
 			<utopia:content />
 		</main>
 		

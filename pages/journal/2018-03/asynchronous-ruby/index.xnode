@@ -3,7 +3,7 @@
 	
 	<h2>What is asynchronous programming?</h2>
 	
-	<p>If a program can be broken up into a series of tasks which can execute independently of each other, it can be considered asynchronous, as in, without synchronisation. A program like a network server which handles incoming requests can typically be structured as one task per request. Asynchronous programs can improve CPU utilization, increasing throughput and lowering latency.</p>
+	<p>If a program can be broken up into a series of tasks which can be executed independently, it can be considered asynchronous, as in, without synchronisation. A program like a network server which handles incoming requests can typically be structured as one task per request. Asynchronous programs can improve CPU utilization, increasing throughput and lowering latency.</p>
 	
 	<p>There are different execution models for asynchronous programs. These execution models directly affect the scalability of a program; that is, can adding additional processors to the computer improve the performance of the program and is the relationship linear?</p>
 	

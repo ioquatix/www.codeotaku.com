@@ -28,9 +28,9 @@
 	
 	<h2>What is the Reactor pattern?</h2>
 	
-	<p>The <a href="https://en.wikipedia.org/wiki/Reactor_pattern">reactor pattern</a> is simply a way of scheduling blocking operations so that other tasks can run concurrently. Initially, an operation that would otherwise block is requested in an asynchronous manner. When the operation is ready to continue, the code is resumed. In some systems, you provide a callback, in other systems, you can use stackless or stackful fibers to manage state.</p>
+	<p>The <a href="https://en.wikipedia.org/wiki/Reactor_pattern">reactor pattern</a> is simply a way of scheduling blocking operations so that other tasks can run concurrently. Typically, an operation fails because it would block (e.g. <code class="syntax clang">read()</code> fails with <code class="syntax clang">EWOULDBLOCK</code>). We schedule the file descriptor into an event polling mechanism (e.g. <code>select</code>, <code>epoll</code> or <code>kqueue</code>) and suspend the caller. When the operation is ready to continue, the caller is resumed. In some systems, you provide a callback, in other systems, you can use stackless or stackful coroutines to manage state.</p>
 	
-	<p>Async uses stackful fibers as they work best with existing code are a negative overhead abstraction which makes them very elegant in practice. They minimise the need for complex (and often buggy) callback driven state machines, and instead use function calls and flow control to manage behaviour.</p>
+	<p>Async uses stackful coroutines, otherwise known as fibers (similar to green threads). Fibers allow us to use normal function, loops and conditionals to execute our program. When an operation would block, we yield the fiber back to the reactor, which will resume from that point when the operation can continue. In the mean time, other tasks can execute. Because no new syntax required for blocking operations (they are just normal function calls), it's possible for existing code to work in a reactor with no modifications.</p>
 	
 	<p>Typical reactors handle blocking IO and timers. Some operations don't have non-blocking operating system level interfaces (e.g. <code class="syntax clang">gethostbyname()</code>), and in that case you need to use thread pools or other concurrency primaives. For the most part these can be implemented cleanly with non-blocking interfaces.</p>
 	

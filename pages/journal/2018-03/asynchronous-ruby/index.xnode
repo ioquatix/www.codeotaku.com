@@ -38,7 +38,7 @@
 	
 	<p>Ruby (the interpreter) has a global interpreter lock which ensures that only one line of Ruby is executing at any time within a single Ruby process. Even if you have multiple threads, you can't execute Ruby code in parallel without multiple processes. Some specific parts of the interpreter give up this lock when executing blocking system calls, which allows other Ruby threads to execute. The implication of this is that a multi-process design has better throughput and lower latency than multi-thread. We can compare this using <a href="https://github.com/socketry/falcon">falcon</a> which supports both models:</p>
 	
-	<content:listing src="forked_vs_threaded.txt" lang="shell" />
+	<content:listing src="forked_vs_threaded.txt" lang="bash" />
 	
 	<p>Ruby (the standard library) has a frustrating IO model:</p>
 	

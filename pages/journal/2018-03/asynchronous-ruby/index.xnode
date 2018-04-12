@@ -1,19 +1,21 @@
 <content:entry>
-	<p>Server applications processing many asynchronous requests are an area where Ruby typically struggles. Client applications that need to perform multiple things simulatenously are also difficult to write. The traditional process/thread model does not scale well, especially for concurrent workloads that include blocking operations. We will discuss the reactor pattern, explore how <a href="https://github.com/socketry/async">async</a> implements it and look at real-world usage.</p>
+	<p>Applications processing many asynchronous requests are an area where Ruby struggles. The traditional process/thread model does not scale well due to resource contention. Explicit concurrency, including promises/futures, impose a significant cognitive burden and their use pollutes code all the way up the call chain. We present <a href="https://github.com/socketry/async">async</a>, a gem for Ruby that implements the reactor pattern using stackful corotines (fibers). We discuss asynchronous programming models, touch briefly on the state of asynchronous programming in Ruby, and show how fibers can be a excellent model for concurrency.</p>
 	
 	<h2>What is asynchronous programming?</h2>
 	
-	<p>If a program can be broken up into a series of tasks which can be executed independently, it can be considered asynchronous, as in, without synchronisation. A program like a network server which handles incoming requests can typically be structured as one task per request. Asynchronous programs can improve CPU utilization, increasing throughput and lowering latency.</p>
+	<p>If a program can be broken up into a series of tasks that can be executed independently, it can be considered asynchronous. It is a property of how a program can be executed, not what it does. A program, like a network server that handles multiple requests, can typically be structured as one task per request. Asynchronous programs can improve CPU utilization, increasing throughput and lowering latency.</p>
 	
-	<p>There are different execution models for asynchronous programs. These execution models directly affect the scalability of a program; that is, can adding additional processors to the computer improve the performance of the program and is the relationship linear?</p>
+	<blockquote><p class="spoken">Asynchronicity should be a property of how the program is executed, not what it does.</p></blockquote>
 	
-	<p>Parallel programs are those which execute tasks simulateously on multiple processors, typically using processes or threads. Parallel programs are good for CPU-bound workloads because tasks can be executed on independent processors at full speed with minimal contention.</p>
+	<p>There are different execution models for asynchronous programs. These execution models directly affect the scalability of a program; that is, can adding additional processors to the computer improve the performance of the program and is the improvement proportional.</p>
+	
+	<p>Parallel programs are those that execute tasks simulateously on multiple processors, typically using processes or threads. Parallel programs are good for CPU-bound workloads because tasks can be executed on independent processors at full speed with minimal contention.</p>
 	
 	<p>Concurrent programs interleave task execution on a single processor, typically by cooperative or preemptive scheduling. Concurrent programs are good for IO-bound workloads because tasks share the processor while they are waiting on high-latency IO operations.</p>
 	
 	<h2>What makes asynchronous programs slow?</h2>
 	
-	<p>In an ideal world, asynchronous programs run at full speed on as many processors as you have; tasks are scheduled and executed sequentially as rapidly as possible. Tasks which depend on external state (e.g. disk IO) have to wait for data to become available. We refer to this as <strong>blocking</strong> due to <strong>resource contention</strong>. This can occur in several ways:</p>
+	<p>In an ideal world, asynchronous programs run at full speed on as many processors as you have; tasks are scheduled and executed as rapidly as possible. Tasks that depend on external state (e.g. disk IO) have to wait for data to become available. We refer to this as <strong>blocking</strong> due to <strong>resource contention</strong>. This can occur in several ways:</p>
 	
 	<ul>
 		<li>If you have more tasks than processors, you have CPU contention.</li>
@@ -101,7 +103,7 @@
 	
 	<p>The reactor and all it's tasks are contained entirely within one thread, which avoids any locking or inter-thread communication which can be a significant overhead in per-process reactor designs. It also avoids typical shared state synchronisation issues between tasks since only one is executing at a given time.</p>
 	
-	<p>Nested tasks implicity manage resources. If a task makes several HTTP requests, but is soon cancelled, all nested tasks will also be cancelled. This ensures that complex asynchonous processes can be managed with ease and with guaranteed invariants.</p>
+	<p>Nested tasks implicity manage resources. If a task makes several HTTP requests, but is soon cancelled, all nested tasks will also be cancelled. This ensures that complex asynchronous processes can be managed with ease and with guaranteed invariants.</p>
 	
 	<p>Tasks themselves yield when operations would block, and this is completely transparent to the caller, unlike async/await style concurrency (which includes promises/futures). This avoids the implementation details of concurrency bleeding into otherwise understandable synchronous code, and allows previously synchronous code to become (within limitations of the Ruby API) transparently asynchronous.</p>
 	
@@ -122,7 +124,7 @@
 
 		<li><a href="https://github.com/socketry/async-websocket">Async::WebSocket</a> provides a <a href="https://github.com/socketry/async-websocket#usage">simple example client/server</a> and is a good place to start if you'd just like to try something out.</li>
 		
-		<li><a href="https://github.com/socketry/async-postgres">Async::Postgres</a> provides a drop-in replacement for ActiveRecord. It must be used with the <a href="https://github.com/socketry/falcon">falcon</a> web server. It's a bit of an experiment to see what's possible.</li>
+		<li><a href="https://github.com/socketry/async-postgres">Async::Postgres</a> and <a href="https://github.com/socketry/async-mysql">Async::MySQL</a> provide asynchronous connection adapters for ActiveRecord. It must be used with the <a href="https://github.com/socketry/falcon">falcon</a> web server. It's a bit of an experiment to see what's possible.</li>
 		
 		<li><a href="https://github.com/socketry/async-await">Async::Await</a> transparently wraps your code and makes it asynchronous. It's magic.</li>
 	</ul>

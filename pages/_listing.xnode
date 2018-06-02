@@ -1,9 +1,16 @@
+<figure class="listing">
 <?r 
-if attributes[:src]
-	path = parent.node.local_path(Utopia::Path.create(attributes[:src]))
+if src = attributes[:src]
+	path = parent.node.local_path(Utopia::Path.create(src))
 	code = File.read(path)
 else
 	code = content
+end
+
+if lines = attributes[:lines]
+	from, to = lines.split('-').map{|value| value.to_i - 1}
+	code = code.lines[from..to].join
+	?><figcaption>#{src}:#{lines}</figcaption><?r
 end
 
 escaped_code = MarkupString.new(code)
@@ -17,3 +24,4 @@ if lang = (attributes[:lang] || attributes[:brush]) ?>
 <?r else ?>
 	<pre><code class="syntax plain">#{escaped_code}</code></pre>
 <?r end ?>
+</figure>

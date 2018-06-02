@@ -83,11 +83,24 @@
 	
 	<h2>The future for an asynchronous Ruby</h2>
 	
-	<p>There is a <a href="https://bugs.ruby-lang.org/issues/13618">patch for Ruby</a> to add support for a per-process IO reactor which allows cooperatively scheduled fibers when IO operations would otherwise block the thread. However experiments with similar designs have shown that there are <a href="https://github.com/socketry/async/blob/master/benchmark/async_vs_lightio.rb">performance overheads due to the synchronisation required</a> - and if you end up running one thread per process, you pay for all that overhead for no reason.</p>
+	<p>There is a <a href="https://bugs.ruby-lang.org/issues/13618">patch for Ruby</a> to add support for a per-process IO reactor which allows cooperatively scheduled fibers when IO operations would otherwise block the thread. It is a clever design because it uses a single shared event queue. Each thread waiting on IO polls the event queue and dequeues events from the OS. If the event is relevant to the thread, it's processed directly, but if it's not, it's queued into the other threads
 	
-	<p>In addition to the performance implications of a shared per-process reactor, the design of such a system also leaves much to be desired. Different parts of a system may require different reactor designs to maximise throughput or minimise latency. It would be trivial to design a standard reactor API and provide a useful default. On macOS, unfortunately, the best default for IO is <code class="syntax c">select()</code>. <code class="syntax c">kqueue()</code> has bugs, and doesn't handle <code class="syntax c">stdin/stdout/stderr</code> correctly. However, if you are only doing network IO, a reactor which uses <code class="syntax c">kqueue()</code> would be far better than <code class="syntax c">select()</code>. So, it becomes a task-level policy decision based on exactly what you want to do.</p>
+	However experiments with similar designs have shown that there are <a href="https://github.com/socketry/async/blob/master/benchmark/async_vs_lightio.rb">performance overheads due to the synchronisation required</a> - and if you end up running one thread per process (which avoids GIL contention), you pay for all that overhead for no reason.</p>
 	
-	<p>Such a patch will not be backwards compatible and require signficant effort from other Ruby implementations (e.g. Rubinius, JRuby) to support. The patch itself has a huge surface area which will increase the complexity of all Ruby interpreters. As there is <a href="https://stdgems.org">already an effort to gemify the standard library</a> it seems like a step backwards to incorporate such a huge chunk of functionality into the core of Ruby.</p>
+	<p>The proposed design has a global shared <code>kqueue</code> or <code>epoll</code> descriptor. When a thread is processing IO tasks, if it gets an event for a task which is non-local, it will put that event into the other threads queue.</p>
+	
+	<div class="gallery">
+		<figure class="photo">
+			<iframe width="560" height="315" src="https://www.youtube.com/embed/KXuZi9aeGTw?start=8m39s" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+			<figcaption>One of the costs of a 1-1 thread model... the kernel scheduler doesn't really know what the user space scheduler is doing... (8m39s)</figcaption>
+		</figure>
+	</div>
+	
+	<p>In addition to the performance implications of a shared per-process reactor, the design of such a system also leaves much to be desired. You get all the benefits of fiber-based concurrency with all the problems of multi-threaded parallelism. This means 
+	
+	Different parts of a system may require different reactor designs to maximise throughput or minimise latency. It would be trivial to design a standard reactor API and provide a useful default. On macOS, unfortunately, the best default for IO is <code class="syntax c">select()</code>. <code class="syntax c">kqueue()</code> has bugs, and doesn't handle <code class="syntax c">stdin/stdout/stderr</code> correctly. However, if you are only doing network IO, a reactor which uses <code class="syntax c">kqueue()</code> would be far better than <code class="syntax c">select()</code>. So, it becomes a task-level policy decision based on exactly what you want to do.</p>
+	
+	<p>Such a patch will not be easily backwards compatible and require signficant effort from other Ruby implementations (e.g. Rubinius, JRuby) to support. The patch itself has a huge surface area which will increase the complexity of all Ruby interpreters. As there is <a href="https://stdgems.org">already an effort to gemify the standard library</a> it seems like a step backwards to incorporate such a huge chunk of functionality into the core of Ruby.</p>
 	
 	<h2>An alternative proposal</h2>
 	

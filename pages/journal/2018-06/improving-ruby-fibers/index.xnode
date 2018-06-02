@@ -1,0 +1,99 @@
+<content:entry>
+	<p>Ruby currently uses OS provided abstractions for implementing Fibers. Unfortunately, these often perform poorly and have tricky semantics.</p>
+	
+	<p>The most common implementation on UNIX systems involves manipulating the state of <code class="syntax c">makecontext()</code> and <code class="syntax c">swapcontext()</code>. These function calls have been deprecated and removed from the POSIX standard, but still exist in most UNIX implementations for backwards compatibility. As well as being poorly implemented and supported, the documented semantics of these functions requires certain system calls which limit their performance.</p>
+	
+	<p>Another typical undocumented and unsupported approach is to abuse <code class="syntax c">setjmp()</code> and <code class="syntax c">longjmp()</code>. You can manipulate the <code class="syntax c">jmp_buf</code> to change the return address and stack pointer, so it is possible to jump between fibers.</p>
+	
+	<p>Windows provides native APIs for fibers and these are pretty decent. They work as expected, but depending on your situation, may do more than required at the expense of performance.</p>
+	
+	<h2>Improving Performance</h2>
+	
+	<p>A native implementation of coroutines using assembly can significantly improve performance of the Ruby's Fibers. Even thought some assembly is required, the net semantic complexity is reduced and existing hacks can be removed.</p>
+	
+	<h3>x64 Definitions</h3>
+	
+	<p>The state that is required per coroutine - typically just the stack pointer - but you could put other things here if required:</p>
+	
+	<content:listing src="Context.h" lang="c" lines="22-26" />
+	
+	<p>The initialization function prepares the stack so that when we transfer to it, it will return to the given start address:</p>
+	
+	<content:listing src="Context.h" lang="c" lines="31-51" />
+	
+	<p>The destroy function essentially just nullifies the stack pointer:</p>
+	
+	<content:listing src="Context.h" lang="c" lines="55-58" />
+	
+	<p>The transfer function switches between coroutines. It essentially saves the caller state onto it's stack, swaps the stack to another coroutine, and then returns.</p>
+	
+	<content:listing src="Context.s" lang="assembly" lines="12-40" />
+	
+	<p>Keep in mind that this is the simplest possible implementation and doesn't preserve things like sigmask, FPU state, etc. They essentially remain per-thread with this specific implementation.</p>
+	
+	<h3>Performance</h3>
+	
+	<p>Generally speaking, the overhead of a fiber context switch is not much more than a standard C fast call (pass as many arguments in registers as possible). On x64, the standard (and only) ABI is fast call, and so it's efficent by default.</p>
+	
+	<script src="/_components/chart.js/Chart.bundle.min.js"></script>
+	
+	<canvas id="results" width="100%" height="32rem"></canvas>
+	
+	<script>
+	// <![CDATA[
+		var colors = ["#609bce",
+			"#ca5d48",
+			"#62a85a",
+			"#8d68ca",
+			"#b4933f",
+			"#c85994"];
+		
+		// Bar chart
+		new Chart(document.getElementById("results"), {
+			type: 'bar',
+			data: {
+				labels: ["vm2_fiber_chain", "vm2_fiber_switch", "loop_generator"],
+				datasets: [
+					{
+						label: "ruby 2.6 (preview2)",
+						backgroundColor: colors,
+						data: [5.60, 3.81, 0.45]
+					},
+					{
+						label: "ruby 2.6 (native fibers)",
+						backgroundColor: colors,
+						data: [1.58, 0.66, 0.13]
+					}
+				]
+			},
+			options: {
+				scales: {
+					yAxes: [{
+						ticks: {
+							beginAtZero: true,
+							callback: function(value, index, values) {
+								return value + "s";
+							}
+						},
+						scaleLabel: {
+							display: true,
+							labelString: 'Time Taken',
+						}
+					}]
+				},
+				legend: { display: false },
+				title: {
+					display: true,
+					text: 'make benchmark-each ITEM=bm_vm2_fiber'
+				}
+			}
+		});
+	// ]]>
+	</script>
+	
+	<h2>Further Reading</h2>
+	
+	<p>The <a href="https://github.com/ioquatix/ruby/tree/native-fiber">code is available here</a> and the <a href="https://bugs.ruby-lang.org/issues/14739">Ruby bug report</a> has more details. There is <a href="https://github.com/ruby/ruby/pull/1878">a PR</a> tracking changes.</p>
+	
+	<p>The goal of these improvements is to improve the performance of <a href="https://github.com/socketry/async">async</a>. I've measured a 5% improvement to <a href="https://github.com/socketry/async-http">async-http</a>.</p>
+</content:entry>

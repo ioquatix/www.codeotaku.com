@@ -9,5 +9,3 @@ improving-ruby-fibers:
   created: 2018-06-02
   title: "Improving Ruby Fibers"
   summary: "Using native assembly to improve Ruby's performance."
-improving-ruby-fibers.ja:
-  title: "Improving Ruby Fibers (JP)"

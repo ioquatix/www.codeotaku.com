@@ -11,7 +11,7 @@
 	
 	<p>A native implementation of coroutines using assembly can significantly improve performance of the Ruby's Fibers. Even thought some assembly is required, the net semantic complexity is reduced and existing hacks can be removed.</p>
 	
-	<h3>x64 Definitions</h3>
+	<h3>x64 Implementation</h3>
 	
 	<p>The state that is required per coroutine - typically just the stack pointer - but you could put other things here if required:</p>
 	
@@ -84,7 +84,7 @@
 				legend: { display: false },
 				title: {
 					display: true,
-					text: 'make benchmark-each ITEM=bm_vm2_fiber'
+					text: 'make benchmark'
 				}
 			}
 		});

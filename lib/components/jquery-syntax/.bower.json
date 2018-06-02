@@ -1,0 +1,35 @@
+{
+  "name": "jquery-syntax",
+  "dependencies": {
+    "jquery": ">=1.4.1"
+  },
+  "description": "jQuery.Syntax is an extremely fast and lightweight syntax highlighter written in JavaScript. It has dynamic loading of syntax source files and integrates cleanly using CSS or modelines.",
+  "main": "dist/jquery.syntax.js",
+  "authors": [
+    "Samuel Williams <samuel@codeotaku.com (http://www.codeotaku.com)"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "syntax",
+    "highlighting",
+    "highlighter",
+    "source",
+    "code",
+    "formatting"
+  ],
+  "homepage": "https://github.com/ioquatix/jquery-syntax",
+  "ignore": [
+    "node_modules",
+    "bower_components"
+  ],
+  "version": "4.1.0",
+  "_release": "4.1.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v4.1.0",
+    "commit": "609040f9b5a7491e531c7c7664b402d4c4d0a08b"
+  },
+  "_source": "https://github.com/ioquatix/jquery-syntax.git",
+  "_target": "^4.0.0",
+  "_originalSource": "jquery-syntax"
+}

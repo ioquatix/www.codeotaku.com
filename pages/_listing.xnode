@@ -10,7 +10,6 @@ end
 if lines = attributes[:lines]
 	from, to = lines.split('-').map{|value| value.to_i - 1}
 	code = code.lines[from..to].join
-	?><figcaption>#{src}:#{lines}</figcaption><?r
 end
 
 escaped_code = MarkupString.new(code)

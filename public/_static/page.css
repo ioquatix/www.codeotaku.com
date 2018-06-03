@@ -5,7 +5,7 @@ pre {
 }
 
 figure figcaption {
-	float: right;
+	text-align: center;
 	color: #999;
 	
 	margin: 0;

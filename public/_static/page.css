@@ -160,7 +160,7 @@ header {
 }
 
 header .details {
-	padding: 0 4rem;
+	margin: 0 auto;
 }
 
 header h1 {

@@ -1,0 +1,114 @@
+<content:entry>
+	<blockquote><p class="spoken">Asynchronicity should be a property of how the program is executed, not what it does.</p></blockquote>
+	
+	<p>Ruby currently implements mutually exclusive threads and both blocking and non-blocking IO with different methods. It also supports Fibers which can be used to implement cooperatively scheduled event-driven IO. The cognitive burden of dealing with these different APIs is left as an exercise to the user, and thus we have a wide range of IO libraries with varying degrees of concurrency. Composability of components build on different underlying IO libraries is generally poor because each library exposes it's own API.</p>
+	
+	<h2>Improving Concurrency and Composability</h2>
+	
+	<p>Fibers are a natural abstraction for cooperative concurrency, with each fiber representing a synchronous set of operations, and multiple fibers executing cooperatively in a single thread. You get all the benefits of concurrency with none of the overheads of multi-threaded programming. In order to make IO composable, we need to provide the basic abstractions for concurrent IO.</p>
+	
+	<h3>Basic Operations</h3>
+	
+	<p>Here is an example of a basic asynchronous <code class="syntax ruby">read()</code> operation. You can inject such wrappers into existing code and they will work concurrenty without any further changes:</p>
+	
+	<content:listing src="wrapper.rb" lang="ruby" lines="2-13" />
+	
+	<p>What does <code class="syntax ruby">wait_readable()</code> look like? In a simple <code class="syntax ruby">select()</code>-based implementation:</p>
+	
+	<content:listing src="wrapper.rb" lang="ruby" lines="15-39" />
+	
+	<p>The problem with this design is that everyone has to agree on a wrapper and selector implementation. We already have a core IO layer in Ruby that practically everyone uses. Along with <code class="syntax ruby">IO.select(...)</code> we have a ton of options for event driven concurrency, including but not limited to: <a href="https://github.com/socketry/nio4r">NIO4R</a> (alive), <a href="https://github.com/socketry/async">Async</a> (alive), <a href="https://github.com/socketry/lightio">LightIO</a> (experimental), <a href="https://github.com/eventmachine/eventmachine">EventMachine</a> (undead), <a href="https://github.com/chuckremes/ruby-io">ruby-io</a> (experimental).</p>
+	
+	<h3>Extending Ruby</h3>
+	
+	<p>The best boundary for event-drive IO loops in Ruby is per-thread (or taking the GIL into account, per-process). Event driven IO is naturally cooperative, and scheduling operations across threads makes it needlessly complicated. We can leverage Ruby's existing IO implementation by intercepting calls to <code class="syntax ruby">io.wait_readable()</code> and <code class="syntax ruby">io.wait_writable()</code> and redirect them to <code class="syntax ruby">Thread.current.selector</code>.</p>
+	
+	<p>We add an appropriate C API for <code class="syntax ruby">Thread.current.selector</code> and add a layer of indirection to <code class="syntax ruby">int rb_io_wait_readable(int f)</code> (and others).</p>
+	
+	<content:listing src="io.c" lang="ruby" />
+	
+	<p>Here is an example of how this fits together:</p>
+	
+	<content:listing src="selector.rb" lang="ruby" lines="57-87" />
+	
+	<p>This design has a very minimal surface area, allows reuse of existing event loops (e.g. EventMachine, NIO4r). It's also trivial for other Rubies to implement (e.g. JRuby, Rubinius, TruffleRuby, etc).</p>
+	
+	<h2>Performance</h2>
+	
+	<p>While it's hard to make objective comparisons since this is a feature addition rather than a performance improvement, we can at least look at some benchmarks from <a href="https://github.com/socketry/async-http">async-http</a> and <a href="https://github.com/socketry/async-postgres">async-postgres</a> which implement the wrapper aproach discussed above.</p>
+	
+	<script src="/_components/chart.js/Chart.bundle.min.js"></script>
+	
+	<canvas id="results" width="100%" height="64rem"></canvas>
+	
+	<script>
+	// <![CDATA[
+		var colors = ["#609bce",
+			"#ca5d48",
+			"#62a85a",
+			"#8d68ca",
+			"#b4933f",
+			"#c85994"
+		];
+		
+		// Bar chart
+		new Chart(document.getElementById("results"), {
+			type: 'line',
+			data: {
+				labels: [1, 2, 4, 8, 16, 32, 64, 128, 256, 512],
+				datasets: [
+					{
+						label: "puma (16 threads)",
+						borderColor: colors[0],
+						data: [9.00, 17.96, 35.90, 66.35, 138.94, 148.71, 149.12, 147.71, 162.32, 161.17],
+						fill: false,
+						tension: 0.1,
+					},
+					{
+						label: "falcon (8 processes+fibers)",
+						borderColor: colors[2],
+						data: [9.00, 17.98, 35.95, 66.39, 137.25, 297.56, 576.22, 1157.87, 1988.76, 2221.02],
+						fill: false,
+						tension: 0.1,
+					}
+				]
+			},
+			options: {
+				scales: {
+					xAxes: [{
+						ticks: {
+							beginAtZero: true,
+						},
+						scaleLabel: {
+							display: true,
+							labelString: 'Concurrency (Simultaneous Requests)'
+						}
+					}],
+					yAxes: [{
+						ticks: {
+							beginAtZero: true,
+						},
+						scaleLabel: {
+							display: true,
+							labelString: 'Requests/second',
+						}
+					}]
+				},
+				legend: { display: false },
+				title: {
+					display: true,
+					text: 'threads vs fibers'
+				}
+			}
+		});
+	// ]]>
+	</script>
+	
+	<p>You can see that <a href="https://github.com/puma/puma">Puma</a> scales up to it's configured limits. <a href="https://github.com/socketry/falcon">Falcon</a> scales up until all cores are pegged.</p>
+	
+	<h2>Further Reading</h2>
+	
+	<p>The <a href="https://github.com/ioquatix/ruby/tree/thread-selector">code is available here</a> and the <a href="https://bugs.ruby-lang.org/issues/14736">Ruby bug report</a> has more details. There is <a href="https://github.com/ruby/ruby/pull/1870">a PR</a> tracking changes.</p>
+	
+	<p>The goal of these improvements is to improve the composability and performance of <a href="https://github.com/socketry/async">async</a>. I've implemented the wrapper approach in <a href="https://github.com/socketry/async-io">async-io</a> and it's prooven itself to be a good model in several high level libraries, including: <a href="https://github.com/socketry/async-dns">async-dns</a>, <a href="https://github.com/socketry/async-http">async-http</a> and <a href="https://github.com/socketry/async-http-faraday">async-http-faraday</a>.</p>
+</content:entry>

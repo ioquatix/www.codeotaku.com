@@ -1,5 +1,5 @@
 <content:entry>
-	<p>Applications processing many asynchronous requests are an area where Ruby struggles. The traditional process/thread model does not scale well due to resource contention. Explicit concurrency, including promises/futures, impose a significant cognitive burden and their use pollutes code all the way up the call chain. We present <a href="https://github.com/socketry/async">async</a>, a gem for Ruby that implements the reactor pattern using stackful coroutines (fibers). We discuss asynchronous programming models, touch briefly on the state of asynchronous programming in Ruby, and show how fibers can be a excellent model for concurrency.</p>
+	<p>Applications that process many simultaneous requests are an area where Ruby struggles. The traditional request-per-process/thread model does not scale well. Explicit concurrency, including promises/futures, impose a significant cognitive burden and their use pollutes code all the way up the call chain. We present <a href="https://github.com/socketry/async">async</a>, a gem for Ruby that implements the reactor pattern using stackful coroutines (fibers). We discuss asynchronous programming models, touch briefly on the state of asynchronous programming in Ruby, and show how fibers can be a excellent model for concurrency.</p>
 	
 	<h2>What is asynchronous programming?</h2>
 	

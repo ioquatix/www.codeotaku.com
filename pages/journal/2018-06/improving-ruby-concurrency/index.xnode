@@ -1,15 +1,15 @@
 <content:entry>
 	<blockquote><p class="spoken">Asynchronicity should be a property of how the program is executed, not what it does.</p></blockquote>
 	
-	<p>Ruby currently implements mutually exclusive threads and exposes both blocking and non-blocking operations. It also supports Fibers which can be used to implement cooperatively scheduled event-driven IO. The cognitive burden of dealing with these different APIs is left as an exercise to the user, and thus we have a wide range of IO libraries with varying degrees of concurrency. Composability of components build on different underlying IO libraries is generally poor because each library exposes it's own API and has it's own underlying event loop.</p>
+	<p>Ruby currently implements mutually exclusive threads and exposes both blocking and non-blocking operations. It also supports Fibers which can be used to implement cooperatively scheduled event-driven IO. The cognitive burden of dealing with these different APIs is left as an exercise to the programmer, and thus we have a wide range of IO libraries with varying degrees of concurrency. Composability of components build on different underlying IO libraries is generally poor because each library exposes it's own API and has it's own underlying event loop.</p>
 	
 	<h2>Improving Concurrency and Composability</h2>
 	
-	<p>Fibers are a <a href="https://youtu.be/_fu0gx-xseY?t=1m58s">negative overhead abstraction</a> for cooperative concurrency, with each fiber representing a synchronous set of operations, and multiple fibers executing cooperatively in a single thread. You get all the benefits of concurrency with none of the overheads of parallel (multi-threaded) programming. Users write their code as if it were sequential, which is easy to reason about, but when an operation would block, other fibers are given a chance to execute. Excellent scalability on Ruby is achieved by running multiple processes, each with it's own event loop, and many fibers.</p>
+	<p>Fibers are a <a href="https://youtu.be/_fu0gx-xseY?t=1m58s">negative overhead abstraction</a> for concurrency, with each fiber representing a synchronous set of operations, and multiple fibers executing cooperatively in a single thread. This design provides concurrency with none of the overheads of parallel (multi-threaded) programming. Programmers can write their code as if it were sequential, which is easy to reason about, but when an operation would block, other fibers are given a chance to execute. Excellent scalability on Ruby is achieved by running multiple processes, each with it's own event loop, and many fibers.</p>
 	
 	<h3>Basic Operations</h3>
 	
-	<p>Here is an example of a basic asynchronous <code class="syntax ruby">read()</code> operation. You can inject such wrappers into existing code and they will work concurrenty without any further changes:</p>
+	<p>Here is an example of a basic asynchronous <code class="syntax ruby">read()</code> operation. It is possible to inject such wrappers into existing code and they will work concurrenty without any further changes:</p>
 	
 	<content:listing src="wrapper.rb" lang="ruby" lines="2-13" />
 	
@@ -103,7 +103,7 @@
 	// ]]>
 	</script>
 	
-	<p>You can see that <a href="https://github.com/puma/puma">Puma</a> scales up to it's configured limits. <a href="https://github.com/socketry/falcon">Falcon</a> scales up until all cores are pegged.</p>
+	<p><a href="https://github.com/puma/puma">Puma</a> scales up to it's configured limits. <a href="https://github.com/socketry/falcon">Falcon</a> scales up until all cores are pegged.</p>
 	
 	<h2>Further Reading</h2>
 	

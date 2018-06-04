@@ -3,9 +3,9 @@
 	
 	<p>The most common implementation on UNIX systems involves manipulating the state of <code class="syntax c">makecontext()</code> and <code class="syntax c">swapcontext()</code>. These function calls have been deprecated and removed from the POSIX standard, but still exist in most UNIX implementations for backwards compatibility. As well as being poorly implemented and supported, the documented semantics of these functions requires certain system calls which limit their performance.</p>
 	
-	<p>Another typical undocumented and unsupported approach is to abuse <code class="syntax c">setjmp()</code> and <code class="syntax c">longjmp()</code>. You can manipulate the <code class="syntax c">jmp_buf</code> to change the return address and stack pointer, so it is possible to jump between fibers.</p>
+	<p>Another typical undocumented and unsupported approach is to abuse <code class="syntax c">setjmp()</code> and <code class="syntax c">longjmp()</code>. It is possible to manipulate the <code class="syntax c">jmp_buf</code> to change the return address and stack pointer, so it is possible to jump between fibers.</p>
 	
-	<p>Windows provides native APIs for fibers and these are pretty decent. They work as expected, but depending on your situation, may do more than required at the expense of performance.</p>
+	<p>Windows provides native APIs for fibers and these are pretty decent. They work as expected, but depending on the situation, may do more than required at the expense of performance.</p>
 	
 	<h2>Improving Performance</h2>
 	
@@ -13,7 +13,7 @@
 	
 	<h3>x64 Implementation</h3>
 	
-	<p>The state that is required per coroutine - typically just the stack pointer - but you could put other things here if required:</p>
+	<p>The state that is required per coroutine - typically just the stack pointer, but it is possible to augment this with other per-coroutine data:</p>
 	
 	<content:listing src="Context.h" lang="c" lines="22-26" />
 	

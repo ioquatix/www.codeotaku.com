@@ -1,5 +1,5 @@
 <content:entry>
-	<p>Applications processing many asynchronous requests are an area where Ruby struggles. The traditional process/thread model does not scale well due to resource contention. Explicit concurrency, including promises/futures, impose a significant cognitive burden and their use pollutes code all the way up the call chain. We present <a href="https://github.com/socketry/async">async</a>, a gem for Ruby that implements the reactor pattern using stackful corotines (fibers). We discuss asynchronous programming models, touch briefly on the state of asynchronous programming in Ruby, and show how fibers can be a excellent model for concurrency.</p>
+	<p>Applications processing many asynchronous requests are an area where Ruby struggles. The traditional process/thread model does not scale well due to resource contention. Explicit concurrency, including promises/futures, impose a significant cognitive burden and their use pollutes code all the way up the call chain. We present <a href="https://github.com/socketry/async">async</a>, a gem for Ruby that implements the reactor pattern using stackful coroutines (fibers). We discuss asynchronous programming models, touch briefly on the state of asynchronous programming in Ruby, and show how fibers can be a excellent model for concurrency.</p>
 	
 	<h2>What is asynchronous programming?</h2>
 	
@@ -9,9 +9,29 @@
 	
 	<p>There are different execution models for asynchronous programs. These execution models directly affect the scalability of a program; that is, can adding additional processors to the computer improve the performance of the program and is the improvement proportional.</p>
 	
+	<h3>Parallel Programs</h3>
+	
 	<p>Parallel programs are those that execute tasks simulateously on multiple processors, typically using processes or threads. Parallel programs are good for CPU-bound workloads because tasks can be executed on independent processors at full speed with minimal contention.</p>
 	
+	<figure style="text-align: center">
+		<img width="20%" src="Eating-Dog.svg" />
+		<img width="20%" src="Eating-Dog.svg" />
+		<img width="20%" src="Eating-Dog.svg" />
+		<img width="20%" src="Eating-Dog.svg" />
+		<figcaption>Each dog has it's own dog bowl. They can all eat at the same time.</figcaption>
+	</figure>
+	
+	<h3>Concurrent Programs</h3>
+	
 	<p>Concurrent programs interleave task execution on a single processor, typically by cooperative or preemptive scheduling. Concurrent programs are good for IO-bound workloads because tasks share the processor while they are waiting on high-latency IO operations.</p>
+	
+	<figure style="text-align: center">
+		<img width="20%" src="Eating-Dog.svg" />
+		<img width="20%" src="Sitting-Dog.svg" />
+		<img width="20%" src="Sitting-Dog.svg" />
+		<img width="20%" src="Sitting-Dog.svg" />
+		<figcaption>There is one bowl for all the dogs. They take turns eating as needed.</figcaption>
+	</figure>
 	
 	<h2>What makes asynchronous programs slow?</h2>
 	
@@ -38,9 +58,7 @@
 	
 	<h2>State of Ruby in 2018</h2>
 	
-	<p>Ruby (the interpreter) has a global interpreter lock which ensures that only one line of Ruby is executing at any time within a single Ruby process. Even if you have multiple threads, you can't execute Ruby code in parallel without multiple processes. Some specific parts of the interpreter give up this lock when executing blocking system calls, which allows other Ruby threads to execute. The implication of this is that a multi-process design has better throughput and lower latency than multi-thread. We can compare this using <a href="https://github.com/socketry/falcon">falcon</a> which supports both models:</p>
-	
-	<content:listing src="forked_vs_threaded.txt" lang="bash" />
+	<p>Ruby (the interpreter) has a global interpreter lock which ensures that only one line of Ruby is executing at any time within a single Ruby process. Even if you have multiple threads, you can't execute Ruby code in parallel without multiple processes. Some specific parts of the interpreter give up this lock when executing blocking system calls, which allows other Ruby threads to execute. The implication of this is that a <a href="../improving-ruby-concurrency/index#performance">multi-process design has better throughput and lower latency than multi-thread</a>.</p>
 	
 	<p>Ruby (the standard library) has a frustrating IO model:</p>
 	
@@ -77,42 +95,17 @@
 		<li>JRuby incorrectly implements lots of it. It doesn't support the standard UNIX socket model due to limitations of the JVM.</li>
 	</ul>
 	
-	<p>The current implemenation of <a href="https://github.com/socketry/nio4r">nio4r</a> has some limitations on macOS due to unavoidable OS bugs, so you'll only get really amazing performance on Linux.</p>
-	
-	<p>There are several open source efforts to add cooperatively scheduled operations to Ruby: <a href="https://github.com/celluloid/celluloid-io">Celluloid::IO</a> (almost certainly dead, but with the utmost respect), <a href="https://github.com/socketry/async">Async</a> (alive), <a href="https://github.com/socketry/lightio">LightIO</a> (experimental), <a href="https://github.com/eventmachine/eventmachine">EventMachine</a> (undead), <a href="https://github.com/chuckremes/ruby-io">ruby-io</a> (experimental).</p>
-	
 	<h2>The future for an asynchronous Ruby</h2>
-	
-	<p>There is a <a href="https://bugs.ruby-lang.org/issues/13618">patch for Ruby</a> to add support for a per-process IO reactor which allows cooperatively scheduled fibers when IO operations would otherwise block the thread. It is a clever design because it uses a single shared event queue. Each thread waiting on IO polls the event queue and dequeues events from the OS. If the event is relevant to the thread, it's processed directly, but if it's not, it's queued into the other threads
-	
-	However experiments with similar designs have shown that there are <a href="https://github.com/socketry/async/blob/master/benchmark/async_vs_lightio.rb">performance overheads due to the synchronisation required</a> - and if you end up running one thread per process (which avoids GIL contention), you pay for all that overhead for no reason.</p>
-	
-	<p>The proposed design has a global shared <code>kqueue</code> or <code>epoll</code> descriptor. When a thread is processing IO tasks, if it gets an event for a task which is non-local, it will put that event into the other threads queue.</p>
-	
-	<div class="gallery">
-		<figure class="photo">
-			<iframe width="560" height="315" src="https://www.youtube.com/embed/KXuZi9aeGTw?start=8m39s" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-			<figcaption>One of the costs of a 1-1 thread model... the kernel scheduler doesn't really know what the user space scheduler is doing... (8m39s)</figcaption>
-		</figure>
-	</div>
-	
-	<p>In addition to the performance implications of a shared per-process reactor, the design of such a system also leaves much to be desired. You get all the benefits of fiber-based concurrency with all the problems of multi-threaded parallelism. This means 
-	
-	Different parts of a system may require different reactor designs to maximise throughput or minimise latency. It would be trivial to design a standard reactor API and provide a useful default. On macOS, unfortunately, the best default for IO is <code class="syntax c">select()</code>. <code class="syntax c">kqueue()</code> has bugs, and doesn't handle <code class="syntax c">stdin/stdout/stderr</code> correctly. However, if you are only doing network IO, a reactor which uses <code class="syntax c">kqueue()</code> would be far better than <code class="syntax c">select()</code>. So, it becomes a task-level policy decision based on exactly what you want to do.</p>
-	
-	<p>Such a patch will not be easily backwards compatible and require signficant effort from other Ruby implementations (e.g. Rubinius, JRuby) to support. The patch itself has a huge surface area which will increase the complexity of all Ruby interpreters. As there is <a href="https://stdgems.org">already an effort to gemify the standard library</a> it seems like a step backwards to incorporate such a huge chunk of functionality into the core of Ruby.</p>
-	
-	<h2>An alternative proposal</h2>
 	
 	<p>It's clear at this point that Ruby has a complex legacy. However, going forward, Ruby needs a vision for a future that makes it easy for users to write efficient asynchronous programs. There are many aspects to this problem, but one core issue is providing an interface on which IO operations can work asynchronously.</p>
 	
-	<p>Ruby already has support for Fibers, which make cooperative scheduling trivial. All that's needed is an interface for waiting on blocking operations. There are many kinds of blocking operations, but the main ones are IO related. Most other blocking operations can be turned into IO operations by using threads and pipes. The "reactor" is a typical design pattern, where one can register IO of interest and then receive notifications when the IO is ready to be read/write from.</p>
+	<p>Ruby already has support for Fibers, which make cooperative scheduling trivial. All that's needed is an interface for waiting on blocking operations. There are many kinds of blocking operations, but the main ones are IO related. Most other blocking operations can be turned into IO operations by using threads and pipes. The "reactor" or "selector" is a common design pattern, where one can register IO of interest and then receive notifications when the IO is ready to be read/write from.</p>
 	
-	<p>Fortunately, we already have a very stable implementation of <a href="https://github.com/socketry/nio4r">the lowest level</a>. All that's required is calling <code class="syntax ruby">Fiber.yield</code> and <code class="syntax ruby">fiber.resume</code> at the right time. The most logical way to structure this is to make the reactor an attribute of a fiber, and additionally, to inherit that state when making nested fibers. I've put together a brief outline of the <a href="https://github.com/socketry/async/blob/master/examples/fibers.rb">proposed interface here</a>.</p>
+	<p>Fortunately, we already have a very stable implementation of <a href="https://github.com/socketry/nio4r">the lowest level</a>. All that's required is calling <code class="syntax ruby">Fiber.yield</code> and <code class="syntax ruby">fiber.resume</code> at the right time. We've <a href="../improving-ruby-concurrency/index">made a proposal</a> to implement such hooks into the existing Ruby implementation and we'd love your feedback.</p>
 	
 	<h2>An overview of Async</h2>
 	
-	<p>We actually have a working implementation of the above proposal. The <a href="https://github.com/socketry/async">async</a> gem provides a stable implementation of a concurrent reactor. It provides cooperatively scheduled tasks which yield when an operation would block. It doesn't monkey patch Ruby's standard library (althought perhaps we should), but provides wrappers which in some cases can be used transparently.</p>
+	<p>We actually have a working implementation of the above proposal using wrappers. The <a href="https://github.com/socketry/async">async</a> gem provides a stable implementation of a concurrent IO reactor. It provides cooperatively scheduled tasks which yield when an operation would block. It doesn't monkey patch Ruby's standard library (althought perhaps we should), but provides wrappers which in some cases can be used transparently.</p>
 	
 	<p>The reactor and all it's tasks are contained entirely within one thread, which avoids any locking or inter-thread communication which can be a significant overhead in per-process reactor designs. It also avoids typical shared state synchronisation issues between tasks since only one is executing at a given time.</p>
 	

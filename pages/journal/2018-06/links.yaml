@@ -5,12 +5,12 @@ improving-ruby-fibers:
   summary: "Using native assembly to improve Ruby's performance."
 improving-ruby-concurrency:
   author: "Samuel Williams"
-  created: 2018-06-03
+  created: 2018-06-05
   title: "Improving Ruby Concurrency"
   summary: "Using event driven IO to improve Ruby's concurrency."
 asynchronous-ruby:
   author: "Samuel Williams"
-  created: 2018-06-04
+  created: 2018-06-07
   title: "Asynchronous Ruby"
   summary: "Improve Ruby scalabiltiy using concurrent event-driven IO."
   display: false

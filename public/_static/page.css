@@ -1,6 +1,7 @@
 
 pre {
 	tab-size: 2;
+	-moz-tab-size: 2;
 	overflow: auto;
 }
 
@@ -27,6 +28,7 @@ ul ul {
 @media (min-width: 40em) {
 	pre {
 		tab-size: 4;
+		-moz-tab-size: 4;
 	}
 	
 	main {

@@ -94,7 +94,6 @@
 						}
 					}]
 				},
-				legend: { display: false },
 				title: {
 					display: true,
 					text: 'threads vs fibers'

@@ -54,34 +54,22 @@ class Selector
 	end
 end
 
-class TestIOSelector < Test::Unit::TestCase
-	MESSAGE = "Hello World"
+thread = Thread.new do
+	selector = Selector.new
+	Thread.current.selector = selector
 	
-	def test_read
-		message = nil
-		
-		thread = Thread.new do
-			selector = Selector.new
-			Thread.current.selector = selector
-			
-			i, o = IO.pipe
-			i.nonblock = true
-			o.nonblock = true
-			
-			Fiber.new do
-				message = i.read(20)
-			end.resume
-			
-			Fiber.new do
-				o.write("Hello World")
-				o.close
-			end.resume
-			
-			selector.run
-		end
-
-		thread.join
-
-		assert_equal(message, MESSAGE)
-	end
+	i, o = IO.pipe
+	i.nonblock = true # this could be default
+	o.nonblock = true
+	
+	Fiber.new do
+		message = i.read(20)
+	end.resume
+	
+	Fiber.new do
+		o.write("Hello World")
+		o.close
+	end.resume
+	
+	selector.run # could be invoked implicitly
 end

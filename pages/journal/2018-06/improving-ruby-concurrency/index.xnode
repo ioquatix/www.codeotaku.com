@@ -11,11 +11,11 @@
 	
 	<p>Here is an example of a basic asynchronous <code class="syntax ruby">read()</code> operation. It is possible to inject such wrappers into existing code and they will work concurrenty without any further changes:</p>
 	
-	<content:listing src="wrapper.rb" lang="ruby" lines="2-13" />
+	<content:listing src="wrapper.rb" lang="ruby" lines="2-15" />
 	
 	<p>What does <code class="syntax ruby">wait_readable()</code> look like? In a simple <code class="syntax ruby">select()</code>-based implementation:</p>
 	
-	<content:listing src="wrapper.rb" lang="ruby" lines="15-39" />
+	<content:listing src="wrapper.rb" lang="ruby" lines="17-43" />
 	
 	<p>The problem with this design is that everyone has to agree on a wrapper and selector implementation. We already have a core IO layer in Ruby that practically everyone uses. Along with <code class="syntax ruby">IO.select(...)</code> we have a ton of options for event driven concurrency, including but not limited to: <a href="https://github.com/socketry/nio4r">NIO4R</a> (alive), <a href="https://github.com/socketry/async">Async</a> (alive), <a href="https://github.com/socketry/lightio">LightIO</a> (experimental), <a href="https://github.com/eventmachine/eventmachine">EventMachine</a> (undead), <a href="https://github.com/chuckremes/ruby-io">ruby-io</a> (experimental).</p>
 	
@@ -23,13 +23,13 @@
 	
 	<p>The best boundary for event-drive IO loops in Ruby is per-thread (or taking the GIL into account, per-process). Event driven IO is naturally cooperative, and scheduling operations across threads makes it needlessly complicated. We can leverage Ruby's existing IO implementation by intercepting calls to <code class="syntax ruby">io.wait_readable()</code> and <code class="syntax ruby">io.wait_writable()</code> and redirect them to <code class="syntax ruby">Thread.current.selector</code>.</p>
 	
-	<p>We add an appropriate C API for <code class="syntax ruby">Thread.current.selector</code> and add a layer of indirection to <code class="syntax ruby">int rb_io_wait_readable(int f)</code> (and others).</p>
+	<p>We add an appropriate C API for <code class="syntax ruby">Thread.current.selector</code> and add a layer of indirection to <code class="syntax ruby">int rb_io_wait_readable(int f)</code> (and others):</p>
 	
 	<content:listing src="io.c" lang="ruby" />
 	
 	<p>Here is an example of how this fits together:</p>
 	
-	<content:listing src="selector.rb" lang="ruby" lines="57-87" />
+	<content:listing src="selector.rb" lang="ruby" lines="57-75" />
 	
 	<p>This design has a very minimal surface area, allows reuse of existing event loops (e.g. EventMachine, NIO4r). It's also trivial for other Rubies to implement (e.g. JRuby, Rubinius, TruffleRuby, etc).</p>
 	

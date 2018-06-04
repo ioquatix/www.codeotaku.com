@@ -1,5 +1,7 @@
 
 class Wrapper
+	# ... initialze, write, close, etc
+	
 	def read(*args)
 		while result = @io.read_nonblock(*args, exception: false)
 			case result
@@ -13,6 +15,8 @@ class Wrapper
 end
 
 class Selector
+	# initialze, wait_writable, etc
+	
 	def wait_readable(io)
 		@readable[io] = Fiber.current
 		

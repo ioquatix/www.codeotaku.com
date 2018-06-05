@@ -35,7 +35,7 @@
 	
 	<h2>What makes asynchronous programs slow?</h2>
 	
-	<p>In an ideal world, asynchronous programs run at full speed on as many processors as you have; tasks are scheduled and executed as rapidly as possible. Tasks that depend on external state (e.g. disk IO) have to wait for data to become available. We refer to this as <strong>blocking</strong> due to <strong>resource contention</strong>. This can occur in several ways:</p>
+	<p>In an ideal world, asynchronous programs run at full speed on as many processors as you have; tasks are scheduled and executed as rapidly as possible. Tasks that depend on external state (e.g. disk IO) have to wait for data to become available. We refer to this as <strong>blocking</strong> due to <strong>contention</strong>. This can occur in several ways:</p>
 	
 	<ul>
 		<li>If you have more tasks than processors, you have CPU contention.</li>

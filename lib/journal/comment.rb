@@ -21,7 +21,7 @@ module Journal
 				node.tag.attributes.slice!(*attributes)
 			else
 				# Skip the tag, and all contents
-				skip!(ALL)
+				node.skip!(ALL)
 			end
 		end
 		

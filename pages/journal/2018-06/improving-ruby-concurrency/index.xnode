@@ -1,7 +1,7 @@
 <content:entry>
 	<blockquote><p class="spoken">Asynchronicity should be a property of how the program is executed, not what it does.</p></blockquote>
 	
-	<p>Ruby currently implements mutually exclusive threads and exposes both blocking and non-blocking operations. It also supports Fibers which can be used to implement cooperatively scheduled event-driven IO. The cognitive burden of dealing with these different APIs is left as an exercise to the programmer, and thus we have a wide range of IO libraries with varying degrees of concurrency. Composability of components build on different underlying IO libraries is generally poor because each library exposes it's own API and has it's own underlying event loop.</p>
+	<p>Ruby currently implements mutually exclusive threads and exposes both blocking and non-blocking operations. It also supports Fibers which can be used to implement cooperatively scheduled event-driven IO. The cognitive burden of dealing with these different APIs is left as an exercise to the programmer, and thus we have a wide range of IO libraries with varying degrees of concurrency. Composability of components build on different underlying IO libraries is generally poor because each library exposes it's own API and has it's own underlying event loop. We present an approach to concurrency that scales well and avoids the need to change to existing programs.</p>
 	
 	<h2>Improving Concurrency and Composability</h2>
 	

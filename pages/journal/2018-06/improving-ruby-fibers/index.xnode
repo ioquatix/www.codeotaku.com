@@ -1,5 +1,7 @@
 <content:entry>
-	<p>Ruby currently uses OS provided abstractions for implementing Fibers. Unfortunately, these often perform poorly and have tricky semantics.</p>
+	<p>Ruby currently uses OS provided abstractions for implementing Fibers. Unfortunately, these often perform poorly and have tricky semantics. We present a native implementation of coroutines and demonstrate improvements to performance.</p>
+	
+	<h2>Existing Implementations</h2>
 	
 	<p>The most common implementation on UNIX systems involves manipulating the state of <code class="syntax c">makecontext()</code> and <code class="syntax c">swapcontext()</code>. These function calls have been deprecated and removed from the POSIX standard, but still exist in most UNIX implementations for backwards compatibility. As well as being poorly implemented and supported, the documented semantics of these functions requires certain system calls which limit their performance.</p>
 	

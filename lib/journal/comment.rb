@@ -14,6 +14,7 @@ module Journal
 			'a' => ['href'],
 			'pre' => [],
 			'code' => ['class'],
+			'blockquote' => [],
 		}.freeze
 		
 		def filter(node)

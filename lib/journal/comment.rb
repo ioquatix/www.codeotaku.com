@@ -7,14 +7,27 @@ require 'kramdown'
 module Journal
 	class Fragment < Trenni::Sanitize::Filter
 		ALLOWED_TAGS = {
-			'em' => [],
-			'strong' => [],
+			'h1' => [],
+			'h2' => [],
+			'h3' => [],
+			'h4' => [],
+			'h5' => [],
+			'h6' => [],
 			'p' => [],
-			'img' => ['src', 'alt', 'width', 'height'],
+			'strong' => [],
+			'em' => [],
 			'a' => ['href'],
+			'abbr' => [],
+			'img' => ['src', 'alt', 'width', 'height'],
 			'pre' => [],
 			'code' => ['class'],
 			'blockquote' => [],
+			'ol' => [],
+			'ul' => [],
+			'li' => [],
+			'dl' => [],
+			'dt' => [],
+			'dd' => [],
 		}.freeze
 		
 		def filter(node)

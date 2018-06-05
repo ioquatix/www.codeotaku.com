@@ -492,9 +492,7 @@ nav a {
 /* Blockquotes */
 
 .comment blockquote {
-	border-left: 0.2rem solid blue;
-	margin-left: 1.5rem;
-	padding-left: 0.5rem;
+	border-left: 0.2rem solid grey;
 }
 
 blockquote .spoken:before {

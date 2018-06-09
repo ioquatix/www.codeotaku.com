@@ -10,7 +10,6 @@ improving-ruby-concurrency:
   summary: "Using event driven IO to improve Ruby's concurrency."
 asynchronous-ruby:
   author: "Samuel Williams"
-  created: 2018-06-07
+  created: 2018-06-09
   title: "Asynchronous Ruby"
   summary: "Improve Ruby scalabiltiy using concurrent event-driven IO."
-  display: false

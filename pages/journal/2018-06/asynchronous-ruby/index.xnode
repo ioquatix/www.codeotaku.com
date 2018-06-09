@@ -92,7 +92,7 @@
 			</ul>
 		</li>
 		<li>At least <a href="https://github.com/socketry/async-io/blob/02a051bb638b40aa49c3cd322ec09b719a30158a/lib/async/io/generic.rb#L96-L153">3 different ways to invoke non-blocking behavior</a>, the oldest of which destroyed VM performance.</li>
-		<li>JRuby incorrectly implements lots of it. It doesn't support the standard UNIX socket model due to limitations of the JVM.</li>
+		<li>JRuby doesn't support the standard UNIX socket model due to limitations of the JVM and doesn't implement the same methods as MRI.</li>
 	</ul>
 	
 	<h2>The future for an asynchronous Ruby</h2>

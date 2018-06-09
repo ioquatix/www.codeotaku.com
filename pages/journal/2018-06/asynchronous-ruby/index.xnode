@@ -3,7 +3,7 @@
 	
 	<h2>What is asynchronous programming?</h2>
 	
-	<p>If a program can be broken up into a series of tasks that can be executed independently, it can be considered asynchronous. It is a property of how a program can be executed, not what it does. A program, like a network server that handles multiple requests, can typically be structured as one task per request. Asynchronous programs can improve CPU utilization, increasing throughput and lowering latency.</p>
+	<p>If a program can be broken up into a series of tasks that can be executed independently, it can be considered asynchronous. It is a property of how a program can be executed, not what it does. A program, like a network server that handles multiple requests, can use one task per request. Asynchronous programs can improve CPU utilization, increasing throughput and lowering latency.</p>
 	
 	<blockquote><p class="spoken">Asynchronicity should be a property of how the program is executed, not what it does.</p></blockquote>
 	

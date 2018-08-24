@@ -1,50 +1,19 @@
 
-.resume .header {
-	width: 20%;
-	float: left;
-	clear: both;
-	
-	font-size: 20pt;
-	text-align: right;
+.resume h2 {
 	font-variant: small-caps;
-	
-	color: black;
-}
-
-.resume .section {
-	margin-left: 22%;
-	margin-bottom: 48pt;
-	
-	border-left: 1px solid #ccc;
-	
-	padding-left: 1em;
-}
-
-.resume .section p {
-	margin-left: 0;
-	margin-right: 0;
 }
 
 /* Definition list layout */
-.resume .section dl.itemized dt {
+.resume dl.itemized dt {
 	font-weight: bold;
 }
 
-.resume .section dl.compact dt {
+.resume dl.compact dt {
 	font-weight: bold;
 	display: inline;
 }
 
-.resume .section dl.compact dd {
+.resume dl.compact dd {
 	display: inline;
 	margin-left: 0;
-}
-
-.resume ul {
-	padding: 0;
-}
-
-.resume li {
-	display: inline-block;
-	width: 48%;
 }

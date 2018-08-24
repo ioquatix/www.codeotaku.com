@@ -8,6 +8,12 @@
 	font-weight: bold;
 }
 
+.resume dl.itemized dd {
+	display: list-item;
+	list-style-type: disc;
+	margin-top: 0.5rem;
+}
+
 .resume dl.compact dt {
 	font-weight: bold;
 	display: inline;

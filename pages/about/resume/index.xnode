@@ -140,9 +140,9 @@
 	
 	<dl class="itemized">
 		<dt>Software Design and Development</dt>
-		<dd>10+ years of experience as a programmer including product design and sales.</dd>
-		<dd>Fluent in a variety of different programming languages including: C++, Objective-C, Ruby (favourite language), Python (mainly teaching), JavaScript.</dd>
-		<dd>Experienced with different programming APIs including: UNIX, Posix, Cocoa, CoreFoundation, iOS, OpenGL, OpenAL.</dd>
+		<dd>10+ years of experience as a software engineer.</dd>
+		<dd>Fluent in a variety of different programming languages including: C++, Objective-C, Swift, Ruby (favourite language), Python (mainly teaching), JavaScript.</dd>
+		<dd>Experienced with different programming APIs including: UNIX, POSIX, Cocoa, CoreFoundation, iOS, Vulkan, OpenGL, OpenAL.</dd>
 		<dd>Proficient with source code management systems, continuous deployment and unit testing.</dd>
 		<dd>Proud open source software contributor; experienced at collaborating with other developers.</dd>
 	</dl>

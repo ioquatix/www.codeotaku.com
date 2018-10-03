@@ -1,0 +1,21 @@
+<content:entry>
+	<p>Ruby is a widely used language for web development. Yet despite it's maturity and popularity, Ruby lacks a native HTTP/2 web server. We present <a href="https://github.com/socketry/falcon">Falcon</a>, a native HTTP/2 web server for Ruby. We discuss how it works with existing Rack applications and it's future for both local development and production deployments.</p>
+	
+	<h2>What is HTTP/2?</h2>
+	
+	<p>HTTP/2 is a protocol which browsers can use to load web pages and related resources. Estimates suggest that <a href="https://caniuse.com/#feat=http2">more than 80% of users</a> use browsers which support HTTP/2. When compared to HTTP/1, it's biggest feature is reduced latency.</p>
+	
+	<p>In addition, after implementing both protocols, it has become apparent that HTTP/2 is more robust and flexible. HTTP/1 is a stateful line-based protocol, and it is unable to handle more than one request per connection at a time. The protocol mixes connection level headers (e.g. <code class="syntax">connection: close</code> or <code class="syntax">transfer-encoding: chunked</code>) with metadata about the current request/response. HTTP/2 uses binary frames which handle this state explicity.</p>
+	
+	<h2>Why should I care?</h2>
+	
+	<p>HTTP/2 is often supported at the edge of your production environment. This is often good enough, except that if you use HTTP/2 for production and HTTP/1 for development and testing, you might run into bugs in production which were not obvious during development. We should strive to keep development (and testing) as similar as possible to production.</p>
+	
+	<p>HTTP/2 is semantically the same as HTTP/1, yet in many ways it provides a much more robust environment for multiplexed bi-directional streaming. Using <a href="../2018-06/asynchronous-ruby/">asynchronous Ruby</a>, it's <a href="https://utopia-falcon-heroku.herokuapp.com/beer/index">easy to stream responses in real time</a>. This can be especially useful for web applications that need to stream large result sets, or perform long running computations.</p>
+	
+	<h2>How do I use Falcon?</h2>
+	
+	<p>Falcon supports any Rack application out of the box. Simply <a href="https://github.com/socketry/falcon#installation">add it</a> to your <code class="syntax">Gemfile</code>, and run <code class="syntax">falcon serve</code>.</p>
+	
+	<p>HTTP/2 mandates that web browsers use HTTPS (and ALPN) to negotiate an HTTP/2 connection. Falcon supports this out of the box by generating local self-signed certificates.</p>
+</content:entry>

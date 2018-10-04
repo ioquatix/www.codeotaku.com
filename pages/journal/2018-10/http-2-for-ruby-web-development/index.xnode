@@ -1,21 +1,36 @@
 <content:entry>
-	<p>Ruby is a widely used language for web development. Yet despite it's maturity and popularity, Ruby lacks a native HTTP/2 web server. We present <a href="https://github.com/socketry/falcon">Falcon</a>, a native HTTP/2 web server for Ruby. We discuss how it works with existing Rack applications and it's future for both local development and production deployments.</p>
+	<p>Ruby is a widely used language for web development. Yet despite it's maturity and popularity, Ruby has failed to stay relevant in a world increasingly dominated by asynchronous real-time web frameworks. Ruby's comfortable, but increasingly archaic, Rails framework builds on an outdated client/server model which is not well suited for the modern web, and this is hurting Ruby's long term prospects.</p>
+	
+	<p>In <a href="https://www.igvita.com/2012/01/18/building-a-modern-web-stack-for-the-realtime-web/">Building a Modern Web Stack for the Real-time Web</a>, Ilya Grigorik outlines four important principles for future web architecture:</p>
+	
+	<ul>
+		<li>Request and Response <strong>streaming</strong> should be the default.</li>
+		<li>Connections to backend servers should be <strong>persistent</strong>.</li>
+		<li>Communication with backend servers should be <strong>message-oriented</strong>.</li>
+		<li>Communication between clients and backends should be <strong>bi-directional</strong>.</li>
+	</ul>
+	
+	<p>We present <a href="https://github.com/socketry/falcon">Falcon</a>, a modern HTTP/2 capable web server for Ruby. We discuss how it works with existing Rack applications, and it's future in your production deployments.</p>
 	
 	<h2>What is HTTP/2?</h2>
 	
-	<p>HTTP/2 is a protocol which browsers can use to load web pages and related resources. Estimates suggest that <a href="https://caniuse.com/#feat=http2">more than 80% of users</a> use browsers which support HTTP/2. When compared to HTTP/1, it's biggest feature is reduced latency.</p>
+	<p><a href="https://tools.ietf.org/html/rfc7540">HTTP/2</a> is the latest update to the HTTP protocol by the Internet Engineering Task Force (IETF). The protocol is the successor to HTTP/1.1, which was drafted in 1999. HTTP/2 is a much-needed refresh, as the web has changed over the years. The update brings with it advancements in efficiency, security and speed.</p>
 	
-	<p>In addition, after implementing both protocols, it has become apparent that HTTP/2 is more robust and flexible. HTTP/1 is a stateful line-based protocol, and it is unable to handle more than one request per connection at a time. The protocol mixes connection level headers (e.g. <code class="syntax">connection: close</code> or <code class="syntax">transfer-encoding: chunked</code>) with metadata about the current request/response. HTTP/2 uses binary frames which handle this state explicity.</p>
+	<p>Estimates suggest that <a href="https://caniuse.com/#feat=http2">more than 80% of users</a> use browsers which support HTTP/2. While it is semantically similar to HTTP/1, it's design results in significantly reduced latency and overhead per request, which affects how applications can and should be designed.</p>
 	
 	<h2>Why should I care?</h2>
 	
 	<p>HTTP/2 is often supported at the edge of your production environment. This is often good enough, except that if you use HTTP/2 for production and HTTP/1 for development and testing, you might run into bugs in production which were not obvious during development. We should strive to keep development (and testing) as similar as possible to production.</p>
 	
+	<p>HTTP/2 can result in lower latency and better throughput for your web applications. Because the per-request overhead is greatly reduced, techniques that reduce the number of requests become anti-patterns. Sprite sheets may download unnecessary images and take longer to load than individual images. Small changes to a single JavaScript function might force an entire script bundle to be re-downloaded. Because most users will consume your applications via HTTP/2, it makes sense to optimize your asset pipeline for it.</p>
+	
 	<p>HTTP/2 is semantically the same as HTTP/1, yet in many ways it provides a much more robust environment for multiplexed bi-directional streaming. Using <a href="../2018-06/asynchronous-ruby/">asynchronous Ruby</a>, it's <a href="https://utopia-falcon-heroku.herokuapp.com/beer/index">easy to stream responses in real time</a>. This can be especially useful for web applications that need to stream large result sets, or perform long running computations.</p>
 	
 	<h2>How do I use Falcon?</h2>
 	
-	<p>Falcon supports any Rack application out of the box. Simply <a href="https://github.com/socketry/falcon#installation">add it</a> to your <code class="syntax">Gemfile</code>, and run <code class="syntax">falcon serve</code>.</p>
+	<p>Falcon supports any Rack application out of the box, including Rails and Action Cable. Simply add it to your <code class="syntax">Gemfile</code>, and run <code class="syntax">falcon serve</code>.</p>
 	
-	<p>HTTP/2 mandates that web browsers use HTTPS (and ALPN) to negotiate an HTTP/2 connection. Falcon supports this out of the box by generating local self-signed certificates.</p>
+	<p>HTTP/2 mandates that web browsers use HTTPS (and ALPN) to negotiate an HTTP/2 connection. Falcon supports this by generating local self-signed certificates.</p>
+	
+	<p>Falcon also integrates with <a href="https://github.com/socketry/guard-falcon">Guard</a>, <a href="https://github.com/socketry/falcon-capybara">Capybara</a> and builds on top of <a href="https://github.com/socketry/async">Async</a>. WebSockets support is provided by <a href="https://github.com/socketry/async-websocket">Async::WebSocket</a> which can also be used by itself.</p>
 </content:entry>

@@ -27,9 +27,7 @@
 	
 	<h2>How do I use Falcon?</h2>
 	
-	<p>Falcon supports Rack-compatible web application, including Rails and Action Cable. Simply add it to your <code class="syntax">Gemfile</code>, and run <code class="syntax">falcon serve</code>.</p>
-	
-	<p>HTTP/2 mandates that web browsers use HTTPS (and ALPN) to negotiate an HTTP/2 connection. Falcon supports this by generating local self-signed certificates.</p>
+	<p>Falcon is a drop-in server for any Rack-compatible web application with a <code class="syntax">config.ru</code> file. Simply follow the <a href="https://github.com/socketry/falcon#installation">installation and usage instructions</a>. HTTP/2 mandates that web browsers use HTTPS (and ALPN) to negotiate an HTTP/2 connection, which Falcon supports by generating local self-signed certificates.</p>
 	
 	<p>Falcon also integrates with <a href="https://github.com/socketry/guard-falcon">Guard</a>, <a href="https://github.com/socketry/falcon-capybara">Capybara</a> and builds on top of <a href="https://github.com/socketry/async">async</a>. WebSockets support is provided by <a href="https://github.com/socketry/async-websocket">async-websocket</a> which can also be used by itself.</p>
 	
@@ -39,5 +37,5 @@
 	
 	<h3>Business Support</h3>
 	
-	<p>Falcon can be an important part of your business or project. As such, <a href="https://github.com/socketry/falcon#business-support">paid business support</a> is available to make every project a success. The first 10 projects to deploy falcon to production get a 50% discount for the first year - just mention this post!</p>
+	<p>Falcon can be an important part of your business or project. As such, <a href="https://github.com/socketry/falcon#priority-business-support">priority business support</a> is available to make every project a success. The first 10 projects to deploy falcon to production get a 50% discount for the first year - just mention this post!</p>
 </content:entry>

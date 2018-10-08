@@ -1,36 +1,43 @@
 <content:entry>
-	<p>Ruby is a widely used language for web development. Yet despite it's maturity and popularity, Ruby has failed to stay relevant in a world increasingly dominated by asynchronous real-time web frameworks. Ruby's comfortable, but increasingly archaic, Rails framework builds on an outdated client/server model which is not well suited for the modern web, and this is hurting Ruby's long term prospects.</p>
+	<p>Ruby is a language of many revolutions. Rails in particular has re-defined modern web development time and time again. That being said, HTTP/2 support is a blind spot in the modern Ruby web stack, and one which is slowly causing Ruby to fall behind. We present <a href="https://github.com/socketry/falcon">Falcon</a>, a modern <a href="https://github.com/socketry/async">asynchronous</a> HTTP/2 capable web server for Ruby. We discuss why HTTP/2 is important, and how to use Falcon.</p>
 	
-	<p>In <a href="https://www.igvita.com/2012/01/18/building-a-modern-web-stack-for-the-realtime-web/">Building a Modern Web Stack for the Real-time Web</a>, Ilya Grigorik outlines four important principles for future web architecture:</p>
+	<h2>What is Falcon?</h2>
 	
-	<ul>
-		<li>Request and Response <strong>streaming</strong> should be the default.</li>
-		<li>Connections to backend servers should be <strong>persistent</strong>.</li>
-		<li>Communication with backend servers should be <strong>message-oriented</strong>.</li>
-		<li>Communication between clients and backends should be <strong>bi-directional</strong>.</li>
-	</ul>
-	
-	<p>We present <a href="https://github.com/socketry/falcon">Falcon</a>, a modern HTTP/2 capable web server for Ruby. We discuss how it works with existing Rack applications, and it's future in your production deployments.</p>
+	<p>Falcon is a pure Ruby web server that can simplify both the development and deployment. It can handle both HTTP/1 and HTTP/2 traffic, including WebSockets. Rack-compatible web applications can be served directly or as part of a virtual host middleware. This allows Falcon to replace existing heterogenous (e.g. Nginx + Passenger/Puma) environments, and can result in lower latency, higher throughput and simpler deployments.</p>
 	
 	<h2>What is HTTP/2?</h2>
 	
-	<p><a href="https://tools.ietf.org/html/rfc7540">HTTP/2</a> is the latest update to the HTTP protocol by the Internet Engineering Task Force (IETF). The protocol is the successor to HTTP/1.1, which was drafted in 1999. HTTP/2 is a much-needed refresh, as the web has changed over the years. The update brings with it advancements in efficiency, security and speed.</p>
+	<p>HTTP/2, while semantically similar to HTTP/1, is a binary protocol which significantly reduces per-request latency and overhead. Web applications built around the performance characteristics of HTTP/1 no longer perform optimally when served via HTTP/2. This is a problem because estimates suggest that <a href="https://caniuse.com/#feat=http2">more than 80% of users</a> have web browsers which utilize of HTTP/2 when available.</p>
 	
-	<p>Estimates suggest that <a href="https://caniuse.com/#feat=http2">more than 80% of users</a> use browsers which support HTTP/2. While it is semantically similar to HTTP/1, it's design results in significantly reduced latency and overhead per request, which affects how applications can and should be designed.</p>
+	<h3>Domain Sharding</h3>
 	
-	<h2>Why should I care?</h2>
+	<p>Using multiple domains to increase the maximum number of connections increases operational complexity and per-connection overheads. Managing multiple domains, each with their own SSL certificates, can be time-consuming, and each sub-domain requires independent TLS negotiation, impacting performance. Falcon supports multiple simultaneous HTTP/2 streams which allows web applications to serve all required resources over a single connection. This avoids the need to use domain sharding and increases overall performance.</p>
 	
-	<p>HTTP/2 is often supported at the edge of your production environment. This is often good enough, except that if you use HTTP/2 for production and HTTP/1 for development and testing, you might run into bugs in production which were not obvious during development. We should strive to keep development (and testing) as similar as possible to production.</p>
+	<h3>Asset Bundling</h3>
 	
-	<p>HTTP/2 can result in lower latency and better throughput for your web applications. Because the per-request overhead is greatly reduced, techniques that reduce the number of requests become anti-patterns. Sprite sheets may download unnecessary images and take longer to load than individual images. Small changes to a single JavaScript function might force an entire script bundle to be re-downloaded. Because most users will consume your applications via HTTP/2, it makes sense to optimize your asset pipeline for it.</p>
+	<p>Bundling assets together to minimise the number of requests can actually reduce overall performance. Sprite sheets may download unnecessary images and thus take longer to load than individual images. Small changes to a single JavaScript function might force a combined script bundle to be re-downloaded. Falcon can serve lots of small assets via HTTP/2 efficiently, so pre-processing assets in this way is ultimately unnecessary.</p>
 	
-	<p>HTTP/2 is semantically the same as HTTP/1, yet in many ways it provides a much more robust environment for multiplexed bi-directional streaming. Using <a href="../2018-06/asynchronous-ruby/">asynchronous Ruby</a>, it's <a href="https://utopia-falcon-heroku.herokuapp.com/beer/index">easy to stream responses in real time</a>. This can be especially useful for web applications that need to stream large result sets, or perform long running computations.</p>
+	<h3>Streaming Everywhere</h3>
+	
+	<p>Buffering request and response bodies increases latency and memory pressure. Large uploads can fail if insufficient disk space is available. Database queries must wait until all rows are retrieved before generating a large JSON response. Falcon supports bi-directional streaming for both HTTP/1 and HTTP/2 and it's <a href="https://utopia-falcon-heroku.herokuapp.com/beer/index">easy to stream responses in real time</a>. Taking advantage of this functionality enables lower-latency web applications and reduces memory usage.</p>
+	
+	<h3>Development and Production</h3>
+	
+	<p>Differences in development and production environments can cause unexpected issues which are difficult to catch during automated testing. Web browsers won't load insecure (HTTP) resources when linked from a secure page (HTTPS). Falcon uses HTTP/2 and HTTPS natively in both development and production, so issues like this are more likely to be detected and fixed.</p>
 	
 	<h2>How do I use Falcon?</h2>
 	
-	<p>Falcon supports any Rack application out of the box, including Rails and Action Cable. Simply add it to your <code class="syntax">Gemfile</code>, and run <code class="syntax">falcon serve</code>.</p>
+	<p>Falcon supports Rack-compatible web application, including Rails and Action Cable. Simply add it to your <code class="syntax">Gemfile</code>, and run <code class="syntax">falcon serve</code>.</p>
 	
 	<p>HTTP/2 mandates that web browsers use HTTPS (and ALPN) to negotiate an HTTP/2 connection. Falcon supports this by generating local self-signed certificates.</p>
 	
-	<p>Falcon also integrates with <a href="https://github.com/socketry/guard-falcon">Guard</a>, <a href="https://github.com/socketry/falcon-capybara">Capybara</a> and builds on top of <a href="https://github.com/socketry/async">Async</a>. WebSockets support is provided by <a href="https://github.com/socketry/async-websocket">Async::WebSocket</a> which can also be used by itself.</p>
+	<p>Falcon also integrates with <a href="https://github.com/socketry/guard-falcon">Guard</a>, <a href="https://github.com/socketry/falcon-capybara">Capybara</a> and builds on top of <a href="https://github.com/socketry/async">async</a>. WebSockets support is provided by <a href="https://github.com/socketry/async-websocket">async-websocket</a> which can also be used by itself.</p>
+	
+	<h2>Is it production ready?</h2>
+	
+	<p>Yes, Falcon can be used in production. That being said, given the scope and diversity of the eco-system, there will be issues. Falcon has a large suite of specs, and we hope you will try it and provide feedback so we can continue to make it better.</p>
+	
+	<h3>Business Support</h3>
+	
+	<p>Falcon can be an important part of your business or project. As such, <a href="https://github.com/socketry/falcon#business-support">paid business support</a> is available to make every project a success. The first 10 projects to deploy falcon to production get a 50% discount for the first year - just mention this post!</p>
 </content:entry>

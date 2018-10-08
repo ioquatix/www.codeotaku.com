@@ -1,6 +1,6 @@
 http-2-for-ruby-web-development:
   author: "Samuel Williams"
-  created: 2018-10-08
+  created: 2018-10-07
   title: HTTP/2 for Ruby Web Development
-  summary: An overview of Falcon, the first native HTTP/2 server for Ruby.
-  display: false
+  summary: An overview of Falcon, a native HTTP/2 server for Ruby.
+  display: true

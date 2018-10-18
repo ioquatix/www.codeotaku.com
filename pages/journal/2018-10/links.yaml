@@ -4,3 +4,9 @@ http-2-for-ruby-web-development:
   title: HTTP/2 for Ruby Web Development
   summary: An overview of Falcon, a native HTTP/2 server for Ruby.
   display: true
+async-http-client-for-ruby:
+  author: "Samuel Williams"
+  created: 2018-10-18
+  title: Async::HTTP for Ruby Web Development
+  summary: Examples showing how to interact with HTTP/2 servers.
+  display: true

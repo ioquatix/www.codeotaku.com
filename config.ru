@@ -20,8 +20,6 @@ else
 	use Utopia::Static, root: 'public'
 end
 
-use Rack::Sendfile
-
 use Utopia::Redirection::Rewrite,
 	'/' => '/index'
 

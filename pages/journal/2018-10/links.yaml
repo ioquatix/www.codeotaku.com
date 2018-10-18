@@ -9,4 +9,4 @@ async-http-client-for-ruby:
   created: 2018-10-18
   title: Async::HTTP for Ruby Web Development
   summary: Examples showing how to interact with HTTP/2 servers.
-  display: true
+  display: false

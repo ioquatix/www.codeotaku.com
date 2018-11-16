@@ -21,6 +21,10 @@ p, figure, dl, ul {
 	margin: 1rem;
 }
 
+p {
+	text-align: justify;
+}
+
 ul ul {
 	margin: 0.5rem;
 }
@@ -37,6 +41,10 @@ ul ul {
 	
 	p, figure, dl, ul {
 		margin: 2rem;
+	}
+	
+	p {
+		text-align: left;
 	}
 }
 

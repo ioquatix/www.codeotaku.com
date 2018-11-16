@@ -1,0 +1,6 @@
+fibers-are-the-right-solution:
+  author: "Samuel Williams"
+  created: 2018-11-16
+  title: Fibers are the Right Solution
+  summary: Concurrency can be tricky and fibers are here to help.
+  display: true

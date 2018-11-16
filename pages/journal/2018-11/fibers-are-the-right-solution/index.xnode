@@ -1,0 +1,97 @@
+<content:entry>
+	<p>The majority of performance improvements in modern processors are due to increased core count rather than increased instruction execution frequency. To utilize all available hardware, applications need to use multiple processes and threads. Servers which process discrete requests are a good candidate for both parallelization and concurrency improvements. We discuss different ways in which servers can improve processor utilization and how these different approaches affect application code. We show that fibers require minimal changes to existing application code and are thus a good approach for retrofitting existing systems.</p>
+	
+	<h2>What is Asynchronous Programming</h2>
+	
+	<p>There are two main types of asynchronous programs: those that execute their work <a href="../2018-06/asynchronous-ruby#concurrent-programs">concurrently</a> and those that execute their work in <a href="../2018-06/asynchronous-ruby#parallel-programs">parallel</a>. Hybrids are also possible. Only programs that exploit parallelism directly benefit from multiple processor cores.</p>
+	
+	<h3>Looping Server</h3>
+	
+	<p>Here is a basic synchronous server loop:</p>
+	
+	<content:listing src="loop.rb" brush="ruby"/>
+	
+	<p>It cannot handle more than one client at a time.</p>
+	
+	<h3>Forking Servers</h3>
+	
+	<p>We wrap the client work in a child process. This is a trivial change to existing code which in addition to allowing multiple requests to be handled simulataneously on multiple processor cores, also isolates the parent process from crashing in the child process.</p>
+	
+	<content:listing src="fork.rb" brush="ruby"/>
+	
+	<p>This is a very robust design which can be easily applied to existing servers. Creating many child processes might consume a lot of memory.</p>
+	
+	<h3>Threading Servers</h3>
+	
+	<p>Rather than using a child process, we use a thread in the same process. We loose the benefits of isolation. On modern systems the difference in performance is minor. Some systems (e.g. JVM) don't support fork, while others (e.g. MRI) don't have truely independent threads.</p>
+	
+	<content:listing src="thread.rb" brush="ruby"/>
+	
+	<p>In practice, forks and threads are at odds with each other. If you try to fork while there are active threads, you will very likely <a href="https://blog.phusion.nl/2017/10/13/why-ruby-app-servers-break-on-macos-high-sierra-and-what-can-be-done-about-it/">run into bugs</a>. Even if you didn't create the thread, some other library might have, so it's tricky to reason about.</p>
+	
+	<h3>Fiber Servers</h3>
+	
+	<p>Rather than using a thread, we can use a fiber. The fiber must yield back to the reactor if an operation would block. The reactor is responsible for resuming the fibers when the operation can continue without blocking.</p>
+	
+	<content:listing src="fiber.rb" brush="ruby"/>
+	
+	<p>Fibers have less overhead when compared to processes and threads, and while one might be comfortable with 1000s of threads, fibers can context switch billions of times per second on a modern processor.</p>
+	
+	<p>Here is a simpler version using the <tt>async</tt> gem:</p>
+	
+	<content:listing src="async.rb" brush="ruby"/>
+	
+	<h3>Callback Servers</h3>
+	
+	<p>Rather than using fibers, you can replace the loop with a callback. The reactor invokes a specific function when a certain event is triggered. While fibers naturally execute code in order, just like threads, callbacks often need an associated state machine to achieve the same level of functionality.</p>
+	
+	<content:listing src="callback.js" brush="javascript"/>
+	
+	<p>Callbacks are the simplest form of concurrency, they also have the lowest overhead, but in exchange, push state tracking complexity into user code.</p>
+	
+	<h2>Hybrid Servers</h2>
+	
+	<p>Given all the options, it should become apparent that there are many ways that these approaches can be combined. Sometimes you are at the mercy of your system: e.g Windows doesn't support fork, JRuby has poor support for fibers and doesn't support fork, but it becomes clear that there are really several fundamental ways the system can be organised to maximise throughput and minimise latency.</p>
+	
+	<h3>Parallism</h3>
+	
+	<p>The first decision, which is largely dictated by the system, is whether to use processes or threads for parallelism. As long as you assume that the server is handling discrete requests and responses, both appraoches are equally scalable in practice. <a href="https://github.com/socketry/async-container">async-container</a> provides both and they can be interchanged.</p>
+	
+	<p>Generally speaking, multi-process is more predictable and has better isolation (e.g. security, reliability, restartability). Threads naturally have less isolation, and this can make code more complex and cause bugs. If one thread crashes, it can take down the entire system.</p>
+	
+	<h3>Concurrency</h3>
+	
+	<p>While the model for parallism doesn't generally affect how the server is implemented, the model for concurrency most certainly does. The default option, do nothing, is the simplest. Your code will execute from top to bottom, in a predictable way.</p>
+	
+	<p>If you have existing code, multi-process or multi-thread can be a good approach. You cannot easily retrofit this code with promises, callbacks and other explicit forms of concurrency, because they invert flow control and require major structural changes to existing code.</p>
+	
+	<p>Fibers, on the other hand, work very similarly to threads, but with less overhead. You can run whatever code you want in a Fiber and by default it won't behave any worse than if it was running in it's own thread or process. However, if you leverage the non-blocking IO, you can perform significantly better and with the same resources, handle significantly more active connections.</p>
+	
+	<p>Some models expose both synchronous and asynchronous methods. Such lazy interfaces burden the application code with irrelevant concurrency complexity. All operations that can be asynchronous should be where possible and it shouldn't require changing the method signature.</p>
+	
+	<h2>Birds of a Feather, Fly Together</h2>
+	
+	<blockquote><p class="spoken">Asynchronicity should be a property of how the program is executed, not what it does.</p></blockquote>
+	
+	<p><a href="https://github.com/socketry/falcon">Falcon</a> is a web server which supports both multi-thread and multi-process parallism. For concurrency, it uses <a href="https://github.com/socketry/async">Async</a> which uses Fibers. This allows existing Rack applications to work at least as well as existing servers, but in the case they choose to use concurrency-aware libraries, they can achieve <a href="../../2018-06/improving-ruby-concurrency/index#performance">significant improvements</a> to both throughput and latency with minimal changes to configuration and zero changes to actual usage.</p>
+	
+	<h3>Asynchronous Postgres</h3>
+	
+	<p>While completely experimental, <a href="https://github.com/socketry/async-postgres">async-postgres</a> is a transparent wrapper which makes the <tt>pg</tt> gem work concurrently when handling multiple long-running queries.</p>
+	
+	<h3>Asynchronous MySQL</h3>
+	
+	<p>Similarly, <a href="https://github.com/socketry/async-mysql">async-mysql</a> is a transparent wrapper which makes the <tt>mysql2</tt> gem work concurrently when handling multiple long-running queries.</p>
+	
+	<h3>Asynchronous Faraday</h3>
+	
+	<p><a href="https://github.com/socketry/async-http-faraday">async-http-faraday</a> is a backend for Faraday which makes HTTP requests execute concurrently, using a connection pool for HTTP/1 and multiplexing for HTTP/2, with minimal code changes required.</p>
+	
+	<h3>Asynchronous Ruby</h3>
+	
+	<p>It's <a href="https://github.com/ruby/ruby/pull/1870">actually possible to make ALL Ruby IO concurrent by default</a>. While this doesn't extend to native libraries, it does show that it's a feasible approach with minimal changes required to user code.</p>
+	
+	<h2>Conclusion</h2>
+	
+	<p>Multi-process and multi-thread designs provide parallism and allow servers to use all available processors. Fibers improve scalabilty further by maximising IO concurrency with minimal overheads. Callbacks achieve a similar result, but the inverted flow control requires significant changes to existing code. Fibers make it possible to retrofit existing code with minimal changes, to improve latency, throughput, while avoiding the cognitive burden associated with inverted flow control. Fibers are the right solution for scalable, non-blocking clients and servers without affecting the way in which you write code.</p>
+</content:entry>

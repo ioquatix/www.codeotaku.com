@@ -1,7 +1,7 @@
 <content:entry>
 	<p>Applications that process many simultaneous requests are an area where Ruby struggles. The traditional request-per-process/thread model does not scale well. Explicit concurrency, including promises/futures, impose a significant cognitive burden and their use pollutes code all the way up the call chain. We present <a href="https://github.com/socketry/async">async</a>, a gem for Ruby that implements the reactor pattern using stackful coroutines (fibers). We discuss asynchronous programming models, touch briefly on the state of asynchronous programming in Ruby, and show how fibers can be a excellent model for concurrency.</p>
 	
-	<h2>What is asynchronous programming?</h2>
+	<h2 id="asynchronous-programming">What is asynchronous programming?</h2>
 	
 	<p>If a program can be broken up into a series of tasks that can be executed independently, it can be considered asynchronous. It is a property of how a program can be executed, not what it does. A program, like a network server that handles multiple requests, can use one task per request. Asynchronous programs can improve CPU utilization, increasing throughput and lowering latency.</p>
 	
@@ -9,7 +9,7 @@
 	
 	<p>There are different execution models for asynchronous programs. These execution models directly affect the scalability of a program; that is, can adding additional processors to the computer improve the performance of the program and is the improvement proportional.</p>
 	
-	<h3>Parallel Programs</h3>
+	<h3 id="parallel-programs">Parallel Programs</h3>
 	
 	<p>Parallel programs are those that execute tasks simulateously on multiple processors, typically using processes or threads. Parallel programs are good for CPU-bound workloads because tasks can be executed on independent processors at full speed with minimal contention.</p>
 	
@@ -21,7 +21,7 @@
 		<figcaption>Each dog has it's own dog bowl. They can all eat at the same time.</figcaption>
 	</figure>
 	
-	<h3>Concurrent Programs</h3>
+	<h3 id="concurrent-programs">Concurrent Programs</h3>
 	
 	<p>Concurrent programs interleave task execution on a single processor, typically by cooperative or preemptive scheduling. Concurrent programs are good for IO-bound workloads because tasks share the processor while they are waiting on high-latency IO operations.</p>
 	

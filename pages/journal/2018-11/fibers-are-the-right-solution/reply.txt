@@ -1,0 +1,67 @@
+I'm the author of Async and thank you for writing a nice article about it.
+
+I thought about some of your points and I wanted to address them in a way which I felt was impartial, so I wrote this article here: https://www.codeotaku.com/journal/2018-11/fibers-are-the-right-solution/index
+
+However, I would also like to address more specifically some of the issues you mention.
+
+> So if we just replace some libraries with async aware libraries, we should get at least the same, if not better, concurrency than with Puma using the same number of threads, right?
+
+In theory, Puma and Falcon have about the same model for parallelism. You can spawn the same number of threads in each, and they should roughly give you the same performance. However, with Falcon, if you use the almost completely transparent drop-in gems, you can improve concurrency significantly and get results like https://www.codeotaku.com/journal/2018-06/improving-ruby-concurrency/index#performance
+
+> Uh oh. Our 5 requests that triggered non-async work ended up blocking all of our async endpoints for 10 seconds!
+
+This is actually expected and would be identical to how Puma (or basically any other web server) would behave.
+
+> Fibers are not pre-emptable by the Ruby VM. Fibers must coordinate among themselves about which fibers should run and when.
+
+This is actually a very good thing when compared to threads. When you resume a Fiber, you know it has important work to perform, unlike threads which the OS doesn't always know the optimal scheduling strategy. There is some interesting discussion about this here: https://www.youtube.com/watch?v=KXuZi9aeGTw
+
+Additionally, pre-emptive scheduling ensures that you must use locking and other forms of mutual exclusion, which makes user code more complex and can cause race conditions/deadlocks.
+
+> All fibers within that thread can end up blocking each other if they do any meaningful work that is not completely async aware.
+
+That's absolutely true, but in any scalable system, you will need to have one (or more) process/thread per processor. Falcon and it's concurrency model is not about solving multi-core parallism. That problem is already solved by using processes and threads.
+
+> Falcon is not magic and likely will not provide better concurrency or performance without substantial code changes in your app - and even then you are likely to encounter unhappy surprises.
+
+This is misleading. Falcon is clearly magic :p
+
+The entire point of Fiber based concurrency is that you don't need to make "substantial code changes" and you already show this in your own article, by speeding up database queries by just changing which gem is being used.
+
+It should be no worse than any existing multi-threaded server. If it is, it's almost certainly a bug.
+
+> Want to read about how Ruby might improve it’s concurrency performance in the future? Guilds Auto-Fibers
+
+Both these techniques are dreams for the future. Falcon exists right now and it has a great model for concurrency and scalability.
+
+> How does Falcon limit the number of Fibers it serves at one time?
+
+Falcon scales to maximise the number of processes you give it. If the reactor is busy servicing existing requests, it won't call accept. So, it naturally scales according to utilization. Artificial limits (e.g. pool size) are a hack IMHO.
+
+> Would Puma with five threads and one worker also block in the ‘Well, Not Quite’ scenario?
+
+Yes, it should.
+
+> If Puma was configured with enough threads to handle all concurrent connections in these same scenarios, would it perform better/worse/the same as Falcon?
+
+That's a really good question and I invite you to investigate it. My experience would have me leaning towards no.
+
+> What’s the overhead difference in CPU/Memory vs Falcon?
+
+Falcon has been optimised to minimise memory garbage when running under MRI. We have made an effort to ensure these are encoded in the specs, too: https://github.com/socketry/falcon/blob/742623340dfef285ca799da93b2e9abd494a3403/spec/falcon/adapters/input_spec.rb#L54-L64
+
+I invite you to benchmark memory usage, I would be interested in such results.
+
+> Does Falcon’s async reactor remind you of something you’ve seen before? How does it compare to EventMachine or Celluloid?
+
+The model followed by async is completely different. The fact they all use an event loop is about as similar as it gets.
+
+> How do Thread local variables behave in Fibers? Are they also Fiber local?
+
+You already answered your own question, but yes they are separate things. While Async does use a single thread-local variable, I actually avoided this in the similarly designed C++ library which instead passes it around as an argument: https://github.com/kurocha/async because I think that generally, thread-locals and fiber-locals have all the same problems as globals and generally create spooky action at a distance.
+
+> Do the chances of having deadlocks or race conditions increase when using Fibers vs Threads?
+
+I would argue it's less likely to occur, but threading primitives (e.g. mutex) can sometimes interact badly with fibers if you are not careful. That general sentiment applies to all threading primitives in almost every situation though, so I'm not sure it's worse.
+
+I hope this is helpful and can give you a better understanding of the design choices and performance characteristics of Falcon.

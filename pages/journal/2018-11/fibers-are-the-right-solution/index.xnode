@@ -3,7 +3,7 @@
 	
 	<h2>Building an Asynchronous Server</h2>
 	
-	<p>A typical server consists of a loop which accepts connections and performs some work. We explore basic server designs and how they can be designed to improve scalability.</p>
+	<p>A typical server consists of a loop which accepts connections and performs some work. We explore basic server designs and how they can be modified to improve scalability.</p>
 	
 	<h3>Looping Server</h3>
 	

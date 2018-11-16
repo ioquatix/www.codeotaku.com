@@ -15,7 +15,7 @@
 	
 	<h3>Forking Servers</h3>
 	
-	<p>We wrap the client work in a child process. This is a trivial change to existing code which in addition to allowing multiple requests to be handled simulataneously on multiple processor cores, also isolates the parent process from crashing in the child process.</p>
+	<p>We wrap the client connection in a child process. This is a trivial change to existing code which in addition to allowing multiple requests to be handled simulataneously on multiple processor cores, also isolates the parent process from crashing in the child process.</p>
 	
 	<content:listing src="fork.rb" brush="ruby"/>
 	

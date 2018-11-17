@@ -18,7 +18,7 @@ main {
 }
 
 p, figure, dl, ul {
-	margin: 0rem;
+	margin: 1rem 0;
 }
 
 p {
@@ -36,11 +36,11 @@ ul ul {
 	}
 	
 	main {
-		padding: 4rem;
+		padding: 2rem;
 	}
 	
 	p, figure, dl, ul {
-		margin: 2rem;
+		margin: 1rem;
 	}
 	
 	p {
@@ -365,12 +365,12 @@ table.data td {
 
 form label {
 	display: block;
-	margin: 0.5rem;
+	margin: 0.5rem 0;
 }
 
 form label input, form label textarea {
 	display: block;
-	margin:  0.5rem 0;
+	margin: 0.5rem 0;
 	padding: 0.5rem;
 	
 	font-size: 1rem;
@@ -378,6 +378,8 @@ form label input, form label textarea {
 
 form fieldset {
 	border: none;
+	margin: 0;
+	padding: 0;
 }
 
 form fieldset.footer {
@@ -385,7 +387,7 @@ form fieldset.footer {
 }
 
 form#login fieldset input {
-	max-width: 8rem;
+	max-width: 6rem;
 }
 
 form.basic input:not([type=button]):not([type=reset]):not([type=submit]) {

@@ -1,5 +1,5 @@
 <content:entry>
-	<p>Ruby has several existing HTTP clients, but few have robust support for HTTP/2. Native support for HTTP/2 is important especially when interacting with APIs, as the per-request overhead is greatly reduced. We present <code class="syntax ruby">Async::HTTP</code>, a modern streaming HTTP client supporting HTTP/1, HTTP/2 and SSL out of the box.</p>
+	<p>Ruby has several existing HTTP clients, but few have robust support for HTTP/2. Native support for HTTP/2 is important especially when interacting with remote systems, as the per-request overhead is greatly reduced. We present <code class="syntax ruby">Async::HTTP</code>, a modern streaming HTTP client supporting HTTP/1, HTTP/2 and SSL out of the box.</p>
 	
 	<content:listing src="request.txt" lang="ruby" />
 	

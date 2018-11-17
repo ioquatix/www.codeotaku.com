@@ -4,3 +4,9 @@ fibers-are-the-right-solution:
   title: Fibers are the Right Solution
   summary: Concurrency can be tricky and fibers are here to help.
   display: true
+async-http-client-for-ruby:
+  author: "Samuel Williams"
+  created: 2018-11-25
+  title: Async::HTTP for Ruby Web Development
+  summary: Examples showing how to interact with HTTP/2 servers.
+  display: false

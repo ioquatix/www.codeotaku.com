@@ -51,11 +51,15 @@
 	
 	<h2>Hybrid Servers</h2>
 	
-	<p>Given all the options, it should become apparent that there are many ways that these approaches can be combined. Sometimes you are at the mercy of your system: e.g Windows doesn't support fork, JRuby has poor support for fibers (althought that might change in the near future) and doesn't support fork, but it becomes clear that there are really several fundamental ways the system can be organised to maximise throughput and minimise latency.</p>
+	<blockquote><p class="spoken">Asynchronicity should be a property of how the program is executed, not what it does.</p></blockquote>
+	
+	<p>Hybrid parallism and concurrency is required to maximise scalability. We must choose at least one of multi-process or multi-threads (or both), and additionally, a model for concurrency. Asynchronous fibers are the only model for concurrency which can work with existing code bases in a completely transparent way, and thus the right solution for bringing concurrency to existing web applications.</p>
 	
 	<h3>Parallism</h3>
 	
 	<p>The first decision, which is largely dictated by the system, is whether to use processes or threads for parallelism. As long as you assume that the server is handling discrete requests and responses, both appraoches are equally scalable in practice. <a href="https://github.com/socketry/async-container">async-container</a> provides both and they can be interchanged.</p>
+	
+	<p>Not all platforms support both options equally well. For example Windows and Java do not support fork. Threads on MRI are not truely independent and thus do not scale as well..</p>
 	
 	<p>Generally speaking, multi-process is more predictable and has better isolation (e.g. security, reliability, restartability). Threads naturally have less isolation, and this can make code more complex and cause bugs. If one thread crashes, it can take down the entire system.</p>
 	
@@ -63,17 +67,15 @@
 	
 	<p>While the model for parallism doesn't generally affect how the server is implemented, the model for concurrency most certainly does. The default option, do nothing, is the simplest. Your code will execute from top to bottom, in a predictable way.</p>
 	
-	<p>If you have existing code, multi-process or multi-thread can be a good approach. You cannot easily retrofit this code with promises, callbacks and other explicit forms of concurrency, because they invert flow control and require major structural changes to existing code.</p>
+	<p>If you have existing code, multi-process or multi-thread can be a good approach. You cannot easily retrofit this code with promises, callbacks and other explicit forms of concurrency, because they invert flow control and require major structural changes.</p>
 	
-	<p>Fibers, on the other hand, are semantically similarly to threads (excepting parallism), but with less overhead. You can run whatever code you want in a Fiber and by default it won't behave any worse than if it was running in it's own thread or process. However, if you leverage the non-blocking IO, you can perform significantly better and with the same resources, handle significantly more active connections.</p>
+	<p>Fibers, on the other hand, are semantically similarly to threads (excepting parallism), but with less overhead. You can run whatever code you want in a fiber and by default it won't behave any worse than if it was running in it's own thread or process. However, if you leverage the non-blocking I/O, you can perform significantly better and with the same resources, handle significantly more active connections.</p>
 	
 	<p>Some models expose both synchronous and asynchronous methods. Such lazy interfaces burden the application code with irrelevant concurrency complexity. All operations that can be asynchronous should be where possible and it shouldn't require changing the method signature.</p>
 	
 	<h2>Birds of a Feather, Fly Together</h2>
 	
-	<blockquote><p class="spoken">Asynchronicity should be a property of how the program is executed, not what it does.</p></blockquote>
-	
-	<p><a href="https://github.com/socketry/falcon">Falcon</a> is a web server that supports both multi-thread and multi-process parallism. For concurrency, it uses <a href="https://github.com/socketry/async">Async</a>, which uses Fibers. This allows existing Rack applications to work at least as well as existing servers, but in the case they choose to use concurrency-aware libraries, they can achieve <a href="../../2018-06/improving-ruby-concurrency/index#performance">significant improvements</a> to both throughput and latency with minimal changes to configuration and zero changes to actual usage.</p>
+	<p><a href="https://github.com/socketry/falcon">Falcon</a> is a web server that supports both multi-thread and multi-process parallism. For concurrency, it uses <a href="https://github.com/socketry/async">Async</a>, which uses fibers. This allows existing Rack applications to work at least as well as existing servers, but in the case they choose to use concurrency-aware libraries, they can achieve <a href="../../2018-06/improving-ruby-concurrency/index#performance">significant improvements</a> to both throughput and latency with minimal changes to configuration and zero changes to actual usage.</p>
 	
 	<h3>Asynchronous Postgres</h3>
 	
@@ -89,9 +91,9 @@
 	
 	<h3>Asynchronous Ruby</h3>
 	
-	<p>It's <a href="https://github.com/ruby/ruby/pull/1870">actually possible to make ALL Ruby IO concurrent by default</a>. While this doesn't extend to native libraries, it does show that it's a feasible approach with minimal changes required to user code.</p>
+	<p>It's <a href="https://github.com/ruby/ruby/pull/1870">actually possible to make ALL Ruby I/O concurrent by default</a>. While this doesn't extend to native libraries, it does show that it's a feasible approach with minimal changes required to user code.</p>
 	
 	<h2>Conclusion</h2>
 	
-	<p>Multi-process and multi-thread designs provide parallism and allow servers to use all available processors. Fibers improve scalabilty further by maximising IO concurrency with minimal overheads. Callbacks achieve a similar result, but the inverted flow control requires significant changes to existing code. Fibers make it possible to retrofit existing code with minimal changes, to improve latency, throughput, while avoiding the cognitive burden associated with inverted flow control. Fibers are the right solution for scalable, non-blocking clients and servers without affecting the way in which you write code.</p>
+	<p>Multi-process and multi-thread designs provide parallism and allow servers to use all available processors. Fibers improve scalabilty further by maximising I/O concurrency with minimal overheads. Callbacks achieve a similar result, but the inverted flow control requires significant changes to existing code. Fibers don't affect visible code flow, and thus make it possible to execute existing code with minimal changes, while potentially improving latency and throughput. Fibers are the best solution for composable, scalable, non-blocking clients and servers.</p>
 </content:entry>

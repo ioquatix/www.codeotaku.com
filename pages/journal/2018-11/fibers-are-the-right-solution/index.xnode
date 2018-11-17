@@ -53,7 +53,7 @@
 	
 	<blockquote><p class="spoken">Asynchronicity should be a property of how the program is executed, not what it does.</p></blockquote>
 	
-	<p>Hybrid parallism and concurrency is required to maximise scalability. We must choose at least one of multi-process or multi-threads (or both), and additionally, a model for concurrency. Asynchronous fibers are the only model for concurrency which can work with existing code bases in a completely transparent way, and thus the right solution for bringing concurrency to existing web applications.</p>
+	<p>Hybrid parallelism and concurrency is required to maximise scalability. We must choose at least one of multi-process or multi-threads (or both), and additionally, a model for concurrency. Asynchronous fibers are the only model for concurrency which can work with existing code bases in a completely transparent way, and thus the right solution for bringing concurrency to existing web applications.</p>
 	
 	<h3>Parallism</h3>
 	
@@ -65,17 +65,17 @@
 	
 	<h3>Concurrency</h3>
 	
-	<p>While the model for parallism doesn't generally affect how the server is implemented, the model for concurrency most certainly does. The default option, do nothing, is the simplest. Your code will execute from top to bottom, in a predictable way.</p>
+	<p>While the model for parallelism doesn't generally affect how the server is implemented, the model for concurrency most certainly does. The default option, do nothing, is the simplest. Your code will execute from top to bottom, in a predictable way.</p>
 	
 	<p>If you have existing code, multi-process or multi-thread can be a good approach. You cannot easily retrofit this code with promises, callbacks and other explicit forms of concurrency, because they invert flow control and require major structural changes.</p>
 	
-	<p>Fibers, on the other hand, are semantically similarly to threads (excepting parallism), but with less overhead. You can run whatever code you want in a fiber and by default it won't behave any worse than if it was running in it's own thread or process. However, if you leverage the non-blocking I/O, you can perform significantly better and with the same resources, handle significantly more active connections.</p>
+	<p>Fibers, on the other hand, are semantically similarly to threads (excepting parallelism), but with less overhead. You can run whatever code you want in a fiber and by default it won't behave any worse than if it was running in it's own thread or process. However, if you leverage the non-blocking I/O, you can perform significantly better and with the same resources, handle significantly more active connections.</p>
 	
 	<p>Some models expose both synchronous and asynchronous methods. Such lazy interfaces burden the application code with irrelevant concurrency complexity. All operations that can be asynchronous should be where possible and it shouldn't require changing the method signature.</p>
 	
 	<h2>Birds of a Feather, Fly Together</h2>
 	
-	<p><a href="https://github.com/socketry/falcon">Falcon</a> is a web server that supports both multi-thread and multi-process parallism. For concurrency, it depends on <a href="https://github.com/socketry/async">async</a>, which uses fibers. This allows existing Rack applications to work at least as well as existing servers, but in the case they choose to use concurrency-aware libraries, they can achieve <a href="../../2018-06/improving-ruby-concurrency/index#performance">significant improvements</a> to both throughput and latency with minimal changes to configuration and zero changes to actual usage.</p>
+	<p><a href="https://github.com/socketry/falcon">Falcon</a> is a web server that supports both multi-thread and multi-process parallelism. For concurrency, it depends on <a href="https://github.com/socketry/async">async</a>, which uses fibers. This allows existing Rack applications to work at least as well as existing servers, but in the case they choose to use concurrency-aware libraries, they can achieve <a href="../../2018-06/improving-ruby-concurrency/index#performance">significant improvements</a> to both throughput and latency with minimal changes to configuration and zero changes to actual usage.</p>
 	
 	<h3>Asynchronous Postgres</h3>
 	
@@ -95,5 +95,5 @@
 	
 	<h2>Conclusion</h2>
 	
-	<p>Multi-process and multi-thread designs provide parallism and allow servers to use all available processors. Fibers improve scalabilty further by maximising I/O concurrency with minimal overheads. Callbacks achieve a similar result, but the inverted flow control requires significant changes to existing code. Fibers don't affect visible code flow, and thus make it possible to execute existing code with minimal changes, while potentially improving latency and throughput. Fibers are the best solution for composable, scalable, non-blocking clients and servers.</p>
+	<p>Multi-process and multi-thread designs provide parallelism and allow servers to use all available processors. Fibers improve scalabilty further by maximising I/O concurrency with minimal overheads. Callbacks achieve a similar result, but the inverted flow control requires significant changes to existing code. Fibers don't affect visible code flow, and thus make it possible to execute existing code with minimal changes, while potentially improving latency and throughput. Fibers are the best solution for composable, scalable, non-blocking clients and servers.</p>
 </content:entry>

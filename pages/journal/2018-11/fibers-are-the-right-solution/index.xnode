@@ -75,7 +75,7 @@
 	
 	<h2>Birds of a Feather, Fly Together</h2>
 	
-	<p><a href="https://github.com/socketry/falcon">Falcon</a> is a web server that supports both multi-thread and multi-process parallism. For concurrency, it uses <a href="https://github.com/socketry/async">Async</a>, which uses fibers. This allows existing Rack applications to work at least as well as existing servers, but in the case they choose to use concurrency-aware libraries, they can achieve <a href="../../2018-06/improving-ruby-concurrency/index#performance">significant improvements</a> to both throughput and latency with minimal changes to configuration and zero changes to actual usage.</p>
+	<p><a href="https://github.com/socketry/falcon">Falcon</a> is a web server that supports both multi-thread and multi-process parallism. For concurrency, it depends on <a href="https://github.com/socketry/async">async</a>, which uses fibers. This allows existing Rack applications to work at least as well as existing servers, but in the case they choose to use concurrency-aware libraries, they can achieve <a href="../../2018-06/improving-ruby-concurrency/index#performance">significant improvements</a> to both throughput and latency with minimal changes to configuration and zero changes to actual usage.</p>
 	
 	<h3>Asynchronous Postgres</h3>
 	

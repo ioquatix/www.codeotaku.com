@@ -1,9 +1,9 @@
 <content:entry>
-	<p>The majority of performance improvements in modern processors are due to increased core count rather than increased instruction execution frequency. To utilize all available hardware, applications need to use multiple processes and threads. Servers which process discrete requests are a good candidate for both parallelization and concurrency improvements. We discuss different ways in which servers can improve processor utilization and how these different approaches affect application code. We show that fibers require minimal changes to existing application code and are thus a good approach for retrofitting existing systems.</p>
+	<p>The majority of performance improvements in modern processors are due to increased core count rather than increased instruction execution frequency. To maximise hardware utilization, applications need to use multiple processes and threads. Servers that process discrete requests are a good candidate for both parallelization and concurrency improvements. We discuss different ways in which servers can improve processor utilization and how these different approaches affect application code. We show that fibers require minimal changes to existing application code and are thus a good approach for retrofitting existing systems.</p>
 	
 	<h2>Building an Asynchronous Server</h2>
 	
-	<p>A typical server consists of a loop which accepts connections and performs some work. We explore basic server designs and how they can be modified to improve scalability.</p>
+	<p>A typical server consists of a loop that accepts connections and performs some work. We explore basic server designs and how they can be modified to improve scalability.</p>
 	
 	<h3>Looping Server</h3>
 	
@@ -15,11 +15,11 @@
 	
 	<h3>Forking Servers</h3>
 	
-	<p>We wrap the client connection in a child process. This is a trivial change to existing code which in addition to allowing multiple requests to be handled simulataneously on multiple processor cores, also isolates the parent process from bugs and security problems in the child process.</p>
+	<p>We wrap the client connection in a child process. This is a trivial change to existing code, which in addition to allowing multiple requests to be handled simulataneously on multiple processor cores, also isolates the parent process from bugs and security problems in the child process.</p>
 	
 	<content:listing src="fork.rb" brush="ruby"/>
 	
-	<p>This is a very robust design which can be easily applied to existing servers. Creating many child processes can consume a lot of memory. Context switching and latency might also be a concern.</p>
+	<p>This is a very robust design that can be easily applied to existing servers. Creating many child processes can consume a lot of memory. Context switching and latency might also be a concern.</p>
 	
 	<h3>Threading Servers</h3>
 	
@@ -37,7 +37,7 @@
 	
 	<p>Fibers have less overhead when compared to processes and threads, and while one might be comfortable with 1000s of threads, fibers can context switch billions of times per second on a modern processor.</p>
 	
-	<p>Here is a simpler version using the <tt>async</tt> gem:</p>
+	<p>Here is a simpler version using the <a href="https://github.com/socketry/async">async</a> and <a href="https://github.com/socketry/async-io">async-io</a> gems:</p>
 	
 	<content:listing src="async.rb" brush="ruby"/>
 	
@@ -73,7 +73,7 @@
 	
 	<blockquote><p class="spoken">Asynchronicity should be a property of how the program is executed, not what it does.</p></blockquote>
 	
-	<p><a href="https://github.com/socketry/falcon">Falcon</a> is a web server which supports both multi-thread and multi-process parallism. For concurrency, it uses <a href="https://github.com/socketry/async">Async</a> which uses Fibers. This allows existing Rack applications to work at least as well as existing servers, but in the case they choose to use concurrency-aware libraries, they can achieve <a href="../../2018-06/improving-ruby-concurrency/index#performance">significant improvements</a> to both throughput and latency with minimal changes to configuration and zero changes to actual usage.</p>
+	<p><a href="https://github.com/socketry/falcon">Falcon</a> is a web server that supports both multi-thread and multi-process parallism. For concurrency, it uses <a href="https://github.com/socketry/async">Async</a>, which uses Fibers. This allows existing Rack applications to work at least as well as existing servers, but in the case they choose to use concurrency-aware libraries, they can achieve <a href="../../2018-06/improving-ruby-concurrency/index#performance">significant improvements</a> to both throughput and latency with minimal changes to configuration and zero changes to actual usage.</p>
 	
 	<h3>Asynchronous Postgres</h3>
 	

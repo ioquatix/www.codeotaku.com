@@ -7,11 +7,6 @@ cheap-storage:
     author: "Samuel Williams"
     created: 2009-09-05
     summary: "Storage is getting cheaper and cheaper - here is a fantastic solution which provides huge amounts of cheap storage!"
-drobopro-benchmark:
-    title: "DroboPro Benchmarks"
-    author: "Samuel Williams"
-    created: 2009-09-24
-    summary: "DroboPro is one option for storage - but is it fast enough?"
 scanning-for-unix-permissions:
     title: "Scanning for specific UNIX permissions"
     author: "Samuel Williams"

@@ -18,7 +18,7 @@ main {
 }
 
 p, figure, dl, ul {
-	margin: 1rem;
+	margin: 0rem;
 }
 
 p {
@@ -116,12 +116,12 @@ main h2 {
 
 main h3 {
 	font-size: 1.25rem;
-	margin: 6rem 1rem 2rem;
+	margin: 6rem 0 2rem;
 }
 
 main h4 {
 	font-size: 1rem;
-	margin: 6rem 1rem 2rem;
+	margin: 6rem 0 2rem;
 }
 
 main h2 + p, main h3 + p {

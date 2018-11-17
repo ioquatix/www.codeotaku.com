@@ -183,6 +183,7 @@ header strong {
 }
 
 header span {
+	line-height: 2rem;
 	margin: 1.25rem;
 	white-space: nowrap;
 }

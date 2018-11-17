@@ -15,19 +15,19 @@
 	
 	<h3>Forking Servers</h3>
 	
-	<p>We wrap the client connection in a child process. This is a trivial change to existing code which in addition to allowing multiple requests to be handled simulataneously on multiple processor cores, also isolates the parent process from crashing in the child process.</p>
+	<p>We wrap the client connection in a child process. This is a trivial change to existing code which in addition to allowing multiple requests to be handled simulataneously on multiple processor cores, also isolates the parent process from bugs and security problems in the child process.</p>
 	
 	<content:listing src="fork.rb" brush="ruby"/>
 	
-	<p>This is a very robust design which can be easily applied to existing servers. Creating many child processes might consume a lot of memory.</p>
+	<p>This is a very robust design which can be easily applied to existing servers. Creating many child processes can consume a lot of memory. Context switching and latency might also be a concern.</p>
 	
 	<h3>Threading Servers</h3>
 	
-	<p>Rather than using a child process, we use a thread in the same process. We loose the benefits of isolation. On modern systems the difference in performance is minor. Some systems (e.g. JVM) don't support fork, while others (e.g. MRI) don't have truely independent threads.</p>
+	<p>Rather than using a child process, we can use a thread in the same process. We loose the benefits of isolation. On modern systems the difference in performance is minor. Some systems (e.g. JVM) don't support fork, while others (e.g. MRI) don't have truely independent threads.</p>
 	
 	<content:listing src="thread.rb" brush="ruby"/>
 	
-	<p>In practice, forks and threads are at odds with each other. If you try to fork while there are active threads, you will very likely <a href="https://blog.phusion.nl/2017/10/13/why-ruby-app-servers-break-on-macos-high-sierra-and-what-can-be-done-about-it/">run into bugs</a>. Even if you didn't create the thread, some other library might have, so it's tricky to reason about.</p>
+	<p>In practice, forks and threads are at odds with each other. If you try to fork while there are active threads, you will very likely <a href="https://blog.phusion.nl/2017/10/13/why-ruby-app-servers-break-on-macos-high-sierra-and-what-can-be-done-about-it/">run into bugs</a>. Even if you didn't create the thread, some other library might have, so it can be very tricky in practice.</p>
 	
 	<h3>Fiber Servers</h3>
 	
@@ -47,11 +47,11 @@
 	
 	<content:listing src="callback.js" brush="javascript"/>
 	
-	<p>Callbacks are the simplest form of concurrency, they also have the lowest overhead, but in exchange, push state tracking complexity into user code.</p>
+	<p>Callbacks are the simplest form of concurrency, they also have the lowest overhead, but in exchange, they necessitate moving state tracking complexity into user code (aka callback hell).</p>
 	
 	<h2>Hybrid Servers</h2>
 	
-	<p>Given all the options, it should become apparent that there are many ways that these approaches can be combined. Sometimes you are at the mercy of your system: e.g Windows doesn't support fork, JRuby has poor support for fibers and doesn't support fork, but it becomes clear that there are really several fundamental ways the system can be organised to maximise throughput and minimise latency.</p>
+	<p>Given all the options, it should become apparent that there are many ways that these approaches can be combined. Sometimes you are at the mercy of your system: e.g Windows doesn't support fork, JRuby has poor support for fibers (althought that might change in the near future) and doesn't support fork, but it becomes clear that there are really several fundamental ways the system can be organised to maximise throughput and minimise latency.</p>
 	
 	<h3>Parallism</h3>
 	
@@ -65,7 +65,7 @@
 	
 	<p>If you have existing code, multi-process or multi-thread can be a good approach. You cannot easily retrofit this code with promises, callbacks and other explicit forms of concurrency, because they invert flow control and require major structural changes to existing code.</p>
 	
-	<p>Fibers, on the other hand, work very similarly to threads, but with less overhead. You can run whatever code you want in a Fiber and by default it won't behave any worse than if it was running in it's own thread or process. However, if you leverage the non-blocking IO, you can perform significantly better and with the same resources, handle significantly more active connections.</p>
+	<p>Fibers, on the other hand, are semantically similarly to threads (excepting parallism), but with less overhead. You can run whatever code you want in a Fiber and by default it won't behave any worse than if it was running in it's own thread or process. However, if you leverage the non-blocking IO, you can perform significantly better and with the same resources, handle significantly more active connections.</p>
 	
 	<p>Some models expose both synchronous and asynchronous methods. Such lazy interfaces burden the application code with irrelevant concurrency complexity. All operations that can be asynchronous should be where possible and it shouldn't require changing the method signature.</p>
 	

@@ -55,7 +55,7 @@
 	
 	<p>Hybrid parallelism and concurrency is required to maximise scalability. We must choose at least one of multi-process or multi-threads (or both), and additionally, a model for concurrency. Asynchronous fibers are the only model for concurrency which can work with existing code bases in a completely transparent way, and thus the right solution for bringing concurrency to existing web applications.</p>
 	
-	<h3>Parallism</h3>
+	<h3>Parallelism</h3>
 	
 	<p>The first decision, which is largely dictated by the system, is whether to use processes or threads for parallelism. As long as you assume that the server is handling discrete requests and responses, both appraoches are equally scalable in practice. <a href="https://github.com/socketry/async-container">async-container</a> provides both and they can be interchanged.</p>
 	

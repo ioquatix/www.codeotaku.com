@@ -571,7 +571,22 @@ li.locale {
 	padding-left: 1.25rem;
 }
 
-/* Resize the video based on the screen width: */
+.youtube-wrapper {
+	position: relative;
+	padding-bottom: 56.25%; /* 16:9 aspect ratio */
+	height: 0;
+	width 100%;
+}
+
+.youtube-video {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+/* Resize the video based on the screen width:
 .youtube-video {
 	width: 120rem;
 	height: 67.5rem;
@@ -596,4 +611,4 @@ li.locale {
 		width: 40rem;
 		height: 22.5rem;
 	}
-}
+}*/

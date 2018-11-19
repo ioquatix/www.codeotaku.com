@@ -23,7 +23,7 @@
 	
 	<h3>Threading Servers</h3>
 	
-	<p>Rather than using a child process, we can use a thread in the same process. We loose the benefits of isolation. On modern systems the difference in performance is minor. Some systems (e.g. JVM) don't support fork, while others (e.g. MRI) don't have truely independent threads.</p>
+	<p>Rather than using a child process, we can use a thread in the same process. We lose the benefits of isolation. On modern systems the difference in performance is minor. Some systems (e.g. JVM) don't support fork, while others (e.g. MRI) don't have truely independent threads.</p>
 	
 	<content:listing src="thread.rb" brush="ruby"/>
 	

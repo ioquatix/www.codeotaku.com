@@ -35,7 +35,7 @@
 	
 	<content:listing src="fiber.rb" brush="ruby"/>
 	
-	<p>Fibers have less overhead when compared to processes and threads, and while one might be comfortable with 1000s of threads, fibers can context switch billions of times per second on a modern processor.</p>
+	<p>Fibers have less overhead when compared to processes and threads, and while one might be comfortable with 1000s of threads, fibers can <a href="context-switching">context switch 100s of millions of times per second on a modern processor core</a>.</p>
 	
 	<p>Here is a simpler version using the <a href="https://github.com/socketry/async">async</a> and <a href="https://github.com/socketry/async-io">async-io</a> gems:</p>
 	

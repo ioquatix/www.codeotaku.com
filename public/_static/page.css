@@ -533,6 +533,11 @@ blockquote .spoken {
 	font-variant: small-caps;
 }
 
+blockquote > .written {
+	border-left: 2px solid blue;
+	padding-left: 1rem;
+}
+
 blockquote cite {
 	display: block;
 	font-style: normal;

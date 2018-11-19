@@ -1,0 +1,15 @@
+<content:page>
+	<content:heading>Context Switching</content:heading>
+	
+	<blockquote><span class="written">On a 3GHz (3 billion hertz) processor, you expect to be able to context switch billions of times per second?</span><cite><a href="https://news.ycombinator.com/item?id=18484445">coder543</a></cite></blockquote>
+	
+	<p>Modern CPUs are incredible and implementing stackful coroutines has about the same overhead as a function call. Here is the implementation I wrote:</p>
+	
+	<content:listing src="coroutine-transfer.s" brush="asm"/>
+	
+	<p>On my (objectively ancient) linux desktop, on a single core, I get on the order of 100 million context switches per second. Across all 8 cores, this approaches 1 billion.</p>
+	
+	<p>That being said, my original remark that it was possible to context switch billions of times per second was too casual and without evidence. At best it was unclear and at worse it was off by an order of magnitude. So, I apologise for any confusion and have updated the article.</p>
+	
+	<p><a href="https://github.com/kurocha/coroutine">The source code is available</a> and you can run the benchmark yourself.</p>
+</content:page>

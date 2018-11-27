@@ -11,3 +11,6 @@ require 'json'
 RACK_ENV = ENV.fetch('RACK_ENV', :development).to_sym unless defined? RACK_ENV
 
 require_relative '../db/environment'
+
+require 'scout_apm'
+ScoutApm::Rack.install!

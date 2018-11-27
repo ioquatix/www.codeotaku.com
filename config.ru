@@ -9,6 +9,8 @@ require 'utopia/analytics'
 require 'rack/freeze'
 
 if RACK_ENV == :production
+	use ScoutApm::Instruments::MiddlewareSummary
+	
 	# Handle exceptions in production with a error page and send an email notification:
 	use Utopia::Exceptions::Handler
 	use Utopia::Exceptions::Mailer

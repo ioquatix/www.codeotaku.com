@@ -8,10 +8,23 @@ require 'utopia/analytics'
 
 require 'rack/freeze'
 
-if RACK_ENV == :production
-	require 'scout_apm/instruments/middleware_summary'
-	use ScoutApm::Instruments::MiddlewareSummary::MiddlewareSummaryWrapper
+require 'scout_apm/rack'
+
+class ScoutApm::Instruments::RackRequest
+	def initialize(app)
+		@app = app
+	end
 	
+	def call(env)
+		ScoutApm::Rack.transaction("Middleware", env) do
+			@app.call(env)
+		end
+	end
+end
+
+use ScoutApm::Instruments::RackRequest
+
+if RACK_ENV == :production
 	# Handle exceptions in production with a error page and send an email notification:
 	use Utopia::Exceptions::Handler
 	use Utopia::Exceptions::Mailer

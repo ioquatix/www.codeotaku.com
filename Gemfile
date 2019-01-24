@@ -14,6 +14,7 @@ gem "relaxo-model", "~> 0.10.0"
 
 gem "trenni-sanitize"
 gem "kramdown"
+gem "kramdown-parser-gfm"
 gem "bcrypt"
 
 group :development do

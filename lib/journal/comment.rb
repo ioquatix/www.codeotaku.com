@@ -2,7 +2,9 @@
 require 'relaxo/model'
 
 require 'trenni/sanitize'
+
 require 'kramdown'
+require 'kramdown/parser/gfm'
 
 module Journal
 	class Fragment < Trenni::Sanitize::Filter

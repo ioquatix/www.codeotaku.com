@@ -1,0 +1,6 @@
+streaming-http-for-ruby:
+  author: "Samuel Williams"
+  created: 2019-01-23
+  title: Streaming HTTP for Ruby
+  summary: How to make streaming clients and servers using Ruby.
+  display: true

@@ -1,0 +1,41 @@
+<content:entry>
+	<p>Ruby has several existing HTTP clients and servers, but none have support for both HTTP/1 and HTTP/2 streaming of request and response bodies. Native support for HTTP/2 is important especially when interacting with remote systems, as the per-request overhead is greatly reduced and it can be used for long-running connections. We present <a href="https://github.com/socketry/async-http">async-http</a>, a modern, streaming HTTP client and server supporting HTTP/1, HTTP/2 and SSL out of the box.</p>
+	
+	<h2>Requests and Responses</h2>
+	
+	<p><code class="syntax ruby">Async::HTTP</code> provides abstractions over HTTP/1 and HTTP/2 to minimise the complexity of your code. There is a beautiful symmetry: clients send requests and receive responses. Servers receive requests and send responses. This is reflected in the code.</p>
+	
+	<content:listing src="overview.rb" lang="ruby" />
+	
+	<p>Of particular interest is request and response bodies. These are typically an array of strings (chunks). To enable streaming you must uses a queue of chunks.</p>
+	
+	<h2>Streaming</h2>
+	
+	<p>The Hyper-Text Transfer Protocol (HTTP) allows streaming of both request and response bodies, even at the same time. This allows you to incrementally generate and consume information, which minimises latency and memory usage. <code class="syntax ruby">module Async::HTTP::Body</code> contains the implementations required to stream both request and response bodies, and it's usage is very straight forward.</p>
+	
+	<h3>Streaming Response Body</h3>
+	
+	<p>Perhaps the most basic use case, incrementally generating information and streaming it back to the client. A common use case for this is newline delimited JSON.</p>
+	
+	<content:listing src="response.rb" lang="ruby" />
+	
+	<h3>Streaming Request Bodies</h3>
+	
+	<p>Some services accept streaming bodies, e.g. upload services, incremental processing (voice recognition, video processing), and so on. While we are uploading the content, it's possible the remote server would send us back information, e.g. the current transcript, objects recognised, etc. Here is a simple streaming upper case service:</p>
+	
+	<content:listing src="request.rb" lang="ruby" />
+	
+	<h3>Echo Server</h3>
+	
+	<p>Because of the symmetry of the implementation, fun services like this become possible:</p>
+	
+	<content:listing src="echo.rb" lang="ruby" />
+	
+	<h2>99 bottles of beer on the wall</h2>
+	
+	<p>A reasonable question would be - does this work in production? If you use <a href="https://github.com/socketry/falcon">falcon</a>, the <a href="https://utopia-falcon-heroku.herokuapp.com/beer/index">answer is YES</a>. The <a href="https://github.com/socketry/falcon/blob/master/examples/beer/config.ru">implementation</a> even works with Rack.</p>
+	
+	<h2>Conclusion</h2>
+	
+	<p>Streaming request and response bodies minimise latency and open up new opportunities for interactivity. We have shown that <a href="https://github.com/socketry/async-http">async-http</a> has a great model for both uni-directional and bi-directional streaming which works on both the client and server side. Such systems can be deployed into production web applications using <a href="https://github.com/socketry/falcon">falcon</a>.</p>
+</content:entry>

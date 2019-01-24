@@ -15,7 +15,7 @@
 	
 	<h3>Streaming Response Body</h3>
 	
-	<p>Perhaps the most basic use case, incrementally generating information and streaming it back to the client. A common use case for this is newline delimited JSON.</p>
+	<p>Perhaps the most basic use case, incrementally generating information and streaming it back to the client. Incrementally streaming events or records, formatted as newline delimited JSON, is a typical use case.</p>
 	
 	<content:listing src="response.rb" lang="ruby" />
 	
@@ -37,5 +37,5 @@
 	
 	<h2>Conclusion</h2>
 	
-	<p>Streaming request and response bodies minimise latency and open up new opportunities for interactivity. We have shown that <a href="https://github.com/socketry/async-http">async-http</a> has a great model for both uni-directional and bi-directional streaming which works on both the client and server side. Such systems can be deployed into production web applications using <a href="https://github.com/socketry/falcon">falcon</a>.</p>
+	<p>Streaming request and response bodies minimise latency and open up new opportunities for interactivity. We have shown that <a href="https://github.com/socketry/async-http">async-http</a> has a great model for both uni-directional and bi-directional streaming which works on both the client and server side. Such systems can be deployed into production using <a href="https://github.com/socketry/falcon">falcon</a>.</p>
 </content:entry>

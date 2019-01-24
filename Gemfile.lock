@@ -115,7 +115,7 @@ GEM
     samovar (1.9.1)
       mapping (~> 1.0)
       rainbow (>= 2.0, < 4.0)
-    scout_apm (2.5.0)
+    scout_apm (2.4.21)
     shellany (0.0.1)
     simplecov (0.16.1)
       docile (~> 1.1)
@@ -165,7 +165,7 @@ DEPENDENCIES
   rake
   relaxo-model (~> 0.10.0)
   rspec
-  scout_apm
+  scout_apm (~> 2.4.0)
   simplecov
   trenni-sanitize
   utopia (~> 2.2.0)

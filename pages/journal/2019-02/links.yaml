@@ -1,6 +1,6 @@
 falcon-early-hints:
   author: "Samuel Williams"
   created: 2019-02-10
-  title: Falcon Early Hints
+  title: Early Hints and HTTP/2 Push with Falcon
   summary: How to use HTTP/2 push promises with falcon.
   display: true

@@ -1,0 +1,6 @@
+def call(env)
+	if early_hints = env['rack.early_hints']
+		early_hints.push("/style.css", preload: true, rel: 'style')
+		early_hints.push("/script.js", rel: 'script')
+	end
+end

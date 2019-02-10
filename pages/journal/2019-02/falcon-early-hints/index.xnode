@@ -1,0 +1,65 @@
+<content:entry>
+	<p>As web standards continue to evolve, Rack has sometimes struggled to provide appropriate interfaces. HTTP/2 push promises expand on the request-response model of traditional web applications, and requires explicit support from both servers and applications. We present <a href="https://github.com/socketry/falcon">Falcon</a>, which implements <code class="syntax">rack.early_hints</code> and discuss the strengths and weaknesses of the <a href="http://eileencodes.com/posts/http2-early-hints/">current proposal</a>.</p>
+	
+	<h2>HTTP/2 Push Promises</h2>
+	
+	<p>A normal interaction between a client and server involves the client sending a request to the server, and the server sending a response back to the client.</p>
+	
+	<div class="gallery">
+		<img src="Traditional.svg" />
+	</div>
+	
+	<p>A push promise is very similar, except instead of the client generating the request, the server generates the request (push promise), and sends it to the client, along with the response. By initiating the requests, overall latency can be greatly reduced.</p>
+	
+	<div class="gallery">
+		<img src="Push Promise.svg" />
+	</div>
+	
+	<h2>Early Hints</h2>
+	
+	<p>Early hints, as proposed, include <code class="syntax">link</code> headers (as defined by <a href="https://tools.ietf.org/html/rfc8288">RFC8288</a>) that inform the client that additional resources will likely be needed. These hints allow the client to immediately request those resource if needed, or in the case of HTTP/2, send a push promise. In HTTP/1 this is done using a special informational response:</p>
+	
+	<content:listing src="103-response.txt" lang="http" />
+	
+	<p>At the present time, no major browser supports the 103 early hints; It is primarily used between backend application servers that only talk HTTP/1, and front-end proxies that support HTTP/2. The early hints can be used to drive HTTP/2 push promises in such a configuration.</p>
+	
+	<h2>Falcon and Push Promises</h2>
+	
+	<p>As Falcon directly supports HTTP/2, early hints are converted directly into push promises within the server. This can reduce round-trip latency significantly compared to HTTP/1 early hints.</p>
+	
+	<p>In rack, you can supply early hints using the proposed interface:</p>
+	
+	<content:listing src="rack-early-hints.txt" lang="ruby" />
+	
+	<p>Using chrome, we can see the push promises in the inspector:</p>
+	
+	<div class="gallery">
+		<img src="chrome-inspector.png" />
+	</div>
+	
+	<h2>Limitations</h2>
+	
+	<p>There are several HTTP/1 centric features of the rack interface. Firstly, it's possible to send any arbitrary header via early hints. In the case of HTTP/2, it is less clear how this should work since the primary use case is to generate push promises.</p>
+	
+	<p>Because these are arbitrary headers, Falcon has to parse them to generate the push promises. This is less robust than invoking a function with appropriate arguments.</p>
+	
+	<p>Finally, one has to wonder if push promises should be a concern of the front-end proxy rather than the application server. It should be possible to look at what resources are often sent together and intelligently generate push promises on a per-client basis. Should the application server be responsible for this?</p>
+	
+	<h3>Stepping Back</h3>
+	
+	<p>Many existing application servers are limited to HTTP/1 semantics. The trend seems to be to expand HTTP/1 with semantics to match the capabilities of HTTP/2, so that HTTP/2 can be fully utilized by whatever proxy is fronting the application servers. This is a common situation with Nginx+Puma or Nginx+Passenger, because Nginx lacks the ability, at the present time, to proxy requests using HTTP/2.</p>
+	
+	<p>Rather than modifying the HTTP/1 protocol with informational responses and related orthogonal semantics, which sometimes feel like a hack, perhaps a better solution is to start building application servers capable of serving HTTP/2 directly. If that's the direction forward, ideally the interfaces built into rack don't make too many assumptions about the underlying protocol.</p>
+	
+	<h2>A Complementary Proposal</h2>
+	
+	<p>As well as the raw links interface, it would be nice to support a method which takes a path and related options, semantically equivalent to the link header:</p>
+	
+	<content:listing src="proposal.txt" lang="ruby" />
+	
+	<p>This interface is less protocol specific, and can map cleanly to the underlying semantics of HTTP/1 and HTTP/2. This interface is also supported in the latest Falcon release.</p>
+	
+	<h2>Conclusion</h2>
+	
+	<p>Early hints allow Falcon to send push promises when serving a client using HTTP/2. This allows resources to be more efficiently delivered to the client. Many existing application servers only support HTTP/1 which need to use an informational response, which is currently not well supported by clients. Falcon implements early hints using push promises, and thus can serve these directly to clients.</p>
+</content:entry>

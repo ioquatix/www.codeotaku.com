@@ -9,6 +9,10 @@ figure {
 	text-align: center;
 }
 
+figure.listing {
+	text-align: left;
+}
+
 figure img {
 	max-width: 100%;
 }

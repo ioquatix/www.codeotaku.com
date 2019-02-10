@@ -17,11 +17,15 @@
 	
 	<h2>Early Hints</h2>
 	
-	<p>Early hints, as proposed, include <code class="syntax">link</code> headers (as defined by <a href="https://tools.ietf.org/html/rfc8288">RFC8288</a>) that inform the client that additional resources will likely be needed. These hints allow the client to immediately request those resource if needed, or in the case of HTTP/2, send a push promise. In HTTP/1 this is done using a special informational response:</p>
+	<p>Early hints, as proposed, include <code class="syntax">link</code> headers (as defined by <a href="https://tools.ietf.org/html/rfc8288">RFC8288</a>) that inform the client that additional resources will likely be needed. In HTTP/1 this is done using a special informational response:</p>
 	
 	<content:listing src="103-response.txt" lang="http" />
 	
 	<p>At the present time, no major browser supports the 103 early hints; It is primarily used between backend application servers that only talk HTTP/1, and front-end proxies that support HTTP/2. The early hints can be used to drive HTTP/2 push promises in such a configuration.</p>
+	
+	<div class="gallery">
+		<img src="Transition.svg" />
+	</div>
 	
 	<h2>Falcon and Push Promises</h2>
 	

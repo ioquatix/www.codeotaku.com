@@ -29,7 +29,7 @@
 	
 	<h2>Falcon and Push Promises</h2>
 	
-	<p>As Falcon directly supports HTTP/2, early hints are converted directly into push promises within the server. This can reduce round-trip latency significantly compared to HTTP/1 early hints.</p>
+	<p>As Falcon directly supports HTTP/2, early hints are converted into push promises within the server. This can reduce round-trip latency significantly compared to HTTP/1 early hints.</p>
 	
 	<p>In rack, you can supply early hints using the proposed interface:</p>
 	

@@ -5,15 +5,15 @@
 	
 	<p>A normal interaction between a client and server involves the client sending a request to the server, and the server sending a response back to the client.</p>
 	
-	<div class="gallery">
+	<figure>
 		<img src="Traditional.svg" />
-	</div>
+	</figure>
 	
 	<p>A push promise is very similar, except instead of the client generating the request, the server generates the request (push promise), and sends it to the client, along with the response. By initiating the requests, overall latency can be greatly reduced.</p>
 	
-	<div class="gallery">
+	<figure>
 		<img src="Push Promise.svg" />
-	</div>
+	</figure>
 	
 	<h2>Early Hints</h2>
 	
@@ -23,9 +23,9 @@
 	
 	<p>At the present time, no major browser supports the 103 early hints; It is primarily used between backend application servers that only talk HTTP/1, and front-end proxies that support HTTP/2. The early hints can be used to drive HTTP/2 push promises in such a configuration.</p>
 	
-	<div class="gallery">
+	<figure>
 		<img src="Transition.svg" />
-	</div>
+	</figure>
 	
 	<h2>Falcon and Push Promises</h2>
 	

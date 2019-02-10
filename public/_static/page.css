@@ -5,6 +5,14 @@ pre {
 	overflow: auto;
 }
 
+figure {
+	text-align: center;
+}
+
+figure img {
+	max-width: 100%;
+}
+
 figure figcaption {
 	text-align: center;
 	color: #999;

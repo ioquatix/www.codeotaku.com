@@ -24,7 +24,7 @@
     </font-face>
   </defs>
   <metadata> Produced by OmniGraffle 7.9.4 
-    <dc:date>2019-02-10 09:15:22 +0000</dc:date>
+    <dc:date>2019-02-10 09:27:49 +0000</dc:date>
   </metadata>
   <g id="Transition" stroke-dasharray="none" stroke="none" stroke-opacity="1" fill-opacity="1" fill="none">
     <title>Transition</title>
@@ -37,14 +37,14 @@
         <path d="M 1160 445.959 C 1141.3482 442.53585 1119.575 440 1096 440 C 1077.6005 440 1060.2985 441.54467 1044.7213 443.85026" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
       </g>
       <g id="Graphic_70">
-        <rect x="1067.2" y="314.51553" width="64" height="27" fill="white"/>
-        <text transform="translate(1072.2 319.81953)" fill="black">
+        <rect x="1064" y="312" width="64" height="27" fill="white"/>
+        <text transform="translate(1069 317.304)" fill="black">
           <tspan font-family="Helvetica Neue" font-size="14" font-weight="400" fill="black" x="3.151" y="13">HTTP/1</tspan>
         </text>
       </g>
       <g id="Graphic_69">
-        <rect x="1064.4414" y="426.5003" width="64" height="27" fill="white"/>
-        <text transform="translate(1069.4414 431.8043)" fill="black">
+        <rect x="1064" y="424" width="64" height="27" fill="white"/>
+        <text transform="translate(1069 429.304)" fill="black">
           <tspan font-family="Helvetica Neue" font-size="14" font-weight="400" fill="black" x="3.151" y="13">HTTP/1</tspan>
         </text>
       </g>
@@ -65,8 +65,8 @@
         <path d="M 776 333.95898 C 794.65185 330.53585 816.4251 328 840 328 C 858.3995 328 875.7015 329.54467 891.2787 331.85026" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
       </g>
       <g id="Graphic_47">
-        <rect x="808.56545" y="314.5005" width="64" height="27" fill="white"/>
-        <text transform="translate(813.56545 319.8045)" fill="black">
+        <rect x="808" y="312" width="64" height="27" fill="white"/>
+        <text transform="translate(813 317.304)" fill="black">
           <tspan font-family="Helvetica Neue" font-size="14" font-weight="400" fill="black" x="3.151" y="13">HTTP/2</tspan>
         </text>
       </g>
@@ -100,32 +100,32 @@
         <path d="M 904 818.041 C 885.3482 821.4641 863.5749 824 840 824 C 821.6005 824 804.2985 822.4553 788.7213 820.1497" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
       </g>
       <g id="Graphic_62">
-        <rect x="1060.8" y="586.4845" width="64" height="27" fill="white"/>
-        <text transform="translate(1065.8 591.7885)" fill="black">
+        <rect x="1064" y="584" width="64" height="27" fill="white"/>
+        <text transform="translate(1069 589.304)" fill="black">
           <tspan font-family="Helvetica Neue" font-size="14" font-weight="400" fill="black" x="3.151" y="13">HTTP/1</tspan>
         </text>
       </g>
       <g id="Graphic_59">
-        <rect x="808" y="586.5" width="64" height="27" fill="white"/>
-        <text transform="translate(813 591.804)" fill="black">
+        <rect x="808" y="584" width="64" height="27" fill="white"/>
+        <text transform="translate(813 589.304)" fill="black">
           <tspan font-family="Helvetica Neue" font-size="14" font-weight="400" fill="black" x="3.151" y="13">HTTP/2</tspan>
         </text>
       </g>
       <g id="Graphic_101">
-        <rect x="804.8" y="810.4845" width="64" height="27" fill="white"/>
-        <text transform="translate(809.8 815.7885)" fill="black">
+        <rect x="808" y="808" width="64" height="27" fill="white"/>
+        <text transform="translate(813 813.304)" fill="black">
           <tspan font-family="Helvetica Neue" font-size="14" font-weight="400" fill="black" x="3.151" y="13">HTTP/2</tspan>
         </text>
       </g>
       <g id="Graphic_87">
-        <rect x="1064.4242" y="650.5003" width="64" height="27" fill="white"/>
-        <text transform="translate(1069.4242 655.8043)" fill="black">
+        <rect x="1064" y="648" width="64" height="27" fill="white"/>
+        <text transform="translate(1069 653.304)" fill="black">
           <tspan font-family="Helvetica Neue" font-size="14" font-weight="400" fill="black" x="3.151" y="13">HTTP/1</tspan>
         </text>
       </g>
       <g id="Graphic_98">
-        <rect x="1064.3632" y="810.4998" width="64" height="27" fill="white"/>
-        <text transform="translate(1069.3632 815.8038)" fill="black">
+        <rect x="1064" y="808" width="64" height="27" fill="white"/>
+        <text transform="translate(1069 813.304)" fill="black">
           <tspan font-family="Helvetica Neue" font-size="14" font-weight="400" fill="black" x="3.151" y="13">HTTP/1</tspan>
         </text>
       </g>

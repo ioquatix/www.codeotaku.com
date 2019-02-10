@@ -24,7 +24,7 @@
     </font-face>
   </defs>
   <metadata> Produced by OmniGraffle 7.9.4 
-    <dc:date>2019-02-10 09:15:22 +0000</dc:date>
+    <dc:date>2019-02-10 09:27:49 +0000</dc:date>
   </metadata>
   <g id="Push_Promise" stroke-dasharray="none" stroke="none" stroke-opacity="1" fill-opacity="1" fill="none">
     <title>Push Promise</title>
@@ -73,14 +73,14 @@
         <path d="M 1085.661 376 C 1091.3854 384.9772 1096 395.9507 1096 408 C 1096 415.32843 1094.293 422.2589 1091.6676 428.58433" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
       </g>
       <g id="Graphic_47">
-        <rect x="857.0348" y="314.50086" width="64" height="27" fill="white"/>
-        <text transform="translate(862.0348 319.80486)" fill="black">
+        <rect x="856" y="312" width="64" height="27" fill="white"/>
+        <text transform="translate(861 317.304)" fill="black">
           <tspan font-family="Helvetica Neue" font-size="14" font-weight="400" fill="black" x="3.151" y="13">HTTP/2</tspan>
         </text>
       </g>
       <g id="Graphic_46">
-        <rect x="858.7488" y="474.49393" width="64" height="27" fill="white"/>
-        <text transform="translate(863.7488 479.79793)" fill="black">
+        <rect x="856" y="472" width="64" height="27" fill="white"/>
+        <text transform="translate(861 477.304)" fill="black">
           <tspan font-family="Helvetica Neue" font-size="14" font-weight="400" fill="black" x="3.151" y="13">HTTP/2</tspan>
         </text>
       </g>
@@ -102,8 +102,8 @@
         <path d="M 1e3 590.4084 C 969.9097 595.5066 931.1497 600 888 600 C 850.7159 600 816.7093 596.6452 788.7411 592.4442" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
       </g>
       <g id="Graphic_59">
-        <rect x="856" y="586.5" width="64" height="27" fill="white"/>
-        <text transform="translate(861 591.804)" fill="black">
+        <rect x="856" y="584" width="64" height="27" fill="white"/>
+        <text transform="translate(861 589.304)" fill="black">
           <tspan font-family="Helvetica Neue" font-size="14" font-weight="400" fill="black" x="3.151" y="13">HTTP/2</tspan>
         </text>
       </g>

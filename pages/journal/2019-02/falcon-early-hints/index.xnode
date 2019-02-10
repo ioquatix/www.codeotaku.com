@@ -35,7 +35,7 @@
 	
 	<content:listing src="rack-early-hints.txt" lang="ruby" />
 	
-	<p>Using chrome, we can see the push promises in the inspector:</p>
+	<p>It is possible to see the push promises using the Chrome network inspector:</p>
 	
 	<div class="gallery">
 		<img src="chrome-inspector.png" />

@@ -9,7 +9,7 @@
 		<img src="Traditional.svg" />
 	</figure>
 	
-	<p>A push promise is very similar, except instead of the client generating the request, the server generates the request (push promise), and sends it to the client, along with the response. By initiating the requests, overall latency can be greatly reduced.</p>
+	<p>A push promise is very similar, except instead of the client generating the request, the server generates the request (push promise), and sends it to the client, along with the response. By initiating the requests this way, overall latency can be greatly reduced.</p>
 	
 	<figure>
 		<img src="Push Promise.svg" />

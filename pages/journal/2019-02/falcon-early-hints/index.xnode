@@ -1,5 +1,5 @@
 <content:entry>
-	<p>As web standards continue to evolve, Rack has sometimes struggled to provide appropriate interfaces. HTTP/2 push promises expand on the request-response model of traditional web applications, and requires explicit support from both servers and applications. We present <a href="https://github.com/socketry/falcon">Falcon</a>, which implements <code class="syntax">rack.early_hints</code> and discuss the strengths and weaknesses of the <a href="http://eileencodes.com/posts/http2-early-hints/">current proposal</a>.</p>
+	<p>As web standards continue to evolve, Rack has sometimes struggled to provide appropriate interfaces. HTTP/2 push promises expand on the request-response model of traditional web applications, and requires explicit support from both servers and applications. We present <a href="https://github.com/socketry/falcon">Falcon</a>, which implements HTTP/2 server push and discuss the strengths and weaknesses of the <a href="http://eileencodes.com/posts/http2-early-hints/">current <code class="syntax">rack.early_hints</code> proposal</a>.</p>
 	
 	<h2>HTTP/2 Push Promises</h2>
 	

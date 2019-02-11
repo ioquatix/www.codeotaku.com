@@ -19,6 +19,9 @@ common: &defaults
   # - Default: none
   # - Valid Options: true, false
   monitor: true
+  
+  # Enable debug logging to diagnose agent problems:
+  log_level: debug
 
 production:
   <<: *defaults

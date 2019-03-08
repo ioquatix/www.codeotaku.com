@@ -3,20 +3,28 @@
 //	See <jquery.syntax.js> for licensing details.
 
 pre code.syntax-theme-base
+  display: block
+  
   > span
-    display: flex
+    display: block
+    white-space: pre-wrap
   
   .indent
-    flex-grow: 0
-    flex-shrink: 0
-  
+    display: block
+    float: left
+
   .text
     white-space: pre-wrap
+    display: block
+    overflow: hidden
 
-    padding-left: 2ch
-    text-indent: -2ch
+    padding-left: 1rem
+    text-indent: -1rem
 
 .syntax-theme-base
+  font-family: Menlo, Monaco, Consolas, monospace
+  line-height: 1.15em
+  
   a
     text-decoration: none
     color: inherit
@@ -54,3 +62,23 @@ pre code.syntax-theme-base
 
   .highlight
     background-color: opacify(#fdfdba, 0.5)
+
+  pre
+    overflow: auto
+    font-family: inherit
+
+.syntax-container.syntax-theme-base
+  position: relative
+  .toolbar
+    font-size: 80%
+    text-align: right
+    padding: 0 0.2em 0.2em
+    a
+      margin-left: 1em
+
+  pre.raw
+    overflow: auto
+    padding: 0 0.4em 0 !important
+    margin: 0 !important
+    background-color: $background-primary
+    border: 1px solid $border-primary

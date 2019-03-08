@@ -59,8 +59,9 @@ use Utopia::Localization,
 
 require 'utopia/session'
 use Utopia::Session,
-	:expires_after => 3600 * 24,
-	:secret => ENV['UTOPIA_SESSION_SECRET']
+	expires_after: 3600 * 24,
+	secret: ENV['UTOPIA_SESSION_SECRET'],
+	secure: true
 
 use Utopia::Controller
 

@@ -30,7 +30,7 @@ group :development do
 	
 	# For `rspec` testing:
 	gem "rspec"
-	gem "simplecov"
+	gem "covered"
 end
 
 group :production do

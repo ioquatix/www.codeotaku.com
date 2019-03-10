@@ -1,6 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    ast (2.4.0)
     async (1.15.5)
       nio4r (~> 2.3)
       timers (~> 4.1)
@@ -14,12 +15,19 @@ GEM
       http-protocol (~> 0.15)
     async-io (1.20.0)
       async (~> 1.14)
+    async-rest (0.7.3)
+      async-http (~> 0.37)
+      http-protocol (~> 0.14)
     bcrypt (3.1.12)
-    build-environment (1.6.0)
+    build-environment (1.7.0)
     coderay (1.1.2)
     concurrent-ruby (1.1.4)
+    covered (0.11.0)
+      async-rest
+      msgpack
+      parser
+      rainbow
     diff-lcs (1.3)
-    docile (1.3.1)
     falcon (0.26.0)
       async (~> 1.13)
       async-container (~> 0.10.0)
@@ -42,7 +50,7 @@ GEM
       shellany (~> 0.0)
       thor (>= 0.18.1)
     guard-compat (1.2.1)
-    guard-falcon (0.8.7)
+    guard-falcon (0.8.8)
       falcon (~> 0.19)
       guard
       guard-compat (~> 1.2)
@@ -54,7 +62,6 @@ GEM
     http-hpack (0.1.1)
     http-protocol (0.15.0)
       http-hpack (~> 0.1.0)
-    json (2.2.0)
     kramdown (2.1.0)
     kramdown-parser-gfm (1.0.1)
       kramdown (~> 2.0)
@@ -78,6 +85,8 @@ GEM
     notiffany (0.1.1)
       nenv (~> 0.1)
       shellany (~> 0.0)
+    parser (2.6.0.0)
+      ast (~> 2.4.0)
     passenger (6.0.2)
       rack
       rake (>= 0.8.1)
@@ -123,18 +132,13 @@ GEM
       rainbow (>= 2.0, < 4.0)
     scout_apm (2.4.21)
     shellany (0.0.1)
-    simplecov (0.16.1)
-      docile (~> 1.1)
-      json (>= 1.8, < 3)
-      simplecov-html (~> 0.10.0)
-    simplecov-html (0.10.2)
     thor (0.20.3)
     timers (4.3.0)
     trenni (3.5.0)
       rake-compiler
     trenni-sanitize (0.2.0)
       trenni (~> 3.5.0)
-    utopia (2.2.0)
+    utopia (2.6.0)
       concurrent-ruby (~> 1.0)
       http-accept (~> 1.6)
       mail (~> 2.6)
@@ -161,6 +165,7 @@ DEPENDENCIES
   async-http
   bcrypt
   bundler
+  covered
   guard-falcon
   guard-rspec
   kramdown
@@ -173,9 +178,8 @@ DEPENDENCIES
   relaxo-model (~> 0.10.0)
   rspec
   scout_apm (~> 2.4.0)
-  simplecov
   trenni-sanitize
-  utopia (~> 2.2.0)
+  utopia (~> 2.6.0)
   utopia-analytics
   utopia-gallery (~> 2.0)
 

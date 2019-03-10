@@ -56,5 +56,7 @@
 		<utopia:environment only="production">
 			<content:analytics id="UA-2590906-11"/>
 		</utopia:environment>
+		
+		<script src="//instant.page/1.2.1" type="module" integrity="sha384-/IkE5iZAM/RxPto8B0nvKlMzIyCWtYocF01PbGGp1qElJuxv9J4whdWBRtzZltWn"></script>
 	</body>
 </html>

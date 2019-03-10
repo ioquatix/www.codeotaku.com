@@ -9,8 +9,8 @@
     "chart.js@^2.7.3",
     "instant.page@^1.2.1",
     "jquery-litebox@^1.0.2",
-    "jquery-syntax@^4.0.0",
-    "jquery-xframe@^1.1.1"
+    "jquery-syntax@^4.1.0",
+    "jquery-xframe@^1.2.0"
   ],
   "lockfileEntries": {
     "chart.js@^2.7.3": "https://registry.yarnpkg.com/chart.js/-/chart.js-2.7.3.tgz#cdb61618830bf216dc887e2f7b1b3c228b73c57e",
@@ -20,8 +20,8 @@
     "color-name@^1.0.0": "https://registry.yarnpkg.com/color-name/-/color-name-1.1.4.tgz#c2a09a87acbde69543de6f63fa3995c826c536a2",
     "instant.page@^1.2.1": "https://registry.yarnpkg.com/instant.page/-/instant.page-1.2.1.tgz#f86a2c94d0a460e964ff093ccad13a8ac61d4489",
     "jquery-litebox@^1.0.2": "https://registry.yarnpkg.com/jquery-litebox/-/jquery-litebox-1.0.2.tgz#122caec1e8ec1452f88d1d3eb3dd6f541f3f98c9",
-    "jquery-syntax@^4.0.0": "https://registry.yarnpkg.com/jquery-syntax/-/jquery-syntax-4.0.0.tgz#3088f820ec7fb35e7b5d8abb1886062d647507e5",
-    "jquery-xframe@^1.1.1": "https://registry.yarnpkg.com/jquery-xframe/-/jquery-xframe-1.1.1.tgz#e11d7245947a52159a3059968a6957b6e50fc4ef",
+    "jquery-syntax@^4.1.0": "https://registry.yarnpkg.com/jquery-syntax/-/jquery-syntax-4.1.0.tgz#fdb72de995539da1f8936fd660e257b1e6bf9d04",
+    "jquery-xframe@^1.2.0": "https://registry.yarnpkg.com/jquery-xframe/-/jquery-xframe-1.2.0.tgz#5cd9f8aa6fa277596cc7e4d41b448490d62e8182",
     "jquery@>=1.4.1": "https://registry.yarnpkg.com/jquery/-/jquery-3.3.1.tgz#958ce29e81c9790f31be7792df5d4d95fc57fbca",
     "moment@^2.10.2": "https://registry.yarnpkg.com/moment/-/moment-2.24.0.tgz#0d055d53f5052aa653c9f6eb68bb5d12bf5c2b5b"
   },

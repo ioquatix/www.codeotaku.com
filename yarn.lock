@@ -47,17 +47,17 @@ jquery-litebox@^1.0.2:
   dependencies:
     jquery ">=1.4.1"
 
-jquery-syntax@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/jquery-syntax/-/jquery-syntax-4.0.0.tgz#3088f820ec7fb35e7b5d8abb1886062d647507e5"
-  integrity sha1-MIj4IOx/s157XYq7GIYGLWR1B+U=
+jquery-syntax@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/jquery-syntax/-/jquery-syntax-4.1.0.tgz#fdb72de995539da1f8936fd660e257b1e6bf9d04"
+  integrity sha512-HpJRYaKi02RwNflxiJZSTi7nX747tvV32O/h3scXwKvIZM31TH+egqOst7i+3DgWtMQSZzaboZR0msTKmqVXDg==
   dependencies:
     jquery ">=1.4.1"
 
-jquery-xframe@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/jquery-xframe/-/jquery-xframe-1.1.1.tgz#e11d7245947a52159a3059968a6957b6e50fc4ef"
-  integrity sha1-4R1yRZR6UhWaMFmWimlXtuUPxO8=
+jquery-xframe@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/jquery-xframe/-/jquery-xframe-1.2.0.tgz#5cd9f8aa6fa277596cc7e4d41b448490d62e8182"
+  integrity sha512-3C0GnUAv+AVsVolor3MMdB3uCRPHwVdtjSjv6PU1e6shybM5S6m3uB0b+22rQMS+jBTMotLELH8T+AXHGyAc/w==
   dependencies:
     jquery ">=1.4.1"
 

@@ -520,6 +520,11 @@ nav a {
 
 /* Blockquotes */
 
+blockquote {
+	margin-top: 2rem;
+	margin-bottom: 2rem;
+}
+
 .comment blockquote {
 	border-left: 0.2rem solid grey;
 }

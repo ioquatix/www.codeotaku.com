@@ -30,8 +30,7 @@ GEM
       msgpack
       parser
     diff-lcs (1.3)
-    event (1.5.0)
-    falcon (0.26.0)
+    falcon (0.27.0)
       async (~> 1.13)
       async-container (~> 0.10.0)
       async-http (~> 0.38.0)
@@ -40,7 +39,7 @@ GEM
       http-protocol (~> 0.15)
       localhost (~> 1.1)
       rack (>= 1.0)
-      samovar (~> 1.3)
+      samovar (~> 2.1)
     ffi (1.10.0)
     formatador (0.2.5)
     guard (2.15.0)
@@ -102,8 +101,6 @@ GEM
       rack (~> 2.0)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
-    rainbow (2.2.2)
-      rake
     rake (12.3.2)
     rake-compiler (1.0.7)
       rake
@@ -130,8 +127,8 @@ GEM
     rspec-support (3.8.0)
     ruby_dep (1.5.0)
     rugged (0.28.1)
-    samovar (1.11.0)
-      event
+    samovar (2.1.1)
+      console (~> 1.0)
       mapping (~> 1.0)
     scout_apm (2.4.24)
     shellany (0.0.1)
@@ -141,14 +138,15 @@ GEM
       rake-compiler
     trenni-sanitize (0.3.0)
       trenni (~> 3.5)
-    utopia (2.6.0)
+    utopia (2.8.2)
       concurrent-ruby (~> 1.0)
+      console (~> 1.0)
       http-accept (~> 1.6)
       mail (~> 2.6)
       mime-types (~> 3.0)
+      msgpack
       rack (~> 2.0)
-      rainbow (~> 2.1)
-      samovar (~> 1.2)
+      samovar (~> 2.1)
       trenni (~> 3.0)
     utopia-analytics (2.0.0)
       utopia (~> 2.0)
@@ -182,7 +180,7 @@ DEPENDENCIES
   rspec
   scout_apm (~> 2.4.0)
   trenni-sanitize
-  utopia (~> 2.6.0)
+  utopia (~> 2.8.0)
   utopia-analytics
   utopia-gallery (~> 2.0)
 

@@ -3,10 +3,25 @@ pre {
 	tab-size: 2;
 	-moz-tab-size: 2;
 	overflow: auto;
+	margin: 0;
 }
 
 figure {
 	text-align: center;
+	padding: 0.2rem;
+}
+
+@media (prefers-color-scheme: dark) {
+	figure {
+		color: black;
+		opacity: 0.75;
+		background-color: white;
+		transition: opacity .5s ease-in-out;
+	}
+	
+	figure:hover {
+		opacity: 1;
+	}
 }
 
 figure.listing {
@@ -67,7 +82,7 @@ ul ul {
 }
 
 body {
-	background-color: #444;
+	background-color: #333;
 	
 	background-attachment: fixed;
 	color: #000;
@@ -89,17 +104,14 @@ p.discussion {
 }
 
 a {
-	color: #3456ef;
-	text-decoration: none;
+	color: #69f;
 }
 
 main a {
-	-border-bottom: solid 0.1rem rgba(0, 215, 226, 0.4);
 }
 
 main a:hover {
-	color: #2345ef;
-	-border-bottom: solid 0.1rem rgba(0, 245, 256, 0.4);
+	color: #8cf;
 }
 
 div.centered {
@@ -115,7 +127,21 @@ main {
 main h1, main h2, main h3, main h4 {
 	font-weight: normal;
 	color: #222;
-	text-shadow: 0.125rem 0.125rem 0.125rem #eee;
+}
+
+@media (prefers-color-scheme: dark) {
+	body {
+		color: #ccc;
+	}
+	
+	main {
+		box-shadow: 0rem -0.125rem 0.5rem black;
+		background-color: #111;
+	}
+	
+	main h1, main h2, main h3, main h4 {
+		color: #aaa;
+	}
 }
 
 main h1 {
@@ -125,10 +151,7 @@ main h1 {
 
 main h2 {
 	font-size: 1.5rem;
-	
 	margin: 6rem 0 2rem;
-	
-	color: #333;
 	letter-spacing: 0.12rem;
 }
 
@@ -198,6 +221,12 @@ header h1 {
 header strong {
 	font-weight: normal;
 	color: #00a;
+}
+
+@media (prefers-color-scheme: dark) {
+	header strong {
+		color: #69f;
+	}
 }
 
 header span {
@@ -291,37 +320,29 @@ table.basic thead th, table.basic tfoot th {
 	font-family: "Lucida Grande", Sans-Serif;
 	font-size: 1.2rem;
 	text-align: left;
-	color: #003399;
 }
 
 table.basic thead th {
-	border-bottom: 0.125rem solid #6678b2;
+	border-bottom: 0.125rem solid #666;
 	padding: 0.625rem 0.5rem;
 }
 
 table.basic tfoot th {
-	border-bottom: 0.125rem solid #6678b2;
+	border-bottom: 0.125rem solid #666;
 	padding: 0.625rem 0.5rem;
 }
-
 
 table.basic tbody th,
 table.basic tbody td {
 	border: none;
 	font-size: .9rem;
 	padding: 0.5625rem 0.5rem 0rem 0.5rem;
-	color: #666699
 }
 
 table.basic tbody th {
 	text-align: left;
 	text-decoration: underline;
 	padding-top: 0.75rem;
-}
-
-table.basic tbody tr:hover td {
-	color: #000;
-	text-shadow: #aaa 0.0625rem 0.0625rem 0.125rem;
 }
 
 table.data th {
@@ -386,6 +407,45 @@ form label {
 	margin: 0.5rem 0;
 }
 
+button, input, textarea {
+	border-radius: 0.2rem;
+	border: 0.1rem solid;
+	
+	margin: 0.2rem 0.2rem;
+	padding: 0.2rem;
+	
+	font-size: 1rem;
+}
+
+input[type=submit] {
+	background-color: #ccc;
+}
+
+input[type=submit]:active {
+	background-color: #aaa;
+	border-color: #666;
+}
+
+@media (prefers-color-scheme: dark) {
+	input, textarea {
+		background-color: #222;
+		color: #fff;
+		border-color: #444;
+	}
+	
+	input[type=submit] {
+		border-color: #aaa;
+		background-color: #444;
+		color: #ccc;
+	}
+	
+	input[type=submit]:active {
+		border-color: #444;
+		background-color: #222;
+		color: white;
+	}
+}
+
 form label input, form label textarea {
 	display: block;
 	margin: 0.5rem 0;
@@ -414,13 +474,12 @@ form.basic input:not([type=button]):not([type=reset]):not([type=submit]) {
 
 form.basic input:invalid,
 form.basic textarea:invalid {
-	background-color: #ffdddd;
+	border-color: red;
 }
 
 form.basic textarea {
 	box-sizing: border-box;
 	width: 100%;
-	
 }
 
 audio {

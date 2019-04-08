@@ -5,10 +5,10 @@ index.ja:
     order: 1
     title: "コードオタク"
 projects:
-    title: "Samuel's Projects"
+    title: "Projects"
     order: 2
 journal:
-    title: "Samuel's Journal"
+    title: "Journal"
     order: 3
 errors:
     display: false

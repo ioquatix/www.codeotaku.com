@@ -15,14 +15,14 @@
 			
 			link = links(path.dirname, name: basename, locale: localization.current_locale, indices: indices, display: nil).first
 			
-			if !front ?>
-			<li>&lambda;</li>
-			<?r end
+			if link and link.href?
+				if !front
+					?><li>/</li><?r
+				end
+				
+				?><li>#{link.to_href(base: first.node.uri_path)}</li><?r
+			end
 			
-			if link ?>
-			<li>#{link.to_href(base: first.node.uri_path)}</li>
-			<?r end 
-					
 			front = false
 			prev = link
 		end ?>

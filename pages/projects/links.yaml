@@ -24,7 +24,7 @@ dream:
 property-manager:
     title: 'Property Manager'
     tags: ['commercial', 'cocoa', 'objective-c', 'application']
-    uri: http://www.housepigeon.com/property-manager
+    uri: http://www.propertymanager.cloud
     description: "Property management made easy for the Mac."
 truth-tables:
     title: 'Truth Tables'
@@ -36,11 +36,6 @@ programming-dojo:
     tags: ['educational', 'research', 'website']
     uri: http://programming.dojo.net.nz
     description: "An educational resource covering a variety of different programming languages."
-house-pigeon:
-    title: 'House Pigeon'
-    tags: ['commercial', 'website']
-    uri: http://www.housepigeon.com
-    description: "An online rental property management and advertising platform."
 synco:
     title: 'Synco'
     tags: ['open', 'ruby', 'framework', 'command-line']

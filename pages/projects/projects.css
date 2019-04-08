@@ -6,7 +6,6 @@
 	
 	text-align: center;
 	
-	background-color: white;
 	box-shadow: 0 0 4px rgba(0, 0, 0, 0.05);
 
 	padding: 4pt;
@@ -21,20 +20,15 @@
 	margin: 0.5em 0.2em 0.5em;
 	min-width: 8em;
 	
-	background-image: url("/_static/gd2-small.png");
-	
 	border: 1px solid #999;
 	
 	border-radius: 0.2em;
 }
 
 .filter .tags a:hover {
-	background-image: url("/_static/gd2-small-hover.png");
 }
 
 .filter .tags a.selected {
-	background-image: url("/_static/gd2-small-inset.png");
-	color: white;
 }
 
 ul.projects {
@@ -104,5 +98,11 @@ ul.projects {
 .title .tag.computer-vision  {
 	border-color: #6A5ACD;
 	box-shadow: 0 0 2px #6A5ACD;
-	color: #6A5ACD;	
+	color: #6A5ACD;
+}
+
+@media (prefers-color-scheme: dark) {
+	.title .tag {
+		background-color: black;
+	}
 }

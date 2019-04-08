@@ -1,15 +1,15 @@
-	movl	_g_count, %eax
-	xorl	%edx, %edx
+	movl _g_count, %eax
+	xorl %edx, %edx
 LVL119:
 L207:
 LBB201:
 LM27:
-	incl	%edx
+	incl %edx
 LBE201:
 LM28:
-	incl	%eax
+	incl %eax
 LBB202:
 LM29:
-	cmpl	$1000, %edx
-	jne	L207
-	movl	%eax, _g_count
+	cmpl $1000, %edx
+	jne L207
+	movl %eax, _g_count

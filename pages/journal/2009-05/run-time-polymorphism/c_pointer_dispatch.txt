@@ -1,13 +1,13 @@
 LM33:
-	movl	$0, -36(%ebp)
-	jmp	L312
+	movl $0, -36(%ebp)
+	jmp L312
 L313:
 LM34:
-	movl	-48(%ebp), %eax
-	call	*%eax
+	movl -48(%ebp), %eax
+	call *%eax
 LM35:
-	leal	-36(%ebp), %eax
-	incl	(%eax)
+	leal -36(%ebp), %eax
+	incl (%eax)
 L312:
-	cmpl	$19999, -36(%ebp)
-	jbe	L313
+	cmpl $19999, -36(%ebp)
+	jbe L313

@@ -44,8 +44,8 @@ end
 		<content:heading>#{title}</content:heading>
 
 		<div class="details">
-			<span class="author">Author: <strong>#{author}</strong></span>
-			<span class="when">When: <strong>#{created.strftime("%A, %d %B %Y")}</strong></span>
+			<span class="author">#{author}</span>
+			<span class="when">#{created.strftime("%A, %d %B %Y")}</span>
 		</div>
 	</header>
 	

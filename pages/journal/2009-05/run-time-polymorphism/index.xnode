@@ -15,7 +15,7 @@
 	
 	<p>Dynamic dispatch can cost quite a bit, depending on your perspective.</p>
 	
-	<p>I've prepared a sample application which can be compiled on Mac OS X using Xcode. The purpose of this tool is to benchmark a very contrived small function, and produce a baseline time. <a href="dispatch_benchmark.zip">dispatch_benchmark.zip</a>.</p>
+	<p>I've prepared a <a href="https://github.com/ioquatix/dispatch-benchmark">sample application</a> which can be compiled on Mac OS X using Xcode. The purpose of this tool is to benchmark a very contrived small function, and produce a baseline time.</p>
 	
 	<p>The function body we are calling is identical in all cases, and looks like this:</p>
 	

@@ -1,9 +1,9 @@
 L310:
 LM29:
-	call	basicFunction()
+	call basicFunction()
 LM30:
-	leal	-40(%ebp), %eax
-	incl	(%eax)
+	leal -40(%ebp), %eax
+	incl (%eax)
 L309:
-	cmpl	$19999, -40(%ebp)
-	jbe	L310
+	cmpl $19999, -40(%ebp)
+	jbe L310

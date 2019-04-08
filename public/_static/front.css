@@ -5,12 +5,6 @@ html {
 	font-size: 2.0vw;
 }
 
-@media (min-width: 30em) {
-	html {
-		font-size: 1.2vw;
-	}
-}
-
 .bottom, .top {
 	position: absolute;
 	left: 0;
@@ -23,8 +17,9 @@ html {
 	bottom: 50%;
 	top: 0;
 	
-	background-color: white;
-	box-shadow: 0 0 8px rgba(0, 0, 0, 1.0);
+	background-color: #eee;
+	color: #111;
+	
 	z-index: 10;
 }
 
@@ -32,8 +27,8 @@ html {
 	top: 50%;
 	bottom: 0;
 
-	background-color: #333;
-	color: white;
+	background-color: #111;
+	color: #eee;
 
 	padding: 8pt;
 	
@@ -44,12 +39,20 @@ html {
 	padding: 0 4pt;
 }
 
+a {
+	color: inherit;
+}
+
+a:hover {
+	filter: brightness(150%);
+}
+
 h1 {
 	position: absolute;
 	left: 0;
 	right: 0;
 
-	font-size: 8vw;
+	font-size: 10vw;
 	padding-right: 0.2em;
 }
 
@@ -62,6 +65,3 @@ h1 {
 	text-shadow: #aaa 0 0 5rem;
 }
 
-.bottom a {
-	color: white;
-}

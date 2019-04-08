@@ -9,9 +9,9 @@
 ?>
 <section class="xframe" data-xframe-source="#{comments_path.to_s}?node=#{node_name}" onload="javascript:setupComments(this)">
 	<div id="comments">
-		<content:user />
-	
 		<h1>Comments</h1>
+		<content:user />
+		
 	<?r
 		comments.each do |comment|
 	?>

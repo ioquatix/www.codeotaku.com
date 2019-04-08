@@ -23,9 +23,5 @@
 	
 	<h2>Usage</h2>
 	
-	<p>The source code is available as an Xcode project. This project may not be reproduced except for personal use.</p>
-	
-	<content:filebox path="RSA.zip">
-		Released: 5 April 2011
-	</content:filebox>
+	<p>The <a href="https://github.com/ioquatix/rsa">source code</a> is available as an Xcode project. This project may not be reproduced except for personal use.</p>
 </content:entry>

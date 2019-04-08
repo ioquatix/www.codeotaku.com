@@ -1,4 +1,4 @@
-<div class="login_buttons" style="float: right">
+<div class="login-buttons" style="text-align: right;">
 	<?r if controller[:user] ?>
 	<form id="login" method="post" action="logout">
 		<fieldset>

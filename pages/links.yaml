@@ -1,9 +1,9 @@
 index.en:
     order: 1
-    title: "`(code otaku)"
+    title: "codeotaku"
 index.ja:
     order: 1
-    title: "`(コードオタク)"
+    title: "コードオタク"
 projects:
     title: "Samuel's Projects"
     order: 2

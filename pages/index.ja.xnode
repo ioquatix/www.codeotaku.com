@@ -3,9 +3,6 @@
 		<h1>コードオタク</h1>
 	</div>
 	<div class="bottom">
-		[<a href="projects" title="my projects">projects</a>, 
-			<a href="journal" title="my journal">journal</a>, 
-			<a href="music" title="my music">sounds</a>, 
-			<a href="about" title="about me">self</a>]
+		<a href="projects" title="my projects">projects</a>, <a href="journal" title="my journal">journal</a>, <a href="music" title="my music">sounds</a> = *<a href="about" title="about me">self</a>
 	</div>
 </content:front>

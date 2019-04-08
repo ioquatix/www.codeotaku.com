@@ -56,6 +56,17 @@ figure {
 	padding: 0.2rem;
 }
 
+figure.diagram {
+	background-color: white;
+	border-radius: 1rem;
+}
+
+@media (prefers-color-scheme: dark) {
+	figure.diagram {
+		filter: invert(1.0) hue-rotate(180deg);
+	}
+}
+
 figure.listing {
 	text-align: left;
 }

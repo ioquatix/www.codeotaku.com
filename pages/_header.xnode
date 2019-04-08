@@ -13,7 +13,7 @@
 				indicies = true
 			end
 			
-			link = links(path.dirname, :name => basename, :locale => localization.current_locale, :indices => indices, :display => nil).first
+			link = links(path.dirname, name: basename, locale: localization.current_locale, indices: indices, display: nil).first
 			
 			if !front ?>
 			<li>&lambda;</li>

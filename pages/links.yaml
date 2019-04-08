@@ -1,10 +1,13 @@
-index:
+index.en:
     order: 1
     title: "`(code otaku)"
+index.ja:
+    order: 1
+    title: "`(コードオタク)"
 projects:
     title: "Samuel's Projects"
     order: 2
-blog:
+journal:
     title: "Samuel's Journal"
     order: 3
 errors:

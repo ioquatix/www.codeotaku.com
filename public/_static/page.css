@@ -1,11 +1,16 @@
 
 
-body {
+html {
 	background-color: #111;
+	background: linear-gradient(to bottom, #111 0%, #555 100%);
 	color: #eee;
 	
 	font-family: 'HelveticaNeue-Light', Helvetica, Arial, sans-serif;
 	font-weight: lighter;
+	min-height: 100%;
+}
+
+body {
 	margin: 0;
 }
 
@@ -15,26 +20,22 @@ nav a, footer a {
 
 main {
 	--highlight-color: #33f;
-	
-	box-shadow: 0rem -0.125rem 0.5rem black;
 	background-color: #eee;
 	color: #111;
 }
 
 @media (prefers-color-scheme: dark) {
-	body {
+	html {
 		background-color: #eee;
+		background: linear-gradient(to bottom, #eee 0%, #aaa 100%);
 		color: #111;
 		
 		font-family: 'HelveticaNeue-Light', Helvetica, Arial, sans-serif;
 		font-weight: lighter;
-		margin: 0;
 	}
 
 	main {
 		--highlight-color: #69f;
-		
-		box-shadow: 0rem -0.125rem 0.5rem white;
 		background-color: #111;
 		color: #eee;
 	}
@@ -142,10 +143,15 @@ main a {
 a {
 	color: inherit;
 	text-decoration: none;
+	border-radius: 0.2rem;
 }
 
 a:hover {
-	text-decoration: underline;
+	background-color: rgba(127, 127, 127, 0.3);
+}
+
+a:active {
+	background-color: rgba(127, 127, 127, 0.5);
 }
 
 div.centered {

@@ -10,7 +10,7 @@
 			<title>`(code otaku)</title>
 		<?r end ?>
 		
-		<base href="#{first.node.uri_path}"/>
+		<!-- <base href="#{first.node.uri_path}"/> -->
 		<meta name="viewport" content="width=device-width, initial-scale=1"/>
 		
 		<link rel="icon" type="image/png" href="/_static/icon.png" />

@@ -360,7 +360,7 @@ table.data td {
 	padding: 0.25rem;
 }
 
-#comments .comment .byline {
+.comment .byline {
 	color: #333;
 	font-size: 0.9rem;
 	padding: 0.5rem 0.25rem;
@@ -368,28 +368,32 @@ table.data td {
 	position: relative;
 }
 
-#comments .comment .moderation {
+.comment .moderation {
 	text-align: center;
 	padding: 0.3125rem;
 }
 
-#comments .comment .byline .posted_on {
+.comment .byline .posted_on {
 	color: #999;
 	float: right;
 }
 
-#comments .comment .byline .summary {
+.comment .byline .summary {
 	margin-top: 1.75rem;
 }
 
-#comments .comment .icon {
+.comment .icon {
 	margin: 0rem 1.25rem 0.3125rem 0.625rem;
 	float: left;
 }
 
-#comments .comment .body {
+.comment .body {
 	margin: 0.125rem;
 	border-top: 0.0625rem solid #ccc;
+}
+
+.comment pre {
+	margin: 1.0rem;
 }
 
 form label {

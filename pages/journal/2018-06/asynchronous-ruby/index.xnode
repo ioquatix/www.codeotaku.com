@@ -15,7 +15,7 @@
 	
 	<p>Parallel programs are those that execute tasks simulateously on multiple processors, typically using processes or threads. Parallel programs are good for CPU-bound workloads because tasks can be executed on independent processors at full speed with minimal contention.</p>
 	
-	<figure>
+	<figure class="diagram">
 		<img width="20%" src="Eating-Dog.svg" />
 		<img width="20%" src="Eating-Dog.svg" />
 		<img width="20%" src="Eating-Dog.svg" />
@@ -27,7 +27,7 @@
 	
 	<p>Concurrent programs interleave task execution on a single processor, typically by cooperative or preemptive scheduling. Concurrent programs are good for IO-bound workloads because tasks share the processor while they are waiting on high-latency IO operations.</p>
 	
-	<figure>
+	<figure class="diagram">
 		<img width="20%" src="Eating-Dog.svg" />
 		<img width="20%" src="Sitting-Dog.svg" />
 		<img width="20%" src="Sitting-Dog.svg" />

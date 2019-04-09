@@ -88,7 +88,7 @@ main {
 	padding: 1rem;
 }
 
-article, div#comments {
+article, section.comments {
 	max-width: 45em;
 	margin-left: auto;
 	margin-right: auto;
@@ -360,7 +360,7 @@ table.data td {
 	padding: 0.25rem;
 }
 
-.comment .byline {
+section.comments .comment .byline {
 	color: #333;
 	font-size: 0.9rem;
 	padding: 0.5rem 0.25rem;
@@ -368,31 +368,31 @@ table.data td {
 	position: relative;
 }
 
-.comment .moderation {
+section.comments .comment .moderation {
 	text-align: center;
 	padding: 0.3125rem;
 }
 
-.comment .byline .posted_on {
+section.comments .comment .byline .posted_on {
 	color: #999;
 	float: right;
 }
 
-.comment .byline .summary {
+section.comments .comment .byline .summary {
 	margin-top: 1.75rem;
 }
 
-.comment .icon {
+section.comments .comment .icon {
 	margin: 0rem 1.25rem 0.3125rem 0.625rem;
 	float: left;
 }
 
-.comment .body {
+section.comments .comment .body {
 	margin: 0.125rem;
 	border-top: 0.0625rem solid #ccc;
 }
 
-.comment pre {
+section.comments .comment pre {
 	margin: 1.0rem;
 }
 
@@ -583,7 +583,7 @@ ul.features li {
 
 /* Blog comments */
 
-#comments h1 {
+section.comments h1 {
 	margin-top: 8rem;
 }
 

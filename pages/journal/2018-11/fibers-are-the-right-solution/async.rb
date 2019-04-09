@@ -3,7 +3,7 @@
 require 'async'
 require 'async/io/tcp_socket'
 
-Async.run do |task|
+Async do |task|
 	server = Async::IO::TCPServer.new('localhost', 9090)
 	
 	loop do

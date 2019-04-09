@@ -2,7 +2,6 @@
 
 require 'socket'
 require 'fiber'
-require 'io/nonblock'
 
 # The full implementation is given here, in order to show all the parts. A simpler implementation is given below.
 class Reactor
@@ -45,15 +44,11 @@ end
 server = TCPServer.new('localhost', 9090)
 reactor = Reactor.new
 
-server.nonblock = true
-
 Fiber.new do
 	loop do
 		client = reactor.wait_readable(server) {server.accept}
 		
 		Fiber.new do
-			client.nonblock = true
-			
 			while buffer = reactor.wait_readable(client) {client.gets}
 				reactor.wait_writable(client)
 				client.puts(buffer)

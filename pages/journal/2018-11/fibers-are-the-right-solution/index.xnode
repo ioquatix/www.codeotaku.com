@@ -1,6 +1,11 @@
 <content:entry>
 	<p>The majority of performance improvements in modern processors are due to increased core count rather than increased instruction execution frequency. To maximise hardware utilization, applications need to use multiple processes and threads. Servers that process discrete requests are a good candidate for both parallelization and concurrency improvements. We discuss different ways in which servers can improve processor utilization and how these different approaches affect application code. We show that fibers require minimal changes to existing application code and are thus a good approach for retrofitting existing systems.</p>
 	
+	<dl class="options">
+		<dt>RubyKaigi 2019 Slides</dt>
+		<dd><a href="Fibers Are the Right Solution.pdf">Fibers Are the Right Solution.pdf</a></dd>
+	</dl>
+	
 	<h2>Building an Asynchronous Server</h2>
 	
 	<p>A typical server consists of a loop that accepts connections and performs some work. We explore basic server designs and how they can be modified to improve scalability.</p>

@@ -9,3 +9,6 @@ tmp/
 config/environment.yaml
 _cache/
 public/_gallery/
+db/*/
+
+

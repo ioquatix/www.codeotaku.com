@@ -34,8 +34,5 @@ group :development do
 end
 
 group :production do
-	# Used for passenger-config to restart server after deployment:
-	gem "passenger"
-	
 	gem "scout_apm", "~> 2.4.0"
 end

@@ -1,7 +1,7 @@
 
 source "https://rubygems.org"
 
-gem "utopia", "~> 2.8.0"
+gem "utopia", "~> 2.9.0"
 gem "utopia-gallery", "~> 2.0"
 gem "utopia-analytics"
 

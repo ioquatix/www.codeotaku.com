@@ -1,7 +1,8 @@
 #!/usr/bin/env -S falcon host
 
-load :rack, :lets_encrypt, :supervisor
+load :rack, :lets_encrypt_tls, :supervisor
 
-rack 'www.codeotaku.com', :lets_encrypt
+hostname = File.basename(__dir__)
+rack hostname, :lets_encrypt_tls
 
 supervisor

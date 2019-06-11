@@ -182,9 +182,9 @@ DEPENDENCIES
   rspec
   scout_apm (~> 2.4.0)
   trenni-sanitize
-  utopia (~> 2.9.0)
+  utopia (~> 2.9.2)
   utopia-analytics
   utopia-gallery (~> 2.0)
 
 BUNDLED WITH
-   1.17.3
+   2.0.1

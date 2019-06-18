@@ -92,7 +92,7 @@ GEM
     protocol-http (0.8.0)
     protocol-http1 (0.8.0)
       protocol-http (~> 0.5)
-    protocol-http2 (0.8.0)
+    protocol-http2 (0.8.1)
       protocol-hpack (~> 1.4)
       protocol-http (~> 0.2)
     pry (0.12.2)

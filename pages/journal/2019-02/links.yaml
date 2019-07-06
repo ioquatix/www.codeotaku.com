@@ -4,3 +4,5 @@ falcon-early-hints:
   title: Early Hints and HTTP/2 Push with Falcon
   summary: How to use HTTP/2 push promises with falcon.
   display: true
+  front: true
+  preview_url: Transition.svg

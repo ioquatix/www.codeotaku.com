@@ -1,5 +1,5 @@
 <?r prev = nil ?>
-<nav>
+<nav id="navigation">
 	<ul class="trail">
 	<?r
 		front = true

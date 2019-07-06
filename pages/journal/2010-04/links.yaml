@@ -10,6 +10,8 @@ image-processing:
     created: 2010-04-27
     author: "Samuel Williams"
     summary: "I've been working on an image analysis algorithm for generating painted images.. here are the results so far!"
+    front: true
+    preview_url: examples/buddha2.png
 updating-installed-gems:
     created: 2010-04-29
     author: "Samuel Williams"

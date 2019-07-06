@@ -13,3 +13,5 @@ asynchronous-ruby:
   created: 2018-06-09
   title: "Asynchronous Ruby"
   summary: "Improve Ruby scalabiltiy using concurrent event-driven IO."
+  front: true
+  preview_url: Sitting-Dog.svg

@@ -1,44 +1,149 @@
 
+* {box-sizing: border-box;}
 
 html {
-	background-color: #111;
-	background: linear-gradient(to bottom, #111 0%, #555 100%);
-	color: #eee;
-	
-	font-family: 'HelveticaNeue-Light', Helvetica, Arial, sans-serif;
+	/* font-family: 'HelveticaNeue-Light', Helvetica, Arial, sans-serif; */
+	font-family: "PT Sans", Verdana, Helvetica, Arial, sans-serif;
+	background-color: black;
 	font-weight: lighter;
 	min-height: 100%;
 }
 
 body {
+	padding: 0;
 	margin: 0;
+	
+	color: #e1e1e1;
+	background-color: #111;
 }
 
-nav a, footer a {
+#header {
+	width: 100%;
+	height: 50vh;
+	
+	background: #222;
+	
+	margin: 0;
+	
+	text-align: center;
+	
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+}
+
+#header h1 {
+	font-size: 8vw;
+	margin: 0 2rem;
+}
+
+#header nav {
+	background: #222;
+	padding: 1rem;
+	
+	border-bottom: 1px solid #333;
+	
+	z-index: 4242;
+}
+
+a {
+	color: #01b9ff;
 	text-decoration: none;
 }
 
-main {
-	--highlight-color: #33f;
-	background-color: #eee;
-	color: #111;
+a:hover {
+	color: #80dcff;
 }
 
-@media (prefers-color-scheme: dark) {
-	html {
-		background-color: #eee;
-		background: linear-gradient(to bottom, #eee 0%, #aaa 100%);
-		color: #111;
-		
-		font-family: 'HelveticaNeue-Light', Helvetica, Arial, sans-serif;
-		font-weight: lighter;
-	}
+#header.sticky nav {
+	position: fixed;
+	
+	left: 0; right: 0;
+	top: 0;
+}
 
-	main {
-		--highlight-color: #69f;
-		background-color: #111;
-		color: #eee;
-	}
+#header.sticky {
+}
+
+main {
+	margin: auto;
+	max-width: 46rem;
+}
+
+p {
+	margin: 2rem 1rem;
+}
+
+section.articles {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+
+section.articles a {
+	box-sizing: border-box;
+	-flex-basis: 20rem;
+	flex-grow: 1;
+	
+	margin: 1rem;
+	position: relative;
+	background-color: white;
+	
+	width: 15rem;
+	height: 15rem;
+	
+	background-size: cover;
+	background-position: center;
+	text-decoration: none;
+	
+	border-radius: 1rem;
+	border: 0.1rem solid #fff;
+	overflow: hidden;
+	
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+}
+
+section.articles a > * {
+	padding: 0.5rem;
+	background-color: rgba(0, 0, 0, 0.8);
+}
+
+section.articles small {
+	opacity: 0;
+	transition: 0.2s;
+	color: white;
+}
+
+section.articles a:hover small {
+	opacity: 1;
+	display: block;
+}
+
+main {
+	margin-top: 4rem;
+}
+
+main > section, main > article, main > header {
+	margin-bottom: 4rem;
+}
+
+main header {
+	text-align: center;
+	color: #999;
+}
+
+main header span {
+	line-height: 2rem;
+	margin: 0 2rem;
+	white-space: nowrap;
+}
+
+footer {
+	clear: both;
+	text-align: center;
+	padding: 1.25rem;
 }
 
 pre {
@@ -62,12 +167,6 @@ figure.diagram {
 	border-radius: 1rem;
 }
 
-@media (prefers-color-scheme: dark) {
-	figure.diagram {
-		filter: invert(1.0) hue-rotate(180deg);
-	}
-}
-
 figure.listing {
 	text-align: left;
 }
@@ -84,20 +183,6 @@ figure figcaption {
 	padding: 0;
 }
 
-main {
-	padding: 1rem;
-}
-
-article, section.comments {
-	max-width: 45em;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-p, figure, dl, ul {
-	margin: 1rem 0;
-}
-
 p {
 	text-align: justify;
 }
@@ -110,14 +195,6 @@ ul ul {
 	pre {
 		tab-size: 4;
 		-moz-tab-size: 4;
-	}
-	
-	main {
-		padding: 2rem;
-	}
-	
-	p, figure, dl, ul {
-		margin: 1rem;
 	}
 	
 	p {
@@ -136,24 +213,6 @@ p.discussion {
 	border-radius: 1rem;
 }
 
-main a {
-	color: var(--highlight-color);
-}
-
-a {
-	color: inherit;
-	text-decoration: none;
-	border-radius: 0.2rem;
-}
-
-a:hover {
-	background-color: rgba(127, 127, 127, 0.3);
-}
-
-a:active {
-	background-color: rgba(127, 127, 127, 0.5);
-}
-
 div.centered {
 	text-align: center;
 }
@@ -161,6 +220,7 @@ div.centered {
 main h1, main h2, main h3, main h4 {
 	font-weight: normal;
 	filter: brightness(150%);
+	margin: 6rem 0.5rem 2rem;
 }
 
 main h1 {
@@ -170,18 +230,15 @@ main h1 {
 
 main h2 {
 	font-size: 1.5rem;
-	margin: 6rem 0 2rem;
 	letter-spacing: 0.12rem;
 }
 
 main h3 {
 	font-size: 1.25rem;
-	margin: 6rem 0 2rem;
 }
 
 main h4 {
 	font-size: 1rem;
-	margin: 6rem 0 2rem;
 }
 
 main h2 + p, main h3 + p {
@@ -192,45 +249,6 @@ footer {
 	clear: both;
 	text-align: center;
 	padding: 1.25rem;
-}
-
-.navigation {
-	font-size: 1rem;
-	clear: both;
-	
-	margin: 1rem 0 1rem 0;
-}
-
-.logo {
-	text-align: center;
-}
-
-.navigation .prev_link {
-	float: left;
-}
-
-.navigation .next_link {
-	float: right;
-}
-
-header {
-	text-align: center;
-	margin: 2rem 0 4rem 0;
-	padding: 2rem 0.4rem;
-}
-
-header .details {
-	margin: 0 auto;
-}
-
-header h1 {
-	margin-top: 0;
-}
-
-header span {
-	line-height: 2rem;
-	margin: 1.25rem;
-	white-space: nowrap;
 }
 
 li {
@@ -360,42 +378,6 @@ table.data td {
 	padding: 0.25rem;
 }
 
-section.comments .comment .byline {
-	color: #333;
-	font-size: 0.9rem;
-	padding: 0.5rem 0.25rem;
-	
-	position: relative;
-}
-
-section.comments .comment .moderation {
-	text-align: center;
-	padding: 0.3125rem;
-}
-
-section.comments .comment .byline .posted_on {
-	color: #999;
-	float: right;
-}
-
-section.comments .comment .byline .summary {
-	margin-top: 1.75rem;
-}
-
-section.comments .comment .icon {
-	margin: 0rem 1.25rem 0.3125rem 0.625rem;
-	float: left;
-}
-
-section.comments .comment .body {
-	margin: 0.125rem;
-	border-top: 0.0625rem solid #ccc;
-}
-
-section.comments .comment pre {
-	margin: 1.0rem;
-}
-
 form label {
 	display: block;
 	margin: 0.5rem 0;
@@ -420,24 +402,22 @@ input[type=submit]:active {
 	border-color: #666;
 }
 
-@media (prefers-color-scheme: dark) {
-	input, textarea {
-		background-color: #222;
-		color: #fff;
-		border-color: #444;
-	}
-	
-	input[type=submit] {
-		border-color: #aaa;
-		background-color: #444;
-		color: #ccc;
-	}
-	
-	input[type=submit]:active {
-		border-color: #444;
-		background-color: #222;
-		color: white;
-	}
+input, textarea {
+	background-color: #222;
+	color: #fff;
+	border-color: #444;
+}
+
+input[type=submit] {
+	border-color: #aaa;
+	background-color: #444;
+	color: #ccc;
+}
+
+input[type=submit]:active {
+	border-color: #444;
+	background-color: #222;
+	color: white;
 }
 
 form label input, form label textarea {
@@ -501,6 +481,7 @@ sup a {
 }
 
 /* Page Navigation Bar */
+
 nav {
 	position: relative;
 	
@@ -581,10 +562,63 @@ ul.features li {
 	margin-bottom: 0.5rem;
 }
 
-/* Blog comments */
+/* Journal comments */
 
 section.comments h1 {
 	margin-top: 8rem;
+}
+
+section.comments .comment .byline {
+	color: #333;
+	font-size: 0.9rem;
+	padding: 0.5rem 0.25rem;
+	
+	position: relative;
+}
+
+section.comments .comment .moderation {
+	text-align: center;
+	padding: 0.3125rem;
+}
+
+section.comments .comment .byline .posted_on {
+	color: #999;
+	float: right;
+}
+
+section.comments .comment .byline .summary {
+	margin-top: 1.75rem;
+}
+
+section.comments .comment .icon {
+	margin: 0rem 1.25rem 0.3125rem 0.625rem;
+	float: left;
+}
+
+section.comments .comment .body {
+	margin: 0.125rem;
+	border-top: 0.0625rem solid #ccc;
+}
+
+section.comments .comment pre {
+	margin: 1.0rem;
+}
+
+/* Journal navigation */
+
+.navigation {
+	font-size: 1rem;
+	clear: both;
+	
+	margin: 1rem 0 1rem 0;
+}
+
+.navigation .prev_link {
+	float: left;
+}
+
+.navigation .next_link {
+	float: right;
 }
 
 /* Translations header */
@@ -596,9 +630,13 @@ li.locale {
 }
 
 /* Make youtube videos retain their 16:9 aspect ratio as they scale */
+
 .youtube-wrapper {
 	position: relative;
-	padding-bottom: 56.25%; /* 16:9 aspect ratio */
+	
+	/* 16:9 aspect ratio */
+	padding-bottom: 56.25%;
+	
 	height: 0;
 	width 100%;
 }
@@ -610,4 +648,3 @@ li.locale {
 	width: 100%;
 	height: 100%;
 }
-/* end youtube video stuff */

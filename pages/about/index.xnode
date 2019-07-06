@@ -1,15 +1,17 @@
 <content:page>
 	<content:heading>About</content:heading>
 	
-	<p>Hello~ welcome to my corner of the internet. This is my personal site for project work and personal thoughts.</p>
-	
-	<div style="text-align: center">
-		<img src="chi-keyboard.gif" alt="programming" />
-	</div>
-	
-	<p>If you'd like to know me in a more formal capacity, check out <a href="resume">my résumé</a>. Learn more about <a href="/projects">my current and past projects</a> and browse <a href="https://github.com/ioquatix">my online source code</a>. You can read about <a href="/journal/2010-02/about-me/index">my background</a> which explains how I got into computers.</p>
-	
-	<p>I have a wide range of interests including game design, programming language semantics, writing, ambient music, algorithms and tree climbing. When I need a break, I head outside and look after my garden. I'm growing Wasabi, I've got <a href="https://chick.nz">several chickens</a>, lots of fish and a cat. Once my cat fell in the pond because she was trying to catch the fish. She still tries to catch them, but she is a bit more cautious now.</p>
-	
-	<p>I value honesty, kindness, mindfulness, wisdom and creativity, and above all else I want to share these values with other people.</p>
+	<main>
+		<p>Hello~ welcome to my corner of the internet. This is my personal site for project work and personal thoughts.</p>
+		
+		<div style="text-align: center">
+			<img src="chi-keyboard.gif" alt="programming" />
+		</div>
+		
+		<p>If you'd like to know me in a more formal capacity, check out <a href="resume">my résumé</a>. Learn more about <a href="/projects">my current and past projects</a> and browse <a href="https://github.com/ioquatix">my online source code</a>. You can read about <a href="/journal/2010-02/about-me/index">my background</a> which explains how I got into computers.</p>
+		
+		<p>I have a wide range of interests including game design, programming language semantics, writing, ambient music, algorithms and tree climbing. When I need a break, I head outside and look after my garden. I'm growing Wasabi, I've got <a href="https://chick.nz">several chickens</a>, lots of fish and a cat. Once my cat fell in the pond because she was trying to catch the fish. She still tries to catch them, but she is a bit more cautious now.</p>
+		
+		<p>I value honesty, kindness, mindfulness, wisdom and creativity, and above all else I want to share these values with other people.</p>
+	</main>
 </content:page>

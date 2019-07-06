@@ -1,5 +1,7 @@
 vulkan-fences:
   author: "Samuel Williams"
   created: 2017-08-05
-  title: "Using fences to wait for command buffer completion"
+  title: "Using Vulkan fences to avoid corruption"
   summary: "Learn how to use vulkan fences to wait for command buffer completion."
+  front: true
+  preview_url: framebuffers/bad.png

@@ -3,52 +3,54 @@
 	
 	<script src="/_components/quicksand/jquery.quicksand.js" type="text/javascript"></script>
 	<link rel="stylesheet" href="projects.css" type="text/css" media="screen" />
-
-	<?r
-		tag_names = {
-			'cpp' => 'C++',
-			'jquery' => 'jQuery',
-			'javascript' => 'JavaScript',
-			'opengl' => 'OpenGL'
-		}
-		
-		tags = {}
-		projects = links(".", :files => false, :locale => localization.current_locale)
-		
-		projects.each do |project|
-			(project[:tags] || []).each do |tag|
-				(tags[tag] ||= []) << project
-			end
-		end
-	?>
 	
-	<div class="filter">
-		<div class="tags" style="display: none">
-			<a href="#" class="selected">All</a>
-			<?r tags.keys.each do |tag| ?>
-			<a href="#" name="#{tag}">#{tag_names.fetch(tag) {Strings::to_title(tag)}}</a>
-			<?r end ?>
-		</div>
-	</div>
-
-	<div style="position: relative">
-		<ul class="projects">
-			<?r projects.each do |project| ?>
-			<li data-id="#{project.object_id}" class="#{(project[:tags] || []).join(' ')}">
-				<div class="title">
-					<a href="#{project.href}" target="_blank">#{project.title}</a>
-					<div class="tags">
-					<?r project[:tags]&.each do |tag| ?>
-						<span class="tag #{tag}">#{tag_names[tag] || Strings::to_title(tag)}</span>
-					<?r end ?>
-					</div>
-				</div>
+	<main>
+		<?r
+			tag_names = {
+				'cpp' => 'C++',
+				'jquery' => 'jQuery',
+				'javascript' => 'JavaScript',
+				'opengl' => 'OpenGL'
+			}
 			
-				<div class="description">#{project[:description]}</div>
-			</li>
-			<?r end ?>
-		</ul>
-	</div>
+			tags = {}
+			projects = links(".", :files => false, :locale => localization.current_locale)
+			
+			projects.each do |project|
+				(project[:tags] || []).each do |tag|
+					(tags[tag] ||= []) << project
+				end
+			end
+		?>
+		
+		<div class="filter">
+			<div class="tags" style="display: none">
+				<a href="#" class="selected">All</a>
+				<?r tags.keys.each do |tag| ?>
+				<a href="#" name="#{tag}">#{tag_names.fetch(tag) {Strings::to_title(tag)}}</a>
+				<?r end ?>
+			</div>
+		</div>
+
+		<div style="position: relative">
+			<ul class="projects">
+				<?r projects.each do |project| ?>
+				<li data-id="#{project.object_id}" class="#{(project[:tags] || []).join(' ')}">
+					<div class="title">
+						<a href="#{project.href}" target="_blank">#{project.title}</a>
+						<div class="tags">
+						<?r project[:tags]&.each do |tag| ?>
+							<span class="tag #{tag}">#{tag_names[tag] || Strings::to_title(tag)}</span>
+						<?r end ?>
+						</div>
+					</div>
+				
+					<div class="description">#{project[:description]}</div>
+				</li>
+				<?r end ?>
+			</ul>
+		</div>
+	</main>
 	
 	<script type="text/javascript">
 	//<![CDATA[

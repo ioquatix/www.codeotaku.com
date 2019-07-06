@@ -53,39 +53,41 @@
 	?>
 
 	<content:heading>University Transcript</content:heading>
-
-	<table class="basic">
-		<thead>
-			<tr>
-				<th>Code</th>
-				<th>Course</th>
-				<th>Points</th>
-				<th>Grade</th>
-			</tr>
-		</thead>
-		<tbody>
-			<?r transcript.each do |year, courses| ?>
-			<tr>
-				<th colspan="3">#{year}</th>
-				<th>GPA: #{sprintf("%0.2f", gpa[year])}</th>
-			</tr>
-				<?r courses.each do |course| ?>
-				<tr>
-					<td>#{course[0]}</td>
-					<td>#{course[1]}</td>
-					<td>#{course[2]}</td>
-					<td>#{course[3]}</td>
-				</tr>
-				<?r end ?>
-			<?r end ?>
-		</tbody>
-		<tfoot>
-			<tr>
-				<th></th>
-				<th colspan="3" style="text-align: right">Average GPA: #{sprintf("%0.2f", gpa[:overall])}</th>
-			</tr>
-		</tfoot>
-	</table>
 	
-	<p>N.B. At the end of 2002, following into 2003 I had personal crisis which affected my academic work. On the advice of the University Counsellors I withdrew from second semester courses in 2003, as I felt that I was not in a position to achieve my best. After having some time out, I returned in 2005.</p>
+	<main>
+		<table class="basic">
+			<thead>
+				<tr>
+					<th>Code</th>
+					<th>Course</th>
+					<th>Points</th>
+					<th>Grade</th>
+				</tr>
+			</thead>
+			<tbody>
+				<?r transcript.each do |year, courses| ?>
+				<tr>
+					<th colspan="3">#{year}</th>
+					<th>GPA: #{sprintf("%0.2f", gpa[year])}</th>
+				</tr>
+					<?r courses.each do |course| ?>
+					<tr>
+						<td>#{course[0]}</td>
+						<td>#{course[1]}</td>
+						<td>#{course[2]}</td>
+						<td>#{course[3]}</td>
+					</tr>
+					<?r end ?>
+				<?r end ?>
+			</tbody>
+			<tfoot>
+				<tr>
+					<th></th>
+					<th colspan="3" style="text-align: right">Average GPA: #{sprintf("%0.2f", gpa[:overall])}</th>
+				</tr>
+			</tfoot>
+		</table>
+		
+		<p>N.B. At the end of 2002, following into 2003 I had personal crisis which affected my academic work. On the advice of the University Counsellors I withdrew from second semester courses in 2003, as I felt that I was not in a position to achieve my best. After having some time out, I returned in 2005.</p>
+	</main>
 </content:page>

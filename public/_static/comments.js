@@ -62,7 +62,7 @@ function setupComments(parent) {
 	
 	for (var i in fields) {
 		key = fields[i];
-		var value = $.cookie(key);
+		var value = jQuery.cookie(key);
 		
 		if (value) {
 			$("input[name=" + key + "]", commentsForm).val(value);

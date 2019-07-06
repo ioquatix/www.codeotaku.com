@@ -40,29 +40,29 @@ if prev_link == nil || next_link == nil
 end
 
 ?><content:page>
-	<header>
-		<content:heading>#{title}</content:heading>
+	<content:heading>#{title}</content:heading>
 
-		<div class="details">
+	<main>
+		<header>
 			<span class="author">#{author}</span>
 			<span class="when">#{created.strftime("%A, %d %B %Y")}</span>
+		</header>
+		
+		<article>
+			<utopia:content/>
+		</article>
+		
+		<content:comments node="#{parent.node.uri_path}" />
+		
+		<div class="navigation">
+		<?r if prev_link ?>
+			<div class="prev_link">⇦ #{prev_link.to_href(base: first.node.uri_path)}</div>
+		<?r end ?>
+				
+		<?r if next_link ?>
+			<div class="next_link">#{next_link.to_href(base: first.node.uri_path)} ⇨</div>
+		<?r end ?>
+			<br style="clear: both" />
 		</div>
-	</header>
-	
-	<article>
-		<utopia:content/>
-	</article>
-	
-	<content:comments node="#{parent.node.uri_path}" />
-	
-	<div class="navigation">
-	<?r if prev_link ?>
-		<div class="prev_link">⇦ #{prev_link.to_href(base: first.node.uri_path)}</div>
-	<?r end ?>
-			
-	<?r if next_link ?>
-		<div class="next_link">#{next_link.to_href(base: first.node.uri_path)} ⇨</div>
-	<?r end ?>
-		<br style="clear: both" />
-	</div>
+	</main>
 </content:page>

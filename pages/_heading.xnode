@@ -1,2 +1,5 @@
 <?r document.attributes[:title] ||= content ?>
-<h1><utopia:content/></h1>
+<header id="header">
+	<h1><utopia:content/></h1>
+	<content:navigation/>
+</header>

@@ -1,17 +1,19 @@
 <content:page>
 	<content:heading>Samuel's Journal</content:heading>
 	
-	<dl class="options">
-	<?r links(:sort => :title, :files => false, :virtuals => false).reverse_each do |link| 
-		children = links(link.path, :sort => :created)
-		next if children.empty?
-	?>
-		<dt>#{Date.parse(link.name + "-1").strftime("%B %Y")}</dt>
-		<dd>
-		<?r children.each do |entry| ?>
-			#{entry.to_href(base: first.node.uri_path)}<br/>
+	<main>
+		<dl class="options">
+		<?r links(:sort => :title, :files => false, :virtuals => false).reverse_each do |link| 
+			children = links(link.path, :sort => :created)
+			next if children.empty?
+		?>
+			<dt>#{Date.parse(link.name + "-1").strftime("%B %Y")}</dt>
+			<dd>
+			<?r children.each do |entry| ?>
+				#{entry.to_href(base: first.node.uri_path)}<br/>
+			<?r end ?>
+			</dd>
 		<?r end ?>
-		</dd>
-	<?r end ?>
-	</dl>
+		</dl>
+	</main>
 </content:page>

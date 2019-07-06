@@ -4,3 +4,4 @@ fibers-are-the-right-solution:
   title: Fibers Are the Right Solution
   summary: Concurrency can be tricky and fibers are here to help.
   display: true
+  front: true

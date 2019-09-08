@@ -1,10 +1,14 @@
-<?r prev = nil ?>
 <nav id="navigation">
 	<ul class="trail">
 	<?r
 		front = true
 		
-		Utopia::Path.create(first.node.uri_path || attributes[:path]).descend do |path|
+		paths = Utopia::Path.create(first.node.uri_path || attributes[:path]).descend.to_a
+		
+		paths.pop
+		paths.pop
+		
+		paths.each do |path|
 			if path.last
 				basename = path.last
 				indices = false
@@ -24,7 +28,6 @@
 			end
 			
 			front = false
-			prev = link
 		end ?>
 	
 	<?r 

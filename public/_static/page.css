@@ -30,10 +30,11 @@ body {
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-end;
+	
+	font-size: 3vh;
 }
 
 #header h1 {
-	font-size: 4rem;
 	margin: 0 2rem;
 }
 
@@ -45,7 +46,6 @@ body {
 	
 	z-index: 4242;
 }
-
 a {
 	color: #01b9ff;
 	text-decoration: none;

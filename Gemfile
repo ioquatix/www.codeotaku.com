@@ -1,21 +1,23 @@
 
 source "https://rubygems.org"
 
-gem "utopia", "~> 2.9.2"
-gem "utopia-gallery", "~> 2.0"
-gem "utopia-analytics"
+group :preload do
+	gem "utopia", "~> 2.9.2"
+	gem "utopia-gallery", "~> 2.0"
+	gem "utopia-analytics"
 
-gem "rake"
-gem "bundler"
+	gem "rake"
+	gem "bundler"
 
-gem "rack-freeze", "~> 1.2"
+	gem "rack-freeze", "~> 1.2"
 
-gem "relaxo-model", "~> 0.10.0"
+	gem "relaxo-model", "~> 0.10.0"
 
-gem "trenni-sanitize"
-gem "kramdown"
-gem "kramdown-parser-gfm"
-gem "bcrypt"
+	gem "trenni-sanitize"
+	gem "kramdown"
+	gem "kramdown-parser-gfm"
+	gem "bcrypt"
+end
 
 group :development do
 	# For `rake server`:

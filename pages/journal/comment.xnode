@@ -72,7 +72,7 @@
 			<div class="moderation">This comment is currently awaiting moderation.</div>
 			<?r end ?>
 		
-			#{MarkupString.raw comment.body_html}
+			#{Trenni::MarkupString.raw comment.body_html}
 		</div>
 	</div>
 	<?r if first == current ?>

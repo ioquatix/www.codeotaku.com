@@ -12,7 +12,7 @@ if lines = attributes[:lines]
 	code = code.lines[from..to].join
 end
 
-escaped_code = MarkupString.new(code)
+escaped_code = Trenni::MarkupString.new(code)
 
 escaped_code = escaped_code.gsub(/%%([a-z]+)\{(.*?)\}/) do |match|
 	"<span class=\"#{$1}\">#{$2}</span>"

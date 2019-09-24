@@ -3,12 +3,9 @@
 	<?r
 		front = true
 		
-		paths = Utopia::Path.create(first.node.uri_path || attributes[:path]).descend.to_a
+		paths = Utopia::Path.create(first.node.uri_path || attributes[:path])
 		
-		paths.pop
-		paths.pop
-		
-		paths.each do |path|
+		paths.descend do |path|
 			if path.last
 				basename = path.last
 				indices = false

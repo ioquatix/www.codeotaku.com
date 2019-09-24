@@ -2,9 +2,9 @@
 <content:page>
 	<content:heading>File not found</content:heading>
 	
-	<p>You step in the stream,<br/>
-		But the water has moved on.<br/>
-		This page is not here.<br/>
-		&mdash; Cass Whittington
-	</p>
+	<main>
+		<blockquote><p class="spoken">You step in the stream,<br/>
+			But the water has moved on.<br/>
+			This page is not here.</p><cite>Cass Whittington</cite></blockquote>
+	</main>
 </content:page>

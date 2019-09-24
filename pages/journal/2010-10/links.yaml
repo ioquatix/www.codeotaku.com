@@ -3,6 +3,8 @@ visualising-information-change-over-time:
   created: 2010-10-08
   author: Samuel Williams
   summary: "Some examples of my source code visualisation research."
+  front: true
+  preview_url: preview.png
 kai:
   title: "Kai 会"
   created: 2010-10-14

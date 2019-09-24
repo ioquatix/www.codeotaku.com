@@ -4,34 +4,78 @@
 html {
 	/* font-family: 'HelveticaNeue-Light', Helvetica, Arial, sans-serif; */
 	font-family: "PT Sans", Verdana, Helvetica, Arial, sans-serif;
-	background-color: black;
 	font-weight: lighter;
 	min-height: 100%;
+}
+
+html {
+	--main-color: #111;
+	--main-background-color: #fff;
+	
+	--header-color: #eee;
+	
+	--accent-color: #0062b3;
+	--accent-hover-color: #33a3ff;
+	
+	--overlay-color: rgba(255, 255, 255, 0.9);
+}
+
+@media(prefers-color-scheme: dark) {
+	html {
+		--main-color: #e1e1e1;
+		--main-background-color: #111;
+		
+		--header-color: #222;
+		
+		--accent-color: #01b9ff;
+		--accent-hover-color: #80dcff;
+		
+		--overlay-color: rgba(0, 0, 0, 0.8);
+		
+		background-color: black;
+	}
 }
 
 body {
 	padding: 0;
 	margin: 0;
 	
-	color: #e1e1e1;
-	background-color: #111;
+	color: var(--main-color);
+	background-color: var(--main-background-color);
+}
+
+/* Page Navigation Bar */
+
+nav {
+	position: relative;
+	
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+nav ul.trail {
+	padding: 0;
+	margin: 0;
+}
+
+nav li {
+	display: inline-block;
+	list-style: none;
 }
 
 #header {
 	width: 100%;
 	height: 50vh;
 	
-	background: #222;
-	
+	background: var(--header-color);
 	margin: 0;
-	
-	text-align: center;
 	
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-end;
 	
 	font-size: 3vh;
+	text-align: center;
 }
 
 #header h1 {
@@ -39,20 +83,14 @@ body {
 }
 
 #header nav {
-	background: #222;
 	padding: 1rem;
+	width: 100%;
 	
-	border-bottom: 1px solid #333;
+	font-size: 1rem;
+	
+	background-color: inherit;
 	
 	z-index: 4242;
-}
-a {
-	color: #01b9ff;
-	text-decoration: none;
-}
-
-a:hover {
-	color: #80dcff;
 }
 
 #header.sticky nav {
@@ -62,7 +100,13 @@ a:hover {
 	top: 0;
 }
 
-#header.sticky {
+a {
+	color: var(--accent-color);
+	text-decoration: none;
+}
+
+a:hover {
+	color: var(--accent-hover-color);
 }
 
 main {
@@ -97,7 +141,7 @@ section.articles a {
 	text-decoration: none;
 	
 	border-radius: 1rem;
-	border: 0.1rem solid #fff;
+	border: 0.1rem solid #999;
 	overflow: hidden;
 	
 	display: flex;
@@ -107,13 +151,13 @@ section.articles a {
 
 section.articles a > * {
 	padding: 0.5rem;
-	background-color: rgba(0, 0, 0, 0.8);
+	background-color: var(--overlay-color);
 }
 
 section.articles small {
 	opacity: 0;
 	transition: 0.2s;
-	color: white;
+	color: var(--main-color);
 }
 
 section.articles a:hover small {
@@ -131,7 +175,6 @@ main > section, main > article, main > header {
 
 main header {
 	text-align: center;
-	color: #999;
 }
 
 main header span {
@@ -202,10 +245,6 @@ ul ul {
 	}
 }
 
-p, pre {
-	font-size: 12pt;
-}
-
 p.discussion {
 	background-color: rgba(0, 0, 0, 0.5);
 	padding: 1rem;
@@ -268,8 +307,9 @@ dl.basic dt {
 	margin-top: 1.5rem;
 }
 
-p, li, dt, dd {
-	line-height: 1.5rem;
+p, li, dt, dd, nav, pre {
+	font-size: 1.2rem;
+	line-height: 150%;
 }
 
 dl.options {
@@ -393,31 +433,33 @@ button, input, textarea {
 	font-size: 1rem;
 }
 
-input[type=submit] {
-	background-color: #ccc;
-}
+@media(prefers-color-scheme: dark) {
+	input[type=submit] {
+		background-color: #ccc;
+	}
 
-input[type=submit]:active {
-	background-color: #aaa;
-	border-color: #666;
-}
+	input[type=submit]:active {
+		background-color: #aaa;
+		border-color: #666;
+	}
 
-input, textarea {
-	background-color: #222;
-	color: #fff;
-	border-color: #444;
-}
+	input, textarea {
+		background-color: #222;
+		color: #fff;
+		border-color: #444;
+	}
 
-input[type=submit] {
-	border-color: #aaa;
-	background-color: #444;
-	color: #ccc;
-}
+	input[type=submit] {
+		border-color: #aaa;
+		background-color: #444;
+		color: #ccc;
+	}
 
-input[type=submit]:active {
-	border-color: #444;
-	background-color: #222;
-	color: white;
+	input[type=submit]:active {
+		border-color: #444;
+		background-color: #222;
+		color: white;
+	}
 }
 
 form label input, form label textarea {
@@ -478,28 +520,6 @@ sup a {
 	height: 37.5rem;
 	margin-left: auto;
 	margin-right: auto;
-}
-
-/* Page Navigation Bar */
-
-nav {
-	position: relative;
-	
-	display: inline-block;
-	
-	width: 100%;
-	white-space: nowrap;
-	overflow: hidden;
-}
-
-nav ul.trail {
-	padding: 0;
-	margin: 0;
-}
-
-nav li {
-	display: inline-block;
-	list-style: none;
 }
 
 /* Blockquotes */

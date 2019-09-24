@@ -2,8 +2,9 @@
 <content:page>
 	<content:heading>Error</content:heading>
 	
-	<p>Chaos reigns within.<br/>
-	Reflect, repent, and reboot.<br/>
-	Order shall return.<br/>
-		&mdash; Suzie Wagner</p>
+	<main>
+		<blockquote><p class="spoken">Chaos reigns within.<br/>
+			Reflect, repent, and reboot.<br/>
+			Order shall return.</p><cite>Suzie Wagner</cite></blockquote>
+	</main>
 </content:page>

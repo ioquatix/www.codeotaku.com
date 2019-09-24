@@ -1,5 +1,5 @@
 
-document.addEventListener('scroll', function() {
+function updateHeader() {
 	let offset = header.offsetHeight - navigation.offsetHeight;
 	
 	if (window.scrollY > offset) {
@@ -10,5 +10,8 @@ document.addEventListener('scroll', function() {
 		header.style.paddingBottom = null;
 	}
 	
-	// console.log("scroll offset", offset, "header offset height", header.offsetHeight);
-});
+	//console.log("scroll offset", offset, "header offset height", header.offsetHeight);
+}
+
+document.addEventListener('scroll', updateHeader);
+window.addEventListener('load', updateHeader);

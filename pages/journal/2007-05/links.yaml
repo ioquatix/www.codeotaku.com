@@ -2,6 +2,8 @@ permutation-generation:
     author: Samuel Williams
     created: 2007-05-17
     summary: "Here are a number of permutation generation algorithms in C++."
+    front: true
+    preview_url: preview.png
 furry-ball-theorem:
     author: Samuel Williams
     created: 2007-05-01

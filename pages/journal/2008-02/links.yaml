@@ -3,3 +3,5 @@ inverse-kinematics-a-star:
     author: Samuel Williams
     created: 2008-02-10
     summary: "I developed an interesting solution to the inverse kinematics problem using the A* algorithm."
+    front: true
+    preview_url: SolutionB.png

@@ -13,6 +13,7 @@ html {
 	--main-background-color: #fff;
 	
 	--header-color: #eee;
+	--underlay-color: #ddd;
 	
 	--accent-color: #0062b3;
 	--accent-hover-color: #33a3ff;
@@ -20,12 +21,13 @@ html {
 	--overlay-color: rgba(255, 255, 255, 0.9);
 }
 
-@media(prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark) {
 	html {
 		--main-color: #e1e1e1;
 		--main-background-color: #111;
 		
 		--header-color: #222;
+		--overlay-color: #333;
 		
 		--accent-color: #01b9ff;
 		--accent-hover-color: #80dcff;
@@ -379,12 +381,12 @@ table.basic thead th, table.basic tfoot th {
 }
 
 table.basic thead th {
-	border-bottom: 0.125rem solid #666;
+	border-bottom: 0.125rem solid var(--accent-color);
 	padding: 0.625rem 0.5rem;
 }
 
 table.basic tfoot th {
-	border-bottom: 0.125rem solid #666;
+	border-bottom: 0.125rem solid var(--accent-color);
 	padding: 0.625rem 0.5rem;
 }
 
@@ -402,13 +404,12 @@ table.basic tbody th {
 }
 
 table.data th {
-	background-color: #e0e0e0;
+	background-color: var(--header-color);
 	padding: 0.25rem;
 }
 
 table.data {
-	background-color: #fff;
-	border: 0.0625rem solid black;
+	background-color: var(--underlay-color);
 	
 	margin: auto;
 	text-align: center;
@@ -589,7 +590,7 @@ section.comments h1 {
 }
 
 section.comments .comment .byline {
-	color: #333;
+	color: var(--underlay-color);
 	font-size: 0.9rem;
 	padding: 0.5rem 0.25rem;
 	

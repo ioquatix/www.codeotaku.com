@@ -7,7 +7,7 @@
 	if node_name
 		comments_path = current.node.uri_path.dirname + 'comments'
 ?>
-<section class="comments" class="xframe" data-xframe-source="#{comments_path.to_s}?node=#{node_name}" onload="javascript:setupComments(this)">
+<section class="xframe comments" data-xframe-source="#{comments_path.to_s}?node=#{node_name}" onload="javascript:setupComments(this)">
 	<content:user />
 	<h1>Comments</h1>
 	

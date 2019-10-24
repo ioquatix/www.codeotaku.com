@@ -3,24 +3,24 @@
 if src = attributes[:src]
 	path = parent.node.local_path(Utopia::Path.create(src))
 	code = File.read(path)
+	
+	if lines = attributes[:lines]
+		from, to = lines.split('-').map{|value| value.to_i - 1}
+		code = code.lines[from..to].join
+	end
+
+	code = Trenni::MarkupString.new(code)
+
+	code = code.gsub(/%%([a-z]+)\{(.*?)\}/) do |match|
+		"<span class=\"#{$1}\">#{$2}</span>"
+	end
 else
 	code = content
 end
 
-if lines = attributes[:lines]
-	from, to = lines.split('-').map{|value| value.to_i - 1}
-	code = code.lines[from..to].join
-end
-
-escaped_code = Trenni::MarkupString.new(code)
-
-escaped_code = escaped_code.gsub(/%%([a-z]+)\{(.*?)\}/) do |match|
-	"<span class=\"#{$1}\">#{$2}</span>"
-end
-
 if lang = (attributes[:lang] || attributes[:brush]) ?>
-	<pre><code class="syntax #{lang}">#{escaped_code}</code></pre>
+	<pre><code class="syntax #{lang}">#{code}</code></pre>
 <?r else ?>
-	<pre><code class="syntax plain">#{escaped_code}</code></pre>
+	<pre><code class="syntax plain">#{code}</code></pre>
 <?r end ?>
 </figure>

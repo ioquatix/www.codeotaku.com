@@ -8,7 +8,6 @@ jobs:
       matrix:
         os:
           - ubuntu
-          - macos
         
         ruby:
           - 2.4
@@ -29,6 +28,7 @@ jobs:
         ruby-version: ${{matrix.ruby}}
     - name: Install dependencies
       run: |
+        sudo apt-get install pkg-config
         gem install bundler:2.0.2
         bundle install
     - name: Run tests

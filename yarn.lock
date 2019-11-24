@@ -3,9 +3,9 @@
 
 
 chart.js@^2.7.3:
-  version "2.7.3"
-  resolved "https://registry.yarnpkg.com/chart.js/-/chart.js-2.7.3.tgz#cdb61618830bf216dc887e2f7b1b3c228b73c57e"
-  integrity sha512-3+7k/DbR92m6BsMUYP6M0dMsMVZpMnwkUyNSAbqolHKsbIzH2Q4LWVEHHYq7v0fmEV8whXE0DrjANulw9j2K5g==
+  version "2.9.3"
+  resolved "https://registry.yarnpkg.com/chart.js/-/chart.js-2.9.3.tgz#ae3884114dafd381bc600f5b35a189138aac1ef7"
+  integrity sha512-+2jlOobSk52c1VU6fzkh3UwqHMdSlgH1xFv9FKMqHiNCpXsGPQa/+81AFa+i3jZ253Mq9aAycPwDjnn1XbRNNw==
   dependencies:
     chartjs-color "^2.1.0"
     moment "^2.10.2"
@@ -18,17 +18,24 @@ chartjs-color-string@^0.6.0:
     color-name "^1.0.0"
 
 chartjs-color@^2.1.0:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/chartjs-color/-/chartjs-color-2.3.0.tgz#0e7e1e8dba37eae8415fd3db38bf572007dd958f"
-  integrity sha512-hEvVheqczsoHD+fZ+tfPUE+1+RbV6b+eksp2LwAhwRTVXEjCSEavvk+Hg3H6SZfGlPh/UfmWKGIvZbtobOEm3g==
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/chartjs-color/-/chartjs-color-2.4.1.tgz#6118bba202fe1ea79dd7f7c0f9da93467296c3b0"
+  integrity sha512-haqOg1+Yebys/Ts/9bLo/BqUcONQOdr/hoEr2LLTRl6C5LXctUdHxsCYfvQVg5JIxITrfCNUDr4ntqmQk9+/0w==
   dependencies:
     chartjs-color-string "^0.6.0"
-    color-convert "^0.5.3"
+    color-convert "^1.9.3"
 
-color-convert@^0.5.3:
-  version "0.5.3"
-  resolved "https://registry.yarnpkg.com/color-convert/-/color-convert-0.5.3.tgz#bdb6c69ce660fadffe0b0007cc447e1b9f7282bd"
-  integrity sha1-vbbGnOZg+t/+CwAHzER+G59ygr0=
+color-convert@^1.9.3:
+  version "1.9.3"
+  resolved "https://registry.yarnpkg.com/color-convert/-/color-convert-1.9.3.tgz#bb71850690e1f136567de629d2d5471deda4c1e8"
+  integrity sha512-QfAUtd+vFdAtFQcC8CCyYt1fYWxSqAiK2cSD6zDB8N3cpsEBAvRxp9zOGg6G/SHHJYAT88/az/IuDGALsNVbGg==
+  dependencies:
+    color-name "1.1.3"
+
+color-name@1.1.3:
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/color-name/-/color-name-1.1.3.tgz#a7d0558bd89c42f795dd42328f740831ca53bc25"
+  integrity sha1-p9BVi9icQveV3UIyj3QIMcpTvCU=
 
 color-name@^1.0.0:
   version "1.1.4"
@@ -36,9 +43,9 @@ color-name@^1.0.0:
   integrity sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==
 
 instant.page@^1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/instant.page/-/instant.page-1.2.1.tgz#f86a2c94d0a460e964ff093ccad13a8ac61d4489"
-  integrity sha512-p+TkVa44Fku1JV3k/qrrhDAbNuoRdUnBpTLUHy9lJrXBmjDZCBq5z/ZrehPjdcJ5rVSIyrblcUMpidAAIPO2kw==
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/instant.page/-/instant.page-1.3.1.tgz#bca1d981fe5644f8f9ddc6bbf6e65ce9d24691ea"
+  integrity sha512-dEvtBs3L3l668Sf5hYOr9SYbKWoaVdQngpuqM9Q61Kaz89Oa47x+aJNGhTsfy6gZYNL2nG3GT76B4qr3jQGvpg==
 
 jquery-litebox@^1.0.2:
   version "1.0.2"
@@ -48,9 +55,9 @@ jquery-litebox@^1.0.2:
     jquery ">=1.4.1"
 
 jquery-syntax@^4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/jquery-syntax/-/jquery-syntax-4.1.0.tgz#fdb72de995539da1f8936fd660e257b1e6bf9d04"
-  integrity sha512-HpJRYaKi02RwNflxiJZSTi7nX747tvV32O/h3scXwKvIZM31TH+egqOst7i+3DgWtMQSZzaboZR0msTKmqVXDg==
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/jquery-syntax/-/jquery-syntax-4.1.1.tgz#8e15d85952cfee02dda579564eef4b813e5fe4f9"
+  integrity sha512-W7HqdQV37N2r9JISW90liYaRNzam++0+zt3gFGzkAa/l4eHF11vyOKBhsadEhewYKBOsWSVIXqdcLtAxYgwT+g==
   dependencies:
     jquery ">=1.4.1"
 
@@ -62,9 +69,9 @@ jquery-xframe@^1.2.0:
     jquery ">=1.4.1"
 
 jquery@>=1.4.1:
-  version "3.3.1"
-  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.3.1.tgz#958ce29e81c9790f31be7792df5d4d95fc57fbca"
-  integrity sha512-Ubldcmxp5np52/ENotGxlLe6aGMvmF4R8S6tZjsP6Knsaxd/xp3Zrh50cG93lR6nPXyUFwzN3ZSOQI0wRJNdGg==
+  version "3.4.1"
+  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.4.1.tgz#714f1f8d9dde4bdfa55764ba37ef214630d80ef2"
+  integrity sha512-36+AdBzCL+y6qjw5Tx7HgzeGCzC81MDDgaUP8ld2zhx58HdqXGoBd+tHdrBMiyjGQs0Hxs/MLZTu/eHNJJuWPw==
 
 moment@^2.10.2:
   version "2.24.0"

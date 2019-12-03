@@ -4,7 +4,7 @@
 	<main>
 		<dl class="options">
 		<?r links(:sort => :title, :files => false, :virtuals => false).reverse_each do |link| 
-			children = links(link.path, :sort => :created)
+			children = links(link.path, :sort => :created, :locale => localization.current_locale)
 			next if children.empty?
 		?>
 			<dt>#{Date.parse(link.name + "-1").strftime("%B %Y")}</dt>

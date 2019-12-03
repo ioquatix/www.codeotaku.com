@@ -1,0 +1,57 @@
+<content:entry preview="preview.jpeg">
+	<p>今月は<a href="https://github.com/ioquatix?tab=overview&amp;from=2019-11-01&amp;to=2019-11-30">とてもプロダクティブでした。</a>日本で行われたRubyWorld Conference 2019で発表し、Ruby開発チームの会議にも参加しました。私は多くの重要なRuby gemや、さらにいくつかのサイドプロジェクトに時間を割くことができました。</p>
+	
+	<h2>RubyWorld Conference 2019: Asynchronous Ruby</h2>
+	
+	<p><a href="https://youtu.be/3WdN2gRC7qo?start=11267">RubyWorld Conferenceでは</a>、 Rubyのgemにおいてのスレッドセーフティーの問題について話しました。それから、コンカレンシー（並行性）への様々なアプローチを検討しました。Rubyと比較したのは、JavaScriptのasync/awaitで、 どのようにこのgem　<a href="https://github.com/socketry/async">async</a> がシンプルでかつスケーラブルにしてくれるのかをみました。</p>
+	
+	<p>As part of this talk,この中で、批評したプロジェクトの様々な問題とPRを提示しました。そして、その提示された多くのPRはプロジェクトに取り入れられました。 </p>
+	
+	<ul>
+		<li><a href="https://github.com/redis/redis-rb/pull/879">redis-rb: Avoid data corruption in <code>#queue</code></a>.</li>
+		<li><a href="https://github.com/RubyMoney/money/pull/898">money: Use monitor for recursive mutual exclusion.</a></li>
+		<li><a href="https://github.com/lostisland/faraday/pull/1074">faraday: Set middleware_mutex when middleware/adapter classes are defined.</a></li>
+		<li><a href="https://github.com/sparklemotion/nokogiri/issues/1935">nokogiri: Race condition in <code>Nokogiri::CSS::Parser</code>.</a></li>
+		<li><a href="https://github.com/aws/aws-sdk-ruby/pull/2149">aws: Ensure locking around <code>@entries</code>.</a></li>
+	</ul>
+	
+	<h3>コンカレンシー（並行性）についてMatz氏との対話</h3>
+	
+	<p>During the conference,コンフェレンス中に、私はMatz氏とRuby 3のスケーラビリティについてお話させていただきました。様々なオプションを話し合った結果、軽量なコンカレンシー（並行性）の実現のため、Fibersを<a href="https://github.com/ruby/ruby/pull/1870">検討しているようです。 </a>.</p>
+	
+	<h2>Software Sessions</h2>
+	
+	<p><a href="https://twitter.com/jertype">Jeremy Jung氏</a> とお話しする機会をいただき、<a href="https://www.softwaresessions.com/episodes/building-scalable-systems-safely-in-ruby-with-samuel-williams">Building Scalable Systems Safely in Ruby</a>について話し合いました。Rubyのスケーラビリティの改善に取り組んでいる間、過去数年にわたって私が検討してきたことについて話す絶好の機会でした。.</p>
+	
+	<h2>OpenSSL Updates</h2>
+	
+	<p>これ <a href="https://github.com/ruby/openssl">OpenSSL gem</a> はRubyの基礎である重要な部分で、HTTPS（HTTP/2を必要とする）をサポートする<a href="https://github.com/socketry/falcon">falcon</a>では特にです。ここ数ヶ月間、多くの傑出したPRが取り入れられた事により、個人的には、ユーザーがより積極的に貢献できるようになったと感じています。</p>
+	
+	<p>私はHiroshi Shibata氏と協力してこれらのすべての変更をアップストリームにマージし、Ruby v2.7がリリースされるまでにすべてが完了させたいと思っています。</p>
+	
+	<h2>Rack Updates</h2>
+	
+	<p>この <a href="https://github.com/rack/rack">Rack gem</a> は、ほとんどのRuby Webアプリケーションのもう1つの重要な要素です。マスターブランチには、まだリリースされていない多くの重要な改善とバグ修正があります。それに加え、 多くの未解決の問題とPRがあり、そのドキュメントはほとんど時代遅れです。</p>
+	
+	<p>Aaron Patterson氏と協力してv2.1をリリースします。これは、 <a href="https://github.com/socketry/falcon">falcon</a>を公式にサポートする最初のリリースです。</p>
+	
+	<h2>Faraday Updates</h2>
+	
+	<p>私は、コード内の構造化されたライフサイクルを強く支持しています。そのため、<a href="https://github.com/lostisland/faraday/pull/1069">support for <code>Middleware#close</code></a>のサポートを提案および実装しました。これは <a href="https://github.com/socketry/async-http"><code>Async::HTTP::Client#close</code></a>に直接マップされ、アダプターのサポートを改善するはずです。 持続的接続（HTTP / 2を含む）をサポートしています。</p>
+	
+	<h2>Ruby Association Grant</h2>
+	
+	<p>私が提案した<a href="https://www.ruby.or.jp/ja/news/20191031">Rubyの並行性を改善するプロジェクトが受け入れられました。</a> この一環として、日本に滞在中、Koichi Sasada氏とインプリメンテーション（実装）の詳細について話し合ってきました。 とてもプロダクティブであり、このコラボレーションに関するレポートをすぐに作成したいと思っています。</p>
+	
+	<h2>GitHub Actions</h2>
+	
+	<p>GitHubのアクションに本当に興味があります。特にリモートランナーを許可する方法についてです。 その中でも、いくつかのテストからGPUハードウェアにアクセスすることに興味があります。そこで家のサーバーでArch Linuxを使用し、この <a href="https://github.com/ioquatix/github-actions">GitHub Actions</a>を作りました。そしてArch User Repositoryにリリースしました。これを使用して、ハードウェアアクセラレーションレンダリングにGPUを使用するC ++コードを作り、テストします。</p>
+	
+	<h2>Asakusa.rb</h2>
+	
+	<p>日本滞在中に、地元で行われているRuby会議 <a href="https://asakusarb.esa.io">Asakusa.rb</a>に参加しました。この経験は、Rubyがどれほど特別なものか、そしてRubyをすばらしいものにするために時間を割いているすばらしい人々がいる事に気づかせてくれました。</p>
+	
+	<h2>Sponsorship</h2>
+	
+	<p>このワークは私の<a href="https://github.com/sponsors/ioquatix">GitHub sponsors</a>GitHubスポンサーに部分的にサポートされました。 もしあなたの会社にRubyが使われていたら、私のオープンソースの仕事をサポートしてください。</p>
+</content:entry>

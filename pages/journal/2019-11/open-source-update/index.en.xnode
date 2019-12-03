@@ -1,0 +1,57 @@
+<content:entry preview="preview.jpeg">
+	<p>This month <a href="https://github.com/ioquatix?tab=overview&amp;from=2019-11-01&amp;to=2019-11-30">has been productive</a>. I travelled to Japan to give a talk at RubyWorld Conference 2019 and attend a Ruby developer meeting. I was able to dedicate time to many important Ruby gems, and additionally some side projects.</p>
+	
+	<h2>RubyWorld Conference 2019: Asynchronous Ruby</h2>
+	
+	<p><a href="https://youtu.be/0bssp3YO5xw?start=11267">At RubyWorld Conference</a>, I discussed thread safety issues in popular Ruby gems, and looked at different appraoches to concurrency. I compared JavaScript async/await with Ruby, and showed how the <a href="https://github.com/socketry/async">async</a> gem can bring both simplicity and scalability.</p>
+	
+	<p>As part of this talk, I was able to submit issues and PRs to some of the projects I critiqued, and many of these have since been merged.</p>
+	
+	<ul>
+		<li><a href="https://github.com/redis/redis-rb/pull/879">redis-rb: Avoid data corruption in <code>#queue</code></a>.</li>
+		<li><a href="https://github.com/RubyMoney/money/pull/898">money: Use monitor for recursive mutual exclusion.</a></li>
+		<li><a href="https://github.com/lostisland/faraday/pull/1074">faraday: Set middleware_mutex when middleware/adapter classes are defined.</a></li>
+		<li><a href="https://github.com/sparklemotion/nokogiri/issues/1935">nokogiri: Race condition in <code>Nokogiri::CSS::Parser</code>.</a></li>
+		<li><a href="https://github.com/aws/aws-sdk-ruby/pull/2149">aws: Ensure locking around <code>@entries</code>.</a></li>
+	</ul>
+	
+	<h3>Discussing Concurrency with Matz</h3>
+	
+	<p>During the conference, I was able to discuss plans for Ruby 3 scalability with Matz. We discussed various different options, and it seems like we will be <a href="https://github.com/ruby/ruby/pull/1870">exploring Fibers for light-weight concurrency</a>.</p>
+	
+	<h2>Software Sessions</h2>
+	
+	<p>I had a chance to talk to <a href="https://twitter.com/jertype">Jeremy Jung</a> about <a href="https://www.softwaresessions.com/episodes/building-scalable-systems-safely-in-ruby-with-samuel-williams">Building Scalable Systems Safely in Ruby</a>. It was a great opportunity to talk about the things I've been considering over the past several years while working on improving Ruby's scalability, and I really appreciate the time he took to put it together.</p>
+	
+	<h2>OpenSSL Updates</h2>
+	
+	<p>The <a href="https://github.com/ruby/openssl">OpenSSL gem</a> is a critical piece of Ruby infrastructure, especially for <a href="https://github.com/socketry/falcon">falcon</a>, which supports HTTPS (required by HTTP/2). Over the past couple of months, we have merged many outstanding PRs, which I personally feel has encouraged users to be more active in contributing.</p>
+	
+	<p>I am working with Hiroshi Shibata to merge all these changes upstream, and we hope to have everything completed by the time Ruby v2.7 is released.</p>
+	
+	<h2>Rack Updates</h2>
+	
+	<p>The <a href="https://github.com/rack/rack">Rack gem</a> is another critical piece in most Ruby web applications. The master branch has a number of important improvements and bug fixes that have not been released yet. In addition, there are many outstanding issues and PRs, along with documentation which is largley out of date.</p>
+	
+	<p>I am working with Aaron Patterson to release v2.1 which will be the first release to officially support <a href="https://github.com/socketry/falcon">falcon</a>.</p>
+	
+	<h2>Faraday Updates</h2>
+	
+	<p>I'm a strong advocate for structured life-cycles within code. As such, I proposed and implemented <a href="https://github.com/lostisland/faraday/pull/1069">support for <code>Middleware#close</code></a>. This maps directly to <a href="https://github.com/socketry/async-http"><code>Async::HTTP::Client#close</code></a> and should improve support for adapters that support persistent connections (including HTTP/2).</p>
+	
+	<h2>Ruby Association Grant</h2>
+	
+	<p>It was announced that my <a href="https://www.ruby.or.jp/en/news/20191031">proposal to improve Ruby concurrency was accepted</a>. As part of this, I've been discussing the implementation details with Koichi Sasada while in Japan. This has been very productive and I hope to prepare a report regarding this collaboration soon.</p>
+	
+	<h2>GitHub Actions</h2>
+	
+	<p>I've been really interested in GitHub actions, in particular how they allow remote runners. In particular, I'm interested in accessing GPU hardware from some of my tests. So, as I use Arch Linux on my home server, I built <a href="https://github.com/ioquatix/github-actions">GitHub Actions</a> which I've released in the Arch User Repository. I use this to build and test C++ code which uses GPU for hardware accelerated rendering.</p>
+	
+	<h2>Asakusa.rb</h2>
+	
+	<p>During my time in Japan, I've attended the local <a href="https://asakusarb.esa.io">Asakusa.rb</a> meetups. It made me realise how special Ruby is and the amazing people who dedicate their time to making it awesome.</p>
+	
+	<h2>Sponsorship</h2>
+	
+	<p>This work is, in part, supported by my <a href="https://github.com/sponsors/ioquatix">GitHub sponsors</a>. If you are a company and you depend on Ruby, I invite you to support my open source work.</p>
+</content:entry>

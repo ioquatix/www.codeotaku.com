@@ -8,8 +8,8 @@ prev_links, current_link, next_links = sibling_links.split_at{|link| link.path =
 prev_links.reject!{|link| link[:display] == false}
 next_links.reject!{|link| link[:display] == false}
 
-author = current_link[:author]
-created = current_link[:created]
+author = current_link[:author] || "Samuel Williams"
+created = current_link[:created] || File.ctime(parent.node.file_path)
 title = current_link.title
 
 prev_link = prev_links.last if prev_links

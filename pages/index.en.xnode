@@ -6,21 +6,6 @@
 			<p>I am the creator of <a href="https://github.com/socketry/async">Async</a> and <a href="https://github.com/socketry/falcon">Falcon</a>, and a member of the <a href="https://ruby-lang.org">Ruby</a> core team. You can find me on <a href="https://twitter.com/ioquatix">Twitter</a> or <a href="mailto:samuel@codeotaku.com">send me an email</a>.</p>
 		</section>
 		
-		<section class="articles">
-			<?r links("journal", :sort => :title, :files => false, :virtuals => false).reverse_each do |link|
-				children = links(link.path, :sort => :created, :locale => localization.current_locale)
-				next if children.empty?
-			?>
-				<?r children.each do |entry|
-					next unless entry[:front]
-					preview_url = entry.path.dirname + (entry[:preview_url] || "preview.jpg")
-				?>
-					<a href="#{entry.relative_href(first.node.uri_path)}" style="background-image: url(#{preview_url})">
-						<heading>#{entry.title}</heading>
-						<small>#{entry.info[:summary]}</small>
-					</a>
-				<?r end ?>
-			<?r end ?>
-		</section>
+		<content:journal/>
 	</main>
 </content:page>

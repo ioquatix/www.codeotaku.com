@@ -1,0 +1,30 @@
+<section class="articles">
+	<?r links("journal", :sort => :title, :files => false, :virtuals => false).reverse_each do |link|
+		children = links(link.path, :sort => :created, :locale => localization.current_locale)
+		next if children.empty?
+	?>
+		<?r children.each do |entry|
+			next unless entry[:front]
+			
+			preview_url = entry.path.dirname + (entry[:preview_url] || "preview.jpg")
+			
+			if preview_url.extension == 'svg'
+				background_image = preview_url
+			else
+				resizer = Utopia::Gallery::ResizeImage.new(:medium, [800, 600], :resize_to_fill)
+				cache_root = Utopia.default_root('public/_gallery')
+				
+				media = Utopia::Gallery::Media.new(preview_url, {})
+				
+				cache = Utopia::Gallery::Cache.new(Utopia.default_root, cache_root, "/_gallery", media, {resizer.name => resizer}).update
+				
+				background_image = cache.medium
+			end
+		?>
+			<a href="#{entry.relative_href(first.node.uri_path)}" style="background-image: url(#{background_image})">
+				<heading>#{entry.title}</heading>
+				<small>#{entry.info[:summary]}</small>
+			</a>
+		<?r end ?>
+	<?r end ?>
+</section>

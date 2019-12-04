@@ -62,7 +62,7 @@
 	
 	<h3>Parallelism</h3>
 	
-	<p>The first decision, which is largely dictated by the system, is whether to use processes or threads for parallelism. As long as you assume that the server is handling discrete requests and responses, both appraoches are equally scalable in practice. <a href="https://github.com/socketry/async-container">async-container</a> provides both and they can be interchanged.</p>
+	<p>The first decision, which is largely dictated by the system, is whether to use processes or threads for parallelism. As long as you assume that the server is handling discrete requests and responses, both approaches are equally scalable in practice. <a href="https://github.com/socketry/async-container">async-container</a> provides both and they can be interchanged.</p>
 	
 	<p>Not all platforms support both options equally well. For example Windows and Java do not support fork. Threads on MRI are not truely independent and thus do not scale as well..</p>
 	

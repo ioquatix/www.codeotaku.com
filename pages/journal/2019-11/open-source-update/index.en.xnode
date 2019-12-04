@@ -3,7 +3,7 @@
 	
 	<h2>RubyWorld Conference 2019: Asynchronous Ruby</h2>
 	
-	<p><a href="https://youtu.be/0bssp3YO5xw?start=11267">At RubyWorld Conference</a>, I discussed thread safety issues in popular Ruby gems, and looked at different appraoches to concurrency. I compared JavaScript async/await with Ruby, and showed how the <a href="https://github.com/socketry/async">async</a> gem can bring both simplicity and scalability.</p>
+	<p><a href="https://youtu.be/0bssp3YO5xw?start=11267">At RubyWorld Conference</a>, I discussed thread safety issues in popular Ruby gems, and looked at different approaches to concurrency. I compared JavaScript async/await with Ruby, and showed how the <a href="https://github.com/socketry/async">async</a> gem can bring both simplicity and scalability.</p>
 	
 	<p>As part of this talk, I was able to submit issues and PRs to some of the projects I critiqued, and many of these have since been merged.</p>
 	

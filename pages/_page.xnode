@@ -14,8 +14,8 @@
 		
 		<meta name="viewport" content="width=device-width, initial-scale=1"/>
 		
-		<?r if image = attributes[:image] ?>
-		<meta property="og:image" content="#{image}"/>
+		<?r if image_url = attributes[:image_url] ?>
+		<meta property="og:image" content="#{image_url}"/>
 		<?r end ?>
 		
 		<link rel="icon" type="image/png" href="/_static/icon.png" />

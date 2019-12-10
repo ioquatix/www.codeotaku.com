@@ -2,7 +2,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     ast (2.4.0)
-    async (1.23.0)
+    async (1.24.0)
       console (~> 1.0)
       nio4r (~> 2.3)
       timers (~> 4.1)
@@ -16,9 +16,9 @@ GEM
       protocol-http (~> 0.13.0)
       protocol-http1 (~> 0.10.0)
       protocol-http2 (~> 0.10.0)
-    async-io (1.27.0)
+    async-io (1.27.1)
       async (~> 1.14)
-    async-rest (0.12.0)
+    async-rest (0.12.1)
       async-http (~> 0.42)
       protocol-http (~> 0.7)
     bcrypt (3.1.13)
@@ -65,7 +65,7 @@ GEM
     kramdown (2.1.0)
     kramdown-parser-gfm (1.1.0)
       kramdown (~> 2.0)
-    listen (3.2.0)
+    listen (3.2.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
     localhost (1.1.6)
@@ -94,7 +94,7 @@ GEM
     protocol-http (0.13.0)
     protocol-http1 (0.10.0)
       protocol-http (~> 0.13)
-    protocol-http2 (0.10.3)
+    protocol-http2 (0.10.4)
       protocol-hpack (~> 1.4)
       protocol-http (~> 0.2)
     pry (0.12.2)
@@ -142,7 +142,7 @@ GEM
       rake-compiler
     trenni-sanitize (0.3.0)
       trenni (~> 3.5)
-    utopia (2.9.5)
+    utopia (2.10.0)
       concurrent-ruby (~> 1.0)
       console (~> 1.0)
       http-accept (~> 2.1)
@@ -183,9 +183,9 @@ DEPENDENCIES
   rspec
   scout_apm (~> 2.4.0)
   trenni-sanitize
-  utopia (~> 2.9.2)
+  utopia (~> 2.10.0)
   utopia-analytics
   utopia-gallery (~> 2.3)
 
 BUNDLED WITH
-   2.1.0.pre.1
+   2.0.2

@@ -11,6 +11,10 @@
 		
 		<meta name="viewport" content="width=device-width, initial-scale=1"/>
 		
+		<?r if image = attributes[:image] ?>
+		<meta property="og:image" content="#{image}"/>
+		<?r end ?>
+		
 		<link rel="icon" type="image/png" href="/_static/icon.png" />
 		<link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/journal/atom" />
 

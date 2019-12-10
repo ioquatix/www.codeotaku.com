@@ -1,7 +1,7 @@
 <content:entry>
 	<p>This month <a href="https://github.com/ioquatix?tab=overview&amp;from=2019-11-01&amp;to=2019-11-30">has been productive</a>. I travelled to Japan to give a talk at RubyWorld Conference 2019 and attend a Ruby developer meeting. I was able to dedicate time to many important Ruby gems, and additionally some side projects.</p>
 	
-	<h2>RubyWorld Conference 2019: Asynchronous Ruby</h2>
+	<h2 id="rubyworld-conference-2019-asynchronous-ruby">RubyWorld Conference 2019: Asynchronous Ruby</h2>
 	
 	<p><a href="https://youtu.be/0bssp3YO5xw?start=11267">At RubyWorld Conference</a>, I discussed thread safety issues in popular Ruby gems, and looked at different approaches to concurrency. I compared JavaScript async/await with Ruby, and showed how the <a href="https://github.com/socketry/async">async</a> gem can bring both simplicity and scalability.</p>
 	

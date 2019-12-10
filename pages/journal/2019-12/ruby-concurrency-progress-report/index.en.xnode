@@ -3,19 +3,25 @@
 	
 	<h2>Concurrency and Parallelism</h2>
 	
-	<p>Concurrency is the interleaving of tasks which are performing non-blocking I/O. Parallelism is the simultaneous execution of tasks which are performing processor intensive work. With this in mind, we discussed having two separate abstractions. By doing this, we minimise the complexity of concurrency by avoiding thread safety issues, and maximise the value of parallelism, by building it around isolation.</p>
+	<p>Concurrency is the interleaving of tasks which are performing non-blocking operations. Parallelism is the simultaneous execution of tasks which are performing processor intensive work. With this in mind, we discussed having two separate abstractions. By doing this, we can keep both concurrency and parallelism simple by avoiding thread-safety issues which <a href="../../open-source-progress-report/index#rubyworld-conference-2019-asynchronous-ruby">plague existing code</a>.</p>
+	
+	<content:listing src="isolates.rb" lang="ruby"/>
+	
+	<h3>Non-determinism</h3>
 	
 	<p>Any time non-determinism is introduced, it is possible for some unexpected sequence of operations to occur, for example:</p>
 	
 	<content:listing src="determinism.rb" lang="ruby"/>
 	
+	<p>Pratically speaking, it's not possible to avoid non-determinsim in modern computers. That being said, we can minimise it's impact on user code, and the ways in which non-determinism is invoked from user code.</p>
+	
 	<h3>Concurrency</h3>
 	
-	<p>We discussed how <a href="https://github.com/socketry/async">async</a> and <a href="https://github.com/socketry/falcon">falcon</a> improve existing Ruby web applications. However, we want to extend this to all Ruby with <a href="https://github.com/ruby/ruby/pull/1870">light weight hooks</a>.</p>
+	<p>We discussed how <a href="https://github.com/socketry/async">async</a> and <a href="https://github.com/socketry/falcon">falcon</a> improve existing Ruby web applications. However, we want to extend this to all Ruby with <a href="https://github.com/ruby/ruby/pull/1870">light weight hooks</a> that can work across all Ruby implementations.</p>
 	
 	<h4>Life Cycle Management</h4>
 	
-	<p>One of the critical points of async and Ruby in general, is managing the life cycle of resources. Async has explicit life cycle management using <code>Async{}</code> blocks, and provides explicit support for stopping entire server hierarchies using <code>Task#stop</code>.</p>
+	<p>One of the critical points of <code>async</code>, is managing the life cycle of resources (connections, sockets, files, etc). Life cycles are scoped to <code>Async{}</code> blocks, and <code>async</code> provides explicit support for stopping entire server hierarchies using <code>Task#stop</code>.</p>
 	
 	<h4>I/O Wrappers</h4>
 	
@@ -46,7 +52,7 @@
 	
 	<h4>Node.js</h4>
 	
-	<p>We discussed <a href="https://github.com/libuv/libuv">libuv</a> which is the core of the Node.js concurrency model. It provides wrappers for many I/O operations and implements them using the most efficient method available.</p>
+	<p>We discussed <a href="https://github.com/libuv/libuv">libuv</a> which is the core of the Node.js concurrency model. It provides wrappers for many non-blocking operations and implements them using the most efficient method available.</p>
 	
 	<h4>Options</h4>
 	
@@ -70,11 +76,11 @@
 	
 	<p>We discussed the concepts and how they are structured. In particular, the current <a href="https://github.com/ruby/ruby/pull/1870">light weight selector implementation</a> is specific to the current <code>Thread</code>. When using <code>Isolate</code>, the selector would be specific to that container.</p>
 	
-	<p>In addition, we discussed the kind of methods that the <code>Selector</code> interface should expect, including how to capture details of blocking operations. The main ones we have right now: <code>wait_readable</code>, <code>wait_writable</code>, <code>wait_sleep</code>, but we will expand this to capture blocking operations within the VM itself.</p>
+	<p>In addition, we discussed the kind of methods that the <code>Selector</code> interface should have, including how to capture details of blocking operations. The main ones we have right now: <code>wait_readable</code>, <code>wait_writable</code>, <code>wait_sleep</code>, but we will expand this to capture blocking operations within the VM itself.</p>
 	
 	<p>Additionally, we considered how different designs would impact CRuby, JRuby and TruffleRuby, including the different process models required. CRuby supports fork which can allow child processes to share memory, while JVM implementations of Ruby require isolated threads to achieve the same levels of scalability/reliability.</p>
 	
-	<h4>Interface Considerations</h4>
+	<h4>Additional Keywords</h4>
 	
 	<p>With the async/await keywords, making a method asynchronous requires changing the entire lexical call-tree, which can be challenging. When using Fibers to implement the same non-blocking models, this is transparent to the user. We discussed the implications of this on Ruby code:</p>
 	

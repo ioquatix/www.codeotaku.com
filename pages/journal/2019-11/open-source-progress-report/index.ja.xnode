@@ -1,7 +1,7 @@
 <content:entry>
 	<p>今月は<a href="https://github.com/ioquatix?tab=overview&amp;from=2019-11-01&amp;to=2019-11-30">とてもプロダクティブでした。</a>日本で行われたRubyWorld Conference 2019で発表し、Ruby開発チームの会議にも参加しました。私は多くの重要なRuby gemや、さらにいくつかのサイドプロジェクトに時間を割くことができました。</p>
 	
-	<h2>RubyWorld Conference 2019: Asynchronous Ruby</h2>
+	<h2 id="rubyworld-conference-2019-asynchronous-ruby">RubyWorld Conference 2019: Asynchronous Ruby</h2>
 	
 	<p><a href="https://youtu.be/3WdN2gRC7qo?start=11267">RubyWorld Conferenceでは</a>、 Rubyのgemにおいてのスレッドセーフティーの問題について話しました。それから、コンカレンシー（並行性）への様々なアプローチを検討しました。Rubyと比較したのは、JavaScriptのasync/awaitで、 どのようにこのgem　<a href="https://github.com/socketry/async">async</a> がシンプルでかつスケーラブルにしてくれるのかをみました。</p>
 	

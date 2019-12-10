@@ -309,7 +309,7 @@ dl.basic dt {
 	margin-top: 1.5rem;
 }
 
-p, li, dt, dd, nav, pre {
+p, li, dt, dd, nav, pre, table {
 	font-size: 1.2rem;
 	line-height: 150%;
 }
@@ -393,7 +393,6 @@ table.basic tfoot th {
 table.basic tbody th,
 table.basic tbody td {
 	border: none;
-	font-size: .9rem;
 	padding: 0.5625rem 0.5rem 0rem 0.5rem;
 }
 

@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<meta property="og:type" content="website"/>
+		
 		<?r if title = self[:title] ?>
 			<title>#{title}</title>
+			<meta property="og:title" content="#{title}"/>
 		<?r else ?>
 			<title>`(code otaku)</title>
 		<?r end ?>

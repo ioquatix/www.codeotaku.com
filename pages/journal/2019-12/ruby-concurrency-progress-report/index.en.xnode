@@ -1,0 +1,100 @@
+<content:entry>
+	<p>Last month I was able to spend some time discussing the concurrency model for Ruby 3 with Matz and Koichi. This progress report is a combination of both discussions.</p>
+	
+	<h2>Concurrency and Parallelism</h2>
+	
+	<p>Concurrency is the interleaving of tasks which are performing non-blocking I/O. Parallelism is the simultaneous execution of tasks which are performing processor intensive work. With this in mind, we discussed having two separate abstractions. By doing this, we minimise the complexity of concurrency by avoiding thread safety issues, and maximise the value of parallelism, by building it around isolation.</p>
+	
+	<p>Any time non-determinism is introduced, it is possible for some unexpected sequence of operations to occur, for example:</p>
+	
+	<content:listing src="determinism.rb" lang="ruby"/>
+	
+	<h3>Concurrency</h3>
+	
+	<p>We discussed how <a href="https://github.com/socketry/async">async</a> and <a href="https://github.com/socketry/falcon">falcon</a> improve existing Ruby web applications. However, we want to extend this to all Ruby with <a href="https://github.com/ruby/ruby/pull/1870">light weight hooks</a>.</p>
+	
+	<h4>Life Cycle Management</h4>
+	
+	<p>One of the critical points of async and Ruby in general, is managing the life cycle of resources. Async has explicit life cycle management using <code>Async{}</code> blocks, and provides explicit support for stopping entire server hierarchies using <code>Task#stop</code>.</p>
+	
+	<h4>I/O Wrappers</h4>
+	
+	<p><a href="https://github.com/socketry/async-io">async-io</a> provides IO wrappers for Ruby, which in many cases are drop-in replacements:</p>
+	
+	<table class="basic">
+		<thead>
+			<tr>
+				<th>Ruby</th>
+				<th>Async</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><code>IO</code></td>
+				<td><code>Async::IO</code></td>
+			</tr>
+			<tr>
+				<td><code>Socket</code></td>
+				<td><code>Async::IO::Socket</code></td>
+			</tr>
+			<tr>
+				<td><code>OpenSSL::SSL::SSLSocket</code></td>
+				<td><code>Async::IO::SSLSocket</code></td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<h4>Node.js</h4>
+	
+	<p>We discussed <a href="https://github.com/libuv/libuv">libuv</a> which is the core of the Node.js concurrency model. It provides wrappers for many I/O operations and implements them using the most efficient method available.</p>
+	
+	<h4>Options</h4>
+	
+	<p>We considered a number of options:</p>
+	
+	<dl class="basic">
+		<dt>Auto Fibers</dt>
+		<dd><a href="https://bugs.ruby-lang.org/issues/13618">This patch</a> essentially adds green threads back to Ruby. It improves the concurrency of non-blocking I/O but doesn't necessarily address any other issues. It is a fairly large patch with no active maintainers at present.</dd>
+		
+		<dt>Wrappers</dt>
+		<dd>As implemented in <a href="https://github.com/socketry/async-io">async-io</a>. Wrap existing I/O constructs and other operations. It works but doesn't directly support legacy code.</dd>
+		
+		<dt>New Methods</dt>
+		<dd>We already have a legacy of both blocking and nonblocking methods. It moves the problem of concurrency into the user code, and additionally, we don't support the full range of nonblocking operations (e.g. <code>IO#gets_nonblock</code> doesn't exist).</dd>
+		
+		<dt>New Classes</dt>
+		<dd>New I/O classes to support non-blocking operations. We may yet explore this option for improvements to the user-facing implementation, but we'd rather avoid it for now.</dd>
+	</dl>
+	
+	<h3>Containers</h3>
+	
+	<p>We discussed the concepts and how they are structured. In particular, the current <a href="https://github.com/ruby/ruby/pull/1870">light weight selector implementation</a> is specific to the current <code>Thread</code>. When using <code>Isolate</code>, the selector would be specific to that container.</p>
+	
+	<p>In addition, we discussed the kind of methods that the <code>Selector</code> interface should expect, including how to capture details of blocking operations. The main ones we have right now: <code>wait_readable</code>, <code>wait_writable</code>, <code>wait_sleep</code>, but we will expand this to capture blocking operations within the VM itself.</p>
+	
+	<p>Additionally, we considered how different designs would impact CRuby, JRuby and TruffleRuby, including the different process models required. CRuby supports fork which can allow child processes to share memory, while JVM implementations of Ruby require isolated threads to achieve the same levels of scalability/reliability.</p>
+	
+	<h4>Interface Considerations</h4>
+	
+	<p>With the async/await keywords, making a method asynchronous requires changing the entire lexical call-tree, which can be challenging. When using Fibers to implement the same non-blocking models, this is transparent to the user. We discussed the implications of this on Ruby code:</p>
+	
+	<content:listing src="async.rb" lang="ruby"/>
+	
+	<p>The fiber based model minimises the burden on user code when libraries make such changes - i.e. concurrency model is an implementation detail.</p>
+	
+	<h3>Blocking Behaviour</h3>
+	
+	<p>In Ruby, there are many blocking operations, e.g. <code>system(...)</code> and <code>File.read</code>. We discussed how this impacts the concurrency model, and looked at how we can mitigate some of these issues. In particular, one point that came up is wrapping the existing <code>rb_nogvl</code> function in CRuby to <a href="https://github.com/ruby/ruby/pull/1870/commits/014c7315580f964d8ae42d6c998f2420ab5b8808">detect these blocking methods and report on them</a>. In the case of RSpec, we could add assertions, e.g.:</p>
+	
+	<content:listing src="expect_non_blocking.rb" lang="ruby"/>
+	
+	<h3>Mutability</h3>
+	
+	<p>Another important issue is mutability. Because Ruby is a dynamic language, we can detect and report on mutability, e.g. using trace points. These could be used to implement detection of shared mutable state, and additionally provide code coverage tools to detect mutability issues.</p>
+	
+	<content:listing src="expect_mutability.rb" lang="ruby"/>
+	
+	<h2>Sponsorship</h2>
+	
+	<p>This work is supported by the <a href="https://www.ruby.or.jp/en/news/20191031">2019 Ruby Association Grant</a> and my <a href="https://github.com/sponsors/ioquatix">GitHub sponsors</a>. If you are a company and you depend on Ruby, I invite you to support my open source work.</p>
+</content:entry>

@@ -1,0 +1,3 @@
+expect do
+	post_data
+end.to_not perform_blocking_operations

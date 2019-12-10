@@ -1,0 +1,6 @@
+ruby-concurrency-progress-report:
+  author: "Samuel Williams"
+  created: 2019-12-10
+  summary: An overview of my discussions with Matz and Koichi about Ruby concurrency.
+  display: true
+  front: true

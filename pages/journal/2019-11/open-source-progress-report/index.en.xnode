@@ -1,4 +1,4 @@
-<content:entry preview="preview.jpeg">
+<content:entry>
 	<p>This month <a href="https://github.com/ioquatix?tab=overview&amp;from=2019-11-01&amp;to=2019-11-30">has been productive</a>. I travelled to Japan to give a talk at RubyWorld Conference 2019 and attend a Ruby developer meeting. I was able to dedicate time to many important Ruby gems, and additionally some side projects.</p>
 	
 	<h2>RubyWorld Conference 2019: Asynchronous Ruby</h2>
@@ -17,7 +17,7 @@
 	
 	<h3>Discussing Concurrency with Matz</h3>
 	
-	<p>During the conference, I was able to discuss plans for Ruby 3 scalability with Matz. We discussed various different options, and it seems like we will be <a href="https://github.com/ruby/ruby/pull/1870">exploring Fibers for light-weight concurrency</a>.</p>
+	<p>During the conference, I was able to discuss plans for Ruby 3 scalability with Matz. <a href="../../2019-12/ruby-concurrency-progress-report">We discussed various different options</a>, and it seems like we will be <a href="https://github.com/ruby/ruby/pull/1870">exploring Fibers for light-weight concurrency</a>.</p>
 	
 	<h2>Software Sessions</h2>
 	

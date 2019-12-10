@@ -1,4 +1,4 @@
-<content:entry preview="preview.jpeg">
+<content:entry>
 	<p>今月は<a href="https://github.com/ioquatix?tab=overview&amp;from=2019-11-01&amp;to=2019-11-30">とてもプロダクティブでした。</a>日本で行われたRubyWorld Conference 2019で発表し、Ruby開発チームの会議にも参加しました。私は多くの重要なRuby gemや、さらにいくつかのサイドプロジェクトに時間を割くことができました。</p>
 	
 	<h2>RubyWorld Conference 2019: Asynchronous Ruby</h2>
@@ -17,7 +17,7 @@
 	
 	<h3>コンカレンシー（並行性）についてMatz氏との対話</h3>
 	
-	<p>During the conference,コンフェレンス中に、私はMatz氏とRuby 3のスケーラビリティについてお話させていただきました。様々なオプションを話し合った結果、軽量なコンカレンシー（並行性）の実現のため、Fibersを<a href="https://github.com/ruby/ruby/pull/1870">検討しているようです。 </a>.</p>
+	<p>During the conference,コンフェレンス中に、私はMatz氏とRuby 3のスケーラビリティについてお話させていただきました。<a href="../../2019-12/ruby-concurrency-progress-report">様々なオプションを話し合った結果</a>、軽量なコンカレンシー（並行性）の実現のため、Fibersを<a href="https://github.com/ruby/ruby/pull/1870">検討しているようです。 </a>.</p>
 	
 	<h2>Software Sessions</h2>
 	

@@ -43,6 +43,7 @@ use Utopia::Redirection::Moved, "/blog", "/journal"
 use Utopia::Redirection::Moved, "/game-mechanics-society", "http://www.gmsoc.org"
 
 use Utopia::Redirection::Moved, "/projects/jquery-syntax", "https://www.github.com/ioquatix/jquery-syntax", flatten: true
+use Utopia::Redirection::Moved, "/journal/2019-11/open-source-update", "/journal/2019-11/open-source-progress-report"
 
 # Old localization redirects:
 use Utopia::Redirection::Moved, "/projects/rubydns/index.en", "/en/projects/rubydns/index"

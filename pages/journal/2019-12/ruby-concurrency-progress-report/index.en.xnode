@@ -17,7 +17,7 @@
 	
 	<h3>Concurrency</h3>
 	
-	<p>We discussed how <a href="https://github.com/socketry/async">async</a> and <a href="https://github.com/socketry/falcon">falcon</a> improve existing Ruby web applications. However, we want to extend this to all Ruby with <a href="https://github.com/ruby/ruby/pull/1870">light weight hooks</a> that can work across all Ruby implementations.</p>
+	<p>We discussed how <a href="https://github.com/socketry/async">async</a> and <a href="https://github.com/socketry/falcon">falcon</a> improve existing Ruby web applications. However, we want to extend this with <a href="https://github.com/ruby/ruby/pull/1870">light weight hooks</a> that can work across all Ruby implementations.</p>
 	
 	<h4>Life Cycle Management</h4>
 	
@@ -72,13 +72,13 @@
 		<dd>New I/O classes to support non-blocking operations. We may yet explore this option for improvements to the user-facing implementation, but we'd rather avoid it for now.</dd>
 	</dl>
 	
-	<h3>Containers</h3>
+	<h3>Isolates</h3>
 	
-	<p>We discussed the concepts and how they are structured. In particular, the current <a href="https://github.com/ruby/ruby/pull/1870">light weight selector implementation</a> is specific to the current <code>Thread</code>. When using <code>Isolate</code>, the selector would be specific to that container.</p>
+	<p>We discussed how the future of Ruby will affect existing code. In particular, the current <a href="https://github.com/ruby/ruby/pull/1870">light weight selector implementation</a> is specific to the current <code>Thread</code>. When using <code>Isolate</code>, the selector would be specific to that container.</p>
 	
-	<p>In addition, we discussed the kind of methods that the <code>Selector</code> interface should have, including how to capture details of blocking operations. The main ones we have right now: <code>wait_readable</code>, <code>wait_writable</code>, <code>wait_sleep</code>, but we will expand this to capture blocking operations within the VM itself.</p>
+	<p>We also discussed the kind of methods that the <code>Selector</code> interface should have, including how to capture details of blocking operations. The main ones we have right now: <code>wait_readable</code>, <code>wait_writable</code>, <code>wait_sleep</code>, but we will expand this to capture blocking operations within the VM itself.</p>
 	
-	<p>Additionally, we considered how different designs would impact CRuby, JRuby and TruffleRuby, including the different process models required. CRuby supports fork which can allow child processes to share memory, while JVM implementations of Ruby require isolated threads to achieve the same levels of scalability/reliability.</p>
+	<p>We considered how different designs would impact CRuby, JRuby and TruffleRuby, including the different process models required. CRuby supports fork which can allow child processes to share memory, while JVM implementations of Ruby require isolated threads to achieve the same levels of scalability/reliability.</p>
 	
 	<h4>Additional Keywords</h4>
 	

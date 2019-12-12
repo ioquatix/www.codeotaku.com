@@ -3,7 +3,7 @@
 	
 	<h2>Concurrency and Parallelism</h2>
 	
-	<p>Concurrency is the interleaving of tasks which are performing non-blocking operations. Parallelism is the simultaneous execution of tasks which are performing processor intensive work. With this in mind, we discussed having two separate abstractions. By doing this, we can keep both concurrency and parallelism simple by avoiding thread-safety issues which <a href="../../open-source-progress-report/index#rubyworld-conference-2019-asynchronous-ruby">plague existing code</a>.</p>
+	<p>Concurrency is the interleaving of tasks which are performing non-blocking operations. Parallelism is the simultaneous execution of tasks which are performing processor intensive work. With this in mind, we discussed having two separate abstractions. By doing this, we can keep both concurrency and parallelism simple by avoiding thread-safety issues which <a href="../../2019-11/open-source-progress-report/index#rubyworld-conference-2019-asynchronous-ruby">plague existing code</a>.</p>
 	
 	<content:listing src="isolates.rb" lang="ruby"/>
 	

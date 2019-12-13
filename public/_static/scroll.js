@@ -2,6 +2,9 @@
 function updateHeader() {
 	let offset = header.offsetHeight - navigation.offsetHeight;
 	
+	// let html = document.children[0];
+	// html.style.scrollPaddingTop = navigation.offsetHeight + "px";
+	
 	if (window.scrollY > offset) {
 		header.style.paddingBottom = navigation.offsetHeight + "px";
 		header.classList.add("sticky");

@@ -261,7 +261,11 @@ div.centered {
 main h1, main h2, main h3, main h4 {
 	font-weight: normal;
 	filter: brightness(150%);
-	margin: 6rem 0.5rem 2rem;
+	
+	margin: 1rem 0.5rem 2rem;
+	/* This was added to fix linking to anchors with the fixed <nav>. Maybe in the future consider scroll-padding-top. */
+	padding-top: 5rem;
+	
 	letter-spacing: 0.12rem;
 }
 

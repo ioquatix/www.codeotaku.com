@@ -7,6 +7,6 @@ ruby-concurrency-progress-report:
 open-source-progress-report:
   author: "Samuel Williams"
   created: 2019-12-31
-  summary: An overview of my Open Source work for December.
+  summary: An overview of my Open Source work for December, 2019.
   display: true
   front: true

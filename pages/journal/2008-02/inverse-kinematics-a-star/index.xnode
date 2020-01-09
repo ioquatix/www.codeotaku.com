@@ -1,7 +1,7 @@
 <content:entry>
-	<p>I developed a solution to the inverse kinematics problem using the A* algorithm to perform a discrete search through 3D space. My prelimiary <a href="Inverse Kinematics A-star.pdf">research report</a> outlines the approach, which I hope will eventually be useful in a practical robot.</p>
+	<p>I developed a solution to the inverse kinematics problem using the A* algorithm to perform a discrete search through 3D space. My prelimiary <a href="Inverse%20Kinematics%20A-star.pdf">research report</a> outlines the approach, which I hope will eventually be useful in a practical robot.</p>
 	
-	<p>The approach is based on the <a href="A-star Presentation.pdf">A* algorithm</a>. A robotic armature is modeled as a series of quaternion rotations in 3D space and the configuration is fed into a heuristic function which looks at the current configuration with respect to the goal. When this error is within a specified tolerance, a solution is found.</p>
+	<p>The approach is based on the <a href="A-star%20Presentation.pdf">A* algorithm</a>. A robotic armature is modeled as a series of quaternion rotations in 3D space and the configuration is fed into a heuristic function which looks at the current configuration with respect to the goal. When this error is within a specified tolerance, a solution is found.</p>
 	
 	<p>In general, I found that this approach is far more reliable than other numerical solutions, and (I suspect) satisfies several useful properties:</p>
 	

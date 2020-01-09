@@ -9,13 +9,13 @@
 
 	<p>I enjoyed this lecture and so did many others. It was very insightful and interesting and I have made it available online:</p>
 
-	<audio src="Richard Stallman.ogg" controls="controls">
+	<audio src="Richard%20Stallman.ogg" controls="controls">
 		Your browser does not support the <code>&lt;audio&gt;</code> element and/or Ogg Vorbis. Please download the audio using the link below.
 	</audio>
 
 	<p>This file and its contents are released under the <a href="http://creativecommons.org/licenses/by-nd/3.0/">Creative Commons BY-ND</a> license. Please link to this page, not directly to the audio file.</p>
 
-	<p>You are also welcome to <a href="Richard Stallman.ogg">download this file</a>. You might need to right click the file and select download. You can use <a href="http://www.videolan.org/">VideoLAN Client</a> to play this file. If you are using Mac OS X, you can install <a href="http://perian.org/">Perian</a> to play back Ogg Vorbis in Safari.</p>
+	<p>You are also welcome to <a href="Richard%20Stallman.ogg">download this file</a>. You might need to right click the file and select download. You can use <a href="http://www.videolan.org/">VideoLAN Client</a> to play this file. If you are using Mac OS X, you can install <a href="http://perian.org/">Perian</a> to play back Ogg Vorbis in Safari.</p>
 	
 	<p>There is also a text transcript of this talk <a href="http://www.wikipublisher.org/books/GNUZealand2009/AFreeDigitalSociety">available here</a>. This also includes a Q&amp;A section which I did not record.</p>
 

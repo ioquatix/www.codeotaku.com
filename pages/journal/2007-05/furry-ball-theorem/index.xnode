@@ -2,8 +2,8 @@
 	<p>I have been investigating several interesting problems in 3D geometry. I wanted to share my research as I'm sure others may find it interesting too.</p>
 	
 	<ul>
-		<li><a href="Biasing Tangent Vectors.pdf">Biasing Tangent Vectors</a> &mdash; spline interpolation often requires tangent vectors which can be biased to improve the quality of the interpolation.</li>
-		<li><a href="Furry Ball Theory.pdf">Furry Ball Theory</a> &mdash; the surface of a sphere must always have two points where no continuous surface normal can exist - for example, there must always be at least two tornadoes on the surface of the earth. I tried to use the 4D cross product to solve this problem, but wasn't successful.</li>
+		<li><a href="Biasing%20Tangent%20Vectors.pdf">Biasing Tangent Vectors</a> &mdash; spline interpolation often requires tangent vectors which can be biased to improve the quality of the interpolation.</li>
+		<li><a href="Furry%20Ball%20Theory.pdf">Furry Ball Theory</a> &mdash; the surface of a sphere must always have two points where no continuous surface normal can exist - for example, there must always be at least two tornadoes on the surface of the earth. I tried to use the 4D cross product to solve this problem, but wasn't successful.</li>
 		<li><a href="Othello.pdf">Othello</a> &mdash; A fun demo of some basic OpenGl programming techniques.</li>
 	</ul>
 </content:entry>

@@ -3,7 +3,7 @@
 	
 	<dl class="options">
 		<dt>RubyKaigi 2019 Slides</dt>
-		<dd><a href="Fibers Are the Right Solution.pdf">Fibers Are the Right Solution.pdf</a></dd>
+		<dd><a href="Fibers%20Are%20the%20Right%20Solution.pdf">Fibers Are the Right Solution.pdf</a></dd>
 	</dl>
 	
 	<h2>Building an Asynchronous Server</h2>

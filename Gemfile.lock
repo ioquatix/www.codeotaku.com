@@ -6,11 +6,14 @@ GEM
       console (~> 1.0)
       nio4r (~> 2.3)
       timers (~> 4.1)
+    async-await (0.5.0)
+      async (~> 1.3)
+      ruby2_keywords
     async-container (0.14.1)
       async (~> 1.0)
       async-io (~> 1.4)
       process-group
-    async-http (0.50.0)
+    async-http (0.50.1)
       async (~> 1.23)
       async-io (~> 1.27.0)
       async-pool (~> 0.2)
@@ -25,6 +28,12 @@ GEM
       async-http (~> 0.42)
       protocol-http (~> 0.7)
     bcrypt (3.1.13)
+    benchmark-http (0.11.0)
+      async-await
+      async-http (~> 0.45)
+      async-io (~> 1.5)
+      samovar (~> 2.0)
+      trenni-sanitize
     build-environment (1.12.1)
     coderay (1.1.2)
     concurrent-ruby (1.1.5)
@@ -133,6 +142,7 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.9.0)
     rspec-support (3.9.2)
+    ruby2_keywords (0.0.2)
     rugged (0.28.4.1)
     samovar (2.1.2)
       console (~> 1.0)
@@ -172,6 +182,7 @@ PLATFORMS
 DEPENDENCIES
   async-http
   bcrypt
+  benchmark-http (~> 0.11)
   bundler
   covered
   guard-falcon
@@ -191,4 +202,4 @@ DEPENDENCIES
   utopia-gallery (~> 2.3)
 
 BUNDLED WITH
-   2.0.2
+   2.1.2

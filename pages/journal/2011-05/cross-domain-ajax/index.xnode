@@ -36,6 +36,6 @@
 		<li><a name="2" href="http://developer.apple.com/library/mac/documentation/AppleApplications/Conceptual/SafariJSProgTopics/Articles/XHR.html#//apple_ref/doc/uid/TP40006227-SW5">WebKit DOM Programming Topics: Security Considerations</a></li>
 		<li><a name="3" href="http://dev.w3.org/2006/webapi/XMLHttpRequest/#infrastructure-for-the-send-method">XMLHttpRequest: Infrastructure for the send method</a></li>
 		<li><a href="../../2009-10/secure-login-using-ajax">Secure login using AJAX</a></li>
-		<li><a href="../2011-08/rack-memory-usage">Rack Memory Usage</a></li>
+		<li><a href="../../2011-08/rack-memory-usage">Rack Memory Usage</a></li>
 	</references>
 </content:entry>

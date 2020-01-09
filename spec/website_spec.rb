@@ -1,6 +1,8 @@
 
 require_relative 'website_context'
 
+require 'benchmark/http/spider'
+
 # Learn about best practice specs from http://betterspecs.org
 RSpec.describe "my website" do
 	include_context "website"

@@ -29,7 +29,7 @@ property-manager:
 truth-tables:
     title: 'Truth Tables'
     tags: ['educational', 'commercial', 'objective-c', 'cpp', 'cocoa', 'application']
-    uri: http://www.oriontransfer.co.nz/software/truth-tables
+    uri: https://www.oriontransfer.co.nz/products/truth-tables
     description: "An interactive logic calculator with a built in tutor."
 programming-dojo:
     title: 'Programming Dojo'
@@ -55,12 +55,12 @@ fingerprint:
 fingerprint-app:
     title: 'Fingerprint'
     tags: ['commercial', 'objective-c', 'application']
-    uri: http://www.oriontransfer.co.nz/software/fingerprint
+    uri: http://www.oriontransfer.co.nz/products/fingerprint
     description: "A user interface for the command-line tool of the same name."
 library-inspector:
     title: 'Library Inspector'
     tags: ['commercial', 'objective-c', 'application']
-    uri: http://www.oriontransfer.co.nz/software/library-inspector
+    uri: http://www.oriontransfer.co.nz/products/library-inspector
     description: "A graphical symbol table tool and QuickLook plugin for compiled object code."
 code-visualisation:
     title: 'Visualising Information Change Over Time'

@@ -30,5 +30,5 @@
 	
 	<content:listing src="format.txt" brush="xml" />
 	
-	<p>I hope to add this functionality to <a href="/software/jquery-syntax">jQuery.Syntax</a> as a concept demonstration.</p>
+	<p>I hope to add this functionality to <a href="/projects/jquery-syntax">jQuery.Syntax</a> as a concept demonstration.</p>
 </content:entry>

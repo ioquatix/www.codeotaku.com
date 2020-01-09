@@ -1,8 +1,8 @@
 <content:page>
 	<content:logo src="logo.png" title="RubyDNS" />
 	
-    <p>RubyDNS is a high-performance DNS server which can be easily integrated into other projects or used as a stand-alone daemon (via <a href="../rexec/">RExec</a>). By default it uses rule-based pattern matching. Results can be hard-coded, computed, fetched from a remote DNS server or fetched from a local cache, depending on requirements.</p>
-
+	<p>RubyDNS is a high-performance DNS server which can be easily integrated into other projects or used as a stand-alone daemon. By default it uses rule-based pattern matching. Results can be hard-coded, computed, fetched from a remote DNS server or fetched from a local cache, depending on requirements.</p>
+	
 	<p>In addition, RubyDNS includes a high-performance asynchronous DNS resolver built on top of EventMachine. This module can be used by itself in client applications without using the full RubyDNS server stack.</p>
 	
 	<ul class="features">

@@ -26,8 +26,8 @@
 	<h2>Further Reading</h2>
 	
 	<ul>
-		<li><a href="Kai - Software Overview.pdf">Kai - Software Overview</a> &mdash; High level overview of usage and implementation.</li>
-		<li><a href="Kai - A Dynamic Compiler.pdf">Kai - A Dynamic Compiler</a> &mdash; Extensive research report and performance analysis.</li>
+		<li><a href="Kai%20-%20Software%20Overview.pdf">Kai - Software Overview</a> &mdash; High level overview of usage and implementation.</li>
+		<li><a href="Kai%20-%20A%20Dynamic%20Compiler.pdf">Kai - A Dynamic Compiler</a> &mdash; Extensive research report and performance analysis.</li>
 	</ul>
 	
 	<p>I developed Kai over several years to learn more about computer programming. Thanks to Tadao Takaoka for his supervision and support.</p>

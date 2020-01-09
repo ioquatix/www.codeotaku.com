@@ -13,12 +13,7 @@ time-limited-error-recovery:
     created: 2009-08-11
     summary: "TLER, or Time Limited Error Recovery, is a new feature on hard drives which needs to be considered when setting up a RAID - learn more about the implications of drives with and without TLER."
 rubydns-released:
-    title: "RubyDNS 0.1 Released"
+    title: "RubyDNS Released"
     author: "Samuel Williams"
     created: 2009-08-26
     summary: "RubyDNS is a tool for building dynamic DNS servers using Ruby."
-rubydns-and-rexec-updates:
-    title: "RubyDNS & RExec Updates"
-    author: Samuel Williams
-    created: 2009-08-29
-    summary: "See an example of RubyDNS running using a RExec daemon container."

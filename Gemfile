@@ -33,6 +33,8 @@ group :development do
 	# For `rspec` testing:
 	gem "rspec"
 	gem "covered"
+	
+	gem "benchmark-http", "~> 0.11"
 end
 
 group :production do

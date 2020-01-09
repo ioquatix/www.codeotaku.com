@@ -4,3 +4,9 @@ ruby-concurrency-progress-report:
   summary: An overview of my discussions with Matz and Koichi about Ruby concurrency.
   display: true
   front: true
+open-source-progress-report:
+  author: "Samuel Williams"
+  created: 2019-12-31
+  summary: An overview of my Open Source work for December.
+  display: true
+  front: true

@@ -12,8 +12,6 @@ backup-scripts:
     order: 70
 basic-server-backup:
     order: 80
-real-time-synchronization:
-    order: 90
 backup-staging:
     order: 100
 dns-indirection:

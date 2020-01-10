@@ -1,4 +1,4 @@
-name: Test
+name: Development
 
 on: [push]
 
@@ -42,3 +42,20 @@ jobs:
         bundle install --jobs 4 --retry 3
     - name: Run tests
       run: ${{matrix.env}} bundle exec rspec
+  
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master'
+    
+    steps:
+    - uses: actions/checkout@v1
+    - name: Push to remote system
+      env:
+        DEPLOY_KEY: ${{secrets.deploy_key}}
+      run: |
+        eval "$(ssh-agent -s)"
+        ssh-add - <<< $DEPLOY_KEY
+        mkdir ~/.ssh
+        ssh-keyscan -H www.oriontransfer.net >> ~/.ssh/known_hosts
+        git push -f ssh://http@www.oriontransfer.net/srv/http/www.codeotaku.com/ HEAD:master

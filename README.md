@@ -2,8 +2,7 @@
 
 This is the source code for [www.codeotaku.com](https://www.codeotaku.com).
 
-[![Test Status](https://github.com/ioquatix/www.codeotaku.com/workflows/Test/badge.svg)](https://github.com/ioquatix/www.codeotaku.com/actions?workflow=Test)
-[![Deploy Status](https://github.com/ioquatix/www.codeotaku.com/workflows/Deploy/badge.svg)](https://github.com/ioquatix/www.codeotaku.com/actions?workflow=Deploy)
+[![Development Status](https://github.com/ioquatix/www.codeotaku.com/workflows/Development/badge.svg)](https://github.com/ioquatix/www.codeotaku.com/actions?workflow=Development)
 
 ## Motivation
 

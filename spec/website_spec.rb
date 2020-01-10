@@ -19,6 +19,7 @@ RSpec.describe "website", timeout: 120 do
 		
 		statistics.print
 		
+		expect(statistics.samples).to be_any
 		expect(statistics.failed).to be_zero
 	end
 end

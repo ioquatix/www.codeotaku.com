@@ -27,6 +27,10 @@ GEM
     async-rest (0.12.1)
       async-http (~> 0.42)
       protocol-http (~> 0.7)
+    async-rspec (1.14.0)
+      rspec (~> 3.0)
+      rspec-files (~> 1.0)
+      rspec-memory (~> 1.0)
     bcrypt (3.1.13)
     benchmark-http (0.11.1)
       async-await
@@ -139,6 +143,10 @@ GEM
     rspec-expectations (3.9.0)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.9.0)
+    rspec-files (1.0.2)
+      rspec (~> 3.0)
+    rspec-memory (1.0.1)
+      rspec (~> 3.0)
     rspec-mocks (3.9.1)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.9.0)
@@ -148,7 +156,8 @@ GEM
     samovar (2.1.2)
       console (~> 1.0)
       mapping (~> 1.0)
-    scout_apm (2.4.24)
+    scout_apm (2.6.6)
+      parser
     shellany (0.0.1)
     thor (1.0.1)
     timers (4.3.0)
@@ -181,9 +190,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  async-http
+  async-rspec
   bcrypt
-  benchmark-http (~> 0.11)
+  benchmark-http
   bundler
   covered
   guard-falcon
@@ -196,7 +205,7 @@ DEPENDENCIES
   rake
   relaxo-model (~> 0.10.0)
   rspec
-  scout_apm (~> 2.4.0)
+  scout_apm
   trenni-sanitize
   utopia (~> 2.11)
   utopia-analytics

@@ -76,19 +76,17 @@ nav li {
 	flex-direction: column;
 	justify-content: flex-end;
 	
-	font-size: 3vh;
 	text-align: center;
 }
 
 #header h1 {
+	font-size: 6vh;
 	margin: 0 2rem;
 }
 
 #header nav {
 	padding: 1rem;
 	width: 100%;
-	
-	font-size: 1rem;
 	
 	background-color: inherit;
 	
@@ -198,6 +196,11 @@ pre {
 	margin: 0;
 }
 
+pre, code {
+	/* Same size as paragraph and other normal text. */
+	font-size: 16px;
+}
+
 pre code {
 	display: block;
 }
@@ -271,19 +274,6 @@ main h1, main h2, main h3, main h4 {
 
 main h1 {
 	margin-top: 0;
-	font-size: 2.5rem;
-}
-
-main h2 {
-	font-size: 2.25rem;
-}
-
-main h3 {
-	font-size: 2.0rem;
-}
-
-main h4 {
-	font-size: 1.75rem;
 }
 
 main h2 + p, main h3 + p {
@@ -311,11 +301,6 @@ dl.basic dd {
 
 dl.basic dt {
 	margin-top: 1.5rem;
-}
-
-p, li, dt, dd, nav, pre, table {
-	font-size: 1.2rem;
-	line-height: 150%;
 }
 
 dl.options {
@@ -380,7 +365,7 @@ table th {
 
 table.basic thead th, table.basic tfoot th {
 	font-family: "Lucida Grande", Sans-Serif;
-	font-size: 1.2rem;
+	font-size: 110%;
 	text-align: left;
 }
 
@@ -433,8 +418,6 @@ button, input, textarea {
 	
 	margin: 0.2rem 0.2rem;
 	padding: 0.2rem;
-	
-	font-size: 1rem;
 }
 
 @media(prefers-color-scheme: dark) {
@@ -470,8 +453,6 @@ form label input, form label textarea {
 	display: block;
 	margin: 0.5rem 0;
 	padding: 0.5rem;
-	
-	font-size: 1rem;
 }
 
 form fieldset {
@@ -553,7 +534,6 @@ blockquote .spoken {
 	
 	letter-spacing: 0.1rem;
 	text-align: center;
-	font-size: 1.4rem;
 	font-variant: small-caps;
 }
 
@@ -594,7 +574,7 @@ section.comments h1 {
 
 section.comments .comment .byline {
 	color: var(--underlay-color);
-	font-size: 0.9rem;
+	font-size: 90%;
 	padding: 0.5rem 0.25rem;
 	
 	position: relative;
@@ -631,7 +611,6 @@ section.comments .comment pre {
 /* Journal navigation */
 
 .navigation {
-	font-size: 1rem;
 	clear: both;
 	
 	margin: 1rem 0 1rem 0;

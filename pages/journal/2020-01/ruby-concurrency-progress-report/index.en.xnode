@@ -1,4 +1,79 @@
 <content:entry>
+	<p>This is the first progress report required by the Ruby Association 2019 Grant. There is <a href="../../2019-12/ruby-concurrency-progress-report">one previous report here</a>.</p>
+	
+	<h2>Project Summary</h2>
+	
+	<p>We have proven that fibers are useful for building scalable systems. In order to develop this further, we need to add hooks into the various Ruby VMs so that we can improve the concurrency of existing code without changes. There is an outstanding PR for this work, but additional effort is required to bring this to completion and show its effectiveness in real world situations. We propose to bring the existing PR to completion and improve Ruby’s concurrency model.</p>
+	
+	<h2>Background</h2>
+	
+	<p>Scalability is a quality of a system which remains efficient despite increasing data size and user count. It implies predictable costs and proportional behaviour in relation to available hardware resources. Modern systems typically utilize hybrid models which provide both scalablity and robustness. In particular, programming languages need to expose good abstractions for concurrency and parallelism, so that software engineers can build reliable systems with these useful qualities.</p>
+	
+	<p>Ruby is a programming language which optimises for programmer happiness, but this is often at odds with traditional abstractions for scalability. Threads provide paralleism, but also introduce non-determinism. Event-driven callbacks provide concurrency, but also introduce non-linear flow control. Programmers are not only expected to follow the logic of the program, but also the combinatorial explosion of program states that exist when non-determinism and non-linearity are introduced.</p>
+	
+	<blockquote>“Humans are quickly overwhelmed by concurrency and find it much more difficult to reason about concurrent than sequential code. Even careful people miss possible inter-leavings among even simple collections of partially ordered operations.”<cite>H. Sutter and J. Larus.<br/>Software and the concurrency revolution.<br/>ACM Queue, 3(7), 2005.</cite></blockquote>
+	
+	<p>After many frustrations with existing designs, I created <a href="https://github.com/socketry/async">Async</a> in 2017. Async implements the M-1-N model for scalability: M processes, 1 reactor per process, N tasks per reactor. We achieve parallelism and robustness by using an isolated multi-process model, but we limit developers’ exposure to non-determinism by executing a single event loop per process. We use fibers to execute user tasks concurrently, which presents the illusion of linear flow control.</p>
+	
+	<h2>Problem</h2>
+	
+	<p>Async was designed to explore not just the practical implementation challenges, but also the semantic models required to build modern scalable systems. <a href="https://github.com/socketry/falcon-benchmark">Results</a> suggest that systems built using Async are highly scalable, althought Async is still limited to the most common non-blocking operations, and only through the provided interfaces.</p>
+	
+	<p>Blocking operations within existing code are tricky to avoid. While Async will gracefully degrade when blocking operations hold up the event loop, such operations introduce contention leading to increased latency within the event loop. <a href="https://github.com/socketry/async-io">Async::IO</a> provides wrappers which try to match Ruby’s native IO objects as closely as possible. These wrappers can sometimes be used with existing code to make it non-blocking:</p>
+	
+	<content:listing src="wrappers.rb" brush="ruby"/>
+	
+	<p>However these wrappers are implementation specific, and don’t provide all the necessary functionality for concurrency, leaving implementations to build their own abstractions when non-determinism is required.</p>
+	
+	<h2>Solution</h2>
+	
+	<p>I have <a href="https://github.com/ruby/ruby/pull/1870">implemented the appropriate hooks</a> within the Ruby virtual machine, so that blocking methods within Ruby can be patched through to the Async event loop. This allows certain blocking methods to become transparently non-blocking.</p>
+	
+	<content:listing src="wait_readable.c" brush="c"/>
+	
+	<h3>Scheduler Interface</h3>
+	
+	<p>The <code>Scheduler</code> provides hooks for blocking operations within the Ruby virtual machine.</p>
+	
+	<content:listing src="scheduler.rb" lang="ruby"/>
+	
+	<h3>Async Scheduler Bridge</h3>
+	
+	<p>There is an <a href="https://github.com/socketry/async/pull/56">experimental implementation</a> of this scheduler within Async which allows native Ruby I/O operations to become transparently non-blocking when used within Async.</p>
+	
+	<content:youtube-video id="OlmySf03GUo" />
+	
+	<h2>Challenges</h2>
+	
+	<p>There are many opportunities for converting blocking operations to non-blocking operations.</p>
+	
+	<dl class="basic">
+		<dt>IO Selectors</dt>
+		<dd>Existing interfaces such as <code lang="ruby">IO.select</code> are not currently supported, and may present unique challenges to implement on top of Async which only supports waiting on one descriptor per task.</dd>
+		
+		<dt>Name Resolution</dt>
+		<dd>Name resolution is normally quick, but can sometimes encounter significant delays. Typical implementations use thread pools because operating systems don’t provide any mechanisms for concurrency.</dd>
+		
+		<dt>File Access</dt>
+		<dd>Asynchornously reading and writing files and directories is highly system-dependent. Memory-backed temporary file-systems should be fast, while network file-systems are typically slow. While not typically supported by mainstream event-polling system calls, <a href="#io_uring">io_uring</a> is a new interface in Linux that supports non-blocking file-system operations, which should allow us to solve these issues uniformly alongside network I/O.</dd>
+		
+		<dt>Database Access</dt>
+		<dd>Database implementations including MySQL and Postgres provide special concurrency-aware functions for connecting, issuing queries, and reading back results. Because of that, we need to revisit the Ruby wrappers for these databases and implement them in terms of non-blocking primitives.</dd>
+		
+		<dt>Windows Support</dt>
+		<dd>While there is nothing intrinsically incompatible with the proposed <code>Scheduler</code> interface and Windows, using non-blocking I/O on Windows by default imposes a significant performance hit. We may want to revisit how and when we use non-blocking I/O, and rather than selecting it explicitly using <code>IO#nonblock=</code>, implicitly enable the non-blocking code path when a <code>Scheduler</code> is defined for the current thread.</dd>
+	</dl>
+	
+	<h2>Future</h2>
+	
+	<p>We need to expose a model for non-deterministic concurrency. We have decided to use fibers. The creation of tasks within the scope of an event loop should also transit through the <code>Scheduler</code>. We propose to implement a new primitive operation with a predictable interface for composable non-determinism:</p>
+	
+	<content:listing src="fiber.rb" brush="ruby"/>
+	
+	<h2>Conclusion</h2>
+	
+	<p>The scheduler interface provides hooks to transform blocking operations into non-blocking operations. It is reactor and virtual machine agnostic. It allows for future extensions for other non-blocking operations. Existing Ruby code which invokes blocking operations can now yield to the Async event loop, and therefore, potentially benefit from improved scalability with minimal changes.</p>
+	
 	<h2>Sponsorship</h2>
 	
 	<p>This work is supported by the <a href="https://www.ruby.or.jp/en/news/20191031">2019 Ruby Association Grant</a> and my <a href="https://github.com/sponsors/ioquatix">GitHub sponsors</a>. If you are a company and you depend on Ruby, I invite you to support my open source work.</p>

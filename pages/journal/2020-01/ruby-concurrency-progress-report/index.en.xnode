@@ -19,27 +19,37 @@
 	
 	<p>Async was designed to explore not just the practical implementation challenges, but also the semantic models required to build modern scalable systems. <a href="https://github.com/socketry/falcon-benchmark">Results</a> suggest that systems built using Async are highly scalable, althought Async is still limited to the most common non-blocking operations, and only through the provided interfaces.</p>
 	
-	<p>Blocking operations within existing code are tricky to avoid. While Async will gracefully degrade when blocking operations hold up the event loop, such operations introduce contention leading to increased latency within the event loop. <a href="https://github.com/socketry/async-io">Async::IO</a> provides wrappers which try to match Ruby’s native IO objects as closely as possible. These wrappers can sometimes be used with existing code to make it non-blocking:</p>
+	<p>Blocking operations within existing code are tricky to avoid. While Async will gracefully degrade when blocking operations hold up the event loop, such operations introduce contention leading to increased latency. <a href="https://github.com/socketry/async-io">Async::IO</a> provides wrappers which try to match Ruby’s native IO objects as closely as possible. These wrappers can sometimes be used with existing code to make it non-blocking:</p>
 	
 	<content:listing src="wrappers.rb" brush="ruby"/>
 	
-	<p>However these wrappers are implementation specific, and don’t provide all the necessary functionality for concurrency, leaving implementations to build their own abstractions when non-determinism is required.</p>
+	<p>However these wrappers are implementation specific, and don’t provide all the necessary functionality for concurrency, leaving programmers to build their own abstractions when non-determinism is required.</p>
 	
 	<h2>Solution</h2>
 	
-	<p>I have <a href="https://github.com/ruby/ruby/pull/1870">implemented the appropriate hooks</a> within the Ruby virtual machine, so that blocking methods within Ruby can be patched through to the Async event loop. This allows certain blocking methods to become transparently non-blocking.</p>
-	
-	<content:listing src="wait_readable.c" brush="c"/>
+	<p>I have <a href="https://github.com/ruby/ruby/pull/1870">implemented the appropriate hooks</a> within the Ruby virtual machine, so that blocking methods within Ruby can be patched through to the Async event loop. These hooks are collectively referred to as the thread <code>Scheduler</code>. I have also <a href="https://github.com/socketry/async/pull/56">implemented experimental support</a> for this scheduler interface in Async, so that blocking methods become non-blocking.</p>
 	
 	<h3>Scheduler Interface</h3>
 	
-	<p>The <code>Scheduler</code> provides hooks for blocking operations within the Ruby virtual machine.</p>
+	<p>The <code>Scheduler</code> defines the hooks for blocking operations within the Ruby virtual machine.</p>
 	
 	<content:listing src="scheduler.rb" lang="ruby"/>
 	
-	<h3>Async Scheduler Bridge</h3>
+	<h3>CRuby Hooks</h3>
 	
-	<p>There is an <a href="https://github.com/socketry/async/pull/56">experimental implementation</a> of this scheduler within Async which allows native Ruby I/O operations to become transparently non-blocking when used within Async.</p>
+	<p>Several blocking methods within Ruby, including <code>read</code>, <code>write</code> and <code>sleep</code> invoke the scheduler if possible. The implementation of the scheduler allows specific blocking methods to become transparently non-blocking.</p>
+	
+	<content:listing src="wait_readable.c" brush="c"/>
+	
+	<h3>Async Scheduler</h3>
+	
+	<p>The Async scheduler implementation, allows native Ruby I/O operations to become transparently non-blocking when used within Async.</p>
+	
+	<content:listing src="async.rb" brush="ruby"/>
+	
+	<p>In theory, this can also work with other event loops, e.g. EventMachine.</p>
+	
+	<h4>Live Stream of Implementation</h4>
 	
 	<content:youtube-video id="OlmySf03GUo" />
 	
@@ -62,6 +72,9 @@
 		
 		<dt>Windows Support</dt>
 		<dd>While there is nothing intrinsically incompatible with the proposed <code>Scheduler</code> interface and Windows, using non-blocking I/O on Windows by default imposes a significant performance hit. We may want to revisit how and when we use non-blocking I/O, and rather than selecting it explicitly using <code>IO#nonblock=</code>, implicitly enable the non-blocking code path when a <code>Scheduler</code> is defined for the current thread.</dd>
+		
+		<dt>Existing Interfaces</dt>
+		<dd>Existing <code>IO</code> methods expose different operations with blocking and non-blocking semantics. We should revisit these interfaces and consider deprecating or refactoring them, as we shouldn't expect user code to be concerned with these details.</dd>
 	</dl>
 	
 	<h2>Future</h2>

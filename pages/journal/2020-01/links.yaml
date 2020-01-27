@@ -2,8 +2,9 @@ ruby-concurrency-progress-report:
   author: "Samuel Williams"
   created: 2019-01-14
   summary: A progress report for the Ruby Association Grant 2019.
-  display: false
-  front: false
+  display: true
+  front: true
+  preview_url: preview.png
 open-source-progress-report:
   author: "Samuel Williams"
   created: 2020-01-31

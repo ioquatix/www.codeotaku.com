@@ -101,6 +101,8 @@
 		<li>Add support for <code>nogvl_wait_for_single_fd</code> and related tests.</li>
 		<li>Add support for tracking blocking regions <code>rb_nogvl</code>.</li>
 		<li>Rework implementation to improve performance.</li>
-		<li>Implementation of native scheduler implementation in Async.</li>
+		<li>Implementation of native scheduler in Async.</li>
 	</ul>
+	
+	<p>All code is included in the pull requests discussed in the report.</p>
 </content:entry>

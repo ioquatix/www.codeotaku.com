@@ -65,7 +65,7 @@
 		<dd>Name resolution is normally quick, but can sometimes encounter significant delays. Typical implementations use thread pools because operating systems don’t provide any mechanisms for concurrency.</dd>
 		
 		<dt>File Access</dt>
-		<dd>Asynchornously reading and writing files and directories is highly system-dependent. Memory-backed temporary file-systems should be fast, while network file-systems are typically slow. While not typically supported by mainstream event-polling system calls, <a href="#io_uring">io_uring</a> is a new interface in Linux that supports non-blocking file-system operations, which should allow us to solve these issues uniformly alongside network I/O.</dd>
+		<dd>Interfaces for asynchronously reading and writing files and directories is highly system-dependent. Memory-backed temporary file-systems should be fast, while network file-systems are typically slow. While not typically supported by mainstream event-polling system calls, <a href="https://lwn.net/Articles/776703/">io_uring</a> is a new interface in Linux that supports non-blocking file-system operations, which should allow us to solve these issues uniformly alongside network I/O.</dd>
 		
 		<dt>Database Access</dt>
 		<dd>Database implementations including MySQL and Postgres provide special concurrency-aware functions for connecting, issuing queries, and reading back results. Because of that, we need to revisit the Ruby wrappers for these databases and implement them in terms of non-blocking primitives.</dd>

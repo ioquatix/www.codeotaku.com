@@ -8,6 +8,8 @@
 		
 		<p>My name is Samuel and I'm a software engineer. I enjoy finding creative solutions to difficult problems.</p>
 		
+		<content:photos path="_profile" />
+		
 		<ul>
 			<li>Contact: <a href="mailto:samuel@oriontransfer.net">samuel@oriontransfer.net</a></li>
 			<li>GitHub: <a href="https://github.com/ioquatix">https://github.com/ioquatix</a>, <a href="https://github.com/socketry">https://github.com/socketry</a>, <a href="https://github.com/kurocha">https://github.com/kurocha</a></li>
@@ -115,7 +117,19 @@
 			<dd>(2010) Awarded $1,500NZD for the development of the Programming Language Posters and their distribution to New Zealand Schools from the University of Canterbury.</dd>
 		</dl>
 		
-		<h2>Presentations</h2>
+		<h2>Conferences</h2>
+		
+		<content:photos path="_conferences" />
+		
+		<dl class="compact">
+			<dt><a href="https://www.youtube.com/watch?v=qX_FRa43r4k">Asynchronous Ruby</a></dt>
+			<dd><strong>RubyWorld Conference 2019, Matsue, Japan</strong>. Without the right support, programs that handle many simultaneous tasks can be hard to build. The traditional request-per-process/thread model does not scale well. Explicit concurrency, including promises/futures, impose a significant cognitive burden and their use pollutes code all the way up the call chain. We present async, a gem for Ruby that implements the reactor pattern using stackful coroutines. We discuss asynchronous programming models, touch briefly on the state of asynchronous programming in Ruby, and show how fibers can be an excellent model for concurrency.</dd>
+		</dl>
+		
+		<dl class="compact">
+			<dt><a href="https://www.youtube.com/watch?v=Dtn9Uudw4Mo">The Journey to One Million</a></dt>
+			<dd><strong>RubyConfTW 2019, Taipai, Taiwan</strong>. Modern servers are capable of supporting millions of clients, both in terms of requests per second, and simultaneous connections. However, unless scalability is a priority, it can be very difficult to utilise the available hardware efficiently. Overheads in the application code, frameworks and operating system can act as force multipliers which increase memory pressure, latency and resource utilisation. We discuss the challenges encountered when scaling Ruby to one million concurrent WebSocket connections, and investigate the changes required to make it possible.</dd>
+		</dl>
 		
 		<dl class="compact">
 			<dt><a href="https://www.youtube.com/watch?v=qKQcUDEo-ZI">Fibers Are the Right Solution</a></dt>

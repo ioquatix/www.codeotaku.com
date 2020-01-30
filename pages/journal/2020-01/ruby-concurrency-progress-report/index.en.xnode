@@ -58,9 +58,6 @@
 	<p>There are many opportunities for converting blocking operations to non-blocking operations.</p>
 	
 	<dl class="basic">
-		<dt>IO Selectors</dt>
-		<dd>Existing interfaces such as <code lang="ruby">IO.select</code> are not currently supported, and may present unique challenges to implement on top of Async which only supports waiting on one descriptor per task.</dd>
-		
 		<dt>Name Resolution</dt>
 		<dd>Name resolution is normally quick, but can sometimes encounter significant delays. Typical implementations use thread pools because operating systems don’t provide any mechanisms for concurrency.</dd>
 		
@@ -75,6 +72,9 @@
 		
 		<dt>Existing Interfaces</dt>
 		<dd>Existing <code>IO</code> methods expose different operations with blocking and non-blocking semantics. We should revisit these interfaces and consider deprecating or refactoring them, as we shouldn't expect user code to be concerned with these details.</dd>
+		
+		<dt>IO Selectors</dt>
+		<dd>Existing interfaces such as <code lang="ruby">IO.select</code> are not currently supported, and may present unique challenges to implement on top of Async which only supports waiting on one descriptor per task.</dd>
 	</dl>
 	
 	<h2>Future</h2>

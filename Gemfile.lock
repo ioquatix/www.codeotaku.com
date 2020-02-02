@@ -198,6 +198,7 @@ DEPENDENCIES
   benchmark-http
   bundler
   covered
+  falcon
   guard-falcon
   guard-rspec
   kramdown

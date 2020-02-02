@@ -39,3 +39,7 @@ group :development do
 	
 	gem 'memory_profiler'
 end
+
+group :production do
+	gem 'falcon'
+end

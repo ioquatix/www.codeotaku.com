@@ -41,9 +41,9 @@
 	
 	<p>Polymorphism (poly = many, morph = form) is a name used in computer science to mean one thing can have multiple meanings depending on the context in which it is used. In other words, polymorphism is the idea that there can be one interface provided to control a general set of functionality. Polymorphism is a specific set of cases where abstract concepts are used to make programming more concise and expressive.</p>
 	
-	<p>Run Time Polymorphism, or object oriented polymorphism, is used at run time to provide dynamic functionality based on object type. This is done using dynamic dispatch (virtual functions) and inheritance. <a href="http://en.wikipedia.org/wiki/Polymorphism_in_object-oriented_programming">Wikipedia: Polymorphism in object-oriented programming</a>.</p>
+	<p>Run Time Polymorphism, or object oriented polymorphism, is used at run time to provide dynamic functionality based on object type. This is done using dynamic dispatch (virtual functions) and inheritance. <a href="https://en.wikipedia.org/wiki/Polymorphism_in_object-oriented_programming">Wikipedia: Polymorphism in object-oriented programming</a>.</p>
 
-	<p>Parametric polymorphism or Compile Time Polymorphism is based on types and allows for functionality to be determined at compile time. This is done using function and operator overloading. <a href="http://en.wikipedia.org/wiki/Type_polymorphism">Wikipedia: Type Polymorphism</a>.</p>
+	<p>Parametric polymorphism or Compile Time Polymorphism is based on types and allows for functionality to be determined at compile time. This is done using function and operator overloading. <a href="https://en.wikipedia.org/wiki/Type_polymorphism">Wikipedia: Type Polymorphism</a>.</p>
 </content:entry>
 
 	

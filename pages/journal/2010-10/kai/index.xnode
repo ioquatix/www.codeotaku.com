@@ -18,7 +18,7 @@
 	<ul>
 		<li>Fast and reliable execution.</li>
 		<li>Easy to embed and extend.</li>
-		<li>Simple semantics using <a href="http://en.wikipedia.org/wiki/Fexpr">fexprs</a>.</li>
+		<li>Simple semantics using <a href="https://en.wikipedia.org/wiki/Fexpr">fexprs</a>.</li>
 		<li>Dynamic compilation using <a href="http://www.llvm.org/">LLVM</a>.</li>
 		<li>Syntactic enhancements to improve usability.</li>
 	</ul>

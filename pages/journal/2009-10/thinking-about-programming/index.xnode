@@ -1,5 +1,5 @@
 <content:entry>
-	<p>I have been working on a <a href="http://gigamonkeys.com/book/">LISP</a>-like environment. At some point you have to wonder, what is the right level of <a href="http://en.wikipedia.org/wiki/Programming_paradigm">abstraction and terminology</a> to solve technical problems. The LISP <a href="http://en.wikipedia.org/wiki/REPL">REPL</a> is a great example of meta programming that I admire.</p>
+	<p>I have been working on a <a href="http://gigamonkeys.com/book/">LISP</a>-like environment. At some point you have to wonder, what is the right level of <a href="https://en.wikipedia.org/wiki/Programming_paradigm">abstraction and terminology</a> to solve technical problems. The LISP <a href="https://en.wikipedia.org/wiki/REPL">REPL</a> is a great example of meta programming that I admire.</p>
 
 	<p>Rich Hickey's <a href="http://wiki.jvmlangsummit.com/images/a/ab/HickeyJVMSummit2009.pdf">presentation</a> provides an interesting perspective on where we currently stand with regards overall approach and technique. It seems like he believes that current programming languages are not providing the right set of functionality to solve modern programming problems.</p>
 
@@ -11,7 +11,7 @@
 
 	<content:listing src="iterate_rb.txt" brush="ruby" />
 	
-	<p>This is much more concise, and represents functionality that is far more abstract and this behaviour can work on lists of anything that support the required functionality. While Ruby (i.e. <a href="http://en.wikipedia.org/wiki/Ruby_MRI">MRI</a>) runs this dynamically, there is no reason why it couldn't be compiled using type inference, optimization, and so on. And compilation is just an optimization step anyway.</p>
+	<p>This is much more concise, and represents functionality that is far more abstract and this behaviour can work on lists of anything that support the required functionality. While Ruby (i.e. <a href="https://en.wikipedia.org/wiki/Ruby_MRI">MRI</a>) runs this dynamically, there is no reason why it couldn't be compiled using type inference, optimization, and so on. And compilation is just an optimization step anyway.</p>
 
 	<p><em>N.B.</em> Certainly compiled languages generally have the performance edge in the real world at this point in time. I've moved projects from Ruby to C after benchmarks have shown logarithmic performance problems.</p>
 

@@ -5,7 +5,7 @@
 	
 	<h2>Language Design</h2>
 	
-	<p>Programming languages typically (<a href="http://en.wikipedia.org/wiki/Befunge">but not always</a>) consist of a list of expressions. Sometimes expressions can contain nested expressions, and often there are specific rules for the ways in which expressions can be nested (e.g. namespaces can contain classes which can contain functions which can contain procedural logic). Because expressions are written sequentially, they often need specific syntax (such as end of statement markers) to ensure that they are parsed separately.</p>
+	<p>Programming languages typically (<a href="https://en.wikipedia.org/wiki/Befunge">but not always</a>) consist of a list of expressions. Sometimes expressions can contain nested expressions, and often there are specific rules for the ways in which expressions can be nested (e.g. namespaces can contain classes which can contain functions which can contain procedural logic). Because expressions are written sequentially, they often need specific syntax (such as end of statement markers) to ensure that they are parsed separately.</p>
 	
 	<h3>Implicit Delimitation</h3>
 	

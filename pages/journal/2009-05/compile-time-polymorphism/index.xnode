@@ -21,7 +21,7 @@
 	
 	<content:listing src="timed_system_example.txt" brush="clang" />
 	
-	<p>For more information about this, <a href="http://en.wikipedia.org/wiki/Curiously_Recurring_Template_Pattern">Wikipedia</a> has a good article on the topic.</p>
+	<p>For more information about this, <a href="https://en.wikipedia.org/wiki/Curiously_Recurring_Template_Pattern">Wikipedia</a> has a good article on the topic.</p>
 	
 	<h2>Using namespaces to provide implementation</h2>
 	

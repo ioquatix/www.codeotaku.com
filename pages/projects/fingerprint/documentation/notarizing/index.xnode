@@ -3,7 +3,7 @@
 	
 	<p>In many cases it is good to ensure that documents existed at a particular time. With modern document storage systems, it may be impossible to verify this by simply relying on databases and filesystems alone, especially because technology can be manipulated.</p>
 	
-	<p>Fingerprint can be used to produce printed documents which can be used to verify the existence of files at a given time. This is primarily done through the application of a <a href="http://en.wikipedia.org/wiki/Notary_public">notary public figure</a>'s signature to the fingerprint and cryptographic digests. These can be later used to verify the existence of a given set of files at a specific time and place.</p>
+	<p>Fingerprint can be used to produce printed documents which can be used to verify the existence of files at a given time. This is primarily done through the application of a <a href="https://en.wikipedia.org/wiki/Notary_public">notary public figure</a>'s signature to the fingerprint and cryptographic digests. These can be later used to verify the existence of a given set of files at a specific time and place.</p>
 	
 	<p>Simply follow the procedure to produce a <a href="../cryptographic-sealing/">cryptographic hash of a directory</a>, print these documents out, and get them signed.</p>
 	

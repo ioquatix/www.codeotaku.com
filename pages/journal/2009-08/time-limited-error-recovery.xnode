@@ -7,7 +7,7 @@
 		<li><a href="http://www.wdc.com/en/library/sata/2579-001098.pdf">Western Digital TLDR White Paper</a></li>
 		<li><a href="http://blog.agdunn.net/?p=208">RAID gets revisited (TLER and the WDTLER utility)</a></li>
 		<li><a href="http://www.hardforum.com/showthread.php?t=1285254">Western Digital Time-Limited Error Recovery (TLER) with RAID and SE, SE16, GP Models</a></li>
-		<li><a href="http://en.wikipedia.org/wiki/Time-Limited_Error_Recovery">Time-Limited Error Recovery - Wikipedia</a></li>
+		<li><a href="https://en.wikipedia.org/wiki/Time-Limited_Error_Recovery">Time-Limited Error Recovery - Wikipedia</a></li>
 	</ul>
 	
 	<p>Basically, the problem as I interpret it is that a non-fatal error may result in the drive dropping from a <em>RAID</em> because the drive spends too much time trying to recover from the error. In most kinds of <em>RAID</em>, the failure tolerance is 1 drive - if all drives have TLER disabled, it may result in the self-destruction of the entire <em>RAID</em> due entirely to non-fatal errors. Rebuilding a failed disk in a RAID5 is not a quick process and can put a lot of stress on other drives.</p>

@@ -1,5 +1,5 @@
 <?r
-	node_name = (request['node'] || attributes[:node])
+	node_name = (request.params['node'] || attributes[:node])
 	user = controller[:user]
 	
 	comments = Journal::Comment.for_node(DB.current, node_name, controller[:user])

@@ -27,7 +27,9 @@
 	
 	<h2>Falcon</h2>
 	
-	<p>This month saw the release of <a href="https://github.com/socketry/falcon">Falcon</a> v0.35 which brings the new <code>falcon host</code> and <code>falcon virtual</code> commands. These commands are built on <a href="https://github.com/socketry/async-container">async-container</a> which provides abstractions for parallelism in Ruby using either multi-process (CRuby) or multi-thread (JRuby/TruffleRuby). It also includes support for the <a href="https://www.freedesktop.org/software/systemd/man/sd_notify.html">systemd process readiness protocol</a>.</p>
+	<p>This month saw the release of <a href="https://github.com/socketry/falcon">Falcon</a> v0.35 which brings the new <code>falcon host</code> and <code>falcon virtual</code> commands.</p>
+	
+	<p>This release incorporates updates to <a href="https://github.com/socketry/async-container">async-container</a>, which provides abstractions for parallelism in Ruby using either multi-process (CRuby) or multi-thread (JRuby/TruffleRuby). Graceful reloading and restarting are supported, along with the <a href="https://www.freedesktop.org/software/systemd/man/sd_notify.html">systemd process readiness protocol</a> for better system integration.</p>
 	
 	<h3>Falcon Host</h3>
 	

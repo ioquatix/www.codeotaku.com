@@ -168,7 +168,7 @@ GEM
       rake-compiler
     trenni-sanitize (0.4.0)
       trenni (~> 3.5)
-    utopia (2.12.0)
+    utopia (2.12.1)
       concurrent-ruby (~> 1.0)
       console (~> 1.0)
       http-accept (~> 2.1)

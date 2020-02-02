@@ -23,7 +23,7 @@
 	
 	<content:listing src="wrappers.rb" brush="ruby"/>
 	
-	<p>However these wrappers are implementation specific, and don’t provide all the necessary functionality for concurrency, leaving programmers to build their own abstractions when non-determinism is required.</p>
+	<p>However these wrappers are implementation specific, and don’t provide all the necessary functionality for concurrency, leaving programmers to build their own abstractions when non-determinism is desired.</p>
 	
 	<h2>Solution</h2>
 	

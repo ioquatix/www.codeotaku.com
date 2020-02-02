@@ -1,6 +1,8 @@
 
 prepend Actions
 
+LINKS = Utopia::Content::Links.new(BASE_PATH)
+
 # API = RestClient::Resource.new('https://api.github.com', accept: 'application/vnd.github.v3+json')
 # 
 # def list_projects
@@ -8,7 +10,7 @@ prepend Actions
 # end
 
 on 'redirect' do |request, path|
-	links = Utopia::Content::Links.index(BASE_PATH, Path.root)
+	links = LINKS.index(Path.root)
 	
 	name = request['project']
 	

@@ -3,7 +3,7 @@
 		children = links(link.path, :sort => :created, :locale => localization.current_locale)
 		next if children.empty?
 	?>
-		<?r children.each do |entry|
+		<?r children.reverse_each do |entry|
 			next unless entry[:front]
 			
 			preview_url = entry.path.dirname + (entry[:preview_url] || "preview.jpg")

@@ -9,5 +9,6 @@ open-source-progress-report:
   author: "Samuel Williams"
   created: 2020-01-31
   summary: An overview of my Open Source work for January 2020.
-  display: false
+  display: true
   front: true
+  preview_url: rack.png

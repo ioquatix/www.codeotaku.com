@@ -1,9 +1,41 @@
 <content:entry>
-	<p>This month <a href="https://github.com/ioquatix?tab=overview&amp;from=2020-01-01&amp;to=2020-01-31">has been productive</a>. I took some time with my family.</p>
+	<p>This month <a href="https://github.com/ioquatix?tab=overview&amp;from=2020-01-01&amp;to=2020-01-31">has been productive</a>. I spent some time on the West Cost of New Zealand with my family enjoying a lack of internet and daily lake swimming.</p>
+	
+	<content:photos path="_swimming"/>
 	
 	<h2>Programming Dojo</h2>
 	
-	<p>A fruitful collaboration between Canterbury University, <a href="https://twitter.com/cbracefield">Courtney Bracefield</a>, <a href="https://twitter.com/jackmorgannz">Dr. Jack Morgan</a>, <a href=""></a> and myself, we have updated the <a href="https://programming.dojo.net.nz">Programming Dojo</a>, a website for school students to learn more about programming languages.</p>
+	<p>A fruitful collaboration between Canterbury University, <a href="https://twitter.com/cbracefield">Courtney Bracefield</a> and myself, we have updated the <a href="https://programming.dojo.net.nz">Programming Dojo</a>, a website for school students to learn more about programming languages.</p>
+	
+	<figure class="diagram">
+		<img src="programming-dojo.png" />
+	</figure>
+	
+	<p>This site hosts a number of fun tools, including a <a href="https://programming.dojo.net.nz/study/register-machine-interpreter/index">register machine interpreter</a> and a <a href="https://programming.dojo.net.nz/study/truth-table-generator/index">truth table generator</a>. You can also download and print out the <a href="https://programming.dojo.net.nz/resources/programming-language-posters/index">programming language posters</a>.</p>
+	
+	<h2>Rack</h2>
+	
+	<p><a href="https://github.com/rack/rack">Rack</a> is a critical piece of infrastructure in most Ruby web applications. For almost 5 years, Rack has not had a non-patch level release. In the past two months, <a href="https://github.com/rack/rack/pulse/monthly">many useful pull requests have been merged</a>. We have removed the website which was sevearly out of date, and started working on updated documentation.</p>
+	
+	<figure class="diagram">
+		<img src="rack.png" />
+	</figure>
+	
+	<p>As you can imagine, the recent v2.1 release which included many unreleased changes on the master branch, caused a bit of a headache, including <a href="https://github.com/rack/rack/issues/1531">breaking SideKiq</a> and <a href="https://github.com/rack/rack/issues/1471">ActiveStorage</a>. The next release, v2.2 will include almost all outstanding pull requests along with improvements to efficiency and memory usage.</p>
+	
+	<p>Big thanks to <a href="https://github.com/tenderlove">Aaron Patterson</a> who has managed the releases and <a href="https://github.com/jeremyevans">Jeremy Evans</a> who has helped triage issues and brought an extra dimension to the future of Rack.</p>
+	
+	<h2>Falcon</h2>
+	
+	<p>This month saw the release of <a href="https://github.com/socketry/falcon">Falcon</a> v0.35 which brings the new <code>falcon host</code> and <code>falcon virtual</code> commands. These commands are built on <a href="https://github.com/socketry/async-container">async-container</a> which provides abstractions for parallelism in Ruby using either multi-process (CRuby) or multi-thread (JRuby/TruffleRuby). It also includes support for the <a href="https://www.freedesktop.org/software/systemd/man/sd_notify.html">systemd process readiness protocol</a>.</p>
+	
+	<h3>Falcon Host</h3>
+	
+	<p>This command is the designated entry point for hosting a web application in production. It opportunistically uses <code lang="ruby">GC.compact</code> and application pre-loading to reduce memory usage. It uses a <code>falcon.rb</code> configuration file which defines all services, which can include things like process supervisors, watchdog timers, background job processing, etc.</p>
+	
+	<h3>Falcon Virtual</h3>
+	
+	<p>Best practice virtual hosting of multiple applications requires a front-end proxy/load balancer, and a HTTP to HTTPS redirection. <code>falcon virtual</code> will launch and manage <code>falcon proxy</code>, <code>falcon redirect</code>, along with <code>falcon host</code> for each individual application.</p>
 	
 	<h2>Sponsorship</h2>
 	

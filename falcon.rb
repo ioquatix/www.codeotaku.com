@@ -1,6 +1,5 @@
 #!/usr/bin/env -S falcon host
-
-Async.logger.enable(Falcon::Server)
+# frozen_string_literal: true
 
 load :rack, :lets_encrypt_tls, :supervisor
 

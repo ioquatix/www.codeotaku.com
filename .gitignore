@@ -8,7 +8,7 @@ tmp/
 # This file should only ever exist on production, and may contain sensitive information:
 config/environment.yaml
 _cache/
-public/_gallery/
 db/*/
 
-
+# Ignore resized gallery photos:
+public/_gallery/

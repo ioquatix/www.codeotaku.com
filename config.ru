@@ -1,5 +1,21 @@
 #!/usr/bin/env rackup
 
+warmup do |app|
+	# require 'memory_profiler'
+	# 
+	# MemoryProfiler.start
+	# 
+	# Signal.trap(:USR2) do
+	# 	report = MemoryProfiler.stop
+	# 	report.pretty_print
+	# end
+	# 
+	client = Rack::MockRequest.new(app)
+	
+	client.get('/index')
+	client.get('/journal/index')
+end
+
 require_relative 'config/environment'
 
 require 'utopia/session'
@@ -8,20 +24,7 @@ require 'utopia/analytics'
 
 require 'rack/freeze'
 
-require 'scout_apm/rack'
-
-class ScoutApm::Instruments::RackRequest
-	def initialize(app)
-		@app = app
-	end
-	
-	def call(env)
-		ScoutApm::Rack.transaction("Middleware", env) do
-			@app.call(env)
-		end
-	end
-end
-
+require_relative 'lib/scout'
 use ScoutApm::Instruments::RackRequest
 
 if RACK_ENV == :production

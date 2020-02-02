@@ -2,14 +2,14 @@ GEM
   remote: https://rubygems.org/
   specs:
     ast (2.4.0)
-    async (1.24.1)
+    async (1.24.2)
       console (~> 1.0)
       nio4r (~> 2.3)
       timers (~> 4.1)
     async-await (0.5.0)
       async (~> 1.3)
       ruby2_keywords
-    async-container (0.16.0)
+    async-container (0.16.1)
       async (~> 1.0)
       async-io (~> 1.26)
       process-group
@@ -20,11 +20,11 @@ GEM
       protocol-http (~> 0.13.0)
       protocol-http1 (~> 0.10.0)
       protocol-http2 (~> 0.10.0)
-    async-io (1.27.2)
+    async-io (1.27.3)
       async (~> 1.14)
     async-pool (0.2.0)
       async (~> 1.8)
-    async-rest (0.12.1)
+    async-rest (0.12.2)
       async-http (~> 0.42)
       protocol-http (~> 0.7)
     async-rspec (1.14.0)
@@ -41,7 +41,7 @@ GEM
     build-environment (1.12.1)
     coderay (1.1.2)
     concurrent-ruby (1.1.5)
-    console (1.7.2)
+    console (1.8.0)
     covered (0.13.1)
       async-rest
       console (~> 1.0)
@@ -58,7 +58,7 @@ GEM
       process-metrics (~> 0.1.0)
       rack (>= 1.0)
       samovar (~> 2.1)
-    ffi (1.12.1)
+    ffi (1.12.2)
     formatador (0.2.5)
     guard (2.16.1)
       formatador (>= 0.2.4)
@@ -91,6 +91,7 @@ GEM
     mail (2.7.1)
       mini_mime (>= 0.1.1)
     mapping (1.1.1)
+    memory_profiler (0.9.14)
     method_source (0.9.2)
     mime-types (3.3.1)
       mime-types-data (~> 3.2015)
@@ -109,8 +110,8 @@ GEM
     process-metrics (0.1.1)
     process-terminal (0.2.0)
       ffi
-    protocol-hpack (1.4.1)
-    protocol-http (0.13.0)
+    protocol-hpack (1.4.2)
+    protocol-http (0.13.1)
     protocol-http1 (0.10.0)
       protocol-http (~> 0.13)
     protocol-http2 (0.10.4)
@@ -163,11 +164,11 @@ GEM
     shellany (0.0.1)
     thor (1.0.1)
     timers (4.3.0)
-    trenni (3.7.1)
+    trenni (3.8.0)
       rake-compiler
     trenni-sanitize (0.4.0)
       trenni (~> 3.5)
-    utopia (2.11.1)
+    utopia (2.12.0)
       concurrent-ruby (~> 1.0)
       console (~> 1.0)
       http-accept (~> 2.1)
@@ -201,6 +202,7 @@ DEPENDENCIES
   guard-rspec
   kramdown
   kramdown-parser-gfm
+  memory_profiler
   pry
   rack-freeze (~> 1.2)
   rack-test

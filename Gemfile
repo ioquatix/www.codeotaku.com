@@ -5,14 +5,14 @@ group :preload do
 	gem 'utopia', '~> 2.11'
 	gem 'utopia-gallery', '~> 2.3'
 	gem 'utopia-analytics'
-
+	
 	gem 'rake'
 	gem 'bundler'
-
+	
 	gem 'rack-freeze', '~> 1.2'
-
+	
 	gem 'relaxo-model', '~> 0.10.0'
-
+	
 	gem 'trenni-sanitize'
 	gem 'kramdown'
 	gem 'kramdown-parser-gfm'
@@ -36,4 +36,6 @@ group :development do
 	
 	gem 'async-rspec'
 	gem 'benchmark-http'
+	
+	gem 'memory_profiler'
 end

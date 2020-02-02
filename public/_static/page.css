@@ -19,6 +19,7 @@ html {
 	--accent-hover-color: #33a3ff;
 	
 	--overlay-color: rgba(255, 255, 255, 0.9);
+	--underlay-color: rgba(0, 0, 0, 0.4);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -33,6 +34,7 @@ html {
 		--accent-hover-color: #80dcff;
 		
 		--overlay-color: rgba(0, 0, 0, 0.8);
+		--underlay-color: rgba(0, 0, 0, 1.0);
 		
 		background-color: black;
 	}
@@ -90,7 +92,7 @@ nav li {
 	
 	background-color: inherit;
 	
-	z-index: 4242;
+	z-index: 5;
 }
 
 #header.sticky nav {
@@ -111,7 +113,7 @@ a:hover {
 
 main {
 	margin: auto;
-	max-width: 46rem;
+	max-width: 46rem;border-radius
 }
 
 p, dl {
@@ -140,8 +142,8 @@ section.articles a {
 	background-position: center;
 	text-decoration: none;
 	
-	border-radius: 1rem;
-	border: 0.1rem solid #999;
+	box-shadow: 0 0 0.5rem var(--underlay-color);
+	
 	overflow: hidden;
 	
 	display: flex;

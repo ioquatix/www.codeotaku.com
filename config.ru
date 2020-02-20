@@ -1,6 +1,15 @@
 #!/usr/bin/env rackup
+# frozen_string_literal: true
 
-warmup do |app|
+require_relative 'config/environment'
+
+require 'utopia/session'
+require 'utopia/gallery'
+require 'utopia/analytics'
+
+self.freeze_app
+
+self.warmup do |app|
 	# require 'memory_profiler'
 	# 
 	# MemoryProfiler.start
@@ -16,30 +25,25 @@ warmup do |app|
 	client.get('/journal/index')
 end
 
-require_relative 'config/environment'
+if UTOPIA.production?
+	require_relative 'lib/scout'
+	use ScoutApm::Instruments::RackRequest
+end
 
-require 'utopia/session'
-require 'utopia/gallery'
-require 'utopia/analytics'
-
-require 'rack/freeze'
-
-require_relative 'lib/scout'
-use ScoutApm::Instruments::RackRequest
-
-if RACK_ENV == :production
+if UTOPIA.production?
 	# Handle exceptions in production with a error page and send an email notification:
 	use Utopia::Exceptions::Handler
 	use Utopia::Exceptions::Mailer
 else
 	# We want to propate exceptions up when running tests:
-	use Rack::ShowExceptions unless RACK_ENV == :test
+	use Rack::ShowExceptions unless UTOPIA.test?
 end
 
 use Utopia::Static, root: 'public'
 
-use Utopia::Redirection::Rewrite,
+use Utopia::Redirection::Rewrite, {
 	'/' => '/index'
+}
 
 use Utopia::Redirection::Moved, "/samuel-williams", "/about"
 use Utopia::Redirection::Moved, "/blog", "/journal"
@@ -53,17 +57,19 @@ use Utopia::Redirection::Moved, "/projects/rubydns/index.en", "/en/projects/ruby
 
 use Utopia::Redirection::DirectoryIndex
 
-use Utopia::Redirection::Errors,
+use Utopia::Redirection::Errors, {
 	404 => '/errors/file-not-found'
+}
 
+require 'utopia/localization'
 use Utopia::Localization,
-	:default_locale => 'en',
-	:locales => ['en', 'ja', 'zh']
+	default_locale: 'en',
+	locales: ['en', 'ja', 'zh']
 
 require 'utopia/session'
 use Utopia::Session,
 	expires_after: 3600 * 24,
-	secret: ENV['UTOPIA_SESSION_SECRET'],
+	secret: UTOPIA.secret_for(:session),
 	secure: true
 
 use Utopia::Controller

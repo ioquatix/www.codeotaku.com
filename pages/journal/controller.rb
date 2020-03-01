@@ -8,7 +8,7 @@ on 'queue' do |request, path|
 end
 
 on '**/comments/preview' do |request, path|
-	body = request[:body]
+	body = request.params['body']
 	
 	formatted_html = Journal::Comment.format_body_html(body)
 	
@@ -61,8 +61,8 @@ on '**/comments/create' do |request, path|
 	@comment = Journal::Comment.create(DB.current, :created_at => DateTime.now)
 	
 	if request.post?
-		@comment.body = request[:body]
-		@comment.node = request[:node]
+		@comment.body = request.params['body']
+		@comment.node = request.params['node']
 		
 		DB.commit(message: "Create Comment") do |dataset|
 			@user ||= Journal::User.build(dataset, request.params)

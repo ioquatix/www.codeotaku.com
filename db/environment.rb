@@ -1,11 +1,10 @@
 
-DATABASE_ENV = (ENV['DATABASE_ENV'] || RACK_ENV || :development).to_s
-
+require 'variant'
 require 'relaxo'
 
-DATABASE_PATH = File.join(__dir__, DATABASE_ENV)
-
 # Configure the database connection:
-DB = Relaxo.connect(DATABASE_PATH, logger: Logger.new($stderr))
+DB = Relaxo.connect(
+	File.join(__dir__, Variant.for(:database).to_s),
+)
 
 require 'journal'

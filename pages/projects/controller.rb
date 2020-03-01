@@ -12,7 +12,7 @@ LINKS = Utopia::Content::Links.new(BASE_PATH)
 on 'redirect' do |request, path|
 	links = LINKS.index(Path.root)
 	
-	name = request['project']
+	name = request.params['project']
 	
 	link = links.find{|link| link.name == name}
 	

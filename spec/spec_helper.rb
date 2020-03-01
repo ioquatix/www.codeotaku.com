@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-ENV['UTOPIA_ENV'] ||= 'test'
+require 'variant'
+Variant.force!(:testing)
 
 require 'bundler/setup'
 require 'covered/rspec'

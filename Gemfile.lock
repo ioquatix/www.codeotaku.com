@@ -104,7 +104,7 @@ GEM
     notiffany (0.1.3)
       nenv (~> 0.1)
       shellany (~> 0.0)
-    parser (2.7.0.3)
+    parser (2.7.0.4)
       ast (~> 2.4.0)
     process-group (1.2.1)
       process-terminal (~> 0.2.0)
@@ -168,7 +168,7 @@ GEM
       rake-compiler
     trenni-sanitize (0.5.0)
       trenni (~> 3.5)
-    utopia (2.13.0)
+    utopia (2.13.1)
       concurrent-ruby (~> 1.0)
       console (~> 1.0)
       http-accept (~> 2.1)
@@ -217,4 +217,4 @@ DEPENDENCIES
   utopia-gallery
 
 BUNDLED WITH
-   2.1.2
+   2.1.4

@@ -13,11 +13,6 @@ jobs:
           - 2.5
           - 2.6
           - 2.7
-        
-        include:
-          - os: 'ubuntu'
-            ruby: '2.6'
-            env: COVERAGE=PartialSummary,Coveralls
     
     runs-on: ${{matrix.os}}-latest
     

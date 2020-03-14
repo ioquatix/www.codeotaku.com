@@ -2,16 +2,18 @@
 
 source 'https://rubygems.org'
 
-gem 'utopia', '~> 2.13.0'
-gem 'utopia-gallery'
-gem 'utopia-analytics'
+group :preload do
+	gem 'utopia', '~> 2.13.0'
+	gem 'utopia-gallery'
+	gem 'utopia-analytics'
 
-gem 'relaxo-model', '~> 0.10.0'
+	gem 'relaxo-model', '~> 0.10.0'
 
-gem 'trenni-sanitize'
-gem 'kramdown'
-gem 'kramdown-parser-gfm'
-gem 'bcrypt'
+	gem 'trenni-sanitize'
+	gem 'kramdown'
+	gem 'kramdown-parser-gfm'
+	gem 'bcrypt'
+end
 
 gem 'bake'
 gem 'bundler'

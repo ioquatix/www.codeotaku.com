@@ -20,8 +20,6 @@ gem 'bundler'
 
 gem 'rack-test'
 
-gem 'scout_apm'
-
 group :development do
 	# For `rake server`:
 	gem 'guard-falcon', require: false

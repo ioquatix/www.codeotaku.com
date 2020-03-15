@@ -162,8 +162,6 @@ GEM
     samovar (2.1.4)
       console (~> 1.0)
       mapping (~> 1.0)
-    scout_apm (2.6.6)
-      parser
     shellany (0.0.1)
     thor (1.0.1)
     thread-local (1.0.0)
@@ -214,7 +212,6 @@ DEPENDENCIES
   rack-test
   relaxo-model (~> 0.10.0)
   rspec
-  scout_apm
   trenni-sanitize
   utopia (~> 2.13.0)
   utopia-analytics

@@ -10,8 +10,3 @@ require_relative '../db/environment'
 
 require 'utopia/extensions/array_split'
 require 'json'
-
-if UTOPIA.production?
-	require 'scout_apm'
-	ScoutApm::Rack.install!
-end

@@ -26,11 +26,6 @@ self.warmup do |app|
 end
 
 if UTOPIA.production?
-	require_relative 'lib/scout'
-	use ScoutApm::Instruments::RackRequest
-end
-
-if UTOPIA.production?
 	# Handle exceptions in production with a error page and send an email notification:
 	use Utopia::Exceptions::Handler
 	use Utopia::Exceptions::Mailer

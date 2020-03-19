@@ -20,11 +20,9 @@
 		
 		<link rel="icon" type="image/png" href="/_static/icon.png" />
 		<link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/journal/atom" />
-
-		<script src="/_components/jquery/jquery.min.js"></script>
-		<script src="/_components/jquery.cookie/jquery.cookie.js"></script>
 		
 		<script src="/_components/jquery/jquery.min.js"></script>
+		<script src="/_components/jquery.cookie/jquery.cookie.js"></script>
 		
 		<link rel="stylesheet" href="/_components/jquery-litebox/jquery.litebox.css" type="text/css" media="screen" />
 		<link rel="stylesheet" href="/_components/jquery-litebox/jquery.litebox.gallery.css" type="text/css" media="screen" />

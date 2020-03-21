@@ -1,1 +1,8 @@
-<gallery:container path="#{parent.node.parent_path + attributes[:path]}" tag="content:photo_thumbnail" process="photo,large" />
+<gallery:container 
+	path="#{parent.node.parent_path + attributes[:path]}"
+	tag="content:photo_thumbnail"
+	process="photo,large" 
+<?r if filter = attributes[:filter] ?>
+	filter="#{filter}"
+<?r end ?>
+/>

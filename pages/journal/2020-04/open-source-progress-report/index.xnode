@@ -3,7 +3,11 @@
 	
 	<h2>Falcon</h2>
 	
-	<p>Falcon virtual is now running in production, hosting this site and several others for the past several weeks. Real internet traffic 
+	<p>Falcon virtual is now running in production, hosting this site and several others for the past month. Real internet traffic has provided useful data, allowing me to improve HTTP/2 flow control and throughput.</p>
+	
+	<h3>Async::HTTP::Cache</h3>
+	
+	<p>In order to support the same amount of traffic as nginx, which has it's own internal cache, I implemented <a href="https://github.com/socketry/async-http-cache">async-http-cache</a>. It can be used both as a server side and client side cache, and can be easily added to falcon.</p>
 	
 	<h2>Bake</h2>
 	

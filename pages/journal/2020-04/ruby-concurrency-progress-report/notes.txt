@@ -1,0 +1,103 @@
+<p>Programming language designers must anticipate the needs of developers, so that they have the right abstractions to solve the problems they are facing. 
+
+
+
+Programming languages that fail to evolve become antiquated, and, at worst, irrelevant.
+
+
+Programming languages that fail to provide the right abstractions cause unnecessary inefficiency and frustration. Invariably, this
+
+Providing the right abstractions allows programmers to solve
+
+The size and scope of the problems programmers are facing continue to increase, while the requirements for efficiency and 
+
+
+
+Therefore, it is critical to understand not only the problems developers are facing, but to 
+
+
+When considering the needs of modern web applications, which must process 
+
+- Tools that fail to evolve quickly become antiquated and irrelevant.
+- Abstractions often have a cascading effect on software design.
+- The concerns/needs of scalability affect all areas of a programming language: syntax, semantics, libraries.
+- Right tools to solve the problems we are facing.
+- We are building more complex systems. We desire to build more complex systems.
+- We need tools to help manage complexity and scalability issues.
+- The scope and size of our programs is getting bigger, and efficiency becomes a concern.
+- Inefficient programs are expensive to execute.
+- Poor concurrency models make it harder to build applications.
+- There are elemnts of semantic correctness - simplicity, which are gained from using the right abstractions.
+- The needs of modern systems are far in excess of the existing designs.
+
+<p>
+
+
+<p>Minimising the complexity and costs
+
+
+<p>Scalable software is important 
+
+<p>Programming languages should provide the tools developers need to build scalable and robust computer programs
+
+Scalable computer programs are expected to efficiently and reliably interface with a wide range of systems, including databases, file systems, web interfaces, message queues, job processing systems, and so on. Traditional multi-process or multi-thread designs do not support high levels of I/O multiplexing. 
+
+ and thus a more fine grained approach is required.</p>
+
+<p>
+
+careful consideration is required when designing the interfaces by which developers build scalable systems. In particular, </p>
+
+
+
+What is known about the broad topic?
+What are the gaps or missing links that need to be addressed? 
+What is the significance of addressing those gaps?
+What are the rationale and hypothesis of your study?
+
+<p>Scalability is an important quality affects all areas of a programming language.
+
+<p>There are many attemps in the history of Ruby to improve scalability. By scalability, we mean the abilty of a programming environment to proportionally improve throughput and latency as the available hardware is increased. The key factors affecting scalability are parallelism and concurrency, but
+
+On modern operating systems, parallism is provided by multi-process and multi-threaded
+
+
+
+(multi-process/thread pre-emptive scheduling) (event-driven cooperative scheduling).
+
+The main Ruby implementation does not derive much benefit from multiple threads due to the global virtual machine lock (GVL) and</p>
+
+<p>Go implements a hybrid
+
+<a href="https://github.com/eventmachine/eventmachine">EventMachine</a> provides event driven I/O but required completely new interfaces. <a href="https://github.com/celluloid/celluloid">Celluloid</a> implemented actor based concurrency but lacked </p>
+
+<p><a href="https://github.com/socketry/async">Async</a> implements the reactor pattern, and 
+
+<h2>Current Problem</h2>
+
+<h2>
+
+</p>
+
+
+	<p>TODO: Some blocking operations cannot be avoided... <code>enter_blocking_region</code>...</p>
+
+<p>In order to support legacy code, it is necessary to hook into the underlying concurrency model of Ruby.
+
+<p>Async was designed to explore not just the practical implementation challenges, but also the semantic models required to build scalable systems. As such, the initial design was divorced from the needs of legacy programs, althought
+
+
+
+<p>The Ruby virtual machine
+
+does not provide a specific model for building highly scalable systems.
+
+
+In contract, environments like <a href="">Node.js</a> expose single-threaded event-driven callbacks.
+
+
+ This has allowed experientation which has resulted in systems like <a href="">NeverBlock</a>, <a href="">Cool.io</a>, <a href="">EventMachine</a>, <a href="">Celluloid</a>.</p>
+
+<p>Without the ability to hook into Ruby 
+
+minimal changes required

@@ -10,15 +10,6 @@ require 'utopia/analytics'
 self.freeze_app
 
 self.warmup do |app|
-	# require 'memory_profiler'
-	# 
-	# MemoryProfiler.start
-	# 
-	# Signal.trap(:USR2) do
-	# 	report = MemoryProfiler.stop
-	# 	report.pretty_print
-	# end
-	# 
 	client = Rack::MockRequest.new(app)
 	
 	client.get('/index')

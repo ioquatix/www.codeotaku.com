@@ -1,0 +1,11 @@
+<content:entry>
+	<p>Ruby provides a mixed bag of tools for parallelism. While CRuby wraps all Ruby code in a Global Virtual Machine Lock (GVL), JRuby and TruffleRuby provide truely parallel threads. Code analysis reveals that thread synchronisation primitives are often used incorrectly, and while results may be okay on CRuby, running the same code on JRuby or TruffleRuby can expose race conditions with disastrous consequences. We present some of the results of the code analysis, and briefly touch on how Ruby 3 will try to alleviate these issues.</p>
+	
+	<h2>Introduction</h2>
+	
+	<h2>Code Analysis</h2>
+	
+	<h2>Results</h2>
+	
+	<h2>Conclusion</h2>
+</content:entry>

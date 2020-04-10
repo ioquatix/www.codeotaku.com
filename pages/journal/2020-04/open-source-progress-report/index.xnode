@@ -67,6 +67,8 @@
 		<li><a href="https://github.com/marcmo/cxxproject/pull/132">marcmo/cxxproject</a> – Lazy mutex initialization.</li>
 	</ul>
 	
+	<p>Thanks to <a href="https://github.com/olleolleolle">Olle Jonsson</a> for finding many of these issues.</p>
+	
 	<p>In addition, I've made a proposal to support <a href="https://github.com/lsegal/yard/issues/1311">a standardised documentation tag for reentrant behaviour</a>. While this doesn't impact actual code, it could assist with code analysis.</p>
 	
 	<h3>Thread::Local</h3>

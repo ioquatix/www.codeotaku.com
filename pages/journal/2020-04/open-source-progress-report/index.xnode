@@ -17,6 +17,8 @@
 	
 	<p>In order to support the same amount of traffic as nginx, which has it's own internal cache, I implemented <a href="https://github.com/socketry/async-http-cache">async-http-cache</a>. It can be used both as a server side and client side cache, and can be easily added to falcon.</p>
 	
+	<content:youtube-video id="yJWrgXBEYiY" />
+	
 	<h3>Variant</h3>
 	
 	<p>After spending time working on <code>falcon virtual</code>, I came to the conclusion that the way we specify "environments" lacks consistency. In particular, <code>RACK_ENV</code> is often misused and misunderstood (even in my own code). The relationship between <code>RACK_ENV</code> and <code>RAILS_ENV</code> (and others) is poorly specified. I decided to create <a href="https://github.com/socketry/variant">variant</a>, a gem which documents and supports the <code>VARIANT</code> environment variable.</p>

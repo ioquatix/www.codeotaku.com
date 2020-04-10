@@ -9,13 +9,13 @@
 		<img src="2020-04-10_16-46.png" />
 	</figure>
 	
-	<p>As falcon virtual acts as a load balancer, it also terminates SSL. It gets an <a href="https://www.ssllabs.com/ssltest/analyze.html?d=www.codeotaku.com">A rating</a> out of the box. With the next release of the OpenSSL gem, we should be able to support TLS 1.3 natively which will improve</p>
+	<p>As falcon virtual acts as a load balancer, it also terminates SSL. It gets an <a href="https://www.ssllabs.com/ssltest/analyze.html?d=www.codeotaku.com">A rating</a> out of the box. With the next release of the OpenSSL gem, we should be able to support TLS 1.3 natively which will reduce latency and improve security further.</p>
 	
 	<content:youtube-video id="zvWgPIBgbis" />
 	
 	<h3>Async::HTTP::Cache</h3>
 	
-	<p>In order to support the same amount of traffic as nginx, which has it's own internal cache, I implemented <a href="https://github.com/socketry/async-http-cache">async-http-cache</a>. It can be used both as a server side and client side cache, and can be easily added to falcon.</p>
+	<p>In order to support the same amount of traffic as Nginx, which has its own internal cache, I implemented <a href="https://github.com/socketry/async-http-cache">async-http-cache</a>. It can be used both as a server-side and client-side cache, and can be easily added to falcon.</p>
 	
 	<content:youtube-video id="yJWrgXBEYiY" />
 	
@@ -23,7 +23,7 @@
 	
 	<p>After spending time working on <code>falcon virtual</code>, I came to the conclusion that the way we specify "environments" lacks consistency. In particular, <code>RACK_ENV</code> is often misused and misunderstood (even in my own code). The relationship between <code>RACK_ENV</code> and <code>RAILS_ENV</code> (and others) is poorly specified. I decided to create <a href="https://github.com/socketry/variant">variant</a>, a gem which documents and supports the <code>VARIANT</code> environment variable.</p>
 	
-	<p>In terms of <code>falcon</code>, deployment into production is simpler, because setting <code>VARIANT=production</code> is framework agnostic. Of course, it will depend on individual frameworks and tools taking advantage of it, and I hope with time they will.</p>
+	<p>In terms of <code>falcon</code>, deployment into production is simpler, because setting <code>VARIANT=production</code> is framework-agnostic. Of course, it will depend on individual frameworks and tools taking advantage of it, and I hope with time they will.</p>
 	
 	<h2>Bake</h2>
 	
@@ -39,7 +39,7 @@
 	
 	<h2>Thread Safety</h2>
 	
-	<p>One of my goals is to bring attention to thread safety issues that exist in Ruby code. As we look forward to improved parallelism and concurrency with Ruby 3, understanding where we currently lack thread safety will help inform and jusitfy the decisions we are making for Ruby 3.</p>
+	<p>One of my goals is to bring attention to thread safety issues that exist in Ruby code. As we look forward to improved parallelism and concurrency with Ruby 3, understanding where we currently lack thread safety will help inform and justify the decisions we are making for Ruby 3.</p>
 	
 	<content:youtube-video id="Wu9LRNOc5pQ" />
 	

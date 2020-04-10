@@ -19,6 +19,10 @@
 	
 	<content:youtube-video id="yJWrgXBEYiY" />
 	
+	<h3>CVE-2020-10933: Heap exposure vulnerability in the socket library</h3>
+	
+	<p>It was also during this time, I found some strange issues with data buffering, and after two days of debugging narrowed it down to a <a href="https://www.ruby-lang.org/en/news/2020/03/31/heap-exposure-in-socket-cve-2020-10933/">heap exposure vulnerability in the Ruby socket library</a>. It is strongly recommended that you upgrade to a fixed version of Ruby.</p>
+	
 	<h3>Variant</h3>
 	
 	<p>After spending time working on <code>falcon virtual</code>, I came to the conclusion that the way we specify "environments" lacks consistency. In particular, <code>RACK_ENV</code> is often misused and misunderstood (even in my own code). The relationship between <code>RACK_ENV</code> and <code>RAILS_ENV</code> (and others) is poorly specified. I decided to create <a href="https://github.com/socketry/variant">variant</a>, a gem which documents and supports the <code>VARIANT</code> environment variable.</p>

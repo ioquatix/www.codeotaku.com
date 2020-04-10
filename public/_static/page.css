@@ -116,7 +116,7 @@ main {
 	max-width: 46rem;
 }
 
-p, dl {
+p, ul, dl, figure {
 	margin: 2rem 1rem;
 }
 
@@ -652,4 +652,26 @@ li.locale {
 	left: 0;
 	width: 100%;
 	height: 100%;
+}
+
+section.sponsors {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+
+section.sponsors a {
+	position: relative;
+	
+	margin: 1rem;
+	
+	width: 15rem;
+	height: 15rem;
+	
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+	
+	border-radius: 2rem;
+	box-shadow: 0 0 0.5rem var(--underlay-color);
 }

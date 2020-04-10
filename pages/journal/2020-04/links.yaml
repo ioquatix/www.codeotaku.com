@@ -5,3 +5,10 @@ open-source-progress-report:
   display: true
   front: true
   preview_url: preview.png
+ruby-concurrency-progress-report:
+  author: "Samuel Williams"
+  created: 2020-04-04
+  summary: An overview of my Open Source work for March & April 2020.
+  display: true
+  front: true
+  preview_url: preview.png

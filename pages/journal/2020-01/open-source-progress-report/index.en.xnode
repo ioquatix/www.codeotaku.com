@@ -7,7 +7,7 @@
 	
 	<p>A fruitful collaboration between Canterbury University, <a href="https://twitter.com/cbracefield">Courtney Bracefield</a> and myself, we have updated the <a href="https://programming.dojo.net.nz">Programming Dojo</a>, a website for school students to learn more about programming languages.</p>
 	
-	<figure class="diagram">
+	<figure>
 		<img src="programming-dojo.png" />
 	</figure>
 	
@@ -17,7 +17,7 @@
 	
 	<p><a href="https://github.com/rack/rack">Rack</a> is a critical piece of infrastructure in most Ruby web applications. For almost 5 years, Rack has not had a non-patch level release. In the past two months, <a href="https://github.com/rack/rack/pulse/monthly">many useful pull requests have been merged</a>. We have removed the website which was sevearly out of date, and started working on updated documentation.</p>
 	
-	<figure class="diagram">
+	<figure>
 		<img src="rack.png" />
 	</figure>
 	

@@ -5,7 +5,7 @@
 	
 	<p>Falcon virtual is now running in production, hosting this site and several others for the past month. Real internet traffic has provided useful data, allowing me to improve HTTP/2 flow control and general throughput.</p>
 	
-	<figure class="diagram">
+	<figure>
 		<img src="2020-04-10_16-46.png" />
 	</figure>
 	

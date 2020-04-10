@@ -75,11 +75,13 @@
 	
 	<p>I have been experimenting with taking existing code bases, and retrofitting async libraries, in order to improve concurrency. One recent example is <a href="https://github.com/github-changelog-generator/github-changelog-generator/pull/784/files">PR #784</a> to GitHub Changelog Generator. We used <a href="https://github.com/socketry/async-http-faraday">Async::HTTP::Faraday</a> to improve the concurrency of <a href="https://github.com/octokit/octokit.rb">Octokit</a>.</p>
 	
-	<p>There are more improvemets to be made, but the initial results show it was about 40% faster and show the value of asynchronous ruby:</p>
+	<p>There are more improvements to be made, but the initial results show that improving concurrency can significantly reduce run-time:</p>
 	
 	<script src="/_components/chart.js/Chart.bundle.min.js"></script>
 	
-	<canvas id="results" width="100%" height="64rem"></canvas>
+	<figure class="diagram">
+		<canvas id="results" width="100%" height="64rem"></canvas>
+	</figure>
 	
 	<script>
 	// <![CDATA[

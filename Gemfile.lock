@@ -13,7 +13,7 @@ GEM
       async (~> 1.0)
       async-io (~> 1.26)
       process-group
-    async-http (0.51.0)
+    async-http (0.51.2)
       async (~> 1.23)
       async-io (~> 1.28)
       async-pool (~> 0.2)

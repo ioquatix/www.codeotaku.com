@@ -17,6 +17,12 @@
 	
 	<p>In order to support the same amount of traffic as nginx, which has it's own internal cache, I implemented <a href="https://github.com/socketry/async-http-cache">async-http-cache</a>. It can be used both as a server side and client side cache, and can be easily added to falcon.</p>
 	
+	<h3>Variant</h3>
+	
+	<p>After spending time working on <code>falcon virtual</code>, I came to the conclusion that the way we specify "environments" lacks consistency. In particular, <code>RACK_ENV</code> is often misused and misunderstood (even in my own code). The relationship between <code>RACK_ENV</code> and <code>RAILS_ENV</code> (and others) is poorly specified. I decided to create <a href="https://github.com/socketry/variant">variant</a>, a gem which documents and supports the <code>VARIANT</code> environment variable.</p>
+	
+	<p>In terms of <code>falcon</code>, deployment into production is simpler, because setting <code>VARIANT=production</code> is framework agnostic. Of course, it will depend on individual frameworks and tools taking advantage of it, and I hope with time they will.</p>
+	
 	<h2>Bake</h2>
 	
 	<p>After repeatedly implementing the same patterns with rake over and over again, and still running into limitations, I decided to create <a href="https://github.com/ioquatix/bake">Bake</a>. It improves in several key areas, including on-demand loading of tasks, argument handling, task documentation and gem integration.</p>
@@ -29,18 +35,6 @@
 	
 	<p>Releasing gems can now be done using <a href="https://github.com/ioquatix/bake-bundler">bake-bundler</a> which removes the need for rake in the vast majority of the gems I maintain. In addition to the standard installation and release tasks, it can also automaticlly bump the version number which is convenient.</p>
 	
-	<h2>Variant</h2>
-	
-	<p>After spending time working on <a href="https://github.com/rack/rack">Rack</a>, I came to the conclusion that the way we specify "environments" lacks consistency. In particular, <code>RACK_ENV</code> is often misused and misunderstood (even in my own code). The relationship between <code>RACK_ENV</code> and <code>RAILS_ENV</code> (and others) is poorly specified. I decided to create <a href="https://github.com/socketry/variant">variant</a>, a gem which documents and supports the <code>VARIANT</code> environment variable.</p>
-	
-	<p>In terms of <code>falcon</code>, deployment into production is simpler, because setting <code>VARIANT=production</code> is framework agnostic. Of course, it will depend on individual frameworks and tools taking advantage of it, and I hope with time they will.</p>
-	
-	<h2>Thread::Local</h2>
-	
-	<p>Falcon introduces isolated multi-process and multi-thread execution models. Global mutable state bypasses these boundaries, sometimes with unpredictable results, so I created the <a href="https://github.com/socketry/thread-local">thread-local</a> gem which standardises the construction of thread-local instances.</p>
-	
-	<p>Thread-local instances are completely isolated and thus don't attract the same thread-safety issues that might occur with globally shared state. In addition, falcon running in multi-thread mode may restart threads which suffer critical failures. By using thread-local state, any state that caused the application to fail will be discarded too.</p>
-	
 	<h2>Thread Safety</h2>
 	
 	<p>One of my goals is to bring attention to thread safety issues that exist in Ruby code. As we look forward to improved parallelism and concurrency with Ruby 3, understanding where we currently lack thread safety will help inform and jusitfy the decisions we are making for Ruby 3.</p>
@@ -50,6 +44,8 @@
 	<h3>Lazy Mutex Initialization</h3>
 	
 	<p>One problem that is both fairly common and easily identifiable by automated analysis, is lazy mutex initialization. Using <a href="https://github.com/ioquatix/presentations/tree/master/asynchronous-ruby-2019/scraper">this gem source code "analysis" tool</a> we identified many issues:</p>
+	
+	<content:youtube-video id="kU6SReIz5lc" />
 	
 	<ul>
 		<li><a href="https://github.com/BallAerospace/COSMOS/pull/1145">BallAerospace/COSMOS</a> – Lazy mutex initialization.</li>
@@ -65,9 +61,13 @@
 		<li><a href="https://github.com/marcmo/cxxproject/pull/132">marcmo/cxxproject</a> – Lazy mutex initialization.</li>
 	</ul>
 	
-	<content:youtube-video id="kU6SReIz5lc" />
-	
 	<p>In addition, I've made a proposal to support <a href="https://github.com/lsegal/yard/issues/1311">a standardised documentation tag for reentrant behaviour</a>. While this doesn't impact actual code, it could assist with code analysis.</p>
+	
+	<h3>Thread::Local</h3>
+	
+	<p>Falcon introduces isolated multi-process and multi-thread execution models. Global mutable state bypasses these boundaries, sometimes with unpredictable results, so I created the <a href="https://github.com/socketry/thread-local">thread-local</a> gem which standardises the construction of thread-local instances.</p>
+	
+	<p>Thread-local instances are completely isolated and thus don't attract the same thread-safety issues that might occur with globally shared state. In addition, falcon running in multi-thread mode may restart threads which suffer critical failures. By using thread-local state, any state that caused the application to fail will be discarded too.</p>
 	
 	<h3>GitHub Changelog Generator</h3>
 	

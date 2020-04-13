@@ -22,4 +22,14 @@ class Scheduler
 	# The Ruby virtual machine has completed the system level blocking operation.
 	def exit_blocking_region
 	end
+	
+	# Intercept the creation of a non-blocking fiber.
+	def fiber(&block)
+		Fiber.new(blocking: false, &block)
+	end
+	
+	# Invoked when the thread exits.
+	def run
+		# Implement event loop here.
+	end
 end

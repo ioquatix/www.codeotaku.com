@@ -41,9 +41,9 @@
 	
 	<p>Releasing gems can now be done using <a href="https://github.com/ioquatix/bake-bundler">bake-bundler</a> which removes the need for rake in the vast majority of the gems I maintain. In addition to the standard installation and release tasks, it can also automaticlly bump the version number which is convenient.</p>
 	
-	<h2>Thread Safety</h2>
+	<h2 id="thread-safety">Thread Safety</h2>
 	
-	<p>One of my goals is to bring attention to thread safety issues that exist in Ruby code. As we look forward to improved parallelism and concurrency with Ruby 3, understanding where we currently lack thread safety will help inform and justify the decisions we are making for Ruby 3.</p>
+	<p>One of my goals is to <a href="../../2019-11/open-source-progress-report/index#rubyworld-conference-2019-asynchronous-ruby">bring attention to thread safety issues</a> that exist in Ruby code. As we look forward to improved parallelism and concurrency with Ruby 3, understanding where we currently lack thread safety will help inform and justify the decisions we are making for Ruby 3.</p>
 	
 	<content:youtube-video id="Wu9LRNOc5pQ" />
 	

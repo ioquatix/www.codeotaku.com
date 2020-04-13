@@ -548,6 +548,7 @@ blockquote cite {
 	display: block;
 	font-style: normal;
 	text-align: right;
+	margin-top: 1rem;
 }
 
 blockquote cite:before {

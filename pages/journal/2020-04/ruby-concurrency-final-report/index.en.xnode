@@ -1,0 +1,75 @@
+<content:entry>
+	<p>Ruby provides a mixed bag of tools for building asynchronous systems. While CRuby wraps all Ruby code in a Global Virtual Machine Lock (GVL), JRuby and TruffleRuby provide truely parallel threads. Code analysis reveals that thread synchronisation primitives are often used incorrectly, and while results may be okay on CRuby, running the same code on JRuby or TruffleRuby can expose race conditions with unexpected consequences. We present a light weight per-thread fiber scheduler which improves the concurrency of existing code with minimal changes. We discuss it's implemnetation within Ruby and evaluate its performance in real world code bases.</p>
+	
+	<p>This is the final report required by the 2019 Ruby Association Grant. There are two previous progress reports: <a href="../../2019-12/ruby-concurrency-progress-report/index">December 2019</a> and <a href="../../2020-01/ruby-concurrency-progress-report/index">January 2020</a>.</p>
+	
+	<h2>Introduction</h2>
+	
+	<p>In 1996, Yukihiro Matsumoto (Matz) <a href="https://github.com/ruby/ruby/blob/554b989ba1623b9f6a0b76f00824c83a23fbcbc1/eval.c#L3647-L3682">introduced an optional <code language="ruby">Thread</code> primitive</a> to MRI for producer-consumer style programs, inspired by <a href="https://github.com/ocaml/ocaml/blob/2894d8e75b451abe1335edbd8f5adc1d47757c09/otherlibs/threads/scheduler.c#L42-L55">OCaml's implementation of green threads</a>. At the time, multi-core processors were not popular, and so interleaved execution of Ruby code (concurrency) was acceptable performance trade off.</p>
+	
+	<p>In 2004, Koichi Sasada started using native threads in YARV, and it was <a href="https://github.com/ruby/ruby/blob/a3e1b1ce7ed7e7ffac23015fc2fde56511b30681/thread.c">merged into CRuby in 2007</a>. Native threads allow for the simultaneous execution of machine code on different processors (parallelism) and improved the scalability of Ruby programs. However, in order to retain the green thread semantics of MRI, YARV opted to wrap all Ruby code with the "Giant VM Lock" (GVL). Even thought YARV threads have parallelism, pure Ruby code is limited to interleaved execution.</p>
+	
+	<p>C extensions can release the GVL in order to allow other Ruby code to execute. This has been used to improve the scalability of blocking I/O operations by using multiple threads. However, <a href="https://github.com/sparklemotion/sqlite3-ruby/issues/287">even this is not guaranteed</a>.</p>
+	
+	<p>In addition, the non-determinism of threads creates a combinatorial explosion of program states. We have <a href="../open-source-progress-report/index#thread-safety">analysed existing Ruby code and identified a significant number of thread-safety issues</a>. Even within Ruby itself, non-determinism leads to unpredictable bugs, including <a href="https://github.com/jruby/jruby/issues/6142">garbage collection of weak references</a>, and <a href="https://bugs.ruby-lang.org/issues/16782">deadlocks during signal handling</a>.</p>
+	
+	<blockquote>Threads, as a model of computation, are wildly nondeterministic, and the job of the programmer becomes one of pruning that nondeterminism. Although many research techniques improve the model by offering more effective pruning, I argue that this is approaching the problem backwards. Rather than pruning nondeterminism, we should build from essentially deterministic, composable components. Nondeterminism should be explicitly and judiciously introduced where needed, rather than removed where not needed.<cite>Edward A. Lee<br/>EECS Department<br/>University of California, Berkeley<br/><a href="https://www2.eecs.berkeley.edu/Pubs/TechRpts/2006/EECS-2006-1.pdf">Technical Report No. UCB/EECS-2006-1</a><br/>January 10, 2006</cite></blockquote>
+	
+	<p>Modern languages have tackled these problems in a variety of ways. <a href="https://nodejs.org/en/">Node.js</a> uses a single-threaded event-driven design, with explicit callbacks. Using async/await style syntax helps to aleviate the need for heavily nested callbacks, but it also adds a <a href="https://journal.stuffwithstuff.com/2015/02/01/what-color-is-your-function/">new semantic dimension</a> which can be cumbersome in practice.</p>
+	
+	<p><a href="https://golang.org">Go</a> uses a multi-threaded scheduler, where multiple "goroutines" are scheduled across multiple system threads. Some thread-safe constructs are provided by default, but the developer may still be required to understand and manage shared mutable state, and unfortunately, <a href="https://github.com/tidwall/evio#benchmarks">in practice, this model is still not as good as a well optimised event loop</a>.</p>
+	
+	<p>JRuby and TruffleRuby both provide Thread-level parallelism and as a consequence, programs that worked correctly in CRuby due to the GVL, may work incorrectly on these implementations. While true parallelism is a welcome addition, existing thread safety issues are exacerbated with additional nondeterminsm in the form of pre-emtive scheduling and simultaneous execution which <a href="https://www.youtube.com/watch?v=Wu9LRNOc5pQ">can lead to data corruption</a>.</p>
+	
+	<p>In order to improve the scalability of existing Ruby code, we investigated how Fibers can be used to improve concurrency. We implemented a per-thread fiber scheduler which minimises exposure to parallelism, while still providing excellent multi-core performance. This report presents an overview of the implementation, and shows how the approach improves the performance of existing real-world programs.</p>
+	
+	<h2>Method</h2>
+	
+	<blockquote>You never change things by fighting the existing reality. To change something, build a new model that makes the existing model obsolete.<cite>R. Buckminster Fuller</cite></blockquote>
+	
+	<p>Our design requires four minor changes. We introduce the idea of non-blocking fibers. Then, we extend threads so we can capture this state. We define an interface for a scheduler, which is invoked when non-blocking operations are allowed, and finally we change all I/Os to be (internally) non-blocking by default.</p>
+	
+	<h3>Non-blocking Fibers</h3>
+	
+	<p>We introduce the concept of blocking and non-blocking fibers. This allows us to retain compatibility with the existing semantic model which existing code expects.</p>
+	
+	<content:listing src="fiber-blocking.rb" lang="ruby" />
+	
+	<p>We also introduce a new method which simplifes the creation of these non-blocking fibers:</p>
+	
+	<content:listing src="fiber-method.rb" lang="ruby" />
+	
+	<h3>Non-blocking Threads</h3>
+	
+	<p>Threads, by default, are blocking. When switching to a non-blocking fiber, we update this state.</p>
+	
+	<content:listing src="thread-blocking.rb" lang="ruby" />
+	
+	<p>In addition, mutex causes the thread to become blocking:</p>
+	
+	<content:listing src="thread-mutex.rb" lang="ruby" />
+	
+	<h3>Thread Scheduler</h3>
+	
+	<p>We introduce a new interface for intercepting blocking operations that occur on non-blocking fibers:</p>
+	
+	<content:listing src="../../2020-01/ruby-concurrency-progress-report/scheduler.rb" lang="ruby" />
+	
+	<p>Traditionally blocking operations, such as <code class="syntax ruby">io.wait_readable</code> and <code class="syntax ruby">io.wait_writable</code> are routed through the scheduler if the thread is in a non-blocking context (e.g. a non-blocking fiber) and a scheduler is defined:</p>
+	
+	<content:listing src="thread-scheduler.rb" lang="ruby" />
+	
+	<h3>Non-blocking I/O</h3>
+	
+	<p>Internally, all Ruby I/O operations can handle <code class="syntax c">EAGAIN</code>/<code class="syntax c">EWOULDBLOCK</code>. By making Ruby I/O nonblocking by default (OS permitting), we opportunistically route all operations via the scheduler. Here is an exmaple of constructing a non-blocking socket:</p>
+	
+	<content:listing src="io-nonblock.c" lang="c" />
+	
+	<h2>Results</h2>
+	
+	<p>Given the above modifications, we can compile and run a simple example using <code class="syntax ruby">Net::HTTP</code> and show that scalability is improved with minimal changes to user code.</p>
+	
+	<h2>Conclusion</h2>
+	
+	<p></p>
+</content:entry>

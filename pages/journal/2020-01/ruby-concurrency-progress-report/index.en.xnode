@@ -1,11 +1,9 @@
 <content:entry>
-	<p>This is the first progress report required by the 2019 Ruby Association Grant. There is <a href="../../2019-12/ruby-concurrency-progress-report">one previous report here</a>.</p>
-	
-	<h2>Project Summary</h2>
-	
 	<p>We have proven that fibers are useful for building scalable systems. In order to develop this further, we need to add hooks into the various Ruby VMs so that we can improve the concurrency of existing code without changes. There is an outstanding PR for this work, but additional effort is required to bring this to completion and show its effectiveness in real world situations. We propose to bring the existing PR to completion and improve Ruby’s concurrency model.</p>
 	
-	<h2>Background</h2>
+	<p>This is the first progress report required by the 2019 Ruby Association Grant. There is one previous progress report: <a href="../../2019-12/ruby-concurrency-progress-report">December 2019</a>.</p>
+	
+	<h2>Introduction</h2>
 	
 	<p>Scalability is a quality of a system which remains efficient despite increasing data size and user count. It implies predictable costs and proportional behaviour in relation to available hardware resources. Modern systems typically utilize hybrid models which provide both scalablity and robustness. In particular, programming languages need to expose good abstractions for concurrency and parallelism, so that software engineers can build reliable systems with these useful qualities.</p>
 	

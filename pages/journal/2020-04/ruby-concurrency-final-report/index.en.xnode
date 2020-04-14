@@ -27,7 +27,7 @@
 	
 	<blockquote>You never change things by fighting the existing reality. To change something, build a new model that makes the existing model obsolete.<cite>R. Buckminster Fuller</cite></blockquote>
 	
-	<p><a href="https://github.com/ruby/ruby/pull/1870">Our proposed design</a> requires four minor changes.
+	<p><a href="https://github.com/ruby/ruby/pull/3031">Our proposed design</a> requires four minor changes.
 		First, we introduce a thread scheduler interface which provides low level hooks for blocking operations.
 		Then, we introduce non-blocking fibers.
 		We extend threads to track whether the current execution context allows non-blocking operations, and if so, invoke the scheduler hooks.

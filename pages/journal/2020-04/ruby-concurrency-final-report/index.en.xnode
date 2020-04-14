@@ -21,7 +21,7 @@
 	
 	<p>JRuby and TruffleRuby both provide Thread-level parallelism and as a consequence, programs that worked correctly in CRuby due to the GVL, may work incorrectly on these implementations. While true parallelism is a welcome addition, existing thread safety issues are exacerbated with additional nondeterminsm in the form of pre-emtive scheduling and simultaneous execution which <a href="https://www.youtube.com/watch?v=Wu9LRNOc5pQ">can lead to data corruption</a>.</p>
 	
-	<p>In order to improve the scalability of existing Ruby code, we investigated how Fibers can be used to improve concurrency. We implemented a per-thread fiber scheduler which minimises exposure to parallelism, while still providing excellent multi-core performance. This report presents an overview of the implementation, and shows how the approach improves the performance of existing real-world programs.</p>
+	<p>Existing work shows that <a href="https://github.com/socketry/falcon-benchmark">event loops can be used to build scalable systems</a>, however existing implementations must wrap around or replace Ruby constructs. We investigated how to use Fibers to expose non-blocking operations directly within CRuby. In order to work within existing event loops, we implemented a per-thread fiber scheduler which provides hooks for these non-blocking operations. This report presents an overview of the design, and shows how the approach improves the performance of existing real-world programs.</p>
 	
 	<h2>Method</h2>
 	

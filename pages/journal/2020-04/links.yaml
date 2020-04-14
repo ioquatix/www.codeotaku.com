@@ -9,4 +9,6 @@ ruby-concurrency-final-report:
   author: "Samuel Williams"
   created: 2020-04-13
   summary: The final report for the 2019 Ruby Association Grant.
-  display: false
+  display: true
+  front: true
+  preview_url: preview.png

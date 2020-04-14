@@ -186,6 +186,8 @@
 	
 	<p>We have shown how non-blocking fibers can be used to improve the concurrency of existing code. We have described a model for intercepting blocking operations on a per-thread basis. We demonstrated a working implementation, showing significant improvements to the concurrency of <code class="syntax ruby">Net::HTTP</code> with zero changes to the underlying implementation. Finally, we have shown that a similar event-driven model can be used in real world code with similar performance improvements and ergonomics.</p>
 	
+	<p>We have <a href="https://bugs.ruby-lang.org/issues/16786">submitted a proposal</a> for consideration by the Ruby core developers. We will discuss it and hopefully find consensus, and then we will update our implementation and all things going well, merge it in time for Ruby 3.</p>
+	
 	<content:sponsorship>
 		<p>Many thanks to the <a href="https://www.ruby.or.jp/en/news/20191031">2019 Ruby Association Grant</a> and all my sponsors who help enable this work.</p>
 	</content:sponsorship>

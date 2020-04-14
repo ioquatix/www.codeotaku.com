@@ -175,7 +175,8 @@
 		<dd>Improvements to tests. Implement support for thread blocking which bypasses scheduler.</dd>
 		<dt>April 2020</dt>
 		<dd>Meeting with Matz and Koichi online to discuss progress.</dd>
-		<dd>Add support for blocking fibers. Make all I/O non-blocking by default where possible.</dd>
+		<dd>Add support for non-blocking blocking fibers and threads.</dd>
+		<dd>Make all I/O non-blocking by default where possible.</dd>
 		<dd>Add more tests and documentation.</dd>
 	</dl>
 	

@@ -15,7 +15,7 @@
 	
 	<blockquote>Threads, as a model of computation, are wildly nondeterministic, and the job of the programmer becomes one of pruning that nondeterminism. Although many research techniques improve the model by offering more effective pruning, I argue that this is approaching the problem backwards. Rather than pruning nondeterminism, we should build from essentially deterministic, composable components. Nondeterminism should be explicitly and judiciously introduced where needed, rather than removed where not needed.<cite>Edward A. Lee<br/>EECS Department<br/>University of California, Berkeley<br/><a href="https://www2.eecs.berkeley.edu/Pubs/TechRpts/2006/EECS-2006-1.pdf">Technical Report No. UCB/EECS-2006-1</a><br/>January 10, 2006</cite></blockquote>
 	
-	<p>Modern languages have tackled these problems in a variety of ways. <a href="https://nodejs.org/en/">Node.js</a> uses a single-threaded event-driven design, with explicit callbacks. Using async/await style syntax helps to alleviate the need for heavily nested callbacks, but it also adds a <a href="https://journal.stuffwithstuff.com/2015/02/01/what-color-is-your-function/">new semantic dimension</a> which can be cumbersome in practice.</p>
+	<p>Modern languages have tackled these problems in a variety of ways. <a href="https://nodejs.org/en/">Node.js</a> uses a single-threaded event-driven design, with explicit callbacks. Using async/await style syntax helps to alleviate the need for heavily nested code, but it also adds a <a href="https://journal.stuffwithstuff.com/2015/02/01/what-color-is-your-function/">new semantic dimension</a> which can be cumbersome in practice.</p>
 	
 	<p><a href="https://golang.org">Go</a> uses a multi-threaded scheduler, where multiple "goroutines" are scheduled across multiple system threads. Some thread-safe constructs are provided by default, but the developer may still be required to understand and manage shared mutable state, and unfortunately, <a href="https://github.com/tidwall/evio#benchmarks">in practice, this model is still not as good as a well optimised event loop</a>.</p>
 	
@@ -29,8 +29,8 @@
 	
 	<p><a href="https://github.com/ruby/ruby/pull/1870">Our proposed design</a> requires four minor changes.
 		First, we introduce a thread scheduler interface which provides low level hooks for blocking operations.
-		Then, we introduce the idea of non-blocking fibers.
-		We extend threads so we can capture this state.
+		Then, we introduce non-blocking fibers.
+		We extend threads to track whether the current execution context allows non-blocking operations, and if so, invoke the scheduler hooks.
 		Finally, we change all I/Os to be (internally) non-blocking by default, so that they invoke these hooks when they would otherwise block.
 	</p>
 	

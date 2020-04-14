@@ -142,5 +142,5 @@
 	
 	<h2>Conclusion</h2>
 	
-	<p>We have shown how non-blocking fibers can be used to improve the concurrency of existing code. We have described a model for intercepting blocking operations on a per-thread basis. We demonstrated a working implementation, showing significant improvements to the concurrency of <code syntax="syntax ruby">Net::HTTP</code> with zero changes to the underlying implementation. Finally, we have shown that a similar event-driven model can be used in real world code with similar performance improvements and ergonomics.</p>
+	<p>We have shown how non-blocking fibers can be used to improve the concurrency of existing code. We have described a model for intercepting blocking operations on a per-thread basis. We demonstrated a working implementation, showing significant improvements to the concurrency of <code class="syntax ruby">Net::HTTP</code> with zero changes to the underlying implementation. Finally, we have shown that a similar event-driven model can be used in real world code with similar performance improvements and ergonomics.</p>
 </content:entry>

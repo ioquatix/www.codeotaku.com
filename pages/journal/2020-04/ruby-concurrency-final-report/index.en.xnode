@@ -136,7 +136,7 @@
 	// ]]>
 	</script>
 	
-	<p>While we can't show the benefits of this specific implementation in real world code yet, <a href="https://github.com/socketry/async">Async</a> implements a similar event-driven model and has shown similar improvements in <a href="https://github.com/github-changelog-generator/github-changelog-generator/pull/784#issuecomment-611866349">GitHub Changelog Generator</a> and <a href="https://github.com/socketry/async-http-faraday/issues/16#issuecomment-612628277">Travis.rb gem</a>. In these examples, minimal code changes were required to improve concurrency significantly.</p>
+	<p>While we can't show the benefits of this specific implementation in real world code yet, <a href="https://github.com/socketry/async">Async</a> implements a similar event-driven model and has shown improvements in <a href="https://github.com/github-changelog-generator/github-changelog-generator/pull/784#issuecomment-611866349">GitHub Changelog Generator</a> and <a href="https://github.com/socketry/async-http-faraday/issues/16#issuecomment-612628277">Travis.rb</a>. In both these cases, <a href="https://github.com/socketry/async-http-faraday">Async::HTTP::Faraday</a> provides a relatively transparent way to improve concurrency.</p>
 	
 	<h2>Conclusion</h2>
 	

@@ -69,7 +69,76 @@
 	
 	<p>Given the above modifications, we can compile and run a simple example using <code class="syntax ruby">Net::HTTP</code> and show that scalability is improved with minimal changes to user code.</p>
 	
+	<content:listing src="http.rb" lang="ruby" />
+	
+	<p>We run the above code with 1-8 topics, measuring the execution time:</p>
+	
+	<script src="/_components/chart.js/Chart.bundle.min.js"></script>
+	
+	<figure class="diagram">
+		<canvas id="results" width="100%" height="64rem"></canvas>
+	</figure>
+	
+	<script>
+	// <![CDATA[
+		var colors = ["#609bce",
+			"#ca5d48",
+			"#62a85a",
+			"#8d68ca",
+			"#b4933f",
+			"#c85994"];
+		
+		// Bar chart
+		new Chart(document.getElementById("results"), {
+			type: 'bar',
+			data: {
+				labels: [1, 2, 3, 4, 5, 6, 7, 8],
+				datasets: [
+					{
+						label: "blocking: true",
+						backgroundColor: colors[0],
+						data: [1.141,2.047,3.15,3.877,5.09,5.907,7.018,7.897]
+					},
+					{
+						label: "blocking: false",
+						backgroundColor: colors[1],
+						data: [1.058,1.068,1.038,1.049,1.1,1.128,1.074,1.104]
+					}
+				]
+			},
+			options: {
+				scales: {
+					xAxes: [{
+						scaleLabel: {
+							display: true,
+							labelString: "Number of Requests",
+						}
+					}],
+					yAxes: [{
+						ticks: {
+							beginAtZero: true,
+							callback: function(value, index, values) {
+								return value + "s";
+							}
+						},
+						scaleLabel: {
+							display: true,
+							labelString: 'Time Taken',
+						}
+					}]
+				},
+				title: {
+					display: true,
+					text: 'Comparison'
+				}
+			}
+		});
+	// ]]>
+	</script>
+	
+	<p>While we can't show the benefits of this specific implementation in real world code yet, <a href="https://github.com/socketry/async">Async</a> implements a similar event-driven model and has shown similar improvements in <a href="https://github.com/github-changelog-generator/github-changelog-generator/pull/784#issuecomment-611866349">GitHub Changelog Geneartor</a> and <a href="https://github.com/socketry/async-http-faraday/issues/16#issuecomment-612628277">Travis.rb gem</a>. In these examples, minimal code changes were required to improve concurrency significantly.</p>
+	
 	<h2>Conclusion</h2>
 	
-	<p></p>
+	<p>We have shown how non-blocking fibers can be used to improve the concurrency of existing code. We have described a model for intercepting blocking operations on a per-thread basis. We demonstrated a working implementation, showing significant improvements to the concurrency of <code syntax="syntax ruby">Net::HTTP</code> with zero changes to the underlying implementation. Finally, we have shown that a similar event-driven model can be used in real world code with similar performance improvements and ergonomics.</p>
 </content:entry>

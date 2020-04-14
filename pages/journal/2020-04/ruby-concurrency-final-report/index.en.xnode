@@ -7,9 +7,9 @@
 	
 	<p>In 1996, Yukihiro Matsumoto (Matz) <a href="https://github.com/ruby/ruby/blob/554b989ba1623b9f6a0b76f00824c83a23fbcbc1/eval.c#L3647-L3682">introduced an optional <code language="ruby">Thread</code> primitive</a> to MRI for producer-consumer style programs, inspired by <a href="https://github.com/ocaml/ocaml/blob/2894d8e75b451abe1335edbd8f5adc1d47757c09/otherlibs/threads/scheduler.c#L42-L55">OCaml's implementation of green threads</a>. At the time, multi-core processors were not popular, and so interleaved execution of Ruby code (concurrency) was acceptable performance trade off.</p>
 	
-	<p>In 2004, Koichi Sasada started using native threads in YARV, and it was <a href="https://github.com/ruby/ruby/blob/a3e1b1ce7ed7e7ffac23015fc2fde56511b30681/thread.c">merged into CRuby in 2007</a>. Native threads allow for the simultaneous execution of machine code on different processors (parallelism) and improved the scalability of Ruby programs. However, in order to retain the green thread semantics of MRI, YARV opted to wrap all Ruby code with the "Giant VM Lock" (GVL). Even though YARV threads have parallelism, pure Ruby code is limited to interleaved execution.</p>
+	<p>In 2004, Koichi Sasada introduced native threads into YARV, so that blocking system calls would not stall the entire virtual machine (VM). In order to retain compatiblity with existing C code which expected non-reentrant execution, the "Giant VM Lock" (GVL) was introduced. This lock prevents the parallel execution of Ruby code and a large part of the virutal machine. In 2007, YARV was <a href="https://github.com/ruby/ruby/blob/a3e1b1ce7ed7e7ffac23015fc2fde56511b30681/thread.c">merged into CRuby</a>. It was assumed that fine-grained locking would eventually be implemented, however it turned out to be difficult, and thus CRuby is not able to utilize multiple processes effectively.</p>
 	
-	<p>C extensions can release the GVL in order to allow other Ruby code to execute. This has been used to improve the scalability of blocking I/O operations by using multiple threads. However, <a href="https://github.com/sparklemotion/sqlite3-ruby/issues/287">even this is not guaranteed</a>.</p>
+	<p>In many situations, C extensions can release the GVL in order to allow other Ruby code to execute. This has been used to improve the scalability of blocking I/O operations by using multiple threads. However, <a href="https://github.com/sparklemotion/sqlite3-ruby/issues/287">even this is not guaranteed</a>. Thus, it can be challenging to build truely scalable systems using threads with CRuby.</p>
 	
 	<p>In addition, the non-determinism of threads creates a combinatorial explosion of program states. We have <a href="../open-source-progress-report/index#thread-safety">analysed existing Ruby code and identified a significant number of thread-safety issues</a>. Even within Ruby itself, non-determinism leads to unpredictable bugs, including <a href="https://github.com/jruby/jruby/issues/6142">garbage collection of weak references</a>, and <a href="https://bugs.ruby-lang.org/issues/16782">deadlocks during signal handling</a>.</p>
 	
@@ -23,15 +23,15 @@
 	
 	<p>Existing work shows that <a href="https://github.com/socketry/falcon-benchmark">event loops can be used to build scalable systems</a>, however existing implementations must wrap around or replace Ruby constructs. We investigated how to use Fibers to expose non-blocking operations directly within CRuby. In order to work within existing event loops, we implemented a per-thread fiber scheduler which provides hooks for these non-blocking operations. This report presents an overview of the design, and shows how the approach improves the performance of existing real-world programs.</p>
 	
-	<h2>Method</h2>
+	<h2>Implementation</h2>
 	
 	<blockquote>You never change things by fighting the existing reality. To change something, build a new model that makes the existing model obsolete.<cite>R. Buckminster Fuller</cite></blockquote>
 	
-	<p>Our design requires four minor changes. We introduce the idea of non-blocking fibers. Then, we extend threads so we can capture this state. We define an interface for a scheduler, which is invoked when non-blocking operations are allowed, and finally we change all I/Os to be (internally) non-blocking by default.</p>
+	<p>Our proposed design requires four minor changes. We introduce the idea of non-blocking fibers. Then, we extend threads so we can capture this state. We define a per-thread interface for a scheduler, which implements hooks for blocking operations, and finally we change all I/Os to be (internally) non-blocking by default.</p>
 	
 	<h3>Non-blocking Fibers</h3>
 	
-	<p>We introduce the concept of blocking and non-blocking fibers. This allows us to retain compatibility with the existing semantic model which existing code expects.</p>
+	<p>We introduce the concept of blocking and non-blocking fibers. Blocking fibers are the default and work like normal fibers. Non-blocking fibers may invoke specific hooks when a blocking operation occurs, and these hooks may introduce context switching points.</p>
 	
 	<content:listing src="fiber-blocking.rb" lang="ruby" />
 	
@@ -40,6 +40,8 @@
 	<content:listing src="fiber-method.rb" lang="ruby" />
 	
 	<p>The purpose of this method is to allow the scheduler to internally decide the policy for when to start the fiber, and whether to use symmetric or asymmetric fibers.</p>
+	
+	<content:youtube-video id="cNaqbeagqUw" />
 	
 	<h3>Non-blocking Threads</h3>
 	
@@ -61,13 +63,17 @@
 	
 	<content:listing src="thread-scheduler.rb" lang="ruby" />
 	
+	<content:youtube-video id="OlmySf03GUo" />
+	
 	<h3>Non-blocking I/O</h3>
 	
 	<p>Internally, all Ruby I/O operations can handle <code class="syntax c">EAGAIN</code>/<code class="syntax c">EWOULDBLOCK</code>. By making Ruby I/O nonblocking by default (OS permitting), we opportunistically route all operations via the scheduler. Here is an example of constructing a non-blocking socket:</p>
 	
 	<content:listing src="io-nonblock.c" lang="c" />
 	
-	<h2>Results</h2>
+	<content:youtube-video id="uU8ziRoJ2Z8" />
+	
+	<h2>Evaluation</h2>
 	
 	<p>Given the above modifications, we can compile and run a simple example using <code class="syntax ruby">Net::HTTP</code> and show that scalability is improved with minimal changes to user code.</p>
 	
@@ -140,7 +146,45 @@
 	
 	<p>While we can't show the benefits of this specific implementation in real world code yet, <a href="https://github.com/socketry/async">Async</a> implements a similar event-driven model and has shown improvements in <a href="https://github.com/github-changelog-generator/github-changelog-generator/pull/784#issuecomment-611866349">GitHub Changelog Generator</a> and <a href="https://github.com/socketry/async-http-faraday/issues/16#issuecomment-612628277">Travis.rb</a>. In both these cases, <a href="https://github.com/socketry/async-http-faraday">Async::HTTP::Faraday</a> provides a relatively transparent way to improve concurrency.</p>
 	
+	<h2>Project Schedule</h2>
+	
+	<dl class="basic">
+	<!--
+		<dt>May, 2018</dt>
+		<dd>Initial prototype/proof of concept.</dd>
+		<dt>July, 2018</dt>
+		<dd>Experiment with fiber scheduler resume/yield/transfer.</dd>
+		<dt>May, 2019</dt>
+		<dd>Minor fixes to scheduler based on feedback.</dd>
+		<dt>August, 2019</dt>
+		<dd>Add initial hook for <code class="syntax ruby">Kernel.sleep</code> and <code class="syntax c">nogvl_wait_for_single_fd</code>.</dd>
+		<dt>September 2019</dt>
+		<dd>Expanded tests.</dd>
+	-->
+		<dt>November 2019</dt>
+		<dd>Add support for <code class="syntax ruby">Scheduler#enter_blocking_region</code> and <code class="syntax ruby">Scheduler#exit_blocking_region</code>.</dd>
+		<dt>December 2019</dt>
+		<dd>Meetings with Matz and Koichi in Japan to discuss implementation and long term plans. Details are in <a href="../../2019-12/ruby-concurrency-progress-report">the previous report</a>.</dd>
+		<dt>January 2020</dt>
+		<dd>Rework scheduler implementation and improve performance.</dd>
+		<dd>Implemented prototype scheduler in <a href="https://github.com/socketry/async/pull/56">Async</a></dd>
+		<dt>March 2020</dt>
+		<dd>Add <code class="syntax ruby">Kernel::Fiber</code> method and scheduler hook.</dd>
+		<dd>Fix timeout handling and bind <code class="syntax ruby">scheduler.run</code> to thread exit.</dd>
+		<dd>Improvements to tests. Implement support for thread blocking which bypasses scheduler.</dd>
+		<dt>April 2020</dt>
+		<dd>Meeting with Matz and Koichi online to discuss progress.</dd>
+		<dd>Add support for blocking fibers. Make all I/O non-blocking by default where possible.</dd>
+		<dd>Add more tests and documentation.</dd>
+	</dl>
+	
+	<p>The schedule was delayed because many experiments were required. It was discussed with the mentor, Koichi Sasada, who approved the extension.</p>
+	
 	<h2>Conclusion</h2>
 	
 	<p>We have shown how non-blocking fibers can be used to improve the concurrency of existing code. We have described a model for intercepting blocking operations on a per-thread basis. We demonstrated a working implementation, showing significant improvements to the concurrency of <code class="syntax ruby">Net::HTTP</code> with zero changes to the underlying implementation. Finally, we have shown that a similar event-driven model can be used in real world code with similar performance improvements and ergonomics.</p>
+	
+	<content:sponsorship>
+		<p>Many thanks to the <a href="https://www.ruby.or.jp/en/news/20191031">2019 Ruby Association Grant</a> and all my sponsors who help enable this work.</p>
+	</content:sponsorship>
 </content:entry>

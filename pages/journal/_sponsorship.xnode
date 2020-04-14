@@ -1,6 +1,10 @@
 <h2>Sponsorship</h2>
 
+<?r if content ?>
+<utopia:content/>
+<?r else ?>
 <p>My sincere appreciation to all my sponsors who help enable this work.</p>
+<?r end ?>
 
 <section class="sponsors">
 	<a href="https://github.com/sponsors/ioquatix" style="background-image: url(/_static/sponsors/github.svg)"></a>

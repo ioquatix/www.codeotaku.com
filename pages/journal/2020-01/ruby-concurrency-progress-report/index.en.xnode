@@ -88,19 +88,4 @@
 	<h2>Sponsorship</h2>
 	
 	<p>This work is supported by the <a href="https://www.ruby.or.jp/en/news/20191031">2019 Ruby Association Grant</a> and my <a href="https://github.com/sponsors/ioquatix">GitHub sponsors</a>. If you are a company and you depend on Ruby, I invite you to support my open source work.</p>
-	
-	<h2>Work Log</h2>
-	
-	<p>This is a brief overview of the work done in relation to this grant. The initial prototype was built before the grant, including some iterations based on feedback.</p>
-	
-	<ul>
-		<li>Meetings with Matz and Koichi in Japan to discuss implementation and long term plans. Details are in <a href="../../2019-12/ruby-concurrency-progress-report">the previous report</a>.</li>
-		<li>Add support for intercepting <code>Kernel::sleep</code>.</li>
-		<li>Add support for <code>nogvl_wait_for_single_fd</code> and related tests.</li>
-		<li>Add support for tracking blocking regions <code>rb_nogvl</code>.</li>
-		<li>Rework implementation to improve performance.</li>
-		<li>Implementation of native scheduler in Async.</li>
-	</ul>
-	
-	<p>All code is included in the pull requests discussed in the report.</p>
 </content:entry>

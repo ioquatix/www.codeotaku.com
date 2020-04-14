@@ -85,7 +85,7 @@
 	
 	<p>The scheduler interface provides hooks to transform blocking operations into non-blocking operations. It is reactor and virtual machine agnostic. It allows for future extensions for other non-blocking operations. Existing Ruby code which invokes blocking operations can now yield to the Async event loop, and therefore, potentially benefit from improved scalability with minimal changes.</p>
 	
-	<h2>Sponsorship</h2>
-	
-	<p>This work is supported by the <a href="https://www.ruby.or.jp/en/news/20191031">2019 Ruby Association Grant</a> and my <a href="https://github.com/sponsors/ioquatix">GitHub sponsors</a>. If you are a company and you depend on Ruby, I invite you to support my open source work.</p>
+	<content:sponsorship>
+		<p>Many thanks to the <a href="https://www.ruby.or.jp/en/news/20191031">2019 Ruby Association Grant</a> and all my sponsors who help enable this work.</p>
+	</content:sponsorship>
 </content:entry>

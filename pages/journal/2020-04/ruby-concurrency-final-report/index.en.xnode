@@ -1,5 +1,5 @@
 <content:entry>
-	<p>Ruby provides a mixed bag of tools for building asynchronous systems. While CRuby wraps all Ruby code in a Global Virtual Machine Lock (GVL), JRuby and TruffleRuby provide truely parallel threads. Code analysis reveals that thread synchronisation primitives are often used incorrectly, and while results may be okay on CRuby, running the same code on JRuby or TruffleRuby can expose race conditions with unexpected consequences. We present a light weight per-thread fiber scheduler which improves the concurrency of existing code with minimal changes. We discuss it's implemnetation within Ruby and evaluate its performance in real world code bases.</p>
+	<p>Ruby provides a mixed bag of tools for building asynchronous systems. While CRuby wraps all Ruby code in a Global Virtual Machine Lock (GVL), JRuby and TruffleRuby provide truly parallel threads. Code analysis reveals that thread synchronisation primitives are often used incorrectly, and while results may be okay on CRuby, running the same code on JRuby or TruffleRuby can expose race conditions with unexpected consequences. We present a light weight per-thread fiber scheduler which improves the concurrency of existing code with minimal changes. We discuss it's implemnetation within Ruby and evaluate its performance in real world code bases.</p>
 	
 	<p>This is the final report required by the 2019 Ruby Association Grant. There are two previous progress reports: <a href="../../2019-12/ruby-concurrency-progress-report/index">December 2019</a> and <a href="../../2020-01/ruby-concurrency-progress-report/index">January 2020</a>.</p>
 	
@@ -7,7 +7,7 @@
 	
 	<p>In 1996, Yukihiro Matsumoto (Matz) <a href="https://github.com/ruby/ruby/blob/554b989ba1623b9f6a0b76f00824c83a23fbcbc1/eval.c#L3647-L3682">introduced an optional <code language="ruby">Thread</code> primitive</a> to MRI for producer-consumer style programs, inspired by <a href="https://github.com/ocaml/ocaml/blob/2894d8e75b451abe1335edbd8f5adc1d47757c09/otherlibs/threads/scheduler.c#L42-L55">OCaml's implementation of green threads</a>. At the time, multi-core processors were not popular, and so interleaved execution of Ruby code (concurrency) was acceptable performance trade off.</p>
 	
-	<p>In 2004, Koichi Sasada started using native threads in YARV, and it was <a href="https://github.com/ruby/ruby/blob/a3e1b1ce7ed7e7ffac23015fc2fde56511b30681/thread.c">merged into CRuby in 2007</a>. Native threads allow for the simultaneous execution of machine code on different processors (parallelism) and improved the scalability of Ruby programs. However, in order to retain the green thread semantics of MRI, YARV opted to wrap all Ruby code with the "Giant VM Lock" (GVL). Even thought YARV threads have parallelism, pure Ruby code is limited to interleaved execution.</p>
+	<p>In 2004, Koichi Sasada started using native threads in YARV, and it was <a href="https://github.com/ruby/ruby/blob/a3e1b1ce7ed7e7ffac23015fc2fde56511b30681/thread.c">merged into CRuby in 2007</a>. Native threads allow for the simultaneous execution of machine code on different processors (parallelism) and improved the scalability of Ruby programs. However, in order to retain the green thread semantics of MRI, YARV opted to wrap all Ruby code with the "Giant VM Lock" (GVL). Even though YARV threads have parallelism, pure Ruby code is limited to interleaved execution.</p>
 	
 	<p>C extensions can release the GVL in order to allow other Ruby code to execute. This has been used to improve the scalability of blocking I/O operations by using multiple threads. However, <a href="https://github.com/sparklemotion/sqlite3-ruby/issues/287">even this is not guaranteed</a>.</p>
 	
@@ -45,7 +45,7 @@
 	
 	<content:listing src="thread-blocking.rb" lang="ruby" />
 	
-	<p>In addition, mutex causes the thread to become blocking:</p>
+	<p>In addition, locking a mutex causes the thread to become blocking:</p>
 	
 	<content:listing src="thread-mutex.rb" lang="ruby" />
 	
@@ -61,7 +61,7 @@
 	
 	<h3>Non-blocking I/O</h3>
 	
-	<p>Internally, all Ruby I/O operations can handle <code class="syntax c">EAGAIN</code>/<code class="syntax c">EWOULDBLOCK</code>. By making Ruby I/O nonblocking by default (OS permitting), we opportunistically route all operations via the scheduler. Here is an exmaple of constructing a non-blocking socket:</p>
+	<p>Internally, all Ruby I/O operations can handle <code class="syntax c">EAGAIN</code>/<code class="syntax c">EWOULDBLOCK</code>. By making Ruby I/O nonblocking by default (OS permitting), we opportunistically route all operations via the scheduler. Here is an example of constructing a non-blocking socket:</p>
 	
 	<content:listing src="io-nonblock.c" lang="c" />
 	

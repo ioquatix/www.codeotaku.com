@@ -28,7 +28,7 @@
 	
 	<h3>Threading Servers</h3>
 	
-	<p>Rather than using a child process, we can use a thread in the same process. We lose the benefits of isolation. On modern systems the difference in performance is minor. Some systems (e.g. JVM) don't support fork, while others (e.g. MRI) don't have truely independent threads.</p>
+	<p>Rather than using a child process, we can use a thread in the same process. We lose the benefits of isolation. On modern systems the difference in performance is minor. Some systems (e.g. JVM) don't support fork, while others (e.g. MRI) don't have truly independent threads.</p>
 	
 	<content:listing src="thread.rb" brush="ruby"/>
 	
@@ -64,7 +64,7 @@
 	
 	<p>The first decision, which is largely dictated by the system, is whether to use processes or threads for parallelism. As long as you assume that the server is handling discrete requests and responses, both approaches are equally scalable in practice. <a href="https://github.com/socketry/async-container">async-container</a> provides both and they can be interchanged.</p>
 	
-	<p>Not all platforms support both options equally well. For example Windows and Java do not support fork. Threads on MRI are not truely independent and thus do not scale as well..</p>
+	<p>Not all platforms support both options equally well. For example Windows and Java do not support fork. Threads on MRI are not truly independent and thus do not scale as well..</p>
 	
 	<p>Generally speaking, multi-process is more predictable and has better isolation (e.g. security, reliability, restartability). Threads naturally have less isolation, and this can make code more complex and cause bugs. If one thread crashes, it can take down the entire system.</p>
 	

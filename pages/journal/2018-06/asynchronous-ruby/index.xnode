@@ -117,7 +117,7 @@
 	
 	<h2>Practical implementation with Async</h2>
 	
-	<p>We have enjoyed implementing a wide varity of asynchronous programs with Ruby. It's truely a pleasure and the performance is very encouraging.</p>
+	<p>We have enjoyed implementing a wide varity of asynchronous programs with Ruby. It's truly a pleasure and the performance is very encouraging.</p>
 	
 	<ul>
 		<li><a href="https://github.com/socketry/async">Async</a> provides a reactor, the task structure and a generic IO wrapper. This core gem has a small surface area by design.</li>

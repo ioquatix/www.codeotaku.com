@@ -10,3 +10,7 @@ on 'index' do |request|
 		@code = File.read(__FILE__)
 	end
 end
+
+on 'hello' do |request|
+	succeed! content: "Hello World!\n"
+end

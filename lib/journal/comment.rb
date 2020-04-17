@@ -34,7 +34,7 @@ module Journal
 		
 		def filter(node)
 			if attributes = ALLOWED_TAGS[node.name]
-				node.tag.attributes.slice!(*attributes)
+				node.limit_attributes(attributes)
 			else
 				# Skip the tag, and all contents
 				node.skip!(ALL)

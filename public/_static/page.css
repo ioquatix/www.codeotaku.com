@@ -576,30 +576,52 @@ section.comments h1 {
 }
 
 section.comments .comment .byline {
-	color: var(--underlay-color);
-	font-size: 90%;
 	padding: 0.5rem 0.25rem;
-	
-	position: relative;
+	display: flex;
+	justify-content: space-between;
+}
+
+section.comments .comment .byline .summary {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+}
+
+section.comments .comment .byline .details {
+	display: flex;
+	justify-content: space-between;
 }
 
 section.comments .comment .moderation {
 	text-align: center;
-	padding: 0.3125rem;
+	padding: 1rem;
+}
+
+section.comments .comment .byline .tools {
+	text-align: right;
+	padding-bottom: 0.2rem;
+}
+
+section.comments .comment .byline .icon {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	align-items: flex-start;
+	
+	margin: 0 0.5rem 0 0;
+}
+
+section.comments .comment .byline .summary {
+	flex-grow: 1;
 }
 
 section.comments .comment .byline .posted_on {
 	color: #999;
-	float: right;
-}
-
-section.comments .comment .byline .summary {
-	margin-top: 1.75rem;
-}
-
-section.comments .comment .icon {
-	margin: 0rem 1.25rem 0.3125rem 0.625rem;
-	float: left;
+	
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	align-items: flex-start;
 }
 
 section.comments .comment .body {

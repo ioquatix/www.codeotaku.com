@@ -1,6 +1,8 @@
-open-source-progress-report:
+index:
   author: "Samuel Williams"
   created: 2019-11-30
   summary: An overview of my Open Source work for November, 2019.
   display: true
   front: true
+index.ja:
+  title: オープンソース経過レポート

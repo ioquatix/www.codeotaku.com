@@ -1,41 +1,39 @@
 <nav id="navigation">
-	<ul class="trail">
-	<?r
-		front = true
-		
-		paths = Utopia::Path.create(first.node.uri_path || attributes[:path])
-		
-		paths.descend do |path|
-			if path.last
-				basename = path.last
-				indices = false
-			else
-				basename = "index"
-				indicies = true
-			end
-			
-			link = links(path.dirname, name: basename, locale: localization.current_locale, indices: indices, display: nil).first
-			
-			if link and link.href?
-				if !front
-					?><li>/</li><?r
-				end
-				
-				?><li>#{link.to_href(base: first.node.uri_path)}</li><?r
-			end
-			
-			front = false
-		end ?>
+	<ul class="trail"><?r
+	front = true
+	locale = localization.current_locale
 	
-	<?r 
-		locale_names = {'ja' => '日本語', 'en' => 'English', 'zh' => '简体中文'}
-		related_links = first.node.related_links
-	?>
-
-	<?r if related_links.size > 1 ?>
-		<?r related_links.each do |link| ?>
-		<li class="locale" style="background-image: url('/_static/flags/#{link.locale}.png')"><a href="/#{link.locale}#{link.href}">#{locale_names[link.locale] || link.locale}</a></li>
-		<?r end ?>
-	<?r end ?>
-	</ul>
+	paths = Utopia::Path.create(first.node.uri_path || attributes[:path])
+	
+	paths.descend do |path|
+		if path.last
+			basename = path.basename
+			indices = false
+		else
+			basename = "index"
+			indices = true
+		end
+		
+		link = links(path.dirname, name: basename, locale: locale, indices: indices, display: nil).first
+		
+		if link and link.href?
+			if !front
+				?><li>/</li><?r
+			end
+			
+			?><li>#{link.to_href(base: first.node.uri_path)}</li><?r
+		end
+		
+		front = false
+	end
+	
+	locale_names = {'ja' => '日本語', 'en' => 'English', 'zh' => '简体中文'}
+	related_links = first.node.related_links.select{|link| !link.virtual?}
+	
+	if related_links.size > 1
+		related_links.each do |link|
+		?><li class="locale" style="background-image: url('/_static/flags/#{link.locale}.png')"><a href="/#{link.locale}#{link.href}">#{locale_names[link.locale] || link.locale}</a></li><?r 
+		end
+	end
+	?></ul>
 </nav>

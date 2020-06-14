@@ -1,8 +1,7 @@
-index.en:
+index:
     order: 1
     title: "codeotaku"
 index.ja:
-    order: 1
     title: "コードオタク"
 projects:
     title: "Projects"

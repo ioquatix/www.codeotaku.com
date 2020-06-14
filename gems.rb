@@ -3,15 +3,14 @@
 source 'https://rubygems.org'
 
 group :preload do
-	gem 'utopia', '~> 2.14.0'
+	gem 'utopia', '~> 2.17'
 	gem 'utopia-gallery'
 	gem 'utopia-analytics'
 
 	gem 'relaxo-model', '~> 0.10.0'
 
 	gem 'trenni-sanitize'
-	gem 'kramdown'
-	gem 'kramdown-parser-gfm'
+	gem 'markly'
 	gem 'bcrypt'
 end
 

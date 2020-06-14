@@ -2,9 +2,7 @@
 require 'relaxo/model'
 
 require 'trenni/sanitize'
-
-require 'kramdown'
-require 'kramdown/parser/gfm'
+require 'markly'
 
 module Journal
 	class Fragment < Trenni::Sanitize::Filter
@@ -64,7 +62,7 @@ module Journal
 		property :body_html
 		
 		def self.format_body_html(text)
-			html = Kramdown::Document.new(text, input: 'GFM', syntax_highlighter: nil).to_html
+			html = Markly.parse(text).to_html
 			
 			return Fragment.parse(html).output
 		end

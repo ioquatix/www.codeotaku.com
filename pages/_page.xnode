@@ -18,7 +18,7 @@
 		<meta property="og:image" content="#{image_url}"/>
 		<?r end ?>
 		
-		<link rel="icon" type="image/png" href="/_static/icon.png" />
+		<link rel="icon" type="image/png" href="/_static/icon.svg" />
 		<link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/journal/atom" />
 		
 		<script src="/_components/jquery/jquery.min.js"></script>

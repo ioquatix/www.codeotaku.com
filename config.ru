@@ -3,7 +3,6 @@
 
 require_relative 'config/environment'
 
-require 'utopia/session'
 require 'utopia/gallery'
 require 'utopia/analytics'
 

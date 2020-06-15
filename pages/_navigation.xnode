@@ -1,18 +1,16 @@
-<nav><?r
+<nav id="navigation"><?r
 	page_path = first.node.uri_path
 	current_locale = localization.current_locale
 	
 	Utopia::Path[page_path.dirname].descend do |path|
-		pp path.last
-		
-		if path.last == ""
+		unless path.last
 			path = path + "index"
 		end
 		
 		if link = links(path.dirname, name: path.last, locale: current_locale, indices: true).first
-			?> &rsaquo; #{link.to_href}<?r
-		else
-			?> &rsaquo; <span>#{path.last}</span><?r
+			if link.href?
+				?> &rsaquo; #{link.to_href}<?r
+			end
 		end
 	end
 	

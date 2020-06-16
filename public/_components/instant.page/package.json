@@ -1,26 +1,54 @@
 {
-  "name": "instant.page",
-  "version": "1.3.1",
+  "_from": "instant.page@1.3.1",
+  "_id": "instant.page@1.3.1",
+  "_inBundle": false,
+  "_integrity": "sha512-dEvtBs3L3l668Sf5hYOr9SYbKWoaVdQngpuqM9Q61Kaz89Oa47x+aJNGhTsfy6gZYNL2nG3GT76B4qr3jQGvpg==",
+  "_location": "/instant.page",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "instant.page@1.3.1",
+    "name": "instant.page",
+    "escapedName": "instant.page",
+    "rawSpec": "1.3.1",
+    "saveSpec": null,
+    "fetchSpec": "1.3.1"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/instant.page/-/instant.page-1.3.1.tgz",
+  "_shasum": "bca1d981fe5644f8f9ddc6bbf6e65ce9d24691ea",
+  "_spec": "instant.page@1.3.1",
+  "_where": "/home/samuel/Documents/ioquatix/www.codeotaku.com",
+  "author": {
+    "name": "Alexandre Dieulot"
+  },
+  "bugs": {
+    "url": "https://github.com/instantpage/instant.page/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
   "description": "Make your site’s pages instant in 1 minute and improve your conversion rate by 1%",
-  "main": "instantpage.js",
   "directories": {
     "test": "test"
   },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/instantpage/instant.page.git"
-  },
+  "homepage": "https://instant.page/",
   "keywords": [
     "instant",
     "performance"
   ],
-  "author": "Alexandre Dieulot",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/instantpage/instant.page/issues"
+  "main": "instantpage.js",
+  "name": "instant.page",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/instantpage/instant.page.git"
   },
-  "homepage": "https://instant.page/"
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.3.1"
 }

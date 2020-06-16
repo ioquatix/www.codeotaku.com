@@ -2,6 +2,8 @@
 	page_path = first.node.uri_path
 	current_locale = localization.current_locale
 	
+	first_link = true
+	
 	Utopia::Path[page_path.dirname].descend do |path|
 		unless path.last
 			path = path + "index"
@@ -9,7 +11,13 @@
 		
 		if link = links(path.dirname, name: path.last, locale: current_locale, indices: true).first
 			if link.href?
-				?> &rsaquo; #{link.to_href}<?r
+				unless first_link
+					?> /<?r
+				end
+				
+				?> #{link.to_href}<?r
+				
+				first_link = false
 			end
 		end
 	end

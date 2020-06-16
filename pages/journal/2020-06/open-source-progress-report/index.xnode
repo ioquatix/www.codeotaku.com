@@ -1,33 +1,37 @@
 <content:entry>
-	<p>The past two months <a href="https://github.com/ioquatix?tab=overview&amp;from=2020-04-01&amp;to=2020-05-31">have been busy</a>. In New Zealand, we have just come out of lockdown, and things are slowly starting to return to "normal".</p>
+	<p>The past two months <a href="https://github.com/ioquatix?tab=overview&amp;from=2020-04-01&amp;to=2020-05-31">have been busy</a>. In New Zealand, we have just come out of lockdown, and things are slowly starting to return to "normal"...</p>
 	
 	<h2>Light Weight Per-Thread Fiber Scheduler</h2>
 	
 	<p>The <a href="https://bugs.ruby-lang.org/issues/16786">proposal</a> was recently accepted by Matz for experimentation and the <a href="https://github.com/ruby/ruby/pull/3032">CRuby implementation was merged</a>. The interface provides a transparent bridge between native Ruby I/O and an underlying event loop, like that provided by <a href="https://github.com/socketry/async/blob/scheduler/lib/async/scheduler.rb">Async</a>. Between now and the release of Ruby 3, we need as much feedback on this interface as possible.</p>
 	
+	<h3>Async::Scheduler</h3>
+	
+	<p>Async provides a <a href="https://github.com/socketry/async/blob/scheduler/lib/async/scheduler.rb">scheduler implementation</a> which conforms to the requirements of the proposal. It allows you to use native Ruby I/O in an event driven fashion. You can see some examples in the <a href="https://github.com/socketry/async/blob/scheduler/spec/async/scheduler_spec.rb">specs</a>.</p>
+	
+	<content:listing src="scheduler.rb" lang="ruby"/>
+	
 	<h2>Socketry.io</h2>
 	
-	<p><a href="https://socketry.io">Socketry.io</a> is the first step to build sustainable open source for the Socketry organisation and all the related gems. As a first step, we are offering a subscription model for Falcon. Looking forward, we plan on adding long-term support releases, exclusive access to backported bug fixes, and other business sensitive requirements. If you have a business that depends on Falcon, now is a great time to get involved and support it's healthy future!</p>
+	<p><a href="https://socketry.io">Socketry.io</a> is an initiative to build sustainable open source for the <a href="https://github.com/socketry">Socketry organsation</a> and all the related gems. Initially, we are offering a premium subscription model for the <a href="https://github.com/socketry/falcon">Falcon application server</a>. Looking forward, we plan on adding long-term support releases including exclusive access to backported bug fixes, advance notice of security issues, and other business-specific requirements. If you have a business that depends on Falcon, now is a great time to get involved and support its future!</p>
 	
-	<h2>Utopia::Project</h2>
+	<h2>Utopia Project</h2>
 	
-	<p>"How can I solve my problem with this library of code?" is the most important question that documentation needs to answer. But existing documentation tools often fail to provide the structure and organisation required for new users. <a href="https://github.com/socketry/utopia-project">Utopia::Project</a> provides task-centric documentation cross-referenced with source code and is the first step to addressing some of the issues with traditional documentation tools.</p>
+	<p>"How can I solve my problem with this library of code?" is the most important question that documentation needs to answer. But existing documentation tools often fail to provide the structure and organisation required for new users. <a href="https://github.com/socketry/utopia-project">Utopia Project</a> provides task-centric documentation, cross-referenced with source code, and will be used as a starting point to rethink and improve the development experience.</p>
 	
 	<p>I've already started rolling this out accross several projects:</p>
 	
 	<ul>
+		<li><a href="https://socketry.github.io/falcon/">Falcon</a></li>
 		<li><a href="https://socketry.github.io/utopia-project/">Utopia::Project</a></li>
 		<li><a href="https://ioquatix.github.io/decode/">Decode</a></li>
-		<li><a href="https://socketry.github.io/falcon/">Falcon</a></li>
 	</ul>
-	
-	<p>I still think there is a lot of room for improvements, but this is a good starting point.</p>
 	
 	<h3>Decode</h3>
 	
-	<p>In order to support the rich cross-referencing required by Utopia::Project, I created <a href="https://github.com/ioquatix/decode">Decode</a>. It can quickly generate an index of Ruby source code using the <a href="https://github.com/whitequark/parser">parser</a> gem, and can resolve symbols in source code comments and embedded in markdown easily.</p>
+	<p>In order to support the rich cross-referencing required by Utopia Project, I created <a href="https://github.com/ioquatix/decode">Decode</a>. It can quickly generate an index of Ruby source code using the <a href="https://github.com/whitequark/parser">parser</a> gem, and can resolve symbols in source code comments and embedded in markdown easily.</p>
 	
-	<p>As a general framework for source code analysis, it's fairly abstract and in the future I hope to extend it to index C and C++ code, which is useful for handling native extensions.</p>
+	<p>As a general framework for source code analysis, its fairly abstract and in the future I hope to extend it to index C and C++ code, which is useful for handling native extensions.</p>
 	
 	<h3>Markly</h3>
 	
@@ -35,7 +39,9 @@
 	
 	<h2>Turbo Test</h2>
 	
-	<p><a href="https://github.com/ioquatix/turbo_test">Turbo Test</a> (working name) is a new collaboration between myself and <a href="https://github.com/SamSaffron">Sam Saffron</a> to improve the parallelism of the RSpec tests within Discord. I've already created a small proof of concept task runner using <a href="https://github.com/socketry/async-container/blob/master/examples/queue/server.rb">Async::Container</a> and preliminary results are promising, handling </p>
+	<p><a href="https://github.com/ioquatix/turbo_test">Turbo Test</a> (working title) is a new collaboration between myself and <a href="https://github.com/SamSaffron">Sam Saffron</a> to improve the parallelism of the RSpec tests within Discord. I've already created a small proof of concept task runner using <a href="https://github.com/socketry/async-container/blob/master/examples/queue/server.rb">Async::Container</a> and preliminary results are promising.</p>
+	
+	<p>We aim to have a working prototype within the next month. If you are a business that would benefit from such a tool, please help to accelerate it's development by <a href="">sponsoring my work</a>.</p>
 	
 	<content:sponsorship/>
 </content:entry>

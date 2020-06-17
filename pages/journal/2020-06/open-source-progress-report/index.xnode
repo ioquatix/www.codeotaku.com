@@ -13,7 +13,7 @@
 	
 	<h2>Socketry.io</h2>
 	
-	<p><a href="https://socketry.io">Socketry.io</a> is an initiative to build sustainable open source for the <a href="https://github.com/socketry">Socketry organsation</a> and all the related gems. Initially, we are offering a premium subscription model for the <a href="https://github.com/socketry/falcon">Falcon application server</a>. Looking forward, we plan on adding long-term support releases including exclusive access to backported bug fixes, advance notice of security issues, and other business-specific requirements. If you have a business that depends on Falcon, now is a great time to get involved and support its future!</p>
+	<p><a href="https://socketry.io">Socketry.io</a> is an initiative to build a sustainable open source model for the <a href="https://github.com/socketry">Socketry organsation</a> and all the related gems. Initially, we are offering a premium subscription model for the <a href="https://github.com/socketry/falcon">Falcon application server</a>. Looking forward, we plan on adding long-term support releases including exclusive access to backported bug fixes, advance notice of security issues, and other business-specific requirements. If you have a business that depends on Falcon, now is a great time to get involved and support its future!</p>
 	
 	<h2>Utopia Project</h2>
 	
@@ -33,15 +33,21 @@
 	
 	<p>As a general framework for source code analysis, its fairly abstract and in the future I hope to extend it to index C and C++ code, which is useful for handling native extensions.</p>
 	
+	<figure>
+		<img src="preview.png" />
+	</figure>
+	
 	<h3>Markly</h3>
 	
 	<p>Wrangling with Markdown documents is non-trivial, but the <a href="https://github.com/commonmark/cmark">cmark</a> implementation provides a full abstract syntax tree (AST) for reading, processing and generating documents. I made a fork of <a href="https://github.com/gjtorikian/commonmarker">CommonMarker</a> after wrangling with <a href="https://github.com/gettalong/kramdown">Kramdown</a>. My primarily motivation was to improve the interface for document manipulations and rewriting. Utopia::Project uses this interface for processing source code comments, as well as rewriting the README, extracting the title of the document for the page title, etc.</p>
+	
+	<content:listing src="markly.rb" lang="ruby"/>
 	
 	<h2>Turbo Test</h2>
 	
 	<p><a href="https://github.com/ioquatix/turbo_test">Turbo Test</a> (working title) is a new collaboration between myself and <a href="https://github.com/SamSaffron">Sam Saffron</a> to improve the parallelism of the RSpec tests within Discord. I've already created a small proof of concept task runner using <a href="https://github.com/socketry/async-container/blob/master/examples/queue/server.rb">Async::Container</a> and preliminary results are promising.</p>
 	
-	<p>We aim to have a working prototype within the next month. If you are a business that would benefit from such a tool, please help to accelerate it's development by <a href="">sponsoring my work</a>.</p>
+	<p>We aim to have a working prototype within the next month. If you are a business that would benefit from such a tool, please help to accelerate its development by <a href="https://github.com/sponsors/ioquatix">sponsoring my work</a>.</p>
 	
 	<content:sponsorship/>
 </content:entry>

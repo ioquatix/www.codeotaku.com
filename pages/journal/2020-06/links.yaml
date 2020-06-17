@@ -2,7 +2,9 @@ open-source-progress-report:
   author: "Samuel Williams"
   created: 2020-06-14
   summary: An overview of my Open Source work for March & April 2020.
-  display: false
+  display: true
+  front: true
+  preview_url: preview.png
 streaming-rack:
   author: "Samuel Williams"
   created: 2020-06-14

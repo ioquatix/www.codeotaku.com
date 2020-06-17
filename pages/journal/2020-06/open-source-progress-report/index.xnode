@@ -1,5 +1,5 @@
 <content:entry>
-	<p>The past two months <a href="https://github.com/ioquatix?tab=overview&amp;from=2020-04-01&amp;to=2020-05-31">have been busy</a>. In New Zealand, we have just come out of lockdown, and things are slowly starting to return to "normal"...</p>
+	<p>The past two months <a href="https://github.com/ioquatix?tab=overview&amp;from=2020-04-01&amp;to=2020-05-31">have been busy</a>. In New Zealand, we have just come out of lockdown, but the situation remains precarious.</p>
 	
 	<h2>Light Weight Per-Thread Fiber Scheduler</h2>
 	
@@ -49,7 +49,7 @@
 	
 	<h2>Turbo Test</h2>
 	
-	<p><a href="https://github.com/ioquatix/turbo_test">Turbo Test</a> (working title) is a new collaboration between myself and <a href="https://github.com/SamSaffron">Sam Saffron</a> to improve the parallelism of the RSpec tests within Discord. I've already created a small proof of concept task runner using <a href="https://github.com/socketry/async-container/blob/master/examples/queue/server.rb">Async::Container</a> and preliminary results are promising.</p>
+	<p><a href="https://github.com/ioquatix/turbo_test">Turbo Test</a> (working title) is a new collaboration between myself and <a href="https://github.com/SamSaffron">Sam Saffron</a> to improve the parallelism of the RSpec tests within <a href="https://www.discourse.org/">Discourse</a>. I've already created a small proof of concept task runner using <a href="https://github.com/socketry/async-container/blob/master/examples/queue/server.rb">Async::Container</a> and preliminary results are promising.</p>
 	
 	<p>We aim to have a working prototype within the next month. If you are a business that would benefit from such a tool, please help to accelerate its development by <a href="https://github.com/sponsors/ioquatix">sponsoring my work</a>.</p>
 	

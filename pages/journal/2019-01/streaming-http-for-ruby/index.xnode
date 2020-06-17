@@ -11,7 +11,7 @@
 	
 	<h2>Streaming</h2>
 	
-	<p>HTTP allows streaming of both request and response bodies, even at the same time. This allows you to incrementally generate and consume information, which minimises latency and memory usage. <code class="syntax ruby">Async::HTTP::Body</code> contains the implementations required to stream both request and response bodies, and it's usage is very straight forward.</p>
+	<p>HTTP allows streaming of both request and response bodies, even at the same time. This allows you to incrementally generate and consume information, which minimises latency and memory usage. <code class="syntax ruby">Async::HTTP::Body</code> contains the implementations required to stream both request and response bodies, and its usage is very straight forward.</p>
 	
 	<h3>Streaming Response Body</h3>
 	

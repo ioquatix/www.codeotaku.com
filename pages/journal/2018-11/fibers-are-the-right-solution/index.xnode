@@ -74,7 +74,7 @@
 	
 	<p>If you have existing code, multi-process or multi-thread can be a good approach. You cannot easily retrofit this code with promises, callbacks and other explicit forms of concurrency, because they invert flow control and require major structural changes.</p>
 	
-	<p>Fibers, on the other hand, are semantically similarly to threads (excepting parallelism), but with less overhead. You can run whatever code you want in a fiber and by default it won't behave any worse than if it was running in it's own thread or process. However, if you leverage the non-blocking I/O, you can perform significantly better and with the same resources, handle significantly more active connections.</p>
+	<p>Fibers, on the other hand, are semantically similarly to threads (excepting parallelism), but with less overhead. You can run whatever code you want in a fiber and by default it won't behave any worse than if it was running in its own thread or process. However, if you leverage the non-blocking I/O, you can perform significantly better and with the same resources, handle significantly more active connections.</p>
 	
 	<p>Some models expose both synchronous and asynchronous methods. Such lazy interfaces burden the application code with irrelevant concurrency complexity. All operations that can be asynchronous should be where possible and it shouldn't require changing the method signature.</p>
 	

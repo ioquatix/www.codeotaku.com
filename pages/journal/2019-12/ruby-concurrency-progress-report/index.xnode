@@ -13,7 +13,7 @@
 	
 	<content:listing src="determinism.rb" lang="ruby"/>
 	
-	<p>Pratically speaking, it's not possible to avoid non-determinsim in modern computers. That being said, we can minimise it's impact on user code, and the ways in which non-determinism is invoked from user code.</p>
+	<p>Pratically speaking, it's not possible to avoid non-determinsim in modern computers. That being said, we can minimise its impact on user code, and the ways in which non-determinism is invoked from user code.</p>
 	
 	<h3>Concurrency</h3>
 	

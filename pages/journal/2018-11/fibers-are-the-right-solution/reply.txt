@@ -20,7 +20,7 @@ Additionally, pre-emptive scheduling ensures that you must use locking and other
 
 > All fibers within that thread can end up blocking each other if they do any meaningful work that is not completely async aware.
 
-That's absolutely true, but in any scalable system, you will need to have one (or more) process/thread per processor. Falcon and it's concurrency model is not about solving multi-core parallism. That problem is already solved by using processes and threads.
+That's absolutely true, but in any scalable system, you will need to have one (or more) process/thread per processor. Falcon and its concurrency model is not about solving multi-core parallism. That problem is already solved by using processes and threads.
 
 > Falcon is not magic and likely will not provide better concurrency or performance without substantial code changes in your app - and even then you are likely to encounter unhappy surprises.
 

@@ -20,7 +20,7 @@
 		<img width="20%" src="Eating-Dog.svg" />
 		<img width="20%" src="Eating-Dog.svg" />
 		<img width="20%" src="Eating-Dog.svg" />
-		<figcaption>Each dog has it's own dog bowl. They can all eat at the same time.</figcaption>
+		<figcaption>Each dog has its own dog bowl. They can all eat at the same time.</figcaption>
 	</figure>
 	
 	<h3 id="concurrent-programs">Concurrent Programs</h3>
@@ -109,7 +109,7 @@
 	
 	<p>We actually have a working implementation of the above proposal using wrappers. The <a href="https://github.com/socketry/async">async</a> gem provides a stable implementation of a concurrent IO reactor. It provides cooperatively scheduled tasks which yield when an operation would block. It doesn't monkey patch Ruby's standard library (althought perhaps we should), but provides wrappers which in some cases can be used transparently.</p>
 	
-	<p>The reactor and all it's tasks are contained entirely within one thread, which avoids any locking or inter-thread communication which can be a significant overhead in per-process reactor designs. It also avoids typical shared state synchronisation issues between tasks since only one is executing at a given time.</p>
+	<p>The reactor and all its tasks are contained entirely within one thread, which avoids any locking or inter-thread communication which can be a significant overhead in per-process reactor designs. It also avoids typical shared state synchronisation issues between tasks since only one is executing at a given time.</p>
 	
 	<p>Nested tasks implicity manage resources. If a task makes several HTTP requests, but is soon cancelled, all nested tasks will also be cancelled. This ensures that complex asynchronous processes can be managed with ease and with guaranteed invariants.</p>
 	

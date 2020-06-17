@@ -27,7 +27,7 @@
 	
 	<content:listing src="Context.h" lang="c" lines="55-58" />
 	
-	<p>The transfer function switches between coroutines. It essentially saves the caller state onto it's stack, swaps the stack to another coroutine, and then returns.</p>
+	<p>The transfer function switches between coroutines. It essentially saves the caller state onto its stack, swaps the stack to another coroutine, and then returns.</p>
 	
 	<content:listing src="Context.s" lang="assembly" lines="12-40" />
 	

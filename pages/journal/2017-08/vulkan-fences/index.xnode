@@ -17,5 +17,5 @@
 	
 	<content:listing src="fence.cpp" lang="c++" />
 	
-	<p>In hindsight, this was a relatively trivial problem, however it highlighted the fact that Vulkan can sometimes be hard to comprehend in it's entirety. I didn't write the original fence code, so without knowing any better, I initially suspected some problem with image barriers. When code gets bulky, it makes refactoring and the subsequent debugging harder.</p>
+	<p>In hindsight, this was a relatively trivial problem, however it highlighted the fact that Vulkan can sometimes be hard to comprehend in its entirety. I didn't write the original fence code, so without knowing any better, I initially suspected some problem with image barriers. When code gets bulky, it makes refactoring and the subsequent debugging harder.</p>
 </content:entry>

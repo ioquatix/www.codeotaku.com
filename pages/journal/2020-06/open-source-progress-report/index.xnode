@@ -11,6 +11,8 @@
 	
 	<content:listing src="scheduler.rb" lang="ruby"/>
 	
+	<p>The current scheduler interface is not without limitations. We don't support all blocking operations including DNS resolution, thread synchronisation, process waiting, and libraries that use direct system calls for I/O. In addition, we are considering how to make <a href="https://bugs.ruby-lang.org/issues/16792">Mutex aware of fibers and the event loop</a>. That being said, this is a great first step.</p>
+	
 	<h2>Socketry.io</h2>
 	
 	<p><a href="https://socketry.io">Socketry.io</a> is an initiative to build a sustainable open source model for the <a href="https://github.com/socketry">Socketry organsation</a> and all the related gems. Initially, we are offering a premium subscription model for the <a href="https://github.com/socketry/falcon">Falcon application server</a>. Looking forward, we plan on adding long-term support releases including exclusive access to backported bug fixes, advance notice of security issues, and other business-specific requirements. If you have a business that depends on Falcon, now is a great time to get involved and support its future!</p>

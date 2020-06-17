@@ -1,0 +1,9 @@
+improving-net-http-concurrency:
+  title: "Improving Net::HTTP Concurrency"
+  uri: "https://www.youtube.com/watch?v=uU8ziRoJ2Z8"
+  author: "Samuel Williams"
+  created: 2020-03-24
+  summary: A live stream demonstrating the proposed scheduler interface for Ruby.
+  display: true
+  front: true
+  preview_url: preview.png

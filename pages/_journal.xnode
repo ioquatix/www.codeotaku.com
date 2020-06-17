@@ -21,7 +21,7 @@
 				background_image = cache.medium
 			end
 		?>
-			<a href="#{entry.relative_href(first.node.uri_path)}" style="background-image: url(#{background_image})">
+			<a href="#{entry.href}" style="background-image: url(#{background_image})">
 				<heading>#{entry.title}</heading>
 				<small>#{entry.info[:summary]}</small>
 			</a>

@@ -62,9 +62,11 @@ module Journal
 		property :body_html
 		
 		def self.format_body_html(text)
-			html = Markly.parse(text).to_html
-			
-			return Fragment.parse(html).output
+			if text
+				html = Markly.parse(text).to_html
+				
+				return Fragment.parse(html).output
+			end
 		end
 		
 		def body=(text)

@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 
 group :preload do
-	gem 'utopia', '~> 2.18'
+	gem 'utopia', '~> 2.19.2'
 	gem 'utopia-gallery'
 	gem 'utopia-analytics'
 
@@ -12,19 +12,19 @@ group :preload do
 	gem 'trenni-sanitize'
 	gem 'markly'
 	gem 'bcrypt'
+
+	gem 'variant'
 end
 
 gem 'bake'
 gem 'bundler'
-
 gem 'rack-test'
+gem 'net-smtp'
 
 group :development do
-	# For `rake server`:
 	gem 'guard-falcon', require: false
 	gem 'guard-rspec', require: false
 	
-	# For `rspec` testing:
 	gem 'rspec'
 	gem 'covered'
 	

@@ -8,12 +8,12 @@ if src = attributes[:src]
 		from, to = lines.split('-').map{|value| value.to_i - 1}
 		code = code.lines[from..to].join
 	end
-
-	code = Trenni::MarkupString.new(code)
-
+	
 	code = code.gsub(/%%([a-z]+)\{(.*?)\}/) do |match|
 		"<span class=\"#{$1}\">#{$2}</span>"
 	end
+	
+	code = Trenni::MarkupString.new(code)
 else
 	code = content
 end

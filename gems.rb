@@ -17,6 +17,7 @@ group :preload do
 end
 
 gem 'bake'
+gem 'rake'
 gem 'bundler'
 gem 'rack-test'
 gem 'net-smtp'

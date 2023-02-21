@@ -27,7 +27,7 @@ jobs:
         bundler-cache: true
     
     - name: Run tests...
-      run: ${{matrix.env}} bundle exec rspec
+      run: ${{matrix.env}} bundle exec bake test
   
   deploy:
     needs: test

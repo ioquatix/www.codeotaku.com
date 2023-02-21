@@ -20,11 +20,11 @@ module Journal
 		
 		property :admin, Attribute[Boolean]
 		
-		view :all, [:type], index: [:id]
-		
-		view :by_email, [:type, 'by_email'], index: [:email]
+		view :all, :type, index: unique(:id)
+		view :by_email, :type, 'by_email', index: unique(:email)
 		
 		def self.authenticate(dataset, email, password)
+			binding.irb
 			if user = fetch_by_email(dataset, email: email)
 				return user if user.password == password
 			end

@@ -10,7 +10,7 @@ group :preload do
 	gem 'utopia-gallery'
 	gem 'utopia-analytics'
 	
-	gem 'relaxo-model', '~> 0.10.0'
+	gem 'relaxo-model', '~> 0.19'
 	
 	gem 'async-websocket'
 	

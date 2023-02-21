@@ -11,8 +11,8 @@ module Journal
 		
 		property :created_date, Attribute[Date]
 		
-		view :all, [:type], index: [:id]
+		view :all, :type, index: unique(:id)
 		
-		view :by_date, [:type, 'by_date'], index: [[:created_date, :id]]
+		view :by_date, :type, 'by_date', index: unique(:created_date, :id)
 	end
 end

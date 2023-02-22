@@ -76,7 +76,7 @@ module Journal
 		
 		property :visible, Attribute[Boolean]
 		
-		view :all, [:type], index: [:id]
+		view :all, :type, index: unique(:id)
 		
 		def editable_by(user)
 			if user
@@ -99,7 +99,6 @@ module Journal
 			self.by_node(dataset, node: node).lazy.select{|comment| comment.visible_to(user)}
 		end
 		
-		view :by_node, [:type, 'by_node', :node], index: [[:created_at, :id]]
-		# view :by_user, [:type, 'by_user', :user], index: [[:created_at, :id]]
+		view :by_node, :type, 'by_node', unique(:node), index: unique(:created_at, :id)
 	end
 end

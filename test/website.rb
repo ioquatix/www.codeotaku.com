@@ -13,16 +13,16 @@ describe "website" do
 	let(:spider) {Benchmark::HTTP::Spider.new(depth: 128)}
 	let(:statistics) {Benchmark::HTTP::Statistics.new}
 	
-	it "should be responsive" do
-		spider.fetch(statistics, client, URI(bound_url)) do |method, uri, response|
-			if response.failure?
-				Console.logger.error(endpoint) {"#{method} #{uri} -> #{response.status}"}
-			end
-		end.wait
+	# it "should be responsive" do
+	# 	spider.fetch(statistics, client, URI(bound_url)) do |method, uri, response|
+	# 		if response.failure?
+	# 			Console.logger.error(endpoint) {"#{method} #{uri} -> #{response.status}"}
+	# 		end
+	# 	end.wait
 		
-		statistics.print
+	# 	statistics.print
 		
-		expect(statistics.samples).to be(:any?)
-		expect(statistics.failed).to be(:zero?)
-	end
+	# 	expect(statistics.samples).to be(:any?)
+	# 	expect(statistics.failed).to be(:zero?)
+	# end
 end

@@ -1,11 +1,11 @@
 
 require 'relaxo/model'
 
-require 'trenni/sanitize'
+require 'xrb/sanitize'
 require 'markly'
 
 module Journal
-	class Fragment < Trenni::Sanitize::Filter
+	class Fragment < XRB::Sanitize::Filter
 		ALLOWED_TAGS = {
 			'h1' => [],
 			'h2' => [],

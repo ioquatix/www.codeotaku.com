@@ -13,7 +13,7 @@ if src = attributes[:src]
 		"<span class=\"#{$1}\">#{$2}</span>"
 	end
 	
-	code = Trenni::MarkupString.new(code)
+	code = XRB::MarkupString.new(code)
 else
 	code = content
 end

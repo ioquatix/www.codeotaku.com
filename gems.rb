@@ -6,7 +6,7 @@
 source 'https://rubygems.org'
 
 group :preload do
-	gem 'utopia', '~> 2.22.2'
+	gem 'utopia', '~> 2.22'
 	gem 'utopia-gallery'
 	gem 'utopia-analytics'
 	
@@ -14,7 +14,7 @@ group :preload do
 	
 	gem 'async-websocket'
 	
-	gem 'trenni-sanitize'
+	gem 'xrb-sanitize'
 	gem 'markly'
 	gem 'bcrypt'
 

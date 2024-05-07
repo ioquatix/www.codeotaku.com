@@ -14,7 +14,7 @@ describe "website" do
 	let(:statistics) {Benchmark::HTTP::Statistics.new}
 	
 	it "should be responsive" do
-		spider.fetch(statistics, client, endpoint.url) do |method, uri, response|
+		spider.fetch(statistics, client, URI(bound_url)) do |method, uri, response|
 			if response.failure?
 				Console.logger.error(endpoint) {"#{method} #{uri} -> #{response.status}"}
 			end

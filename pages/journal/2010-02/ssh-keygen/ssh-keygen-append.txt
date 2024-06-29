@@ -1,1 +1,0 @@
-# cat ~/.ssh/id_rsa.pub | ssh [remote-user]@[remote-host] "cat >> ~/.ssh/authorized_keys"

@@ -1,3 +1,0 @@
-// MyImpl.cpp
- 
-SomeClass _myInstance(...);

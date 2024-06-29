@@ -1,9 +1,0 @@
-<content:entry>
-	<p>I was writing a <code>Rakefile</code> that required to modify the <code>ENV</code> (environment) for scripts being executed using <code>system()</code>. Because I couldn't figure out how to pass environment variables directly to the child process, I've made a simple function which can (in a non-thread-safe manor) assist with this minor problem:</p>
-	
-	<content:listing src="ruby_env.txt" lang="ruby" />
-	
-	<p>It is typically used as follows:</p>
-	
-	<content:listing src="ruby_example.txt" lang="ruby" />
-</content:entry>

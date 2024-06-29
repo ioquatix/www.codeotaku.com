@@ -1,7 +1,4 @@
-inspiration:
-    created: 2010-04-14
-    author: "Samuel Williams"
-    summary: "Sometimes we need a bit of inspiration.."
+
 programming-dojo:
     created: 2010-04-20
     author: "Samuel Williams"
@@ -12,7 +9,3 @@ image-processing:
     summary: "I've been working on an image analysis algorithm for generating painted images.. here are the results so far!"
     front: true
     preview_url: examples/buddha2.png
-updating-installed-gems:
-    created: 2010-04-29
-    author: "Samuel Williams"
-    summary: "Update multiple gems automatically and easily with this one-line bash script."

@@ -1,23 +1,8 @@
-concrete-bath:
-    title: "Building a Concrete Bath"
-    created: 2009-10-02
-    author: "Samuel Williams"
-    summary: "Here is a recipe for making strong and lightweight concrete. I am planning to build a bath out of it."
 thinking-about-programming:
     title: "Thinking about Programming Languages"
     created: 2009-10-04
     author: "Samuel Williams"
     summary: "What is the right level of abstraction and terminology to solve technical problems?"
-exim4-clamav-spamassassin:
-    title: "Exim4 + ClamAV + SpamAssassin"
-    author: "Samuel Williams"
-    created: 2009-10-07
-    summary: "Exim4 has many esoteric configuration options.. here is how I've set it up."
-secure-login-using-ajax:
-    title: 'Secure login using AJAX'
-    author: "Samuel Williams"
-    created: 2009-10-08
-    summary: "Logging in over a clear-text channel is not a good idea unless passwords are hashed. Here is the outline for how to do this."
 ramaze-and-rack:
     author: "Samuel Williams"
     created: 2009-10-10
@@ -38,11 +23,6 @@ loading-anonymous-ruby-classes:
     author: "Samuel Williams"
     created: 2009-10-16
     summary: "Loading files in Ruby is often done in a highly explicit way. But this need not always be the case - here is an example."
-shakuhachi:
-    title: "尺八 (Shakuhachi)"
-    author: "Samuel Williams"
-    created: 2009-10-17
-    summary: "The Shakuhachi is a fantastically difficult instrument to master - but I enjoy playing mine every now and then."
 richard-stallman-in-christchurch:
     author: "Samuel Williams"
     created: 2009-10-22

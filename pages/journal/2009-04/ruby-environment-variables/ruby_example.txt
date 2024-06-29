@@ -1,5 +1,0 @@
-build_env = {"CC" => "/usr/bin/gcc"}
- 
-environment(build_env) do
-  system("make")
-end

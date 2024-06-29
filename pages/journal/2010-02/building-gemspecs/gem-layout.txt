@@ -1,7 +1,0 @@
-[gem-name]/
-			build/gemspec.master (as above, but modified to suit your project)
-			build/Rakefile (as above)
-			
-			lib/[gem-name].rb
-			lib/[gem-name]/version.rb
-			lib/[gem-name]/[other-src-files]

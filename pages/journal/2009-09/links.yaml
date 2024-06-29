@@ -3,10 +3,6 @@ dns-server-benchmarking:
     author: "Samuel Williams"
     created: 2009-09-04
     summary: "Is your DNS server working effectively? RubyDNS provides some tools for profiling your DNS server."
-cheap-storage:
-    author: "Samuel Williams"
-    created: 2009-09-05
-    summary: "Storage is getting cheaper and cheaper - here is a fantastic solution which provides huge amounts of cheap storage!"
 scanning-for-unix-permissions:
     title: "Scanning for specific UNIX permissions"
     author: "Samuel Williams"

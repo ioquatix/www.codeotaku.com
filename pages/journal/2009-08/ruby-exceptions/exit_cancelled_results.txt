@@ -1,4 +1,0 @@
-Rescue
-Ensure
-Outer Rescue
-More stuff

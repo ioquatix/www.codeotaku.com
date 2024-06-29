@@ -1,9 +1,0 @@
-module Utopia # Replace this with your own gem name
-  module VERSION
-    MAJOR = 0
-    MINOR = 9
-    TINY  = 15
-
-    STRING = [MAJOR, MINOR, TINY].join('.')
-  end
-end

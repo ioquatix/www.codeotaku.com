@@ -1,9 +1,0 @@
-var scriptLoader = new ScriptLoader();
-
-scriptLoader.load("teapot.js");
-scriptLoader.load("optional1.js");
-scriptLoader.load("optional2.js");
-
-scriptLoader.onFinish(function() {
-	Teapot.initialize();
-});

@@ -1,9 +1,0 @@
-<content:entry>
-	<p>I’ve got some great news: I’ve decided to change hosts. I’m currently with TextDrive/Joyent, on a shared hosting plan and a business hosting plan. I’ve been fairly happy with their service, but being on a shared host is never that easy. Basically, I wanted more control than what I was getting with Joyent. However, their accelerator plans are a bit too expensive for my purposes. After some research, I decided upon a Xen VPS (Virtual Private Server). I looked at co-location, and some other options, but they were all a bit cumbersome.</p>
-
-	<p>I finally narrowed down my decision to two New Zealand based companies: <a href="http://www.webdrive.co.nz/">http://www.webdrive.co.nz/</a> and <a href="http://www.sitehost.co.nz/">http://www.sitehost.co.nz/</a> - finally deciding on SiteHost due to their low cost entry level VPS, which would let me test the waters before paying a large monthly cost for all my hosting requirements.</p>
-
-	<p>I would like to make one thing incredibly clear: SiteHost rocks. At 7:15PM I made an enquiry on their web feedback form regarding setting up a new hosting account. Basically, I asked them to set up an account and provided some basic details. They got back to me within 10 minutes with the appropriate sign-up pdf to fill out. After I sent that back at 7:45PM, I didn’t expect anything until the following day. I was surprised to see in my inbox at 7:59 all the login details for my new VPS. From 0-60 in 45 minutes - unbelievable and totally amazing.</p>
-
-	<p>I’ve shifted across my main business site <a href="http://www.oriontransfer.co.nz">www.oriontransfer.co.nz</a>. It is currently running Debian Lenny + Apache2 + Phusion Passenger without a problem. Once things have proven to be reliable, I’ll look at upgrading the VPS to one of the higher level plans.</p>
-</content:entry>

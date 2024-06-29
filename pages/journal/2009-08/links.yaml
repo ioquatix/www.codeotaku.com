@@ -1,12 +1,3 @@
-ruby-exceptions:
-    author: "Samuel Williams"
-    created: 2009-08-04
-    summary: "Ruby exceptions are used for a suprising number of flow control situations - find out more!"
-ruby-standard-error:
-    title: "Ruby StandardError & Exception"
-    author: "Samuel Williams"
-    created: 2009-08-05
-    summary: "Ruby has a wide range of exception classes for indicating various types of errors - learn about what is available."
 time-limited-error-recovery:
     title: "Time Limited Error Recovery"
     author: "Samuel Williams"

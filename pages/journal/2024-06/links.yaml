@@ -1,0 +1,9 @@
+interactive-rails:
+  title: "Leveraging Falcon and Rails for Real-Time Interactivity"
+  summary: "My RubyKaigi 2024 talk on how to use Falcon and Rails together to build real-time interactive applications."
+  author: "Samuel Williams"
+  created: 2024-06-24
+  display: true
+  front: true
+  preview_url: banner.webp
+  banner_url: banner.webp

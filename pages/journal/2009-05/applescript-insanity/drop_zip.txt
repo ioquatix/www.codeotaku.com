@@ -1,4 +1,6 @@
--- Copyright (C) 2009 Orion Transfer Ltd. All Rights Reserved. See http://www.oriontransfer.co.nz/ for more information.
+-- Released under the MIT License.
+-- Copyright, 2009, by Samuel Williams.
+--
 -- Drop files on top of this application to produce a zip archive on the desktop containing compressed JPEGs at a maximum size of 800px.
  
 on open some_items

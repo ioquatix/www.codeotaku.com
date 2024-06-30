@@ -1,5 +1,5 @@
 <content:entry>
-	<p>The other day, Richard Stallman gave a lecture at Canterbury University. When I first approached him, we had an interesting discussion about the <a href="http://www.gnu.org/philosophy/open-source-misses-the-point.html">difference between open source and free software</a>. He is a wise man with many ideas about computers and society.</p>
+	<p>Richard Stallman visited Canterbury University and gave a lecture. When I first approached him, we had an interesting discussion about the <a href="http://www.gnu.org/philosophy/open-source-misses-the-point.html">difference between open source and free software</a>. He is strongly opinionated and articulated his perspective with great passion, emphasizing the importance of user freedom and the ethical considerations that underpin the free software movement. Our conversation was thought-provoking and underscored the philosophical depth behind the technology many of us use daily.</p>
 
 	<content:photos path="richard" />
 
@@ -9,14 +9,14 @@
 
 	<p>I enjoyed this lecture and so did many others. It was very insightful and interesting and I have made it available online:</p>
 
-	<audio src="Richard%20Stallman.ogg" controls="controls">
-		Your browser does not support the <code>&lt;audio&gt;</code> element and/or Ogg Vorbis. Please download the audio using the link below.
+	<audio controls>
+		<source src="Richard Stallman.ogg" type="audio/ogg" />
+			<source src="Richard Stallman.aac" type="audio/aac" />
+		Your browser does not support the audio element.
 	</audio>
 
 	<p>This file and its contents are released under the <a href="http://creativecommons.org/licenses/by-nd/3.0/">Creative Commons BY-ND</a> license. Please link to this page, not directly to the audio file.</p>
 
-	<p>You are also welcome to <a href="Richard%20Stallman.ogg">download this file</a>. You might need to right click the file and select download. You can use <a href="http://www.videolan.org/">VideoLAN Client</a> to play this file. If you are using Mac OS X, you can install <a href="http://perian.org/">Perian</a> to play back Ogg Vorbis in Safari.</p>
-	
 	<p>There is also a text transcript of this talk <a href="http://www.wikipublisher.org/books/GNUZealand2009/AFreeDigitalSociety">available here</a>. This also includes a Q&amp;A section which I did not record.</p>
 
 	<p>One of my concerns in New Zealand is censorship. We are currently having problems in New Zealand with regards to <a href="http://thomasbeagle.net/2009/10/04/dia-filter-testing-report/">overbearing censorship policy</a>.</p>

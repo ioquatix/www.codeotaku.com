@@ -150,7 +150,7 @@ GEM
     timeout (0.4.1)
     traces (0.11.1)
     trenni (3.14.0)
-    utopia (2.24.3)
+    utopia (2.24.4)
       bake (~> 0.20)
       concurrent-ruby (~> 1.2)
       console (~> 1.24)

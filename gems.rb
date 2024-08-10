@@ -19,6 +19,7 @@ group :preload do
 	gem 'bcrypt'
 
 	gem 'variant'
+	gem 'live'
 end
 
 gem 'net-smtp'

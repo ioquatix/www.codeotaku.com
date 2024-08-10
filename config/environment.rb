@@ -13,3 +13,9 @@ require_relative '../db/environment'
 
 require 'utopia/extensions/array_split'
 require 'json'
+
+require 'live'
+require 'live/developer_view'
+require 'live/clock_view'
+
+require 'async/websocket/adapters/rack'

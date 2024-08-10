@@ -13,11 +13,6 @@
 		<?r response.cache! ?>
 		
 		<meta name="viewport" content="width=device-width, initial-scale=1"/>
-		<!--
-		<content:env for="development">
-			<meta http-equiv="refresh" content="10"/>
-		</content:env>
-		-->
 		
 		<?r if image_url = attributes[:image_url] ?>
 		<meta property="og:image" content="#{image_url}"/>
@@ -25,6 +20,19 @@
 		
 		<link rel="icon" type="image/png" href="/_static/icon.svg" />
 		<link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/journal/atom" />
+		
+		<script type="importmap">
+			{
+				"imports": {
+					"@socketry/live": "https://ga.jspm.io/npm:@socketry/live@0.14.0/Live.js"
+				},
+				"scopes": {
+					"https://ga.jspm.io/": {
+						"morphdom": "https://ga.jspm.io/npm:morphdom@2.7.3/dist/morphdom-esm.js"
+					}
+				}
+			}
+		</script>
 		
 		<script src="/_components/jquery/jquery.min.js"></script>
 		<script src="/_components/jquery.cookie/jquery.cookie.js"></script>
@@ -51,9 +59,19 @@
 		
 		<script defer src="/_static/scroll.js"></script>
 		<script defer src="//instant.page/1.2.1" type="module" integrity="sha384-/IkE5iZAM/RxPto8B0nvKlMzIyCWtYocF01PbGGp1qElJuxv9J4whdWBRtzZltWn"></script>
+		
+		<link rel="modulepreload" href="https://ga.jspm.io/npm:@socketry/live@0.14.0/Live.js"/>
+		<link rel="modulepreload" href="https://ga.jspm.io/npm:morphdom@2.7.3/dist/morphdom-esm.js"/>
+		
+		<script type="module">
+			import {Live} from "@socketry/live";
+			window.live = Live.start();
+		</script>
 	</head>
 
 	<body>
+		#{Live::DeveloperView.new('developer').to_html}
+		
 		<utopia:content />
 		
 		<footer>

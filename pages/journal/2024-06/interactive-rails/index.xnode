@@ -1,0 +1,139 @@
+<content:entry>
+	<p>Over the past six years, I have focused on enhancing concurrency, scalability, and interactivity within the Ruby ecosystem. In 2017, I released Async, a framework for building concurrent Ruby applications, however its reliance on wrappers for intercepting blocking operations limited compatibility. To address this, I introduced the Ruby fiber scheduler in 2020, which allowed blocking operations to be redirected to an event loop. This innovation, integrated into Async 2, significantly improved compatibility with existing Ruby libraries and applications. Despite these advancements, the quest for real-time web applications posed further challenges. In 2022, we released Rack 3, which made streaming a mandatory part of the specification. These changes were adopted by Rails 7.1, and further enhanced in Rails 7.2. When combined with the Falcon web server, Rails is capable of handling thousands of real-time connections, expanding the possibilities for interactivity, however new approaches to application design are required to best leverage these capabilities. We will discuss the evolution of these technologies and show how take advantage of them to build ground-breaking new experiences.</p>
+	
+	<h2>The Birth of Async</h2>
+	
+	<p>Over ten years ago I built a DNS server using Ruby, to make it easier to host websites on a server running in my garage. At that time, I had a single external IPv4 address, and used port forwarding from my ADSL router's WAN interface to my web server. The external DNS records for my website were managed by a dynamic DNS service, which were set to the address of my router. However, if I typed the hostname into my browser from within my local network, it would resolve to my router's internal LAN interface, and it wouldn't reach my web server (port forwarding only worked for inbound connections to the WAN interface). I decided that I wanted to solve this problem by running a DNS server on my local network, which would intercept requests for my website's hostname and return the IP address of the server in my garage, while forwarding all other requests to my router's DNS server. In particular, I was hosting several websites with differnet hostnames and thought that it would be a fun exercise to write a Ruby DSL for DNS rules like this. Little did I know how deep the rabbit hole would go.</p>
+	
+	<content:listing src="rubydns.rb" language="ruby"/>
+	
+	<p>My <a href="https://github.com/socketry/rubydns/commit/75e94ad4ee619591c792339b81912a150a5fd80f">initial design</a> used a single thread per request, which quickly became a bottleneck. When I tried to use it on my home network, I noticed browsing the web became much slower, as the server was overloaded.</p>
+	
+	<h3>EventMachine</h3>
+	
+	<p>To address this, I decided to <a href="https://github.com/socketry/rubydns/commit/2be66c8c36150ddbf75d7497cf204f417041a615">try EventMachine</a>, which allowed me to handle multiple concurrent requests, but I had to rewrite my code to suit its callback-based programming model. When I tried to integrate existing libraries like <code class="syntax ruby">Net::HTTP</code>, I found compatibility was poor and the callback-based programming model to be cumbersome and error-prone.</p>
+	
+	<h3>Celluloid</h3>
+	
+	<p>As a result, I decided to <a href="https://github.com/socketry/rubydns/commit/7125c173453e38ec2a7e72bda24b70830fa7747f">try Celluloid</a>, which promised to solve my problems using actors. I had to rewrite my code <i>again</i> and I noticed my tests were failing in strange ways. I discovered that Celluloid's actors were global, which made it difficult to isolate state between tests. I started working on Celluloid itself in order to fix these issues, but found the internal implementation to be extremely complex and difficult to understand, and I believe this complexity was a significant factor in the project's eventual stagnation.</p>
+	
+	<h3>Principles</h3>
+	
+	<p>Based on these experiences, I decided to build my own concurrency framework. I decided on three key principles:</p>
+	
+	<p><strong>The first core principle is compatibility</strong>. Existing, sequential programs should be able to run concurrently without modification. Interfaces that introduce non-determinism should be transparent to the program. We should not need to introduce new keywords, methods or semantics except in places where the user explicitly desires concurrency, and even these should be kept to a minimum.</p>
+	
+	<p><strong>The second core principle is isolation</strong>. The life-cycle of concurrent tasks and associated resources must be clearly defined, and execution of independent operations should not cause undesirable interactions, even in the presence of errors. Concurrency may be an internal implementation detail, and should not affect the public interface or behaviour.</p>
+		
+	<p><strong>The third core principle is simplicity</strong>. The interface should be intuitive and consistent, and the implementation should be easy to understand and reason about. Complexity should arise from the layering of simple components, not from the design itself. We should avoid introducing new concepts or abstractions unless absolutely necessary, aiming to make the framework as easy to understand and use as possible.</p>
+	
+	<p>In addition, I decided to impose a short timeframe to achieve a 1.0 release. My experience with Celluloid, which never reached this critical milestone, made me determined to avoid the same fate. I wanted to force myself to prioritize the development of the most critical interfaces, thereby avoiding prolonged instability and indecision often associated with extended 0.x development phases. In other words, I wanted to time-box the development to ensure Async remained laser focused on it's core problem domain.</p>
+	
+	<h3>Async 1</h3>
+	
+	<p>After four months of development, I released <a href="https://github.com/socketry/async/releases/tag/v1.0.0">Async 1</a>. It provided a simple mechanism for running concurent tasks, and hooks for non-blocking IO. It utilized <a href="https://github.com/socketry/nio4r">nio4r</a> for the event loop, and a separate <a href="https://github.com/socketry/async-io">async-io gem</a> for compatibility shims. The idea of compatibility shims came from the <a href="https://github.com/celluloid/celluloid-io">celluloid-io gem</a>, which was sufficiently compatible with the standard Ruby IO classes, that they could be injected into existing code like <code class="syntax ruby">Net::HTTP</code>.</p>
+	
+	<content:listing src="async-1.rb" language="ruby"/>
+	
+	<p>However, despite my best efforts, compatibility was a weakness of the first version of Async. I considered it a trade-off - my goal was to build the best proof of concept I could, given existing limitations, to show the merits of the overall design. I presented the implementation and ideas to Matz at RubyWorld Conference 2019 and explained that we needed to expand Ruby's internal implementation to improve compatibility. Specifically, we needed a way to redirect blocking operations from Ruby's core interfaces to an event loop. Matz agreed with the general ideas, and supported the development of a fiber scheduler interface for Ruby.</p>
+	
+	<h3>Fiber Scheduler</h3>
+	
+	<p>Two years later, in 2021, Ruby 3.1 was released with the <a href="https://rubyapi.org/3.3/o/fiber/scheduler">fiber scheduler</a> interface. It provided a way to transparently redirect Ruby's internal blocking operations to an event loop. The initial implementation only supported a limited set of operations, but over time it has grown to support almost every blocking operation within Ruby, including:</p>
+	
+	<ul>
+		<li>Waiting on threads, queues and mutexes.</li>
+		<li>Waiting on IO, including reads and writes.</li>
+		<li>Resolving DNS names to addresses.</li>
+		<li>Waiting on child processes.</li>
+		<li>Executing code with a timeout.</li>
+	</ul>
+	
+	<p>The fiber scheduler is transparent to application code, and allows existing Ruby code to run concurrently without modification. This is in stark contrast to other concurrency models, which often require significant changes to the application code, or the use of special syntax or keywords to indicate concurrency, breaking compatibility with existing libraries and applications - a problem that sometimes referred to as the <a href="https://journal.stuffwithstuff.com/2015/02/01/what-color-is-your-function">function coloring problem</a>.</p>
+	
+	<h2>Async 2</h2>
+	
+	<figure>
+		<img style="width: 50%" src="async-logo.webp" />
+	</figure>
+	
+	<p>Async 2 was developed alongside the fiber scheduler, and released at the same time. Because the fiber scheduler intercepts all blocking operations, the async-io compatibility shims were no longer needed. As a result, the implementation of Async 2 is significantly simpler than its predecessor, while having improved compatibility with existing Ruby libraries and applications.</p>
+	
+	<content:listing src="async-2.rb" language="ruby"/>
+	
+	<h3>IO::Event</h3>
+	
+	<p>At the heart of Async 2, is the <a href="https://github.com/socketry/io-event">io-event gem</a>, which provides a Ruby-optimised event loop capable of handling thousands of concurrent connections. This event loop now defaults to <a href="https://unixism.net/loti/what_is_io_uring.html"><code>io_uring</code></a> on Linux, giving you access to the latest in high-performance IO technology.</p>
+	
+	<p><code>io_uring</code> is an extremely exciting technology that continues to evolve with each release of the Linux kernel. It greatly reduces the overhead of concurrent IO operations, and allows for a more efficient use of system resources. In brief, system calls like <code>read</code> and <code>write</code> are enqueued to the <i>submission queue</i>. The kernel processes those requests in the background and the result of the operation is enqueued to the <i>completion queue</i>. Interfaces like <code>epoll</code> only work with pollable file descriptors, bot <code>io_uring</code> is capable of handling all types of file descriptors, greatly improving the compatibility and performance of the event loop.</p>
+	
+	<h2>Falcon</h2>
+	
+	<figure>
+		<img style="width: 50%" src="falcon-logo.webp" />
+	</figure>
+	
+	<p>In order to ground the development of Async in real-world use cases, I created the Falcon web server. It enabled me to explore the capabilities of Async in the context of a existing web applications, and to identify areas for improvement. Specifically, I wanted to implement support for HTTP/2, WebSockets, and other modern web technologies, and to ensure that Async could handle the demands of real-time interactive web applications. While working on supporting these features, I discovered that the design of Rack had weaknesses that needed to be addressed. Falcon served as a foundation for exploring these issues, and helped to inform the development of Rack 3.</p>
+	
+	<h3>Rack 3</h3>
+	
+	<figure>
+		<img style="width: 50%" src="rack-logo.webp" />
+	</figure>
+	
+	<p>As part of the effort to improve the performance and scalability of Ruby web applications, we released Rack 3 in 2022. Mandatory streaming was a key feature of this release, allowing web applications to send data to the client as it becomes available, rather than waiting for the entire response to be generated. This change is particularly useful for real-time applications, such as chat rooms, live dashboards, and multiplayer games, where low latency and high interactivity are critical.</p>
+	
+	<content:listing src="rack-3.rb" language="ruby" />
+		
+	<h3>Rails 7.2</h3>
+	
+	<p>Rails 7.1 introduced <a href="https://github.com/rails/rails/pull/46594#issuecomment-1588662371">initial support for Rack 3</a>. To be frank, when I started working on this part of Rails, it felt a bit like an archaeological dig - there is a lot of history in the Rails codebase, and it can be difficult to understand the motivations behind the implementation. However, I was able to work with the Rails team to integrate the new features of Rack 3, and to ensure that Rails applications could take advantage of the improved performance and scalability of the new version of Rack. I greatly appreciate their support and guidance.</p>
+	
+	<p>In particular, ActiveRecord's connection pool required significant refactoring in order to support the request-per-fiber model of Falcon. The introduction of <a href="https://github.com/rails/rails/pull/51192">leased connections</a> significantly reduces the contention on the connection pool, and allows for more efficient use of database connections. This change is particularly important for long running requests like WebSockets, where database queries are interleaved with other operations.</p>
+	
+	<p>One last bastion of compatibility is ActionCable, and I'm pleased to report that we have an effort to <a href="https://github.com/rails/rails/pull/50979">"Adapterize" ActionCable</a> so that we can take advantage of Falcon's high performance WebSocket support. This change will ultimately allow Rails applications to handle thousands of concurrent ActionCable connections, without separate servers or infrastructure, providing simplified developent and deployment for real-time web applications.</p>
+	
+	<h2>Live</h2>
+	
+	<p>Sometimes I get a little frustrated with the speed of progress and the effort required to maintain compatibility. I want to build new things, and experiment with new ideas, but I'm often held back by the almost overwhelming ossification of the existing frameworks. I would be lying if I said that I wasn't envious of things like <a href="https://phoenixframework.org/">Phoenix LiveView</a>, which provide a simple and powerful way to build real-time web applications. I wanted to build something similar for Ruby... so I did.</p>
+	
+	<p>The <a href="https://github.com/socketry/live">live gem</a> provides a simple interface for building real-time web applications. It takes advantage of the capabilities of Falcon, Async 2, and Rack 3, and provides a foundation for creating server-side rendered components which provide progressive enhancement to existing web applications. As an example, here is a clock view:</p>
+	
+	<content:listing src="live.rb" language="ruby"/>
+	
+	<p>Which gives a result like this:</p>
+	
+	#{Live::ClockView.new.to_html}
+	
+	<p>Ruby has had a poor reputation for building building real-time interactive web applications - and it's not undeserved - but that all changes with the foundation we have built with Async, Falcon, Rack, and Live.</p>
+	
+	<h2>Flappy Bird</h2>
+	
+	<p>As part of my talk at RubyKaigi 2024, I gave a demonstration of a <a href="https://github.com/socketry/flappy-bird">Flappy Bird clone built using the Live gem and running within a Rails web application</a>. The game is built using server-side rendered "Live View", and uses WebSockets for real-time communication between the client and server. The game is fully interactive, and demonstrates the power of the Ruby ecosystem for building real-time web applications.</p>
+	
+	<figure style="background-color: black; border-radius: 1rem; overflow: hidden">
+		<video src="flappy-bird.webm" controls style="max-width: 100%; display: block"></video>
+	</figure>
+	
+	<p>One of my goals with this demonstration was to shatter the misconception that Rails can't be used for real-time web applications. Rails is a popular framework and despite the sigificant challenges, there is huge value in supporting progressive enhancement and real-time interactivity within the existing ecosystem. I encourage you to clone the repository and try it out for yourself. It's a fun way to explore the capabilities of the Ruby ecosystem, and to see how far we have come in building real-time web applications.</p>
+	
+	<h3>RubyKaigi 2023 Presentation</h3>
+	
+	<p>You can find the <a href="https://github.com/ioquatix/presentations/tree/main/2024">slides for my presentation here</a>.</p>
+	
+	<h2>Lively</h2>
+	
+	<p>I also think that the frameworks we've created are too complex, especially for younger folks who are just starting out. The barrier to entry is too high, and the learning curve is too steep. I am especially aware of this when new developers try to intuit a system, but fail due to the mind-bending abstactions, that while well-intentioned at each point during their evolution, often seem illogical or outright hostile in the greater context.</p>
+	
+	<p>Every time we have to make an explicit choice, we expand the problem space exponentially. The only real solution is to reduce the number of options - the choices we do make should be the ones that we actually care about in the problem domain we are working in. This is the essence of simplicity - the art of leaving things out.</p>
+	
+	<p>In order to greatly simplify the development experience for real-time web applications, I have created a <a href="https://github.com/socketry/lively">Lively gem</a> for live programming in Ruby. Lively builds on the foundation of the Live gem, and provides a single file live coding environment.</p>
+	
+	<h2>Conclusion</h2>
+	
+	<p>The integration of the fiber scheduler, Async 2, Rack 3, Falcon, and Rails 7.2 provides a powerful foundation for building highly interactive and scalable web applications. This integration enables developers to build robust and scalable applications using existing libraries and techniques, pushing the boundaries of what is possible within the Ruby ecosystem. I look forward to seeing the innovative applications that Ruby developers will create using these tools.</p>
+	
+	<h2>Next Steps</h2>
+	
+	<p></p>
+</content:entry>

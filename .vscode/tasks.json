@@ -1,0 +1,16 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "bundleInstall", // Name of the task
+			"type": "shell", // Specifies that this is a shell command
+			"command": "bundle install", // The shell command to run
+			"group": "build", // Optional: Groups this task with build tasks
+			"problemMatcher": [], // Specifies how to match problems in the output
+			"presentation": { // Optional: Controls how the task output is shown
+				"reveal": "always", // Always focus the terminal when this task is run
+				"panel": "shared" // Use the same terminal panel for tasks when possible
+			}
+		}
+	]
+}

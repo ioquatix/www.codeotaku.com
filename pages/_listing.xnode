@@ -18,9 +18,6 @@ else
 	code = content
 end
 
-if lang = (attributes[:lang] || attributes[:brush]) ?>
-	<pre><code class="syntax #{lang}">#{code}</code></pre>
-<?r else ?>
-	<pre><code class="syntax plain">#{code}</code></pre>
-<?r end ?>
+language = (attributes[:language] || attributes[:lang] || attributes[:brush] || 'plain')
+?><pre><code class="syntax #{language}">#{code}</code></pre>
 </figure>

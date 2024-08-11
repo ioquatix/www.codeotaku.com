@@ -23,73 +23,15 @@
 	
 	<p>Given a request, which consists of one or more DNS questions, our resolver firstly checks whether UDP is a suitable transport. DNS packets are typically routed over UDP but if the packet is too big it should use TCP:</p>
 	
-	<content:listing brush="ruby"><![CDATA[
-# `message` is the outgoing DNS request. `servers` is an array of potential
-# upstream servers who might be able to provide an answer.
-def initialize(message, servers, options = {}, &block)
-	@message = message
-	@packet = message.encode
-				
-	@servers = servers.dup
-				
-	# We select the protocol based on the size of the data:
-	if @packet.bytesize > UDP_TRUNCATION_SIZE
-		@servers.delete_if{|server| server[0] == :udp}
-	end
-				
-	# Measured in seconds:
-	@timeout = options[:timeout] || 5
-				
-	@logger = options[:logger]
-end
-	]]></content:listing>
+	<content:listing brush="ruby" src="udp.rb"/>
 	
 	<p>With this list of candidates, we connect to each one and send the request. In all failure cases, we try the next server if one is available, otherwise if no servers have been successful we signal a resolution failure:</p>
 
-	<content:listing brush="ruby"><![CDATA[
-def try_next_server!
-	if @request
-		@request.close_connection
-		@request = nil
-	end
-				
-	if @servers.size > 0
-		@server = @servers.shift
-
-		# We make requests one at a time to the given server, naturally the servers
-		# are ordered in terms of priority.
-		case @server[0]
-		when :udp
-			@request = UDPRequestHandler.open(@server[1], @server[2], self)
-		when :tcp
-			@request = TCPRequestHandler.open(@server[1], @server[2], self)
-		else
-			raise InvalidProtocolError.new(@server)
-		end
-					
-		# Setting up the timeout...
-		EventMachine::Timer.new(@timeout) do
-			try_next_server!
-		end
-	else
-		# Signal that the deferrable has failed and resolution was not possible:
-		fail ResolutionFailure.new("No available servers responded to the request.")
-	end
-end
-	]]></content:listing>
+	<content:listing brush="ruby" src="try.rb"/>
 	
 	<p>We then wait until EventMachine tells us one of two things: some response was received or there was a timeout. If we receive a response, as long as it wasn't truncated, we are successful:</p>
 	
-	<content:listing brush="ruby"><![CDATA[
-def process_response!(response)
-	if response.tc != 0
-		# We hardcode this behaviour for now.
-		try_next_server!
-	else
-		succeed response
-	end
-end
-	]]></content:listing>
+	<content:listing brush="ruby" src="response.rb"/>
 	
 	<p>In practice, we use <code class="syntax ruby">EventMachine::Deferrable</code> to handle this signalling. Using deferrables ultiamtely led to concise and reliable code and I was very happy with the results. I'd recommend taking a look at the <a href="https://github.com/ioquatix/rubydns/blob/master/lib/rubydns/resolver.rb">full source code</a>.</p>
 </content:entry>

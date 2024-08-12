@@ -2,7 +2,7 @@ upstream = Resolv::DNS.new
 
 RubyDNS.run_server do
 	match(/\.mydomain\.com\z/, :A) do |transaction|
-		# The IP address of the server in my garage:
+		# The internal IP address of the server:
 		transaction.respond!("10.0.0.80")
 	end
 

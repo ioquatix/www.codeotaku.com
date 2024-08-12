@@ -113,6 +113,7 @@ main {
 
 p, ul, dl, figure {
 	margin: 2rem 1rem;
+	line-height: 1.5;
 }
 
 section.articles {

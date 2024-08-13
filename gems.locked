@@ -204,7 +204,7 @@ DEPENDENCIES
   benchmark-http
   covered
   falcon
-  io-watch (~> 0.6)
+  io-watch
   live
   markly
   net-smtp

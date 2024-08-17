@@ -1,0 +1,18 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "Run local web server",
+			"type": "rdbg",
+			"request": "launch",
+			"args": ["bundle", "exec", "io-watch", "lib", "pages", "--", "falcon", "serve", "--count", "1", "--bind", "http://localhost:9292"],
+			"cwd": "${workspaceFolder}", // Sets the current working directory
+			"preLaunchTask": "bundleInstall"
+		},
+		{
+			"name": "Attach debugger",
+			"type": "rdbg",
+			"request": "attach",
+		}
+	]
+}

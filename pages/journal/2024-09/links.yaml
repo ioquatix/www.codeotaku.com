@@ -1,6 +1,6 @@
 interactive-rails:
   author: "Samuel Williams"
-  created: 2024-08-12
+  created: 2024-09-17
   title: "Leveraging Falcon and Rails for Real-Time Interactivity"
   summary: "My RubyKaigi 2024 talk on how to use Falcon and Rails together to build real-time interactive applications."
   display: false

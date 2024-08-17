@@ -5,7 +5,7 @@ module Live
 		def initialize(...)
 			super
 			
-			@data[:pid] ||= Process.pid
+			@data[:pid] ||= Process.ppid
 		end
 		
 		def pid
@@ -15,8 +15,8 @@ module Live
 		def bind(page)
 			super
 			
-			if self.pid != Process.pid
-				@data[:pid] = Process.pid
+			if self.pid != Process.ppid
+				@data[:pid] = Process.ppid
 				self.script("window.location.reload()")
 				self.update!
 			end

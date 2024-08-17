@@ -1,3 +1,5 @@
+# config.ru
+
 run do |env|
 	body = proc do |stream|
 		100.downto(1) do |i|

@@ -1,7 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    async (2.15.3)
+    async (2.16.0)
       console (~> 1.26)
       fiber-annotation
       io-event (~> 1.6, >= 1.6.5)
@@ -9,12 +9,12 @@ GEM
       async
     async-container (0.18.2)
       async (~> 2.10)
-    async-http (0.69.0)
+    async-http (0.70.0)
       async (>= 2.10.2)
       async-pool (~> 0.7)
       io-endpoint (~> 0.11)
       io-stream (~> 0.4)
-      protocol-http (~> 0.26)
+      protocol-http (~> 0.28)
       protocol-http1 (~> 0.19)
       protocol-http2 (~> 0.18)
       traces (>= 0.10)
@@ -32,10 +32,10 @@ GEM
       protocol-http (>= 0.28.1)
       protocol-rack (~> 0.5)
       protocol-websocket (~> 0.15)
-    bake (0.20.0)
+    bake (0.21.0)
       bigdecimal
       samovar (~> 2.1)
-    bake-test (0.2.0)
+    bake-test (0.3.0)
       bake
     bcrypt (3.1.20)
     benchmark-http (0.17.0)
@@ -98,10 +98,10 @@ GEM
       net-pop
       net-smtp
     mapping (1.1.1)
-    markly (0.10.0)
+    markly (0.12.1)
     mime-types (3.5.2)
       mime-types-data (~> 3.2015)
-    mime-types-data (3.2024.0806)
+    mime-types-data (3.2024.0820)
     mini_mime (1.1.5)
     msgpack (1.7.2)
     net-imap (0.4.14)
@@ -118,7 +118,7 @@ GEM
       console (~> 1.8)
       samovar (~> 2.1)
     protocol-hpack (1.5.0)
-    protocol-http (0.28.1)
+    protocol-http (0.28.2)
     protocol-http1 (0.19.1)
       protocol-http (~> 0.22)
     protocol-http2 (0.18.0)
@@ -143,7 +143,7 @@ GEM
       console (~> 1.0)
       mapping (~> 1.0)
     sus (0.31.0)
-    sus-fixtures-async (0.1.4)
+    sus-fixtures-async (0.2.0)
       async
       sus (~> 0.10)
     sus-fixtures-async-http (0.9.0)
@@ -219,4 +219,4 @@ DEPENDENCIES
   xrb-sanitize
 
 BUNDLED WITH
-   2.5.9
+   2.5.16

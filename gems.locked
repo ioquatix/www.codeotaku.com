@@ -152,7 +152,7 @@ GEM
       sus-fixtures-async (~> 0.1)
     thread-local (1.1.0)
     timeout (0.4.1)
-    traces (0.13.0)
+    traces (0.13.1)
     trenni (3.14.0)
     utopia (2.25.0)
       bake (~> 0.20)

@@ -55,7 +55,7 @@ GEM
       console (~> 1.0)
       msgpack (~> 1.0)
     date (3.3.4)
-    falcon (0.47.7)
+    falcon (0.47.8)
       async
       async-container (~> 0.18)
       async-http (~> 0.66, >= 0.66.3)
@@ -152,7 +152,7 @@ GEM
       sus-fixtures-async (~> 0.1)
     thread-local (1.1.0)
     timeout (0.4.1)
-    traces (0.11.1)
+    traces (0.13.0)
     trenni (3.14.0)
     utopia (2.25.0)
       bake (~> 0.20)

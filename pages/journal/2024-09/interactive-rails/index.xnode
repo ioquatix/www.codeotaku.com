@@ -157,7 +157,9 @@
 	
 	<p>One of my goals with this demonstration was to shatter the misconception that Rails can't be used for real-time web applications. Rails is a popular framework and despite the sigificant challenges, there is huge value in supporting progressive enhancement and real-time interactivity within the existing ecosystem. I encourage you to clone the repository and try it out for yourself. It's a fun way to explore the capabilities of the Ruby ecosystem, and to see how far we have come in building real-time web applications.</p>
 	
-	<h3>RubyKaigi 2023 Presentation</h3>
+	<h3>RubyKaigi 2024 Presentation</h3>
+	
+	<content:youtube-video id="YacN_phi_ME" />
 	
 	<p>You can find the <a href="https://github.com/ioquatix/presentations/tree/main/2024">slides for my presentation here</a>.</p>
 	

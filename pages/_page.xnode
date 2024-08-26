@@ -65,7 +65,8 @@
 		
 		<script type="module">
 			import {Live} from "@socketry/live";
-			window.live = Live.start();
+			// disable this for now...
+			// window.live = Live.start();
 		</script>
 	</head>
 

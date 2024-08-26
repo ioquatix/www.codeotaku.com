@@ -54,7 +54,14 @@ GEM
     covered (0.26.0)
       console (~> 1.0)
       msgpack (~> 1.0)
+    datadog (2.3.0)
+      debase-ruby_core_source (= 3.3.1)
+      libdatadog (~> 11.0.0.1.0)
+      libddwaf (~> 1.14.0.0.0)
+      msgpack
     date (3.3.4)
+    debase-ruby_core_source (3.3.1)
+    dogstatsd-ruby (5.6.1)
     falcon (0.47.8)
       async
       async-container (~> 0.18)
@@ -88,6 +95,19 @@ GEM
     io-stream (0.4.0)
     io-watch (0.6.3)
     json (2.7.2)
+    libdatadog (11.0.0.1.0)
+    libdatadog (11.0.0.1.0-aarch64-linux)
+    libdatadog (11.0.0.1.0-x86_64-linux)
+    libddwaf (1.14.0.0.0)
+      ffi (~> 1.0)
+    libddwaf (1.14.0.0.0-aarch64-linux)
+      ffi (~> 1.0)
+    libddwaf (1.14.0.0.0-arm64-darwin)
+      ffi (~> 1.0)
+    libddwaf (1.14.0.0.0-x86_64-darwin)
+      ffi (~> 1.0)
+    libddwaf (1.14.0.0.0-x86_64-linux)
+      ffi (~> 1.0)
     live (0.13.0)
       async-websocket (~> 0.27)
       xrb
@@ -99,6 +119,10 @@ GEM
       net-smtp
     mapping (1.1.1)
     markly (0.12.1)
+    metrics (0.10.2)
+    metrics-backend-datadog (0.2.0)
+      dogstatsd-ruby (~> 5.0)
+      metrics
     mime-types (3.5.2)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2024.0820)
@@ -153,6 +177,9 @@ GEM
     thread-local (1.1.0)
     timeout (0.4.1)
     traces (0.13.1)
+    traces-backend-datadog (0.6.0)
+      datadog (~> 2.3)
+      traces (~> 0.10)
     trenni (3.14.0)
     utopia (2.25.0)
       bake (~> 0.20)
@@ -207,11 +234,13 @@ DEPENDENCIES
   io-watch
   live
   markly
+  metrics-backend-datadog
   net-smtp
   rack-test
   relaxo-model (~> 0.19)
   sus
   sus-fixtures-async-http
+  traces-backend-datadog
   utopia (~> 2.22)
   utopia-analytics
   utopia-gallery

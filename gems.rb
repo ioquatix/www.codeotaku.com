@@ -20,6 +20,9 @@ group :preload do
 
 	gem 'variant'
 	gem 'live'
+	
+	gem 'traces-backend-datadog'
+	gem 'metrics-backend-datadog'
 end
 
 gem 'net-smtp'

@@ -1,7 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    async (2.16.0)
+    async (2.16.1)
       console (~> 1.26)
       fiber-annotation
       io-event (~> 1.6, >= 1.6.5)
@@ -9,25 +9,27 @@ GEM
       async
     async-container (0.18.2)
       async (~> 2.10)
-    async-http (0.70.0)
+    async-http (0.75.0)
       async (>= 2.10.2)
       async-pool (~> 0.7)
       io-endpoint (~> 0.11)
       io-stream (~> 0.4)
-      protocol-http (~> 0.28)
-      protocol-http1 (~> 0.19)
+      protocol-http (~> 0.30)
+      protocol-http1 (~> 0.20)
       protocol-http2 (~> 0.18)
       traces (>= 0.10)
     async-http-cache (0.4.4)
       async-http (~> 0.56)
     async-io (1.43.2)
       async
-    async-pool (0.8.0)
+    async-pool (0.8.1)
       async (>= 1.25)
+      metrics
+      traces
     async-service (0.12.0)
       async
       async-container (~> 0.16)
-    async-websocket (0.28.0)
+    async-websocket (0.29.1)
       async-http (~> 0.54)
       protocol-http (>= 0.28.1)
       protocol-rack (~> 0.5)
@@ -62,17 +64,18 @@ GEM
     date (3.3.4)
     debase-ruby_core_source (3.3.1)
     dogstatsd-ruby (5.6.1)
-    falcon (0.47.8)
+    falcon (0.48.0)
       async
       async-container (~> 0.18)
-      async-http (~> 0.66, >= 0.66.3)
-      async-http-cache (~> 0.4.0)
+      async-http (~> 0.75)
+      async-http-cache (~> 0.4)
       async-service (~> 0.10)
       bundler
       localhost (~> 1.1)
       openssl (~> 3.0)
-      process-metrics (~> 0.2.0)
-      protocol-rack (~> 0.5)
+      process-metrics (~> 0.2)
+      protocol-http (~> 0.31)
+      protocol-rack (~> 0.7)
       samovar (~> 2.3)
     ffi (1.17.0)
     ffi (1.17.0-aarch64-linux-gnu)
@@ -90,7 +93,7 @@ GEM
       fiber-storage
     fiber-storage (1.0.0)
     http-accept (2.2.1)
-    io-endpoint (0.13.0)
+    io-endpoint (0.13.1)
     io-event (1.6.5)
     io-stream (0.4.0)
     io-watch (0.6.3)
@@ -120,15 +123,15 @@ GEM
     mapping (1.1.1)
     markly (0.12.1)
     metrics (0.10.2)
-    metrics-backend-datadog (0.2.0)
+    metrics-backend-datadog (0.2.1)
       dogstatsd-ruby (~> 5.0)
       metrics
     mime-types (3.5.2)
       mime-types-data (~> 3.2015)
-    mime-types-data (3.2024.0820)
+    mime-types-data (3.2024.0903)
     mini_mime (1.1.5)
     msgpack (1.7.2)
-    net-imap (0.4.14)
+    net-imap (0.4.15)
       date
       net-protocol
     net-pop (0.1.2)
@@ -138,20 +141,21 @@ GEM
     net-smtp (0.5.0)
       net-protocol
     openssl (3.2.0)
-    process-metrics (0.2.1)
+    process-metrics (0.3.0)
       console (~> 1.8)
+      json (~> 2)
       samovar (~> 2.1)
     protocol-hpack (1.5.0)
-    protocol-http (0.28.2)
-    protocol-http1 (0.19.1)
+    protocol-http (0.32.0)
+    protocol-http1 (0.21.0)
       protocol-http (~> 0.22)
     protocol-http2 (0.18.0)
       protocol-hpack (~> 1.4)
       protocol-http (~> 0.18)
-    protocol-rack (0.6.0)
-      protocol-http (~> 0.23)
+    protocol-rack (0.7.0)
+      protocol-http (~> 0.27)
       rack (>= 1.0)
-    protocol-websocket (0.15.0)
+    protocol-websocket (0.16.0)
       protocol-http (~> 0.2)
     rack (3.1.7)
     rack-test (2.1.0)
@@ -248,4 +252,4 @@ DEPENDENCIES
   xrb-sanitize
 
 BUNDLED WITH
-   2.5.16
+   2.5.13

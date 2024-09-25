@@ -173,5 +173,5 @@
 	
 	<h2>Conclusion</h2>
 	
-	<p>The integration of the fiber scheduler, Async 2, Rack 3, Falcon, and Rails 7.2 provides a powerful foundation for building highly interactive and scalable web applications. This integration enables developers to build robust and scalable applications using existing libraries and techniques, pushing the boundaries of what is possible within the Ruby ecosystem. I look forward to seeing the innovative applications that Ruby developers will create using these tools.</p>
+	<p>The integration of the fiber scheduler, Async 2, Rack 3, Falcon, and Rails 7.2 provides a powerful foundation for building highly interactive and scalable web applications, using existing libraries and techniques, pushing the boundaries of what is possible within the Ruby ecosystem. I look forward to seeing the innovative applications that Ruby developers will create using these tools.</p>
 </content:entry>

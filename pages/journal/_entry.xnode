@@ -1,5 +1,4 @@
 <?r
-
 # If a blog post is hidden, it still needs to show up here for us to extract the metadata.
 sibling_links = parent.node.sibling_links(:sort => :created, display: nil)
 prev_links, current_link, next_links = sibling_links.split_at{|link| link.path == parent.node.uri_path}
@@ -55,7 +54,7 @@ end
 			<utopia:content/>
 		</article>
 		
-		<content:comments node="#{parent.node.uri_path}" />
+		<content:comments />
 		
 		<div class="navigation">
 		<?r if prev_link ?>

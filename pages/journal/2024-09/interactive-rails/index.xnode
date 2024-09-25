@@ -1,5 +1,5 @@
 <content:entry>
-	<p>Over the past seven years, I have focused on enhancing concurrency, scalability, and interactivity within the Ruby ecosystem. In 2017, I released Async, a framework for building concurrent Ruby applications, but the initial design required wrappers for intercepting blocking operations, which limited compatibility with existing code. To addresses these limitations, I created the fiber scheduler, which was introduced in Ruby 3.1 and Async 2 in 2020. By transparently redirecting blocking operations to an event loop, the fiber scheduler enables existing Ruby code to run concurrently without modification.</p>
+	<p>Over the past seven years, I have focused on enhancing concurrency, scalability, and interactivity within the Ruby ecosystem. In 2017, I released Async, a framework for building concurrent Ruby applications, but the initial design required wrappers for intercepting blocking operations, which limited compatibility with existing code. To addresses these limitations, I created the fiber scheduler, which was introduced in Ruby 3.1 and Async 2 in 2021. By transparently redirecting blocking operations to an event loop, the fiber scheduler enables existing Ruby code to run concurrently without modification.</p>
 	
 	<p>Despite these advancements, the quest for real-time web applications posed further challenges. In 2022, we released Rack 3, which made streaming a mandatory part of the specification. These changes were adopted by Rails 7.1, and further enhanced in Rails 7.2. When combined with the Falcon web server, applications are capable of handling thousands of real-time connections, expanding the possibilities for interactivity. To best leverage these capabilities, new approaches to application design are required. We will discuss the evolution of these technologies, and show how take advantage of them to build experiences that were previously impossible in Ruby.</p>
 	
@@ -58,16 +58,16 @@
 	<p>Before we talk about Async, I want to mention a few other projects and talks that have influenced my thinking and approach to building concurrent systems in Ruby:</p>
 	
 	<ul>
-		<li><strong><a href="https://github.com/silvamerica/neverblock">neverblock</a> (2008):</strong> was possibly the first attempt to provide synchronous IO operations within EventMachine using fibers, allowing existing synchronous code to execute concurrently using an event loop.</li>
-		<li><strong><a href="https://github.com/igrigorik/em-synchrony">em-synchrony</a> (2011):</strong> was another early attempt to provide synchronous IO operations within EventMachine using fibers. It included monkey patches for many popular libraries, but I think it's ultimately unrealistic to maintain such an approach.</li>
+		<li><strong><a href="https://github.com/silvamerica/neverblock">neverblock</a> (2008):</strong> was possibly the first attempt to provide synchronous IO operations within EventMachine using fibers, allowing existing synchronous code to execute concurrently using an event loop. I didn't know about this gem until quite recently, but it shows that there is a long history of people trying to improve Ruby's concurrency.</li>
+		<li><strong><a href="https://github.com/igrigorik/em-synchrony">em-synchrony</a> (2011):</strong> was another early attempt to provide synchronous IO operations within EventMachine using fibers. It included monkey patches for many popular libraries for compatibility with EventMachine, but ultimately shows how hard it is to maintain.</li>
 		<li><strong><a href="https://www.youtube.com/watch?v=KXuZi9aeGTw">User-level threads....... with threads</a> (2014):</strong> is a talk by Paul Turner about how cooperative scheduling can be used to build high-performance concurrent systems. This talk influenced my thinking about the cost of context switching and scheduling operations.</li>
-		<li><strong><a href="https://www.youtube.com/watch?v=_fu0gx-xseY">C++ Coroutines - a negative overhead abstraction</a> (2015):</strong> is a talk by Gor Nishanov about how coroutines are a fundmantal extension the concept of a routine that can lead to significantly simpler code. This talk was a major influence on my thinking about how to build concurrent systems in Ruby.</li>
+		<li><strong><a href="https://www.youtube.com/watch?v=_fu0gx-xseY">C++ Coroutines - a negative overhead abstraction</a> (2015):</strong> is a talk by Gor Nishanov about how coroutines are a fundmantal extension the concept of a routine that can lead to significantly simpler code. This talk was a major influence on my thinking about how to build concurrent systems.</li>
 		<li><strong><a href="https://www.youtube.com/watch?v=-5T4Cjw46ys">Faster IO through io_uring</a> (2019):</strong> is a talk by Jens Axboe about the introduction of the <code>io_uring</code> interface in the Linux kernel. This talk was a major influence on my thinking about how to manage non-blocking system calls, specifically asynchronous file system access.</li>
 	</ul>
 	
 	<h3>Async 1</h3>
 	
-	<p>After four months of development, in August 2017, I released <a href="https://github.com/socketry/async/releases/tag/v1.0.0">Async 1</a>. It provided a simple mechanism for running concurent tasks, and hooks for non-blocking IO. Building on existing ideas from the <a href="https://github.com/celluloid/celluloid-io">celluloid-io gem</a>, it utilized <a href="https://github.com/socketry/nio4r">nio4r</a> for the event loop and a separate <a href="https://github.com/socketry/async-io">async-io gem</a> for compatibility shims. This design allowed existing Ruby code to run concurrently without modification, <strong>provided they could use the compatibility shims</strong>, and established a foundation for building high-performance network servers and clients.</p>
+	<p>After four months of development, in August 2017, I released <a href="https://github.com/socketry/async/releases/tag/v1.0.0">Async 1</a>. It provided a simple mechanism for running concurent tasks and hooks for non-blocking IO. Building on existing ideas from the <a href="https://github.com/celluloid/celluloid-io">celluloid-io gem</a>, it utilized <a href="https://github.com/socketry/nio4r">nio4r</a> for the event loop and a separate <a href="https://github.com/socketry/async-io">async-io gem</a> for compatibility shims. This design allowed existing Ruby code to run concurrently without modification, <strong>provided they could use the compatibility shims</strong>, and established a foundation for building high-performance network servers and clients.</p>
 	
 	<content:listing src="async-1.rb" language="ruby"/>
 	
@@ -75,7 +75,7 @@
 	
 	<h3>Fiber Scheduler</h3>
 	
-	<p>Two years later, in 2021, Ruby 3.1 was released with the <a href="https://rubyapi.org/3.3/o/fiber/scheduler">fiber scheduler</a> interface. It provided a way to transparently redirect Ruby's internal blocking operations to an event loop. The initial implementation only supported a limited set of operations, but over time it has grown to support almost every blocking operation within Ruby, including:</p>
+	<p>Two years later, in December 2021, Ruby 3.1 was released with the <a href="https://rubyapi.org/3.3/o/fiber/scheduler">fiber scheduler</a> interface. It provided a way to transparently redirect Ruby's internal blocking operations to an event loop. The initial implementation only supported a limited set of operations, but over time it has grown to support almost every blocking operation within Ruby, including:</p>
 	
 	<ul>
 		<li>Waiting on threads, queues and mutexes.</li>
@@ -85,7 +85,7 @@
 		<li>Executing code with a timeout.</li>
 	</ul>
 	
-	<p>The fiber scheduler is transparent to application code, and allows existing Ruby code to run concurrently without modification. This is in stark contrast to other concurrency models, which often require significant changes to the application code, or the use of special syntax or keywords to introduce concurrency, breaking compatibility with existing libraries and applications - a problem that sometimes referred to as the <a href="https://journal.stuffwithstuff.com/2015/02/01/what-color-is-your-function">function coloring problem</a>.</p>
+	<p>The fiber scheduler is transparent to application code, and allows existing Ruby code to run concurrently without modification. This is in stark contrast to other languages and libraries, which often require significant changes to the application code, or the use of special syntax or keywords to introduce concurrency, <a href="https://journal.stuffwithstuff.com/2015/02/01/what-color-is-your-function">creating significant compatibility problems</a>.</p>
 	
 	<h2>Async 2</h2>
 	
@@ -93,15 +93,15 @@
 		<img style="width: 50%" src="async-logo.webp" />
 	</figure>
 	
-	<p>Async 2 was developed alongside the fiber scheduler, and released at the same time in December 2021. Because the fiber scheduler intercepts blocking operations, the <code>Async::IO</code> compatibility shims were no longer needed. As a result, the implementation of Async 2 is significantly simpler than its predecessor, while having improved compatibility with existing Ruby libraries and applications.</p>
+	<p>Async 2 was developed alongside the fiber scheduler, and released at the same time in December 2021. Because the fiber scheduler intercepts blocking operations, the <code>Async::IO</code> compatibility shims are no longer needed. As a result, the implementation of Async 2 is significantly simpler than its predecessor, while having improved compatibility with existing Ruby libraries and applications.</p>
 	
 	<content:listing src="async-2.rb" language="ruby"/>
 	
 	<h3>IO::Event</h3>
 	
-	<p>At the heart of Async 2, is the <a href="https://github.com/socketry/io-event">io-event gem</a>, which provides a Ruby-optimised event loop capable of handling thousands of concurrent connections. In fact we have significantly exceeded the carrying capacity of Ruby's garbage collector, which is now the main bottleneck. This event loop now defaults to <a href="https://unixism.net/loti/what_is_io_uring.html"><code>io_uring</code></a> on Linux, giving you access to the latest in high-performance IO technology.</p>
+	<p>At the heart of Async 2, is the <a href="https://github.com/socketry/io-event">io-event gem</a>, which provides a Ruby-optimised event loop capable of handling thousands of concurrent connections. In fact we have significantly exceeded the carrying capacity of Ruby's garbage collector, which is now the main bottleneck. This event loop now defaults to <a href="https://unixism.net/loti/what_is_io_uring.html"><code>io_uring</code></a> on Linux, giving you access to the latest in high-performance IO interfaces.</p>
 	
-	<p><code>io_uring</code> is an extremely exciting technology that continues to evolve with each release of the Linux kernel. It greatly reduces the overhead of concurrent IO operations, and allows for a more efficient use of system resources. In brief, system calls like <code>read</code> and <code>write</code> are enqueued to the <i>submission queue</i>. The kernel processes those requests in the background and the result of the operation is enqueued to the <i>completion queue</i>. Interfaces like <code>epoll</code> only work with pollable file descriptors, while <code>io_uring</code> is capable of handling all types of file descriptors, greatly improving the compatibility and performance of the event loop.</p>
+	<p>More specifically, <code>io_uring</code> is an extremely exciting technology that continues to evolve with each release of the Linux kernel. It provides a way to perform non-blocking system calls using a <i>submission queue</i> and <i>completion queue</i>. Operations like <code>read</code> and <code>write</code> are enqueued to the submission queue, and the kernel processes those requests in the background, enqueuing the result to the completion queue. This allows us to handle all types of file descriptors, greatly improving the compatibility and performance of the event loop.</p>
 	
 	<h2>Falcon</h2>
 	
@@ -117,7 +117,7 @@
 		<img style="width: 50%" src="rack-logo.webp" />
 	</figure>
 	
-	<p>As part of the effort to improve the performance and scalability of Ruby web applications, we released Rack 3 in 2022. Streaming (and an explicit model for when buffering was allowed) was a key feature of this release, allowing web applications to send data to the client as it becomes available, rather than waiting for the entire response to be generated. This change is particularly useful for real-time applications, such as chat rooms, live dashboards, and multiplayer games, where low latency and high interactivity are critical.</p>
+	<p>As part of the effort to improve the performance and scalability of Ruby web applications, we released Rack 3 in 2022. Streaming (and an explicit model for <i>when</i> buffering was allowed) was a key feature of this release, allowing web applications to send data to the client as it becomes available, rather than waiting for the entire response to be generated. This change is particularly useful for real-time applications, such as chat rooms, live dashboards, and multiplayer games, where low latency and high interactivity are critical.</p>
 	
 	<content:listing src="rack-3.rb" language="ruby" />
 		
@@ -127,7 +127,7 @@
 	
 	<p>Rails 7.1 introduced <a href="https://github.com/rails/rails/pull/46594#issuecomment-1588662371">initial support for Rack 3</a>. When I started working on this part of Rails, it felt a bit like an archaeological dig - there is a lot of history in the Rails codebase, and it can be difficult to understand the motivations behind the implementation. However, I was able to work with the Rails team to integrate the new features of Rack 3, and to ensure that Rails applications could take advantage of the improved performance and scalability of the new version of Rack. I greatly appreciate their support and guidance.</p>
 	
-	<p>Rails 7.2 introduced <a href="https://github.com/rails/rails/pull/51083">with_connection</a> which is a significant change to the way ActiveRecord manages database connections. Holding on to a connection for the duration of a request is a common pattern in Rails, but it can lead to contention on the connection pool, especially in long running requests like WebSockets. <code>with_connection</code> only holds on to the connection for the duration of the block, and then returns it to the pool, reducing contention and improving the efficiency of the connection pool.</p>
+	<p>Rails 7.2 introduced <a href="https://github.com/rails/rails/pull/51083">with_connection</a> which is a significant change to the way ActiveRecord manages database connections. Holding on to a connection for the duration of a request is a common pattern in Rails, but it can lead to significant contention on the connection pool, especially in long running requests like WebSockets. <code>with_connection</code> only holds on to the connection for the duration of the block, and then returns it to the pool, reducing contention and improving the efficiency of the connection pool.</p>
 	
 	<p>One last bastion of compatibility is ActionCable, and I'm pleased to report that we have an effort to <a href="https://github.com/rails/rails/pull/50979">"Adapterize" ActionCable</a> so that we can take advantage of Falcon's high performance WebSocket support. This change will ultimately allow Rails applications to handle thousands of concurrent ActionCable connections, without separate servers or infrastructure, providing simplified developent and deployment for real-time web applications. We are currently aiming to ship this feature with Rails 8.</p>
 	
@@ -151,7 +151,7 @@
 		<video src="flappy-bird.webm" controls style="max-width: 100%; display: block"></video>
 	</figure>
 	
-	<p>One of my goals with this demonstration was to shatter the misconception that Rails can't be used for real-time web applications. Rails is a popular framework and despite the sigificant challenges, there is huge value in supporting progressive enhancement and real-time interactivity within the existing ecosystem. I encourage you to clone the repository and try it out for yourself. It's a fun way to explore the capabilities of the Ruby ecosystem, and to see how far we have come in building real-time web applications.</p>
+	<p>This demonstration shatters the misconception that Rails can't be used for real-time web applications. Rails is a popular framework and despite the sigificant challenges, there is huge value in supporting progressive enhancement and real-time interactivity within the existing ecosystem. I encourage you to clone the repository and try it out for yourself. It's a fun way to explore the capabilities of the Ruby ecosystem, and to see how far we have come in building real-time web applications.</p>
 	
 	<h3>RubyKaigi 2024 Presentation</h3>
 	
@@ -161,13 +161,13 @@
 	
 	<h2>Lively</h2>
 	
-	<p>Building on appropriate foundations is crucial to avoid adding unnecessary complexity. Many of the frameworks we use today, while powerful, can be challenging for those who are just starting out. The barrier to entry is high, and the learning curve can be steep. New developers often struggle to grasp systems with intricate interfaces that, despite being thoughtfully designed at each stage of their development, can appear confusing or counterintuitive when viewed as a whole.</p>
+	<p>Building appropriate foundations is crucial to avoid unnecessary complexity. Many of the frameworks we use today, while powerful, can be challenging for those who are just starting out. The barrier to entry is high, and the learning curve can be steep. New developers often struggle to grasp systems with intricate interfaces that, despite being thoughtfully designed at each stage of their development, can appear confusing or counterintuitive when viewed as a whole.</p>
 	
 	<p>More specifically, each time we introduce a layer of indirection, we add multiplicative complexity to the whole system. To manage this effectively, it's important to limit the number of options, focusing only on the decisions that truly matter within the problem domain. With this in mind, I have created a <a href="https://github.com/socketry/lively">Lively gem</a> for live programming in Ruby. Lively builds on the foundation of the Live gem, and provides a single file live coding environment.</p>
 	
-	<p>Lively enables you to write code in a single file, and see the results of your changes in real-time. It provides a simple interface for building interactive applications, and is designed to be easy to use for beginners. I believe that Lively will be a valuable tool for teaching programming, and for exploring the capabilities of the Ruby ecosystem.</p>
+	<p>Lively enables you to build web applications with a single file, and see the results of your changes in real-time. It provides a simple interface for building interactive applications, and is designed to be easy to use for beginners. I believe that Lively will be a valuable tool for teaching programming, and for exploring the capabilities of the Ruby ecosystem.</p>
 	
 	<h2>Conclusion</h2>
 	
-	<p>The integration of the fiber scheduler, Async 2, Rack 3, Falcon, and Rails 7.2 provides a powerful foundation for building highly interactive and scalable web applications, using existing libraries and techniques, pushing the boundaries of what is possible within the Ruby ecosystem. I look forward to seeing the innovative applications that Ruby developers will create using these tools.</p>
+	<p>The integration of Async 2, Rack 3, Falcon, and Rails 7.2 provides a powerful foundation for building highly interactive and scalable web applications. Due to the design of the fiber scheduler, existing Ruby code can run with improved concurrency, enabling developers to progressively enhance existing applications with real-time interactivity without significant changes to the codebase. The Live gem shows the potential for building new applications that take full advantage of the capabilities of the Async ecosystem, and the Lively gem provides a simple interface for building interactive applications, pushing the boundaries of what is possible within the Ruby ecosystem. I look forward to seeing the innovative applications that Ruby developers will create using these tools.</p>
 </content:entry>

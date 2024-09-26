@@ -64,7 +64,7 @@ GEM
     date (3.3.4)
     debase-ruby_core_source (3.3.1)
     dogstatsd-ruby (5.6.2)
-    falcon (0.48.1)
+    falcon (0.48.2)
       async
       async-container (~> 0.18)
       async-http (~> 0.75)

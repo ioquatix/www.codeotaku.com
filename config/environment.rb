@@ -10,6 +10,7 @@ require 'utopia/setup'
 UTOPIA ||= Utopia.setup
 
 require_relative '../db/environment'
+require_relative 'datadog'
 
 require 'utopia/extensions/array_split'
 require 'json'

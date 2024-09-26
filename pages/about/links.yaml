@@ -1,14 +1,3 @@
-twitter:
-    order: 0
-    node: "_twitter"
 resume:
     order: 1
     title: "Résumé"
-code-otaku-blog:
-    order: 10
-    title: "Blog"
-    uri: "http://www.codeotaku.com/blog"
-useful-links:
-    display: false
-    order: 5
-    summary: "A bunch of links to related to computers and software development."

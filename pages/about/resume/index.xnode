@@ -6,49 +6,27 @@
 	<main>
 		<h2>Profile</h2>
 		
-		<p>My name is Samuel and I'm a software engineer. I enjoy finding creative solutions to difficult problems.</p>
+		<p>My name is Samuel and I'm a software engineer. I enjoy finding creative solutions to difficult problems. I have experience working with teams on web and mobile applications, focusing on security and performance. I actively contribute to open-source projects and regularly speak at conferences.</p>
 		
 		<content:photos path="_profile" />
 		
 		<ul>
 			<li>Contact: <a href="mailto:samuel@oriontransfer.net">samuel@oriontransfer.net</a></li>
 			<li>GitHub: <a href="https://github.com/ioquatix">https://github.com/ioquatix</a>, <a href="https://github.com/socketry">https://github.com/socketry</a>, <a href="https://github.com/kurocha">https://github.com/kurocha</a></li>
-			<li><a href="http://nz.linkedin.com/pub/samuel-williams/39/b78/bb5">LinkedIn profile</a></li>
+			<li><a href="http://nz.linkedin.com/pub/samuel-williams/39/b78/bb5">LinkedIn Profile</a></li>
 		</ul>
 		
-		<h2>References</h2>
+		<h2>Core Competencies</h2>
 		
-		<h3>Grant Davis (Senior Software Engineer, Assurance IQ) - May 18, 2024.</h3>
-		
-		<p>From my perspective, Samuel's deep thoughtfulness set him apart as an exceptional manager and Principal Engineer, during the 2.5 years that he was my manager at AssuranceIQ.</p>
-
-		<p>As a manager, this strength came through in his profound care for the wellbeing and goals of each person he managed. To anyone who has met Samuel, it's clear that this is far more than a practised skill, but a foundational part of who he is as a person. This influence manifested in an exceptional degree of cognitive safety within the team, amplifying our effectiveness and morale.</p>
-
-		<p>As a Principal Engineer, Samuel's deep thoughtfulness was frequently exemplified in his ability to distil core themes in problems or solutions to which he was exposed. This often resulted in very stable design choices even amidst rapidly developing requirements.</p>
-
-		<p>I wholeheartedly endorse Samuel as a phenomenal engineer, and an invaluable asset to whatever company is lucky enough to have him.</p>
-		
-		<h3>Jimmy Secretan (CTO, Roadtrippers) - August 27, 2018.</h3>
-		
-		<p>Samuel is a rare engineer who can think problems through from the big overall need down to the tiny code details. "Good enough" simply isn't good enough for Samuel and he'll create whole new frameworks if that's what he needs to do to make a robust, efficient and stellar application. He is a one man technology arsenal. His passion for the problems he is solving comes through in everything he does.</p>
-		
-		<h3>Matthew Panetta (Software Engineer, Redbubble) - June 15, 2016</h3>
-		
-		<p>I stumbled across Samuel's Github profile while trying to solve a 3D rendering problem and asked if he'd be interesting in working on it. Samuel understood exactly what we were trying to do a came up with a technically brilliant solution. He has been a pleasure to work and his work is of the highest quality.</p>
-		
-		<h3>Adam Hutchinson (CEO, GeoZone) - June 14, 2016</h3>
-		
-		<p>Samuel is a passionate engineer who brings a new dimension and energy to problem solving. As a small but nimble team, we had a number of areas we needed to proficient in. Samuel's versatility meant that as a team we could punch above our weight.</p>
-		
-		<h3>Dr. Tadao Takoka (Professor, University of Canterbury) - 2013</h3>
-		
-		<p>I am pleased to recommend Mr. Samuel Williams for possible employment by your company. I have known him for more than six years through my teaching for his Bachelors and Masters degrees of computer science at our department.</p>
-		
-		<p>He showed a good understanding of my materials in algorithm teaching. He took three papers on algorithms for stage 1, stage 2 and Masters level from me. The first two are designed for fundamental algorithms and the stage 4 one was devoted for computational complexity. He achieved A+, A- and A+ for those papers. Apart from algorithms, he is particularly strong in graphics and programming languages.</p>
-		
-		<p>While he was doing Masters study, he helped me as a teaching assistant. For the stage 3 algorithm course, I designed an assignment in which students are required to implement a program for solving a Sudoku puzzle. I declared that I will mark the assignments by the speed of the program presented. Samuel himself made one to challenge students. We even gave awards to top students. Although Samuel’s one was the fastest, many students followed him. He was a great leader and mentor for students.</p>
-		
-		<p>We are good friends. We do things together not only in computer science. We go to see movies, we do cherry admiring parties, etc. He enjoys his life and he is a forward looking person. When his car was stolen, he did not lament too much and recovered from the ordeal quickly. He is polite and listens to others first before he expresses his opinion. He will show a great power in a team environment.</p>
+		<ul>
+			<li>Principle Software Engineer and Team Leader.</li>
+			<li>Networking and Systems Administration.</li>
+			<li>Programing Language Design and Implementation.</li>
+			<li>Computer Vision and Rendering.</li>
+			<li>Computer Science Education and Teaching.</li>
+			<li>Game Design and Implementation.</li>
+			<li>Efficient Algorithms and Problem Solving.</li>
+		</ul>
 		
 		<h2>Education</h2>
 		
@@ -60,7 +38,7 @@
 		
 		<dl>
 			<dt><strong><a href="http://www.canterbury.ac.nz">University of Canterbury</a> &mdash; B.Sc., Computer Science</strong> (2008)</dt>
-			<dd>Last year GPA: 8.34 out of 9.0 (<a href="transcript">University Transcript</a>)</dd>
+			<dd>Final year GPA: 8.34 out of 9.0 (<a href="transcript">University Transcript</a>)</dd>
 		</dl>
 		
 		<dl class="compact">
@@ -72,8 +50,18 @@
 			<dt>Royal Schools of Music &mdash; Music Theory</dt>
 			<dd>(2002) Grade 5 with distinction (top in New Zealand).</dd>
 		</dl>
-
+		
 		<h2>Awards</h2>
+		
+		<dl class="compact">
+			<dt>Finalist in the Open Source Contributor Category</dt>
+			<dd>(2021) New Zealand Open Source Awards.</dd>
+		</dl>
+		
+		<dl class="compact">
+			<dt>Outstanding Performance &mdash; <a href="https://github.com/socketry/falcon">Falcon Web Server</a></dt>
+			<dd>(2019) Awarded ¥100,000JPY from the Fukuoka Ruby Award.</dd>
+		</dl>
 		
 		<dl class="compact">
 			<dt>Innovation in Tourism &amp; Entertainment &mdash; <a href="https://geozone.co.nz/">GeoZone</a></dt>
@@ -143,6 +131,36 @@
 		<h2>Conferences</h2>
 		
 		<content:photos path="_conferences" />
+		
+		<dl class="compact">
+			<dt><a href="https://www.youtube.com/watch?v=YacN_phi_ME">Leveraging Falcon and Fails for Real-Time Interactivity</a></dt>
+			<dd><strong>RubyKaigi 2024, Okinawa, Japan</strong>. In the rapidly evolving landscape of web-based gaming, Ruby's potential for building dynamic, real-time interactive experiences is often underrated. This talk aims to shatter this misconception by demonstrating the powerful synergy between Falcon, an asynchronous web server, and Ruby on Rails, the stalwart of web application frameworks. We will embark on a journey to design and implement a real-time interactive game from the ground up, showcasing how Ruby, when coupled with Falcon's concurrency capabilities, can be a formidable tool in the gaming domain. Key focus areas will include leveraging Falcon's event-driven architecture for managing high-throughput, low-latency game data, and integrating it seamlessly with Rails to create an engaging user experience. Attendees will gain insights into the nuances of real-time web communication in Ruby, efficient handling of WebSockets, and the application of Rails' robust features in a gaming context.</dd>
+		</dl>
+		
+		<dl class="compact">
+			<dt><a href="https://www.youtube.com/watch?v=SKNhyqHmqUo">Unleashing the Power of Asynchronous HTTP with Ruby</a></dt>
+			<dd><strong>RubyKaigi 2023, Nagano, Japan</strong>. The Hyper Text Transfer Protocol (HTTP) underpins the vast majority of Ruby web applications, but its details are often hidden from the application layer. In this session, we will explore the inner workings of the HTTP protocol, its evolution from HTTP/0.9 to HTTP/3, and the various interfaces and implementations offered for HTTP clients and servers for the Ruby programming language. Additionally, we will delve into the world of Asynchronous HTTP, examining its key concepts and benefits, and learn how to leverage its power within Ruby to build fast, scalable, and efficient web applications. From understanding the history of HTTP, to implementing best practices for Asynchronous HTTP, this presentation is a starting point for anyone looking to improve their Ruby web development skills. Unleash the power of Asynchronous HTTP with Ruby.</dd>
+		</dl>
+		
+		<dl class="compact">
+			<dt><a href="https://www.youtube.com/watch?v=9tOMD491mFY">Asynchronous Rails</a></dt>
+			<dd><strong>RubyConf Australia 2023, Melbourne, Australia</strong>. The fiber scheduler presents new opportunities for building scalable and concurrent Ruby programs. However, Rails has traditionally been a request-per-process or request-per-thread framework. We will give a brief introduction to the fiber scheduler, and look at how we are evolving Rails and Ruby in general to take advantage of request-per-fiber using Falcon.</dd>
+		</dl>
+		
+		<dl class="compact">
+			<dt><a href="https://www.youtube.com/watch?v=yXyj9wlkJKM">Real World Applications with the Ruby Fiber Scheduler</a></dt>
+			<dd><strong>RubyKaigi 2022, Mie, Japan</strong>. Ruby 3 introduced the fiber scheduler which provides transparent context switching between fibers when they perform blocking operations. With minimal changes, web applications can take advantage of the fiber scheduler to improve performance and unlock new techniques for application design and interactivity. We discuss the current state of the fiber scheduler design, its usage in several real world applications, and how you can take advantage of it in your own projects.</dd>
+		</dl>
+		
+		<dl class="compact">
+			<dt><a href="https://www.youtube.com/watch?v=yoGoO79NI0U">Event Driven Concurrency using the Ruby Fiber Scheduler</a></dt>
+			<dd><strong>COSCUP x RubyConfTW 2021, Online</strong>. Event driven concurrency is a feature of many modern programming languages, but until recently was difficult to use with Ruby. Ruby 3 includes a new fiber scheduler interface which allows us to hook into non-blocking operations and execute them concurrently, however robust implementations of this interface are not yet widely available. We will discuss the implementation of the Async fiber scheduler, how it works and how it can be used to build highly scalable applications.</dd>
+		</dl>
+		
+		<dl class="compact">
+			<dt><a href="https://www.youtube.com/watch?v=Y29SSOS4UOc">Don't Wait For Me! Scalable Concurrency for Ruby 3</a></dt>
+			<dd><strong>RubyKaigi Takeout 2020, Online</strong>. We have proven that fibers are useful for building scalable systems. In order to develop this further, we need to add hooks into the various Ruby VMs so that we can improve the concurrency of existing code without changes. There is an outstanding PR for this work, but additional effort is required to bring this to completion and show its effectiveness in real world situations. We will discuss the implementation of this PR, the implementation of the corresponding Async Scheduler, and how they work together to improve the scalability of Ruby applications.</dd>
+		</dl>
 		
 		<dl class="compact">
 			<dt><a href="https://www.youtube.com/watch?v=qX_FRa43r4k">Asynchronous Ruby</a></dt>
@@ -239,16 +257,22 @@
 			<dd>Passionate about solving challenging problems and developing new algorithms.</dd>
 			<dd>Familiar with using a profiler to analyse performance and optimise code.</dd>
 		</dl>
-
+		
 		<h2>Work</h2>
+		
+		<dl class="compact">
+			<dt>Assurance IQ</dt>
+			<dd>(2020-2024). Investigiated and mitigated performance and security issues across several business critical web applications. Built a team to manage similar concerns at scale across the company. Completed several internal audits and supported cross-team initiatives to improve code quality and identity management.</dd>
+		</dl>
+			
 		<dl class="compact">
 			<dt><a href="http://www.redbubble.com.au/">RedBubble Ltd</a></dt>
 			<dd>(2016-2017) Developed scalable Vulkan-based rendering technology for rendering product images deployed on AWS.</dd>
 		</dl>
-
+		
 		<dl class="compact">
 			<dt><a href="http://www.geozone.co.nz/">GeoZone Ltd</a></dt>
-			<dd>(2013-) Lead server-side developer in a startup developing popular mobile apps for tourists. Specialized in web application development, deployment, and scaling.</dd>
+			<dd>(2013-2020) Lead server-side developer in a startup developing popular mobile apps for tourists. Specialized in web application development, deployment, and scaling.</dd>
 		</dl>
 		
 		<dl class="compact">
@@ -317,5 +341,39 @@
 			<dt><a href="http://www.isb-global.com/">ISB Global</a></dt>
 			<dd>(2004-2006) Working as a programmer designing and developing a consultant placement system using Ruby on Rails.</dd>
 		</dl>
+		
+		<h2>References</h2>
+		
+		<h3>(2024) Grant Davis - Senior Software Engineer, Assurance IQ</h3>
+		
+		<p>From my perspective, Samuel's deep thoughtfulness set him apart as an exceptional manager and Principal Engineer, during the 2.5 years that he was my manager at AssuranceIQ.</p>
+
+		<p>As a manager, this strength came through in his profound care for the wellbeing and goals of each person he managed. To anyone who has met Samuel, it's clear that this is far more than a practised skill, but a foundational part of who he is as a person. This influence manifested in an exceptional degree of cognitive safety within the team, amplifying our effectiveness and morale.</p>
+
+		<p>As a Principal Engineer, Samuel's deep thoughtfulness was frequently exemplified in his ability to distil core themes in problems or solutions to which he was exposed. This often resulted in very stable design choices even amidst rapidly developing requirements.</p>
+
+		<p>I wholeheartedly endorse Samuel as a phenomenal engineer, and an invaluable asset to whatever company is lucky enough to have him.</p>
+		
+		<h3>(2018) Jimmy Secretan - CTO, Roadtrippers</h3>
+		
+		<p>Samuel is a rare engineer who can think problems through from the big overall need down to the tiny code details. "Good enough" simply isn't good enough for Samuel and he'll create whole new frameworks if that's what he needs to do to make a robust, efficient and stellar application. He is a one man technology arsenal. His passion for the problems he is solving comes through in everything he does.</p>
+		
+		<h3>(2016) Matthew Panetta - Software Engineer, Redbubble</h3>
+		
+		<p>I stumbled across Samuel's Github profile while trying to solve a 3D rendering problem and asked if he'd be interesting in working on it. Samuel understood exactly what we were trying to do a came up with a technically brilliant solution. He has been a pleasure to work and his work is of the highest quality.</p>
+		
+		<h3>(2016) Adam Hutchinson - CEO, GeoZone</h3>
+		
+		<p>Samuel is a passionate engineer who brings a new dimension and energy to problem solving. As a small but nimble team, we had a number of areas we needed to proficient in. Samuel's versatility meant that as a team we could punch above our weight.</p>
+		
+		<h3>(2013) Dr. Tadao Takoka - Professor, University of Canterbury</h3>
+		
+		<p>I am pleased to recommend Mr. Samuel Williams for possible employment by your company. I have known him for more than six years through my teaching for his Bachelors and Masters degrees of computer science at our department.</p>
+		
+		<p>He showed a good understanding of my materials in algorithm teaching. He took three papers on algorithms for stage 1, stage 2 and Masters level from me. The first two are designed for fundamental algorithms and the stage 4 one was devoted for computational complexity. He achieved A+, A- and A+ for those papers. Apart from algorithms, he is particularly strong in graphics and programming languages.</p>
+		
+		<p>While he was doing Masters study, he helped me as a teaching assistant. For the stage 3 algorithm course, I designed an assignment in which students are required to implement a program for solving a Sudoku puzzle. I declared that I will mark the assignments by the speed of the program presented. Samuel himself made one to challenge students. We even gave awards to top students. Although Samuel's one was the fastest, many students followed him. He was a great leader and mentor for students.</p>
+		
+		<p>We are good friends. We do things together not only in computer science. We go to see movies, we do cherry admiring parties, etc. He enjoys his life and he is a forward looking person. When his car was stolen, he did not lament too much and recovered from the ordeal quickly. He is polite and listens to others first before he expresses his opinion. He will show a great power in a team environment.</p>
 	</main>
 </content:page>

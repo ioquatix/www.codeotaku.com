@@ -150,7 +150,7 @@ GEM
     protocol-http (0.37.0)
     protocol-http1 (0.27.0)
       protocol-http (~> 0.22)
-    protocol-http2 (0.19.1)
+    protocol-http2 (0.19.2)
       protocol-hpack (~> 1.4)
       protocol-http (~> 0.18)
     protocol-rack (0.10.0)

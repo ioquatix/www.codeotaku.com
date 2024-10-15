@@ -4,15 +4,7 @@ on: [push]
 
 jobs:
   test:
-    strategy:
-      matrix:
-        os:
-          - ubuntu
-        
-        ruby:
-          - "3.3.4"
-    
-    runs-on: ${{matrix.os}}-latest
+    runs-on: ubuntu-latest
     
     steps:
     - uses: actions/checkout@v1
@@ -23,11 +15,10 @@ jobs:
     
     - uses: ruby/setup-ruby@v1
       with:
-        ruby-version: ${{matrix.ruby}}
         bundler-cache: true
     
     - name: Run tests...
-      run: ${{matrix.env}} bundle exec bake test
+      run: bundle exec bake test
   
   deploy:
     needs: test

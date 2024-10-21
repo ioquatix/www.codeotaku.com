@@ -1,4 +1,0 @@
--- On the source server (s1.example.com)
-$ sudo ssh backup@backups.example.com
--- Expect a successful login without password
-$ 

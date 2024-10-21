@@ -1,9 +1,0 @@
-# Update the :src server :prepare event to dump databases
-	server(:src) do |server|
-		server.host = "s1.example.com"
-		server.root = "/"
-		
-		server.on(:prepare) do
-			master.run 'mysqldump -u backup --password=$password --all-databases > /var/backups/mysql-dump.sql'
-		end
-	end

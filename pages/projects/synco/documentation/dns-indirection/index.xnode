@@ -1,7 +1,0 @@
-<content:contents-page title="Synco Documentation">
-	<content:heading>DNS Indirection</content:heading>
-	
-	<p>Synco uses hostnames to control backup behaviour. If you use DNS CNAME records, you can control which server is the master.</p>
-	
-	<p>If you have a cluster of serveral machines, this allows you to have them synchronizing, but you can change the master server simply by editing the DNS CNAME record.</p>
-</content:contents-page>

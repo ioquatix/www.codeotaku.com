@@ -139,7 +139,7 @@
 	
 	<p>Which gives a result like this:</p>
 	
-	#{Live::ClockView.new.to_html}
+	#{Live::ClockView.new}
 	
 	<p>Ruby has had a poor reputation for building building real-time interactive web applications - and it's not undeserved - but that all changes with the foundation we have built with Async, Falcon, Rack, and Live.</p>
 	

@@ -1,0 +1,19 @@
+<content:entry>
+	<p>Rack 3 introduced support for input and output streaming. This is a powerful feature that improves both performance and provides opportunities for enhanced interactivity in web applications. We will explore how to use streaming input and output in Rack, including how to use it with more traditional WebSockets, along with more recently introduced declarative shadow DOM.</p>
+	
+	<h2>Streaming Output</h2>
+	
+	<p>Streaming output is a feature that allows you to send data to the client as it is generated. This is useful for sending large amounts of data, such as video or audio streams, or for sending data that is generated over time, such as a log file or a real-time feed. Streaming output is supported in Rack by returning a callable object as the response body. This callable object will get invoked with a stream argument, which you can read and write to from within the block.</p>
+	
+	<p>The following example shows how to emit a CSV stream with the system load avearge, once a second, indefinitely:</p>
+	
+	<content:listing src="streaming-output.rb" language="ruby" title="config.ru" />
+	
+	<h2>Streaming Input</h2>
+	
+	<p>Streaming input is a feature that allows you to read data from the client as it is received. This is useful for processing large amounts of data, such as file uploads, or for processing data that is generated over time, such as a real-time feed. Streaming input is supported in Rack by reading from the input stream provided by the request object.</p>
+	
+	<p>The following example shows how to read a CSV stream from the client and process it line by line:</p>
+	
+	<content:listing src="streaming-input.rb" language="ruby" title="config.ru" />
+</content:entry>

@@ -1,5 +1,8 @@
-<figure class="listing">
-<?r 
+<figure class="listing"><?r
+if title = attributes[:title] ?>
+	<figcaption>#{title}</figcaption><?r
+end
+
 if src = attributes[:src]
 	path = parent.node.local_path(Utopia::Path.create(src))
 	code = File.read(path)

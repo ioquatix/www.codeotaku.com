@@ -5,6 +5,7 @@ html {
 	/* font-family: 'HelveticaNeue-Light', Helvetica, Arial, sans-serif; */
 	font-family: "PT Sans", Verdana, Helvetica, Arial, sans-serif;
 	min-height: 100%;
+	line-height: 1.5;
 }
 
 html {
@@ -32,7 +33,7 @@ html {
 		--accent-color: #01b9ff;
 		--accent-hover-color: #80dcff;
 		
-		--overlay-color: rgba(0, 0, 0, 0.8);
+		--overlay-color: rgba(0, 0, 0, 0.9);
 		--underlay-color: rgba(0, 0, 0, 1.0);
 		
 		background-color: black;
@@ -113,7 +114,6 @@ main {
 
 p, ul, dl, figure {
 	margin: 2rem 1rem;
-	line-height: 1.5;
 }
 
 section.articles {
@@ -131,8 +131,7 @@ section.articles a {
 	position: relative;
 	background-color: white;
 	
-	width: 15rem;
-	height: 15rem;
+	height: 30rem;
 	
 	background-size: cover;
 	background-position: center;
@@ -144,7 +143,7 @@ section.articles a {
 	
 	display: flex;
 	flex-direction: column;
-	justify-content: flex-start;
+	justify-content: flex-end;
 }
 
 section.articles a > * {
@@ -153,14 +152,7 @@ section.articles a > * {
 }
 
 section.articles small {
-	opacity: 0;
-	transition: 0.2s;
 	color: var(--main-color);
-}
-
-section.articles a:hover small {
-	opacity: 1;
-	display: block;
 }
 
 main {
@@ -223,14 +215,14 @@ figure img {
 
 figure figcaption {
 	text-align: center;
-	color: #999;
-	
-	margin: 0;
-	padding: 0;
+	padding: 0.5rem;
+	margin: 0.5rem 0;
 }
 
-p {
-	/* text-align: justify; */
+figure.listing figcaption {
+	background-color: var(--header-color);
+	border-radius: 0.5rem 0.5rem 0 0;
+	border-bottom: 0.25rem solid var(--accent-color);
 }
 
 ul ul {

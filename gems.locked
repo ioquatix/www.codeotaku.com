@@ -1,7 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    async (2.17.0)
+    async (2.18.0)
       console (~> 1.26)
       fiber-annotation
       io-event (~> 1.6, >= 1.6.5)
@@ -97,7 +97,7 @@ GEM
     io-event (1.7.3)
     io-stream (0.6.0)
     io-watch (0.6.3)
-    json (2.7.4)
+    json (2.7.5)
     libdatadog (12.0.0.1.0)
     libdatadog (12.0.0.1.0-aarch64-linux)
     libdatadog (12.0.0.1.0-x86_64-linux)
@@ -214,7 +214,7 @@ GEM
       ffi (~> 1.12)
     vips-thumbnail (1.6.1)
       vips (~> 8.9)
-    xrb (0.10.2)
+    xrb (0.11.0)
     xrb-sanitize (0.7.1)
       xrb (~> 0.3)
 

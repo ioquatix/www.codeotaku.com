@@ -5,8 +5,3 @@ open-source-progress-report:
   display: true
   front: true
   preview_url: preview.png
-streaming-rack:
-  author: "Samuel Williams"
-  created: 2020-06-14
-  summary: A discussion around how to improve streaming responses from Rack.
-  display: false

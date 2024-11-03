@@ -9,7 +9,7 @@ GEM
       async
     async-container (0.18.3)
       async (~> 2.10)
-    async-http (0.82.2)
+    async-http (0.82.3)
       async (>= 2.10.2)
       async-pool (~> 0.9)
       io-endpoint (~> 0.14)
@@ -61,7 +61,7 @@ GEM
       libdatadog (~> 12.0.0.1.0)
       libddwaf (~> 1.14.0.0.0)
       msgpack
-    date (3.3.4)
+    date (3.4.0)
     debase-ruby_core_source (3.3.1)
     dogstatsd-ruby (5.6.2)
     falcon (0.48.3)
@@ -152,9 +152,10 @@ GEM
     protocol-http (0.42.0)
     protocol-http1 (0.28.1)
       protocol-http (~> 0.22)
-    protocol-http2 (0.19.3)
+    protocol-http2 (0.19.4)
       protocol-hpack (~> 1.4)
       protocol-http (~> 0.18)
+      traces
     protocol-rack (0.10.1)
       protocol-http (~> 0.37)
       rack (>= 1.0)
@@ -256,4 +257,4 @@ DEPENDENCIES
   xrb-sanitize
 
 BUNDLED WITH
-   2.5.17
+   2.5.16

@@ -19,3 +19,6 @@ require 'live/developer_view'
 require 'live/clock_view'
 
 require 'async/websocket/adapters/rack'
+
+require 'traces'
+require 'metrics'

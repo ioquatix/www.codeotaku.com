@@ -43,7 +43,7 @@ end
 
 ?><content:page image_url="#{preview_url}">
 	<content:heading>#{title}</content:heading>
-
+	
 	<main>
 		<header>
 			<span class="author">#{author}</span>

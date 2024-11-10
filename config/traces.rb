@@ -33,9 +33,9 @@ rescue => error
 	Console.warn(self, "Unable to configure Datadog!", error)
 end
 
-def prepare!
-	require "traces/provider/async"
-	require "traces/provider/protocol/http2/traces"
-	
+def prepare
 	prepare_datadog!
+	
+	require "traces/provider/async"
+	require "traces/provider/protocol/http2"
 end

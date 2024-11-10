@@ -1,7 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    async (2.19.0)
+    async (2.20.0)
       console (~> 1.29)
       fiber-annotation
       io-event (~> 1.6, >= 1.6.5)

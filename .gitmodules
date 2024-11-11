@@ -1,0 +1,3 @@
+[submodule "pages/journal/2024-11-11/streaming-rack/falcon-examples"]
+	path = pages/journal/2024-11-11/streaming-rack/falcon-examples
+	url = https://github.com/socketry/falcon-examples

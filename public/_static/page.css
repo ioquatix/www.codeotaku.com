@@ -117,8 +117,7 @@ section.articles {
 
 section.articles a {
 	box-sizing: border-box;
-	-flex-basis: 20rem;
-	flex-grow: 1;
+	width: 100%;
 	
 	margin: 1rem;
 	position: relative;

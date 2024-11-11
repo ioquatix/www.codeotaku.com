@@ -1,0 +1,93 @@
+<content:entry>
+	<p>Rack 3 introduced support for input and output streaming. This is a powerful feature that improves both performance and provides opportunities for enhanced interactivity in web applications. We will explore how to use streaming input and output in Rack, including how to use it with more traditional WebSockets, along with more recently introduced declarative shadow DOM.</p>
+	
+	<figure>
+		<img src="banner.webp" alt="Rack 3 Streaming" />
+	</figure>
+	
+	<p>All the source code discussed in this article is available on <a href="https://github.com/socketry/falcon-examples">GitHub</a>. I recommend you check it out so you can follow along with the examples and try it out for yourself.</p>
+	
+	<h2>Streaming Output</h2>
+	
+	<p>Streaming output is a feature that allows you to send data to the client as it is generated. This is useful for sending large amounts of data, such as video or audio streams, or for sending data that is generated over time, such as a log file or a real-time feed. Streaming output is supported in Rack by returning a callable object as the response body. This callable object will get invoked with a stream argument, which you can read and write to from within the block.</p>
+	
+	<p>The following example shows how to emit the curernt time and date in CSV format:</p>
+	
+	<content:listing src="falcon-examples/streaming-output/config.ru" language="ruby" title="streaming-output/config.ru" />
+	
+	<p>You can use the <code>curl</code> command to test the streaming output:</p>
+	
+	<content:listing src="falcon-examples/streaming-output/readme.md" language="bash" lines="17-24" />
+	
+	<p>Use cases for streaming CSV output include:</p>
+	
+	<dl class="basic">
+		<dt>Large Report Exports</dt>
+		<dd>Users can download extensive datasets as they’re being processed, reducing wait times and enhancing user experience.</dd>
+		
+		<dt>Financial Data Feeds</dt>
+		<dd>Deliver real-time transaction or portfolio data in CSV format for continuous access by analysts and clients.</dd>
+		
+		<dt>Log Monitoring</dt>
+		<dd>Stream application or server logs in CSV format for immediate analysis and rapid response to issues.</dd>
+		
+		<dt>Real-Time Business Intelligence</dt>
+		<dd>Stream CSV data from sources like CRMs or IoT devices for up-to-date business intelligence and reporting.</dd>
+	</dl>
+	
+	<h3>Streaming Server-Sent Events (SSE)</h3>
+	
+	<p>Streaming output can be a bit tricky to use in web browsers, as they may buffer the response. One way to work around this is to use Server-Sent Events (SSE), which is a standard for sending real-time updates from a server to a client. The following example shows how to use streaming output with SSE:</p>
+	
+	<content:listing src="falcon-examples/streaming-sse/config.ru" language="ruby" title="streaming-sse/config.ru" />
+	
+	<p>On the client side, you'll need to use the EventSource API to receive the events. Here's an example of how you might do that:</p>
+	
+	<content:listing src="falcon-examples/streaming-sse/index.html" language="html" title="streaming-sse/index.html" />
+	
+	<p>Use cases for streaming SSE include:</p>
+	
+	<dl class="basic">
+		<dt>Live Notifications</dt>
+		<dd>Push real-time notifications for events like promotions, user activity updates, or order status changes to keep users informed instantly.</dd>
+		
+		<dt>Real-Time Dashboards</dt>
+		<dd>Stream continuous updates to data visualization dashboards for monitoring systems, sales metrics, or analytics without manual refreshes.</dd>
+		
+		<dt>Live Polls and Q&amp;A</dt>
+		<dd>Stream responses and results for interactive polls, Q&amp;A sessions, or audience participation during live events and webinars.</dd>
+		
+		<dt>Chat and Messaging Apps</dt>
+		<dd>Deliver new messages instantly as they arrive, creating a more responsive chat experience for users.</dd>
+	</dl>
+	
+	<h2>Streaming Input</h2>
+	
+	<p>Streaming input is a feature that allows you to read data from the client as it is received. This is useful for processing large amounts of data, such as file uploads, or for processing data that is generated over time, such as a real-time feed. Streaming input is supported in Rack by reading from the input stream provided by the request object.</p>
+	
+	<p>The following example shows how to read a CSV stream from the client and process it line by line:</p>
+	
+	<content:listing src="falcon-examples/streaming-input/config.ru" language="ruby" title="streaming-input/config.ru" />
+	
+	<p>Very few clients support bi-directional streaming, so we implemented a client to go with the example:</p>
+	
+	<content:listing src="falcon-examples/streaming-input/client.rb" language="ruby" title="streaming-input/client.rb" />
+	
+	<p>You can use this client to type in several numbers using CSV format, and the server will respond with the minimum, maximum and average of the numbers you entered.</p>
+	
+	<content:listing src="falcon-examples/streaming-input/readme.md" language="bash" lines="17-22" />
+	
+	<h2>Streaming Templates</h2>
+	
+	<p>Streaming templates improve time to first byte, at the expensive of slightly more complex error handling. By allowing the server to send chunks from the template as they are generated, the client can start rendering the page sooner. This is particularly useful for large pages, or pages with complex logic that takes time to render.</p>
+	
+	<p>The following example shows how to use streaming templates with Falcon:</p>
+	
+	<content:listing src="falcon-examples/streaming-template/config.ru" language="ruby" title="streaming-template/config.ru" />
+	
+	<h3>RubyConf AU 2023 Presentation</h3>
+	
+	<content:youtube-video id="9tOMD491mFY" />
+	
+	<p>You can find the <a href="https://github.com/ioquatix/presentations/tree/main/2023">slides for my presentation here</a>.</p>
+</content:entry>

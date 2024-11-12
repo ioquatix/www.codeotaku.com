@@ -23,7 +23,7 @@
 	
 	<dl class="basic">
 		<dt>Large Report Exports</dt>
-		<dd>Users can download extensive datasets as they’re being processed, reducing wait times and enhancing user experience.</dd>
+		<dd>Users can download extensive datasets as they're being processed, reducing wait times and enhancing user experience.</dd>
 		
 		<dt>Financial Data Feeds</dt>
 		<dd>Deliver real-time transaction or portfolio data in CSV format for continuous access by analysts and clients.</dd>
@@ -105,7 +105,7 @@
 	
 	<content:listing src="falcon-examples/streaming-bidirectional/client.rb" language="ruby" title="streaming-bidirectional/client.rb" />
 	
-	<p>Due to the <a href="https://github.com/whatwg/fetch/issues/1254#issuecomment-862810798">limitations of web browser implementations</a>, bi-directional streaming is <a href="https://github.com/whatwg/fetch/issues/1254">not well-supported in available interfaces like fetch</a>. However, it is still useful for scenarios that don’t involve a browser, or for wrapping higher level protocols:</p>
+	<p>Due to the <a href="https://github.com/whatwg/fetch/issues/1254#issuecomment-862810798">limitations of web browser implementations</a>, bi-directional streaming is <a href="https://github.com/whatwg/fetch/issues/1254">not well-supported in modern interfaces like fetch</a>. However, it is still useful for scenarios that don't involve a browser, or for wrapping higher level protocols:</p>
 	
 	<dl class="basic">
 		<dt>Real-Time Transcription &amp; Translation</dt>

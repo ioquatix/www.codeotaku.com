@@ -117,7 +117,15 @@
 	
 	<content:listing src="falcon-examples/streaming-websockets/index.html" language="html" title="streaming-websockets/index.html" />
 	
-	<h3>RubyConf AU 2023 Presentation</h3>
+	<h2>What about Rails?</h2>
+	
+	<p>Rails builds on top of Rack, so most of the examples above work unchanged, provided you use <code>self.response = Rack::Response[...]</code> in the controller action, for example, the server-sent events example can be done like this:</p>
+	
+	<content:listing src="rails.rb" language="ruby" />
+	
+	<p>Of course, for the best performance, you should be running on top of <a href="https://github.com/socketry/falcon">Falcon</a>. You can also check out <a href="https://github.com/socketry/falcon-rails-example">falcon-rails-example</a> for the above examples adapter to Rails.</p>
+	
+	<h2>RubyConf AU 2023 Presentation</h2>
 	
 	<p>In this talk, I discuss asynchronous execution models in Ruby, and how we can build streaming applications using Rack and Falcon. I discuss some of the above approaches in the context of Ruby on Rails.</p>
 	

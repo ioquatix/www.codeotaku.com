@@ -1,5 +1,5 @@
 <content:entry>
-	<p>Rack 3 introduced support for input and output streaming. This is a powerful feature that improves both performance and provides opportunities for enhanced interactivity in web applications. We will explore how to use streaming input and output in Rack, including how to use it with more traditional WebSockets, along with more recently introduced declarative shadow DOM.</p>
+	<p>Rack 3 introduced support for input and output streaming. This is a powerful feature that improves both performance and provides opportunities for enhanced interactivity in web applications. We will explore how to use streaming input and output in Rack, including server-sent events, streaming templates, streaming uploads, and bi-directional streaming. We will also discuss how to use these features in Ruby on Rails.</p>
 	
 	<figure>
 		<img src="banner.webp" alt="Rack 3 Streaming" />
@@ -119,7 +119,7 @@
 	
 	<h2>What about Rails?</h2>
 	
-	<p>Rails builds on top of Rack, so most of the examples above work unchanged, provided you use <code>self.response = Rack::Response[...]</code> in the controller action, for example, the server-sent events example can be done like this:</p>
+	<p>Rails builds on top of Rack, so most of the examples above work unchanged, provided you use <code class="syntax ruby">self.response = Rack::Response[...]</code> in the controller action, for example, the server-sent events example can be done like this:</p>
 	
 	<content:listing src="rails.rb" language="ruby" />
 	

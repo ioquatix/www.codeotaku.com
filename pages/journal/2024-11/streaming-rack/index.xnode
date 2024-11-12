@@ -11,7 +11,7 @@
 	
 	<p>Streaming output is a feature that allows you to send data to the client as it is generated. This is useful for sending large amounts of data, such as video or audio streams, or for sending data that is generated over time, such as a log file or a real-time feed. Streaming output is supported in Rack by returning a callable object as the response body. This callable object will get invoked with a stream argument, which you can read and write to from within the block.</p>
 	
-	<p>The following example shows how to emit the curernt time and date in CSV format:</p>
+	<p>The following example shows how to emit the current time and date in CSV format:</p>
 	
 	<content:listing src="falcon-examples/streaming-output/config.ru" language="ruby" title="streaming-output/config.ru" />
 	
@@ -37,7 +37,7 @@
 	
 	<h3>Streaming Server-Sent Events (SSE)</h3>
 	
-	<p>Streaming output can be a bit tricky to use in web browsers, as they may buffer the response. One way to work around this is to use Server-Sent Events (SSE), which is a standard for sending real-time updates from a server to a client.</p>
+	<p>Streaming output can be a bit tricky to use in web browsers, as they may buffer the response. One way to work around this is to use Server-Sent Events (SSE), which are specifically handled by web browsers and are guaranteed to be unbuffered.</p>
 	
 	<p>The following example shows how to use streaming output with SSE:</p>
 	
@@ -45,7 +45,7 @@
 	
 	<p>Of note, is the error handling. It's important to be aware of the various failure cases that can occur when streaming data. In the above example, we stream data indefinitely. If there is a failure for some reason, we will close the stream with the error. Closing the stream with an error will communicate to the client that the stream was terminated prematurely.</p>
 	
-	<p>On the client side, you'll need to use the EventSource API to receive the events. Here's an example of how you might do that:</p>
+	<p>On the client side, you'll need to use the EventSource interface to receive the events. Here's an example of how you might do that:</p>
 	
 	<content:listing src="falcon-examples/streaming-sse/index.html" language="html" title="streaming-sse/index.html" />
 	
@@ -85,17 +85,17 @@
 	
 	<p>Streaming input is a feature that allows you to read data from the client as it is received. This is useful for processing large amounts of data, such as file uploads, or for processing data that is generated over time, such as a real-time feed. Streaming input is supported in Rack by reading from the input stream provided by the request environment.</p>
 	
-	<p>The following example shows how to read a file upload from the client and process it chunk by chunk:</p>
+	<p>The following example shows how to read a file upload from the client and process it chunk by chunk to generate a chuecksum:</p>
 	
 	<content:listing src="falcon-examples/streaming-input/config.ru" language="ruby" title="streaming-input/config.ru" />
 	
-	<p>If you upload a file, it will be sent in chunks, and the checksum will be computed:</p>
+	<p>If you upload a file (even a large one), it will be sent in chunks, and the checksum will be computed without buffering the entire input:</p>
 	
 	<content:listing src="falcon-examples/streaming-input/readme.md" language="bash" lines="17-18" />
 	
 	<h3>Bi-directional Streaming</h3>
 	
-	<p>Full bi-directional streaming is a useful feature for building interactive applications. It forms the foundation for WebSockets and other real-time communication protocols. By combining streaming input and streaming output, you can read and write data to the client in real-time, enabling features like chat applications, live collaboration, and multiplayer games.</p>
+	<p>Full bi-directional streaming is a useful feature for building interactive applications. It forms the foundation for WebSockets and other real-time communication protocols. By combining streaming input and streaming output, you can read and write data to the client in real-time, enabling features like chat applications, live collaboration, <a href="../../2024-09/interactive-rails">and interactive games</a>.</p>
 	
 	<p>The following example shows how to implement a simple chat server using bi-directional streaming:</p>
 	
@@ -104,6 +104,16 @@
 	<p>Very few clients (e.g. curl) support bi-directional streaming, so we implemented a client to go with the example:</p>
 	
 	<content:listing src="falcon-examples/streaming-bidirectional/client.rb" language="ruby" title="streaming-bidirectional/client.rb" />
+	
+	<p>Given the limited compatibility of raw bi-directioal streaming, most use cases are better served by higher-level protocols like WebSockets. However, bi-directional streaming can be useful for:</p>
+	
+	<dl>
+		<dt>Real-Time Transcription</dt>
+		<dd>Stream audio data to a server for real-time transcription and translation, and stream the results back to the client for immediate feedback.</dd>
+		
+		<dt>Efficient HTTP RPC</dt>
+		<dd>Some RPC protocols, like gRPC, can be implemented over HTTP using bi-directional streaming for efficient communication between clients and servers.</dd>
+	</dl>
 	
 	<h3>Bi-directional WebSockets</h3>
 	
@@ -116,6 +126,19 @@
 	<p>On the client side, you can use the WebSocket API to send and receive messages. Here's an example of how you might do that:</p>
 	
 	<content:listing src="falcon-examples/streaming-websockets/index.html" language="html" title="streaming-websockets/index.html" />
+	
+	<p>Use cases for WebSockets include:</p>
+	
+	<dl class="basic">
+		<dt>Progressive Enhancement</dt>
+		<dd>Enhance traditional web applications with incremental updates and real-time features for a more interactive user experience.</dd>
+		
+		<dt>Live Collaboration</dt>
+		<dd>Support real-time editing and collaboration on documents, spreadsheets, or codebases for remote teams.</dd>
+		
+		<dt>Interactive Games</dt>
+		<dd>Facilitate real-time multiplayer gaming experiences with features like chat, leaderboards, and live updates.</dd>
+	</dl>
 	
 	<h2>What about Rails?</h2>
 	

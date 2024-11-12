@@ -107,7 +107,7 @@
 	
 	<p>Due to the <a href="https://github.com/whatwg/fetch/issues/1254#issuecomment-862810798">limitations of web browser implementations</a>, bi-directional streaming is <a href="https://github.com/whatwg/fetch/issues/1254">not well-supported in available interfaces like fetch</a>. However, it is still useful for scenarios that don’t involve a browser, or for wrapping higher level protocols:</p>
 	
-	<dl>
+	<dl class="basic">
 		<dt>Real-Time Transcription &amp; Translation</dt>
 		<dd>Stream audio data to a server for real-time transcription and translation, and stream the results back to the client for immediate feedback.</dd>
 		

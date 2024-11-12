@@ -3,7 +3,7 @@ streaming-rack:
   created: 2024-11-11
   title: "Streaming Rack with Falcon"
   summary: "An overview of how to use Falcon to stream requests and responses in Rack applications."
-  display: false
-  front: false
+  display: true
+  front: true
   preview_url: banner.webp
   banner_url: banner.webp

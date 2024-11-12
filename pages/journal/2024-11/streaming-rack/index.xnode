@@ -103,7 +103,7 @@
 	
 	<p>Very few clients (e.g. curl) support bi-directional streaming, so we implemented a client to go with the example:</p>
 	
-	<content:listing src="falcon-examples/streaming-bidirectional/client.rb" language="ruby" title="streaming-input/client.rb" />
+	<content:listing src="falcon-examples/streaming-bidirectional/client.rb" language="ruby" title="streaming-bidirectional/client.rb" />
 	
 	<h3>Bi-directional WebSockets</h3>
 	
@@ -123,7 +123,7 @@
 	
 	<content:listing src="rails.rb" language="ruby" />
 	
-	<p>Of course, for the best performance, you should be running on top of <a href="https://github.com/socketry/falcon">Falcon</a>. You can also check out <a href="https://github.com/socketry/falcon-rails-example">falcon-rails-example</a> for the above examples adapter to Rails.</p>
+	<p>Of course, for the best performance, you should be running on top of <a href="https://github.com/socketry/falcon">Falcon</a>. You can also check out <a href="https://github.com/socketry/falcon-rails-example">falcon-rails-example</a> for the above examples (and more) adapted to Rails.</p>
 	
 	<h2>RubyConf AU 2023 Presentation</h2>
 	

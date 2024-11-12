@@ -95,7 +95,7 @@
 	
 	<h3>Bi-directional Streaming</h3>
 	
-	<p>Full bi-directional streaming is a useful feature for building interactive applications. It forms the foundation for WebSockets and other real-time communication protocols. By combining streaming input and streaming output, you can read and write data to the client in real-time, enabling features like chat applications, live collaboration, <a href="../../2024-09/interactive-rails">and interactive games</a>.</p>
+	<p>Full bi-directional streaming is a useful feature for building interactive applications. By combining streaming input and streaming output, you can read and write data to the client in real-time.</p>
 	
 	<p>The following example shows how to implement a simple chat server using bi-directional streaming:</p>
 	
@@ -105,14 +105,17 @@
 	
 	<content:listing src="falcon-examples/streaming-bidirectional/client.rb" language="ruby" title="streaming-bidirectional/client.rb" />
 	
-	<p>Given the limited compatibility of raw bi-directioal streaming, most use cases are better served by higher-level protocols like WebSockets. However, bi-directional streaming can be useful for:</p>
+	<p>Due to the <a href="https://github.com/whatwg/fetch/issues/1254#issuecomment-862810798">limitations of web browser implementations</a>, bi-directional streaming is <a href="https://github.com/whatwg/fetch/issues/1254">not well-supported in available interfaces like fetch</a>. However, it is still useful for scenarios that don’t involve a browser, or for wrapping higher level protocols:</p>
 	
 	<dl>
-		<dt>Real-Time Transcription</dt>
+		<dt>Real-Time Transcription &amp; Translation</dt>
 		<dd>Stream audio data to a server for real-time transcription and translation, and stream the results back to the client for immediate feedback.</dd>
 		
 		<dt>Efficient HTTP RPC</dt>
 		<dd>Some RPC protocols, like gRPC, can be implemented over HTTP using bi-directional streaming for efficient communication between clients and servers.</dd>
+		
+		<dt>WebSockets</dt>
+		<dd>In Rack, WebSockets can and are be implemented using bi-directional streaming.</dd>
 	</dl>
 	
 	<h3>Bi-directional WebSockets</h3>
@@ -146,7 +149,7 @@
 	
 	<content:listing src="rails.rb" language="ruby" />
 	
-	<p>Of course, for the best performance, you should be running on top of <a href="https://github.com/socketry/falcon">Falcon</a>. You can also check out <a href="https://github.com/socketry/falcon-rails-example">falcon-rails-example</a> for the above examples (and more) adapted to Rails.</p>
+	<p>Of course, for the best performance, you should be running on top of <a href="https://github.com/socketry/falcon">Falcon</a>. You can also check out <a href="https://github.com/socketry/falcon-rails-example">falcon-rails-example</a> for the above examples (and more) adapted to Rails. You might also like to check out <a href="../../2024-09/interactive-rails">my previous article on interactive Rails applications</a>.</p>
 	
 	<h2>RubyConf AU 2023 Presentation</h2>
 	
@@ -155,4 +158,8 @@
 	<content:youtube-video id="9tOMD491mFY" />
 	
 	<p>You can find the <a href="https://github.com/ioquatix/presentations/tree/main/2023">slides for my presentation here</a>.</p>
+	
+	<h2>Conclusion</h2>
+	
+	<p>Rack 3 introduces powerful streaming features that improve performance and provide opportunities for enhanced interactivity in web applications. By leveraging streaming input and output, you can build applications that are more responsive and efficient, delivering real-time experiences that were previously challenging to achieve. By making full-duplex streaming easy to use in Rack and Falcon, we aim to position Ruby and Rails as an exceptional choice for building modern, interactive applications that require high performance and real-time capabilities.</p>
 </content:entry>

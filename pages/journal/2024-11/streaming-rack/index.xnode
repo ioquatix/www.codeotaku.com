@@ -37,13 +37,19 @@
 	
 	<h3>Streaming Server-Sent Events (SSE)</h3>
 	
-	<p>Streaming output can be a bit tricky to use in web browsers, as they may buffer the response. One way to work around this is to use Server-Sent Events (SSE), which is a standard for sending real-time updates from a server to a client. The following example shows how to use streaming output with SSE:</p>
+	<p>Streaming output can be a bit tricky to use in web browsers, as they may buffer the response. One way to work around this is to use Server-Sent Events (SSE), which is a standard for sending real-time updates from a server to a client.</p>
+	
+	<p>The following example shows how to use streaming output with SSE:</p>
 	
 	<content:listing src="falcon-examples/streaming-sse/config.ru" language="ruby" title="streaming-sse/config.ru" />
+	
+	<p>Of note, is the error handling. It's important to be aware of the various failure cases that can occur when streaming data. In the above example, we stream data indefinitely. If there is a failure for some reason, we will close the stream with the error. Closing the stream with an error will communicate to the client that the stream was terminated prematurely.</p>
 	
 	<p>On the client side, you'll need to use the EventSource API to receive the events. Here's an example of how you might do that:</p>
 	
 	<content:listing src="falcon-examples/streaming-sse/index.html" language="html" title="streaming-sse/index.html" />
+	
+	<p>Event streams are easy to use - they are supported by all modern browsers and handle reconnections and other edge cases automatically. This makes them a great choice for streaming data to the client.</p>
 	
 	<p>Use cases for streaming SSE include:</p>
 	
@@ -61,31 +67,59 @@
 		<dd>Deliver new messages instantly as they arrive, creating a more responsive chat experience for users.</dd>
 	</dl>
 	
-	<h2>Streaming Input</h2>
+	<h3>Streaming Templates</h3>
 	
-	<p>Streaming input is a feature that allows you to read data from the client as it is received. This is useful for processing large amounts of data, such as file uploads, or for processing data that is generated over time, such as a real-time feed. Streaming input is supported in Rack by reading from the input stream provided by the request object.</p>
+	<p>Most web frameworks use templates to generate HTML. These templates are typically rendered in full before being sent to the client. However, in some cases it's possible to stream the template as it is being generated. This greatly improves the time to first byte, at the expense of slightly more complex error handling. By allowing the server to send chunks from the template as they are generated, the client can start rendering the page sooner. This is particularly useful for large pages, or pages with complex logic that takes time to render.</p>
 	
-	<p>The following example shows how to read a CSV stream from the client and process it line by line:</p>
+	<p>Here is an example of a template with sleep statements to simulate a slow rendering page:</p>
 	
-	<content:listing src="falcon-examples/streaming-input/config.ru" language="ruby" title="streaming-input/config.ru" />
-	
-	<p>Very few clients support bi-directional streaming, so we implemented a client to go with the example:</p>
-	
-	<content:listing src="falcon-examples/streaming-input/client.rb" language="ruby" title="streaming-input/client.rb" />
-	
-	<p>You can use this client to type in several numbers using CSV format, and the server will respond with the minimum, maximum and average of the numbers you entered.</p>
-	
-	<content:listing src="falcon-examples/streaming-input/readme.md" language="bash" lines="17-22" />
-	
-	<h2>Streaming Templates</h2>
-	
-	<p>Streaming templates improve time to first byte, at the expensive of slightly more complex error handling. By allowing the server to send chunks from the template as they are generated, the client can start rendering the page sooner. This is particularly useful for large pages, or pages with complex logic that takes time to render.</p>
+	<content:listing src="falcon-examples/streaming-template/template.xrb" language="html" title="streaming-template/template.xrb" />
 	
 	<p>The following example shows how to use streaming templates with Falcon:</p>
 	
 	<content:listing src="falcon-examples/streaming-template/config.ru" language="ruby" title="streaming-template/config.ru" />
 	
+	<p>You can also do this with ERB templates, but you need to use a streaming-compatible renderer. Rails does not fully support this right now, but we are working on it!</p>
+	
+	<h2>Streaming Input</h2>
+	
+	<p>Streaming input is a feature that allows you to read data from the client as it is received. This is useful for processing large amounts of data, such as file uploads, or for processing data that is generated over time, such as a real-time feed. Streaming input is supported in Rack by reading from the input stream provided by the request environment.</p>
+	
+	<p>The following example shows how to read a file upload from the client and process it chunk by chunk:</p>
+	
+	<content:listing src="falcon-examples/streaming-input/config.ru" language="ruby" title="streaming-input/config.ru" />
+	
+	<p>If you upload a file, it will be sent in chunks, and the checksum will be computed:</p>
+	
+	<content:listing src="falcon-examples/streaming-input/readme.md" language="bash" lines="17-18" />
+	
+	<h3>Bi-directional Streaming</h3>
+	
+	<p>Full bi-directional streaming is a useful feature for building interactive applications. It forms the foundation for WebSockets and other real-time communication protocols. By combining streaming input and streaming output, you can read and write data to the client in real-time, enabling features like chat applications, live collaboration, and multiplayer games.</p>
+	
+	<p>The following example shows how to implement a simple chat server using bi-directional streaming:</p>
+	
+	<content:listing src="falcon-examples/streaming-bidirectional/config.ru" language="ruby" title="streaming-bidirectional/config.ru" />
+	
+	<p>Very few clients (e.g. curl) support bi-directional streaming, so we implemented a client to go with the example:</p>
+	
+	<content:listing src="falcon-examples/streaming-bidirectional/client.rb" language="ruby" title="streaming-input/client.rb" />
+	
+	<h3>Bi-directional WebSockets</h3>
+	
+	<p>To work around the limitations of bi-directional streaming in web browsers, you can use WebSockets. WebSockets provide a full-duplex communication channel over an HTTP connection. This reduces the difficulty of implementing real-time communication in web browsers.</p>
+	
+	<p>The following example shows how to use WebSockets with Falcon:</p>
+	
+	<content:listing src="falcon-examples/streaming-websockets/config.ru" language="ruby" title="streaming-websockets/config.ru" />
+	
+	<p>On the client side, you can use the WebSocket API to send and receive messages. Here's an example of how you might do that:</p>
+	
+	<content:listing src="falcon-examples/streaming-websockets/index.html" language="html" title="streaming-websockets/index.html" />
+	
 	<h3>RubyConf AU 2023 Presentation</h3>
+	
+	<p>In this talk, I discuss asynchronous execution models in Ruby, and how we can build streaming applications using Rack and Falcon. I discuss some of the above approaches in the context of Ruby on Rails.</p>
 	
 	<content:youtube-video id="9tOMD491mFY" />
 	

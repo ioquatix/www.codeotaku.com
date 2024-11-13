@@ -6,6 +6,4 @@
 def prepare!
 	require "metrics/provider/async"
 	require "metrics/provider/protocol/http2/traces"
-	
-	prepare_datadog!
 end

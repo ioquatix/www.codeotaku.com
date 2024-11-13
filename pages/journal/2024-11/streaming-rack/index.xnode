@@ -115,7 +115,7 @@
 		<dd>Some RPC protocols, like gRPC, can be implemented over HTTP using bi-directional streaming for efficient communication between clients and servers.</dd>
 		
 		<dt>WebSockets</dt>
-		<dd>In Rack, WebSockets can and are be implemented using bi-directional streaming.</dd>
+		<dd>In Rack, WebSockets can and are implemented using bi-directional streaming.</dd>
 	</dl>
 	
 	<h3>Bi-directional WebSockets</h3>

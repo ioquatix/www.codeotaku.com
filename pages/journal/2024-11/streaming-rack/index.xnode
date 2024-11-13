@@ -11,7 +11,7 @@
 	
 	<p>Streaming output is a feature that allows you to send data to the client as it is generated. This is useful for sending large amounts of data, such as video or audio streams, or for sending data that is generated over time, such as a log file or a real-time feed. Streaming output is supported in Rack by returning a callable object as the response body. This callable object will get invoked with a stream argument, which you can read and write to from within the block.</p>
 	
-	<p>The following example shows how to emit the current time and date in CSV format:</p>
+	<p>The following example shows how to emit the current date and time in CSV format:</p>
 	
 	<content:listing src="falcon-examples/streaming-output/config.ru" language="ruby" title="streaming-output/config.ru" />
 	

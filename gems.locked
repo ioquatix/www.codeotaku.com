@@ -61,7 +61,7 @@ GEM
     datadog-ruby_core_source (3.4.0)
     date (3.4.1)
     dogstatsd-ruby (5.6.4)
-    falcon (0.48.4)
+    falcon (0.48.5)
       async
       async-container (~> 0.18)
       async-http (~> 0.75)

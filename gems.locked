@@ -101,7 +101,7 @@ GEM
     io-event (1.9.0)
     io-stream (0.6.1)
     io-watch (0.6.3)
-    json (2.10.1)
+    json (2.10.2)
     libdatadog (16.0.1.1.0)
     libdatadog (16.0.1.1.0-aarch64-linux)
     libdatadog (16.0.1.1.0-x86_64-linux)

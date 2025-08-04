@@ -23,6 +23,7 @@ group :preload do
 	
 	gem 'traces-backend-datadog'
 	gem 'metrics-backend-datadog'
+	gem "console-output-datadog"
 end
 
 gem 'net-smtp'

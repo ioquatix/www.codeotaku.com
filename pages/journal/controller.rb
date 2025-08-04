@@ -146,6 +146,8 @@ on '**/logout' do |request, path|
 end
 
 on '**' do |request, path|
+	Console.info(self, "Request for #{path} from #{request.ip} (#{request.user_agent})")
+	
 	if user_id = request.session['user_id']
 		@user = Journal::User.fetch_all(DB.current, id: user_id)
 	else

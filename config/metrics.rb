@@ -3,7 +3,7 @@
 # Released under the MIT License.
 # Copyright, 2024, by Samuel Williams.
 
-def prepare!
+def prepare
 	require "metrics/provider/async"
 	require "metrics/provider/async/http"
 end

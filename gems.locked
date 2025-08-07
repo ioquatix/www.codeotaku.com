@@ -17,7 +17,7 @@ GEM
       io-endpoint
       io-stream
       memory-leak (~> 0.5)
-    async-http (0.90.0)
+    async-http (0.90.1)
       async (>= 2.10.2)
       async-pool (~> 0.11)
       io-endpoint (~> 0.14)

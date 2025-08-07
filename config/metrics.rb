@@ -5,5 +5,5 @@
 
 def prepare!
 	require "metrics/provider/async"
-	require "metrics/provider/protocol/http2/traces"
+	require "metrics/provider/async/http"
 end

@@ -21,8 +21,8 @@ group :preload do
 	gem 'variant'
 	gem 'live'
 	
-	gem 'traces-backend-datadog'
-	gem 'metrics-backend-datadog'
+	gem 'traces-backend-datadog', require: false
+	gem 'metrics-backend-datadog', require: false
 	gem "console-output-datadog"
 end
 

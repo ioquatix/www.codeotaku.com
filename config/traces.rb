@@ -37,5 +37,7 @@ def prepare
 	prepare_datadog!
 	
 	require "traces/provider/async"
-	require "traces/provider/protocol/http2"
+	require "traces/provider/async/http"
+	require "traces/provider/async/http/protocol/http1/client"
+	require "traces/provider/async/http/protocol/http2/client"
 end

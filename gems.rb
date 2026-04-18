@@ -9,6 +9,7 @@ group :preload do
 	gem 'utopia', '~> 2.22'
 	gem 'utopia-gallery'
 	gem 'utopia-analytics'
+	gem 'async-service-supervisor'
 	
 	gem 'relaxo-model', '~> 0.19'
 	

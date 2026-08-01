@@ -6,11 +6,6 @@ run-time-polymorphism:
     author: "Samuel Williams"
     created: 2009-05-09
     summary: "Run Time Polymorphism is a useful construct which allows us to change the behaviour of code depending on its input - but what are the costs associated with this technique?"
-what-is-abstraction:
-    title: "What is abstraction?"
-    author: "Samuel Williams"
-    created: 2009-05-08
-    summary: "Abstraction allows us to ignore low level details and focus on a higher level structure - but how do we use it and what are the implications?"
 matrix-mathematics:
     author: "Samuel Williams"
     created: 2009-05-11

@@ -60,16 +60,11 @@
 	
 	<p>This is why “retry the request” is not one operation. The client must distinguish several cases:</p>
 	
-	<dl class="basic">
-		<dt>The request was definitely not processed</dt>
-		<dd>Rewind its body and send it again, regardless of the method.</dd>
-		
-		<dt>The outcome is ambiguous</dt>
-		<dd>Retry only when the method is idempotent and the body can be rewound.</dd>
-		
-		<dt>A response has already begun</dt>
-		<dd>Expose the error to the caller; a transparent retry would hide partial application behavior.</dd>
-	</dl>
+	<ol>
+		<li><strong>The request was definitely not processed:</strong> rewind its body and send it again, regardless of the method.</li>
+		<li><strong>The outcome is ambiguous:</strong> retry only when the method is idempotent and the body can be rewound.</li>
+		<li><strong>A response has already begun:</strong> expose the error to the caller; a transparent retry would hide partial application behavior.</li>
+	</ol>
 	
 	<p><code class="language-ruby">Async::HTTP</code> already had bounded retry handling: refused requests were retried, and ambiguous connection failures were retried only for methods considered idempotent. What it did not do was rewind a body which the first attempt had already consumed. <a href="https://github.com/socketry/protocol-http/pull/108"><code class="language-ruby">Protocol::HTTP</code> therefore introduced <code class="language-ruby">Request#rewind!</code> for failures known not to have been processed and <code class="language-ruby">Request#retry!</code> for ambiguous failures</a>. <a href="https://github.com/socketry/async-http/pull/229"><code class="language-ruby">Async::HTTP</code> now delegates to those operations before retrying</a>.</p>
 	

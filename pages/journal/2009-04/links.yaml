@@ -8,8 +8,3 @@ state-synchronization:
     created: 2009-04-18
     summary: "Game state can be synchronized across a network - find out about the various ways this can happen."
     author: "Samuel Williams"
-python-hashes-in-ruby:
-    title: "Python Hashes in Ruby"
-    created: 2009-04-20
-    summary: "Python hashes are unique to the implementation of Python - here is an implementation in Ruby."
-    author: "Samuel Williams"

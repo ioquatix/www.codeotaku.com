@@ -1,4 +1,0 @@
-latex-symbols-in-verbatim:
-    created: 2010-03-17
-    title: "LaTeX Symbols in Verbatim Mode (using UTF8)"
-    summary: "LaTeX doesn't have good support for Unicode characters, especially in verbatim mode. Here is a workaround."

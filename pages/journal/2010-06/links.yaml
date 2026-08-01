@@ -1,4 +1,0 @@
-aggregate-callback:
-    created: 2010-06-03
-    author: Samuel Williams
-    summary: "A simple JavaScript class that helps combine events into a single callback."

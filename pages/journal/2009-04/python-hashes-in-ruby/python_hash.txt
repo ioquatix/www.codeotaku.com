@@ -1,2 +1,0 @@
-path = "..."
-cache_path = hash(path) % 255

@@ -1,8 +1,0 @@
-# "plugin.rb"
-def initialize(foo)
-	$stderr.puts "Plugin Loaded #{foo.inspect}"
-end
- 
-def process(data)
-	return data.reverse
-end

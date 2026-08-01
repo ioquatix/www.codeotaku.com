@@ -3,26 +3,10 @@ thinking-about-programming:
     created: 2009-10-04
     author: "Samuel Williams"
     summary: "What is the right level of abstraction and terminology to solve technical problems?"
-ramaze-and-rack:
-    author: "Samuel Williams"
-    created: 2009-10-10
-    summary: "Ramaze is a fantastic framework for web application development. Find out more about it and how it works."
 concurrency-and-immutability:
     author: "Samuel Williams"
     created: 2009-10-13
     summary: "Concurrency and Immutability are becoming interesting topics in computer science - find out why!"
-programming-and-debugging:
-    author: "Samuel Williams"
-    created: 2009-10-14
-    summary: "Is debugging a complex program implicity difficult, or is it simply the tools we are using?"
-floating-point-numbers:
-    author: "Samuel Williams"
-    created: 2009-10-14
-    summary: "Floating point numbers are inexact. But, not many people consider this and it can cause many issues."
-loading-anonymous-ruby-classes:
-    author: "Samuel Williams"
-    created: 2009-10-16
-    summary: "Loading files in Ruby is often done in a highly explicit way. But this need not always be the case - here is an example."
 richard-stallman-in-christchurch:
     author: "Samuel Williams"
     created: 2009-10-22

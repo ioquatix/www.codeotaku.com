@@ -24,9 +24,9 @@
 	
 	<h3>Keeping Fibers Alive While Ruby Switches Between Them</h3>
 	
-	<p>A different CRuby failure involved object lifetime. During a nested sequence of <code class="language-ruby">Fiber#resume</code> and <code class="language-ruby">Fiber.yield</code>, Ruby could suspend a C function while it still held a raw pointer to the target fiber. If Ruby code discarded its last visible reference and another fiber ran the garbage collector, the target could be reclaimed before the suspended C function resumed. The result was a use-after-free inside the VM.</p>
+	<p><a href="https://bugs.ruby-lang.org/issues/22196">Ruby Bug #22196 reported a heap-use-after-free in <code class="language-c">fiber_switch</code></a>. During a nested sequence of <code class="language-ruby">Fiber#resume</code> and <code class="language-ruby">Fiber.yield</code>, Ruby could suspend a C function while it still held a raw pointer to the target fiber. If Ruby code discarded its last visible reference and another fiber ran the garbage collector, the target could be reclaimed before the suspended C function resumed.</p>
 	
-	<p>An <a href="https://github.com/ruby/ruby/pull/17951">initial patch placed a garbage-collection guard around the switch</a>, but it was <a href="https://github.com/ruby/ruby/pull/17956">reverted while the guard's exact lifetime was reconsidered</a>. The <a href="https://github.com/ruby/ruby/pull/17957">corrected fix</a> keeps the Ruby fiber object alive until the context switch has finished using its native pointer.</p>
+	<p>The stale-pointer read became visible after <a href="https://bugs.ruby-lang.org/issues/21955">Bug #21955 corrected stack cleanup for fibers terminated through <code class="language-ruby">Fiber#transfer</code></a>. An <a href="https://github.com/ruby/ruby/pull/17951">initial patch placed a garbage-collection guard around the switch</a>, but it was <a href="https://github.com/ruby/ruby/pull/17956">reverted after being merged into the Ruby 3.4 branch instead of master</a>. The <a href="https://github.com/ruby/ruby/pull/17957">replacement patch on master</a> keeps the Ruby fiber object alive until the context switch has finished using its native pointer.</p>
 	
 	<h3>Preserving TracePoint Events Through Optimization</h3>
 	

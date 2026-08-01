@@ -1,3 +1,0 @@
-def process (numbers)
-  numbers.collect{|n| doSomething(n+5)}
-end

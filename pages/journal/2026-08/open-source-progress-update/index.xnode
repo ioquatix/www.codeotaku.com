@@ -1,0 +1,133 @@
+<content:entry>
+	<p>Many reliability bugs do not occur during the main operation. They appear in the narrow gap between checking some state and acting on it: a signal arrives just before an event loop sleeps, a server closes a connection just before a client reuses it, or the garbage collector runs while Ruby is switching fibers.</p>
+	
+	<p>I spent much of July working in those gaps. Although the changes span CRuby, Async, HTTP, and Falcon, they share one goal: make failure explicit at the layer which has enough information to handle it safely. Across 64 public pull requests in 19 repositories, the recurring question was not merely “did this operation fail?”, but “what do we know happened before it failed?”</p>
+	
+	<h2>When Ctrl-C Arrives at the Wrong Moment</h2>
+	
+	<p>Consider a server shutting down after you press Ctrl-C. It stops accepting work, asks its workers to finish, closes their connections, and then exits. Ruby provides <code class="language-ruby">Thread.handle_interrupt</code> so a program can defer an asynchronous exception while it is performing that cleanup.</p>
+	
+	<p>The problem was that the default <code>SIGINT</code> path bypassed Ruby's pending-interrupt queue and called the immediate interrupt path directly. <code class="language-ruby">Thread.handle_interrupt</code> existed, but the exception produced by pressing Ctrl-C did not consistently obey it. <a href="https://github.com/ruby/ruby/pull/17533">The new path places that exception on the pending-interrupt queue</a>, so the program receives it when the protected section permits delivery.</p>
+	
+	<p>That change exposed a subtler race in native event loops. An event selector is the operating-system primitive which sleeps until a socket, timer, or other event becomes ready. Native extensions release Ruby's Global VM Lock while waiting so other Ruby threads can continue. In the problematic sequence:</p>
+	
+	<ol>
+		<li>A signal exception becomes pending.</li>
+		<li>The selector checks whether it is safe to sleep.</li>
+		<li>The selector releases the lock and enters the operating-system wait.</li>
+		<li>The pending exception has no new event with which to wake that wait.</li>
+	</ol>
+	
+	<p>The server is trying to shut down, but its event loop can sleep indefinitely. The existing no-GVL API could avoid blocking for an ordinary VM interrupt, but it could not detect an exception which was pending and temporarily masked by <code class="language-ruby">Thread.handle_interrupt</code>. <a href="https://github.com/ruby/ruby/pull/17553">A new <code class="language-c">rb_nogvl</code> flag covers that pending-interrupt state</a>. <code class="language-ruby">IO::Event</code> first <a href="https://github.com/socketry/io-event/pull/202">adopted the final C API name</a>, then <a href="https://github.com/socketry/io-event/pull/204">centralized its native waits around the new flag with a compatibility path for older Rubies</a>. A follow-up <a href="https://github.com/socketry/io-event/pull/206">captures <code class="language-c">errno</code> immediately after each selector call</a>, preventing an unrelated thread-local error from being mistaken for the result of a skipped or interrupted wait. I exercised the complete Falcon shutdown case 2,000 times with two workers per run and saw no delayed worker dumps or shutdown failures.</p>
+	
+	<p><strong>Ctrl-C and deployment termination signals can now follow the intended cleanup path without leaving a worker stuck in its event loop.</strong></p>
+	
+	<h3>Keeping Fibers Alive While Ruby Switches Between Them</h3>
+	
+	<p>A different CRuby failure involved object lifetime. During a nested sequence of <code class="language-ruby">Fiber#resume</code> and <code class="language-ruby">Fiber.yield</code>, Ruby could suspend a C function while it still held a raw pointer to the target fiber. If Ruby code discarded its last visible reference and another fiber ran the garbage collector, the target could be reclaimed before the suspended C function resumed. The result was a use-after-free inside the VM.</p>
+	
+	<p>An <a href="https://github.com/ruby/ruby/pull/17951">initial patch placed a garbage-collection guard around the switch</a>, but it was <a href="https://github.com/ruby/ruby/pull/17956">reverted while the guard's exact lifetime was reconsidered</a>. The <a href="https://github.com/ruby/ruby/pull/17957">corrected fix</a> keeps the Ruby fiber object alive until the context switch has finished using its native pointer.</p>
+	
+	<p>Debugging concurrent code also depends on trustworthy instrumentation. CRuby already disabled a jump-to-jump optimization when line coverage needed the skipped event, but ordinary line <code class="language-ruby">TracePoint</code> did not receive the same protection. It could therefore miss a loop condition which really executed. <a href="https://github.com/ruby/ruby/pull/18122">Jumps carrying line events are now preserved for both consumers</a>. The interpreter retains an extra jump on the affected path, while YJIT and ZJIT can remove the overhead after compiling the control flow.</p>
+	
+	<p>Another new Ruby C API also simplified process waiting. The <code>io_uring</code> backend already received completed <code class="language-c">waitid</code> results from the kernel, but older Ruby APIs required it to perform a second reap operation to create a <code class="language-ruby">Process::Status</code>. <a href="https://github.com/socketry/io-event/pull/203"><code class="language-ruby">IO::Event</code> now uses <code class="language-c">rb_process_status_for</code> to construct that result directly</a> when the API is available, while retaining the existing fallback for older Rubies.</p>
+	
+	<h2>Using Async Across Fibers and Processes</h2>
+	
+	<p>The runtime fixes support a simple promise at the library level: ordinary Ruby control flow should continue to work when Async is introduced underneath it. Previously, calling <code class="language-ruby">Sync</code> or <code class="language-ruby">Async</code> from an <code class="language-ruby">Enumerator</code>, a job runner, or another non-blocking fiber could fail if no scheduler was already installed. <a href="https://github.com/socketry/async/pull/460">The reactor now enters through <code class="language-ruby">Fiber.blocking</code></a>, preserving the current fiber's identity and local storage while giving the scheduler the context it requires.</p>
+	
+	<p>Forking has a similar hidden boundary: the child receives a copy of process memory, but not a working copy of every thread and fiber represented by that memory. <code class="language-ruby">Async::Container</code> previously forked from a short-lived native thread. That gave the child a clean stack, but moving <code class="language-ruby">Process.fork</code> to a different native thread can conflict with libraries such as gRPC which maintain thread-affine native state. <a href="https://github.com/socketry/async-container/pull/76">The new implementation forks from a blocking fiber on the caller's native thread</a>, preserving the clean child stack without changing threads. Because scheduler counters are copied even though their blocked fibers are not, <a href="https://github.com/socketry/async/pull/463">Async now resets inherited blocked-operation accounting in the child</a>.</p>
+	
+	<p>The surrounding lifecycle became easier to reason about too. <a href="https://github.com/socketry/async-container/pull/68"><code class="language-ruby">Async::Container</code> now installs graceful <code>SIGINT</code> and <code>SIGTERM</code> defaults</a> without replacing handlers installed by an application. <code class="language-ruby">Controller#start</code> already avoided starting a second container; <a href="https://github.com/socketry/async-container/pull/69">it now returns whether it actually started one</a>. Existing restart behavior was captured as <a href="https://github.com/socketry/async-container/pull/71">a tested blue-green replacement</a>, and a <a href="https://github.com/socketry/async-container/pull/70">racy policy-stop test was rewritten around one coordinated child failure</a>. The keyed reload code was not connected to the operational signal path and could fail while removing children, so <a href="https://github.com/socketry/async-container/pull/73">it was removed while retaining the keyed lookup primitives Falcon uses</a>.</p>
+	
+	<p>Observability remains available without being imposed on every application. <a href="https://github.com/socketry/async/pull/462">Async</a> and <a href="https://github.com/socketry/async-http/pull/227"><code class="language-ruby">Async::HTTP</code></a> stopped installing traces and metrics as mandatory runtime dependencies, while <a href="https://github.com/socketry/falcon/pull/360">Falcon declared the tracing dependency used by its own tests</a>. <code class="language-ruby">Async::Pool</code> also gained <a href="https://github.com/socketry/async-pool/pull/28">a focused regression test for cancelling its gardener while it waits on a condition variable</a>, protecting behavior fixed in supported Ruby releases.</p>
+	
+	<p><strong>Together, these changes let Async work through more kinds of Ruby control flow while worker processes start and stop with less inherited state and fewer surprising dependencies.</strong></p>
+	
+	<h2>Knowing When an HTTP Request Is Safe to Retry</h2>
+	
+	<p>Imagine sending a non-idempotent request over a pooled HTTPS connection. The server has already closed the connection, but the client has not noticed yet. If the client begins writing before it discovers the closure, it cannot safely assume the server did nothing. Retrying blindly could perform the operation twice.</p>
+	
+	<p>This is why “retry the request” is not one operation. The client must distinguish several cases:</p>
+	
+	<dl class="basic">
+		<dt>The request was definitely not processed</dt>
+		<dd>Rewind its body and send it again, regardless of the method.</dd>
+		
+		<dt>The outcome is ambiguous</dt>
+		<dd>Retry only when the method is idempotent and the body can be rewound.</dd>
+		
+		<dt>A response has already begun</dt>
+		<dd>Expose the error to the caller; a transparent retry would hide partial application behavior.</dd>
+	</dl>
+	
+	<p><code class="language-ruby">Async::HTTP</code> already had bounded retry handling: refused requests were retried, and ambiguous connection failures were retried only for methods considered idempotent. What it did not do was rewind a body which the first attempt had already consumed. <a href="https://github.com/socketry/protocol-http/pull/108"><code class="language-ruby">Protocol::HTTP</code> therefore introduced <code class="language-ruby">Request#rewind!</code> for failures known not to have been processed and <code class="language-ruby">Request#retry!</code> for ambiguous failures</a>. <a href="https://github.com/socketry/async-http/pull/229"><code class="language-ruby">Async::HTTP</code> now delegates to those operations before retrying</a>.</p>
+	
+	<p>Low-level HTTP/2 errors became easier to diagnose too. A received <code>RST_STREAM</code> previously produced a stream exception without a useful message; <a href="https://github.com/socketry/protocol-http2/pull/29"><code class="language-ruby">Protocol::HTTP2</code> now maps every known error code to a description</a>. Its GOAWAY decoder also <a href="https://github.com/socketry/protocol-http2/pull/30">masks the reserved high bit from <code class="language-ruby">last_stream_id</code></a>, as required by the wire format.</p>
+	
+	<p>Those protocol-specific exceptions were still too narrow for a general HTTP client to act on. <a href="https://github.com/socketry/protocol-http/pull/110"><code class="language-ruby">Protocol::HTTP::RemoteError</code> now represents a failure at the remote endpoint</a> while deliberately leaving the processing outcome unknown. <a href="https://github.com/socketry/async-http/pull/232"><code class="language-ruby">Async::HTTP</code> maps an HTTP/2 <code>INTERNAL_ERROR</code> received before response headers to that exception</a>, preserves the original stream error as its cause, and applies the same conservative retry rule. Errors received after a response has begun are still exposed to the caller.</p>
+	
+	<p>The best ambiguous retry is one we can avoid. The HTTP/1 pool previously considered a connection reusable when it was idle and its stream reported itself readable. That non-consuming readiness check could not pass through a layered TLS stream to distinguish an open connection from an already-buffered EOF or <code>close_notify</code>. <a href="https://github.com/socketry/io-stream/pull/16"><code class="language-ruby">IO::Stream</code> introduced <code class="language-ruby">peek_partial</code></a>, which makes at most one non-blocking read while preserving any application byte in its buffer. <a href="https://github.com/socketry/async-http/pull/230"><code class="language-ruby">Async::HTTP</code> now uses it before assigning an idle HTTP/1 connection</a>. If the peer's closure is already visible, the pool discards that connection and starts the request on a fresh one.</p>
+	
+	<p>The HTTP/2 server already processed requests concurrently, but its enumeration loop could finish without owning and waiting for every active handler. Readiness now uses <a href="https://github.com/socketry/async-http/pull/233">promises which can carry success or failure</a>, the request queue uses <a href="https://github.com/socketry/async-http/pull/234">its explicit close operation instead of a <code class="language-ruby">nil</code> sentinel</a>, and <a href="https://github.com/socketry/async-http/pull/235">a barrier owns active handlers until they finish</a>. <code class="language-ruby">Async::HTTP</code> also <a href="https://github.com/socketry/async-http/pull/228">exposes stable HTTP/1 and HTTP/2 protocol names</a> so deployment integrations do not need to inspect implementation constants.</p>
+	
+	<p>At the method layer, <a href="https://github.com/socketry/protocol-http/pull/105"><code class="language-ruby">Protocol::HTTP</code> added QUERY from RFC 10008</a>, exposed it through the same <a href="https://github.com/socketry/protocol-http/pull/106">generated request helper as the established methods</a>, and <a href="https://github.com/socketry/protocol-http/pull/107">classified QUERY as idempotent even when it carries a body</a>. The existing Accept parser was retained, but <a href="https://github.com/socketry/protocol-http/pull/109">made stricter about malformed ranges, wildcards, quoted parameters, and quality values</a>.</p>
+	
+	<p><strong>The result is fewer failures from stale pooled connections and fewer unsafe retries when a request's outcome is uncertain.</strong></p>
+	
+	<h2>Why Media Types Need Their Own Layer</h2>
+	
+	<p>Suppose a client sends <code>Accept: application/json, text/*;q=0.8</code>. An application needs to parse those preferences, match them against the representations it can produce, and select the best result. That is a negotiation problem. Looking up the conventional media type for <code>report.csv</code> is a registry problem. They are related, but an application should not need to load a complete MIME database merely to compare two media ranges.</p>
+	
+	<p>The starting point was <code>mime-types-mini</code>, an older experiment which combined a native MIME index, compatibility packaging, and placeholder lookup interfaces. The first step <a href="https://github.com/socketry/protocol-media/pull/2">repackaged the repository as <code class="language-ruby">Protocol::Media</code> and introduced <code class="language-ruby">Type</code></a>, a small value for parsing and representing a concrete media type. A second layer added <a href="https://github.com/socketry/protocol-media/pull/3"><code class="language-ruby">Range</code> for wildcard matching</a>, followed by <a href="https://github.com/socketry/protocol-media/pull/4"><code class="language-ruby">Map</code> for selecting exact or compatible registrations</a>. The resulting interfaces are covered by <a href="https://github.com/socketry/protocol-media/pull/5">task-oriented parsing, matching, lookup, and content-negotiation guides</a>.</p>
+	
+	<p>The companion <a href="https://github.com/socketry/protocol-media-registry/pull/1"><code class="language-ruby">Protocol::Media::Registry</code></a> took ownership of generated MIME data and made the native index a central part of the design. At build time, the registry is generated from <code>mime-types-data</code>, transformed by <code>gperf</code> into perfect-hash tables for media types and extensions, and compiled into the native extension. A perfect hash is possible because the set of registered keys is known in advance: each known key maps directly to a unique table entry, without collision handling or a large Ruby <code class="language-ruby">Hash</code>.</p>
+	
+	<p>This layout keeps the static registry in compact compiled data instead of materializing thousands of strings, arrays, hashes, and record objects on the Ruby heap. A Ruby <code class="language-ruby">Record</code> is created only for the result being requested, greatly reducing memory overhead for applications which need MIME lookup. Environments which cannot compile the native extension retain the same interface through a transparent pure-Ruby fallback.</p>
+	
+	<p><strong>Applications get small composable values for content negotiation and fast registry lookup without paying the Ruby heap cost of loading the complete MIME database as an object graph.</strong></p>
+	
+	<h2>Introducing Falcon Clusters, Then Making Them Load-Aware</h2>
+	
+	<p>Before July, Falcon's managed server service bound one listener for its workers to share. Falcon did not yet have a cluster service in which each worker could own a listener and be represented as an independently discoverable backend.</p>
+	
+	<p><a href="https://github.com/socketry/falcon/pull/356">July introduced <code class="language-ruby">Falcon::Service::Cluster</code> and <code class="language-ruby">Falcon::Listener</code></a>. The new cluster service lets each worker bind and own its endpoint inside the worker process. The listener turns the resulting scheme, wire protocols, and concrete socket addresses into an explicit runtime value. That was the foundation; endpoint discovery and load-aware balancing were subsequent layers built on top of it.</p>
+	
+	<p>The work then connected that new runtime model to Envoy in three stages:</p>
+	
+	<ol>
+		<li><strong>Worker ownership:</strong> each Falcon worker binds its own listener and reports the concrete addresses and protocols it supports.</li>
+		<li><strong>Endpoint discovery:</strong> <code class="language-ruby">Async::Service::Supervisor</code> observes that post-bind state, and Envoy's Endpoint Discovery Service (EDS) learns where each worker can be reached.</li>
+		<li><strong>Load-aware balancing:</strong> the supervisor samples each worker's CPU utilization and request throughput, then Open Request Cost Aggregation (ORCA) reports that load to Envoy.</li>
+	</ol>
+	
+	<p>Getting that runtime value out of the worker required a small but important supervisor change: <a href="https://github.com/socketry/async-service-supervisor/pull/7">worker registration can now include explicit post-bind state</a> instead of relying entirely on configuration evaluated before the listener existed. The new <a href="https://github.com/socketry/async-service-supervisor-envoy/pull/1">Envoy supervision adapter converts that state into EDS endpoints</a>. Its xDS layer learned to <a href="https://github.com/socketry/async-grpc-xds/pull/1">group a worker's IP and Unix-domain-socket addresses as alternatives for one logical backend</a> and select HTTP/1 or HTTP/2 from the protocols Falcon reports.</p>
+	
+	<p>Several workers can report the same listener when Falcon's regular server mode shares a bound socket. The Envoy monitor therefore <a href="https://github.com/socketry/async-service-supervisor-envoy/pull/3">deduplicates shared endpoints and keeps one healthy while any reporting worker remains healthy</a>. Its hook was then <a href="https://github.com/socketry/async-service-supervisor-envoy/pull/4">aligned with Falcon's worker lifecycle so the bound listener is passed explicitly</a>. Alongside these integration changes, <code class="language-ruby">Async::gRPC::xDS</code> gained <a href="https://github.com/socketry/async-grpc-xds/pull/2">documentation coverage for the control-plane API</a> and later <a href="https://github.com/socketry/async-grpc-xds/pull/4">replaced its broad resource builder with focused cluster and endpoint builders</a>.</p>
+	
+	<p>At that point Envoy could discover the workers, but it still treated them as equally available. The subsequent load-balancing work added the feedback needed to distinguish an idle Ruby process from one handling a slow request, running garbage collection, or competing for CPU.</p>
+	
+	<p><code class="language-ruby">Process::Metrics</code> already exposed a stateless CPU percentage. <a href="https://github.com/socketry/process-metrics/pull/10">A new stateful <code class="language-ruby">Processor</code> sampler</a> compares cumulative CPU time across an interval, reports one fully occupied core as <code>1.0</code>, and uses process start time to avoid carrying a baseline across PID reuse. The surrounding host-memory readers also received <a href="https://github.com/socketry/process-metrics/pull/11">documentation for Linux cgroups and <code>/proc/meminfo</code> fallbacks</a>, making the source of each measurement clearer.</p>
+	
+	<p>The supervisor previously exposed only service-level aggregation. It now provides <a href="https://github.com/socketry/async-service-supervisor/pull/10">immutable utilization snapshots keyed by worker</a>. <code class="language-ruby">Async::gRPC::xDS</code> added <a href="https://github.com/socketry/async-grpc-xds/pull/3">the ORCA protocol definitions and typed client-side weighted-round-robin policy</a>, and the Envoy integration added <a href="https://github.com/socketry/async-service-supervisor-envoy/pull/5">an out-of-band service which reports each worker's CPU utilization and request rate</a>. The <a href="https://github.com/socketry/falcon/pull/364">complete Docker Compose example</a> connects those pieces and demonstrates endpoint and load-report replacement when a worker restarts.</p>
+	
+	<p>Load tells us that a worker is behaving differently, but not always why. <a href="https://github.com/socketry/async-service-supervisor/pull/9">New remote diagnostic tasks</a> can capture memory dumps, scheduler and thread state, garbage-collector profiles, and bounded allocation traces from an individual worker. The supervisor also <a href="https://github.com/socketry/async-service-supervisor/pull/8">declares the observability providers exercised by its tests</a>, rather than depending on them arriving transitively. Discovery tells us where a process is; load reporting and diagnostics help explain how it is behaving.</p>
+	
+	<p><strong>A Falcon cluster can now direct traffic using the observed capacity of individual Ruby processes instead of assuming every healthy worker is equally available.</strong></p>
+	
+	<h2>Tightening Developer Feedback Loops</h2>
+	
+	<p>Reliability also depends on getting useful information when a test fails. <a href="https://github.com/socketry/sus/pull/56">Sus now recognizes the debug environment variables used by GitHub Actions, GitLab CI, Buildkite, and Azure Pipelines</a>. Re-running a CI job with debug logging therefore enables verbose test output without requiring a different command. Console received <a href="https://github.com/socketry/console/pull/88">targeted tests across its logger compatibility, events, output wrappers, formatters, resolver, and terminal handling</a>, bringing the library to complete local line coverage.</p>
+	
+	<p>The custom blank-line indentation cop in <code class="language-ruby">RuboCop::Socketry</code> had two misleading edge cases. Same-line nested array and hash openings could drive its calculated indentation below zero; <a href="https://github.com/socketry/rubocop-socketry/pull/1">the cop now keeps semantic nesting separate from visual indentation</a>. Modifier conditionals such as a trailing <code class="language-ruby">if</code> or <code class="language-ruby">unless</code> were also being treated as structural blocks; <a href="https://github.com/socketry/rubocop-socketry/pull/2">they are now excluded from indentation depth</a>.</p>
+	
+	<p>Finally, Decode's RBS generator depended on the <code class="language-ruby">TypeParam</code> interface provided by RBS 4. Allowing an unconstrained future major version made that internal assumption easy to break during dependency resolution, so <a href="https://github.com/socketry/decode/pull/7">Decode now pins RBS to the compatible 4.x series</a>.</p>
+	
+	<h2>Looking Forward</h2>
+	
+	<p>The most valuable reliability work often makes itself invisible. Application code should not need to understand a narrow signal race, a fiber's lifetime inside the VM, or whether a TLS shutdown is waiting in a socket buffer. Fixing those problems at the layer which owns the missing information keeps the public interface predictable.</p>
+	
+	<p>The Falcon cluster work makes the same principle visible at a larger scale. A load balancer should not need to guess which processes exist or whether equal workers still have equal capacity. With listener ownership, dynamic discovery, per-worker load reporting, and diagnostics connected, the next step is to exercise the system under sustained production workloads and continue simplifying its operational model.</p>
+	
+	<content:sponsorship/>
+</content:entry>

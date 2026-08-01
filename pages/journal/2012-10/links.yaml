@@ -1,12 +1,3 @@
-code-signing-auxiliary-executables:
-    created: 2012-10-17
-    author: Samuel Williams
-    summary: "Library inspector was recently rejected from the Mac App Store due to code signing problems..."
-asynchronous-dns-with-event-machine:
-    title: Asynchronous DNS with EventMachine
-    created: 2012-10-20
-    author: Samuel Williams
-    summary: "I recently implemented an asynchronous DNS resolver on top of EventMachine..."
 hybrid-tracking:
     title: "Adaptive Hybrid Tracking for Mobile Outdoor Augmented Reality"
     created: 2012-10-01

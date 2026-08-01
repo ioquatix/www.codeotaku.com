@@ -2,16 +2,18 @@
 	<content:heading>About</content:heading>
 	
 	<main>
-		<p>Hello~ welcome to my corner of the internet. This is my personal site for project work and personal thoughts.</p>
+		<p>I'm Samuel Williams, a software engineer and open-source maintainer based in New Zealand. I work on concurrency, networking, and web infrastructure for Ruby, with an emphasis on predictable behaviour, performance, and interfaces that fit naturally into existing Ruby programs.</p>
 		
 		<div style="text-align: center">
-			<img src="chi-keyboard.gif" alt="programming" />
+			<img src="chi-keyboard.gif" alt="Chi at a keyboard" />
 		</div>
 		
-		<p>If you'd like to know me in a more formal capacity, check out <a href="resume">my résumé</a>. Learn more about <a href="/projects">my current and past projects</a> and browse <a href="https://github.com/ioquatix">my online source code</a>.</p>
+		<p>I maintain the <a href="https://github.com/socketry">Socketry</a> ecosystem. Its core projects include <a href="https://github.com/socketry/async">Async</a>, a composable framework for asynchronous Ruby, and <a href="https://github.com/socketry/falcon">Falcon</a>, a high-performance web server built on that foundation. Related work includes <a href="https://github.com/socketry/async-http">Async::HTTP</a>, <a href="https://github.com/socketry/io-event">IO::Event</a>, and the protocol libraries that support modern HTTP and DNS clients and servers.</p>
 		
-		<p>I have a wide range of interests including game design, programming language semantics, writing, ambient music, algorithms and tree climbing. When I need a break, I head outside and look after my garden. I'm growing Wasabi, I've got several chickens, lots of fish and a cat.</p>
+		<p>I also contribute to <a href="https://github.com/ruby/ruby">Ruby</a> itself, including the Fiber Scheduler interface that enables existing I/O operations to cooperate with event loops. My broader open-source work, developer tools, experiments, and educational projects live under <a href="https://github.com/ioquatix">ioquatix</a>.</p>
 		
-		<p>I value honesty, kindness, mindfulness, wisdom and creativity, and above all else I want to share these values with other people.</p>
+		<p>This journal is where I explain the engineering problems behind that work, document progress, and share ideas about software design. For a more detailed professional history, see <a href="resume">my résumé</a>.</p>
+		
+		<p>Outside software, I enjoy writing, ambient music, gardening, and spending time outdoors. I value thoughtful engineering, open collaboration, kindness, and sharing knowledge.</p>
 	</main>
 </content:page>

@@ -138,5 +138,4 @@
 	
 	<p>The Falcon cluster work makes the same principle visible at a larger scale. A load balancer should not need to guess which processes exist or whether equal workers still have equal capacity. With listener ownership, dynamic discovery, per-worker load reporting, and diagnostics connected, the next step is to exercise the system under sustained production workloads and continue simplifying its operational model.</p>
 	
-	<content:sponsorship/>
 </content:entry>

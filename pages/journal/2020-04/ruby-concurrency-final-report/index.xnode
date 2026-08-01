@@ -188,7 +188,6 @@
 	
 	<p>We have <a href="https://bugs.ruby-lang.org/issues/16786">submitted a proposal</a> for consideration by the Ruby core developers. We will discuss it and hopefully find consensus, and then we will update our implementation. All things going well, merge it in time for Ruby 3.</p>
 	
-	<content:sponsorship>
-		<p>Many thanks to the <a href="https://www.ruby.or.jp/en/news/20191031">2019 Ruby Association Grant</a> and all my sponsors who help enable this work.</p>
-	</content:sponsorship>
+	<p>Many thanks to the <a href="https://www.ruby.or.jp/en/news/20191031">2019 Ruby Association Grant</a> and all my sponsors who help enable this work.</p>
+	
 </content:entry>

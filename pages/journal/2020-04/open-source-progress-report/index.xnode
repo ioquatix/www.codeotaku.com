@@ -144,5 +144,4 @@
 	
 	<p>After some remote "back-to-back" debugging, the <a href="https://github.com/ruby/ruby/pull/2995">ARMv7 coroutine implementation is finally working and enabled by default</a>. It turned out to be a code alignment issue. This now means Ruby running on the Raspberry Pi and other 32-bit ARM processors uses native coroutines which improves performance. Thanks to <a href="https://github.com/paullj1">Paul Jordan</a> for bringing this across the finishing line.</p>
 	
-	<content:sponsorship/>
 </content:entry>

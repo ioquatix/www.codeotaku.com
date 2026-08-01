@@ -33,7 +33,7 @@
 		<dl>
 			<dt><strong><a href="http://www.canterbury.ac.nz">University of Canterbury</a> &mdash; M.Sc., Computer Science</strong> with 1st class Honours (2013).</dt>
 			<dd>GPA: 8.95 out of 9.0 (<a href="transcript">University Transcript</a>)</dd>
-			<dd>Thesis: <a href="/projects/redirect?project=mobile-outdoor-augmented-reality">Real-time Hybrid Tracking for Outdoor Augmented Reality</a>.</dd>
+			<dd>Thesis: <a href="/journal/2013-10/mobile-outdoor-augmented-reality">Real-time Hybrid Tracking for Outdoor Augmented Reality</a>.</dd>
 		</dl>
 		
 		<dl>
@@ -119,12 +119,12 @@
 		</dl>
 		
 		<dl class="compact">
-			<dt>Summer Scholarship &mdash; <a href="/projects/redirect?project=pl0-language-tools">Compiler Design and Program Verification</a></dt>
+			<dt>Summer Scholarship &mdash; <a href="https://programming.dojo.net.nz/study/pl0-language-tools/index">Compiler Design and Program Verification</a></dt>
 			<dd>(2010) Awarded $5,000NZD from the University of Canterbury, working with Dr. Tadao Takaoka.</dd>
 		</dl>
 		
 		<dl class="compact">
-			<dt>Development Funding &mdash; <a href="/projects/redirect?project=programming-language-posters">Programming Language Posters</a></dt>
+			<dt>Development Funding &mdash; <a href="https://programming.dojo.net.nz/resources/programming-language-posters/index">Programming Language Posters</a></dt>
 			<dd>(2010) Awarded $1,500NZD for the development of the Programming Language Posters and their distribution to New Zealand Schools from the University of Canterbury.</dd>
 		</dl>
 		
@@ -185,17 +185,17 @@
 		</dl>
 		
 		<dl class="compact">
-			<dt><a href="/projects/redirect?project=transform-flow-toolkit">Transform Flow: A Mobile Augmented Reality Visualisation and Evaluation Toolkit</a></dt>
+			<dt><a href="/journal/2013-11/transform-flow-toolkit">Transform Flow: A Mobile Augmented Reality Visualisation and Evaluation Toolkit</a></dt>
 			<dd><strong>Image and Vision Computing New Zealand, 2013</strong>. It is common in mobile augmented reality (AR) research to examine results that were attained with unpublished tools and data sets, which makes it difficult to compare and improve existing work without significant effort. We discuss the development of an open source toolkit called Transform Flow, which includes a data capture application for iOS, a desktop application to replay and analyse captured data sets with different algorithms, and a mobile application that can run these algorithms in real-time. Our results suggest that our toolkit can be a centre for collaborative research, as it provides a common platform on which tracking algorithms for mobile AR can be developed, studied and eventually deployed.</dd>
 		</dl>
 		
 		<dl class="compact">
-			<dt><a href="/projects/redirect?project=hybrid-tracking">Hybrid Tracking using Gravity Aligned Edges</a></dt>
+			<dt><a href="/journal/2013-11/hybrid-tracking">Hybrid Tracking using Gravity Aligned Edges</a></dt>
 			<dd><strong>Awarded best paper at Computer-Human Interaction New Zealand, 2013</strong>. We have developed a hybrid tracking algorithm for mobile outdoor augmented reality (AR) applications. Our approach combines inertial sensors and camera video to improve global bearing calculations. Prior research in this area has focused on gravity aware feature descriptors, but we expand this to efficient full-frame vertical edge detection. We discuss our implementation and evaluate it’s performance on an iPhone 5, which reveals that our approach is over 100 times faster than existing feature alignment algorithms and can improve tracking with only 2-4ms of additional processing per frame on current generation mobile phones.</dd>
 		</dl>
 		
 		<dl class="compact">
-			<dt><a href="/projects/redirect?project=mr-painting-robot">Mr Painting Robot</a></dt>
+			<dt><a href="/journal/2010-10/mr-painting-robot">Mr Painting Robot</a></dt>
 			<dd><strong>Image and Vision Computing New Zealand, 2011</strong>. This research investigates the identification of outlines, and how this can be used for input into a creative painting algorithm. It builds on several existing algorithms including the bilateral filter and laplacian edge detection, and develops several new algorithms including intensity scanning and brush stroke formation. The primary benefit of this approach is that the output format is vector based (and thus suitable for robotic armatures), rather than pixel based (such as one would expect from the majority of painterly algorithms). Synthetic tests show that the entire process can reproduce sumi-e style images with over 90% accuracy.</dd>
 		</dl>
 
@@ -283,7 +283,7 @@
 		<dl class="compact">
 			<dt><a href="http://www.gmsoc.org/">Game Mechanics Society</a></dt>
 			<dd>(2012-) A society of local programmers and artists who collaborate on the design and development of games. I am the founding member and assist with the organisation of events.</dd>
-			<dd>(2012) We created <a href="/projects/redirect?project=tileshift">TileShift</a>, a game that uses genetic algorithms to evolve levels in real-time for <a href="http://www.ludumdare.com/compo/category/ld-24/?author_name=ioquatix">Ludum Dare 24</a>. We ranked in the top 10% overall, and in the top 5% for innovation.</dd>
+			<dd>(2012) We created <a href="https://github.com/ioquatix/tileshift">TileShift</a>, a game that uses genetic algorithms to evolve levels in real-time for <a href="http://www.ludumdare.com/compo/category/ld-24/?author_name=ioquatix">Ludum Dare 24</a>. We ranked in the top 10% overall, and in the top 5% for innovation.</dd>
 		</dl>
 		
 		<dl class="compact">
@@ -293,7 +293,7 @@
 		
 		<dl class="compact">
 			<dt> <a href="http://sacral.c.u-tokyo.ac.jp/">Takashi Ikegami Laboratory</a>, University of Tokyo</dt>
-			<dd>(2012) Gave a seminar on <a href="/projects/redirect?project=mr-painting-robot">Mr Painting Robot</a>, with a specific focus on how it relates to artificial life.</dd>
+			<dd>(2012) Gave a seminar on <a href="/journal/2010-10/mr-painting-robot">Mr Painting Robot</a>, with a specific focus on how it relates to artificial life.</dd>
 		</dl>
 		
 		<dl class="compact">

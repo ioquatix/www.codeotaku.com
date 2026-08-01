@@ -3,12 +3,9 @@ index:
     title: "codeotaku"
 index.ja:
     title: "コードオタク"
-projects:
-    title: "Projects"
-    order: 2
 journal:
     title: "Journal"
-    order: 3
+    order: 2
 errors:
     display: false
-    order: 4
+    order: 3

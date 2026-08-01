@@ -1,4 +1,0 @@
--- On the backup server
-$ cd /mnt/backups/server.example.com/etc/
-$ sudo %%function{fingerprint} -v
-%%stderr{Data verified, 0 errors found.}

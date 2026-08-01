@@ -276,6 +276,12 @@
 		<h2>Work</h2>
 		
 		<dl class="compact">
+			<dt><a href="https://www.shopify.com/">Shopify</a> &mdash; Senior Staff Software Engineer</dt>
+			<dd>(2025-present) Supporting the adoption of Falcon within Shopify's Storefront Renderer, a large, mature Rails application serving some of the company's highest-volume traffic. The work spans application and open-source boundaries: adapting existing code to fiber-based concurrency, investigating thread-safety and native-extension failures, improving Falcon and Async, and supporting load testing, observability, phased deployment, and production incident analysis.</dd>
+			<dd>On Black Friday 2025, the resulting Falcon deployment served 329 billion requests, peaking at 85 million requests per minute without dropping a request.</dd>
+		</dl>
+		
+		<dl class="compact">
 			<dt>Assurance IQ</dt>
 			<dd>(2020-2024). Investigiated and mitigated performance and security issues across several business critical web applications. Built a team to manage similar concerns at scale across the company. Completed several internal audits and supported cross-team initiatives to improve code quality and identity management.</dd>
 		</dl>

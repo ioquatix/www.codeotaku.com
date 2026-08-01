@@ -2,12 +2,3 @@ source-code-visualisation:
     created: 2010-08-05
     author: Samuel Williams
     summary: "I still prefer the command line and basic text editor, but there are many interesting ways to view source code."
-augmented-source-code:
-    created: 2010-08-06
-    author: Samuel Williams
-    summary: "There are many different ways to highlight source code - syntax, semantics, coverage, age."
-rsa-encryption:
-    title: "Reasonably Efficient RSA Encryption/Decryption with C++"
-    created: 2010-08-19
-    author: Samuel Williams
-    summary: "I developed an interesting method for multiple-precision devision in my RSA implementation."

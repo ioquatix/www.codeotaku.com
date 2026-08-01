@@ -1,8 +1,0 @@
-latex-symbols-in-verbatim:
-    created: 2010-03-17
-    title: "LaTeX Symbols in Verbatim Mode (using UTF8)"
-    summary: "LaTeX doesn't have good support for Unicode characters, especially in verbatim mode. Here is a workaround."
-http-caching:
-    created: 2010-03-21
-    title: "Caching HTTP Resources using Rack"
-    summary: "Making sure HTTP requests are served and cached correctly is important if you want to scale your site to many visitors. Here are some tools which can assist."

@@ -1,7 +1,5 @@
 <content:entry>
-	<p>This month <a href="https://github.com/ioquatix?tab=overview&amp;from=2020-01-01&amp;to=2020-01-31">has been productive</a>. I spent some time on the West Cost of New Zealand with my family enjoying a lack of internet and daily lake swimming.</p>
-	
-	<content:photos path="_swimming"/>
+	<p><a href="https://github.com/ioquatix?tab=overview&amp;from=2020-01-01&amp;to=2020-01-31">January was productive</a>, with work spanning programming education, Rack maintenance, and a new Falcon release.</p>
 	
 	<h2>Programming Dojo</h2>
 	

@@ -15,8 +15,3 @@ matrix-mathematics:
     author: "Samuel Williams"
     created: 2009-05-11
     summary: "Matrix Mathematics often becomes complicated when the words row-major and column-major are thrown about. Here is a clear and simple implementation in C++."
-applescript-insanity:
-    title: "AppleScript Insanity"
-    author: "Samuel Williams"
-    created: 2009-05-27
-    summary: "It might have been a mistake, but I needed a simple desktop application to compress images..."

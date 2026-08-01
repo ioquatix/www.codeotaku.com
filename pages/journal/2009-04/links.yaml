@@ -18,8 +18,3 @@ python-hashes-in-ruby:
     created: 2009-04-20
     summary: "Python hashes are unique to the implementation of Python - here is an implementation in Ruby."
     author: "Samuel Williams"
-why-do-we-play-games:
-    title: "Why do we play games?"
-    created: 2009-04-22
-    summary: "People of all ages play games - but what do they enjoy and why?"
-    author: "Samuel Williams"

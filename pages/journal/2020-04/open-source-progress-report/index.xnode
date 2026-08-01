@@ -1,5 +1,5 @@
 <content:entry>
-	<p>The past two months <a href="https://github.com/ioquatix?tab=overview&amp;from=2020-02-01&amp;to=2020-03-31">have been busy</a>. In New Zealand, we are in lockdown, so I have been adapting my work schedule and family life. Feel free to contact me if you would like to do some peer programming.</p>
+	<p>This open source progress report covers <a href="https://github.com/ioquatix?tab=overview&amp;from=2020-02-01&amp;to=2020-03-31">work completed in February and March 2020</a>. Running Falcon Virtual against production traffic drove improvements to HTTP/2 performance, prompted a new HTTP cache, and helped uncover a vulnerability in Ruby's socket library; the same period also produced new tools for deployment, task automation, and thread-safety analysis.</p>
 	
 	<h2>Falcon</h2>
 	

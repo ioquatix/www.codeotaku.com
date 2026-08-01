@@ -1,5 +1,5 @@
 <content:entry>
-	<p>This month <a href="https://github.com/ioquatix?tab=overview&amp;from=2019-12-01&amp;to=2019-12-31">has been productive</a>. I have been recovering from 6 weeks of travelling in Japan, and I've had to focus more on commercial work, however I was still able to continue development on my open source projects.</p>
+	<p>This open source progress report covers <a href="https://github.com/ioquatix?tab=overview&amp;from=2019-12-01&amp;to=2019-12-31">work completed in December 2019</a>, spanning Ruby's emerging scheduler interface, Falcon production deployment, better process-memory measurements, and reusable connection pooling for Async clients.</p>
 	
 	<h2>Ruby 2.7</h2>
 	

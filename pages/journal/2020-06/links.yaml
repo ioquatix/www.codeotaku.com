@@ -1,7 +1,8 @@
 open-source-progress-report:
   author: "Samuel Williams"
   created: 2020-06-14
-  summary: An overview of my Open Source work for April & May 2020.
+  title: "Bringing Fiber Scheduling to Ruby"
+  summary: "April and May 2020 brought an experimental Fiber Scheduler to Ruby, alongside new work on Async, project documentation, and parallel testing."
   display: true
   front: true
   preview_url: preview.png

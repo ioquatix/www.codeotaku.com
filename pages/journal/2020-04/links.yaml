@@ -1,7 +1,8 @@
 open-source-progress-report:
   author: "Samuel Williams"
   created: 2020-04-10
-  summary: An overview of my Open Source work for February & March 2020.
+  title: "Running Falcon Virtual in Production"
+  summary: "February and March 2020 put Falcon Virtual into production, uncovered a Ruby socket vulnerability, and expanded work on thread safety and developer tooling."
   display: true
   front: true
   preview_url: preview.png

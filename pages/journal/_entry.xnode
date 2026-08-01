@@ -10,7 +10,7 @@ next_links.reject!{|link| link[:display] == false}
 author = current_link[:author] || "Samuel Williams"
 created = current_link[:created] || File.ctime(parent.node.file_path)
 title = current_link.title
-subtitle = current_link[:subtitle]
+summary = current_link[:summary]
 
 preview_path = first.node.relative_path(current_link[:preview_url] || "preview.jpg")
 preview_url = request.base_url + preview_path
@@ -43,7 +43,7 @@ if prev_link == nil || next_link == nil
 end
 
 ?><content:page image_url="#{preview_url}">
-	<content:heading subtitle="#{subtitle}">#{title}</content:heading>
+	<content:heading summary="#{summary}">#{title}</content:heading>
 	
 	<main>
 		<header>

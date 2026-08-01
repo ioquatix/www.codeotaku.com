@@ -8,7 +8,8 @@ ruby-concurrency-progress-report:
 open-source-progress-report:
   author: "Samuel Williams"
   created: 2020-01-31
-  summary: An overview of my Open Source work for January 2020.
+  title: "Modernizing Rack and Falcon Deployment"
+  summary: "January 2020 brought long-awaited Rack releases, Falcon production deployment commands, and new programming education resources."
   display: true
   front: true
   preview_url: rack.png

@@ -7,6 +7,7 @@ ruby-concurrency-progress-report:
 open-source-progress-report:
   author: "Samuel Williams"
   created: 2019-12-31
-  summary: An overview of my Open Source work for December, 2019.
+  title: "Laying the Groundwork for Ruby 3 Concurrency"
+  summary: "December 2019 advanced Ruby's scheduler hooks, Falcon production deployment, process metrics, and reusable Async connection pools."
   display: true
   front: true

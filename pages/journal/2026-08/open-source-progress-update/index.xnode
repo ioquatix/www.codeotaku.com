@@ -52,7 +52,7 @@
 	
 	<h2>Making HTTP Behavior More Predictable</h2>
 	
-	<p>HTTP software needs to preserve what happened at each stage of a request: whether a body was sent, whether a response began, why a stream closed, and whether active work has finished. July's changes made those states more explicit across retries, protocol errors, server shutdown, and method semantics.</p>
+	<p>HTTP software needs to preserve what happened at each stage of a request: whether a body was sent, whether a response began, why a stream closed, and whether active work has finished. Several changes made those states more explicit across retries, protocol errors, server shutdown, and method semantics.</p>
 	
 	<h3>Knowing When a Request Is Safe to Retry</h3>
 	

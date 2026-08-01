@@ -2,8 +2,7 @@ open-source-progress-update:
   author: "Samuel Williams"
   created: 2026-08-01
   title: "Making Failure More Predictable in Ruby Systems"
-  subtitle: "Open Source Progress Update — July 2026"
-  summary: "July 2026 focused on predictable failure handling, lower-memory MIME lookup, and load-aware Falcon clusters."
+  summary: "An Open Source Progress Report about predictable failure handling, lower-memory MIME lookup, and load-aware Falcon clusters."
   display: true
   front: true
   preview_url: banner.webp

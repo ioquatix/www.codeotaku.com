@@ -1,5 +1,5 @@
 <content:entry>
-	<p>The past two months <a href="https://github.com/ioquatix?tab=overview&amp;from=2020-04-01&amp;to=2020-05-31">have been busy</a>. In New Zealand, we have just come out of lockdown, but the situation remains precarious.</p>
+	<p>This open source progress report covers <a href="https://github.com/ioquatix?tab=overview&amp;from=2020-04-01&amp;to=2020-05-31">work completed in April and May 2020</a>. The central milestone was the experimental Fiber Scheduler entering Ruby, supported by an Async implementation and accompanied by new work on sustainable maintenance, task-oriented documentation, and parallel test execution.</p>
 	
 	<h2>Light Weight Per-Thread Fiber Scheduler</h2>
 	

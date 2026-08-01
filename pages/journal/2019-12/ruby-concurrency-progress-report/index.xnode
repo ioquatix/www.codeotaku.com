@@ -1,5 +1,9 @@
 <content:entry>
-	<p>Last month I was able to spend some time discussing the concurrency model for Ruby 3 with Matz and Koichi. This progress report is a combination of both discussions.</p>
+	<p>Ruby had distinct tools for parallel execution and concurrent I/O, but their responsibilities were easy to conflate. Threads exposed shared mutable state and non-determinism, while fiber-based event loops required applications to replace Ruby's native I/O objects with library-specific wrappers.</p>
+	
+	<p>This Ruby Concurrency Progress Report records design discussions with Matz and Koichi about separating those concerns: isolates for parallelism, fibers for cooperative concurrency, and lightweight VM hooks through which native I/O could cooperate with an event loop.</p>
+	
+	<p><em>Historical note:</em> The <code class="language-ruby">Isolate</code> API shown here was exploratory; Ruby 3 ultimately introduced <a href="https://docs.ruby-lang.org/en/3.0/Ractor.html"><code class="language-ruby">Ractor</code></a> for parallel execution. The scheduler work developed into Ruby's <a href="https://docs.ruby-lang.org/en/3.0/Fiber/SchedulerInterface.html">Fiber Scheduler interface</a>.</p>
 	
 	<h2>Concurrency and Parallelism</h2>
 	

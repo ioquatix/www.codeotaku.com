@@ -1,14 +1,16 @@
 open-source-progress-report:
   author: "Samuel Williams"
   created: 2020-04-10
-  summary: An overview of my Open Source work for February & March 2020.
+  title: "Running Falcon Virtual in Production"
+  summary: "An Open Source Progress Report about running Falcon Virtual in production, uncovering a Ruby socket vulnerability, and improving thread safety and developer tooling."
   display: true
   front: true
   preview_url: preview.png
 ruby-concurrency-final-report:
   author: "Samuel Williams"
   created: 2020-04-13
-  summary: The final report for the 2019 Ruby Association Grant.
+  title: "A Fiber Scheduler for Ruby"
+  summary: "The final Ruby Concurrency Progress Report presents a per-thread Fiber Scheduler and evaluates it with native Net::HTTP requests."
   display: true
   front: true
   preview_url: preview.png

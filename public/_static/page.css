@@ -96,6 +96,12 @@ nav li {
 	margin: 1rem 2rem;
 }
 
+#header .subtitle {
+	margin: -0.5rem 2rem 1rem;
+	font-size: 1rem;
+	opacity: 0.75;
+}
+
 #header nav {
 	padding: 1rem;
 	width: 100%;

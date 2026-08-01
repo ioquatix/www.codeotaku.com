@@ -1,5 +1,11 @@
-<?r document.attributes[:title] ||= content ?>
+<?r
+document.attributes[:title] ||= content
+subtitle = attributes[:subtitle]
+?>
 <header id="header">
 	<h1><utopia:content/></h1>
+	<?r if subtitle && !subtitle.empty? ?>
+		<p class="subtitle">#{subtitle}</p>
+	<?r end ?>
 	<content:navigation/>
 </header>

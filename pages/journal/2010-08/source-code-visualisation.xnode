@@ -27,7 +27,7 @@
 	
 	<h2>Source Code Augmentation</h2>
 	
-	<p>Basic syntax highlighting is a well covered area. However, there are many other areas where <a href="augmented-source-code">source code augmentation</a> can be useful. Semantic meaning along with syntax is equally important when reading and understanding a program's source code.</p>
+	<p>Basic syntax highlighting is a well covered area. However, there are many other areas where source code augmentation can be useful. Semantic meaning along with syntax is equally important when reading and understanding a program's source code.</p>
 	
 	<p>Inline documentation, unit test coverage, performance metrics, are a few of the ways source code could be annotated to provide better feedback about the source code.</p>
 	

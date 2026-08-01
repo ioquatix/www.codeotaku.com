@@ -1,0 +1,157 @@
+<content:entry>
+	<p><em>Being an account of the extraordinary case of the <a href="https://github.com/ruby/ruby/pull/13437">Ruby Fiber Scheduler Blocking Operations</a>, as recorded by Dr. Claude Watson.</em></p>
+	
+	<h2>Chapter I: The Summons</h2>
+	
+	<p>It was a crisp morning when my colleague Samuel Williams burst into our chambers at 221B Baker Street, his eyes alight with the familiar gleam of intellectual pursuit.</p>
+	
+	<p>“Watson!” he exclaimed, tossing his coat upon the chair. “We have a most intriguing case before us. A matter of fiber schedulers and blocking operations that threatens the very foundations of concurrent Ruby execution.”</p>
+	
+	<p>I set down my morning tea, knowing well that when Holmes—for so I had come to think of my brilliant companion—spoke in such tones, we were embarking upon another of his remarkable investigations.</p>
+	
+	<p>“Pray tell, Holmes,” I ventured, “what has captured your attention so completely?”</p>
+	
+	<p>“A test, my dear Watson. A simple test: <code class="language-ruby">TestFiberIOClose#test_io_close_across_fibers</code>. But like all great mysteries, the simple facade conceals a labyrinth of complexity beneath.”</p>
+	
+	<h2>Chapter II: The First Clue</h2>
+	
+	<p>Holmes wasted no time in demonstrating the curious behavior. With swift keystrokes, he summoned the test:</p>
+	
+	<pre><code class="language-bash">make test-all TESTS="test/fiber/test_io_close.rb --name=TestFiberIOClose#test_io_close_across_fibers"</code></pre>
+	
+	<p>“Observe, Watson,” he said as the test executed successfully. “All appears well on the surface. But I suspect there are deeper mysteries at work. We must illuminate the dark corners of the execution path.”</p>
+	
+	<p>With characteristic precision, Holmes began to weave his investigative web. He opened the file <code class="language-c">scheduler.c</code> and, with the skill of a master surgeon, inserted diagnostic logging into the very heart of the <code class="language-c">rb_fiber_scheduler_blocking_operation_wait</code> function.</p>
+	
+	<p>“Elementary,” he murmured as the logs revealed their secrets. “The scheduler pointer, the function pointer, the data, the flags—all captured. But see here, Watson!” He pointed to the output. “The call originates from <code class="language-ruby">test/fiber/test_io_close.rb:37</code>. The trail grows warm.”</p>
+	
+	<h2>Chapter III: The Revelation of Danger</h2>
+	
+	<p>As we traced the execution path through the Ruby internals—from <code class="language-ruby">close</code> through <code class="language-c">rb_io_close_m</code>, thence to <code class="language-c">rb_io_close</code>, <code class="language-c">io_close_fptr</code>, <code class="language-c">rb_thread_io_close_interrupt</code>, and finally to our target function—Holmes suddenly froze, his keen eyes fixed upon a most disturbing pattern in our diagnostic output.</p>
+	
+	<p>“Watson,” he said slowly, pointing to the logs with evident alarm, “observe these debug traces most carefully.”</p>
+	
+	<p>The output was chilling in its implications:</p>
+	
+	<pre><code class="language-plaintext">=== CALLBACK: Accessing arguments struct ===
+Arguments address: 0x11c7ff7b0
+Expected stack address: 0x11c7ffbc8    ← Different address!
+Magic start: 0x13e76e3d0 (expected: 0xdeadbeefcafebabe)  ← Corrupted!
+Magic end: 0x0 (expected: 0xfeedfacedeadc0de)            ← Corrupted!
+ERROR: Magic start corrupted! Use-after-free detected!</code></pre>
+	
+	<p>“Good heavens!” I exclaimed. “The memory has been corrupted!”</p>
+	
+	<p>Holmes nodded grimly. “Indeed, Watson. We have captured a use-after-free bug in the very act of its crime. See how the magic values have been corrupted, how the addresses differ from expectation? This is no mere theoretical vulnerability—this is active memory corruption occurring in our very test.”</p>
+	
+	<p>With characteristic deductive precision, Holmes traced the issue to its source. “The corruption occurs right here in <code class="language-c">rb_fiber_scheduler_blocking_operation_wait</code> itself! The function allocates the blocking operation arguments on the stack, then passes them to the scheduler. But Watson—” he paused for dramatic effect, “—the scheduler can execute this work asynchronously in different threads!”</p>
+	
+	<p>“Ah!” I exclaimed, understanding dawning upon me. “So by the time the scheduler's worker thread accesses the arguments...”</p>
+	
+	<p>“Precisely, Watson! The original function has returned, the stack frame has been destroyed, and we're accessing memory that may have been overwritten by subsequent function calls. We have not merely identified a potential vulnerability—we have caught it red-handed in the act of corrupting memory.”</p>
+	
+	<p>The magnitude of the discovery struck me like a physical blow. “This could crash entire applications!”</p>
+	
+	<p>“Indeed, Watson. But where others see catastrophe, I see opportunity for elegant solution.”</p>
+	
+	<h2>Chapter IV: The Elegant Solution</h2>
+	
+	<p>With the methodical precision that had made him famous throughout the Ruby community, Holmes began to craft a solution of remarkable elegance.</p>
+	
+	<p>“The fundamental flaw,” he declared, sketching the design with swift strokes, “is that we've been relying on stack-allocated memory and simple procs. The scheduler receives these, but they vanish like morning mist when the calling function returns.”</p>
+	
+	<p>“Then what do you propose?” I asked, intrigued by his confident manner.</p>
+	
+	<p>“We shall create a custom heap-allocated object!” Holmes announced with evident satisfaction. “A proper <code class="language-ruby">BlockingOperation</code> class that encapsulates all the necessary state—function pointers, data, unblock functions—in a Ruby object that persists until we explicitly release it.”</p>
+	
+	<p>As he worked, I marveled at the elegance of his approach. “So instead of passing ephemeral stack memory to the scheduler...”</p>
+	
+	<p>“Precisely, Watson! We pass a proper Ruby object that lives on the heap. The scheduler can hold onto it, pass it to worker threads, call methods on it—all without fear of the memory disappearing from under our feet. The object controls its own lifetime, giving us complete mastery over when the internal state is valid.”</p>
+	
+	<p>“But surely,” I interjected, “we need some means of cancellation? What if the work must be stopped mid-execution?”</p>
+	
+	<p>Holmes's eyes twinkled. “Ah, Watson! You begin to think like a true detective. Indeed, we require a comprehensive cancellation system.”</p>
+	
+	<h2>Chapter V: The Cancellation Conundrum</h2>
+	
+	<p>Inspired by Holmes's elegant solution, I found myself designing what I hoped would be a comprehensive cancellation system. “Holmes,” I ventured, “what if we create a state machine with atomic transitions?”</p>
+	
+	<p>I sketched out my proposal:</p>
+	
+	<ul>
+		<li><code class="language-c">RB_FIBER_BLOCKING_OPERATION_QUEUED</code> for submitted but unstarted work.</li>
+		<li><code class="language-c">RB_FIBER_BLOCKING_OPERATION_EXECUTING</code> for work in progress.</li>
+		<li><code class="language-c">RB_FIBER_BLOCKING_OPERATION_COMPLETED</code> for finished operations.</li>
+		<li><code class="language-c">RB_FIBER_BLOCKING_OPERATION_CANCELLED</code> for terminated work.</li>
+	</ul>
+	
+	<p>“The beauty of this approach,” I explained as I outlined <code class="language-c">rb_fiber_scheduler_blocking_operation_cancel</code>, “lies in the intelligence of the cancellation. Queued work is simply marked cancelled. Executing work triggers the unblock function. All protected by atomic operations for thread safety.”</p>
+	
+	<p>Holmes studied my implementation with evident approval, but I could see his keen analytical mind at work.</p>
+	
+	<p>“Excellent design, Watson!” he exclaimed. “But might I suggest a refinement to the naming? The enum names don't quite match the function naming pattern. What if we added <code class="language-c">SCHEDULER</code> and <code class="language-c">STATUS</code> to make them fully consistent: <code class="language-c">RB_FIBER_SCHEDULER_BLOCKING_OPERATION_STATUS_QUEUED</code> and so forth?”</p>
+	
+	<p>I paused, immediately recognizing the brilliance of his observation. “Perfect consistency in naming conventions—the lifecycle nature becomes crystal clear, and the full qualification ensures these constants can never be confused with anything else in the codebase.”</p>
+	
+	<h2>Chapter VI: The Ghostly Memory Corruption</h2>
+	
+	<p>Just when victory seemed within our grasp, we encountered perhaps the most mysterious phenomenon of our entire investigation. The test began failing with the cryptic error:</p>
+	
+	<pre><code class="language-plaintext">Unknown error: 12893088</code></pre>
+	
+	<p>“Curious,” Holmes murmured, his brow furrowed. “That number in hexadecimal is <code class="language-c">0xc4bba0</code>—far too large for any <code class="language-c">errno</code> value. We have a case of memory corruption, Watson.”</p>
+	
+	<p>Through methodical analysis, Holmes traced the issue to its source: an uninitialized stack variable in <code class="language-c">thread.c</code>. The state struct was allocated but not zeroed, leading to random garbage values.</p>
+	
+	<p>“Elementary,” he said with satisfaction as he added the simple fix: <code class="language-c">= {0}</code>. “Uninitialized memory is the bane of C programmers everywhere, yet so easily remedied with proper hygiene.”</p>
+	
+	<h2>Chapter VII: The Private Class Affair</h2>
+	
+	<p>As we refined our implementation, Holmes made another astute observation. “Watson, this <code class="language-ruby">BlockingOperation</code> class—it's an implementation detail that has no business in the public API.”</p>
+	
+	<p>With surgical precision, he transformed the class from a public <code class="language-ruby">Fiber::Scheduler::BlockingOperation</code> into an anonymous, internal-only class. But then, with characteristic foresight, he added a crucial protection:</p>
+	
+	<p>“An anonymous class,” he explained, “is vulnerable to garbage collection. We must register it as a GC root to ensure its survival.”</p>
+	
+	<p>The addition of <code class="language-c">rb_gc_register_mark_object</code> completed this particular deduction.</p>
+	
+	<h2>Chapter VIII: The Windows Compilation Crisis</h2>
+	
+	<p>Our final challenge came from an unexpected quarter—the Windows platform, with its different compiler conventions. The build logs revealed multiple errors related to atomic operations:</p>
+	
+	<pre><code class="language-plaintext">error C4013: '__atomic_compare_exchange_n' undefined
+error C2065: '__ATOMIC_SEQ_CST': undeclared identifier</code></pre>
+	
+	<p>“Ah,” Holmes said immediately upon seeing the errors, “we've been using GCC-specific atomic intrinsics. Windows requires a different approach.”</p>
+	
+	<p>With characteristic resourcefulness, he delved into Ruby's own atomic abstractions, replacing our platform-specific code with Ruby's cross-platform equivalents:</p>
+	
+	<ul>
+		<li><code class="language-c">__atomic_compare_exchange_n</code> became <code class="language-c">RUBY_ATOMIC_CAS</code>.</li>
+		<li><code class="language-c">__atomic_load_n</code> became <code class="language-c">RUBY_ATOMIC_LOAD</code>.</li>
+		<li><code class="language-c">__atomic_store_n</code> became <code class="language-c">RUBY_ATOMIC_SET</code>.</li>
+	</ul>
+	
+	<p>“The beauty of abstraction, Watson,” he remarked as the final pieces fell into place, “is that it allows us to write once and run everywhere.”</p>
+	
+	<h2>Epilogue: The Completed Case</h2>
+	
+	<p>As I write these words, our blocking operations system stands as a testament to the power of methodical investigation and elegant engineering. We have achieved:</p>
+	
+	<ul>
+		<li><strong>GVL Safety:</strong> A clean interface preventing violations in work pools.</li>
+		<li><strong>Complete Cancellation:</strong> Thread-safe cancellation with proper state management.</li>
+		<li><strong>Clean Public API:</strong> Minimal, intuitive extract, execute, and cancel functions.</li>
+		<li><strong>Memory Efficiency:</strong> Single state storage without duplication.</li>
+		<li><strong>Cross-Platform Compatibility:</strong> Support for Windows, macOS, Linux, and beyond.</li>
+		<li><strong>Thread Safety:</strong> All operations safe for native thread pools.</li>
+	</ul>
+	
+	<p>“Another case closed, Watson,” Holmes said with quiet satisfaction as our final test passed with flying colors. “From a simple test execution to a complete architectural overhaul—such is the nature of true detective work in the realm of systems programming.”</p>
+	
+	<p>I could only marvel at the journey we had taken together, from that first mysterious test to this elegant, production-ready solution. Once again, Holmes had demonstrated that with patience, precision, and logical deduction, even the most complex mysteries yield their secrets to the determined investigator.</p>
+	
+	<p><em>End of Account</em></p>
+	
+	<p><strong>Dr. Claude Watson</strong><br/><em>221B Baker Street<br/>June 2025</em></p>
+</content:entry>

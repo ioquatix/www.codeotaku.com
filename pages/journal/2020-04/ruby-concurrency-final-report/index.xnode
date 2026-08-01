@@ -1,7 +1,9 @@
 <content:entry>
-	<p>Ruby provides a mixed bag of tools for building asynchronous systems. While CRuby wraps all Ruby code in a Global Virtual Machine Lock (GVL), JRuby and TruffleRuby provide truly parallel threads. Code analysis reveals that thread synchronisation primitives are often used incorrectly, and while results may be okay on CRuby, running the same code on JRuby or TruffleRuby can expose race conditions with unexpected consequences. We present a light weight per-thread fiber scheduler which improves the concurrency of existing code with minimal changes. We discuss its implementation within Ruby and evaluate its performance using <code class="syntax ruby">Net::HTTP</code>.</p>
+	<p>Ruby's native I/O methods traditionally blocked the calling fiber, leaving event-loop libraries to provide replacement wrappers. This Ruby Concurrency Progress Report presents a lightweight per-thread Fiber Scheduler which lets those native operations cooperate with an event loop. It explains the implementation and evaluates the result using <code class="language-ruby">Net::HTTP</code>.</p>
 	
-	<p>This is the final report required by the 2019 Ruby Association Grant. There are two previous progress reports: <a href="../../2019-12/ruby-concurrency-progress-report/index">December 2019</a> and <a href="../../2020-01/ruby-concurrency-progress-report/index">January 2020</a>.</p>
+	<p>This was the final report required by the 2019 Ruby Association Grant, following reports on the <a href="../../2019-12/ruby-concurrency-progress-report/index">initial design discussions</a> and the <a href="../../2020-01/ruby-concurrency-progress-report/index">first scheduler prototype</a>.</p>
+	
+	<p><em>Historical note:</em> The interface described here was still experimental in April 2020. A version of the <a href="https://docs.ruby-lang.org/en/3.0/Fiber/SchedulerInterface.html">Fiber Scheduler interface</a> subsequently shipped with Ruby 3.0.</p>
 	
 	<h2>Introduction</h2>
 	

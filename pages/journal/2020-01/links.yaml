@@ -1,7 +1,8 @@
 ruby-concurrency-progress-report:
   author: "Samuel Williams"
   created: 2020-01-14
-  summary: A progress report for the Ruby Association Grant 2019.
+  title: "Making Ruby I/O Work with Event Loops"
+  summary: "A Ruby Concurrency Progress Report introducing a prototype Scheduler that lets native Ruby I/O cooperate with fiber-based event loops."
   display: true
   front: true
   preview_url: preview.png
@@ -9,7 +10,7 @@ open-source-progress-report:
   author: "Samuel Williams"
   created: 2020-01-31
   title: "Modernizing Rack and Falcon Deployment"
-  summary: "January 2020 brought long-awaited Rack releases, Falcon production deployment commands, and new programming education resources."
+  summary: "An Open Source Progress Report about Rack maintenance, Falcon production deployment commands, and programming education resources."
   display: true
   front: true
   preview_url: rack.png

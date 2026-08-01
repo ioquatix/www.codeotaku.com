@@ -1,7 +1,9 @@
 <content:entry>
-	<p>We have proven that fibers are useful for building scalable systems. In order to develop this further, we need to add hooks into the various Ruby VMs so that we can improve the concurrency of existing code without changes. There is an outstanding PR for this work, but additional effort is required to bring this to completion and show its effectiveness in real world situations. We propose to bring the existing PR to completion and improve Ruby’s concurrency model.</p>
+	<p>Fiber-based event loops could already run large numbers of concurrent tasks, but Ruby's native I/O methods did not know when or how to yield to them. Libraries such as Async therefore needed their own I/O wrappers, limiting how much existing Ruby code could benefit.</p>
 	
-	<p>This is the first progress report required by the 2019 Ruby Association Grant. There is one previous progress report: <a href="../../2019-12/ruby-concurrency-progress-report">December 2019</a>.</p>
+	<p>This Ruby Concurrency Progress Report introduces a VM-level <code class="language-ruby">Scheduler</code> interface and its first Async implementation. The scheduler gives operations such as <code class="language-ruby">IO#read</code>, <code class="language-ruby">IO#write</code>, and <code class="language-ruby">Kernel#sleep</code> a way to yield through the active event loop without changing the calling code.</p>
+	
+	<p>This was the first report required by the <a href="https://www.ruby.or.jp/en/news/20191031">2019 Ruby Association Grant</a>, following the earlier <a href="../../2019-12/ruby-concurrency-progress-report">design discussions from December 2019</a>.</p>
 	
 	<h2>Introduction</h2>
 	

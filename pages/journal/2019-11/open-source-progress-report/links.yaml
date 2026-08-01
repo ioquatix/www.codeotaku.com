@@ -2,7 +2,7 @@ index:
   author: "Samuel Williams"
   created: 2019-11-30
   title: "Making Ruby Concurrency Safer"
-  summary: "November 2019 connected practical thread-safety fixes with work on Ruby concurrency, OpenSSL, Rack, and Faraday."
+  summary: "An Open Source Progress Report about practical thread-safety fixes, Ruby concurrency, OpenSSL, Rack, and Faraday."
   display: true
   front: true
 index.ja:

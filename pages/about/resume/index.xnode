@@ -133,6 +133,11 @@
 		<content:photos path="_conferences" />
 		
 		<dl class="compact">
+			<dt><a href="https://www.youtube.com/watch?v=8-o1XR070g0">Building and Deploying Interactive Rails Applications with Falcon</a></dt>
+			<dd><strong>Kaigi on Rails 2025, Tokyo, Japan</strong>. Keynote on using Falcon's fiber-based concurrency to build and deploy interactive Rails applications.</dd>
+		</dl>
+		
+		<dl class="compact">
 			<dt><a href="https://www.youtube.com/watch?v=YacN_phi_ME">Leveraging Falcon and Fails for Real-Time Interactivity</a></dt>
 			<dd><strong>RubyKaigi 2024, Okinawa, Japan</strong>. In the rapidly evolving landscape of web-based gaming, Ruby's potential for building dynamic, real-time interactive experiences is often underrated. This talk aims to shatter this misconception by demonstrating the powerful synergy between Falcon, an asynchronous web server, and Ruby on Rails, the stalwart of web application frameworks. We will embark on a journey to design and implement a real-time interactive game from the ground up, showcasing how Ruby, when coupled with Falcon's concurrency capabilities, can be a formidable tool in the gaming domain. Key focus areas will include leveraging Falcon's event-driven architecture for managing high-throughput, low-latency game data, and integrating it seamlessly with Rails to create an engaging user experience. Attendees will gain insights into the nuances of real-time web communication in Ruby, efficient handling of WebSockets, and the application of Rails' robust features in a gaming context.</dd>
 		</dl>

@@ -133,7 +133,7 @@
 		<content:photos path="_conferences" />
 		
 		<dl class="compact">
-			<dt><a href="https://www.youtube.com/watch?v=8-o1XR070g0">Building and Deploying Interactive Rails Applications with Falcon</a></dt>
+			<dt><a href="https://www.youtube.com/watch?v=8-o1XR070g0">Building, Deploying, and Monitoring Ruby Web Applications with Falcon</a></dt>
 			<dd><strong>Kaigi on Rails 2025, Tokyo, Japan</strong>. Keynote on using Falcon's fiber-based concurrency to build and deploy interactive Rails applications.</dd>
 		</dl>
 		

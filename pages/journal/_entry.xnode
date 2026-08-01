@@ -15,6 +15,10 @@ summary = current_link[:summary]
 preview_path = first.node.relative_path(current_link[:preview_url] || "preview.jpg")
 preview_url = request.base_url + preview_path
 
+if banner_url = current_link[:banner_url]
+	banner_path = first.node.relative_path(banner_url)
+end
+
 prev_link = prev_links.last if prev_links
 next_link = next_links.first if next_links
 
@@ -46,6 +50,12 @@ end
 	<content:heading summary="#{summary}">#{title}</content:heading>
 	
 	<main>
+		<?r if banner_path ?>
+		<figure class="banner">
+			<img src="#{banner_path}" alt="#{title}" />
+		</figure>
+		<?r end ?>
+
 		<header>
 			<span class="author">#{author}</span>
 			<span class="when">#{created.strftime("%A, %d %B %Y")}</span>

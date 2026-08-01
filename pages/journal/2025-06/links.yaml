@@ -5,3 +5,5 @@ the-case-of-the-blocking-operations:
   summary: "Dr. Claude Watson recounts an investigation into safely running blocking operations through Ruby's fiber scheduler."
   display: true
   front: true
+  preview_url: banner.png
+  banner_url: banner.png

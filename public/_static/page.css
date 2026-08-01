@@ -145,7 +145,7 @@ section.articles a {
 	position: relative;
 	background-color: white;
 	
-	height: 30rem;
+	aspect-ratio: 7 / 4;
 	
 	background-size: cover;
 	background-position: center;

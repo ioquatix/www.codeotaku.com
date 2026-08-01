@@ -1,10 +1,6 @@
 <content:entry>
 	<p>Rack 3 introduced support for input and output streaming. This is a powerful feature that improves both performance and provides opportunities for enhanced interactivity in web applications. We will explore how to use streaming input and output in Rack, including server-sent events, streaming templates, streaming uploads, and bi-directional streaming. We will also discuss how to use these features in Ruby on Rails.</p>
 	
-	<figure>
-		<img src="banner.webp" alt="Rack 3 Streaming" />
-	</figure>
-	
 	<p>All the source code discussed in this article is available on <a href="https://github.com/socketry/falcon-examples">GitHub</a>. I recommend you check it out so you can follow along with the examples and try it out for yourself.</p>
 	
 	<h2>Streaming Output</h2>

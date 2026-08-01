@@ -17,7 +17,7 @@
 	
 	<p>Holmes wasted no time in demonstrating the curious behavior. With swift keystrokes, he summoned the test:</p>
 	
-	<pre><code class="language-bash">make test-all TESTS="test/fiber/test_io_close.rb --name=TestFiberIOClose#test_io_close_across_fibers"</code></pre>
+	<content:listing brush="bash">make test-all TESTS="test/fiber/test_io_close.rb --name=TestFiberIOClose#test_io_close_across_fibers"</content:listing>
 	
 	<p>“Observe, Watson,” he said as the test executed successfully. “All appears well on the surface. But I suspect there are deeper mysteries at work. We must illuminate the dark corners of the execution path.”</p>
 	
@@ -33,12 +33,12 @@
 	
 	<p>The output was chilling in its implications:</p>
 	
-	<pre><code class="language-plaintext">=== CALLBACK: Accessing arguments struct ===
+	<content:listing brush="plain">=== CALLBACK: Accessing arguments struct ===
 Arguments address: 0x11c7ff7b0
 Expected stack address: 0x11c7ffbc8    ← Different address!
 Magic start: 0x13e76e3d0 (expected: 0xdeadbeefcafebabe)  ← Corrupted!
 Magic end: 0x0 (expected: 0xfeedfacedeadc0de)            ← Corrupted!
-ERROR: Magic start corrupted! Use-after-free detected!</code></pre>
+ERROR: Magic start corrupted! Use-after-free detected!</content:listing>
 	
 	<p>“Good heavens!” I exclaimed. “The memory has been corrupted!”</p>
 	
@@ -97,7 +97,7 @@ ERROR: Magic start corrupted! Use-after-free detected!</code></pre>
 	
 	<p>Just when victory seemed within our grasp, we encountered perhaps the most mysterious phenomenon of our entire investigation. The test began failing with the cryptic error:</p>
 	
-	<pre><code class="language-plaintext">Unknown error: 12893088</code></pre>
+	<content:listing brush="plain">Unknown error: 12893088</content:listing>
 	
 	<p>“Curious,” Holmes murmured, his brow furrowed. “That number in hexadecimal is <code class="language-c">0xc4bba0</code>—far too large for any <code class="language-c">errno</code> value. We have a case of memory corruption, Watson.”</p>
 	
@@ -119,8 +119,8 @@ ERROR: Magic start corrupted! Use-after-free detected!</code></pre>
 	
 	<p>Our final challenge came from an unexpected quarter—the Windows platform, with its different compiler conventions. The build logs revealed multiple errors related to atomic operations:</p>
 	
-	<pre><code class="language-plaintext">error C4013: '__atomic_compare_exchange_n' undefined
-error C2065: '__ATOMIC_SEQ_CST': undeclared identifier</code></pre>
+	<content:listing brush="plain">error C4013: '__atomic_compare_exchange_n' undefined
+error C2065: '__ATOMIC_SEQ_CST': undeclared identifier</content:listing>
 	
 	<p>“Ah,” Holmes said immediately upon seeing the errors, “we've been using GCC-specific atomic intrinsics. Windows requires a different approach.”</p>
 	

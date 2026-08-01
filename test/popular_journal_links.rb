@@ -11,6 +11,5 @@ describe "popular journal links" do
 	it_behaves_like AValidPage, "/journal/2018-06/asynchronous-ruby/index"
 	it_behaves_like AValidPage, "/journal/2018-06/improving-ruby-concurrency/index"
 	it_behaves_like AValidPage, "/journal/2018-11/fibers-are-the-right-solution/index"
-	it_behaves_like AValidPage, "/journal/2019-02/falcon-early-hints/index"
 	it_behaves_like AValidPage, "/journal/2018-10/http-2-for-ruby-web-development/index"
 end

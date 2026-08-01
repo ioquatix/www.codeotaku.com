@@ -1,12 +1,10 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    async (2.39.0)
+    async (2.44.0)
       console (~> 1.29)
       fiber-annotation
       io-event (~> 1.11)
-      metrics (~> 0.12)
-      traces (~> 0.18)
     async-await (0.8.0)
       async
     async-bus (0.4.0)
@@ -14,28 +12,26 @@ GEM
       io-endpoint
       io-stream
       msgpack
-    async-container (0.34.5)
-      async (~> 2.22)
-    async-http (0.95.0)
-      async (>= 2.10.2)
+    async-container (0.38.0)
+      async (~> 2.44)
+    async-http (0.99.0)
+      async (>= 2.35.1)
       async-pool (~> 0.11)
       io-endpoint (~> 0.14)
-      io-stream (~> 0.6)
-      metrics (~> 0.12)
-      protocol-http (~> 0.62)
+      io-stream (~> 0.14)
+      protocol-http (~> 0.66)
       protocol-http1 (~> 0.39)
       protocol-http2 (~> 0.26)
       protocol-url (~> 0.2)
-      traces (~> 0.10)
     async-http-cache (0.4.6)
       async-http (~> 0.56)
     async-pool (0.11.2)
       async (>= 2.0)
-    async-service (0.22.0)
+    async-service (0.24.1)
       async
       async-container (~> 0.34)
       string-format (~> 0.2)
-    async-service-supervisor (0.16.0)
+    async-service-supervisor (0.20.0)
       async (~> 2.38)
       async-bus
       async-service (~> 0.15)
@@ -44,14 +40,14 @@ GEM
       memory (~> 0.7)
       memory-leak (~> 0.10)
       process-metrics
-    async-utilization (0.3.2)
+    async-utilization (0.4.0)
       console (~> 1.0)
-    async-websocket (0.30.0)
+    async-websocket (0.30.1)
       async-http (~> 0.76)
       protocol-http (~> 0.34)
       protocol-rack (~> 0.7)
       protocol-websocket (~> 0.17)
-    bake (0.24.1)
+    bake (0.25.0)
       bigdecimal
       samovar (~> 2.1)
     bake-test (0.3.0)
@@ -63,34 +59,35 @@ GEM
       console
       samovar (~> 2.0)
       xrb-sanitize
-    bigdecimal (4.1.1)
-    cgi (0.5.1)
-    concurrent-ruby (1.3.6)
-    console (1.34.3)
+    bigdecimal (4.1.2)
+    cgi (0.5.2)
+    concurrent-ruby (1.3.8)
+    console (1.37.0)
       fiber-annotation
       fiber-local (~> 1.1)
       json
     console-output-datadog (0.5.0)
       console
       datadog
-    covered (0.28.1)
+    covered (0.29.1)
       console (~> 1.0)
       msgpack (~> 1.0)
-    datadog (2.30.0)
+      ruby-coverage (~> 0.1)
+    datadog (2.39.0)
       cgi
-      datadog-ruby_core_source (~> 3.5, >= 3.5.2)
-      libdatadog (~> 29.0.0.1.0)
+      datadog-ruby_core_source (~> 3.5, >= 3.5.3)
+      libdatadog (~> 36.0.0.1.0)
       libddwaf (~> 1.30.0.0.0)
       logger
       msgpack
-    datadog-ruby_core_source (3.5.2)
+    datadog-ruby_core_source (3.5.4)
     date (3.5.1)
     dogstatsd-ruby (5.7.1)
-    erb (6.0.3)
-    falcon (0.55.3)
+    erb (6.0.6)
+    falcon (0.56.0)
       async
       async-container (~> 0.20)
-      async-http (~> 0.75)
+      async-http (~> 0.97)
       async-http-cache (~> 0.4)
       async-service (~> 0.19)
       async-utilization (~> 0.3)
@@ -118,19 +115,20 @@ GEM
     http-accept (2.2.1)
     io-console (0.8.2)
     io-endpoint (0.17.2)
-    io-event (1.15.1)
-    io-stream (0.11.1)
+    io-event (1.19.4)
+    io-stream (0.14.0)
+      openssl (>= 3.3)
     io-watch (0.6.3)
-    irb (1.17.0)
+    irb (1.18.0)
       pp (>= 0.6.0)
       prism (>= 1.3.0)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
-    json (2.19.3)
-    libdatadog (29.0.0.1.0)
-    libdatadog (29.0.0.1.0-aarch64-linux)
-    libdatadog (29.0.0.1.0-arm64-darwin)
-    libdatadog (29.0.0.1.0-x86_64-linux)
+    json (2.21.2)
+    libdatadog (36.0.0.1.0)
+    libdatadog (36.0.0.1.0-aarch64-linux)
+    libdatadog (36.0.0.1.0-arm64-darwin)
+    libdatadog (36.0.0.1.0-x86_64-linux)
     libddwaf (1.30.0.0.2)
       ffi (~> 1.0)
     libddwaf (1.30.0.0.2-aarch64-linux)
@@ -145,15 +143,15 @@ GEM
       async-websocket (~> 0.27)
       protocol-websocket (~> 0.19)
       xrb (~> 0.10)
-    localhost (1.7.0)
+    localhost (1.8.0)
+      bake
     logger (1.7.0)
-    mail (2.9.0)
+    mail (2.9.1)
       logger
       mini_mime (>= 0.1.1)
       net-imap
       net-pop
       net-smtp
-    mapping (1.1.3)
     markly (0.16.0)
     memory (0.12.0)
       bake (~> 0.15)
@@ -168,10 +166,10 @@ GEM
     mime-types (3.7.0)
       logger
       mime-types-data (~> 3.2025, >= 3.2025.0507)
-    mime-types-data (3.2026.0414)
+    mime-types-data (3.2026.0701)
     mini_mime (1.1.5)
-    msgpack (1.8.0)
-    net-imap (0.6.3)
+    msgpack (1.8.4)
+    net-imap (0.6.6)
       date
       net-protocol
     net-pop (0.1.2)
@@ -180,19 +178,19 @@ GEM
       timeout
     net-smtp (0.5.1)
       net-protocol
-    openssl (4.0.1)
-    pp (0.6.3)
+    openssl (4.0.2)
+    pp (0.6.4)
       prettyprint
     prettyprint (0.2.0)
     prism (1.9.0)
-    process-metrics (0.11.1)
+    process-metrics (0.12.0)
       console (~> 1.8)
       json (~> 2)
     protocol-hpack (1.5.1)
-    protocol-http (0.62.2)
+    protocol-http (0.66.0)
     protocol-http1 (0.39.0)
       protocol-http (~> 0.62)
-    protocol-http2 (0.26.0)
+    protocol-http2 (0.26.2)
       protocol-hpack (~> 1.4)
       protocol-http (~> 0.62)
     protocol-rack (0.22.1)
@@ -200,17 +198,19 @@ GEM
       protocol-http (~> 0.58)
       rack (>= 1.0)
     protocol-url (0.4.0)
-    protocol-websocket (0.21.0)
+    protocol-websocket (0.21.1)
       protocol-http (~> 0.2)
-    psych (5.3.1)
-      date
-      stringio
     rack (3.2.6)
     rack-test (2.2.0)
       rack (>= 1.3)
-    rdoc (7.2.0)
+    rbs (4.1.1)
+      logger
+      prism (>= 1.6.0)
+      tsort
+    rdoc (8.0.0)
       erb
-      psych (>= 4.0.0)
+      prism (>= 1.6.0)
+      rbs (>= 4.0.0)
       tsort
     relaxo (1.8.0)
       console
@@ -220,13 +220,12 @@ GEM
       relaxo (~> 1.5)
     reline (0.6.3)
       io-console (~> 0.5)
-    rugged (1.9.0)
-    samovar (2.4.1)
+    ruby-coverage (0.1.3)
+    rugged (1.9.6)
+    samovar (2.5.1)
       console (~> 1.0)
-      mapping (~> 1.0)
     string-format (0.2.0)
-    stringio (3.2.0)
-    sus (0.35.2)
+    sus (0.37.2)
     sus-fixtures-async (0.2.0)
       async
       sus (~> 0.10)

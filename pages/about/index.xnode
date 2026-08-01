@@ -4,6 +4,10 @@
 	<main>
 		<p>I'm Samuel Williams, a software engineer and open-source maintainer based in New Zealand. I work on concurrency, networking, and web infrastructure for Ruby, with an emphasis on predictable behaviour, performance, and interfaces that fit naturally into existing Ruby programs.</p>
 		
+		<div style="text-align: center">
+			<img src="chi-keyboard.gif" alt="Chi at a keyboard" />
+		</div>
+		
 		<p>I maintain the <a href="https://github.com/socketry">Socketry</a> ecosystem. Its core projects include <a href="https://github.com/socketry/async">Async</a>, a composable framework for asynchronous Ruby, and <a href="https://github.com/socketry/falcon">Falcon</a>, a high-performance web server built on that foundation. Related work includes <a href="https://github.com/socketry/async-http">Async::HTTP</a>, <a href="https://github.com/socketry/io-event">IO::Event</a>, and the protocol libraries that support modern HTTP and DNS clients and servers.</p>
 		
 		<p>I also contribute to <a href="https://github.com/ruby/ruby">Ruby</a> itself, including the Fiber Scheduler interface that enables existing I/O operations to cooperate with event loops. My broader open-source work, developer tools, experiments, and educational projects live under <a href="https://github.com/ioquatix">ioquatix</a>.</p>

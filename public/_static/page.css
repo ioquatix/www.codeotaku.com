@@ -99,6 +99,8 @@ nav li {
 #header .subtitle {
 	margin: -0.5rem 2rem 1rem;
 	font-size: 1rem;
+	line-height: 1.25;
+	text-align: center;
 	opacity: 0.75;
 }
 

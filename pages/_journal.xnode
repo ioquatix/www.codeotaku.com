@@ -11,7 +11,7 @@
 			if preview_url.extension == 'svg'
 				background_image = preview_url
 			else
-				resizer = Utopia::Gallery::ResizeImage.new(:medium, [800, 600], :resize_to_fill)
+				resizer = Utopia::Gallery::ResizeImage.new(:medium, [700, 400], :resize_to_fill)
 				cache_root = Utopia.default_root('public/_gallery')
 				
 				media = Utopia::Gallery::Media.new(preview_url, {})

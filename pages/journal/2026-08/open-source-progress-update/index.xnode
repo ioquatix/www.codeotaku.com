@@ -1,7 +1,7 @@
 <content:entry>
 	<p>Many reliability bugs do not occur during the main operation. They appear in the narrow gap between checking some state and acting on it: a signal arrives just before an event loop sleeps, a server closes a connection just before a client reuses it, or the garbage collector runs while Ruby is switching fibers.</p>
 	
-	<p>I spent much of July working in those gaps. Across 62 substantive pull requests in 20 repositories, the recurring goal was to preserve the information needed to make the right decision: when to deliver an interrupt, whether a request is safe to retry, which data must remain live, and how much work a server can accept.</p>
+	<p>I spent much of July working in those gaps. This monthly open source progress update covers 62 substantive pull requests across 20 repositories. The recurring goal was to preserve the information needed to make the right decision: when to deliver an interrupt, whether a request is safe to retry, which data must remain live, and how much work a server can accept.</p>
 	
 	<h2>Closing Gaps Inside CRuby</h2>
 	

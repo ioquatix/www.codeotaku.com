@@ -3,10 +3,6 @@ thinking-about-programming:
     created: 2009-10-04
     author: "Samuel Williams"
     summary: "What is the right level of abstraction and terminology to solve technical problems?"
-concurrency-and-immutability:
-    author: "Samuel Williams"
-    created: 2009-10-13
-    summary: "Concurrency and Immutability are becoming interesting topics in computer science - find out why!"
 richard-stallman-in-christchurch:
     author: "Samuel Williams"
     created: 2009-10-22

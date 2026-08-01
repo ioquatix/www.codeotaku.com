@@ -2,9 +2,3 @@ implicit-and-explicit-delimitation:
   created: 2010-12-12
   author: "Samuel Williams"
   summary: "I've been thinking about the differences in modern programming syntax, and how we separate expressions."
-pascals-triangle:
-  created: 2010-12-03
-  author: Samuel Williams
-  title: "Pascal's Triangle"
-  display: false
-  summary: "An interesting mathematical proof using Pascal's Triangle."

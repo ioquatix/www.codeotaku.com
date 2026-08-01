@@ -20,7 +20,7 @@
 	
 	<p>The server is trying to shut down, but its event loop can sleep indefinitely. The existing no-GVL API could avoid blocking for an ordinary VM interrupt, but it could not detect an exception which was pending and temporarily masked by <code class="language-ruby">Thread.handle_interrupt</code>. <a href="https://github.com/ruby/ruby/pull/17553">A new <code class="language-c">rb_nogvl</code> flag covers that pending-interrupt state</a>. <code class="language-ruby">IO::Event</code> first <a href="https://github.com/socketry/io-event/pull/202">adopted the final C API name</a>, then <a href="https://github.com/socketry/io-event/pull/204">centralized its native waits around the new flag with a compatibility path for older Rubies</a>. A follow-up <a href="https://github.com/socketry/io-event/pull/206">captures <code class="language-c">errno</code> immediately after each selector call</a>, preventing an unrelated thread-local error from being mistaken for the result of a skipped or interrupted wait. I exercised the complete Falcon shutdown case 2,000 times with two workers per run and saw no delayed worker dumps or shutdown failures.</p>
 	
-	<p><strong>These changes close a narrow shutdown race in which a termination signal arriving just before the event loop slept could leave a worker waiting indefinitely.</strong></p>
+	<p><strong>These changes close a narrow shutdown race in which a termination signal arriving just before the event loop slept could cause a worker to miss the graceful-shutdown deadline and be forcibly terminated with <code>SIGKILL</code>.</strong></p>
 	
 	<h3>Keeping Fibers Alive While Ruby Switches Between Them</h3>
 	

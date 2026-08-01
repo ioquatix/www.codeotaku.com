@@ -5,4 +5,6 @@ open-source-progress-update:
   subtitle: "Open Source Progress Update — July 2026"
   summary: "July 2026 focused on predictable failure handling, lower-memory MIME lookup, and load-aware Falcon clusters."
   display: true
-  front: false
+  front: true
+  preview_url: banner.webp
+  banner_url: banner.webp

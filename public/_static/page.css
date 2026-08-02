@@ -267,7 +267,7 @@ figure.diagram.inline-diagram text {
 }
 
 figure.diagram.inline-diagram .diagram-copy text {
-	dominant-baseline: middle;
+	dominant-baseline: central;
 }
 
 figure.diagram.inline-diagram .diagram-heading {

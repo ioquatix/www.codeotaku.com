@@ -6,11 +6,13 @@
 
 ## Chapter I: The Crash After the Error
 
-The case began with an ordinary network failure. A server ended a chunked HTTP response before its final chunk, <code class="language-ruby">Async::HTTP</code> raised <code class="language-ruby">EOFError</code>, and its tasks began to unwind.
+The telegram arrived at Baker Street with two failures recorded upon it. The first was unremarkable:
 
-Then Ruby itself crashed.
+```text
+EOFError: unexpected end of chunked response
+```
 
-The [original report](https://bugs.ruby-lang.org/issues/22196) described an intermittent failure on Ruby 3.4.10. Its C backtrace ended in <code class="language-c">fiber_pool_stack_release</code>, far below the HTTP code which appeared to provoke it:
+The second was considerably less so:
 
 ```text
 fiber_pool_stack_release
@@ -19,15 +21,25 @@ fiber_switch
 rb_fiber_start
 ```
 
-“The failed response is merely the witness,” Holmes said. “The crime occurred while Ruby was changing Fibers.”
+“A server truncated an HTTP response,” I said. “<code class="language-ruby">Async::HTTP</code> raised <code class="language-ruby">EOFError</code>, its task unwound, and Ruby crashed. Shall we begin with the HTTP parser?”
 
-That distinction mattered. An incomplete response should terminate a task with an exception. It should not corrupt the virtual machine which delivers it.
+Holmes placed the two traces side by side. “What should happen when a response ends early, Watson?”
+
+“The task should fail with <code class="language-ruby">EOFError</code>.”
+
+“Then the first failure is expected. The mystery is why reporting it disturbed Ruby's Fiber machinery.”
+
+The [original report](https://bugs.ruby-lang.org/issues/22196) described an intermittent crash on Ruby 3.4.10. A busy asynchronous workload made it visible, but the C backtrace pointed beneath sockets and HTTP. Our first task was to separate the circumstance which revealed the defect from the mechanism which caused it.
 
 ## Chapter II: Making Chance Repeat Itself
 
-The first reproduction used <code class="language-ruby">Async::HTTP</code>, many truncated responses, and enough scheduling pressure to make the crash appear occasionally. It established that the problem was real, but it left too many suspects: sockets, HTTP parsing, task cancellation, the Fiber scheduler, and garbage collection.
+The reproduction sent many deliberately truncated responses through <code class="language-ruby">Async::HTTP</code>. Sometimes every task failed cleanly. Sometimes the Ruby process crashed.
 
-AddressSanitizer changed the character of the investigation. Instead of observing a later crash in stack cleanup, it stopped at the first invalid access:
+“A timing problem,” I suggested. “Perhaps two tasks are modifying the same Fiber.”
+
+“Perhaps,” said Holmes. “But intermittency tells us only that the necessary ordering is uncommon. We need a witness who stops the program at the first offence, not at the later commotion.”
+
+We rebuilt Ruby with AddressSanitizer. The uncertain crash became a precise accusation:
 
 ```text
 ERROR: AddressSanitizer: heap-use-after-free
@@ -38,19 +50,40 @@ freed by thread here:
     fiber_free .../cont.c
 ```
 
-The clue was precise. <code class="language-c">fiber_switch</code> was reading a Fiber after the garbage collector had freed it.
+“So <code class="language-c">fiber_switch</code> released the Fiber and then read it?” I asked.
 
-We reduced the network workload until it contained little more than a tiny TCP server sending truncated chunked responses and a collection of failed asynchronous tasks. But Holmes insisted that the final explanation should not depend on HTTP at all.
+Holmes shook his head. “Look more closely. The garbage collector freed it. <code class="language-c">fiber_switch</code> merely continued to believe it was alive.”
 
-“A protocol can reveal a scheduling defect,” he said, “but it cannot define one.”
+That distinction gave us a stronger question: how could Ruby collect a Fiber while native code was still using its internal pointer?
 
-## Chapter III: A Fiber Is Both an Object and an Execution Context
+## Chapter III: The Two Identities of a Fiber
 
-At Ruby level, a Fiber is an object. As long as Ruby code can reach that object, the garbage collector keeps it alive. Inside CRuby, the same Fiber is represented by an <code class="language-c">rb_fiber_t</code> structure containing its execution state.
+Holmes drew two names for the same suspect on the blackboard:
 
-That usually leads to an obvious rule: native code may use the internal pointer while the Ruby object is live. Fiber switching makes the rule less obvious because a C function can suspend in the middle of its execution.
+```text
+Ruby object:     Fiber
+native state:    rb_fiber_t *
+```
 
-The relevant shape in <code class="language-c">fiber_switch</code> was:
+“At Ruby level,” he said, “the garbage collector keeps an object alive while Ruby can reach it. Inside CRuby, native code often works with the object's underlying structure.”
+
+“And the structure belongs to the object,” I replied. “Therefore the pointer is valid while the object is alive.”
+
+“Correct. Now reverse the statement.”
+
+I hesitated. “If C still holds the pointer, the object must be alive?”
+
+“That is the assumption we must test. Can Ruby's garbage collector see an ordinary C local containing <code class="language-c">rb_fiber_t *</code> as a reference to the owning Ruby object?”
+
+It could not. A raw native pointer is useful to C, but it is not automatically a Ruby-level reference. If all visible references to the Fiber disappeared, the garbage collector could reclaim the object and its native state even though a C stack frame still remembered the address.
+
+“Then every use of such a pointer is dangerous,” I said.
+
+“Only if garbage collection can run between obtaining it and using it. Let us find that interval.”
+
+## Chapter IV: The Function Which Paused Mid-Sentence
+
+The relevant code appeared almost too ordinary:
 
 ```c
 fiber_store(fiber, th);
@@ -60,40 +93,64 @@ if (FIBER_TERMINATED_P(fiber)) {
 }
 ```
 
-<code class="language-c">fiber_store</code> does not behave like an ordinary call which returns immediately. It switches execution to another Fiber. Arbitrary Ruby code may run, references may be cleared, and garbage collection may occur before the suspended C frame resumes.
+“The pointer is used immediately after <code class="language-c">fiber_store</code> returns,” I said. “Where could collection intervene?”
 
-The local variable <code class="language-c">fiber</code> was only a raw C pointer. The garbage collector could not see it as a reference keeping the Ruby Fiber object alive.
+“You are reading it as an ordinary function call,” Holmes replied. “What does <code class="language-c">fiber_store</code> actually do?”
 
-## Chapter IV: The Smallest Crime Scene
+“It switches to another Fiber.”
 
-Once we understood the lifetime boundary, the HTTP reproducer gave way to a pure Ruby test involving nested <code class="language-ruby">Fiber#resume</code>, <code class="language-ruby">Fiber.yield</code>, and an explicit collection.
+“And when does this C frame continue?”
 
-Its essential sequence was:
+The answer altered the apparent shape of the code. <code class="language-c">fiber_store</code> could suspend its caller. Before it returned, another Fiber might execute arbitrary Ruby code, remove references, and invoke the garbage collector. Two adjacent lines of C could be separated by an entire episode of Ruby execution.
+
+“The function has paused midway through a sentence,” I said, “and resumes using a noun which may no longer exist.”
+
+“Precisely. Source proximity is not lifetime continuity.”
+
+## Chapter V: Reconstructing the Disappearance
+
+We no longer needed the whole HTTP workload. Holmes proposed that we recreate only the ordering which made the pointer stale.
+
+“We need one Fiber whose C frame is suspended,” he said, “another which removes the last Ruby reference to its target, and a third which forces collection before the first frame resumes.”
+
+The reduced pure-Ruby test used nested <code class="language-ruby">Fiber#resume</code>, <code class="language-ruby">Fiber.yield</code>, and <code class="language-ruby">GC.start</code>. Its sequence was:
 
 1. A parent Fiber created two children and yielded to the root Fiber.
 2. The first child resumed the parent.
 3. The parent discarded its last Ruby reference to that child, then yielded back to it.
-4. While the parent's native <code class="language-c">fiber_switch</code> frame remained suspended, the first child terminated.
+4. The parent's native <code class="language-c">fiber_switch</code> frame remained suspended while the first child terminated.
 5. The second child invoked <code class="language-ruby">GC.start</code>, allowing the first child to be collected.
-6. Execution returned to the suspended C frame, which read its now-stale <code class="language-c">rb_fiber_t *</code>.
+6. Execution returned to the suspended C frame, which read its stale <code class="language-c">rb_fiber_t *</code>.
 
-Nothing in this sequence required networking, threads, or Async. Those components had only made the unusual ordering possible often enough to notice.
+“No HTTP,” I observed.
 
-“We have removed every footprint except the murderer's,” I said.
+“Nor sockets, nor an event loop,” said Holmes.
 
-“And discovered that the footprint belongs to time itself,” Holmes replied. “The pointer was valid when the function began. It was not valid when the function continued.”
+“Then Async did not cause the defect. Its task cleanup merely arranged these Fiber transitions often enough to expose it.”
 
-## Chapter V: The Earlier Change
+Holmes nodded. The network reproduction remained valuable because it showed practical impact. The pure-Ruby reproduction was valuable for a different reason: it proved which Ruby semantics were sufficient to produce the invalid lifetime.
 
-The crash appeared in Ruby 3.4.10 after the fix for [Bug #21955](https://bugs.ruby-lang.org/issues/21955) broadened the handling of Fibers which terminate during a switch. Previously, one post-switch check was limited to <code class="language-ruby">Fiber#resume</code>. The change correctly applied it to <code class="language-ruby">Fiber.yield</code> and <code class="language-ruby">Fiber#transfer</code> as well.
+## Chapter VI: The Suspicious Earlier Change
 
-That did not make the broader behavior wrong. It exposed a pre-existing lifetime assumption: once more switch paths used <code class="language-c">fiber</code> after <code class="language-c">fiber_store</code>, every one of those paths needed the target object to survive the suspension.
+The crash appeared in Ruby 3.4.10 after the fix for [Bug #21955](https://bugs.ruby-lang.org/issues/21955). That change broadened the handling of Fibers which terminate during a switch. A post-switch check previously limited to <code class="language-ruby">Fiber#resume</code> now applied correctly to <code class="language-ruby">Fiber.yield</code> and <code class="language-ruby">Fiber#transfer</code> as well.
 
-Reinstating the old condition made the observed crash disappear, but it would also have discarded the intended semantic fix. The better question was not “how do we avoid this read?” but “why is the object allowed to die before the read is finished?”
+“There is our regression,” I said. “Restore the old condition and the invalid read disappears.”
 
-## Chapter VI: Guarding What C Still Needs
+“Does the old condition make the pointer live?” Holmes asked.
 
-The [final Ruby fix](https://github.com/ruby/ruby/pull/17957) was deliberately small:
+“No. It avoids reading it on those paths.”
+
+“And why was the condition broadened?”
+
+“Because terminated targets require handling on those paths too.”
+
+The apparent remedy would have hidden the lifetime defect by abandoning the intended semantic fix. The earlier change had made a stale-pointer read observable, but the unsafe assumption was more fundamental: any path using <code class="language-c">fiber</code> after a suspending switch needed to keep its owner alive.
+
+“A recent change may reveal the room in which the crime occurs,” Holmes said. “That does not make the room the culprit.”
+
+## Chapter VII: Guarding What C Still Needs
+
+The [final Ruby fix](https://github.com/ruby/ruby/pull/17957) was small enough to fit beneath Holmes's earlier diagram:
 
 ```c
 VALUE fiber_value = fiber->cont.self;
@@ -104,19 +161,25 @@ fiber_store(fiber, th);
 RB_GC_GUARD(fiber_value);
 ```
 
-<code class="language-c">RB_GC_GUARD</code> tells the compiler and Ruby's garbage collector that the Ruby object stored in <code class="language-c">fiber_value</code> must remain live through that point. The native pointer may still span a Fiber switch, but its owner can no longer be collected before the last pointer access.
+“We copy the owning Ruby object into <code class="language-c">fiber_value</code>,” I said. “But why place <code class="language-c">RB_GC_GUARD</code> after the switch?”
 
-The regression test preserved the nested resume/yield ordering and forced collection while the C frame was suspended. A stock Ruby 3.4.10 ASan build reproduced the use-after-free; the guarded build completed without it. The fix was also [backported to Ruby 3.4](https://bugs.ruby-lang.org/issues/22196#note-5).
+“Because the guard marks the end of the lifetime we require. It tells the compiler and garbage collector that the Ruby value must remain live until every native-pointer use above it is complete.”
+
+The pointer itself did not become visible to the garbage collector. Instead, the code retained the Ruby object which owned it. That preserved both the object and its <code class="language-c">rb_fiber_t</code> across the suspended interval.
+
+The regression test preserved the nested resume/yield ordering and forced collection while the C frame was paused. A stock Ruby 3.4.10 ASan build reproduced the use-after-free; the guarded build completed without it. The fix was also [backported to Ruby 3.4](https://bugs.ruby-lang.org/issues/22196#note-5).
 
 ## Epilogue: Liveness Across Suspension
 
-The lesson is broader than Fibers. Native code often reasons about object lifetime from the lexical shape of a function: obtain a pointer, use it, return. Suspension breaks that intuition. Between two adjacent lines of C, another execution context can run Ruby, remove references, and invoke the garbage collector.
+“I had treated the C function as one uninterrupted act,” I said as Holmes closed the debugger. “The code encouraged me to do so: acquire a pointer, call a function, inspect the pointer.”
 
-Any raw pointer used after such a boundary needs an owner whose lifetime is explicit. The source code may place the two uses together; time does not.
+“And yet that call yielded control to Ruby,” he replied. “Whenever native code crosses a boundary which can execute arbitrary Ruby, its assumptions about object lifetime must survive the same journey.”
 
-Holmes closed the debugger.
+The lesson extends beyond Fibers. A callback, scheduler hand-off, or other suspension point can place substantial execution between adjacent native instructions. Any raw pointer used afterward needs an owner whose lifetime is explicit.
 
-“The Fiber did not vanish while we were looking away, Watson. It vanished while our own frame was asleep.”
+“Then the Fiber did not vanish while we were looking away,” I concluded. “It vanished while our own frame was asleep.”
+
+“Exactly, Watson.”
 
 *End of Account*
 

@@ -219,6 +219,137 @@ figure.diagram {
 	border-radius: 1rem;
 }
 
+figure.diagram.protocol-stack {
+	--diagram-background: #f3f6f9;
+	--diagram-panel: #fff;
+	--diagram-border: #718096;
+	--diagram-text: #17202a;
+	--diagram-muted: #52606d;
+	--diagram-accent: #0062b3;
+	--diagram-success: #237a45;
+	--diagram-closed: #b42318;
+	
+	max-width: 48rem;
+	margin: 2rem auto;
+	padding: 0;
+	background: transparent;
+	color: var(--diagram-text);
+}
+
+figure.diagram.protocol-stack svg {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+figure.diagram.protocol-stack .diagram-surface {
+	fill: var(--diagram-background);
+}
+
+figure.diagram.protocol-stack .diagram-panel,
+figure.diagram.protocol-stack .diagram-outcome {
+	fill: var(--diagram-panel);
+	stroke: var(--diagram-border);
+	stroke-width: 2;
+}
+
+figure.diagram.protocol-stack .diagram-outcome-success {
+	stroke: var(--diagram-success);
+}
+
+figure.diagram.protocol-stack .diagram-outcome-closed {
+	stroke: var(--diagram-closed);
+}
+
+figure.diagram.protocol-stack text {
+	fill: var(--diagram-text);
+	font-family: "PT Sans", Verdana, Helvetica, Arial, sans-serif;
+	text-anchor: middle;
+}
+
+figure.diagram.protocol-stack .diagram-heading {
+	font-size: 24px;
+	font-weight: 700;
+}
+
+figure.diagram.protocol-stack .diagram-text {
+	font-size: 20px;
+}
+
+figure.diagram.protocol-stack .diagram-muted,
+figure.diagram.protocol-stack .diagram-label {
+	font-size: 16px;
+	fill: var(--diagram-muted);
+}
+
+figure.diagram.protocol-stack .diagram-label {
+	text-anchor: start;
+}
+
+figure.diagram.protocol-stack .diagram-code {
+	font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+	font-size: 18px;
+	font-weight: 700;
+}
+
+figure.diagram.protocol-stack .diagram-success {
+	fill: var(--diagram-success);
+}
+
+figure.diagram.protocol-stack .diagram-closed {
+	fill: var(--diagram-closed);
+}
+
+figure.diagram.protocol-stack .diagram-arrow {
+	fill: none;
+	stroke-width: 3;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+}
+
+figure.diagram.protocol-stack .diagram-arrow-neutral {
+	stroke: var(--diagram-accent);
+}
+
+figure.diagram.protocol-stack .diagram-arrow-success {
+	stroke: var(--diagram-success);
+}
+
+figure.diagram.protocol-stack .diagram-arrow-closed {
+	stroke: var(--diagram-closed);
+}
+
+figure.diagram.protocol-stack .diagram-arrowhead-neutral {
+	fill: var(--diagram-accent);
+}
+
+figure.diagram.protocol-stack .diagram-arrowhead-success {
+	fill: var(--diagram-success);
+}
+
+@media (prefers-color-scheme: dark) {
+	figure.diagram.protocol-stack {
+		--diagram-background: #171c21;
+		--diagram-panel: #222a31;
+		--diagram-border: #82909d;
+		--diagram-text: #edf2f7;
+		--diagram-muted: #bdc7d0;
+		--diagram-accent: #5cc8ff;
+		--diagram-success: #68d391;
+		--diagram-closed: #ff8a80;
+	}
+}
+
+@media (max-width: 40rem) {
+	figure.diagram.protocol-stack {
+		margin: 1.5rem -0.5rem;
+	}
+	
+	figure.diagram.protocol-stack figcaption {
+		padding-inline: 1rem;
+	}
+}
+
 figure.listing {
 	text-align: left;
 }

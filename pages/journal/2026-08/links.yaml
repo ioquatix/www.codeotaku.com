@@ -7,3 +7,11 @@ open-source-progress-update:
   front: true
   preview_url: banner.webp
   banner_url: banner.webp
+
+the-case-of-the-readable-dead-connection:
+  author: "Samuel Williams"
+  created: 2026-08-02
+  title: "The Case of the Readable Dead Connection: A Ruby Mystery"
+  summary: "Dr. Claude Watson investigates why a readable TLS socket could still be a dead HTTP/1 connection, and how a layered non-blocking peek exposed the truth."
+  display: true
+  front: true

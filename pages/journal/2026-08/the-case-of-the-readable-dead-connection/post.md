@@ -280,7 +280,7 @@ The fix therefore makes a narrower and more useful guarantee: when shutdown is a
 
 The deeper lesson extends beyond TLS. Readiness belongs to a layer. A file descriptor can be ready while the protocol above it has no application data to offer. Whenever software wraps one stream in another—encryption, compression, framing, buffering—the question is not merely “can I read?” but “which layer can tell me what this read means?”
 
-“I began by asking whether the socket was readable,” I said as Holmes closed the casebook. “I should have asked what a read would mean at each layer.”
+Holmes closed the casebook.
 
 “The socket told us it had something to read, Watson. Only TLS could tell us what it meant.”
 

@@ -214,7 +214,7 @@ The deeper lesson extends beyond TLS. Readiness belongs to a layer. A file descr
 
 Holmes closed the casebook.
 
-“The socket told us the truth from the beginning, Watson. We simply asked it a TLS question.”
+“The socket told us it had something to read, Watson. Only TLS could tell us what it meant.”
 
 *End of Account*
 

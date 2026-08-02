@@ -48,17 +48,39 @@ The connection had to be idle, its stream had to exist, and that stream had to a
 
 The investigation had an earlier clue. In [Overriding <code class="language-ruby">request.idempotent?</code> for individual requests](https://github.com/socketry/async-http/issues/221), the reporter had explored enabling <code class="language-ruby">Async::HTTP</code>'s automatic retry path.
 
-The idea contained two separate hazards. First, declaring a request idempotent does not make its effects safe to repeat. Second, a request body may already have been consumed; retrying it without rewinding could send an empty or incomplete body.
+“If this application knows its POST is safe to repeat,” I said, “could it simply mark the request idempotent?”
+
+“That may express a policy for this request,” Holmes replied. “Does the label itself make an operation safe to repeat?”
+
+It did not. A general-purpose client could use the declaration when choosing whether to retry, but it could not infer safety merely from the HTTP method—or manufacture safety because a flag had been set.
+
+“Then the client retries only when the caller explicitly permits it.”
+
+“And what will it send?”
+
+I looked again at the request body. It might already have been consumed by the first attempt. Retrying without rewinding could send an empty or incomplete body.
 
 [<code class="language-ruby">Async::HTTP</code> later gained the ability to rewind suitable bodies](https://github.com/socketry/async-http/pull/229), but that did not make every POST safe to replay. Retry policy could help after some failures, but it could not answer the question before us: why had the pool selected a connection whose peer had already shut it down?
 
-Holmes drew a line through the word “retry.”
+Holmes drew a line through the word “retry” in our list of causes.
 
 “A useful remedy in the right case,” he said, “but not the identity of our culprit.”
 
 ## Chapter IV: The Socket That Told the Truth
 
 We examined the connection from the transport upward. A TCP socket supplied encrypted records to TLS. When those records decoded into application data, HTTP/1 interpreted the resulting bytes as a response.
+
+“The pool asked whether the stream was readable,” I said. “Surely that means data is waiting.”
+
+“Data of what kind?” Holmes asked.
+
+“HTTP response bytes.”
+
+“You have crossed two protocol layers without examining either. What does the operating system actually promise when it marks a socket readable?”
+
+I had mistaken a useful shorthand for a stronger guarantee. Descriptor readiness means that a read can make progress without blocking. It does not promise that the read will return application data; observing EOF is also progress.
+
+Holmes arranged the layers on the board:
 
 <figure class="diagram inline-diagram">
 <svg viewBox="0 0 640 650" role="img" aria-labelledby="tls-layers-title tls-layers-description">
@@ -122,29 +144,47 @@ We examined the connection from the transport upward. A TCP socket supplied encr
 <figcaption>Descriptor readiness becomes meaningful only after TLS interprets the pending record.</figcaption>
 </figure>
 
-Operating systems report a socket as readable when a read can make progress. That may mean application bytes are waiting, but it may also mean the peer has closed the connection and the next read will return EOF.
-
 Ruby's <code class="language-ruby">IO#wait_readable</code> correctly reports this descriptor-level readiness. The discussion around [Ruby feature #20215, <code class="language-ruby">IO#readable?</code>](https://bugs.ruby-lang.org/issues/20215), had already exposed the subtle difference between “data is available now,” “a read can observe EOF,” and “a future read might succeed.”
 
-“Then the socket was not lying,” I said. “There really was something to process.”
+“Then the socket was not lying,” I said. “A read really could make progress.”
 
-“Precisely. Our error was to mistake readiness at the transport layer for viability at the protocol layer.”
+“Precisely. But we have not yet established what that progress means to TLS, much less HTTP.”
 
 ## Chapter V: The Sealed TLS Message
 
-The decisive complication was TLS. A graceful TLS shutdown is not merely a TCP EOF. The peer first sends an encrypted alert record called <code class="language-plain">close_notify</code>. The underlying socket becomes readable because the TLS record has arrived.
+“If a readable socket may reveal EOF,” I said, “can the pool simply peek at the TCP connection and reject it when the peer has closed?”
+
+“Not when TLS stands between TCP and HTTP. A graceful TLS shutdown begins before the TCP connection necessarily reaches EOF.”
+
+The peer first sends an encrypted alert record called <code class="language-plain">close_notify</code>. Its arrival makes the underlying socket readable just as an encrypted application-data record would.
 
 But after OpenSSL reads and decrypts that record, it yields no HTTP bytes. It marks the TLS stream as cleanly closed.
 
-From TCP's point of view, the socket was readable. From HTTP's point of view, the connection was finished. A check which stopped at the socket could not distinguish an encrypted application-data record from an encrypted shutdown alert.
+“Then we should inspect the pending TCP bytes,” I suggested, “and look for the alert.”
+
+“What does encryption permit us to learn from those bytes without asking TLS to process them?”
+
+The raw socket could reveal that a TLS record was waiting, but not whether it contained HTTP application data or a shutdown alert. That distinction emerged only after OpenSSL authenticated and decoded the record.
+
+From TCP's point of view, the socket was readable. From HTTP's point of view, the connection might already be finished. A viability check which stopped at the socket could not tell which.
 
 “The connection is readable,” I concluded, “and dead.”
 
-Holmes smiled. “Now the title of our case begins to make sense.”
+Holmes smiled. “At one layer, readable. At the next, closed. Now the title of our case begins to make sense.”
 
 ## Chapter VI: A Peek Through the Layers
 
-We needed to let TLS process one pending record without stealing application data from the eventual HTTP reader. A blocking read was unacceptable: a healthy idle connection usually has nothing to say. Peeking only at the raw socket would leave the TLS record undecoded.
+“Then let TLS read the pending record before the pool reuses the connection,” I said.
+
+“And if the connection is healthy but idle?”
+
+“The read would wait indefinitely for data which has no reason to arrive.”
+
+“So it must be non-blocking. And if TLS decodes application data rather than <code class="language-plain">close_notify</code>?”
+
+I saw the second constraint. The probe must not steal bytes from the HTTP reader which would eventually consume them.
+
+We needed a layered peek: allow TLS to process at most one pending record without blocking, while retaining any decoded application bytes in the stream's buffer.
 
 The solution became [<code class="language-ruby">IO::Stream::Readable#peek_partial</code>](https://github.com/socketry/io-stream/pull/16), a layered, non-blocking peek:
 
@@ -168,15 +208,27 @@ def peek_partial(size = @minimum_read_size)
 end
 ```
 
-The method makes at most one non-blocking read attempt through the layered stream. If no bytes can be read without waiting, it returns <code class="language-ruby">nil</code> and leaves the stream viable. If TLS decodes <code class="language-plain">close_notify</code>, the stream records EOF. If it decodes application data, those bytes remain in <code class="language-ruby">IO::Stream</code>'s read buffer for the real consumer.
+“What does <code class="language-ruby">nil</code> tell the caller?” I asked after studying the implementation.
 
-This last property matters. <code class="language-ruby">peek_partial</code> may consume encrypted bytes from the socket, but it does not consume the decoded bytes from the application's perspective.
+“Only that the probe produced no application bytes. The stream itself records whether that was because the read would block or because TLS reached EOF.”
+
+The method makes at most one non-blocking read attempt through the layered stream. If no record can be processed without waiting, it returns <code class="language-ruby">nil</code> and leaves the stream open. If TLS decodes <code class="language-plain">close_notify</code>, the stream records EOF and also returns <code class="language-ruby">nil</code>. If it decodes application data, it returns a view of those buffered bytes.
+
+“But OpenSSL has consumed the encrypted record,” I said.
+
+“Yes. The important boundary is the application-facing stream. <code class="language-ruby">peek_partial</code> may consume encrypted bytes from the socket, but the decoded bytes remain in <code class="language-ruby">IO::Stream</code>'s read buffer for the real HTTP consumer.”
 
 The tests covered four distinct states: an idle open TLS connection, a clean TLS shutdown, an abrupt disconnect, and pending application data that had to survive the probe.
 
 ## Chapter VII: The Protocol-Specific Verdict
 
-With that primitive in place, [<code class="language-ruby">Async::HTTP</code> could probe idle HTTP/1 connections before reuse](https://github.com/socketry/async-http/pull/230):
+“Now the pool can call <code class="language-ruby">peek_partial</code> and keep any connection which returns no bytes,” I said.
+
+“Not quite. What are the two reasons it may return no bytes?”
+
+“The read would block, or the layered stream reached EOF. We must ask the stream whether it remains readable after the probe.”
+
+With that distinction in place, [<code class="language-ruby">Async::HTTP</code> could probe idle HTTP/1 connections before reuse](https://github.com/socketry/async-http/pull/230):
 
 ```ruby
 def viable?
@@ -193,14 +245,26 @@ rescue => error
 end
 ```
 
-For an idle HTTP/1 connection, each possible result has a useful interpretation:
+Holmes read the outcomes as a sequence of deductions:
 
 1. If the read would block, no shutdown is presently observable and the connection remains a candidate for reuse.
 2. If the stream reaches EOF or decodes <code class="language-plain">close_notify</code>, the connection is discarded.
 3. If the probe raises because the transport was reset or otherwise failed, the connection is discarded.
 4. If application data appears while the HTTP/1 connection is meant to be idle, its state is unexpected and the connection is discarded; the peeked byte remains buffered.
 
-HTTP/1 makes this probe safe because an idle connection has no concurrent response reader. HTTP/2 is different: a background reader owns transport reads and dispatches frames for many streams. A connection-pool check must not compete with it, so HTTP/2 retained its existing viability logic.
+“Then every pooled protocol should use this probe,” I said.
+
+“Who owns transport reads on an idle HTTP/1 connection?”
+
+“No one. Its previous response is complete.”
+
+“And on HTTP/2?”
+
+HTTP/2 maintains a background reader which owns the transport and dispatches frames for many concurrent streams. A pool-side probe would compete with that reader and could consume a frame it was responsible for processing. HTTP/1 made the new check safe precisely because an idle connection had no concurrent response reader. HTTP/2 therefore retained its existing viability logic.
+
+“The primitive is layered,” I said, “but its safe use still depends on the protocol's ownership model.”
+
+“Exactly. A correct operation in one protocol state may be a race in another.”
 
 The regression test recreated the complete sequence: make one request, return its TLS connection to the pool, close it from the server, then issue a non-idempotent POST. The stale connection was rejected and the request used a fresh one.
 
@@ -208,11 +272,15 @@ The regression test recreated the complete sequence: make one request, return it
 
 [<code class="language-ruby">Async::HTTP</code> v0.98.1](https://github.com/socketry/async-http/releases/tag/v0.98.1) carried the fix. The reporter's confirmation was pleasingly concise: “it does! w00t.”
 
-The fix cannot abolish the race inherent in a network. A peer may close a connection immediately after any viability check. What it does is narrower and valuable: when shutdown is already observable, the pool no longer assigns that connection to a new HTTP/1 request.
+“Have we proved the connection alive?” I asked. “Could the peer not close it immediately after the probe?”
+
+“It could close immediately after any viability check. A network permits no permanent conclusion about the next moment.”
+
+The fix therefore makes a narrower and more useful guarantee: when shutdown is already observable through the layered stream, the pool no longer assigns that connection to a new HTTP/1 request. It does not abolish the inherent close-after-check race.
 
 The deeper lesson extends beyond TLS. Readiness belongs to a layer. A file descriptor can be ready while the protocol above it has no application data to offer. Whenever software wraps one stream in another—encryption, compression, framing, buffering—the question is not merely “can I read?” but “which layer can tell me what this read means?”
 
-Holmes closed the casebook.
+“I began by asking whether the socket was readable,” I said as Holmes closed the casebook. “I should have asked what a read would mean at each layer.”
 
 “The socket told us it had something to read, Watson. Only TLS could tell us what it meant.”
 

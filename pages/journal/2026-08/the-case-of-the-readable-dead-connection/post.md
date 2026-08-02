@@ -77,25 +77,33 @@ We examined the connection from the transport upward. A TCP socket supplied encr
 	<rect class="diagram-surface" x="10" y="10" width="620" height="630" rx="24"/>
 	
 	<rect class="diagram-node" x="60" y="50" width="520" height="100" rx="16"/>
-	<text class="diagram-heading" x="320" y="87">TCP socket</text>
-	<text class="diagram-text" x="320" y="117">descriptor is readable</text>
-	<text class="diagram-muted" x="320" y="141">an encrypted TLS record is pending</text>
+	<g class="diagram-copy" transform="translate(320 100)">
+		<text class="diagram-heading" x="0" y="-27">TCP socket</text>
+		<text class="diagram-text" x="0" y="5">descriptor is readable</text>
+		<text class="diagram-muted" x="0" y="31">an encrypted TLS record is pending</text>
+	</g>
 	
 	<path class="diagram-connector diagram-connector-accent" d="M 320 150 L 320 215" marker-end="url(#tls-arrow-neutral)"/>
 	<text class="diagram-label" x="332" y="190">non-blocking read</text>
 	
 	<rect class="diagram-node" x="60" y="220" width="520" height="220" rx="16"/>
-	<text class="diagram-heading" x="320" y="260">TLS decodes the pending record</text>
+	<g class="diagram-copy" transform="translate(320 255)">
+		<text class="diagram-heading" x="0" y="0">TLS decodes the pending record</text>
+	</g>
 	
 	<rect class="diagram-node diagram-node-positive" x="85" y="290" width="220" height="105" rx="12"/>
-	<text class="diagram-code diagram-positive" x="195" y="325">application_data</text>
-	<text class="diagram-text" x="195" y="357">decoded response bytes</text>
-	<text class="diagram-muted" x="195" y="381">continue to HTTP/1</text>
+	<g class="diagram-copy" transform="translate(195 342.5)">
+		<text class="diagram-code diagram-positive" x="0" y="-28">application_data</text>
+		<text class="diagram-text" x="0" y="2">decoded response bytes</text>
+		<text class="diagram-muted" x="0" y="29">continue to HTTP/1</text>
+	</g>
 	
 	<rect class="diagram-node diagram-node-terminal" x="335" y="290" width="220" height="105" rx="12"/>
-	<text class="diagram-code diagram-terminal" x="445" y="325">close_notify</text>
-	<text class="diagram-text" x="445" y="357">clean TLS shutdown</text>
-	<text class="diagram-muted" x="445" y="381">no HTTP bytes</text>
+	<g class="diagram-copy" transform="translate(445 342.5)">
+		<text class="diagram-code diagram-terminal" x="0" y="-28">close_notify</text>
+		<text class="diagram-text" x="0" y="2">clean TLS shutdown</text>
+		<text class="diagram-muted" x="0" y="29">no HTTP bytes</text>
+	</g>
 	
 	<path class="diagram-connector diagram-connector-positive" d="M 195 395 L 195 505" marker-end="url(#tls-arrow-success)"/>
 	<text class="diagram-label diagram-positive" x="206" y="475">response bytes</text>
@@ -105,9 +113,11 @@ We examined the connection from the transport upward. A TCP socket supplied encr
 	<text class="diagram-label diagram-terminal" x="456" y="465">EOF</text>
 	
 	<rect class="diagram-node" x="60" y="510" width="520" height="110" rx="16"/>
-	<text class="diagram-heading" x="320" y="548">HTTP/1</text>
-	<text class="diagram-text" x="320" y="580">expects application data</text>
-	<text class="diagram-muted" x="320" y="605">response status, headers, and body</text>
+	<g class="diagram-copy" transform="translate(320 565)">
+		<text class="diagram-heading" x="0" y="-27">HTTP/1</text>
+		<text class="diagram-text" x="0" y="5">expects application data</text>
+		<text class="diagram-muted" x="0" y="31">response status, headers, and body</text>
+	</g>
 </svg>
 <figcaption>Descriptor readiness becomes meaningful only after TLS interprets the pending record.</figcaption>
 </figure>

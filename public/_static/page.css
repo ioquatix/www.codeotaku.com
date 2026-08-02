@@ -266,6 +266,10 @@ figure.diagram.inline-diagram text {
 	text-anchor: middle;
 }
 
+figure.diagram.inline-diagram .diagram-copy text {
+	dominant-baseline: middle;
+}
+
 figure.diagram.inline-diagram .diagram-heading {
 	font-size: 24px;
 	font-weight: 700;

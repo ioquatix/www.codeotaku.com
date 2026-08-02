@@ -6,7 +6,7 @@
 
 ## Chapter I: The Impossible Trace
 
-The program contained three executable lines:
+Holmes handed me a program containing three executable lines:
 
 ```ruby
 raise if 1 == 2
@@ -15,25 +15,21 @@ while true
 end
 ```
 
-The first condition was false. The loop condition was true. The body executed and broke from the loop. Yet <code class="language-ruby">TracePoint.new(:line)</code> reported only lines one and three:
+“The first condition is false,” I said. “The second is true, so the body executes and breaks from the loop.”
+
+“Then which lines should <code class="language-ruby">TracePoint.new(:line)</code> report?”
+
+“One, two, and three.”
+
+He turned the terminal toward me:
 
 ```ruby
 [1, 3]
 ```
 
-Line two had plainly participated in the program's control flow, but Ruby emitted no line event for it. [Bug #22218](https://bugs.ruby-lang.org/issues/22218) reproduced the same behavior on Ruby 3.3, 3.4, and 4.0.
+“Perhaps Ruby optimized the loop condition away,” I suggested. “<code class="language-ruby">true</code> is constant.”
 
-“A missing event is not necessarily a missing execution,” I ventured.
-
-“No,” Holmes replied, “but a tracing API exists to make that distinction observable. If the line executed and the trace omitted it, our account of the program is incomplete.”
-
-## Chapter II: What a Line Event Means
-
-<code class="language-ruby">TracePoint</code> lets debuggers, tracers, profilers, and diagnostic tools observe events inside Ruby execution. A <code class="language-ruby">:line</code> event does not mean that every expression has its own callback. It marks the source lines which Ruby's compiled instruction sequence identifies as execution points.
-
-That mapping is part of the language tooling contract. Developers use it to step through methods, explain which branches ran, and associate runtime behavior with source. Coverage uses closely related information, but ordinary <code class="language-ruby">TracePoint</code> consumers do not necessarily enable coverage.
-
-The missing line also appeared in less artificial code:
+Holmes replaced it with a real predicate:
 
 ```ruby
 def read
@@ -45,46 +41,88 @@ def read
 end
 ```
 
-Here the loop condition performs real work by calling <code class="language-ruby">super</code> and assigning its result. Omitting its line event can make a trace suggest that execution jumped from the guard directly into the loop body.
+The loop condition called <code class="language-ruby">super</code>, assigned its result, and plainly executed. Its line event was still absent. [Bug #22218](https://bugs.ruby-lang.org/issues/22218) reproduced the behavior on Ruby 3.3, 3.4, and 4.0.
 
-## Chapter III: Following the Bytecode
+“Then the line did not fail to execute,” I said. “It failed to leave evidence.”
 
-CRuby compiles Ruby source into YARV instructions. It also attaches event flags to selected instructions so the interpreter knows when to notify <code class="language-ruby">TracePoint</code> and Coverage.
+“A useful distinction, Watson. Our program's result is correct; its account of how it reached that result is not.”
 
-The loop shape introduced an intermediate jump carrying the line-two event. A peephole optimization then noticed that one branch led to a jump which led somewhere else. It shortened the route by retargeting the first branch directly to the final destination.
+## Chapter II: What Does a Line Event Promise?
 
-In simplified form, the compiler changed this:
+“Must every executed expression produce a line event?” I asked.
+
+“No. If we assume the wrong contract, we shall diagnose a compliant optimization as a defect.”
+
+<code class="language-ruby">TracePoint</code> allows debuggers, tracers, profilers, and diagnostic tools to observe events inside Ruby execution. A <code class="language-ruby">:line</code> event does not fire for every subexpression. It marks the source lines which Ruby's compiled instruction sequence identifies as execution points.
+
+“Then perhaps line two simply is not such a point.”
+
+Holmes indicated the loop condition. “A debugger stepping through <code class="language-ruby">while chunk = super</code> must be able to associate that call and assignment with its source line. More decisively, Ruby's own compiler attached a line event to the bytecode for it. The event existed before optimization.”
+
+That mapping is part of the tooling contract. Developers rely on it to step through methods, explain which branches ran, and connect runtime behavior to source. Coverage consumes related metadata, but an ordinary TracePoint user does not necessarily enable coverage.
+
+The question therefore moved down one level: where had the event-bearing instruction gone?
+
+## Chapter III: The Shortened Route
+
+CRuby compiles Ruby source into YARV instructions. Event flags attached to selected instructions tell the interpreter when to notify TracePoint and Coverage.
+
+Holmes sketched the relevant control flow:
 
 ```text
-branch unless condition -> jump_with_line_event
-jump_with_line_event    -> loop body
+conditional branch -> jump carrying line-two event
+jump carrying event -> loop body
 ```
 
-into this:
+“A branch leading to a jump,” I said. “The compiler can point the branch directly at the loop body.”
+
+“And ordinarily it should. What do we call that?”
+
+“Jump-to-jump peephole optimization.”
+
+The shortened route was:
 
 ```text
-branch unless condition -> loop body
+conditional branch -> loop body
 ```
 
-The optimized program produced the same Ruby result, but execution no longer visited the instruction carrying the line event.
+“The destination is unchanged,” I said. “So the optimization preserves program behavior.”
 
-“The line was not removed from the source,” I said. “Only the road sign which announced it.”
+“Which behavior?” Holmes asked.
 
-“And to a traveller concerned solely with the destination, the shorter road is equivalent,” Holmes replied. “To an observer mapping the journey, it is not.”
+I saw the omission. The resulting values and control flow were equivalent, but execution no longer visited the intermediate instruction carrying the line event. To the program, the road was shorter. To an observer mapping the journey, a signpost had vanished.
 
-## Chapter IV: An Old Clue with a Narrow Remedy
+“An optimization can preserve the answer while changing what an instrumentation API observes,” I said.
 
-This control-flow shape was not entirely new. [Bug #15980](https://bugs.ruby-lang.org/issues/15980) had found that the same jump optimization could make line coverage inaccurate. Ruby already avoided the optimization when line coverage was enabled and the skipped instruction carried event metadata.
+“And if observation is part of the supported semantics, the compiler must preserve that too.”
 
-That safeguard was deliberately tied to coverage. The compiler source even noted the remaining limitation: ordinary <code class="language-ruby">TracePoint</code> line events could still miss the loop condition.
+## Chapter IV: The Coverage Alibi
 
-The prior state explained the apparent inconsistency. Coverage and TracePoint consumed related event flags, but enabling coverage activated an optimization guard which a standalone TracePoint did not receive. The same source could therefore look complete to Coverage and incomplete to another tracing tool.
+We enabled line coverage. To my surprise, line two reappeared.
 
-## Chapter V: Preserve the Evidence
+“Then TracePoint is broken, but Coverage is not?” I asked.
 
-An [earlier proposal](https://github.com/ruby/ruby/pull/17825) explored representing the control-flow edge more explicitly. Discussion led to a smaller solution: retain the existing event-bearing jump whenever removing it would erase a line event.
+“Or the same compiler contains a safeguard which only Coverage activates.”
 
-[The merged fix](https://github.com/ruby/ruby/pull/18122) changed the peephole condition to stop this particular retargeting when the intermediate instruction carries either <code class="language-c">RUBY_EVENT_LINE</code> or <code class="language-c">RUBY_EVENT_COVERAGE_LINE</code>:
+[Bug #15980](https://bugs.ruby-lang.org/issues/15980) had previously found that this jump optimization could make line coverage inaccurate. Ruby already stopped the optimization when line coverage was enabled and the skipped instruction carried event metadata.
+
+The compiler source documented the compromise. Coverage received the guard; ordinary <code class="language-ruby">TracePoint</code> line events could still miss the loop condition.
+
+“So the bytecode depends on who asks to observe it,” I said. “Coverage keeps the event-bearing jump, while a standalone TracePoint receives the optimized route.”
+
+“Exactly. The prior fix proves that the event is meaningful. Its condition also explains why our two observers disagree.”
+
+The clue narrowed the remedy. We did not need a new concept of source lines. We needed the existing protection to follow the line event itself, rather than the particular tool which happened to request it.
+
+## Chapter V: How Much Machinery Is Necessary?
+
+An [earlier proposal](https://github.com/ruby/ruby/pull/17825) explored representing the control-flow edge more explicitly so the event could survive optimization.
+
+“That sounds comprehensive,” I said.
+
+“It also asks the interpreter and JITs to understand new metadata,” Holmes replied. “Before adding machinery, what is the smallest rule which preserves the evidence?”
+
+The answer was to retain the existing intermediate jump whenever removing it would erase a line event. [The merged fix](https://github.com/ruby/ruby/pull/18122) changed the peephole condition to stop this specific retargeting when the skipped instruction carries <code class="language-c">RUBY_EVENT_LINE</code> or <code class="language-c">RUBY_EVENT_COVERAGE_LINE</code>:
 
 ```c
 int stop_optimization =
@@ -93,37 +131,63 @@ int stop_optimization =
         (RUBY_EVENT_LINE | RUBY_EVENT_COVERAGE_LINE));
 ```
 
-Other jump-to-jump folding remains available. The compiler preserves only the instruction whose removal would change what Ruby's instrumentation can observe.
+“Other jump chains are still folded,” I observed. “Only a jump carrying observable evidence is retained.”
 
-With that route restored, the original program reports the expected sequence:
+“A narrow rule for a narrow contract.”
+
+With that route restored, the original program produced the expected trace:
 
 ```ruby
 [1, 2, 3]
 ```
 
-## Chapter VI: Correctness Has a Dispatch Cost
+## Chapter VI: The Price of Preserving a Signpost
 
-Keeping the intermediate jump means the interpreter may dispatch one additional YARV instruction on an affected edge. It would have been easy either to dismiss that cost as trivial or to preserve the optimization and declare tracing exceptional. Neither answer measures the actual tradeoff.
+“We have made the trace correct,” I said. “But the interpreter must now dispatch an additional jump.”
 
-Targeted benchmarks deliberately concentrated the affected pattern. The interpreter slowed by about one percent in a hot loop and 2.7 percent in a minimal guarded reader. Those are upper-bound cases where nearly every iteration or call traverses the retained jump, not estimates for general Ruby programs.
+“How expensive is it?”
 
-YJIT and ZJIT recovered the control-flow optimization at a different layer. YJIT can place the target block next and emit no machine jump; ZJIT cleans the redundant chain from its control-flow graph. The same reader benchmark showed no repeatable JIT regression.
+“One instruction. Surely negligible.”
 
-This division is useful. The bytecode remains semantically complete for interpreters and instrumentation. A JIT, which can preserve the necessary event behavior while reorganizing machine control flow, remains free to optimize the extra jump away.
+Holmes raised an eyebrow. “That is an opinion, not a measurement.”
 
-## Chapter VII: Testing What Tools Can See
+Targeted benchmarks concentrated the affected pattern until nearly every iteration or method call traversed the retained jump. The interpreter slowed by about one percent in a hot loop and 2.7 percent in a minimal guarded reader.
 
-The regression tests did more than assert the program's return value, which had never been wrong. They enabled <code class="language-ruby">TracePoint.new(:line)</code> and verified that the loop-condition event appeared before the body event.
+“Larger than I expected,” I admitted. “Should we accept incorrect tracing to keep the optimization?”
 
-One test used the minimal <code class="language-ruby">while true</code> case. Another used the realistic <code class="language-ruby">while chunk = super</code> predicate. Together they protected both the reduced compiler shape and the behavior which matters to tracing tools.
+“You offer a false choice. Must every execution engine preserve the jump in the same form?”
 
-That is an important testing lesson for instrumented runtimes. Two executions may compute the same result yet differ in debugger steps, coverage, trace events, stack metadata, or profiling samples. If those observations are part of a supported API, result-only tests cannot establish correctness.
+YJIT and ZJIT operate after the bytecode has preserved its event semantics. YJIT can place the target block next and emit no machine jump; ZJIT can clean the redundant chain from its control-flow graph. The guarded-reader benchmark showed no repeatable JIT regression.
 
-## Epilogue: Optimization Must Preserve Observation
+The division of responsibility became clear: bytecode remains complete for the interpreter and instrumentation, while a JIT may reorganize machine control flow without discarding promised observations.
 
-Compiler optimizations are usually described in terms of program meaning: transform the implementation without changing its result. A runtime with debugging and instrumentation APIs has a wider definition of meaning. It must also preserve the events it promises observers.
+“Then the interpreter figures are real but deliberately concentrated upper bounds,” I said, “not an estimate of general application slowdown.”
 
-The missing line was never a parser error, nor a failure to run the loop condition. It was evidence discarded by a control-flow shortcut.
+“Precisely. Neither hide the cost nor exaggerate its reach.”
+
+## Chapter VII: Testing the Witness, Not Merely the Result
+
+Our original program had always returned the correct result. A conventional assertion could therefore pass before and after the fix.
+
+“How do we prevent the line from disappearing again?” I asked.
+
+“Ask the witness whose testimony was wrong.”
+
+The regression tests enabled <code class="language-ruby">TracePoint.new(:line)</code> and asserted that the loop-condition event appeared before the body event. One used the minimal <code class="language-ruby">while true</code> example; another used the realistic <code class="language-ruby">while chunk = super</code> predicate.
+
+“So the test does not merely prove what the program computes,” I said. “It proves what Ruby promises tools they can observe.”
+
+“Exactly. Instrumented runtimes have more than one audience.”
+
+Two executions may return the same value yet differ in debugger steps, coverage, trace events, stack metadata, or profiling samples. When those observations form a supported API, result-only testing cannot establish correctness.
+
+## Epilogue: The Meaning of Equivalent
+
+“I called the optimized routes equivalent because they reached the same destination,” I reflected.
+
+“For the executing program, they did,” Holmes said. “For the observer, one route omitted a promised landmark.”
+
+Compiler transformations are usually expected to preserve program meaning. Runtimes with debugging and instrumentation APIs have a wider meaning to preserve: not every internal step, but every event their contracts make observable.
 
 Holmes marked line two in the trace and returned the pencil to his desk.
 

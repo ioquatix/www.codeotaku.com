@@ -23,7 +23,6 @@
 		?>
 			<a href="#{entry.href}" style="background-image: url(#{background_image})">
 				<heading>#{entry.title}</heading>
-				<small>#{entry.info[:summary]}</small>
 			</a>
 		<?r end ?>
 	<?r end ?>

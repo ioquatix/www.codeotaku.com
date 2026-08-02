@@ -25,6 +25,7 @@ html {
 html {
 	--main-color: #111;
 	--main-background-color: #fff;
+	--panel-background-color: #fafafa;
 	
 	--header-color: #eee;
 	--underlay-color: #ddd;
@@ -40,6 +41,7 @@ html {
 	html {
 		--main-color: #e1e1e1;
 		--main-background-color: #111;
+		--panel-background-color: #1a1a1a;
 		
 		--header-color: #222;
 		--overlay-color: #333;
@@ -143,7 +145,7 @@ section.articles a {
 	
 	margin: 1rem;
 	position: relative;
-	background-color: white;
+	background-color: var(--panel-background-color);
 	
 	aspect-ratio: 7 / 4;
 	
@@ -152,6 +154,7 @@ section.articles a {
 	text-decoration: none;
 	
 	box-shadow: 0 0 0.5rem var(--underlay-color);
+	border-radius: 1rem;
 	
 	overflow: hidden;
 	
@@ -163,10 +166,6 @@ section.articles a {
 section.articles a > * {
 	padding: 0.5rem;
 	background-color: var(--overlay-color);
-}
-
-section.articles small {
-	color: var(--main-color);
 }
 
 main {

@@ -47,7 +47,7 @@ if prev_link == nil || next_link == nil
 end
 
 ?><content:page image_url="#{preview_url}">
-	<content:heading summary="#{summary}">#{title}</content:heading>
+	<content:heading>#{title}</content:heading>
 	
 	<main>
 		<?r if banner_path ?>

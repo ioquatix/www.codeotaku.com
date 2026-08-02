@@ -50,7 +50,7 @@ The investigation had an earlier clue. In [Overriding <code class="language-ruby
 
 The idea contained two separate hazards. First, declaring a request idempotent does not make its effects safe to repeat. Second, a request body may already have been consumed; retrying it without rewinding could send an empty or incomplete body.
 
-<code class="language-ruby">Async::HTTP</code> later gained the ability to rewind suitable bodies, but that did not make every <code class="language-ruby">POST</code> safe to replay. Retry policy could help after some failures, but it could not answer the question before us: why had the pool selected a connection whose peer had already shut it down?
+[<code class="language-ruby">Async::HTTP</code> later gained the ability to rewind suitable bodies](https://github.com/socketry/async-http/pull/229), but that did not make every <code class="language-ruby">POST</code> safe to replay. Retry policy could help after some failures, but it could not answer the question before us: why had the pool selected a connection whose peer had already shut it down?
 
 Holmes drew a line through the word “retry.”
 

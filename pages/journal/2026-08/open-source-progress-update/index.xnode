@@ -36,9 +36,11 @@
 	
 	<p><a href="https://bugs.ruby-lang.org/issues/22218">Ruby Bug #22218 showed that an ordinary line <code class="language-ruby">TracePoint</code> could miss a loop condition which really executed</a>. CRuby already disabled the responsible jump-to-jump optimization when line coverage needed the skipped event, but ordinary line tracing did not receive the same protection. <a href="https://github.com/ruby/ruby/pull/18122">Jumps carrying line events are now preserved for both consumers</a>. The interpreter retains an extra jump on the affected path, while YJIT and ZJIT can remove the overhead after compiling the control flow.</p>
 	
-	<h2>Entering Async from Non-Blocking Fibers</h2>
+	<h2>Starting Async Inside Enumerators and Other Fibers</h2>
 	
-	<p>The runtime fixes support a simple promise at the library level: ordinary Ruby control flow should continue to work when Async is introduced underneath it. Previously, calling <code class="language-ruby">Sync</code> or <code class="language-ruby">Async</code> from an <code class="language-ruby">Enumerator</code>, a job runner, or another resume-based non-blocking fiber could fail if no scheduler was already installed. <a href="https://github.com/socketry/async/pull/460">The reactor now enters through <code class="language-ruby">Fiber.blocking</code></a>, preserving the current fiber's identity and local storage while giving the scheduler the context it requires.</p>
+	<p><code class="language-ruby">Sync</code> and <code class="language-ruby">Async</code> either add work to an existing reactor or create one when no fiber scheduler is installed. That second path normally begins on Ruby's blocking root fiber. However, abstractions such as <code class="language-ruby">Enumerator</code>, job runners, and other libraries can invoke application code from a non-blocking fiber of their own. If that code was the first to enter Async, starting the reactor there raised <code class="language-ruby">RuntimeError: Running scheduler on non-blocking fiber!</code>.</p>
+	
+	<p><a href="https://github.com/socketry/async/pull/460">The reactor now starts inside <code class="language-ruby">Fiber.blocking</code></a>, giving the event loop the blocking context it requires without creating another fiber. This preserves the caller's fiber identity and local storage, allowing <code class="language-ruby">Sync</code> and <code class="language-ruby">Async</code> to work naturally beneath an <code class="language-ruby">Enumerator</code> or another resume-based fiber.</p>
 	
 	<h2>Improving Asynchronous Process Management</h2>
 	

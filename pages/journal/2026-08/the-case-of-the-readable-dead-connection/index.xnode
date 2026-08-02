@@ -25,7 +25,7 @@
 	
 	<p>An HTTP connection is expensive to establish, especially when TCP setup and a TLS handshake are involved. A connection pool therefore keeps completed HTTP/1 connections and lends them to later requests.</p>
 	
-	<p>Before reusing one, Async::HTTP asked a seemingly straightforward question:</p>
+	<p>Before reusing one, <code class="language-ruby">Async::HTTP</code> asked a seemingly straightforward question:</p>
 	
 	<content:listing brush="ruby">def viable?
   self.idle? &amp;&amp; @stream&amp;.readable?
@@ -39,11 +39,11 @@ end</content:listing>
 	
 	<h2>Chapter III: The False Trail of Retrying</h2>
 	
-	<p>The investigation had an earlier clue. In <a href="https://github.com/socketry/async-http/issues/221">Overriding <code class="language-ruby">request.idempotent?</code> for individual requests</a>, the reporter had explored enabling Async::HTTP's automatic retry path.</p>
+	<p>The investigation had an earlier clue. In <a href="https://github.com/socketry/async-http/issues/221">Overriding <code class="language-ruby">request.idempotent?</code> for individual requests</a>, the reporter had explored enabling <code class="language-ruby">Async::HTTP</code>'s automatic retry path.</p>
 	
 	<p>The idea contained two separate hazards. First, declaring a request idempotent does not make its effects safe to repeat. Second, a request body may already have been consumed; retrying it without rewinding could send an empty or incomplete body.</p>
 	
-	<p>Async::HTTP later gained the ability to rewind suitable bodies, but that did not make every <code class="language-ruby">POST</code> safe to replay. Retry policy could help after some failures, but it could not answer the question before us: why had the pool selected a connection whose peer had already shut it down?</p>
+	<p><code class="language-ruby">Async::HTTP</code> later gained the ability to rewind suitable bodies, but that did not make every <code class="language-ruby">POST</code> safe to replay. Retry policy could help after some failures, but it could not answer the question before us: why had the pool selected a connection whose peer had already shut it down?</p>
 	
 	<p>Holmes drew a line through the word “retry.”</p>
 	
@@ -115,7 +115,7 @@ end</content:listing>
 	
 	<h2>Chapter VII: The Protocol-Specific Verdict</h2>
 	
-	<p>With that primitive in place, <a href="https://github.com/socketry/async-http/pull/230">Async::HTTP could probe idle HTTP/1 connections before reuse</a>:</p>
+	<p>With that primitive in place, <a href="https://github.com/socketry/async-http/pull/230"><code class="language-ruby">Async::HTTP</code> could probe idle HTTP/1 connections before reuse</a>:</p>
 	
 	<content:listing brush="ruby">def viable?
   return false unless self.idle?
@@ -145,7 +145,7 @@ end</content:listing>
 	
 	<h2>Epilogue: Readiness Is Relative</h2>
 	
-	<p><a href="https://github.com/socketry/async-http/releases/tag/v0.98.1">Async::HTTP v0.98.1</a> carried the fix. The reporter's confirmation was pleasingly concise: “it does! w00t.”</p>
+	<p><a href="https://github.com/socketry/async-http/releases/tag/v0.98.1"><code class="language-ruby">Async::HTTP</code> v0.98.1</a> carried the fix. The reporter's confirmation was pleasingly concise: “it does! w00t.”</p>
 	
 	<p>The fix cannot abolish the race inherent in a network. A peer may close a connection immediately after any viability check. What it does is narrower and valuable: when shutdown is already observable, the pool no longer assigns that connection to a new HTTP/1 request.</p>
 	

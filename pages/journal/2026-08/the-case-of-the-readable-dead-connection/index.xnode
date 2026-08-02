@@ -5,7 +5,7 @@
 	
 	<p>The telegram arrived at Baker Street bearing a familiar exception:</p>
 	
-	<content:listing brush="text">Faraday::ConnectionFailed: EOFError
+	<content:listing brush="plain">Faraday::ConnectionFailed: EOFError
   protocol-http1/.../connection.rb:in `read_response_line`
   async-http/.../protocol/http1/client.rb:in `call`</content:listing>
 	
@@ -77,14 +77,14 @@ end</content:listing>
 	
 	<figure class="diagram inline-diagram">
 	<svg viewBox="0 0 640 650" role="img" aria-labelledby="tls-layers-title tls-layers-description">
-		<title>How a readable TCP socket can represent two different TLS outcomes</title>
-		<desc>A readable TCP socket contains an encrypted TLS record. After decoding, application data continues to HTTP/1, while a close_notify alert produces a clean end of stream with no HTTP bytes.</desc>
+		<title id="tls-layers-title">How a readable TCP socket can represent two different TLS outcomes</title>
+		<desc id="tls-layers-description">A readable TCP socket contains an encrypted TLS record. After decoding, application data continues to HTTP/1, while a close_notify alert produces a clean end of stream with no HTTP bytes.</desc>
 	
 		<defs>
-			<marker viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+			<marker id="tls-arrow-neutral" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
 				<path class="diagram-marker-accent" d="M 0 0 L 10 5 L 0 10 z" />
 			</marker>
-			<marker viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+			<marker id="tls-arrow-success" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
 				<path class="diagram-marker-positive" d="M 0 0 L 10 5 L 0 10 z" />
 			</marker>
 		</defs>
@@ -237,10 +237,10 @@ end</content:listing>
 	<p>Holmes read the outcomes as a sequence of deductions:</p>
 	
 	<ol>
-	  <li>If the read would block, no shutdown is presently observable and the connection remains a candidate for reuse.</li>
-	  <li>If the stream reaches EOF or decodes <code class="language-plain">close_notify</code>, the connection is discarded.</li>
-	  <li>If the probe raises because the transport was reset or otherwise failed, the connection is discarded.</li>
-	  <li>If application data appears while the HTTP/1 connection is meant to be idle, its state is unexpected and the connection is discarded; the peeked byte remains buffered.</li>
+		<li>If the read would block, no shutdown is presently observable and the connection remains a candidate for reuse.</li>
+		<li>If the stream reaches EOF or decodes <code class="language-plain">close_notify</code>, the connection is discarded.</li>
+		<li>If the probe raises because the transport was reset or otherwise failed, the connection is discarded.</li>
+		<li>If application data appears while the HTTP/1 connection is meant to be idle, its state is unexpected and the connection is discarded; the peeked byte remains buffered.</li>
 	</ol>
 	
 	<p>“Then every pooled protocol should use this probe,” I said.</p>

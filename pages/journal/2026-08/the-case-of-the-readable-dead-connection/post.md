@@ -60,53 +60,53 @@ Holmes drew a line through the word “retry.”
 
 We descended through the layers. At the bottom was a TCP socket. Above it sat TLS, which decoded encrypted records into application data. Above TLS sat HTTP/1, expecting the beginning of a response.
 
-<figure class="diagram protocol-stack">
+<figure class="diagram inline-diagram">
 <svg viewBox="0 0 640 650" role="img" aria-labelledby="tls-layers-title tls-layers-description">
 	<title id="tls-layers-title">How a readable TCP socket can represent two different TLS outcomes</title>
 	<desc id="tls-layers-description">A readable TCP socket contains an encrypted TLS record. After decoding, application data continues to HTTP/1, while a close_notify alert produces a clean end of stream with no HTTP bytes.</desc>
 	
 	<defs>
 		<marker id="tls-arrow-neutral" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-			<path class="diagram-arrowhead-neutral" d="M 0 0 L 10 5 L 0 10 z"/>
+			<path class="diagram-marker-accent" d="M 0 0 L 10 5 L 0 10 z"/>
 		</marker>
 		<marker id="tls-arrow-success" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-			<path class="diagram-arrowhead-success" d="M 0 0 L 10 5 L 0 10 z"/>
+			<path class="diagram-marker-positive" d="M 0 0 L 10 5 L 0 10 z"/>
 		</marker>
 	</defs>
 	
 	<rect class="diagram-surface" x="10" y="10" width="620" height="630" rx="24"/>
 	
-	<rect class="diagram-panel" x="60" y="50" width="520" height="110" rx="16"/>
+	<rect class="diagram-node" x="60" y="50" width="520" height="110" rx="16"/>
 	<text class="diagram-heading" x="320" y="88">HTTP/1</text>
 	<text class="diagram-text" x="320" y="120">expects application data</text>
 	<text class="diagram-muted" x="320" y="145">response status, headers, and body</text>
 	
-	<rect class="diagram-panel" x="60" y="230" width="520" height="220" rx="16"/>
+	<rect class="diagram-node" x="60" y="230" width="520" height="220" rx="16"/>
 	<text class="diagram-heading" x="320" y="270">TLS decodes the pending record</text>
 	
-	<rect class="diagram-outcome diagram-outcome-success" x="85" y="300" width="220" height="105" rx="12"/>
-	<text class="diagram-code diagram-success" x="195" y="335">application_data</text>
+	<rect class="diagram-node diagram-node-positive" x="85" y="300" width="220" height="105" rx="12"/>
+	<text class="diagram-code diagram-positive" x="195" y="335">application_data</text>
 	<text class="diagram-text" x="195" y="367">decoded response bytes</text>
 	<text class="diagram-muted" x="195" y="391">continue to HTTP/1</text>
 	
-	<rect class="diagram-outcome diagram-outcome-closed" x="335" y="300" width="220" height="105" rx="12"/>
-	<text class="diagram-code diagram-closed" x="445" y="335">close_notify</text>
+	<rect class="diagram-node diagram-node-terminal" x="335" y="300" width="220" height="105" rx="12"/>
+	<text class="diagram-code diagram-terminal" x="445" y="335">close_notify</text>
 	<text class="diagram-text" x="445" y="367">clean TLS shutdown</text>
 	<text class="diagram-muted" x="445" y="391">no HTTP bytes</text>
 	
-	<path class="diagram-arrow diagram-arrow-success" d="M 195 300 L 195 165" marker-end="url(#tls-arrow-success)"/>
-	<text class="diagram-label diagram-success" x="206" y="205">response bytes</text>
+	<path class="diagram-connector diagram-connector-positive" d="M 195 300 L 195 165" marker-end="url(#tls-arrow-success)"/>
+	<text class="diagram-label diagram-positive" x="206" y="205">response bytes</text>
 	
-	<path class="diagram-arrow diagram-arrow-closed" d="M 445 300 L 445 190"/>
-	<path class="diagram-arrow diagram-arrow-closed" d="M 434 179 L 456 201 M 456 179 L 434 201"/>
-	<text class="diagram-label diagram-closed" x="456" y="205">EOF</text>
+	<path class="diagram-connector diagram-connector-terminal" d="M 445 300 L 445 190"/>
+	<path class="diagram-connector diagram-connector-terminal" d="M 434 179 L 456 201 M 456 179 L 434 201"/>
+	<text class="diagram-label diagram-terminal" x="456" y="205">EOF</text>
 	
-	<rect class="diagram-panel" x="60" y="520" width="520" height="100" rx="16"/>
+	<rect class="diagram-node" x="60" y="520" width="520" height="100" rx="16"/>
 	<text class="diagram-heading" x="320" y="557">TCP socket</text>
 	<text class="diagram-text" x="320" y="587">descriptor is readable</text>
 	<text class="diagram-muted" x="320" y="611">an encrypted TLS record is pending</text>
 	
-	<path class="diagram-arrow diagram-arrow-neutral" d="M 320 520 L 320 455" marker-end="url(#tls-arrow-neutral)"/>
+	<path class="diagram-connector diagram-connector-accent" d="M 320 520 L 320 455" marker-end="url(#tls-arrow-neutral)"/>
 	<text class="diagram-label" x="332" y="492">non-blocking read</text>
 </svg>
 <figcaption>Descriptor readiness becomes meaningful only after TLS interprets the pending record.</figcaption>

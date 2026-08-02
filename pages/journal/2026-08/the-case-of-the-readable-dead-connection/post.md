@@ -18,7 +18,7 @@ Faraday::ConnectionFailed: EOFError
 
 Holmes looked up sharply. “What kind of request, Watson?”
 
-“A <code class="language-ruby">POST</code>.”
+“A POST.”
 
 That single word changed the case. If a connection fails while receiving a response, the client may not know whether the server processed the request. Retrying could repeat a payment, create a second record, or perform some other side effect twice.
 
@@ -50,7 +50,7 @@ The investigation had an earlier clue. In [Overriding <code class="language-ruby
 
 The idea contained two separate hazards. First, declaring a request idempotent does not make its effects safe to repeat. Second, a request body may already have been consumed; retrying it without rewinding could send an empty or incomplete body.
 
-[<code class="language-ruby">Async::HTTP</code> later gained the ability to rewind suitable bodies](https://github.com/socketry/async-http/pull/229), but that did not make every <code class="language-ruby">POST</code> safe to replay. Retry policy could help after some failures, but it could not answer the question before us: why had the pool selected a connection whose peer had already shut it down?
+[<code class="language-ruby">Async::HTTP</code> later gained the ability to rewind suitable bodies](https://github.com/socketry/async-http/pull/229), but that did not make every POST safe to replay. Retry policy could help after some failures, but it could not answer the question before us: why had the pool selected a connection whose peer had already shut it down?
 
 Holmes drew a line through the word “retry.”
 
@@ -192,7 +192,7 @@ For an idle HTTP/1 connection, each possible result has a useful interpretation:
 
 HTTP/1 makes this probe safe because an idle connection has no concurrent response reader. HTTP/2 is different: a background reader owns transport reads and dispatches frames for many streams. A connection-pool check must not compete with it, so HTTP/2 retained its existing viability logic.
 
-The regression test recreated the complete sequence: make one request, return its TLS connection to the pool, close it from the server, then issue a non-idempotent <code class="language-ruby">POST</code>. The stale connection was rejected and the request used a fresh one.
+The regression test recreated the complete sequence: make one request, return its TLS connection to the pool, close it from the server, then issue a non-idempotent POST. The stale connection was rejected and the request used a fresh one.
 
 ## Epilogue: Readiness Is Relative
 

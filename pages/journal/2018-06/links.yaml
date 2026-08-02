@@ -14,4 +14,5 @@ asynchronous-ruby:
   title: "Asynchronous Ruby"
   summary: "Improve Ruby scalabiltiy using concurrent event-driven IO."
   front: true
-  preview_url: Sitting-Dog.svg
+  preview_url: banner.png
+  banner_url: banner.png

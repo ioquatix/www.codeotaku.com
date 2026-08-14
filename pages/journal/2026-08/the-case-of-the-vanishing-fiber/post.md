@@ -35,7 +35,7 @@ The [original report](https://bugs.ruby-lang.org/issues/22196) described an inte
 
 ## Chapter II: Making Chance Repeat Itself
 
-The reproduction sent many deliberately truncated responses through <code class="language-ruby">Async::HTTP</code>. Sometimes every task failed cleanly. Sometimes the Ruby process crashed.
+The [reproduction](https://bugs.ruby-lang.org/issues/22196#Minimal-reproduction-harness) sent many deliberately truncated responses through <code class="language-ruby">Async::HTTP</code>. Sometimes every task failed cleanly. Sometimes the Ruby process crashed.
 
 “A timing problem,” I suggested. “Perhaps two tasks are modifying the same Fiber.”
 
@@ -48,8 +48,18 @@ ERROR: AddressSanitizer: heap-use-after-free
 READ of size 1
     #0 fiber_switch .../cont.c
 freed by thread here:
-    cont_free .../cont.c
-    fiber_free .../cont.c
+    #1 rb_gc_impl_free .../gc/default/default.c
+    #2 ruby_sized_xfree .../gc.c
+    #3 ruby_xfree .../gc.c
+    #4 cont_free .../cont.c
+    #5 fiber_free .../cont.c
+    #6 rb_data_free .../gc.c
+    #7 rb_gc_obj_free .../gc.c
+    #8 gc_sweep_plane .../gc/default/default.c
+    #9 gc_sweep_page .../gc/default/default.c
+    #10 gc_sweep_step .../gc/default/default.c
+    #11 gc_sweep .../gc/default/default.c
+    #12 gc_start .../gc/default/default.c
 ```
 
 “So <code class="language-c">fiber_switch</code> released the Fiber and then read it?” I asked.
@@ -117,20 +127,55 @@ We no longer needed the whole HTTP workload. Holmes proposed that we recreate on
 
 “We need a <code class="language-c">fiber_switch</code> frame suspended while it still holds its target as a raw pointer,” he said. “Then Ruby code must remove the last reference to that target and force collection before the frame resumes.”
 
-The reduced pure-Ruby test used nested <code class="language-ruby">Fiber#resume</code>, <code class="language-ruby">Fiber.yield</code>, and <code class="language-ruby">GC.start</code>. Its sequence was:
+The reduced pure-Ruby test used nested <code class="language-ruby">Fiber#resume</code>, <code class="language-ruby">Fiber.yield</code>, and <code class="language-ruby">GC.start</code>. In outline, it was:
 
-1. A parent Fiber created two children and yielded to the root Fiber.
-2. The first child resumed the parent.
-3. The parent discarded its last Ruby reference to that child, then yielded back to it.
-4. The parent's native <code class="language-c">fiber_switch</code> frame remained suspended while the first child terminated.
-5. The second child invoked <code class="language-ruby">GC.start</code>, allowing the first child to be collected.
-6. Execution returned to the suspended C frame, which read its stale <code class="language-c">rb_fiber_t *</code>.
+```ruby
+parent = child1 = child2 = nil
 
-“The first child is the target Fiber still held by the parent's suspended <code class="language-c">fiber_switch</code> call,” I said. “Once the parent discards its Ruby reference, the raw pointer in that C frame is all that remains.”
+parent = Fiber.new do
+  child1 = Fiber.new do
+    # 4. child1 resumes parent:
+    parent.resume
+    # 7. child1 terminates after parent yields back to it:
+  end
+
+  child2 = Fiber.new do
+    # 10. GC can now collect the terminated child1:
+    GC.start
+    # 11. ASan reports as fiber_switch reads stale child1:
+    parent.resume
+  end
+
+  # 2. Return to root after creating both children:
+  Fiber.yield
+
+  # 5. Drop the shared Ruby reference to child1:
+  child1 = nil
+  # 6. Yield back to child1 while C holds its raw pointer:
+  Fiber.yield
+end
+
+# 1. Parent creates child1 and child2:
+parent.resume
+
+child = child1
+# 3. Root keeps only this temporary reference to child1:
+child1 = nil
+child.resume
+# 8. child1 has terminated; drop the temporary reference:
+child = nil
+
+child = child2
+# 9. Root keeps only this temporary reference to child2:
+child2 = nil
+child.resume
+```
+
+“The first child is the target Fiber still held by the parent's suspended <code class="language-c">fiber_switch</code> call,” I said. “After it terminates and the root drops its temporary reference, the raw pointer in that C frame is all that remains.”
 
 “And the garbage collector does not treat that raw pointer as a reference,” Holmes replied.
 
-“No HTTP,” I observed.
+I looked back at the reduced test. “Then none of this requires HTTP.”
 
 “Nor sockets, nor an event loop,” said Holmes.
 
@@ -163,11 +208,18 @@ The crash appeared in Ruby 3.4.10 after the fix for [Bug #21955](https://bugs.ru
 The [final Ruby fix](https://github.com/ruby/ruby/pull/17957) was small enough to fit beneath Holmes's earlier diagram:
 
 ```c
+// Retain the owning Fiber object as a Ruby VALUE:
 VALUE fiber_value = fiber->cont.self;
 
+// Switch away; this C frame is suspended while Ruby runs elsewhere, including GC:
 fiber_store(fiber, th);
 
-/* final uses of fiber */
+// The raw fiber pointer is still used after we switch back:
+if (FIBER_TERMINATED_P(fiber)) {
+    fiber_stack_release(fiber);
+}
+
+// Ensure fiber_value remains live past the final use of fiber:
 RB_GC_GUARD(fiber_value);
 ```
 

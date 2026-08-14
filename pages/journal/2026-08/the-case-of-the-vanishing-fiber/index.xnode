@@ -22,7 +22,9 @@ rb_fiber_start</content:listing>
 	
 	<p>“Then the first failure is expected. The mystery is why reporting it disturbed Ruby’s Fiber machinery.”</p>
 	
-	<p>The <a href="https://bugs.ruby-lang.org/issues/22196">original report</a> described an intermittent crash on Ruby 3.4.10. A busy asynchronous workload made it visible, but the C backtrace pointed beneath sockets and HTTP. Our first task was to separate the circumstance which revealed the defect from the mechanism which caused it.</p>
+	<p>The <a href="https://bugs.ruby-lang.org/issues/22196">original report</a> described an intermittent crash on Ruby 3.4.10. A busy asynchronous workload made it visible, but the C backtrace pointed beneath sockets and HTTP.</p>
+	
+	<p>“Then we must separate the circumstance which revealed the defect from the mechanism which caused it,” Holmes said.</p>
 	
 	<h2>Chapter II: Making Chance Repeat Itself</h2>
 	
@@ -45,7 +47,7 @@ freed by thread here:
 	
 	<p>Holmes shook his head. “Look more closely. The garbage collector freed it. <code class="language-c">fiber_switch</code> merely continued to believe it was alive.”</p>
 	
-	<p>That distinction gave us a stronger question: how could Ruby collect a Fiber while native code was still using its internal pointer?</p>
+	<p>“Then how could Ruby collect a Fiber while native code was still using its internal pointer?” I asked.</p>
 	
 	<h2>Chapter III: The Two Identities of a Fiber</h2>
 	
@@ -64,7 +66,7 @@ native state:    rb_fiber_t *</content:listing>
 	
 	<p>“That is the assumption we must test. Can Ruby’s garbage collector see an ordinary C local containing <code class="language-c">rb_fiber_t *</code> as a reference to the owning Ruby object?”</p>
 	
-	<p>It could not. A raw native pointer is useful to C, but it is not automatically a Ruby-level reference. If all visible references to the Fiber disappeared, the garbage collector could reclaim the object and its native state even though a C stack frame still remembered the address.</p>
+	<p>“It cannot,” Holmes said. “A raw native pointer is useful to C, but it is not automatically a Ruby-level reference. If all visible references to the Fiber disappear, the garbage collector may reclaim the object and its native state even though a C stack frame still remembers the address.”</p>
 	
 	<p>“Then every use of such a pointer is dangerous,” I said.</p>
 	
@@ -88,7 +90,9 @@ if (FIBER_TERMINATED_P(fiber)) {
 	
 	<p>“And when does this C frame continue?”</p>
 	
-	<p>The answer altered the apparent shape of the code. <code class="language-c">fiber_store</code> could suspend its caller. Before it returned, another Fiber might execute arbitrary Ruby code, remove references, and invoke the garbage collector. Two adjacent lines of C could be separated by an entire episode of Ruby execution.</p>
+	<p>“Not until execution returns to it,” I said. “Before that happens, another Fiber may execute arbitrary Ruby code, remove references, and invoke the garbage collector.”</p>
+	
+	<p>“Then two adjacent lines of C can be separated by an entire episode of Ruby execution,” Holmes replied.</p>
 	
 	<p>“The function has paused midway through a sentence,” I said, “and resumes using a noun which may no longer exist.”</p>
 	
@@ -98,18 +102,22 @@ if (FIBER_TERMINATED_P(fiber)) {
 	
 	<p>We no longer needed the whole HTTP workload. Holmes proposed that we recreate only the ordering which made the pointer stale.</p>
 	
-	<p>“We need one Fiber whose C frame is suspended,” he said, “another which removes the last Ruby reference to its target, and a third which forces collection before the first frame resumes.”</p>
+	<p>“We need a <code class="language-c">fiber_switch</code> frame suspended while it still holds its target as a raw pointer,” he said. “Then Ruby code must remove the last reference to that target and force collection before the frame resumes.”</p>
 	
 	<p>The reduced pure-Ruby test used nested <code class="language-ruby">Fiber#resume</code>, <code class="language-ruby">Fiber.yield</code>, and <code class="language-ruby">GC.start</code>. Its sequence was:</p>
 	
 	<ol>
-	  <li>A parent Fiber created two children and yielded to the root Fiber.</li>
-	  <li>The first child resumed the parent.</li>
-	  <li>The parent discarded its last Ruby reference to that child, then yielded back to it.</li>
-	  <li>The parent’s native <code class="language-c">fiber_switch</code> frame remained suspended while the first child terminated.</li>
-	  <li>The second child invoked <code class="language-ruby">GC.start</code>, allowing the first child to be collected.</li>
-	  <li>Execution returned to the suspended C frame, which read its stale <code class="language-c">rb_fiber_t *</code>.</li>
+		<li>A parent Fiber created two children and yielded to the root Fiber.</li>
+		<li>The first child resumed the parent.</li>
+		<li>The parent discarded its last Ruby reference to that child, then yielded back to it.</li>
+		<li>The parent’s native <code class="language-c">fiber_switch</code> frame remained suspended while the first child terminated.</li>
+		<li>The second child invoked <code class="language-ruby">GC.start</code>, allowing the first child to be collected.</li>
+		<li>Execution returned to the suspended C frame, which read its stale <code class="language-c">rb_fiber_t *</code>.</li>
 	</ol>
+	
+	<p>“The first child is the target Fiber still held by the parent’s suspended <code class="language-c">fiber_switch</code> call,” I said. “Once the parent discards its Ruby reference, the raw pointer in that C frame is all that remains.”</p>
+	
+	<p>“And the garbage collector does not treat that raw pointer as a reference,” Holmes replied.</p>
 	
 	<p>“No HTTP,” I observed.</p>
 	
@@ -117,7 +125,9 @@ if (FIBER_TERMINATED_P(fiber)) {
 	
 	<p>“Then Async did not cause the defect. Its task cleanup merely arranged these Fiber transitions often enough to expose it.”</p>
 	
-	<p>Holmes nodded. The network reproduction remained valuable because it showed practical impact. The pure-Ruby reproduction was valuable for a different reason: it proved which Ruby semantics were sufficient to produce the invalid lifetime.</p>
+	<p>“The network reproduction shows the practical impact,” I said. “The pure-Ruby reproduction proves which Ruby semantics are sufficient to produce the invalid lifetime.”</p>
+	
+	<p>Holmes nodded. “The witness and the reconstruction serve different purposes.”</p>
 	
 	<h2>Chapter VI: The Suspicious Earlier Change</h2>
 	
@@ -133,9 +143,9 @@ if (FIBER_TERMINATED_P(fiber)) {
 	
 	<p>“Because terminated targets require handling on those paths too.”</p>
 	
-	<p>The apparent remedy would have hidden the lifetime defect by abandoning the intended semantic fix. The earlier change had made a stale-pointer read observable, but the unsafe assumption was more fundamental: any path using <code class="language-c">fiber</code> after a suspending switch needed to keep its owner alive.</p>
+	<p>“Then restoring the old condition would only hide the lifetime defect,” I said. “It would also abandon the intended handling of terminated targets.”</p>
 	
-	<p>“A recent change may reveal the room in which the crime occurs,” Holmes said. “That does not make the room the culprit.”</p>
+	<p>“Exactly,” Holmes replied. “The earlier change makes the stale-pointer read observable, but the underlying rule is more fundamental: any path using <code class="language-c">fiber</code> after a suspending switch must keep its owner alive.”</p>
 	
 	<h2>Chapter VII: Guarding What C Still Needs</h2>
 	
@@ -150,9 +160,11 @@ RB_GC_GUARD(fiber_value);</content:listing>
 	
 	<p>“We copy the owning Ruby object into <code class="language-c">fiber_value</code>,” I said. “But why place <code class="language-c">RB_GC_GUARD</code> after the switch?”</p>
 	
-	<p>“Because the guard marks the end of the lifetime we require. It tells the compiler and garbage collector that the Ruby value must remain live until every native-pointer use above it is complete.”</p>
+	<p>“Because the guard marks the end of the lifetime we require,” Holmes replied. “It prevents the compiler from treating <code class="language-c">fiber_value</code> as dead before that point, so Ruby’s garbage collector can continue to see the owning Fiber object as live.”</p>
 	
-	<p>The pointer itself did not become visible to the garbage collector. Instead, the code retained the Ruby object which owned it. That preserved both the object and its <code class="language-c">rb_fiber_t</code> across the suspended interval.</p>
+	<p>“The raw pointer itself does not become a garbage collector reference,” I said. “We keep its owner alive instead.”</p>
+	
+	<p>“And preserving the owner preserves its <code class="language-c">rb_fiber_t</code> across the suspended interval,” Holmes replied.</p>
 	
 	<p>The regression test preserved the nested resume/yield ordering and forced collection while the C frame was paused. A stock Ruby 3.4.10 ASan build reproduced the use-after-free; the guarded build completed without it. The fix was also <a href="https://bugs.ruby-lang.org/issues/22196#note-5">backported to Ruby 3.4</a>.</p>
 	
@@ -162,7 +174,9 @@ RB_GC_GUARD(fiber_value);</content:listing>
 	
 	<p>“And yet that call yielded control to Ruby,” he replied. “Whenever native code crosses a boundary which can execute arbitrary Ruby, its assumptions about object lifetime must survive the same journey.”</p>
 	
-	<p>The lesson extends beyond Fibers. A callback, scheduler hand-off, or other suspension point can place substantial execution between adjacent native instructions. Any raw pointer used afterward needs an owner whose lifetime is explicit.</p>
+	<p>“Then the lesson extends beyond Fibers,” I said. “A callback or scheduler hand-off can also place substantial execution between adjacent native instructions.”</p>
+	
+	<p>“Indeed. Any raw pointer used after such a boundary needs an owner whose lifetime is explicit.”</p>
 	
 	<p>“Then the Fiber did not vanish while we were looking away,” I concluded. “It vanished while our own frame was asleep.”</p>
 	

@@ -25,3 +25,5 @@ the-case-of-the-vanishing-fiber:
   summary: "Dr. Claude Watson investigates how a suspended CRuby frame kept a raw Fiber pointer after garbage collection had reclaimed its owner."
   display: true
   front: true
+  preview_url: banner.webp
+  banner_url: banner.webp

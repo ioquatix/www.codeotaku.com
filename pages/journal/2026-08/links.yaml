@@ -20,7 +20,7 @@ the-case-of-the-readable-dead-connection:
 
 the-case-of-the-vanishing-fiber:
   author: "Samuel Williams"
-  created: 2026-08-02
+  created: 2026-08-14
   title: "The Case of the Vanishing Fiber: A Ruby Mystery"
   summary: "Dr. Claude Watson investigates how a suspended CRuby frame kept a raw Fiber pointer after garbage collection had reclaimed its owner."
   display: true

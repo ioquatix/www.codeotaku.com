@@ -114,22 +114,10 @@ The solution was therefore a Ruby C API rather than another selector-side check.
 
 “Yes. But the pending queue and the VM interrupt flag are distinct evidence. Ruby must account for both before it commits to sleep.”
 
-Holmes set the old and new transitions beside one another. In simplified Ruby-like pseudocode, <code class="language-c">rb_thread_call_without_gvl2</code> had entered the blocking region like this:
+Holmes wrote the revised transition in simplified Ruby-like pseudocode. With <code class="language-c">RB_NOGVL_PENDING_INTR_FAIL</code>, <code class="language-c">rb_nogvl</code> also examines the pending-exception queue while it still holds the GVL:
 
 ```ruby
-check_vm_interrupt_state
-
-interrupt_lock.synchronize do
-	install_unblock_function {selector.wake}
-end
-
-release_gvl
-selector.wait(timeout: nil)
-```
-
-With <code class="language-c">RB_NOGVL_PENDING_INTR_FAIL</code>, <code class="language-c">rb_nogvl</code> also examines the pending-exception queue while it still holds the GVL:
-
-```ruby
+# New preliminary check:
 if pending_interrupt?
 	set_errno(0)
 	return nil
@@ -137,6 +125,8 @@ end
 
 loop do
 	return nil if vm_interrupt?
+
+	# New check inside the guarded transition:
 	return nil if pending_interrupt?
 
 	interrupt_lock.lock

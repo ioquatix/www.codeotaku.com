@@ -1,0 +1,9 @@
+the-case-of-the-interrupt-that-arrived-too-soon:
+  author: "Samuel Williams"
+  created: 2026-09-02
+  title: "The Case of the Interrupt That Arrived Too Soon: A Ruby Mystery"
+  summary: "Dr. Claude Watson investigates a narrow race between Ruby's pending-interrupt queue and an event selector entering a native wait."
+  display: true
+  front: true
+  preview_url: banner.png
+  banner_url: banner.png

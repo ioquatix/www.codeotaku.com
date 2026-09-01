@@ -50,67 +50,53 @@ It had not. CRuby's default signal path raised <code class="language-ruby">Inter
 
 After that correction, <code class="language-plain">SIGINT</code> could be deferred consistently. In our delayed worker, the exception was waiting exactly where Ruby promised. That exposed the next question: how had the selector gone to sleep while it was pending?
 
-## Chapter III: The Sensible Check
+## Chapter III: The Gap Between Two Safeguards
 
 Event selectors such as <code class="language-plain">kqueue</code>, <code class="language-plain">epoll</code>, and <code class="language-plain">io_uring</code> may wait in the kernel without a timeout. CRuby releases the Global VM Lock around that wait so other Ruby threads can run.
 
-On older Ruby versions, <code class="language-ruby">IO::Event</code> used a separate Ruby-level query before entering the native wait. Conceptually, the guard was:
+“How should the selector avoid sleeping through an interrupt?” I asked.
+
+“There are two safeguards,” Holmes replied. “First, <code class="language-ruby">IO::Event</code> asks whether an interrupt is already pending before it enters the native wait.”
 
 ```ruby
 return if Thread.pending_interrupt?
 ```
 
-“That appears sufficient,” I said. “If an interrupt is pending, do not sleep. Otherwise, sleep.”
+“And if the interrupt arrives after that check?”
 
-Before examining the sequence, Holmes identified the unblock function: a callback CRuby installs so an interrupt arriving after a native operation begins can wake it. He translated the transition into conceptual Ruby pseudocode:
+“CRuby installs an unblock function while preparing to release the GVL. Once installed, a new interrupt can call it to wake the selector.”
 
-```ruby
-# IO::Event, while holding the GVL:
-return if Thread.pending_interrupt?
+“The first safeguard prevents an unnecessary sleep. The second interrupts a sleep which has already begun.”
 
-# Inside rb_thread_call_without_gvl2:
-check_vm_interrupt_state
+“Precisely. Now consider the interval between them.”
 
-interrupt_lock.synchronize do
-	install_unblock_function {selector.wake}
-end
+1. <code class="language-ruby">Thread.pending_interrupt?</code> returns false.
+2. <code class="language-plain">SIGINT</code> arrives while exception delivery is masked, so Ruby places an <code class="language-ruby">Interrupt</code> in the pending queue.
+3. Ruby processes the signal before the unblock function is installed. The exception remains deferred, but the active VM interrupt state no longer tells the transition to stop.
+4. CRuby installs the unblock function, releases the GVL, and calls the selector.
+5. The signal has already been handled, so there is no new interrupt to invoke the unblock function. The selector remains asleep until another event wakes it or the supervisor escalates shutdown.
 
-release_gvl
+“But should not <code class="language-plain">SIGINT</code> itself interrupt <code class="language-plain">kevent</code>?” I asked.
 
-# IO::Event's native callback:
-selector.wait(timeout: nil)
-```
+“Only if the native wait has begun. Here, the signal arrives before the wait and before its wake-up mechanism is ready.”
 
-“At which line does this become one indivisible decision?” he asked.
+The pending-interrupt check was correct when it ran, and the unblock function was correct once installed. The race lived in the unprotected interval between them.
 
-It did not. A signal could arrive after <code class="language-ruby">Thread.pending_interrupt?</code> returned false but while Ruby was entering the no-GVL region. The outer mask deferred the exception into the pending queue. Once Ruby had processed that state, the VM interrupt flag could be cleared even though the exception remained queued.
+## Chapter IV: Narrowing the Gap
 
-“But the signal should interrupt <code class="language-plain">kevent</code>,” I objected.
-
-“Only if the native wait has begun. The unblock function protects an interrupt which arrives after it is installed; it cannot replay a signal Ruby has already handled.”
-
-The preliminary answer was now stale, while the no-GVL transition could see no active VM interrupt. It installed the unblock function and entered the wait, but no second operating-system signal was guaranteed to invoke it.
-
-## Chapter IV: Catching the Interval
-
-The stress harness showed us where the worker stopped, but not how it crossed from a pending interrupt into the native wait. Ordinary logging changed the timing, so we instrumented the selector and Ruby's no-GVL transition instead.
-
-Native instrumentation eventually captured the ordering on the older-Ruby path:
-
-```text
-pending-interrupt check: false
-signal SIGINT
-native callback entered, pending queue: true
-kevent(timeout: forever)
-```
-
-“Then move the check immediately before <code class="language-c">rb_thread_call_without_gvl2</code>,” I said. “There will be almost no interval left.”
+“Then move the check immediately before <code class="language-c">rb_thread_call_without_gvl2</code>,” I said. “Leave the signal almost no room to intervene.”
 
 “Almost?” Holmes asked.
 
-We tried it. Across 2,000 iterations, the delay still appeared. Ruby could process the signal during the transition inside <code class="language-c">rb_thread_call_without_gvl2</code>, after any external predicate had returned.
+We tried it. Across 2,000 iterations, the delay still appeared.
 
-“The check is accurate,” I admitted. “The native wait is also behaving correctly. The bug belongs to the gap between two correct operations.”
+“Where can the interval remain if nothing separates the check from the call?”
+
+“Inside the call itself,” Holmes replied.
+
+<code class="language-c">rb_thread_call_without_gvl2</code> is not one indivisible operation. Ruby must examine its interrupt state, install the unblock function, release the GVL, and only then invoke the native callback. It could process <code class="language-plain">SIGINT</code> during that transition, after any predicate in <code class="language-ruby">IO::Event</code> had already returned.
+
+“Then no placement of a separate check can close the race,” I said.
 
 “And narrowing a race is not the same as closing it.”
 

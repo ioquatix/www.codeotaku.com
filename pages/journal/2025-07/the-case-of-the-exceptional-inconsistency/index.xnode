@@ -1,0 +1,485 @@
+<content:entry>
+	<p><em>Being an account of the extraordinary case of the <a href="https://bugs.ruby-lang.org/issues/21360">Ruby Thread and Fiber Raise Consistency</a>, as recorded by Dr. Claude Watson</em></p>
+	
+	<h2>Chapter I: The Curious Case of the Missing Causes</h2>
+	
+	<p>It was a grey morning when my esteemed colleague Samuel Williams arrived at our chambers on Baker Street, his countenance bearing that familiar expression of intellectual perplexity that invariably preceded our most fascinating investigations.</p>
+	
+	<p>&quot;Watson!&quot; he exclaimed, casting aside his overcoat with unusual urgency. &quot;We have before us a most peculiar case—one that strikes at the very heart of Ruby&#39;s exception handling consistency.&quot;</p>
+	
+	<p>I set down my morning correspondence, recognizing immediately the gravity in his tone. When Holmes—as I had come to regard my brilliant companion in these technical pursuits—spoke thus, we were invariably embarking upon another of his remarkable deductions.</p>
+	
+	<p>&quot;Pray, enlighten me, Holmes,&quot; I ventured. &quot;What manner of inconsistency has captured your formidable attention?&quot;</p>
+	
+	<p>Holmes moved swiftly to his workstation, his fingers dancing across the keyboard with practiced precision. &quot;A real-world debugging mystery, my dear Watson. When an <code class="language-ruby">Async::Stop</code> exception terminates a fiber, it can obscure the exception that caused the task to stop. Was it a timeout, an interrupt, or another failure? The causal chain is lost, leaving only the control-flow exception and a misleading stack trace.&quot;</p>
+	
+	<h2>Chapter II: The Ingenious Solution Thwarted</h2>
+	
+	<p>&quot;Marc-André Cournoyer,&quot; Holmes continued, &quot;proposed an elegant solution in <a href="https://github.com/socketry/async/issues/387">Async issue #387</a>: exception cause chaining. Ruby&#39;s cause mechanism, introduced in version 2.1, is precisely designed for such scenarios.&quot;</p>
+	
+	<p>He demonstrated with swift keystrokes:</p>
+	
+	<content:listing brush="ruby">begin
+  raise &quot;original error&quot;
+rescue
+  raise &quot;new error&quot;  # Automatic causality chain: new_error.cause == original_error
+end</content:listing>
+	
+	<p>&quot;The plan, Watson, was to extend the Async gem&#39;s stop mechanism to preserve the original error context:</p>
+	
+	<content:listing brush="ruby">child.stop(cause: original_error)
+# Which would invoke: @fiber.raise(Async::Stop, cause: original_error)</content:listing>
+	
+	<p>&quot;But here, Watson, is where our mystery begins.&quot; Holmes&#39;s eyes gleamed with that familiar light of discovery. &quot;When I attempted to implement this elegant solution, I encountered the most extraordinary resistance from the language itself.&quot;</p>
+	
+	<h2>Chapter III: The Damning Evidence</h2>
+	
+	<p>Holmes proceeded to demonstrate the inconsistency that had so vexed him:</p>
+	
+	<content:listing brush="ruby"># Test the fiber behavior:
+fiber = Fiber.new do
+  begin
+    Fiber.yield
+  rescue =&gt; error
+    puts &quot;error: #{error.inspect}&quot;
+    puts &quot;error.cause: #{error.cause.inspect}&quot;
+  end
+end
+
+fiber.resume
+fiber.raise StandardError.new(&quot;boom&quot;), cause: StandardError.new(&quot;cause&quot;)</content:listing>
+	
+	<p>&quot;Observe the output on Ruby 3.4, Watson:</p>
+	
+	<content:listing brush="plain">error: #&lt;StandardError: {cause: #&lt;StandardError: cause&gt;}&gt;
+error.cause: nil</content:listing>
+	
+	<p>&quot;Astounding!&quot; I exclaimed. &quot;The cause has been treated as a mere argument!&quot;</p>
+	
+	<p>&quot;Indeed! Yet witness the behavior of <code class="language-ruby">Kernel#raise</code> with identical arguments:</p>
+	
+	<content:listing brush="ruby">begin
+  raise StandardError.new(&quot;boom&quot;), cause: StandardError.new(&quot;cause&quot;)
+rescue =&gt; error
+  puts &quot;error: #{error.inspect}&quot;
+  puts &quot;error.cause: #{error.cause.inspect}&quot;
+end</content:listing>
+	
+	<content:listing brush="plain">error: #&lt;StandardError: boom&gt;
+error.cause: #&lt;StandardError: cause&gt;</content:listing>
+	
+	<p>Holmes leaned back in his chair, steepling his fingers in that characteristic pose. &quot;We have here, Watson, a most curious inconsistency. <code class="language-ruby">Kernel#raise</code> supports the <code class="language-ruby">cause:</code> keyword with flawless precision, yet <code class="language-ruby">Fiber#raise</code> and <code class="language-ruby">Thread#raise</code> remain oblivious to its existence.&quot;</p>
+	
+	<h2>Chapter IV: The Official Sanction</h2>
+	
+	<p>&quot;The inconsistency demanded official attention,&quot; Holmes continued. &quot;I submitted <a href="https://bugs.ruby-lang.org/issues/21360">feature request #21360</a> to the Ruby tracker, and fortune smiled upon our investigation.&quot;</p>
+	
+	<p>He produced the official correspondence from the Ruby development team&#39;s July 2025 meeting:</p>
+	
+	<blockquote>
+		<p><strong>samuel:</strong> Is it okay to make <code class="language-ruby">Fiber#raise</code> and <code class="language-ruby">Thread#raise</code> consistent (as much as possible) with <code class="language-ruby">Kernel#raise</code>? It&#39;s additive so it shouldn&#39;t break anything.</p>
+		<p>Conclusion:</p>
+		<p><strong>matz:</strong> I agree.</p>
+	</blockquote>
+	
+	<p>&quot;With Matsumoto-san&#39;s blessing,&quot; Holmes declared, &quot;we had official sanction to solve this mystery once and for all.&quot;</p>
+	
+	<h2>Chapter V: The Archaeology of a Forgotten Regression</h2>
+	
+	<p>&quot;Before we attempt a solution, Watson,&quot; Holmes announced with characteristic methodical precision, &quot;we must conduct an archaeological investigation. To fix an inconsistency properly, we must first understand precisely how it arose—the technical architecture that created it will inform the architecture required to resolve it.&quot;</p>
+	
+	<p>Holmes opened his git log with the precision of a forensic investigator. &quot;Let us trace the introduction of the <code class="language-ruby">cause:</code> feature itself, back to its very origins.&quot;</p>
+	
+	<p>His fingers moved swiftly across the terminal: <code class="language-bash">git log --format=&quot;%h (%as) %s&quot; --grep=&quot;cause&quot; --reverse -- eval.c</code></p>
+	
+	<p>The search yielded several promising results:</p>
+	
+	<content:listing brush="plain">b050cc5ab9 (2013-11-10) error.c: Exception#cause
+549b35c1dc (2013-11-15) eval.c: refactor exception cause
+8a46d4027c (2013-12-31) eval.c: raise with cause</content:listing>
+	
+	<p>&quot;Fascinating!&quot; Holmes exclaimed. &quot;Three distinct commits, Watson, in perfect chronological order! Let us examine each in sequence, starting with the very beginning.&quot;</p>
+	
+	<h3>The Original Implementation</h3>
+	
+	<p>&quot;November 10th, 2013,&quot; Holmes began methodically. &quot;Let us see what <a href="https://github.com/ruby/ruby/commit/b050cc5ab9">commit b050cc5ab9</a> introduced:&quot;</p>
+	
+	<p><code class="language-bash">git show b050cc5ab9</code></p>
+	
+	<p>&quot;Remarkable!&quot; Holmes exclaimed, studying the diff intently. &quot;This commit introduces the <code class="language-ruby">Exception#cause</code> feature itself - the foundation of exception chaining in Ruby. But observe the implementation, Watson:&quot;</p>
+	
+	<content:listing brush="c">static VALUE
+make_exception(int argc, VALUE *argv, int isstr)
+{
+    // ... exception creation logic ...
+
+    // The crucial addition - automatic cause chaining:
+    {
+        VALUE cause = get_errinfo();
+        if (!NIL_P(cause)) rb_ivar_set(mesg, &quot;cause&quot;, cause);
+    }
+
+    return mesg;
+}</content:listing>
+	
+	<p>&quot;The automatic cause chaining was implemented directly in <code class="language-c">make_exception</code>! This means that <strong>every</strong> method that called <code class="language-c">make_exception</code> - including both <code class="language-ruby">Kernel#raise</code> and <code class="language-ruby">Thread#raise</code> - would automatically inherit this behavior. Elegant in its simplicity, Watson!&quot;</p>
+	
+	<h3>The Original Sin</h3>
+	
+	<p>&quot;Now, Watson, let us advance to November 15th—a mere five days later. What changes did <a href="https://github.com/ruby/ruby/commit/549b35c1dc">commit 549b35c1dc</a> bring?&quot;</p>
+	
+	<p><code class="language-bash">git show 549b35c1dc</code></p>
+	
+	<p>Holmes examined the evidence with methodical precision. &quot;November 15th, 2013—<a href="https://github.com/ruby/ruby/commit/549b35c1dc">commit 549b35c1dc</a>. Nobuyoshi Nakada refactors exception cause handling with sound architectural reasoning, Watson! The original design tightly coupled cause-setting with exception creation inside <code class="language-c">make_exception</code>. But consider this dilemma: what if a programmer writes <code class="language-ruby">raise ArgumentError.new(&#39;bad value&#39;), cause: some_error</code>? The exception object already exists—you cannot set its cause during creation!</p>
+	
+	<p>&quot;The refactor elegantly solved this by moving cause-setting logic to <code class="language-c">setup_exception</code>, allowing it to work with both newly-created exceptions and pre-existing exception objects. A reasonable solution, Watson—but with one critical flaw!&quot;</p>
+	
+	<content:listing brush="c">static void
+setup_exception(rb_thread_t *th, int tag, volatile VALUE mesg)
+{
+    // ...
+    exc_setup_cause(mesg, get_thread_errinfo(th));  // Automatic cause chaining moved here
+    // ...
+}</content:listing>
+	
+	<p>&quot;Here&#39;s the tragic oversight, Watson,&quot; Holmes continued with growing concern. &quot;<code class="language-ruby">Thread#raise</code> wasn&#39;t changed at all—it continued calling <code class="language-c">make_exception</code> exactly as before. But <code class="language-c">make_exception</code> was stripped of its automatic cause chaining! The cause logic now lives in <code class="language-c">setup_exception</code>, which <code class="language-ruby">Thread#raise</code> has never called and never will call.&quot;</p>
+	
+	<h3>The December Enhancement</h3>
+	
+	<p>&quot;Let us complete our examination with the final commit. December 31st, 2013—what did <a href="https://github.com/ruby/ruby/commit/8a46d4027c">commit 8a46d4027c</a> bring?&quot;</p>
+	
+	<p><code class="language-bash">git show 8a46d4027c</code></p>
+	
+	<p>[Holmes examines the evidence...]</p>
+	
+	<p>&quot;Watson! This commit adds explicit <code class="language-ruby">cause:</code> keyword support, but observe carefully—it only modifies <code class="language-ruby">Kernel#raise</code>, not <code class="language-ruby">Thread#raise</code>! The developers, perhaps unaware that <code class="language-ruby">Thread#raise</code> had been accidentally regressed just weeks earlier, focused solely on the <code class="language-ruby">Kernel#raise</code> path.&quot;</p>
+	
+	<p><strong>Kernel#raise (received the full treatment):</strong></p>
+	
+	<content:listing brush="c">static VALUE
+rb_f_raise(int argc, VALUE *argv)
+{
+    VALUE err;
+    VALUE opts[raise_max_opt], *const cause = &amp;opts[raise_opt_cause];
+
+    argc = extract_raise_opts(argc, argv, opts);  // Sophisticated parsing!
+    if (argc == 0) {
+        if (*cause != Qundef) {
+            rb_raise(rb_eArgError, &quot;only cause is given with no arguments&quot;);
+        }
+        // Re-raise logic...
+    }
+    rb_raise_jump(rb_make_exception(argc, argv), *cause);
+}</content:listing>
+	
+	<p>&quot;But now, Watson—examine the tragedy that befell <code class="language-ruby">Thread#raise</code>:&quot;</p>
+	
+	<p><strong>Thread#raise (still using the old make_exception path):</strong></p>
+	
+	<content:listing brush="c">static VALUE
+rb_threadptr_raise(rb_thread_t *th, int argc, VALUE *argv)
+{
+    VALUE exc;
+    if (argc == 0) {
+        exc = rb_exc_new(rb_eRuntimeError, 0, 0);
+    }
+    else {
+        exc = rb_make_exception(argc, argv);  // Still calls make_exception...
+    }
+    rb_threadptr_pending_interrupt_enque(th, exc);  // ...but bypasses setup_exception!
+    return Qnil;
+}</content:listing>
+	
+	<p>&quot;The cruel irony, Watson!&quot; I exclaimed. &quot;<code class="language-ruby">Thread#raise</code> still calls <code class="language-c">rb_make_exception</code>, but the November refactor had stripped all cause handling from that function! It goes directly to the thread&#39;s pending interrupt queue, completely bypassing the new <code class="language-c">setup_exception</code> where cause chaining now lives!&quot;</p>
+	
+	<h3>The Missing Fiber</h3>
+	
+	<p>&quot;The final act of our tragedy, Watson, arrives five years later,&quot; Holmes continued. &quot;For in 2013, there was no <code class="language-ruby">Fiber#raise</code> at all! The method simply did not exist.&quot;</p>
+	
+	<p>Holmes traced through the git history with methodical precision: <code class="language-bash">git log -S &quot;rb_fiber_raise&quot; --format=&quot;%h (%as) %s&quot; --reverse</code></p>
+	
+	<p>The search revealed the method&#39;s introduction:</p>
+	
+	<content:listing brush="plain">5fb9d1e11f (2018-12-28) Implement Fiber#raise. Fixes #10344.
+88ba5fe547 (2021-09-20) Expose `rb_fiber_raise` and tidy up the internal implementation.</content:listing>
+	
+	<p>&quot;Behold! <code class="language-ruby">Fiber#raise</code> was not implemented until December 28th, 2018 in <a href="https://github.com/ruby/ruby/commit/5fb9d1e11f">commit 5fb9d1e11f</a>—nearly <strong>five years</strong> after both the refactor that affected <code class="language-ruby">Thread#raise</code> and the keyword addition that enhanced only <code class="language-ruby">Kernel#raise</code>. And when it was finally implemented...&quot;</p>
+	
+	<p><strong>Fiber#raise (following the same pattern as Thread#raise):</strong></p>
+	
+	<content:listing brush="c">static VALUE
+rb_fiber_raise(int argc, VALUE *argv, VALUE fib)
+{
+    VALUE exc = rb_make_exception(argc, argv);  // Follows Thread#raise pattern...
+    return rb_fiber_resume(fib, -1, &amp;exc);     // ...also bypassing setup_exception!
+}</content:listing>
+	
+	<p>&quot;It followed the <code class="language-ruby">Thread#raise</code> pattern,&quot; Holmes observed, &quot;not knowing that pattern had diverged from <code class="language-ruby">Kernel#raise</code> five years earlier. The implementer naturally looked to the existing <code class="language-ruby">Thread#raise</code> method as a template, unknowingly perpetuating the inconsistency.&quot;</p>
+	
+	<h3>The Eleven-Year Inconsistency</h3>
+	
+	<p>Holmes leaned back in his chair, his eyes gleaming with the satisfaction of a mystery solved. &quot;And so, Watson, we have uncovered the true timeline of this tragic inconsistency:</p>
+	
+	<ul>
+		<li><strong>November 10, 2013</strong> (<a href="https://github.com/ruby/ruby/commit/b050cc5ab9">commit b050cc5ab9</a>): <code class="language-ruby">Exception#cause</code> feature introduced with automatic cause chaining in <code class="language-c">make_exception</code> for both <code class="language-ruby">Kernel#raise</code> and <code class="language-ruby">Thread#raise</code>.</li>
+		<li><strong>November 15, 2013</strong> (<a href="https://github.com/ruby/ruby/commit/549b35c1dc">commit 549b35c1dc</a>): Well-intentioned refactor breaks <code class="language-ruby">Thread#raise</code>&#39;s cause chaining by moving logic to <code class="language-c">setup_exception</code>.</li>
+		<li><strong>December 31, 2013</strong> (<a href="https://github.com/ruby/ruby/commit/8a46d4027c">commit 8a46d4027c</a>): <code class="language-ruby">Kernel#raise</code> receives explicit <code class="language-ruby">cause:</code> keyword support, but the November regression in <code class="language-ruby">Thread#raise</code> goes unnoticed.</li>
+		<li><strong>December 28, 2018</strong> (<a href="https://github.com/ruby/ruby/commit/5fb9d1e11f">commit 5fb9d1e11f</a>): <code class="language-ruby">Fiber#raise</code> is introduced, innocently following the broken <code class="language-ruby">Thread#raise</code> pattern.</li>
+		<li><strong>July 2025</strong>: The eleven-year-old regression is finally discovered and resolved.</li>
+	</ul>
+	
+	<p>&quot;For more than <strong>eleven years</strong>, Watson, Ruby carried this divergence. What began as a perfectly designed feature with consistent behavior across both methods lasted only five days before being accidentally severed by a well-intentioned refactor, then compounded by missed opportunity when explicit keyword support was added, and finally crystallized into three inconsistent methods when <code class="language-ruby">Fiber#raise</code> innocently perpetuated the broken pattern.&quot;</p>
+	
+	<h2>Chapter VI: The Anatomy of Inconsistency</h2>
+	
+	<p>Having uncovered the historical roots of our mystery, Holmes now turned his forensic eye to the current state of the code. &quot;The source of our present-day mystery, Watson, lies in this historical oversight, now crystallized into fundamental differences between three methods that users expect to behave identically.&quot;</p>
+	
+	<p>He opened the CRuby source files with surgical precision:</p>
+	
+	<p>&quot;Observe <code class="language-ruby">Kernel#raise</code> in <code class="language-c">eval.c</code>—a masterpiece of argument parsing sophistication:</p>
+	
+	<content:listing brush="c">VALUE
+rb_f_raise(int argc, VALUE *argv)
+{
+    VALUE err;
+    VALUE opts[raise_max_opt], *const cause = &amp;opts[raise_opt_cause];
+
+    argc = extract_raise_opts(argc, argv, opts);
+    if (argc == 0) {
+        if (!UNDEF_P(*cause)) {
+            rb_raise(rb_eArgError, &quot;only cause is given with no arguments&quot;);
+        }
+        err = get_errinfo();
+        if (!NIL_P(err)) {
+            argc = 1;
+            argv = &amp;err;
+        }
+    }
+    rb_raise_jump(rb_make_exception(argc, argv), *cause);
+
+    UNREACHABLE_RETURN(Qnil);
+}</content:listing>
+	
+	<p>&quot;Now contrast this with <code class="language-ruby">Thread#raise</code> in <code class="language-c">thread.c</code>—observe the telling absence:</p>
+	
+	<content:listing brush="c">static VALUE
+rb_threadptr_raise(rb_thread_t *target_th, int argc, VALUE *argv)
+{
+    VALUE exc;
+
+    if (argc == 0) {
+        // Re-raise logic...
+    }
+    else {
+        // No keyword argument parsing whatsoever!
+        exc = rb_make_exception(argc, argv);
+    }
+
+    // Raise in target thread...
+}</content:listing>
+	
+	<p>&quot;Elementary, Watson! <code class="language-ruby">Kernel#raise</code> employs <code class="language-c">extract_raise_opts</code> to separate the <code class="language-ruby">cause:</code> keyword, while its cousins simply pass everything blindly to <code class="language-c">rb_make_exception</code>.&quot;</p>
+	
+	<h2>Chapter VII: The Consolidated Solution</h2>
+	
+	<p>&quot;The devil, Watson, lurked in the details,&quot; Holmes declared with growing excitement. &quot;But once we understood the true nature of the problem, the solution became elegantly clear.&quot;</p>
+	
+	<p>He turned to the whiteboard with renewed vigor. &quot;Observe this crucial insight: the <code class="language-ruby">raise</code> operation consists of <strong>two distinct phases</strong>:</p>
+	
+	<ol>
+		<li><strong>Exception Preparation</strong> - Creating the exception object (if not already created) and setting its cause.</li>
+		<li><strong>Exception Raising</strong> - The actual jump that transfers control to the next rescue clause.</li>
+	</ol>
+	
+	<p>&quot;In <code class="language-ruby">Kernel#raise</code>, these phases are tightly coupled—both occur within the same execution context. But in <code class="language-ruby">Thread#raise</code> and <code class="language-ruby">Fiber#raise</code>, they are fundamentally <strong>separated</strong>!&quot;</p>
+	
+	<p>Holmes sketched the flow:</p>
+	
+	<content:listing brush="plain"> ~~~~ Thread#raise / Fiber#raise ~~~~
+
+ Calling Context       Target Context
+┌───────────────┐     ┌──────────────┐
+│ 1. Prepare    │     │ 2. Raise     │
+│    Exception  │────▶│    Exception │
+│    + Cause    │     │              │
+│    (has $!)   │     │ (ignores $!) │
+└───────────────┘     └──────────────┘</content:listing>
+	
+	<p>&quot;The preparation must happen in the <strong>calling context</strong> because that&#39;s where <code class="language-ruby">$!</code> exists for automatic cause chaining. But the actual raising happens in the <strong>target context</strong> where the exception will be handled.&quot;</p>
+	
+	<p>&quot;This insight led us to create <code class="language-c">rb_exception_setup</code>—a shared implementation for phase 1, the exception preparation:&quot;</p>
+	
+	<content:listing brush="c">VALUE
+rb_exception_setup(int argc, VALUE *argv)
+{
+    rb_execution_context_t *ec = GET_EC();
+
+    // Extract cause keyword argument:
+    VALUE cause = Qundef;
+    argc = extract_raise_options(argc, argv, &amp;cause);
+
+    // Validate cause-only case:
+    if (argc == 0 &amp;&amp; !UNDEF_P(cause)) {
+        rb_raise(rb_eArgError, &quot;only cause is given with no arguments&quot;);
+    }
+
+    // Create exception if necessary:
+    VALUE exception;
+    if (argc == 0) {
+        exception = rb_exc_new(rb_eRuntimeError, 0, 0);
+    }
+    else {
+        // argv may contain an existing exception object, or it may contain a new exception class and arguments. `rb_make_exception` handles both cases:
+        exception = rb_make_exception(argc, argv);
+    }
+
+    VALUE resolved_cause = Qnil;
+
+    // Resolve cause with validation:
+    if (UNDEF_P(cause)) {
+        // No explicit cause - use automatic cause chaining from calling context:
+        resolved_cause = rb_ec_get_errinfo(ec);
+
+        // Prevent self-referential cause (e.g. `raise $!`):
+        if (resolved_cause == exception) {
+            resolved_cause = Qnil;
+        }
+    }
+    else if (NIL_P(cause)) {
+        // Explicit nil cause - prevent chaining:
+        resolved_cause = Qnil;
+    }
+    else {
+        // Explicit cause - validate and assign:
+        if (!rb_obj_is_kind_of(cause, rb_eException)) {
+            rb_raise(rb_eTypeError, &quot;exception object expected&quot;);
+        }
+
+        if (cause == exception) {
+            // Prevent self-referential cause (e.g. `raise error, cause: error`) - although I&#39;m not sure this is good behaviour, it&#39;s inherited from `Kernel#raise`.
+            resolved_cause = Qnil;
+        }
+        else {
+            // Check for circular causes:
+            VALUE current_cause = cause;
+            while (!NIL_P(current_cause)) {
+                // We guarantee that the cause chain is always terminated. Then, creating an exception with an existing cause is not circular as long as exception is not an existing cause of any other exception.
+                if (current_cause == exception) {
+                    rb_raise(rb_eArgError, &quot;circular causes&quot;);
+                }
+                if (THROW_DATA_P(current_cause)) {
+                    break;
+                }
+                current_cause = rb_attr_get(current_cause, id_cause);
+            }
+            resolved_cause = cause;
+        }
+    }
+
+    // Apply cause to exception object (duplicate if frozen):
+    if (!UNDEF_P(resolved_cause)) {
+        if (OBJ_FROZEN(exception)) {
+            exception = rb_obj_dup(exception);
+        }
+        rb_ivar_set(exception, id_cause, resolved_cause);
+    }
+
+    return exception;
+}</content:listing>
+	
+	<p>&quot;Both <code class="language-ruby">Thread#raise</code> and <code class="language-ruby">Fiber#raise</code> now use this shared preparation, while maintaining their distinct raising mechanisms:&quot;</p>
+	
+	<content:listing brush="c">// thread.c
+static VALUE rb_threadptr_raise(rb_thread_t *target_th, int argc, VALUE *argv)
+{
+    VALUE exception = rb_exception_setup(argc, argv);  // Phase 1: Prepare
+    rb_threadptr_pending_interrupt_enque(target_th, exception);  // Phase 2: Raise
+    return Qnil;
+}
+
+// cont.c
+VALUE rb_fiber_raise(VALUE fiber, int argc, const VALUE *argv)
+{
+    VALUE exception = rb_exception_setup(argc, argv);  // Phase 1: Prepare
+    return fiber_raise(fiber_ptr(fiber), exception);   // Phase 2: Raise
+}</content:listing>
+	
+	<p>&quot;But notice, Watson—we deliberately did <strong>not</strong> modify <code class="language-ruby">Kernel#raise</code> to use this shared function.&quot;</p>
+	
+	<p>&quot;Why not?&quot; I inquired.</p>
+	
+	<p>&quot;Because the behaviors have diverged over the years, Watson, and that divergence has ossified into tests, documentation, and user expectations. What began as an accidental inconsistency has become part of the public contract. Attempting to unify them now would risk breaking existing code that depends on these subtle behavioral differences.&quot;</p>
+	
+	<p>&quot;So our solution respects the historical reality: shared preparation where possible, but distinct implementations where behavioral divergence has become part of the established contract.&quot;</p>
+	
+	<p>Most satisfying of all, Watson, was the resolution of our original debugging mystery. The Async gem can now implement the precise feature that began our investigation:</p>
+	
+	<content:listing brush="ruby">module Async
+  class Task
+    def stop(cause: $!)
+      # ... skipping most of the implementation ...
+      @fiber.raise(Async::Stop, cause: cause)
+    end
+  end
+end</content:listing>
+	
+	<p>&quot;Debugging Async applications,&quot; Holmes observed with evident satisfaction, &quot;shall now benefit from complete exception cause chaining. When an <code class="language-ruby">Async::Stop</code> propagates, it carries with it the context of its origin—whether an interrupt, timeout, or another exception—making root cause analysis a straightforward exercise rather than a detective mystery.&quot;</p>
+	
+	<h3>Before</h3>
+	
+	<content:listing brush="plain">^C  0.0s    error: Object [oid=0x20] [ec=0x28] [pid=199670] [2025-07-23 18:23:35 +1200]
+               | Task exiting
+               | Async::Stop
+               |   Async::Stop: Async::Stop
+               |   → lib/async/scheduler.rb:191 in &#39;IO::Event::Selector::URing#transfer&#39;
+               |     lib/async/scheduler.rb:191 in &#39;Async::Scheduler#transfer&#39;
+               |     lib/async/scheduler.rb:281 in &#39;Async::Scheduler#kernel_sleep&#39;
+               |     ./test.rb:4 in &#39;Kernel#sleep&#39;
+               |     ./test.rb:4 in &#39;block in &lt;main&gt;&#39;
+               |     lib/async/task.rb:205 in &#39;block in Async::Task#run&#39;
+               |     lib/async/task.rb:443 in &#39;block in Async::Task#schedule&#39;</content:listing>
+	
+	<h3>After</h3>
+	
+	<content:listing brush="plain">^C  0.0s    error: Object [oid=0x20] [ec=0x28] [pid=192193] [2025-07-23 18:12:34 +1200]
+               | Task was stopped
+               |   Async::Stop: Task was stopped
+               |   → lib/async/scheduler.rb:191 in &#39;IO::Event::Selector::URing#transfer&#39;
+               |     lib/async/scheduler.rb:191 in &#39;Async::Scheduler#transfer&#39;
+               |     lib/async/scheduler.rb:281 in &#39;Async::Scheduler#kernel_sleep&#39;
+               |     ./test.rb:4 in &#39;Kernel#sleep&#39;
+               |     ./test.rb:4 in &#39;block in &lt;main&gt;&#39;
+               |     lib/async/task.rb:237 in &#39;block in Async::Task#run&#39;
+               |     lib/async/task.rb:481 in &#39;block in Async::Task#schedule&#39;
+               |   Caused by Interrupt: Interrupt
+               |   → lib/async/scheduler.rb:453 in &#39;IO::Event::Selector::URing#select&#39;
+               |     lib/async/scheduler.rb:453 in &#39;Async::Scheduler#run_once!&#39;
+               |     lib/async/scheduler.rb:492 in &#39;Async::Scheduler#run_once&#39;
+               |     lib/async/scheduler.rb:568 in &#39;block in Async::Scheduler#run&#39;
+               |     lib/async/scheduler.rb:528 in &#39;block in Async::Scheduler#run_loop&#39;
+               |     lib/async/scheduler.rb:525 in &#39;Thread.handle_interrupt&#39;
+               |     lib/async/scheduler.rb:525 in &#39;Async::Scheduler#run_loop&#39;
+               |     lib/async/scheduler.rb:567 in &#39;Async::Scheduler#run&#39;
+               |     lib/async/kernel/async.rb:34 in &#39;Kernel#Async&#39;
+               |     ./test.rb:3 in &#39;&lt;main&gt;&#39;</content:listing>
+	
+	<h2>The Greater Truth</h2>
+	
+	<p>&quot;This case demonstrates, Watson, multiple fundamental truths about software engineering. First, that inconsistency is the enemy of developer intuition—when <code class="language-ruby">Kernel#raise</code> supports <code class="language-ruby">cause:</code> but its cousins do not, it violates the principle of least surprise. But more importantly, it shows how easily accidental regressions can hide in plain sight for over a decade when dealing with edge cases that lack comprehensive test coverage.&quot;</p>
+	
+	<p>&quot;Indeed, Holmes,&quot; I replied, &quot;and your solution maintains perfect backwards compatibility while extending the language&#39;s expressiveness—and more importantly, restores the original intended behavior that was accidentally lost!&quot;</p>
+	
+	<p>&quot;Precisely! We haven&#39;t merely added a new feature, Watson—we have healed an eleven-year-old wound in Ruby&#39;s consistency. Existing code continues to function exactly as before, while new code gains access to the exception chaining patterns that should have been available all along.&quot;</p>
+	
+	<p>&quot;Another case closed, Watson,&quot; Holmes said with quiet satisfaction as our final test suite passed without a single failure. &quot;From a difficult debugging problem to language improvement—such is the noble work of those who tend to the foundational tools upon which all other software depends.&quot;</p>
+	
+	<p>I could only marvel at the journey we had undertaken together: from obscured exception causes to a comprehensive architectural enhancement that would benefit the entire Ruby community. Once again, Holmes had demonstrated that with methodical investigation, careful deduction, and elegant engineering, even the most entrenched language inconsistencies yield to determined analysis.</p>
+	
+	<p><em>End of Account</em></p>
+	
+	<p><strong>Dr. Claude Watson</strong><br/><em>221B Baker Street<br/>July 2025</em></p>
+	
+	<p><em>The improvements described herein are <a href="https://github.com/ruby/ruby/pull/13967">available beginning with Ruby 4.0</a>.</em></p>
+	
+	<p><em>Special acknowledgments to Marc-André Cournoyer for publicly proposing exception cause chaining for <code class="language-ruby">Async::Stop</code>, and to Matz for his approval of this enhancement.</em></p>
+</content:entry>

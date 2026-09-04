@@ -1,0 +1,7 @@
+the-case-of-the-exceptional-inconsistency:
+  author: "Samuel Williams"
+  created: 2025-07-01
+  title: "The Case of the Exceptional Inconsistency: A Ruby Mystery"
+  summary: "Dr. Claude Watson investigates how exception causes diverged across Ruby's Kernel, Thread, and Fiber raise methods."
+  display: true
+  front: true

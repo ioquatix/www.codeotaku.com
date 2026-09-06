@@ -1,3 +1,11 @@
+open-source-progress-update:
+  author: "Samuel Williams"
+  created: 2026-09-03
+  title: "From Raw Memory to Structured Web Applications"
+  summary: "An Open Source Progress Report about safer IO::Buffer ownership, bounded content parsing, structured URLs, protocol-native applications, and worker-aware load balancing."
+  display: true
+  front: false
+
 the-case-of-the-interrupt-that-arrived-too-soon:
   author: "Samuel Williams"
   created: 2026-09-02
